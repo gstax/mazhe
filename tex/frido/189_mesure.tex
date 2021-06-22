@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2019
+% Copyright (c) 2011-2021
 %   Laurent Claessens, Carlotta Donadello
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -21,6 +21,181 @@ Un lemme qui a l'air de rien, mais qui au final est souvent utilisé; tellement 
 
     Soit \( R\) tel que \( B(0,R)\) contienne \( K\). La fonction \( (M+1)\mtu_{B(0,R)}\) majore strictement \( f\) sur le mesurable \( B(0,R)\). L'ensemble sur lequel nous prenons le supremum dans la définition \eqref{EqDefintYfdmu} de l'intégrale de \( f\) contient donc au moins le nombre fini \( (M+1)\mu(K)\). Le supremum existe et est fini (proposition \ref{DefSupeA}).
 \end{proof}
+
+Le lemme suivant est la contrepartie du côté des intégrales de l'invariance par translation de la mesure de Lebesgue démontrée dans le théorème \ref{THOooTMWHooThsDHj}.
+\begin{lemma}[Invariance par translation]       \label{LEMooGKOGooPLYaUO}
+    Soient \( f\) intégrable sur \( \eR^d\) et \( a\in \eR^d\). Alors en posant
+    \begin{equation}
+        \begin{aligned}
+            g\colon \eR^d&\to \eC \\
+            x&\mapsto f(x+a) 
+        \end{aligned}
+    \end{equation}
+    nous avons
+    \begin{equation}
+        \int_{\eR^d}fd\lambda = \int_{\eR^d}gd\lambda.
+    \end{equation}
+    Nous pouvons aussi écrire
+    \begin{equation}
+        \int_{\eR^d}f(x+a)d\lambda(x)=\int_{\eR^d}f(x)d\lambda(x).
+    \end{equation}
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Quelques limites dans les bornes}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Dans le cas de l'intégrale de Lebesgue définie par \ref{DefTVOooleEst}, si \( f\) est une fonction sur \( \eR\) et si \( \lambda\) est la mesure de Lebesgue, nous avons une définition directe de
+\begin{equation}
+    \int_{0}^{\infty}f\lambda.
+\end{equation}
+Nous sommes cependant en droit de nous demander si nous n'aurions pas également ceci :
+\begin{equation}        \label{EQooDVKKooCiFzmA}
+    \lim_{x\to \infty} \int_0^xf\lambda=\int_0^{\infty}fd\lambda.
+\end{equation}
+Lorsque l'intégrale considérée est celle de Riemann, l'égalité \eqref{EQooDVKKooCiFzmA} est une définition. Ici, ça va être une propriété.
+
+\begin{normaltext}
+    Tant que nous sommes à parler de limites dans les bornes, nous aurions pu vouloir, pour les séries, suivre le chemin suivant :
+    \begin{itemize}
+        \item Définir l'intégrale de Lebesgue sur un espace mesuré.
+        \item Prendre au passage le cas particulier \( \sum_{k=0}^{\infty}a_k=\int_\eN a\) où \( a\colon \eN\to \eR\) est une fonction mesurable pour la mesure de comptage.
+        \item Démontrer qu'avec ces définitions, \( \sum_{k=0}^{\infty}a_k=\lim_{N\to \infty} \sum_{k=0}^Na_k\).
+    \end{itemize}
+    Or le dernier point est pris comme définition et son égalité avec l'intégrale pour la mesure de comptage est une propriété\footnote{Proposition \ref{PROPooPNQAooDRLcCm}.}. Pourquoi ? Parce que la définition \ref{DefBTsgznn} de mesure positive demande déjà d'avoir défini les sommes sur \( \eN\).
+\end{normaltext}
+
+\begin{lemma}
+    Soit une partie mesurable \( A\subset \eR^+\) de mesure finie. Alors
+    \begin{equation}
+        \lim_{M\to 0} \lambda\big( A\cap\mathopen[ M , \infty \mathclose[ \big)=0.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    La fonction
+    \begin{equation}
+        \begin{aligned}
+            f\colon \eR^+&\to \eR^+ \\
+            x&\mapsto \lambda\big( A\cap\mathopen[ x , \infty \mathclose[ \big)
+        \end{aligned}
+    \end{equation}
+    est décroissante et bornée vers le bas par \( 0\). Elle possède dont une limite \( \ell\geq 0\) (corolaire \ref{CorFHbMqGGyi}). Nous allons prouver que \( \ell=0\) en calculant la limite sur les entiers.
+
+    Nous posons \( J_k=\mathopen[ k , k+1 \mathclose[\). Pour \( n\in \eN\) nous avons :
+    \begin{subequations}
+        \begin{align}
+            f(n)&=\lambda\big( A\cap\mathopen[ n , \infty \mathclose[ \big)\\
+                &=\lambda\big( \bigcup_{k=n}^{\infty}(A\cap J_k) \big)\\
+                &=\sum_{k=n}^{\infty}\lambda(A\cap J_k).
+        \end{align}
+    \end{subequations}
+    
+    Mais nous savons par hypothèse sur la mesure de \( A\) que
+    \begin{equation}
+        \lambda(A)=\sum_{k=0}^{\infty}\lambda(A\cap J_k)<\infty.
+    \end{equation}
+    Donc \( f(n)\) est une queue de série convergente. Elle tend donc vers zéro par le lemme \ref{LEMooFUCOooCOqLRj}. C'est à dire que
+    \begin{equation}
+        \lim_{n\to \infty} f(n)=0.
+    \end{equation}
+    Et comme \( \lim_{x\to \infty}f(x) \) existe et vaut \( \ell\), la seule possibilité est \( \ell=0\).
+\end{proof}
+
+\begin{lemma}       \label{LEMooMUHWooZPbMDb}
+    Soit une fonction mesurable \( f\colon \eR\to \eR^+\). Alors
+    \begin{equation}
+        \lim_{x\to \infty} \int_x^{\infty}fd\lambda=0.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Nous posons
+    \begin{equation}
+        F(x)= \int_x^{\infty}fd\lambda.
+    \end{equation}
+    Nous commençons par prouver que c'est une fonction décroissante. En effet,
+    \begin{equation}
+        F(x)-F(x+a)=\int_{x}^{\infty}f-\int_{x+a}^{\infty}f=\int_{x}^{x+a}f+\int_{x+a}^{\infty}f-\int_{x+a}^{\infty}=\int_x^{a+a}f\geq 0.
+    \end{equation}
+    Nous avons utilisé \ref{PropOPSCooVpzaBt}.
+
+    Vu que \( f\) prend ses valeurs dans \( \eR^+\), nous avons \( F(x)\geq 0\) pour tout \( x\). La fonction \( F\) est décroissante et bornée vers le bas. Donc elle a une limite :
+    \begin{equation}
+        \lim_{x\to \infty} F(x)=\ell\geq 0.
+    \end{equation}
+    
+    Supposons \( \ell >0\) et posons \( 0<\epsilon<\ell\). Soit \( M\) tel que pour tout \( x>M\) nous ayons
+    \begin{equation}        \label{EQooZVKQooQDxHXp}
+        \int_x^{\infty}f>m.
+    \end{equation}
+    Soit \( a\in \eR^+\) tel que
+    \begin{equation}
+        | \int_a^{\infty}f(t)-\ell\,dt |<\epsilon.
+    \end{equation}
+    En vertu de \eqref{EQooZVKQooQDxHXp} nous considérons \( a_0>a\) tel que 
+    \begin{equation}
+        \int_{a_0}^{\infty}f=I_0>m.
+    \end{equation}
+    Nous construisons la suite strictement croissante \( (a_k)\) de la façon suivante :
+    \begin{equation}
+        \int_{a_k}^{\infty}f=I_k>m
+    \end{equation}
+    et
+    \begin{equation}
+        | \int_{a_k}^{a_{k+1}}f-I_k |<\epsilon.
+    \end{equation}
+    Donc pour \( k\) nous avons
+    \begin{equation}
+        \int_{a_k}^{a_{k+1}}f\geq I_k-\epsilon\geq m-\epsilon.
+    \end{equation}
+    Mais
+    \begin{equation}
+        \int_{a_0}^{\infty}=\sum_{k=0}^{\infty}\int_{a_k}^{a_{k+1}}f\geq \sum_k(m-\epsilon)=\infty.
+    \end{equation}
+    Nous avons une contradiction.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Mesure de comptage et série}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}[mesure de comptage]      \label{DEFooILJRooByDzhs}
+    Soit \( (S,\tribF)\) un ensemble mesurable. La \defe{mesure de comptage}{mesure!de comptage} sur \( (S,\tribF)\) est la mesure définie par
+    \begin{equation}
+        m(A)=\begin{cases}
+            \Card(A)    &   \text{si } A\text{ est fini}\\
+            +\infty    &    \text{sinon}.
+        \end{cases}
+    \end{equation}
+\end{definition}
+Cette mesure est utilisée pour voir des séries comme des intégrales sur \( (\eN,\partP(\eN),m)\).
+
+\begin{lemma}       \label{LEMooDTFHooLVsvAw}
+    Si \( m\) est la mesure de comptage sur \( \eN\) et si \( \partP(\eN)\) est l'ensemble des parties de \( \eN\), alors le triple \( \big( \eN,\partP(\eN), m \big)\) est un espace mesuré.
+\end{lemma}
+
+\begin{proposition}     \label{PROPooPNQAooDRLcCm}
+    Soit l'espace mesuré \( \big( \eN,\partP(\eN), m \big)\)\footnote{La mesure de comptage sur \( \eN\) est donnée en la définition \ref{DEFooILJRooByDzhs}.}. Nous considérons une suite \( a\colon \eN\to \eR\).
+
+    \begin{enumerate}
+        \item
+            L'intégrale \( \int_{\eN}a\,dm\) existe si et seulement si la série \( \sum_{n=0}^{\infty}a_n\) existe.
+        \item
+            Si \( \int_{\eN}a\,dm\) existe, alors
+            \begin{equation}
+                \int_{\eN}a\,dm=\sum_{n=0}^{\infty}a_n.
+            \end{equation}
+    \end{enumerate}
+\end{proposition}
+
+\begin{example}
+    La mesure de comptage \( m\) sur \( \eN\) muni de la tribu de ses parties est \( \sigma\)-finie parce que \( E_n=\{ 0,\ldots, n \}\) est de mesure finie et \( \bigcup_{n\in \eN}E_n=\eN\).
+\end{example}
+
+\begin{example}
+    L'intervalle \( I=\mathopen[ 0 , 1 \mathclose]\) muni de la tribu de toutes ses parties et de la mesure de comptage est un espace mesuré non \( \sigma\)-fini.
+\end{example}
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Théorème de la moyenne}
@@ -101,7 +276,7 @@ Nous devons prouver que \( F\) est dérivable et que pour tout \( x_0\in\mathope
     \end{equation}
     qui n'est rien d'autre que le fait que \( F\) est dérivable en \( x_0\) et que sa dérivée est \( f(x_0)\).
 
-    Le fait que \( F\) s'annule en \( x=a\) est par sa définition. L'unicité provient du corollaire~\ref{CorZeroCst}.
+    Le fait que \( F\) s'annule en \( x=a\) est par sa définition. L'unicité provient du corolaire~\ref{CorZeroCst}.
 \end{proof}
 
 \begin{theorem}[Théorème fondamental du calcul intégral]    \label{ThoRWXooTqHGbC}
@@ -144,15 +319,15 @@ Sous cette forme, il faut penser que nous calculons \( f(x)\) en un point pas tr
 Quelque remarques.
 \begin{enumerate}
     \item
-        Le théorème fondamental du calcul intégral est à utiliser pour calculer des intégrales des fonctions réelle lorsqu'on a des primitives sur un domaine strictement plus large que le domaine sur lequel nous voulons intégrer.
+        Le théorème fondamental du calcul intégral est à utiliser pour calculer des intégrales des fonctions réelles lorsqu'on a des primitives sur un domaine strictement plus large que le domaine sur lequel nous voulons intégrer.
     \item
-        Une version pour les intégrales impropres sera donnée au corollaire~\ref{CorMUIooXREleR}.
+        Une version pour les intégrales impropres sera donnée au corolaire~\ref{CorMUIooXREleR}.
     \item
     Une primitive est forcément une fonction continue parce qu'une primitive est dérivable.
 \item
     Le théorème fondamental du calcul intégral ne sert pas qu'à calculer des intégrales à partir de primitives. Il sert aussi à démontrer des résultats plus théoriques, comme le théorème \ref{THOooXZQCooSRteSr}.
     \item
-        En vertu du corollaire~\ref{CorZeroCst}, une fonction ne possède qu'une seule primitive à constante près.
+        En vertu du corolaire~\ref{CorZeroCst}, une fonction ne possède qu'une seule primitive à constante près.
 \end{enumerate}
 
 
@@ -226,10 +401,10 @@ En termes de notations, nous posons
 \subsection{Permuter limite et dérivée}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{normaltext}      \label{NORMALooGYUEooKrYjyz}
+\begin{normaltext}[\cite{TrenchRealAnalisys}]      \label{NORMALooGYUEooKrYjyz}
     Voici une preuve alternative du théorème \ref{THOooXZQCooSRteSr}. Elle utilise des intégrales; elle demande donc plus de dependences.
 
-\begin{theorem}[\cite{TrenchRealAnalisys}]    
+    \paragraph{Énoncé}
     Soient une suite de fonctions \( f_i\colon \eR\to \eR\), une fonction \( f\colon \eR\to \eR\) et une fonction \( g\colon \eR\to \eR\) telles que
     \begin{enumerate}
         \item
@@ -248,9 +423,8 @@ En termes de notations, nous posons
         \item
             \( f_i\to f\) uniformément sur tout compact.
     \end{enumerate}
-\end{theorem}
+    \paragraph{Preuve}
 
-    \begin{proof}
         Nous commençons par considérer \( x_0\in \eR\) et un intervalle compact \( K\) contenant \( x_0\). Nous montrons que \( f'(x_0)=g(x_0)\) en plusieurs étapes.
         \begin{subproof}
         \item[Une formule intégrale]
@@ -306,7 +480,6 @@ En termes de notations, nous posons
         Nous avons donc bien \( \lim_{i\to \infty}\| f-f_i \|=0\), c'est-à-dire convergence uniforme de \( (f_i)\) vers \( f\) sur \( K\).
 
         \end{subproof}
-    \end{proof}
 \end{normaltext}
 
 La proposition suivante est la généralisation à \( \eR\) de la proposition \ref{PROPooSGLGooIgzque}.
@@ -424,7 +597,7 @@ Il peut cependant arriver que la limite \( \lim_{x\to b} \int_a^bf\) existe alor
 
 L'intégrale \eqref{EqMMVooDSpgfz} est une intégrale convergente mais la fonction n'est pas intégrable (parce que pour être intégrale il faut que \( | f |\) soit intégrable). Nous pouvons ainsi dire que cette intégrale converge mais n'existe pas.
 
-Le corollaire suivant nous autorise à utiliser le théorème fondamental du calcul intégral~\ref{ThoRWXooTqHGbC} même dans les cas limites.
+Le corolaire suivant nous autorise à utiliser le théorème fondamental du calcul intégral~\ref{ThoRWXooTqHGbC} même dans les cas limites.
 \begin{corollary}   \label{CorMUIooXREleR}
     Si \( f\) est localement intégrable sur \( \mathopen[ a , b \mathclose]\) et si \( F\) est une primitive de \( f\) sur tout ouvert de \( \mathopen[ a , b \mathclose]\) alors
     \begin{equation}
@@ -469,36 +642,12 @@ La convergence des intégrales de fonctions \( \frac{1}{ x^{\alpha} }\) en \( 0\
 \end{proposition}
 
 \begin{proof}
-La fonction \( \frac{1}{ x^{\alpha} }\) admet la primitive \( F(x)=\frac{1}{ 1-\alpha }\frac{1}{ x^{\alpha-1} }\) sur tout compact de \( \mathopen] 0 , \infty \mathclose[\). Le corollaire~\ref{CorMUIooXREleR} nous permet\footnote{Tout ce que nous avons fait avec la borne \( b\) de l'intégrale \( \int_a^b\) reste valable avec la borne \( a\).} de dire que \( \int_0^1\frac{1}{ x^{\alpha} }\) vaudra
+La fonction \( \frac{1}{ x^{\alpha} }\) admet la primitive \( F(x)=\frac{1}{ 1-\alpha }\frac{1}{ x^{\alpha-1} }\) sur tout compact de \( \mathopen] 0 , \infty \mathclose[\). Le corolaire~\ref{CorMUIooXREleR} nous permet\footnote{Tout ce que nous avons fait avec la borne \( b\) de l'intégrale \( \int_a^b\) reste valable avec la borne \( a\).} de dire que \( \int_0^1\frac{1}{ x^{\alpha} }\) vaudra
     \begin{equation}
         \lim_{x\to 0-^+} \frac{1}{ 1-\alpha }\frac{1}{ x^{\alpha-1} }.
     \end{equation}
     Cela est strictement plus petit que \( \infty\) si et seulement si \( \alpha<1\).
 \end{proof}
-
-%--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Taylor : reste intégral}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{proposition}[Formule de Taylor avec reste intégral\cite{VBYOJrU,ooSZKEooLejXAh}]\label{PropAXaSClx}
-    Soient \( X\) et \( Y\) des espaces normés et un ouvert \( \mO\subset X\). Si \( f\in C^m(\mO,Y)\) et si \( [p,x]\subset \mO\) alors
-    \begin{equation}
-        \begin{aligned}[]
-            f(x)=f(p)&+\sum_{k=1}^{m-1}\frac{1}{ k! }(d^kf)_p (x-p)^k \\
-            &+\frac{1}{ (m-1)! }\int_0^1(1-t)^{m-1}(d^mf)_{ p+t(x-p) }(x-p)^m\,dt 
-        \end{aligned}
-    \end{equation}
-    où \( \omega_pu^k\) signifie \( \omega_p(u,\ldots, u)\) lorsque \( \omega\in \Omega^k\).
-\end{proposition}
-\index{formule!Taylor!reste intégral}
-
-Notez que l'intégrale n'est pas une intégrale faisant intervenir les espaces \( X\) ou \( Y\). Elle est une simple intégrale d'une fonction \( \eR\to \eR\), comme définie par la mesure de Lebesgue de la définition \ref{DefooYZSQooSOcyYN}.
-
-Comme expliqué dans l'exemple \ref{ExZHZYcNH}, toute ces applications de différentielles se réduisent à des termes de la forme
-\begin{equation}
-    f^{(k)}(p)(x-p)^k
-\end{equation}
-dans le cas d'une fonction \( \eR\to\eR\).
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Changement de variables dans une intégrale multiple}
@@ -525,7 +674,7 @@ Dans ce qui suit, \( U\) et \( V\) sont des ouverts de \( \eR^N\) et \( \phi\col
     \begin{equation}
         \mu(B)\leq \nu(B)
     \end{equation}
-    pour tout \( B\in\Borelien(U)\). Notons que \( U\) étant ouvert dans \( \eR^N\), les boréliens de \( U\) sont exactement les boréliens de \( \eR^N\) inclus dans \( U\) par le corollaire~\ref{CorooMJQYooFfwoTd}.
+    pour tout \( B\in\Borelien(U)\). Notons que \( U\) étant ouvert dans \( \eR^N\), les boréliens de \( U\) sont exactement les boréliens de \( \eR^N\) inclus dans \( U\) par le corolaire~\ref{CorooMJQYooFfwoTd}.
 \end{proof}
 
 \begin{lemma}[\cite{PMTIooJjAmWR}]      \label{LemooJCEDooBRyjRg}
@@ -575,7 +724,7 @@ Dans la suite, \( Q_0\) désigne le cube unité : \( Q_0=\big( \mathopen[ 0 , 1 
     \begin{equation}
         \mu(B+a)=\lambda_N\big( T(B)+a \big)=\lambda_N\big( T(B) \big)=\mu(B).
     \end{equation}
-    De plus, \( T(Q_0)\) est borné et nous notons \( \mu(Q_0)=C\). Nous avons \( \mu=C\lambda_N\) par le corollaire~\ref{CorKGMRooHWOQGP}.
+    De plus, \( T(Q_0)\) est borné et nous notons \( \mu(Q_0)=C\). Nous avons \( \mu=C\lambda_N\) par le corolaire~\ref{CorKGMRooHWOQGP}.
 
     \begin{subproof}
         \item[\( C(T_1T_2)=C(T_1)C(T_2)\)]
@@ -592,7 +741,7 @@ Dans la suite, \( Q_0\) désigne le cube unité : \( Q_0=\big( \mathopen[ 0 , 1 
             \end{equation}
             Et en plus, \( C(\id)=1\).
         \item[Matrice diagonale]
-            En guise de \( T\), nous considérons l'application linéaire diagonale \( D=\diag(d_1,\ldots, d_N)\) qui fait
+            En guise de \( T\), nous considérons l'application linéaire diagonale donnée par \( De_i=d_ie_i\), ou, sous forme matricielle, \( D=\diag(d_1,\ldots, d_N)\) qui fait
             \begin{equation}
                 T(Q_0)=\mathopen[ 0 , d_1 \mathclose[\times \ldots\times \mathopen[  0, d_N \mathclose[
             \end{equation}
@@ -607,7 +756,7 @@ Dans la suite, \( Q_0\) désigne le cube unité : \( Q_0=\big( \mathopen[ 0 , 1 
             \end{equation}
             par conséquent \( C(U)=1\), et \( 1\) est justement le déterminant de \( U\).
         \item[Matrice quelconque]
-            Nous savons par le corollaire~\ref{CorAWYBooNCCQSf} de la décomposition polaire que toute matrice peut être écrite sous la forme \( T=U_1DU_2\) où \( U_i\) sont orthogonales et \( D\) est diagonale. Donc \( C(T)=C(U_1)C(D)C(U_2)=\det(U_1)\det(D)\det(U_2)=\det(U_2DU_2)=\det(T)\) parce que le déterminant est multiplicatif (proposition~\ref{PropYQNMooZjlYlA}\ref{ItemUPLNooYZMRJy}).
+            Nous savons par le corolaire~\ref{CorAWYBooNCCQSf} de la décomposition polaire que toute matrice peut être écrite sous la forme \( T=U_1DU_2\) où \( U_i\) sont orthogonales et \( D\) est diagonale. Donc \( C(T)=C(U_1)C(D)C(U_2)=\det(U_1)\det(D)\det(U_2)=\det(U_2DU_2)=\det(T)\) parce que le déterminant est multiplicatif (proposition~\ref{PropYQNMooZjlYlA}\ref{ItemUPLNooYZMRJy}).
     \end{subproof}
 \end{proof}
 
@@ -646,16 +795,19 @@ Une dilatation d'un facteur \( a\) des longueurs provoque une multiplication par
         \item       \label{ITEMooEZUBooGBuDOS}
             Si \( f\colon V\to \mathopen[ 0 , +\infty \mathclose]\) est mesurable alors la fonction
             \begin{equation}
-                (f\circ\phi)\times | J_{\phi} |\colon U\to \mathopen[ 0 , \infty \mathclose]
+                \begin{aligned}
+                (f\circ\phi)\times | J_{\phi} |\colon U&\to \mathopen[ 0 , \infty \mathclose]\\
+                    x&\mapsto  (f\circ\phi)(x)| J_{\phi}(x) |d\lambda_N(x)
+                \end{aligned}
             \end{equation}
             l'est également et\footnote{L'intégrabilité d'une fonction est la définition~\ref{DefTCXooAstMYl} qui stipule que l'intégrale de \( | f(x) |\) est finie. L'égalité proposée a un sens si les deux membres sont infinis. Il n'y a donc pas d'hypothèses d'intégrabilité obligatoire pour écrire une intégrale lorsque la fonction a des valeurs positives.}
             \begin{equation}        \label{EqRANEooQsFhbC}
-                \int_Vfd\lambda_N=\int_U(f\circ\phi)(x)| J_{\phi}(x) |d\lambda_N(x).
+                \int_{\phi(U)}fd\lambda_N=\int_U(f\circ\phi)(x)| J_{\phi}(x) |d\lambda_N(x).
             \end{equation}
         \item       \label{ITEMooAJGDooGHKnvj}
             Si \( f\colon V\to \eC\) est mesurable alors elle est intégrable si et seulement si \( (f\circ \phi)\times | J_{\phi} |\colon U\to \eC\) est intégrable. Si c'est le cas, alors nous avons encore la formule de changement de variables :
             \begin{equation}        \label{EQooLYAWooTArAZR}
-                \int_Vfd\lambda_N=\int_{\phi^{-1}(V)} (f\circ \phi)| J_{\phi} |d\lambda_N.
+                \int_{V}fd\lambda_N=\int_{\phi^{-1}(V)} (f\circ \phi)| J_{\phi} |d\lambda_N.
             \end{equation}
     \end{enumerate}
 \end{theorem}
@@ -745,7 +897,7 @@ Une dilatation d'un facteur \( a\) des longueurs provoque une multiplication par
                 L'inégalité \eqref{EqooQCXXooSjGzks} est prouvée.
             \item[Inégalité pour les boréliens]
 
-                Soit \( B\) un borélien de \( U\). Vu que \( U\) et \( V\) sont des ouverts de \( \eR^N\), les mesures de Lebesgue sur \( U\) et sur \( V\) sont les mêmes que celles sur \( \eR^n\)  par le corollaire~\ref{CorooMJQYooFfwoTd}.
+                Soit \( B\) un borélien de \( U\). Vu que \( U\) et \( V\) sont des ouverts de \( \eR^N\), les mesures de Lebesgue sur \( U\) et sur \( V\) sont les mêmes que celles sur \( \eR^n\)  par le corolaire~\ref{CorooMJQYooFfwoTd}.
 
                 Par les définitions~\ref{PropooVXPMooGSkyBo} et~\ref{PropJCJQooAdqrGA}, les applications \( \mu\) et \( n\) définies par \( \mu=\phi^{-1}(\lambda_N)\) et \( \nu=| J_{\phi} |\lambda_N\) sont des mesures positives sur \( U\) (de Borel, qui plus est). L'inégalité \eqref{EqooQCXXooSjGzks} à peine prouvée s'écrit \( \mu(Q)\leq \nu(Q)\) pour tout cube \( Q\). Le lemme~\ref{LemooJYCGooIkkDVn} nous dit alors que l'inégalité tient pour tout borélien.
 
@@ -1067,7 +1219,7 @@ Le théorème de Fubini-Tonelli parle de fonctions réelles et non complexes, et
 
     Nous commençons par supposer que \( f\) est à valeurs dans \( \eR\). La notation \( | f |\), pour l'instant,  dénote donc bien la valeur absolue et non le module.
 
-    La fonction \( | f |\) est mesurable et positive par hypothèse et par le fait que si \( f\) est mesurable, alors \( | f |\) l'est également par le corollaire~\ref{CORooNXYUooEcvDlP}. Le théorème~\ref{ThoWTMSthY}\ref{ITEMooFKQUooCoCOLV} nous dit alors que les intégrales suivantes existent et sont égales :
+    La fonction \( | f |\) est mesurable et positive par hypothèse et par le fait que si \( f\) est mesurable, alors \( | f |\) l'est également par le corolaire~\ref{CORooNXYUooEcvDlP}. Le théorème~\ref{ThoWTMSthY}\ref{ITEMooFKQUooCoCOLV} nous dit alors que les intégrales suivantes existent et sont égales :
     \begin{equation}        \label{EQooAIQGooNtBOuC}
             \int_{\Omega_1\times \Omega_2}| f |d(\mu_1\otimes \mu_2)=\int_{\Omega_1}\left[ \int_{\Omega_2}|f(x,y)|d\mu_2(y) \right]d\mu_1(x)
             =\int_{\Omega_2}\left[ \int_{\Omega_1}|f(x,y)|d\mu_1(x) \right]d\mu_2(y).
@@ -1212,14 +1364,14 @@ Le théorème de Fubini-Tonelli parle de fonctions réelles et non complexes, et
     \end{equation}
     nous avons que \( g(x,\cdot)\) est intégrable pour tout \( x\in A^c\). Vu que pour ces valeurs de \( x\) nous avons \( g(x,y)=f(x,y)\) nous en déduisons que pour \( x\in A^c\) nous avons aussi \( f(x,\cdot)\in L^1(\Omega_2)\).
 
-    Les autres points se traitent de la même façon\quext{Attention : je n'ai pas vérifié explicitement. C'est juste une intuition. Vérifiez et écrivez moi pour dire si c'est bon ou non.}.
+    Les autres points se traitent de la même façon\quext{Attention : je n'ai pas vérifié explicitement. C'est juste une intuition. Vérifiez et écrivez-moi pour dire si c'est bon ou non.}.
 \end{proof}
 
 \begin{normaltext}      \label{NORMooKIRJooPvyPWQ}
     En pratique, il n'est pas toujours évident qu'une fonction soit intégrable sur \( \Omega_1\times \Omega_2\). Pour permuter des intégrales sur une fonction à deux paramètres nous faisons comme suit.
     \begin{enumerate}
         \item
-            Nous testons l'intégrabilité en chaîne de \( | f |\), et si c'est bon, le corollaire~\ref{CorTKZKwP} nous donne \( f\in L^1(\Omega_1\times \Omega_2)\).
+            Nous testons l'intégrabilité en chaine de \( | f |\), et si c'est bon, le corolaire~\ref{CorTKZKwP} nous donne \( f\in L^1(\Omega_1\times \Omega_2)\).
         \item
             Nous utilisons le théorème de Fubini~\ref{ThoFubinioYLtPI} pour séparer et permuter les intégrales comme des ingénieurs.
     \end{enumerate}

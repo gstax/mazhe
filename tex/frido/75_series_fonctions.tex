@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2019
+% Copyright (c) 2008, 2009, 2011-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -104,6 +104,10 @@ Le théorème suivant est une paraphrase du théorème de la convergence dominé
     Soit un espace vectoriel normé \( E\). Un ouvert \( \Omega\) est dit connexe par arcs de classe \( C^1\) si pour tout choix de \( a,b\in \Omega\), il existe une application \( \gamma\colon \mathopen[ 0 , 1 \mathclose]\to \Omega\) de classe \( C^1\) telle que \( \gamma(0)=a\) et \( \gamma(1)=b\).
 \end{definition}
 
+\begin{probleme}
+    Le théorème \ref{ThoLDpRmXQ} se démontre ici avec des intégrales. Je suis presque certain qu'on doit pouvoir adapter la démonstration du théorème \ref{ThoSerUnifDerr} pour ne pas avoir à utiliser d'intégrales.
+\end{probleme}
+
 \begin{theorem}[\cite{DHdwZRZ}] \label{ThoLDpRmXQ}
     Soient \( E\) et \( F\) deux espaces vectoriels normés, \( \Omega\) un ouvert connexe par arcs de classe \( C^1\) de \( E\). Soit \( (u_n)\) une suite de fonctions \( u_n\colon \Omega\to F\) telle que
     \begin{enumerate}
@@ -143,7 +147,7 @@ Le théorème suivant est une paraphrase du théorème de la convergence dominé
 
     \begin{subproof}
         \item[Permuter somme et intégrale]
-            Nous voudrions permuter la somme et l'intégrale dans \( \int_0^1\sum_if_i(t)dt\). Pour cela nous commençons par regarder quelque majorations de normes.
+            Nous voudrions permuter la somme et l'intégrale dans l'expression \( \int_0^1\sum_if_i(t)dt\). Pour cela nous commençons par regarder quelques majorations de normes.
 
             D'abord \( \gamma\) est de classe \( C^1\), ce qui fait que \( \gamma'\) est continue. Vu que la norme est une application continue, la fonction \( t\mapsto \| \gamma'(t) \|\) est également continue sur le compact \( \mathopen[ 0 , 1 \mathclose]\). Elle est donc majorée par une constante que nous nommons \( M\). C'est le théorème de Weierstrass \ref{ThoWeirstrassRn}.
 
@@ -227,9 +231,69 @@ Le théorème suivant est une paraphrase du théorème de la convergence dominé
             \begin{itemize}
                 \item Pour \ref{SUBEQooFSPSooCPErXj}. Permuter la somme et l'intégrale comme plus haut.
                 \item Pour \ref{SUBEQooDQODooIPMfDo}. Permuter une somme et une dérivée classique des fonctions \( \eR\to F\) données par \( s\mapsto u_n(a+sv)\). Il s'agit d'utiliser le théorème \ref{THOooXZQCooSRteSr} sur chaque composantes dans \( F\).
-                \item Pour \ref{SUBEQooQGOQooLvXuaX}. Chaque \( du_n\) est une application \( du_n\colon E\to \aL(E,F)\). Au fait près que la notation est plus lourde, il s'agit simplement d'une définition de la somme pontuelle d'une suite de fonctions : \( \sum_nf_n(a)=(\sum_nf_n)(a)\). Dans ce cas-ci, le tout est encore un élément de \( \aL(E,F)\) que nous appliquons à \( v\).
+                \item Pour \ref{SUBEQooQGOQooLvXuaX}. Chaque \( du_n\) est une application \( du_n\colon E\to \aL(E,F)\). Au fait près que la notation est plus lourde, il s'agit simplement d'une définition de la somme ponctuelle d'une suite de fonctions : \( \sum_nf_n(a)=(\sum_nf_n)(a)\). Dans ce cas-ci, le tout est encore un élément de \( \aL(E,F)\) que nous appliquons à \( v\).
             \end{itemize}
     \end{subproof}
+\end{proof}
+
+
+\begin{lemma}       \label{LEMooRIQTooLomsqD}
+Sur $[\frac{ 1 }{2},1]$, étudier la convergence de la série
+\begin{equation}
+	f(x)=\sum_{n=1}^{\infty}\frac{1}{ n }\left( \frac{ x-1 }{ x } \right)^n.
+\end{equation}
+Étudier la convergence de la série dérivée; en déduire que
+\begin{equation}
+	\sum_{n=1}^{\infty}\frac{ (-1)^{n-1} }{ n }=\ln(2).
+\end{equation}
+\end{lemma}
+
+
+\begin{proof}
+Nous posons $y(x)=\frac{ x-1 }{ x }$, et nous regardons la série
+\begin{equation}		\label{EqSeryexotreize}
+	\tilde f(y)=\sum_{n=1}^{\infty}\frac{1}{ n }y^n.
+\end{equation}
+Cette série de puissance converge absolument pour $| y |<1$, voir l'exemple 4 de la page 123bis du cours de première. Cette série converge également simplement en $y=-1$, par le corolaire de la page 123 du même cours\footnote{Un étudiant avait dit se souvenir qu'Abel s'appliquait seulement aux séries alternées; c'est ce corolaire (critère des séries alternées) qui l'a induit en erreur. En effet, Abel (proposition 5, page 122) est plus général, mais s'applique particulièrement bien aux séries alternées.}. Nous sommes dans le cas d'une série de puissance dont le disque de convergence est centré en $0$, et dont le rayon est $1$, mais qui converge (en plus) simplement sur un des bords du disque. Cela est le cadre du théorème \ref{ThoAbelSeriePuiss} qui nous permet de dire que pour tout $\epsilon>0$, la série \eqref{EqSeryexotreize} converge uniformément sur $[-1,1-\epsilon]$.
+
+La fonction $\tilde f(y)$ est donc continue sur $[-1,1-\epsilon]$, et donc en particulier sur $[-1,0]$. Par ailleurs, la fonction $y(x)$ est continue en $x\neq 0$. En tant que composée de fonctions continues, la fonction $f(x)=\tilde f\big( y(x) \big)$ est continue sur $[\frac{ 1 }{2},1]$.
+
+Nous la mettons la série des dérivées sous la forme d'une série de puissances :
+\begin{equation}		\label{EqSerieDerrTreize}
+	g(x)=\frac{1}{ x^2 }\sum_{n=1}^{\infty} \left( \frac{ x-1 }{ x } \right)^{n-1}.
+\end{equation}
+Afin d'éviter tout malentendu, nous insistons sur le fait que $g$ est la série des dérivée de la série $f$. Nous ne savons pas encore si $g$ existe (c'est-à-dire si elle converge), ni si sa somme est la dérivée de $f$. C'est cela que nous allons tenter d'établir maintenant.
+
+Nous posons à nouveau $y(x)=\frac{ x-1 }{ x }$, et nous savons que la série de puissances $\sum_ny^n$ converge uniformément pour $y\in[-1+\epsilon,1-\epsilon]$ pour tout $\epsilon>0$. En repassant aux variables $x$, pour tout $\epsilon>0$, nous avons convergence uniforme de la série 
+\begin{equation}
+	\sum_{n=0}^{\infty} \left( \frac{ x-1 }{ x } \right)^n, 
+\end{equation}
+sur le compact $x\in[\frac{ 1 }{ 2-\epsilon },\frac{1}{ \epsilon }]$, ou, pour parler plus simplement, sur $x\in[\frac{ 1 }{2}+\epsilon,a]$ pour tout $\epsilon$ (petit) et $a$ (grand). Nous avons donc également convergence uniforme de la série des dérivées \eqref{EqSerieDerrTreize} sur le même intervalle. Maintenant, le théorème \ref{ThoLDpRmXQ} montre que la série des dérivée est bien la dérivée de la série, c'est-à-dire que 
+\begin{equation}
+	g(x)=f'(x)
+\end{equation}
+sur $]\frac{ 1 }{ 2 },1]$. Notez que la convergence uniforme \emph{sur tout compact} de la série des dérivées est suffisante.
+
+Une bonne nouvelle est qu'il est possibles de sommer explicitement la série $\sum_ky^k$. En effet, il est montré à la page 115 du cours de première que $\sum_{k=0}^n z^k=\frac{ 1-z^{n+1} }{ 1-z }$, donc
+\begin{equation}		\label{EqFormSomGeometrze}
+	\sum_{k=0}^{\infty}y^n=\lim_{n\to\infty}\frac{1-y^{n+1}}{ 1-y }=\frac{1}{ 1-y },
+\end{equation}
+lorsque $| y |<1$. Du coup, nous avons simplement
+\begin{equation}
+	f'(x)=g(x)=\frac{1}{ x^2 }\sum_{n=1}^{\infty}\left( \frac{ x-1 }{ x } \right)^{n-1}=\frac{1}{ x^2 }\sum_{n=0}^{\infty}\left( \frac{ x-1 }{ x } \right)^n=\frac{1}{ x^2 }\left( \frac{1}{  1-\left( \frac{ x-1 }{ x } \right)  } \right)=\frac{1}{ x },
+\end{equation}
+donc la fonction $f$ a la forme simple $f(x)=\ln(x)+C$. Notez bien le petit jeu de variables de sommation. Au départ $g(x)$ est une somme qui part de $1$ avec un exposant $n-1$, et nous la transformons en une somme qui part de $0$ avec un exposant $n$. C'est cela qui nous permet d'appliquer la formule \eqref{EqFormSomGeometrze}.
+
+ Étant donné que $f(1)=0$, nous avons
+\begin{equation}
+	f(x)=\ln(x)
+\end{equation}
+pour tout $x\in[\frac{ 1 }{2}+\epsilon,1]$. Mais nous avons vu que la fonction $f$ était continue sur $[\frac{ 1 }{2},1]$. Étant donné que $\ln(x)$ et $f(x)$ sont deux fonctions continues sur $[\frac{ 1 }{2},1]$ qui sont égales sur tout compact $[\frac{ 1 }{2}+\epsilon,1]$, nous déduisons que ces deux fonctions sont en réalité égales sur tout l'entièreté du compact $[\frac{ 1 }{2},1]$.
+
+En particulier, en $x=\frac{ 1 }{2}$, nous avons
+\begin{equation}
+	f(\frac{ 1 }{2})=\sum_{n=1}^{\infty}\frac{1}{ n }(-1)^n=\ln(1/2)=-\ln(2).
+\end{equation}
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -268,11 +332,34 @@ Le but de cette section est d'étudier des conditions sur la suite \( (a_n)\) qu
     \end{equation}
     La boule \( B(0,R)\) est le \defe{disque de convergence}{disque de convergence} de la série.
 \end{definition}
+
+En réalité, il serait plus correct de parler du rayon de convergence de la suite \( (a_n)\) parce qu'au moment où on l'étudie, nous ne savons pas encore si la somme existera. Il ne devrait donc pas être autorisé d'écrire «étudions le rayon de convergence de \( \sum_na_nz^n\)».
+
 Le rayon de convergence d'une série ne dépend que des réels \( | a_n |\), même si à la base \( a_n\in \eC\).
+
+\begin{normaltext}
+    Sur Wikipédia\cite{BIBooRVNCooAKQeld}, le rayon de convergence est défini par le supremum des \( | z |\) tels que la série \( \sum_na_nz^n\) converge. Je vous invite à vous étonner que cela est équivalent à la définition donnée ici.
+
+    Il est dingue que demander que la suite \( (a_nr^n)\) soit bornée soit suffisant pour que la série converge. En réalité ce n'est pas tout à fait le cas; les séries qui convergent sont celles pour \( | z |\) strictement plus petit que le rayon de convergence. Et là ça marche. En effet, si \( x<R\) alors \( x=\epsilon R\) avec \( \epsilon<1\) et nous avons
+    \begin{equation}
+        a_nx^n=a_n(\epsilon R)^n=(a_nx^n)\epsilon^n\to 0.
+    \end{equation}
+    
+    Le critère d'Abel \ref{LemmbWnFI} va formaliser ça.
+\end{normaltext}
 
 \begin{remark}      \label{REMooYOTEooKvxHSf}
     Si pour tout \( n\) nous avons \( | b_n |\geq | a_n |\) alors le rayon de convergence de la série \( \sum_na_nz^n\) est au moins aussi grand que celui de la série \( \sum_nb_nz^n\). Cela y compris lorsque l'un ou l'autre des rayons de convergences est infini.
 \end{remark}
+
+\begin{lemma}[\cite{MonCerveau}]    \label{LEMooVCTNooCQHkzs}
+    Le rayon de convergence pour la suite \( b_n=a_{n+k}\) est le même que celui pour \( a_n\).
+\end{lemma}
+
+\begin{proof}
+    Soit \( r>0\). Nous avons \( r^kb_nr^n=a_{n+k}r^{n+k}\). Vu que les \( k\) premiers termes d'une suite ne changement pas le fait que la suite soit bornée, la suite \( (a_nr^n)_{n\geq k}\) est bornée si et seulement si la suite \( (a_nr^n)_{n\in \eN}\) est bornée.
+\end{proof}
+<++>
 
 \begin{lemma}[Critère d'Abel]\index{critère!Abel}   \label{LemmbWnFI}
     Soit \( R>0\) le rayon de convergence de la somme \( \sum_na_nz^n\) et \( z\in \eC\).
@@ -280,7 +367,7 @@ Le rayon de convergence d'une série ne dépend que des réels \( | a_n |\), mê
         \item
             Si \( | z |<R\) alors la série converge absolument.
         \item
-            Si \( R<\infty\) et si \( | z |>R\) alors la série diverge.
+            Si \( | z |>R\) alors la série diverge.
     \end{enumerate}
 \end{lemma}
 
@@ -300,7 +387,28 @@ Le rayon de convergence d'une série ne dépend que des réels \( | a_n |\), mê
     \end{enumerate}
 \end{proof}
 
-Le critère d'Abel parle bien de convergence absolue, et non de convergence normale. Pour chaque \( t\), la série \( \sum_k | a_nt^k |\) converge. Si par contre nous posons \( u_k(t)=a_kt^k\), nous n'avons a priori pas la convergence normale \( \sum_k\| u_k \|_{\infty}\), même pas si la norme est la norme supremum sur \( B(0,R)\)\quext{Il y aurait par contre bien convergence sur tout compact ? Cher lecteur, dites moi ce que vous en pensez}. Prenons comme exemple simplement \( a_k=1\) pour tout \( k\). Pour tout \( | t |<1\), la série \( \sum_k t^k\) converge absolument (série géométrique), mais nous aurions \( \| u_k \|_{\infty}=1\) et donc divergence évidente de \( \sum_k\| u_k \|_{\infty}\).
+\begin{corollary}       \label{CORooCUDSooTfMvAB}
+    Soit une série entière \( \sum_na_nz^n\). Soit un nombre \( \rho\) tel que
+    \begin{enumerate}
+        \item
+            La série converge pour \( | z |<\rho\).
+        \item
+            La série diverge pour \( | z |>\rho\).
+    \end{enumerate}
+    Alors le rayon de convergence est \( \rho\).
+\end{corollary}
+
+\begin{proof}
+    Nous notons \( R\) le rayon de convergence de la série.
+    \begin{subproof}
+    \item[\( R\geq \rho\)]
+        Si \( R<\rho\), nous prenons \( r\) strictement entre \( R\) et \( \rho\). Le critère d'Abel \ref{LemmbWnFI} nous dit, pour \( | z |=r\), que la série diverge. Par hypothèse, elle converge; contradiction.
+    \item[\( R\leq \rho\)]
+        De même si \( R>\rho\), alors nous prenons \( \rho<r<R\). Le critère d'Abel nous dit que la série diverge pour \( | z |=r\). L'hypothèse nous dit le contraire. Nouvelle contradiction.
+    \end{subproof}
+\end{proof}
+
+Le critère d'Abel parle bien de convergence absolue, et non de convergence normale. Pour chaque \( t\), la série \( \sum_k | a_nt^k |\) converge. Si par contre nous posons \( u_k(t)=a_kt^k\), nous n'avons à priori pas la convergence normale \( \sum_k\| u_k \|_{\infty}\), même pas si la norme est la norme supremum sur \( B(0,R)\)\quext{Il y aurait par contre bien convergence sur tout compact ? \randomGender{Chère lectrice}{Cher lecteur}, dites moi ce que vous en pensez}. Prenons comme exemple simplement \( a_k=1\) pour tout \( k\). Pour tout \( | t |<1\), la série \( \sum_k t^k\) converge absolument (série géométrique), mais nous aurions \( \| u_k \|_{\infty}=1\) et donc divergence évidente de \( \sum_k\| u_k \|_{\infty}\).
 
 La proposition suivante sera surtout utile lorsqu'on parlera de dérivée.
 \begin{proposition}[\cite{KOWMooXhcOoy}]        \label{PropHDIUooKTbVSX}
@@ -376,53 +484,171 @@ ne converge pas pour \( z=-1\).
 \end{example}
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Propriétés de la somme}
+\subsection{Somme et produit de séries}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Le théorème suivant donne une formule (dit «produit de Cauchy») pour le produit de deux séries entières. Nous en donnons une adaptation dans le cas de séries de puissances dans une algèbre normée dans la proposition \ref{PROPooFMEXooCNjdhS}.
-\begin{theorem}     \label{ThokPTXYC}
-    Soient \( \sum_na_nz^n\) et \( \sum b_nz^n\) deux séries de rayon de convergences respectivement \( R_a\) et \( R_b\).
-    \begin{enumerate}
-        \item   \label{IteWlajij}
-            Si \( R_s\) est le rayon de convergence de \( \sum_n(a_n+b_n)z^n\), nous avons
-            \begin{equation}
-                R_s\geq \min\{ R_a,R_b \}
-            \end{equation}
-            et nous avons l'égalité si pour tout \( |z |\leq\min\{ R_a,R_b \}\), \( \sum (a_n+b_n)z^n=\sum_n a_nz^n+\sum_nb_nz^n\).
-        \item
-            Si \( \lambda\neq 0\) la série \( \sum_n(\lambda a_n)z^n\) a le même rayon de convergence que la série \( \sum_na_nz^n\) et si \( | z |<R_a\) nous avons
-            \begin{equation}
-                \sum_{n=0}^{\infty}(\lambda a_n)z^n=\lambda\sum_{n=0}^{\infty}a_nz^n.
-            \end{equation}
-        \item
-            Le \defe{produit de Cauchy}{Cauchy!produit}\index{produit!de Cauchy} des deux séries est donné par
-            \begin{equation}        \label{EqFPGGooDQlXGe}
-                \left( \sum_na_nz^n \right)\left( \sum_k b_kz^k \right)=       \sum_{n=0}^{\infty}\left( \sum_{i+j=n}a_ib_j \right)z^n=\sum_{n=0}^{\infty}\left( \sum_{k=0}^{n}a_kb_{n-k} \right)z^n.
-            \end{equation}
-            Si \( R_p\) est le rayon de convergence de ce produit nous avons
-            \begin{equation}
-                R_p\geq \min\{ R_a,R_b \}
-            \end{equation}
-            et si \( | z |<\min\{ R_a,R_b \}\) alors
-            \begin{equation}
-                \sum_{n=0}^{\infty}\left( \sum_{i+j=n}a_ib_j \right)z^n=\left( \sum_{n=0}^{\infty}a_nz^n \right)\left( \sum_{n=0}^{\infty}b_nz^n \right).
-            \end{equation}
-
-    \end{enumerate}
-
+\begin{theorem}\label{THOooSDQQooIawBOk}
+    Soient \( \sum_na_nz^n\) et \( \sum b_nz^n\) deux séries de rayon de convergences respectivement \( R_a\) et \( R_b\).  Si \( R_s\) est le rayon de convergence de \( \sum_n(a_n+b_n)z^n\), nous avons
+    \begin{equation}
+        R_s\geq \min\{ R_a,R_b \}.
+    \end{equation}
 \end{theorem}
 
+\begin{theorem}     \label{THOooINHDooZxErnp}
+    Soient \( \sum_na_nz^n\) et \( \sum b_nz^n\) deux séries de rayon de convergences respectivement \( R_a\) et \( R_b\).  
+    \begin{enumerate}
+        \item
+            Si \( \lambda\neq 0\) la série \( \sum_n(\lambda a_n)z^n\) a le même rayon de convergence que la série \( \sum_na_nz^n\) 
+        \item
+            Si \( | z |<R_a\) nous avons
+    \begin{equation}
+        \sum_{n=0}^{\infty}(\lambda a_n)z^n=\lambda\sum_{n=0}^{\infty}a_nz^n.
+    \end{equation}
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{lemma}[\cite{MonCerveau}]       \label{LEMooNYAXooKUuQFe}
+    Soient deux suites de nombres complexes \( (a_n)\) et \( (b_n)\). Soit \( n\in \eN\). Nous avons :
+    \begin{equation}
+        \sum_{k=0}^n\sum_{l=0}^ka_lb_{k-l}=\sum_{l=0}^n\big( \sum_{j=0}^{n-l}b_j \big)a_l.
+    \end{equation}
+\end{lemma}
+
 \begin{proof}
-    Nous prouvons la partie sur le produit de Cauchy. En utilisant la propriété du produit de la somme par un scalaire nous avons
+    Le problème est qu'à gauche la borne de la somme sur \( l\) dépend de \( k\); cela nous empêche de permuter les sommes\footnote{Vu que toutes les sommes sont finies, ce ne sont certainement pas les questions de convergence qui nous retiennent.}. Qu'à cela ne tienne : nous complétons la somme en introduisant
+    \begin{equation}
+         \sigma_{lk}=\begin{cases}
+            1    &   \text{si } l\leq k\\
+            0    &    \text{sinon }.
+        \end{cases}
+    \end{equation}
+    Nous avons alors
     \begin{subequations}
         \begin{align}
-            \left( \sum_{n=0}^{\infty}a_nz^n \right)\left( \sum_{m=0}^{\infty}b_mz^m \right)&=\sum_{n=0}^{\infty}\left( \sum_{m=0}^{\infty}b_ma_nz^{m+n} \right)\\
-            &=\lim_{N\to \infty} \lim_{M\to \infty} \sum_{n=0}^N\sum_{m=0}^Mb_ma_nz^{m+n}\\
-            &=\lim_{N\to \infty} \lim_{M\to \infty} \sum_{k=0}^{N+M}\sum_{i+k=k}b_ia_jz^k\\
-            &=\lim_{N\to \infty} \sum_{k=0}^{\infty}\sum_{i+k=k}b_ia_jz^k\\
-            &=\sum_{k=0}^{\infty}\sum_{i+j=k}b_ia_jz^k.
+            \sum_{k=0}^n\sum_{l=0}^ka_lb_{k-l}&=\sum_{k=0}^n\sigma_{lk}a_lb_{k-l}=\sum_{l=0}^n\sum_{k=0}^n\sigma_{lk}a_lb_{k-l} =\sum_{l=0}^n\big( a_l\sum_{k=l}^nb_k-l \big)\\
+            &=\sum_{l=0}^n\big( a_l\sum_{j=0}^{n-l}b_j \big)=\sum_{l=0}^n\big( \sum_{j=0}^{n-l}b_j \big)a_l.
         \end{align}
     \end{subequations}
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooLPBCooRWuvJB}
+    Si la série \( \sum_{n=0}^{\infty}a_nz^n\) a un rayon de convergence \( R\), alors nous avons
+    \begin{equation}
+        \big( \sum_{n=0}^{\infty}a_nz^n \big)z=\sum_{n=0}^{\infty}a_nz^{n+1}
+    \end{equation}
+    et les rayons de convergences sont égaux à \( R\).
+\end{lemma}
+
+\begin{proposition}[\cite{BIBooWNXZooQIdAns}]       \label{PROPooPKGEooZKyxwo}
+    Soient \( (a_n)\) et \( (b_n)\) des suites dans \( \eC\). Nous supposons que \( \sum_na_n\) est absolument convergente\footnote{Définition \ref{DefVFUIXwU}.} et que \( \sum_nb_n\) est convergente.
+
+    Alors en posant
+    \begin{equation}
+        c_n=\sum_{k=0}^na_kb_{n-k},
+    \end{equation}
+    la série \( \sum_nc_n\) est convergente et
+    \begin{equation}
+        \sum_{n=0}^{\infty}c_n=\big( \sum_ia_i \big)\big( \sum_j b_j \big).
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    Nous commençons par quelque notations sur les sommes partielles et leurs limites. Nous posons \( A_n=\sum_{k=0}^na_n\), \( B_n=\sum_{k=0}^nb_n\) et nous avons, par hypothèse, les convergences \( A_n\stackrel{\eC}{\longrightarrow}A\) et \( B_n\stackrel{\eC}{\longrightarrow}B\).
+
+    En ce qui concerne la somme partielle pour les \( (c_n)\), en appliquant le lemme \ref{LEMooNYAXooKUuQFe},
+    \begin{equation}
+        C_n=\sum_{k=0}^nc_k=\sum_{k=0}^n\sum_{l=0}^ka_lb_{k-l}=\sum_{l=0}^n\big( \sum_{j=0}^{n-l}b_j \big)a_l=\sum_{l=0}^na_lB_{n-l}.
+    \end{equation}
+    
+    Soit \( \epsilon>0\). 
+    \begin{subproof}
+    \item[Des indices assez grands]
+    Nous définissons \( N_1, N_2\in \eN\) de la façon suivante :
+    \begin{itemize}
+        \item 
+    Vu que \( B_j\to B\), il existe \( N_1\in \eN\) tel que pour tout \( j\geq N_1\), \( | B_j-B |\leq \epsilon\).
+\item
+    Vu que \( \sum_na_n\) converge, la proposition \ref{PROPooYDFUooTGnYQg} nous dit que \( | a_i |\to 0\) (ce n'est pas ici que nous utilisons la convergence absolue). Il existe donc \( N_2\in \eN\) tel que \( | a_i |\leq \epsilon/N_1\) pour tout \( i\geq N\2\).
+\item
+    Nous considérons \( N\geq N_1+N_2\).
+    \end{itemize}
+\item[Un majorant]
+    Vu que la série \( \sum_na_n\) converge absolument, la somme \( \sum_{n=0}^{\infty}| a_n |\) est bornée. De même, la suite \( j\to| B_j-B |\) est bornée et nous choisissons \( M\) assez grand pour majorer les deux en même temps :
+    \begin{subequations}
+        \begin{align}
+            \sum_{n=0}^{\infty}| a_n |&<M           \label{SUBEQooBKCVooXnampA}\\
+            | B_j-B |&<M\quad \forall j.
+        \end{align}
+    \end{subequations}
+\item[Et on calcule un peu]
+        Nous avons assez préparé de notations et de majorations. C'est le moment de prouver que \( C_n-A_nB \to 0\). Nous avons
+        \begin{subequations}
+            \begin{align}
+                | C_n-A_nB |&=| \sum_{l=0}^na_k(B_{n-l-B}) |\\
+                &\leq \sum_{l=0}^n| a_l | |B_{n-l}-B |\\
+                &=\sum_{l=0}^{n-N_1}| a_l | |B_{n-l} |+\sum_{l=n-N_1+1}^n| a_l | |B_{n-l}-B |\\
+                &\leq \sum_{l=0}^{n-N_1}| a_l |\epsilon+M\sum_{l=n-N_1+1}^n| a_l |      \label{SUBEQooIQFZooJMqFWo}\\
+                &\leq \epsilon M +M\sum_{l=n-N_1+1}^n\frac{ \epsilon }{ N_1 }      \label{SUBEQooKAJFooQsIxWo}\\
+                &=2\epsilon M.   \label{SUBEQooDXQMooOvBCXH}
+            \end{align}
+        \end{subequations}
+        Justifications :
+        \begin{itemize}
+            \item Pour \eqref{SUBEQooIQFZooJMqFWo}. Dans la première somme, \( n-l\geq n-(n-N_1)=N_1\), donc \( | B_{n-l}-B |\leq \epsilon\). Dans la seconde somme nous avons seulement majoré \( | N_{n-l}-B |\leq M\).
+            \item Pour \eqref{SUBEQooKAJFooQsIxWo}. Dans la première somme, il s'agit de la majoration \eqref{SUBEQooBKCVooXnampA}. Dans le seconde somme, \( l\geq n-N_1+1\geq N_1+N_2-N_1+1\geq N_2+1\), ce qui implique \( | a_l |\leq \epsilon/N_1\).
+            \item Pour \eqref{SUBEQooDXQMooOvBCXH}. La somme contient \( n-(n-N_1+1)+1=N_1\) termes. Chaque terme valant \( \epsilon/N_1\).
+        \end{itemize}
+    \item[Conclusion]
+        Nous avons prouvé que pour tout \( \epsilon>0\), il existe \( N\) tel que \( | C_n-A_nB |\leq \epsilon\). Nous écrivons maintenant
+        \begin{equation}
+            C_n=(C_n-A_nB)+A_nB
+        \end{equation}
+        Vu que \( C_n-A_nB\to 0\) et que \( A_nB\to AB\), la somme des deux suites converge vers\footnote{C'est la proposition \ref{PROPooICZMooGfLdPc}.} \( 0+AB=A\) et donc
+        \begin{equation}
+            C_n\to AB.
+        \end{equation}
+    \end{subproof}
+\end{proof}
+
+Le théorème suivant donne une formule (dit «produit de Cauchy») pour le produit de deux séries entières. Nous en donnons une adaptation dans le cas de séries de puissances dans une algèbre normée dans la proposition \ref{PROPooFMEXooCNjdhS}.
+\begin{theoremDef}[Produit de Cauchy dans \( \eC\)\cite{BIBooVMCQooIBokOv}]     \label{ThokPTXYC}
+    Soient \( \sum_na_nz^n\) et \( \sum b_nz^n\) deux séries de rayon de convergences respectivement \( R_a\) et \( R_b\). La série entière
+    \begin{equation}        \label{EqFPGGooDQlXGe}
+        \sum_{n=0}^{\infty}\left( \sum_{k=0}^{n}a_kb_{n-k} \right)z^n.
+    \end{equation}
+    est le \defe{produit de Cauchy}{produit de Cauchy} des séries \( \sum_na_nz^n\) et \( \sum_nb_nz^n\).
+
+    Nous notons \( R_p\) le rayon de convergence de la série.
+    \begin{enumerate}
+        \item   \label{ITEMooFOVPooBaVknN}
+            Nous avons l'inégalité $R_p\geq \min\{ R_a,R_b \}$.
+        \item   \label{ITEMooHRNZooWviigD}
+            Si \( | z |<\min\{ R_a,R_b \}\) alors
+            \begin{equation}        \label{EQooSGXHooHwjOEV}
+                \sum_{n=0}^{\infty}\left( \sum_{i+j=n}a_ib_j \right)z^n=\left( \sum_{n=0}^{\infty}a_nz^n \right)\left( \sum_{n=0}^{\infty}b_nz^n \right).
+            \end{equation}
+    \end{enumerate}
+\end{theoremDef}
+
+\begin{proof}
+    En plusieurs parties.
+    \begin{subproof}
+        \item[Préambule]
+            Nous allons fixer \( z\), et utiliser la proposition \ref{PROPooPKGEooZKyxwo}. Ce que nous appelons \( a_n\) là-bas est \( a_nz^n\) ici. Idem pour les \( b_n\) qui sont \( b_nz^n\) et \( c_n\) qui devient \( c_nz^n\). Vu que \( z\) sera fixé, tout cela n'est pas très profond.
+
+            Ces substitutions sont très courantes lorsque nous prouvons des résultats sur les séries entières comme corollaires de résultats généraux sur les séries.
+        \item[Pour \ref{ITEMooFOVPooBaVknN}]
+            Si \( | z |<\min\{ R_a,R_b \}\), alors les séries \( \sum_na_nz^n\) et \( \sum_nb_nz^n\) sont absolument convergentes par lemme d'Abel \ref{LemmbWnFI}. La proposition \ref{PROPooPKGEooZKyxwo} pour les suites \( (a_nz^n)\) et \( (b_nz^n)\) fait alors le boulot : en posant 
+            \begin{equation}
+                c_n=\sum_{k=0}^na_nb_{n-k},
+            \end{equation}
+            la série \( \sum_nc_nz^n\) converge et vaut le produit des deux.
+
+            Vu que la série \( \sum_nc_nz^n\) converge sur \( \{ z\in \eC\tq | z |<\min\{ R_a,R_b \} \}\). Donc en posant \( r<\min\{ R_a,R_b \}\), la suite \( (c_nr^n)\) est bornée (dans \( \eC\)) et nous avons que \( R_p\geq r\) (utilisation très littérale de la définition du rayon de convergence). Donc \( R_p\geq\min \{ R_a,R_b \}\).
+        \item[Pour \ref{ITEMooHRNZooWviigD}]
+            Le travail est déjà fait.
+    \end{subproof}
 \end{proof}
 
 \begin{example}
@@ -435,6 +661,10 @@ Le théorème suivant donne une formule (dit «produit de Cauchy») pour le prod
         B=\sum_nz^n,
     \end{equation}
     c'est-à-dire \( B=(1-z)^{-1}\) et \( R_b=1\). Le produit de Cauchy de ces deux séries valant \( 1\), le rayon de convergence est infini.
+
+    Notons qu'alors l'égalité \eqref{EQooSGXHooHwjOEV} a lieu dans \( B(0,1)\), mais pas au-delà.
+
+    Donc le «produit de Cauchy» de deux séries peut ne pas être égal au produit des deux séries, au sens où il est possible que le produit existe là où une des deux séries n'existe plus.
 \end{example}
 
 \begin{example}
@@ -453,6 +683,98 @@ Le théorème suivant donne une formule (dit «produit de Cauchy») pour le prod
         \sum_{n=0}^{\infty}\sum_{i+j=n}x^n=\sum_{n=0}^{\infty}(n+1)x^n.
     \end{equation}
 \end{example}
+
+Nous voulons maintenant faire le produit de Cauchy à plus que deux facteurs. Pour cela nous prouvons d'abord un certain nombre de lemmes traitant de la combinatoire du problème.
+
+Nous posons, pour \( n,N\in \eN\) :
+\begin{equation}        \label{EQooJCBSooMSbaCd}
+    V_n(N)=\{ x\in \eN^N\tq \sum_{i=1}^Nx_i=n \}.
+\end{equation}
+
+\begin{lemma}       \label{LEMooRKEVooDdpuHt}
+    Nous avons
+    \begin{equation}
+        V_n(N+1)=\bigcup_{y=0}^n\bigcup_{x\in V_y(N)}(x,n-y).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    En deux parties.
+    \begin{subproof}
+    \item[Première inclusion]
+        Un élément de \( \bigcup_{y=0}^n\bigcup_{x\in V_u(N)}(x,n-y)\) est un élément \( z\in \eN^{N+1}\) de la forme \( z=(x,n-y)\) tel que \( x\in V_y(N)\). Donc
+        \begin{equation}
+            \sum_{i=1}^{N+1}z_i=\sum_{i=1}^Nx_i+(n-y)=y+n-y=n.
+        \end{equation}
+        Donc \( z\in V_n(N+1)\).
+        \begin{subproof}
+        \item[L'autre inclusion]
+            Un élément de \( V_n(N+1)\) est de la forme \( z=(x,y)\) avec \( x\in \eN^N\) et \( y\in \eN\). Posons \( t=\sum_{i=1}^Nx_i\), de telle sorte que \( x\in V_t(N)\).
+
+            Vu que \( z\in V_n(N+1)\) nous avons d'autre part \( y=n-\sum_{i=1}^Nx_i=n-t\).
+        \end{subproof}
+    \end{subproof}
+\end{proof}
+
+La proposition suvante généralise le produit de Cauchy du théorème \ref{ThokPTXYC} au cas de plus de deux facteurs. Nous ne pouvons cependant pas considérer \ref{ThokPTXYC} comme un cas particulier de \ref{PROPooJPVVooLqSdSn}, parce que la démonstration va utiliser le cas à deux facteurs.
+\begin{proposition}[Produit de Cauchy\cite{MonCerveau}]     \label{PROPooJPVVooLqSdSn}
+    Soient des nombres complexes \( a_{ik}\) tels que les séries entières
+    \begin{equation}
+        s_i(z)=\sum_{k=0}^{\infty}a_{ik}z^k
+    \end{equation}
+    soient convergentes avec un rayon de convergence \( R_i\). Nous posons
+    \begin{equation}
+        c_n=\sum_{x\in V_n(N)}\prod_{i=1}^Na_{ix_i},
+    \end{equation}
+    et nous appelons \( R_p\) le rayon de convergence de la série \( \sum_nc_nz^n\).
+    \begin{enumerate}
+        \item
+            Nous avons l'inégalité \( R_p\geq \min\{R_i\}\) .
+        \item       \label{ITEMooUVNXooLxlawx}
+            Pour \( | z |\leq \min\{R_i\}\) nous avons l'égalité
+            \begin{equation}        \label{EQooHCUGooDRhxzt}
+                \prod_{i=1}^Ns_i(z)=\sum_{n=1}^N\left( \sum_{x\in V_n(N)}\prod_{i=1}^Na_{ix_i} \right)z^n.
+            \end{equation}
+    \end{enumerate}
+\end{proposition}
+\index{produit de Cauchy}
+
+\begin{proof}
+    Nous prouvons cela par récurrence sur \( N\). D'abord pour \( N=1\) nous avons \( V_n(1)=\{ n \}\). Donc \( c_n=\prod_{i=1}^1a_{ix_i}=a_{1n}\) et donc la série à droite dans \eqref{EQooHCUGooDRhxzt} est seulement \( \sum_{n=0}^{\infty}a_{1n}z^n=s_1(z)\).
+
+    Nous supposons le théorème prouvé pour touttes valeurs jusqu'à \( N\) et nous prouvons pour \( N+1\). Si \( | z |<\min\{ R_i \}\) alors toutes les séries convergent et en utilisant l'associativité du produit dans \( \eC\) nous avons :
+    \begin{equation}
+        \prod_{i=1}^{N+1}s_i(z)=\left( \prod_{i=1}^Ns_i(z) \right)s_{N+1}(z)=\sum_{n=1}^{\infty}\left( \sum_{x\in V_n(N)}\prod_{i=1}^Na_{ix_i} \right)z^ns_{N+1}(z).
+    \end{equation}
+    Nous allons maintenant utilliser le produit de Cauchy à deux termes du théorème \ref{PROPooPKGEooZKyxwo}. Notez que c'est bien l'utilisation de ce théorème qui nous permet d'obtenir la convegence dans notre pas de récurrence, et non l'hypothèse de réccurence actuelle. Bref, nous posons
+    \begin{subequations}
+        \begin{align}
+            b_{1k}&=\sum_{x\in V_k(N)}\prod_{i=1}^Na_{ix_i}\\
+            b_{2k}&=a_{N+1,k}.
+        \end{align}
+    \end{subequations}
+    L'utilisation du produit de Cauchy à deux facteurs donne le coefficient de \( z^n\) sous la forme suivante :
+    \begin{subequations}
+        \begin{align}
+            c_n&=\sum_{y\in V_n(2)}b_{1y_1}b_{2y_2}=\sum_{y=V_n(2)}\sum_{x\in V_{y_1}(N)}\prod_{i=1}^Na_{ix_i}a_{N+1,y_2}\\
+            &=\sum_{y=0}^n\sum_{x\in V_n(N)}\prod_{i=1}^Na_{ix_i}a_{N+1,n-y}        \label{SUBEQooFPEMooKpLQBd}\\
+            &=\sum_{(x,y)\in A_n(N+1)}\prod_{i=1}^Na_{ix_i}a_{N+1, y}       \label{SUBEQooHXZRooSdxFTf}\\
+            &=\sum_{x\in V_n(N+1)}\prod_{i=1}^{N+1}a_{ix_i}.
+        \end{align}
+    \end{subequations}
+    Justifications :
+    \begin{itemize}
+        \item Pour \eqref{SUBEQooFPEMooKpLQBd}. L'ensemble \( V_n(2)\) n'est pas très compliqué à expliciter :
+    \begin{equation}
+        V_n(2)=\{ (y,n-y)\tq y=0,\ldots, n \}.
+    \end{equation}
+\item   Pour \eqref{SUBEQooHXZRooSdxFTf}. La somme porte sur les \( (x,t)\) avec \(x\in \eN^N\) et \( y\in \eN\) tels que \( (x,y) \) est dans \( V_n(N+1)\), et la justification de l'égalité est le lemme \ref{LEMooRKEVooDdpuHt}.
+    \end{itemize}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Convergence normale}
+%---------------------------------------------------------------------------------------------------------------------------
 
 \begin{theorem}
     Une série entière converge normalement sur tout disque fermé inclus au disque de convergence.
@@ -518,14 +840,14 @@ Le résultat suivant permet d'identifier deux séries complexes lorsque leurs va
     \begin{equation}
         \varphi(z)=\sum_{n\geq 0}(a_{n+n_0}-b_{n+n_0})z^n.
     \end{equation}
-    Par le théorème~\ref{ThokPTXYC}\ref{IteWlajij} le rayon de convergence de \( \varphi\) est plus grand que \( R\) et la fonction \( \varphi\) est continue en \( 0\). Étant donné que \( \varphi(0)=a_{n_0}-b_{n_0}\neq 0\) et que \( \varphi\) est continue nous avons un \( \rho\) tel que \( \varphi\neq 0\) sur \( B(0,\rho)\). Or cela n'est pas possible parce que au moins sur la partie réelle de cette dernière boule, \( \varphi\) doit être nulle.
+    Par le théorème \ref{THOooSDQQooIawBOk} le rayon de convergence de \( \varphi\) est plus grand que \( R\) et la fonction \( \varphi\) est continue en \( 0\). Étant donné que \( \varphi(0)=a_{n_0}-b_{n_0}\neq 0\) et que \( \varphi\) est continue nous avons un \( \rho\) tel que \( \varphi\neq 0\) sur \( B(0,\rho)\). Or cela n'est pas possible parce que au moins sur la partie réelle de cette dernière boule, \( \varphi\) doit être nulle.
 \end{proof}
 
 \begin{proposition}[\cite{GYDXooJJusGH,MonCerveau}]     \label{PropSNMEooVgNqBP}
     Si la série entière \( \sum_{n\geq 0}a_nz^n\) a un rayon de convergence \( R\) alors
     \begin{enumerate}
         \item
-            La somme est une fonction holomorphe dans le disque de convergence.
+            La somme est une fonction holomorphe\footnote{Définition \ref{DefMMpjJZ}.} dans le disque de convergence.
         \item       \label{ItemUULDooEGRNiA}
             La somme est différentiable et
             \begin{equation}
@@ -710,31 +1032,40 @@ Les théorèmes de dérivation et d'intégration de séries de fonctions (théor
 
 Le lemme suivant est encore essentiellement valable dans un espace de Banach (proposition~\ref{PropQAjqUNp}).
 \begin{lemma}       \label{LemPQFDooGUPBvF}
+    Plusieurs choses sur des séries entières.
+    \begin{enumerate}
+        \item
     La série entière \( \sum_{n\geq 0}z^{nk}\) a un rayon de convergence \( 1\) et converge vers la fonction
     \begin{equation}
         \sum_{n\geq 0}z^{nk}=\frac{1}{ 1-z^k }.
     \end{equation}
-
-    Lorsque \( | \omega |=1\) nous avons aussi un rayon de convergence \( 1\) pour la série
+    \item
+    Lorsque \( | \omega |=1\), la série
     \begin{equation}        \label{EqSSHZooLwCBAZ}
-        \frac{1}{ \omega-z }=\sum_{k\geq 0}\omega^{-k-1}z^k.
+        \frac{1}{ \omega-z }=\sum_{k\geq 0}\frac{ z^k }{ \omega^{k+1} }.
     \end{equation}
-
-    Sous les mêmes hypothèses sur \( \omega\) nous avons encore la série
+    a un rayon de convergence égal à \( 1\).
+\item   \label{ITEMooHFVHooPCgzZV}
+    Si \( | \omega |=1\), la série
     \begin{equation}
-        \frac{1}{ (\omega-z)^k }=\frac{1}{ (k-1)! }\sum_{s=0}^{\infty}\omega^{-s-1-k}\frac{ (s+k-1)! }{ s! }z^s
+        \frac{1}{ (\omega-z)^k }=\frac{1}{ (k-1)! }\sum_{s=0}^{\infty}\frac{ (s+k-1)! }{ s! }\frac{ z^s }{ \omega^{s+k+1} }
     \end{equation}
-
+    a un rayon de convergence égal à \( 1\).
+    \end{enumerate}
 \end{lemma}
 
 \begin{proof}
     Les coefficients de la série sont \( a_n=1\) lorsque \( n\) est multiple de \( k\) et \( a_n=0\) autrement. Donc pour \( r=1\) la suite \( r^na_n\) reste bornée\footnote{Utilisation directe de la définition~\ref{DefZWKOZOl}.}. Cela prouve que le rayon de convergence est au moins \( 1\). Par ailleurs si \( r>1\) alors clairement la suite \( (a_nr^n)\) n'est pas bornée. Cela prouve le rayon de convergence égal à \( 1\).
 
-    Soit donc \( z\in B(0,1)\). Nous avons
-    \begin{equation}
-        \left( \sum_{n\geq 0}z^{nk} \right)(1-z^k)=\sum_{n\geq 0}z^{nk}-\sum_{n\geq 0}z^{(n+1)k}.
-    \end{equation}
-    Le premier terme de la première somme vaut \( 1\) tandis que tous les autres termes s'annulent deux à deux.
+    Soit donc \( z\in B(0,1)\). Nous avons, par le lemme \ref{LEMooLPBCooRWuvJB},
+    \begin{subequations}
+        \begin{align}
+            \left( \sum_{n=0}^{\infty}z^{nk} \right)(1-z^k)&=\sum_{n=0}^{\infty}z^{nk}-\sum_{n=0}^{\infty}z^{(n+1)k}\\
+            &=1+\sum_{n=1}^{\infty}z^{nk}-\sum_{n=0}^{\infty}z^{(n+1)k}\\
+            &=1+\sum_{n=0}^{\infty}z^{(n+1)k}-\sum_{n=0}^{\infty}z^{(n+1)k}\\
+            &=1
+        \end{align}
+    \end{subequations}
 
     En ce qui concerne la série \eqref{EqSSHZooLwCBAZ}, elle s'obtient facilement :
     \begin{equation}
@@ -822,7 +1153,7 @@ Le polynôme de Taylor d'une fonction définie par une série entière s'obtient
 \end{proposition}
 
 \begin{proof}
-    Le corollaire \ref{CorCBYHooQhgara} nous indique que \( f\) est de classe \(  C^{\infty}\) sur \( \mathopen] -R , R \mathclose[\) et que nous pouvons dériver terme à terme.
+    Le corolaire \ref{CorCBYHooQhgara} nous indique que \( f\) est de classe \(  C^{\infty}\) sur \( \mathopen] -R , R \mathclose[\) et que nous pouvons dériver terme à terme.
 
         En utilisant la formule \eqref{EQooTNOMooJZClvE} et en l'évaluant en \( x=x_0\), tous les termes s'annulent sauf \( k=p\):
         \begin{equation}
@@ -886,7 +1217,7 @@ lorsque \( P_n\) est un polynôme de Taylor autour d'un point \( a\neq x\). Nous
     \begin{equation}
         | R_n(x) |=| P_n(x)-f(x) |=\int_a^x\ldots\int_a^{u_n}f^{(n+1)}(x)du_n\cdots du_{1}
     \end{equation}
-    En effectuant toutes les intégrales nous trouvons\quext{Je me demande si je n'ai pas une faute entre \( n\) et \( n+1\) quelque part. Relisez attentivement et écrivez moi si vous trouvez une faute.}
+    En effectuant toutes les intégrales nous trouvons\quext{Je me demande si je n'ai pas une faute entre \( n\) et \( n+1\) quelque part. Relisez attentivement et écrivez-moi si vous trouvez une faute.}
     \begin{equation}
         | R_n(x) |\leq \frac{ M_n }{ (n+1)! }| x-a |^{n+1}.
     \end{equation}
@@ -917,7 +1248,7 @@ Nous allons maintenant étudier la classe des fonctions pour lesquelles la séri
 \end{proposition}
 
 \begin{proof}
-    Par hypothèse, nous avons un rayon de convergence \( R>0\), et le corollaire \ref{CorCBYHooQhgara} nous indique que \( f\) y est de classe \(  C^{\infty}\). Et nous pouvons dériver terme à terme par la proposition \ref{ProptzOIuG}. Cela pour dire qu'il nous est autorisé d'utiliser la formule \eqref{EQooTNOMooJZClvE} pour calculer les dérivées de \( f\) au point \( a\). Nous avons d'abord
+    Par hypothèse, nous avons un rayon de convergence \( R>0\), et le corolaire \ref{CorCBYHooQhgara} nous indique que \( f\) y est de classe \(  C^{\infty}\). Et nous pouvons dériver terme à terme par la proposition \ref{ProptzOIuG}. Cela pour dire qu'il nous est autorisé d'utiliser la formule \eqref{EQooTNOMooJZClvE} pour calculer les dérivées de \( f\) au point \( a\). Nous avons d'abord
     \begin{equation}
         f^{(p)}(x)=\sum_{n=p}^{\infty}c_n\frac{ n! }{ (n-p)! }(x-a)^{n-p},
     \end{equation}

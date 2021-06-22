@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2018
+% Copyright (c) 2011-2018, 2020
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -36,11 +36,11 @@ et nous notons \( \| . \|_{H^1}\) la norme correspondante qui n'est autre que
 Nous introduisons l'espace \( L^1_{loc}(I)\)\nomenclature[Y]{\( L^1_{loc}(I)\)}{fonctions intégrables sur les compacts de \( I\)} des fonctions étant \( L^1\) sur tout compact de \( I\).
 
 \begin{corollary}   \label{CorEVJYihj}
-    Si \( u\in H^1(I)\) et si \( u'=0\) alors il existe une constant \( C\) telle que \( u=C\) presque partout.
+    Si \( u\in H^1(I)\) et si \( u'=0\) alors il existe une constante \( C\) telle que \( u=C\) presque partout.
 \end{corollary}
 
 \begin{proof}
-    L'hypothèse \( u'=0\) signifie que pour tout fonction \( \varphi\in C^{\infty}_c(I)\),
+    L'hypothèse \( u'=0\) signifie que pour toute fonction \( \varphi\in C^{\infty}_c(I)\),
     \begin{equation}
         \int_Iu\varphi'=\int_Iu'\varphi=0.
     \end{equation}
@@ -50,7 +50,7 @@ Nous introduisons l'espace \( L^1_{loc}(I)\)\nomenclature[Y]{\( L^1_{loc}(I)\)}{
 \begin{lemma}   \label{LemMPkbZxX}
     Tout élément de \( H^1(I)\) admet un unique représentant continu.
 \end{lemma}
-Nous verrons dans le corollaire~\ref{CorCEPJGAu} que ce représentant pourra être prolongé par continuité sur \( \bar I\).
+Nous verrons dans le corolaire~\ref{CorCEPJGAu} que ce représentant pourra être prolongé par continuité sur \( \bar I\).
 
 \begin{proof}
     Soient \( y_0\in I\) et \( u\in H^1(I)\). Nous considérons la fonction
@@ -95,7 +95,7 @@ Nous verrons dans le corollaire~\ref{CorCEPJGAu} que ce représentant pourra êt
             &=-\int_Iu'\varphi.
         \end{align}
     \end{subequations}
-    Notons que \( \varphi(a)=\varphi(b)=0\) parce que \( \varphi\) est à support compact dans \( \mathopen] a , b \mathclose[\). Nous avons donc prouvé que \( \bar u\) est dans \( H^1(I)\) et que \( \bar u'=u'\). Par le corollaire~\ref{CorEVJYihj}, nous avons une constante \( C\) telle que \( \bar u=u+C\) presque partout, c'est-à-dire \( u=\bar u +C\) dans \( H^1(I)\).
+    Notons que \( \varphi(a)=\varphi(b)=0\) parce que \( \varphi\) est à support compact dans \( \mathopen] a , b \mathclose[\). Nous avons donc prouvé que \( \bar u\) est dans \( H^1(I)\) et que \( \bar u'=u'\). Par le corolaire~\ref{CorEVJYihj}, nous avons une constante \( C\) telle que \( \bar u=u+C\) presque partout, c'est-à-dire \( u=\bar u +C\) dans \( H^1(I)\).
 
         En résumé, \( \tilde u\tilde u=\bar u+C\) est un représentant continu de \( u\) dans \( L^2(I)\).
 
@@ -226,7 +226,7 @@ Nous verrons dans le corollaire~\ref{CorCEPJGAu} que ce représentant pourra êt
                 \item[\( u'_n\varphi\stackrel{L^2}{\longrightarrow}v\varphi\)]
                     C'est la même chose avec \( \| u'_n\varphi-v\varphi \|_2\leq M\| u'_n-v \|_2\to 0\).
                 \item [\( u\in H^1(I)\) avec \( u'=v\)]
-                    Attendu le corollaire~\ref{CORooIIEAooNmbkTo} qui permet de permuter intégrale et limite dans \( L^2(I)\) et les limites que nous venons de prouver,
+                    Attendu le corolaire~\ref{CORooIIEAooNmbkTo} qui permet de permuter intégrale et limite dans \( L^2(I)\) et les limites que nous venons de prouver,
                     \begin{equation}
                         \int_Iu\varphi'=\lim_{n\to \infty} \int_Iu_n\varphi'=-\lim_{n\to \infty} \int_Iu'_n\varphi=-\int_Iv\varphi.
                     \end{equation}
@@ -255,7 +255,7 @@ Nous verrons dans le corollaire~\ref{CorCEPJGAu} que ce représentant pourra êt
                     [u]&\mapsto \tilde u
                 \end{aligned}
             \end{equation}
-            où \( [u]\) désigne une classe de fonction dans \( H^1(I)\) et \( \tilde u\) est son représentant continu prolongé par continuité à \( \bar I\)\footnote{Encore que par soucis d'économie d'encre nous n'allons pas écrire toujours les tildes et noter \( u\) le représentant continu prolongé à \( \bar I\) par le corollaire~\ref{CorCEPJGAu}.}, qui existe par le lemme~\ref{LemMPkbZxX} et le corollaire~\ref{CorCEPJGAu}. Cette application est une injection par l'unicité du représentant continu. Nous allons prouver que c'est une application compacte en utilisant le critère~\ref{ItemJIkpUbLii} de la proposition~\ref{PropDGsPtpU}. Pour cela nous allons commencer par utiliser le théorème d'Ascoli sur l'ensemble \( \tilde \mB\) des représentants continus des éléments de \( \mB\), prolongés par continuité sur \( \bar I\); c'est-à-dire \( \tilde B\subset C^0(\bar I)\).
+            où \( [u]\) désigne une classe de fonction dans \( H^1(I)\) et \( \tilde u\) est son représentant continu prolongé par continuité à \( \bar I\)\footnote{Encore que par souci d'économie d'encre nous n'allons pas écrire toujours les tildes et noter \( u\) le représentant continu prolongé à \( \bar I\) par le corolaire~\ref{CorCEPJGAu}.}, qui existe par le lemme~\ref{LemMPkbZxX} et le corolaire~\ref{CorCEPJGAu}. Cette application est une injection par l'unicité du représentant continu. Nous allons prouver que c'est une application compacte en utilisant le critère~\ref{ItemJIkpUbLii} de la proposition~\ref{PropDGsPtpU}. Pour cela nous allons commencer par utiliser le théorème d'Ascoli sur l'ensemble \( \tilde \mB\) des représentants continus des éléments de \( \mB\), prolongés par continuité sur \( \bar I\); c'est-à-dire \( \tilde B\subset C^0(\bar I)\).
 
             Soit \( u\in \tilde \mB\); par la proposition~\ref{PropGWOIoDg}, nous avons
             \begin{subequations}
@@ -492,7 +492,7 @@ Le lemme suivant montre que la proposition~\ref{LemQPVQjCx} fonctionne encore av
     \begin{equation}
         \psi_n=\frac{ \phi_n }{ (1+\xi^2)^{s/2} }
     \end{equation}
-    Cela est encore une fonction de \( \swD(\eR^d)\), et donc de \( \swS(\eR^d)\). Vu que la transformée de Fourier est une bijection de \( \swD(\eR^d)\) (proposition~\ref{PropKPsjyzT}), nous pouvons considérer une suite \( \varphi_n\in\swD(\eR^d)\) telle que \( \hat \varphi_n=\psi_n \), et nous allons montrer que \( \varphi_n\stackrel{H^s(\eR^d)}{\longrightarrow}u\).
+    Cela est encore une fonction de \( \swD(\eR^d)\), et donc de \( \swS(\eR^d)\). Vu que la transformée de Fourier est une bijection de \( \swD(\eR^d)\) (proposition~\ref{PROPooLWTJooReGlaN}), nous pouvons considérer une suite \( \varphi_n\in\swD(\eR^d)\) telle que \( \hat \varphi_n=\psi_n \), et nous allons montrer que \( \varphi_n\stackrel{H^s(\eR^d)}{\longrightarrow}u\).
 
     Nous avons :
     \begin{subequations}
@@ -593,7 +593,7 @@ Le lemme suivant montre que la proposition~\ref{LemQPVQjCx} fonctionne encore av
                     &=\int_{\eR^{d-1}}\Big| \int_{\eR^{d-1}}(\gamma_0\varphi)(x) e^{-i\xi x}dx \Big|^2(1+\| \xi \|^2)^{s-\frac{ 1 }{2}}d\xi \label{SUBEQooKLLYooNRjPwn} \\
                 \end{align}
             \end{subequations}
-            Nous appliquons la trace en appliquant la formule du corollaire~\ref{CORooAZLZooSviTej},
+            Nous appliquons la trace en appliquant la formule du corolaire~\ref{CORooAZLZooSviTej},
             \begin{equation}
                 (\gamma_0\varphi)(x)= \varphi(x,0) =\frac{1}{ 2\pi }\int_{\eR}\int_{\eR} e^{-iky}\varphi(x,y)dy\,dk
             \end{equation}
@@ -663,7 +663,7 @@ Le lemme suivant montre que la proposition~\ref{LemQPVQjCx} fonctionne encore av
                 \| \gamma_0\varphi \|_{H^{s-\frac{ 1 }{2}}(\eR^{d-1})}\leq K\| \varphi \|_{H^s(\eR^d)}.
             \end{equation}
         \item[À propos de classes]
-            Il serait tentant de conclure en disant que \( \swD(\eR^d)\) est dense dans \( H^s(\eR^d)\). Hélas, \href{http://explosm.net/comics/3613/}{techniquement}, l'ensemble \( \swD(\eR^d)\) n'est même pas un sous-ensemble de \( H^s(\eR^d)\) parce que ce dernier est un ensemble de \emph{classes} de fonctions. Ce petit détail a ici son importance parce que \( \gamma_0\) n'est pas une application qui descend aux classes. En effet, \( \eR^{d-1}\) étant de mesure nulle dans \( \eR^d\), deux fonctions de la même classe peuvent différer en \emph{tous} les points de \( \eR^{d-1}\) en même temps.
+            Il serait tentant de conclure en disant que \( \swD(\eR^d)\) est dense dans \( H^s(\eR^d)\). Hélas, \href{https://explosm.net/comics/3613/}{techniquement}, l'ensemble \( \swD(\eR^d)\) n'est même pas un sous-ensemble de \( H^s(\eR^d)\) parce que ce dernier est un ensemble de \emph{classes} de fonctions. Ce petit détail a ici son importance parce que \( \gamma_0\) n'est pas une application qui descend aux classes. En effet, \( \eR^{d-1}\) étant de mesure nulle dans \( \eR^d\), deux fonctions de la même classe peuvent différer en \emph{tous} les points de \( \eR^{d-1}\) en même temps.
 
             Si nous notons \( \iota\) l'application qui consiste à prendre la classe ce qui est dense dans \( H^s(\eR^d)\), c'est \( \iota(\swD(\eR^d))\). Or chaque classe contient au maximum une seule fonction continue (qui sera même de classe \(  C^{\infty}\) à support compact pour les éléments de \( \iota(\swD)\)).
 

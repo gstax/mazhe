@@ -71,7 +71,7 @@ Nous avons dit qu'une onde électromagnétique se propage comme une onde sonore 
 
 En fait, vérifier cette hypothèse n'est pas très compliqué. En effet il n'y a aucune raison que l'éther suive la Terre dans son mouvement. Or la Terre se déplace à environ $\unit{30}{\kilo\meter\per\second}$ autour du Soleil. Donc les ondes électromagnétiques doivent se propager plus vite dans le sens du mouvement de la Terre que dans le sens perpendiculaire. Tout comme le son se propage plus vite dans le sens du vent.
 
-La célèbre expérience de \href{http://fr.wikipedia.org/wiki/Expérience\_d'interférométrie\_de\_Michelson\_et\_Morley}{Michelson-Morley} a mesuré cet effet \ldots et ce fut la consternation : il n'y a aucun effet ! Or, la lumière se déplace à \unit{300.000}{\kilo\meter\per\second}; une variation de $\unit{30}{\kilo\meter\per\second}$ devrait être détectable !
+La célèbre expérience d'interférométrie de Michelson-Morley\cite{BIBooJSDSooIUhMQQ} a mesuré cet effet \ldots et ce fut la consternation : il n'y a aucun effet ! Or, la lumière se déplace à \unit{300.000}{\kilo\meter\per\second}; une variation de $\unit{30}{\kilo\meter\per\second}$ devrait être détectable !
 
 Mais rien ! On a recommencé les expériences dans tout les sens, à tous les mois de l'année, à tous les endroits de la Terre. On n'a pas observé un poil de variation de la vitesse de la lumière. Et ça, ça pose un gros problème à la physique.
 
@@ -249,7 +249,7 @@ où $\Delta=\alpha^2-\frac{ \alpha^2 v^2 }{ c^2 }$ que tu noteras au passage êt
 
 \item Maintenant il reste à imposer le principe de relativité. Les transformations \eqref{EqLorAvd} montrent comment Alice voit le monde (c'est-à-dire $(t',x'))$ en fonction de la façon dont Bob voit le monde (c'est-à-dire $(t,x)$). On se demande donc quelle seraient, pour Bob, les coordonnées $(t,x)$ d'un point vu en $(t',x')$ par Alice. Cela signifie que l'on impose que les deux systèmes \eqref{EqLorAvd} soient en réalité les mêmes, à un changement de signe près.
 
-Attention : il \emph{a priori} faux de dire qu'en changeant le signe de $v$ dans $\alpha v/c^2$, j'obtiens $-\alpha v/c^2$ parce que $\alpha$ est une fonction de $v$. En réalité, il faut noter $\alpha(v)v/c^2$ et donc le changement de signe de $v$ donne $-\alpha(-v)v/c^2$. Ceci étant clair, on peut un petit peu calculer.
+Attention : il \emph{à priori} faux de dire qu'en changeant le signe de $v$ dans $\alpha v/c^2$, j'obtiens $-\alpha v/c^2$ parce que $\alpha$ est une fonction de $v$. En réalité, il faut noter $\alpha(v)v/c^2$ et donc le changement de signe de $v$ donne $-\alpha(-v)v/c^2$. Ceci étant clair, on peut un petit peu calculer.
 
 Commençons par égaliser le coefficient de $x$ dans $t'$ à celui de $x'$ dans $t$, en changeant le signe de $v$ :
 \[
@@ -487,7 +487,7 @@ Il faut démontrer que sinus hyperbolique est injective et surjective. Calculons
 \end{align}
 Par ailleurs, la fonction sinus hyperbolique est continue et respecte donc le théorème de la valeur intermédiaire\footnote{Je t'avais dit que tout tons cours de math allait y passer hein.}~\ref{ThoValInter}. Soit $y\in\eR$. Voyons s'il existe un $x\in\eR$ tel que $\sinh(x)=y$. Les deux limites indiquent qu'il existe $x_1\in\eR$ tel que $\sinh(x_1)<y$ et $x_2\in\eR$ tel que $\sinh(x_2)>y$. Le théorème de la valeur intermédiaire conclu qu'il existe un $x$ entre $x_1$ et $x_2$ tel que $\sinh(x)=y$. Cela prouve la surjectivité.
 
-Pour l'injectivité, on va utiliser le \href{http://fr.wikipedia.org/wiki/Théorème_de_Rolle}{théorème de Rolle} et une petite preuve par l'absurde. Supposons que $\sinh(x_1)=\sinh(x_2)$ avec $x_1\neq x_2$. Dans ce cas, le théorème de Rolle nous dit qu'il existe un $x$ entre $x_1$ et $x_2$ tel que $\sinh'(x)=0$. La dérivée de sinus hyperbolique étant cosinus hyperbolique, il faut se demander il existe un $x$ tel que $\cosh(x)=0$. Étant donné que $ e^{x}>0$ pour tout $x$, en fait le cosinus hyperbolique ne s'annule jamais.
+Pour l'injectivité, on va utiliser le théorème de Rolle \ref{ThoRolle} et une petite preuve par l'absurde. Supposons que $\sinh(x_1)=\sinh(x_2)$ avec $x_1\neq x_2$. Dans ce cas, le théorème de Rolle nous dit qu'il existe un $x$ entre $x_1$ et $x_2$ tel que $\sinh'(x)=0$. La dérivée de sinus hyperbolique étant cosinus hyperbolique, il faut se demander il existe un $x$ tel que $\cosh(x)=0$. Étant donné que $ e^{x}>0$ pour tout $x$, en fait le cosinus hyperbolique ne s'annule jamais.
 \end{proof}
 
 \newcommand{\CaptionFigSYNKooZBuEWsWw}{En rouge, la fonction $x\mapsto \sinh(x)$ et en bleu, la fonction $x\mapsto\cosh(x)$.}
@@ -495,7 +495,7 @@ Pour l'injectivité, on va utiliser le \href{http://fr.wikipedia.org/wiki/Théor
 
 Un très bon exercice serait de faire un étude complète des fonctions cosinus et sinus hyperbolique. Leur graphes sont donnés à la figure~\ref{LabelFigSYNKooZBuEWsWw}
 
-Un corollaire de la surjectivité de $\sinh$ sur $\eR$ est que si je prends n'importe quel deux nombres dont la différence des carrés vaut $1$, alors ces carrés sont représentables avec des fonctions hyperboliques :
+Un corolaire de la surjectivité de $\sinh$ sur $\eR$ est que si je prends n'importe quel deux nombres dont la différence des carrés vaut $1$, alors ces carrés sont représentables avec des fonctions hyperboliques :
 \[
   \forall x,y\in\eR \text{ tels que } x^2-y^2=1,\,\exists\xi\in\eR \text{ tel que } x^2=\cosh(\xi)\text{ et }y^2=\sinh(\xi).
 \]

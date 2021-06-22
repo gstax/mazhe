@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2019
+% Copyright (c) 2011-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -81,7 +81,7 @@ et donc
 \end{equation}
 D'où le nom de série génératrice. Cela est évidemment intéressant seulement si nous connaissons une autre forme pour \( f\) par ailleurs.
 
-Nous en utiliserons une pour déterminer les partitions d'un nombre en parts fixes, proposition~\ref{PropWUFpuBR}.
+Nous en utiliserons une pour déterminer les partitions d'un nombre en parts fixes, proposition~\ref{THOooQDYWooCOiUMb}.
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Développement en série et Taylor}
@@ -522,7 +522,7 @@ La notion de rayon de convergence de cette série reste la même : c'est la déf
     \begin{equation}
         \| A_nA^n \|\leq | a_n |r^n\frac{ \| A \|^n }{ r^n }\leq M\left( \frac{ \| A \| }{ r } \right)^n.
     \end{equation}
-    La série du membre de droite converge parce que c'est une série géométrique de raison plus petite que \( 1\); voir l'exemple~\ref{ExZMhWtJS}.
+    La série du membre de droite converge parce que c'est une série géométrique de raison plus petite que \( 1\), proposition \ref{PROPooWOWQooWbzukS}.
 \end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -557,7 +557,7 @@ La proposition suivante sera redémontrée indépendamment dans le théorème~\r
     \begin{equation}
         \binom{ n }{ k }\lambda^{n-k}\leq P(n)\lambda^{n-k}
     \end{equation}
-    où \( P\) est un polynôme tend vers zéro lorsque \( n\) devient grand parce que c'est une cas polynôme fois exponentielle.
+    où \( P\) est un polynôme tend vers zéro lorsque \( n\) devient grand parce que c'est un cas polynôme fois exponentielle.
 \end{proof}
 
 \begin{theorem}[Thème~\ref{THEMEooPQKDooTAVKFH}\cite{ooETMNooSrtWet}]   \label{THOooMNLGooKETwhh}
@@ -746,7 +746,7 @@ Nous avons vu par la proposition~\ref{PropKKdmnkD} que toute matrice complexe in
 \end{lemma}
 
 \begin{proof}
-    Le polynôme caractéristique de \( A\) se note, d'après le corollaire~\ref{CorUNZooAZULXT} de la façon suivante :
+    Le polynôme caractéristique de \( A\) se note, d'après le corolaire~\ref{CorUNZooAZULXT} de la façon suivante :
     \begin{equation}
         \chi_A(X)=\prod_{i=1}^r(X-\lambda_i)^{m_i}
     \end{equation}
@@ -872,36 +872,80 @@ Au final,
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Fonctions plateaux}
+\subsection{Fonctions plateaux, Urysohn, partition de l'unité}
 %---------------------------------------------------------------------------------------------------------------------------
 \label{subsecOSYAooXXCVjv}
 
-Soient \( a<b<c<d\) dans \( \eR\). Nous voulons trouver une fonction \( f\in C^{\infty}(\eR)\) à valeurs positives telle que
-\begin{enumerate}
-    \item
-        \( f(x)=1\) si \( x\in\mathopen[ b , c \mathclose]\)
-    \item
-        \( \supp(f)\subset\mathopen[ a , d \mathclose]\).
-\end{enumerate}
 
-Nous commençons par l'exemple classique de fonction \(  C^{\infty}\) qui n'est pas nulle partout :
+Vous voulez une fonction de classe \( C^{\infty}\) nulle sur un ouvert, mais qui n'est pas nulle partout ? En voici une.
+\begin{lemma}       \label{LEMooFLUSooKaZRRY}
+    La fonction
 \begin{equation}
     \varphi(x)=\begin{cases}
         e^{-1/x}    &   \text{si } x>0\\
         0    &    \text{sinon}.
     \end{cases}
 \end{equation}
-Il est facile de vérifier que \( \varphi\) est de classe \(  C^{\infty}\) parce que
-$\lim_{x\to 0^+} e^{-1/x/} P(x) =0 $
-pour tout polynôme \( P\). De plus c'est une fonction qui vaut zéro sur \( \mathopen] -\infty , 0 \mathclose]\). Ensuite nous construisons la fonction
+    est de classe \(  C^{\infty}\).
+\end{lemma}
+
+\begin{proof}
+    Pour tout polynôme \( P\) nous avons la limite\footnote{Voir la proposition \ref{PROPooKVIFooGdKpfP}\ref{ITEMooBLNOooZQNTfd}.}
 \begin{equation}
-    \psi_m(x)=1-\frac{ \int_0^x \varphi(t)dt }{ \int_0^m\varphi(t)dt}=\begin{cases}
+    \lim_{x\to 0^+} \frac{ e^{-1/x} }{ P(x)} =0 .
+\end{equation}
+    De là, en écrivant les dérivées successives de \( \varphi\), il est facile de voir qu'elles sont continues en \( x=0\).
+\end{proof}
+
+
+\begin{lemma}       \label{LEMooRVSIooKcpWoK}
+    Soit \( m>0\). Il existe une application \( \psi_m\in  C^{\infty}(\eR)\) telle que
+La fonction \( \psi_m\) vérifie
+\begin{equation}
+    \psi_m(x)=\begin{cases}
         1    &   \text{si } x<0\\
         0    &    \text{si } x>m\\
         \text{positive} &\text{si } x\in\mathopen[ 0 , m \mathclose].
     \end{cases}
 \end{equation}
-Cette fonction est encore de classe $ C^{\infty}$. À partir de là nous considérons les fonctions
+\end{lemma}
+ 
+\begin{proof}
+    Nous partons de la fonction \( \varphi\) du lemme \ref{LEMooFLUSooKaZRRY}. Ensuite nous considérons
+\begin{equation}
+    \psi_m(x)=1-\frac{ \int_0^x \varphi(t)dt }{ \int_0^m\varphi(t)dt}
+\end{equation}
+Cette fonction est encore de classe $ C^{\infty}$. En effet, le dénominateur \( \int_0^m\varphi(t)dt\) est un simple nombre strictement positif sans histoires tandis que la proposition \ref{PropEZFRsMj} dit que \( x\mapsto \int_0^x\varphi(t)dt\) est une primitive de \( \varphi\). Vu que \( \varphi\) est déjà de classe \(  C^{\infty}\), sa primitive l'est également.
+\end{proof}
+
+\begin{lemma}[\cite{BIBooPITOooZANjFn}]
+    Soient \( a<b\) dans \( \eR\). Il existe une fonction \( f\in  C^{\infty}(\eR)\) telle que
+    \begin{enumerate}
+        \item
+            \( 0\leq f\leq 1\),
+        \item
+        \( f=0\) sur \( \mathopen] -\infty , a \mathclose]\),
+    \item
+        \( f=1\) sur \( \mathopen[ b , \infty \mathclose[\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    C'est une variation sur le thème de la fonction du lemme \ref{LEMooRVSIooKcpWoK}; il s'agit de la retourner, dilater et décaler. Posez successivement \( f_1(x)=\psi_m(-x)\), \( f_2(x)=f_1\big(mx/(b-a)\big)\) et \( f_3(x)=f_2(x-a)\) et je crois que le compte est bon. La fonction \( f_3\) est celle que nous cherchons.
+\end{proof}
+
+\begin{proposition}     \label{PROPooAZJZooTYWjzb}
+Soient \( a<b<c<d\) dans \( \eR\). Il existe une fonction \( f\in C^{\infty}(\eR)\) à valeurs positives telle que
+\begin{enumerate}
+    \item
+        \( f(x)=1\) si \( x\in\mathopen[ b , c \mathclose]\)
+    \item
+        \( \supp(f)\subset\mathopen[ a , d \mathclose]\).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Nous considérons la fonction \( \psi_m\) du lemme \ref{LEMooRVSIooKcpWoK}, et nous considérons les fonctions
 \begin{subequations}
     \begin{align}
         f_1(x)&=\psi_{d-c}(x-c)=\begin{cases}
@@ -921,14 +965,199 @@ et finalement la fonction suivante répond à la question des fonctions plateaux
     f(x)=f_1(x)f_2(x).
 \end{equation}
 \index{fonction!définie par une intégrale}
+\end{proof}
 
-Une variation sur le même thème est l'existence de fonctions infiniment dérivables à support compact, c'est-à-dire des fonctions dans \(  C^{\infty}_c(\eR^d)=\swD(\eR^d)\). Ces espaces ne sont pas vides, par exemple nous avons la fonction
+Une variation sur le même thème est l'existence de fonctions infiniment dérivables à support compact, c'est-à-dire des fonctions dans \(  C^{\infty}_c(\eR^d)=\swD(\eR^d)\). 
+
+\begin{proposition}     \label{PROPooAHLKooMFMgFq}
+    La fonction \( \xi\colon \eR^d\to \eR\) donnée par
 \begin{equation}    \label{EqOBYNEMu}
     \xi(x)=\begin{cases}
-        e^{-1/(1-| x |^2)}    &   \text{si } x\in B(0,1)\\
+        e^{-1/(\| x \|^2-1)}    &   \text{si } x\in B(0,1)\\
         0    &    \text{sinon}.
     \end{cases}
 \end{equation}
+est de classe \( C^{\infty}\) et à support compact.
+\end{proposition}
+
+\begin{corollary}       \label{CORooHHZXooXmwGmC}
+    Il existe une fonction \( \xi\in\swD\big( B(0,R) \big)\) telle que \( \int_{\eR}\xi(x)dx=0\).
+\end{corollary}
+
+\begin{proof}
+    Prenez la fonction de la proposition \ref{PROPooAHLKooMFMgFq}. Si \( R<1\), faites une redéfinition \( \xi_2=\xi(\lambda x)\) pour que le support soit dans \( B(0,R)\). Ensuite, si l'intégrale n'est pas \( 1\), encore une redéfinition \( \xi_3=\mu\xi_2\).
+\end{proof}
+
+Il ne faudrait pas croire pour autant que tout est toujours rose au pays des fonctions \(  C^{\infty}\) à support compact.
+
+\begin{proposition}
+    Si \( \phi\) est une fonction \(  C^{\infty}\) non nulle à support compact sur \( \eR\), alors \( \phi'/\phi\) n'est pas bornée.
+
+    Plus présisément, nous posons \( D=\{ x\in \eR\tq \phi(x)\neq 0 \}\). Alors la fonction
+    \begin{equation}
+        \begin{aligned}
+            f\colon D&\to \eR \\
+            x&\mapsto \phi'(x)/\phi(x) 
+        \end{aligned}
+    \end{equation}
+    n'est pas bornée.
+\end{proposition}
+
+\begin{proof}
+    Quitte à décaller et à multiplier, nous supposons que \( \phi(0)=1\). Sinon vous considérez \( x_0\) tel que \( \phi(x_0)=y_0\neq 0\) et vous adaptez tout le reste de la démonstration à vos frais.
+
+    Vu que \( \phi\) est continue, la partie \( Z=\{ x\geq 0\in \eR\tq \phi(x)=0 \}\) est fermée. Elle est également bornée vers le bas par \( 0\). Donc elle possède un minimum que nous nommons \( a\) : 
+    \begin{equation}
+        a=\min\{ x\geq 0\tq \phi(x)=0 \}.
+    \end{equation}
+    Les valeurs de \( \phi\) qui vons nous intéresser sont :
+    \begin{equation}
+        \phi(x)=\begin{cases}
+            >0    &   \text{si } x\in\mathopen[ 0 , a \mathclose[\\
+            =0    &    \text{si }x=a.
+        \end{cases}
+    \end{equation}
+    Enfin, nous posons
+    \begin{equation}
+        M=\sup\{ \phi'(x)/\phi(x) \}_{x\in\mathopen[ 0 , a \mathclose[}.
+    \end{equation}
+    Nous supposons que \( M<\infty\)\footnote{Vous pouvez ne pas supposer cela et voir le reste de la preuve comme une démonstration que \( M=\infty\). Ici nous allons faire par l'absurde et montrer une contradiction en supposant que \( M<\infty\).}.
+
+    Nous posons
+    \begin{equation}
+        \begin{aligned}
+            F\colon \mathopen[ 0 , a \mathclose[&\to \eR \\
+                x&\mapsto \int_0^x\frac{ \phi'(t) }{ \phi(t) }dt. 
+        \end{aligned}
+    \end{equation}
+    Vu que \( \phi\) est de classe \(  C^{\infty}\) et que \( x\) est dans \( \mathopen[ 0 , a \mathclose[\) sur lequel \( \phi\) ne s'annule pas, cette intégrale n'a rien d'exceptionnel.
+
+    Nous pouvons majorer \( F\) de la façon suivantes :
+    \begin{equation}
+        F(x)=\int_0^x\frac{ \phi'(t) }{ \phi(t) }dt\leq \in_0^xMdt=Mx< Ma.
+    \end{equation}
+
+    La proposition \ref{PropEZFRsMj} lie primitive et intégrale; celle de \( \phi'(x)/\phi(x)\) est \( \ln\big( \phi(x) \big)\) nous avons donc
+    \begin{equation}        \label{EQooCEVKooLgXiaj}
+        F(x)=\ln(\phi(x))-\ln(\phi(0))=\ln\big( \phi(x) \big).
+    \end{equation}
+    Mais vu que \( \lim_{x\to a} \phi(x)=0\), nous avons \( \lim_{x\to a} F(x)=\infty\), d'où la contradiction.
+\end{proof}
+
+Notez que l'expression \ref{EQooCEVKooLgXiaj} montre que \( \phi'(x)/\phi(x)\) tend vers \( -\infty\), ce qui est logique : la dérivée est négative alors que \( \phi\) reste positive. Ce que dit la proposition est qu'une fonction \(  C^{\infty}\) à support compact tend plus vite vers zéro que sa dérivée.
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Lemme de Urysohn}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Le lemme d'Urysohn comprend de nombreuses variantes plus ou moins générales. En voici une parmi les plus simples.
+\begin{lemma}[Lemme d'Urysohn]      \label{LEMooECTNooKagaRU}
+    Soient un ouvert \( \mU\) de \( \eR\) et un compact \( K\) inclus dans \( \mU\). Il existe une fonction \( f\colon \eR\to \mathopen[ 0 , 1 \mathclose]\) de classe  \(  C^{\infty}\) telle que
+    \begin{enumerate}
+        \item
+            \( f(x)=1\) pour \( x\in K\),
+        \item
+            \( \supp(f)\subset \mU\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Vu que \( K\) est compact, il est borné (théorème \ref{ThoXTEooxFmdI}). Nous posons \( b=\min(K)\) et \( c=\max(K)\). En particulier \( b\) et \( c\) sont des éléments de \( K\) et donc de \( \mU\). Comme \( \mU\) est ouvert, il existe des boules centrées en \( b\) et \( c\) contenues dans \( \mU\). Soit \( r\) le rayon de telles boules :
+    \begin{subequations}
+        \begin{align}
+            B(b,r)\subset \mU\\
+            B(c,r)\subset \mU.
+        \end{align}
+    \end{subequations}
+    Nous posons \( a=b-r\in \mU\) et \( d=c+r\in \mU\). Nous considérons à présent la fonction plateau \( f\) de la proposition \ref{PROPooAZJZooTYWjzb}. Elle est de classe \(  C^{\infty}\) et vérifie \( f(x)=1\) pour \( x\in \mathopen[ b , c \mathclose]=K\) ainsi que \( f(x)=0\) hors de \( \mathopen[ a , d \mathclose]\subset \mU\).
+\end{proof}
+
+\begin{normaltext}
+    Notons que la fonction du lemme d'Urysohn \ref{LEMooECTNooKagaRU} n'épouse pas spécialement très bien la forme de \( K\). Si par exemple \( K=\mathopen[ 0 , 1 \mathclose]\cup \mathopen[ 10 , 11 \mathclose]\), la fonction \( f\) sera égale à \( 1\) au moins sur \( \mathopen[ 0 , 11 \mathclose]\).
+\end{normaltext}
+
+Une généralisation à plus de dimensions.
+
+\begin{proposition}[Urysohn, Fonctions plateau\cite{BIBooPITOooZANjFn}]       \label{PROPooBOZIooAhKbPs}
+    Soit un ouvert \( \Omega\subset \eR^d\) ainsi qu'un compact \( K\) dans \( \Omega\). Il existe une fonction \( \phi\in C^{\infty}(\eR^d)\) telle que
+    \begin{enumerate}
+        \item
+            \( \supp(\phi)\) est compact dans \( \Omega\),
+        \item
+            \( 0\leq \phi\leq 1\)
+        \item
+            \( \phi=1\) sur un voisinage de \( K\).
+    \end{enumerate}
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Partition de l'unité}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Partition de l'unité\cite{BIBooPITOooZANjFn}]       \label{THOooQFCQooSlgLpz}
+    Soient un compact \( K\subset \eR^d\) et des ouverts \( \{ \Omega_i \}_{i=1,\ldots, n}\) recouvrant \( K\). Alors il existe des fonctions \( \phi_i\in  C^{\infty}(\eR^d)\) (\( i=1,\ldots, n\)) telles que
+    \begin{enumerate}
+        \item
+            \( 0\leq \phi_k\leq 1\)
+        \item
+            \( \supp(\phi_k)\subset \Omega_k\),
+        \item
+            \( \sum_{k=1}^n\phi_k=1\) sur un voisinage de \( K\).
+    \end{enumerate}
+    Ces fonctions \( \phi_i\) sont une \defe{partition de l'unité}{partition de l'unité} subordonnée aux ouverts \( \Omega_i\).
+\end{theorem}
+
+\begin{proof}
+    Nous considérons des compacts \( \{ K_i \}_{i=1,\ldots, n}\) comme dans le lemme \ref{LEMooWRIXooSBHavt}. Pour chaque \( i\) nous avons \( K_i\subset \Omega_i\), de telle sorte à ce que nous pouvions utiliser la proposition \ref{PROPooBOZIooAhKbPs}. Nous avons donc des fonctions \( \psi_j\in  C^{\infty}(\eR^d)\) telles que \( \supp(\psi_j)\) est compact dans \( \Omega_j\), \( \psi_j\geq 0\) et \( \psi_j=1\) sur \( V_j\) qui est un voisinage ouvert de \( K_j\).
+
+    Nous posons \( V=V_1\cup\ldots \cup V_n\). C'est un ouvert qui contient \( K\) parce que
+    \begin{equation}
+        K\subset \bigcup_jK_j\subset\bigcup_j\Omega_j\subset \bigcup_jV_j.
+    \end{equation}
+
+    Nous faisons de même pour \( K\) lui-même. Il exist une fonction \( \theta\in  C^{\infty}(\eR^d)\) telle que
+    \begin{itemize}
+        \item \( \supp(\theta)\) est compact dans \( V\)n
+        \item
+            \( \theta=1\) sur un voisinage de \( K\),
+        \item
+            \( 0\leq \theta\leq 1\).
+    \end{itemize}
+    Vu que \( \psi_j=1\) sur \( V_j\), nous avons \( \sum_{j=1}^n\psi_j>0\) sur \( V\).
+
+    Nous prouvons à présent que
+    \begin{equation}        \label{EQooGABMooZZmlyQ}
+        1-\theta+\sum_{k=1}(x)\psi_k>0
+    \end{equation}
+    sur \( \eR^d\).
+    \begin{subproof}
+    \item[Si $x\in V$]
+        Alors \( 1-\theta(x)\geq 0\) et donc
+        \begin{equation}
+            1-\theta(x)+\sum_{k=1}^n\psi_k(x)\geq \sum_{k=1}^n\psi_k(x)>0.
+        \end{equation}
+    \item[Si $x\notin V$]
+        Vu que le support de \( \theta\) est dans \( V\), nous avons \( \theta(x)=0\). Quant aux fonctions \( \psi_k\), elles font un peu ce qu'elles veulent, mais elles sont positives\footnote{Dans le Frido, «positif» signifie dans $\mathopen[ 0 , \infty \mathclose]$.} et donc
+        \begin{equation}
+            1-\theta(x)+\sum_{k=1}^n\psi_k(x)\geq 1-\theta(x)=1.
+        \end{equation}
+    \end{subproof}
+    Vu que \eqref{EQooGABMooZZmlyQ} est prouvé, nous pouvons poser
+    \begin{equation}
+        \phi_j=\frac{ \psi_j }{ 1-\theta+\sum_{k=1}^n\psi_k }
+    \end{equation}
+    sans peur pour le dénominateur. Nous avons \( \phi_j\in  C^{\infty}(\eR^d)\). Nous savons que \( \theta=1\) sur un voisinage de \( K\). Su ce voisinage nous avons
+    \begin{equation}
+        \sum_{j=1}^n\phi_j(x)=\frac{ \sum_{j}\psi_j(x) }{ 1-\theta(x)+\sum_k\psi_k(x) }=1.
+    \end{equation}
+    De plus \( \phi_j\geq 0\) parce que chacun des \( \psi_j\) l'est et parce que nous avons montré que le dénominateur était toujours strictement positif.
+
+    En enfin,
+    \begin{equation}
+        \supp(\phi_j)=\supp(\psi_j)\subset\Omega_j.
+    \end{equation}
+    Donc les fonctions \( \phi_j\) sont celles que dont nous avions besoin.
+\end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Le lemme de Borel}
@@ -1103,7 +1332,6 @@ où nous avons utilisé un petit changement de variables \( l=n-k\). Afin d'étu
                         &=\sum_{k=0}^{\infty}\left( \sum_{l=0}^k{k\choose l}B_l \right)\frac{ x^k }{ k! }=\sum_{k=0}^{\infty}\left( \sum_{l=0}^k\frac{ B_l }{ l!(l-k)! } \right)x^k.
                     \end{align}
                 \end{subequations}
-                <++>
                 En cette expression, nous reconnaissons un produit de Cauchy (proposition~\ref{ThokPTXYC}) avec \( a_l=\frac{ B_l }{ l! }\) et \( b_n=\frac{ 1 }{ n! }\). Vu que ce sont deux séries ayant un rayon de convergence plus grand que zéro, le produit a encore un rayon de convergence plus grand que zéro et nous pouvons prendre le produit des séries :
                 \begin{equation}
                     f'(x)=\left( \sum_{l=0}^{\infty}\frac{ B_l }{ l! }x^l \right)\left( \sum_{k=0}^{\infty}\frac{1}{ k! }x^k \right)=f(x) e^{x}.
@@ -1127,7 +1355,7 @@ où nous avons utilisé un petit changement de variables \( l=n-k\). Afin d'étu
                         \begin{equation}    \label{EqODjgjDN}
                         e^{e^x}=\sum_{k=0}^{\infty}\frac{ (e^x)^k }{ k! }=\sum_{k=0}^{\infty}\frac{1}{ k! }\sum_{l=0}^{\infty}\frac{ (kx)^l }{ l! }=\sum_{k=0}^{\infty}\sum_{l=0}^{\infty}\frac{k^l}{k! }\frac{ x^l }{ l! }.
                     \end{equation}
-                    Notons que cela n'est pas une série de puissance en \( x\) parce qu'il y a la double somme. Nous allons inverser les sommes au moyen du théorème de Fubini sous la forme du corollaire~\ref{CorTKZKwP}. Pour cela nous considérons la fonction
+                    Notons que cela n'est pas une série de puissance en \( x\) parce qu'il y a la double somme. Nous allons inverser les sommes au moyen du théorème de Fubini sous la forme du corolaire~\ref{CorTKZKwP}. Pour cela nous considérons la fonction
                     \begin{equation}
                         \begin{aligned}
                             a\colon \eN\times \eN&\to \eR \\
@@ -1146,12 +1374,11 @@ où nous avons utilisé un petit changement de variables \( l=n-k\). Afin d'étu
                         \frac{1}{ e }e^{e^x}=\frac{1}{ e }\sum_{k=0}^{\infty}\sum_{l=0}^{\infty}\frac{1}{ k! }\frac{1}{ l! }(kx)^l=\sum_{l=0}\frac{1}{ e }\frac{1}{ l! }\left( \sum_{k=0}^{\infty}\frac{ k^l }{ k! } \right)x^l.
                     \end{equation}
                     Cela est un développement en série entière pour la fonction \( \frac{1}{ e } e^{e^x}\), dont nous savions déjà le développement \eqref{EqYCMGBmP}; par unicité du développement nous pouvons identifier les coefficients :
+                    %TODOooPBXEooTJTGYs Prouver et référentier l'unicité du développement en série entière.
                     \begin{equation}
                         B_l=\frac{1}{ e }\sum_{k=0}^{\infty}\frac{ k^l }{ k! }.
                     \end{equation}
-
                 \item
-
                     Le développement \eqref{EqODjgjDN} étant en réalité valable pour tout \( x\) et tous les calculs subséquents l'étant aussi, le développement
                     \begin{equation}
                         e^{e^x-1}=\sum_{n=0}^{\infty}\frac{ B_n }{ n! }x^n

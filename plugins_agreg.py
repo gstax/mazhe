@@ -1,33 +1,19 @@
-# -*- coding: utf8 -*-
+import pygit2
+import os
+import sys
+from python.splittoc import Book
 
-from __future__ import unicode_literals
+dprint = print
 
-frido_mark_list=[]
+frido_mark_list = []
 frido_mark_list.append("% SCRIPT MARK -- DECLARATIVE PART")
 frido_mark_list.append("% SCRIPT MARK -- GARDE MES NOTES")
 frido_mark_list.append("% SCRIPT MARK -- TOC")
 frido_mark_list.append("% SCRIPT MARK -- FRIDO")
+frido_mark_list.append("% SCRIPT MARK -- DÉVELOPPEMENTS POSSIBLES")
 frido_mark_list.append("% SCRIPT MARK -- FINAL")
 
-outilsmath_mark_list=[]
-outilsmath_mark_list.append("% SCRIPT MARK -- DECLARATIVE PART")
-outilsmath_mark_list.append("% SCRIPT MARK -- GARDE ENSEIGNEMENT")
-outilsmath_mark_list.append("% SCRIPT MARK -- TOC")
-outilsmath_mark_list.append("% SCRIPT MARK -- OUTILS MATHÉMATIQUES")
-outilsmath_mark_list.append("% SCRIPT MARK -- FINAL")
-
-enseignement_mark_list=[]
-enseignement_mark_list.append("% SCRIPT MARK -- DECLARATIVE PART")
-enseignement_mark_list.append("% SCRIPT MARK -- GARDE ENSEIGNEMENT")
-enseignement_mark_list.append("% SCRIPT MARK -- TOC")
-enseignement_mark_list.append("% SCRIPT MARK -- INTRO SAGE")
-enseignement_mark_list.append("% SCRIPT MARK -- OUTILS MATHÉMATIQUES")
-enseignement_mark_list.append("% SCRIPT MARK -- MATLAB")
-enseignement_mark_list.append("% SCRIPT MARK -- EXERCICES")
-enseignement_mark_list.append("% SCRIPT MARK -- CdI")
-enseignement_mark_list.append("% SCRIPT MARK -- FINAL")
-
-mazhe_mark_list=[]
+mazhe_mark_list = []
 mazhe_mark_list.append("% SCRIPT MARK -- DECLARATIVE PART")
 mazhe_mark_list.append("% SCRIPT MARK -- GARDE MAZHE")
 mazhe_mark_list.append("% SCRIPT MARK -- TOC")
@@ -43,13 +29,6 @@ mazhe_mark_list.append("% SCRIPT MARK -- EXERCICES")
 mazhe_mark_list.append("% SCRIPT MARK -- CdI")
 mazhe_mark_list.append("% SCRIPT MARK -- FINAL")
 
-research_mark_list=[]
-research_mark_list.append("% SCRIPT MARK -- DECLARATIVE PART")
-research_mark_list.append("% SCRIPT MARK -- GARDE MAZHE")
-research_mark_list.append("% SCRIPT MARK -- TOC")
-research_mark_list.append("% SCRIPT MARK -- ENGLISH INTRODUCTION")
-research_mark_list.append("% SCRIPT MARK -- RESEARCH PART")
-research_mark_list.append("% SCRIPT MARK -- FINAL")
 
 class set_filename(object):
     def __init__(self,new_output_filename):
@@ -129,7 +108,6 @@ def up_to_text(liste,text):
             return i
 
 def is_dirty(repo):
-    import pygit2
     status = repo.status()
     print("list done")
     for filepath, flags in status.items():
@@ -142,39 +120,42 @@ def get_hexsha(repo):
     commit=repo.revparse_single('HEAD')
     return commit.id
 
+
 def set_commit_hexsha(A):
-    import pygit2
-    import os
-    repo=pygit2.Repository(os.getcwd())
+    repo = pygit2.Repository(os.getcwd())
     hexsha=str(get_hexsha(repo))
     if is_dirty(repo):
-        hexsha=hexsha+" -- and slightly more"
-    u="\\newcommand{\GitCommitHexsha}{\info{missing information}}"
+        hexsha = hexsha+" -- and slightly more"
+    u = "\\newcommand{\GitCommitHexsha}{\info{missing information}}"
     print(hexsha)
     A = A.replace(u,u.replace("missing information",hexsha))
     return A
 
-def assert_MonCerveau_first():
-    """
-    Read the bbl file and check that the reference "MonCerveau" is the first one.
-    """
 
-    import os.path
-    filename="Inter_frido-mazhe_pytex.bbl"
-    if not os.path.exists(filename):
-        print("Le fichier bbl n'existe pas. C'est pas très normal.  Si cela persiste à la prochaine compilation, posez-vous des questions.")
+def assert_MonCerveau_first(options):
+    """
+    Check that the reference "MonCerveau" is the first one.
+
+    Make the check in the bbl file.
+    """
+    filename = "Inter_frido-mazhe_pytex.bbl"
+    bbl_filename = options.bibliographie()
+    dprint("The bibliography filename is: ", bbl_filename)
+    if not os.path.exists(bbl_filename):
+        print(f"Le fichier {bbl_filename} n'existe pas. C'est pas très normal.  Si cela persiste à la prochaine compilation, posez-vous des questions.")
         return None
-    bbl_content=open(filename).read()
-    bbl_first=bbl_content.find("bibitem")
-    bbl_second=bbl_content.find("bibitem",bbl_first+1)
-    text=bbl_content[bbl_first:bbl_second]
+    bbl_content = open(bbl_filename).read()
+    bbl_first = bbl_content.find("bibitem")
+    bbl_second = bbl_content.find("bibitem",bbl_first+1)
+    text = bbl_content[bbl_first:bbl_second]
     if not "MonCerveau" in text:
         print("""Il semblerait que la référence bibliographique 'MonCerveau' ne soit pas la première. Il faut corriger ça. En effet, le lecteur doit savoir que lorsqu'il voit la référence [1], ça veut dire 'danger'.
 
         Après modification, le plus simple est de supprimer le fichier {} et de relancer.
 
                 """.format(filename))
-        raise
+        raise ValueError(f"The reference 'MonCerveau' is not the first one. The first is one is: {text}")
+
 
 def split_toc(name,n):
     """
@@ -189,13 +170,11 @@ def split_toc(name,n):
     creating the pathname of the toc file.
     """
 
-    def _split_doc():
-        import sys
-        import os
-        cwd=os.getcwd()
-        sys.path.append(os.path.join(cwd,"python"))
-        from splittoc import Book
-        toc_filename=os.path.join(cwd,"Inter_{}-mazhe_pytex.toc".format(name))
-        book=Book(toc_filename)
+    def _split_doc(options=None):
+        cwd = os.getcwd()
+        sys.path.append(os.path.join(cwd, "python"))
+        filename = f"Inter_{name}-mazhe_pytex.toc"
+        toc_filename = os.path.join(cwd, filename)
+        book = Book(toc_filename)
         book.rewrite_toc(n)
     return _split_doc

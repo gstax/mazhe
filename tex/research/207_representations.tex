@@ -1,8 +1,76 @@
-The concept of representation of a group is already defined in \ref{DEFooXVMSooXDIfZV}.
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 \section{Definitions}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The concept of representation of a group is already defined in \ref{DEFooXVMSooXDIfZV}.
+\begin{definition}\cite{Lie_groups}
+    If $V$ is a locally convex space, a \defe{continuous representation}{representation!of Lie group} of a Lie group $G$ on $V$ is a left invariant action $\dpt{\pi}{G\times V}{V}$ such that for any $x\in G$, the map $\dpt{\pi(x)}{V}{V}$ is a linear endomorphism of $V$.
+\end{definition}
+
+\begin{definition}
+    If $\lG$ is a Lie algebra, a \defe{representation}{representation!of Lie algebra}\index{Lie!algebra!representation} of $\lG$ in $V$ is a bilinear map $\dpt{\sigma}{\lG}{\End(V)}$ such that
+    \begin{equation}
+        \sigma([X,Y])v=[\sigma(X),\sigma(Y)]v=\sigma(X)\sigma(Y)v-\sigma(Y)\sigma(X)v.
+    \end{equation}
+    In other words, $\dpt{\sigma}{\lG}{\End{V}}$ is an algebra homomorphism.
+\end{definition}
+
+A vector space equipped with a representation of a Lie algebra $\lG$ is a \defe{$\lG$-module}{$g$-module@$\protect\lG$-module}. A \emph{complete} locally convex space equipped with a representation of a Lie group is a \defe{$G$-module}{$G$-module}.
+
+If $\pi$ is a representation of $G$ in a (eventually complex) vector space $V$, an \defe{invariant subspace}{invariant!vector subspace} is a vector subspace $W\subset V$ such that $\pi(x)W\subset W$ for any $x\in G$. A continuous representation in a complete locally compact vector space $V$ is \defe{irreducible}{irreducible!representation} if $\{0\}$ and $V$ are the only two invariant closed subspaces of $V$.
+
+In the case of finite dimensional vector space, any subspace is closed; in this class, we find back the usual notion of irreducibility.
+
+\begin{definition}
+    An \defe{unitary}{unitary!representation}\index{representation!unitary} representation of $G$ is a continuous representation $\pi$ of $G$ in a complex (or real) Hilbert space $H$ such that $\pi(x)$ is unitary for any $x\in G$. This is: $\pi$ is unitary if and only if $\forall x\in G$, $v$, $w\in H$,
+    \begin{equation}
+    \scal{\pi(x)v}{w}=\scal{v}{\pi(x)^{-1} w}.
+    \end{equation}
+    A continuous and finite dimensional representation is \defe{unitarisable}{representation!unitarisable} if there exists an hermitian product for which the representation is unitary.
+\end{definition}
+
+\begin{proposition}     \label{PROPooCFRGooZBBype}
+    Let $G$ be a compact Lie group. Then every representation on a finite dimensional vector space is unitarisable.
+\end{proposition}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Complex conjugate representation}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+    Let \( (V,+,\cdot)\) be a vector space on \( \eC\) (the dot is the multiplication by a scalar). The \defe{complex conjugate}{complex conjugate vector space} vector space is \( (V,\oplus,\odot)\) with the definitions
+    \begin{enumerate}
+        \item
+            \( x\oplus y=x+y\) for every \( x,y\in V\)
+        \item
+            \( \lambda\odot x=\bar \lambda\dot x\) for \( \lambda\in \eC\) and \( x\in V\).
+    \end{enumerate}
+    We usually denote by \( \bar V\) the complex conjugate vector space, but as sets, \( V=\bar V\).
+\end{definition}
+
+\begin{lemma}       \label{LEMooEKTRooBApWlp}
+    If the map \( f\colon V\to W\) is linear, then the (same) map \( f\colon \bar V\to \bar W\) is linear.
+\end{lemma}
+
+\begin{proof}
+    There is no requirements for the sum since the complex conjugation of the sum is the same. For the product,
+    \begin{equation}
+        f(\lambda\odot x)=f(\bar \lambda x)=\bar \lambda f(x)=\lambda\odot f(x).
+    \end{equation}
+\end{proof}
+
+\begin{definition}
+    If \( G\) is a group and \( (\rho, V)\) a representation of \( G\), the \defe{complex conjugate}{complex conjugate representation} is the representation \( \bar \rho\colon G\to \GL(\bar V)\) given by
+    \begin{equation}
+        \bar\rho(g)=\rho(g)
+    \end{equation}
+    by the lemma \ref{LEMooEKTRooBApWlp}.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Faithful representation}
+%---------------------------------------------------------------------------------------------------------------------------
 
 \begin{definition}      \label{DEFooAFSAooGDSDBb}
     The representation \( (V,T)\) is \defe{faithful}{faithful representation} if the map \( T\colon G\to \GL(V)\) is injective. It means that \( T(g)=\id\) only when \( g\) is the neutral in \( G\).
@@ -68,12 +136,17 @@ is the \defe{definition representation}{definition representation}. This is in p
     \end{subproof}
 \end{proof}
 
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Irreducible representations}
+%---------------------------------------------------------------------------------------------------------------------------
+
+
 \begin{theorem}[\cite{BIBooYTTJooYpPYLT}]   \label{THOooXHVHooDQdgDI}
-    Let \( (T,V)\) be a finite dimensional representation of \( G\). Let \( \alpha\in \End(V)\) be such that
+    Let \( (T,V)\) be an irreducible finite dimensional representation of \( G\). Let \( \alpha\in \End(V)\) be such that
     \begin{equation}
-        \alpha\circ T(g)=T(g)\circ \alpha.
+        \alpha\circ T(g)=T(g)\circ \alpha
     \end{equation}
-    There exists \( \lambda\in \eC\) such that \( \alpha=\lambda\id\).
+    for every \( g\in G\). There exists \( \lambda\in \eC\) such that \( \alpha=\lambda\id\).
 \end{theorem}
 
 \begin{proof}
@@ -101,3 +174,96 @@ is the \defe{definition representation}{definition representation}. This is in p
     Every subspace of \( V\) is invariant. In particular a subspace of dimension \( 1\) is the whole space \( V\).
 \end{proof}
 
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Direct sum of representations}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}      \label{DEFooGKALooIjJcpV}
+    Let \( G\) be a group and \( (\rho_k, V_k)\) be representations of \( G\). We define the \defe{direct sum representation}{direct sum representation} \( (\rho_1\oplus\ldots \oplus \rho_n)\) on \( V_1\oplus\ldots \oplus V_n\) by the formula
+    \begin{equation}
+        (\rho_1\oplus\ldots \oplus\rho_n)(g)(x_1+\ldots +x_n)=\rho_1(g)x_1+\ldots +\rho_n(g)x_n.
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    A representations \( (\rho, V)\) of the group \( G\) is \defe{completely reducible}{completely reducible representation} if it is a direct sum\footnote{Definition \ref{DEFooGKALooIjJcpV}.} of irreducible representations.
+\end{definition}
+
+\begin{lemma}[\cite{BIBooYTTJooYpPYLT}]
+    A finite dimensional unitary representation is completely reducible.
+\end{lemma}
+
+\begin{proof}
+    Let \( (\rho, V)\) an unitary representation for the hermitian product of \( V\). If \( \rho\) is irreducible, the theorem is proved. If not, we consider an invariant non trivial subspace \( M\subset V\) and
+    \begin{equation}
+        M^{\perp}=\{ x\in V\tq \langle x, y\rangle =0\forall y\in M \}.
+    \end{equation}
+    We know from proposition \ref{PROPooNITTooCYcrrT} that \( V=M\oplus M^{\perp}\). We show that \( M^{\perp}\) is invariant under the representation \( \rho\); namely we take \( x\in M^{\perp}\) and we show that \( \rho(g)x\in M^{\perp}\). Let \( y\in M\); we have
+    \begin{subequations}
+        \begin{align}
+            \langle \rho(g)x, y\rangle &=\langle \rho(g^{-1})\rho(g)x, \rho(g)^{-1}y\rangle \\
+            &=\langle x, \rho(g^{-1})y\rangle \\
+            &=0.
+        \end{align}
+    \end{subequations}
+    Justifications:
+    \begin{itemize}
+        \item We can insert \( \rho(g^{-1})=\rho(g)^{-1}\) in the hermitian product because \( \rho\) is unitary.
+        \item Since \( M\) is invariant, \( \rho(g^{-1})y\in M\).
+        \item Since \( x\in M^{\perp}\), we have \( \langle x, \rho(g^{-1})y\rangle =0\).
+    \end{itemize}
+    Thus \( \rho\) is a direct sum of is restrictions to \( M\) and \( M^{\perp}\).
+\end{proof}
+
+\begin{proposition}[\cite{BIBooYTTJooYpPYLT}]
+    A completely reducible representation finite dimensional is irreducible if and only if the only operators commuting with every operator in the representation are multiple of the identity.
+\end{proposition}
+
+\begin{proof}
+    In the direct sense, we suppose that the representation is irreducible. The theorem \ref{THOooXHVHooDQdgDI} concludes.
+
+    In the reverse sense we suppose that \( (\rho, V)\) is completely reducible and the only operator commuting with the representation is the identity. We have to prove that \( \rho\) is irreducible. For that we suppose that \( \rho\) is not irreducible and we will found an operator which is not a multiple of the identity while commuting with \( \rho(g)\) for every \( g\in G\).
+    
+    
+    Let \( V_1\) and \( V_2\) be invariant subspaces such that \( V=V_1\oplus V_2\). We consider \( T=\lambda_1\id_{V_1}\oplus \lambda_2\id_{V_2}\) where \( \lambda_1\neq \lambda_2\) are two non vanishing numbers.
+
+    Let \( g\in G\) and \( x\in V\). We can write \( x=x_1+x_2\) with \( x_1\in V_1\) and \( x_2\in V_2\). We have:
+    \begin{subequations}
+        \begin{align}
+            \big( T\circ\rho(g) \big)(x)&=T\big( \rho(g)x_1+\rho(g)x_2 \big)\\
+            &=\lambda_1\rho(g)x_1+\lambda_2\rho(g)x_1\\
+            &=\rho(g)(\lambda_1x_1)+\rho(g)(\lambda_2x_2)\\
+            &=\rho(g)(\lambda_1x_1+\lambda_2x_2)\\
+            &=\big( \rho(g)\circ T \big)(x_1+x_2)\\
+            &=\big( \rho(g)\circ T\big)x.
+        \end{align}
+    \end{subequations}
+    So \( T\) commutes with the representation while not being a multiple of the identity.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Tensor product of representations}
+%---------------------------------------------------------------------------------------------------------------------------
+
+The notion of tensor product of vector spaces is given in \ref{DEFooKTVDooSPzAhH}. The tensor product of two maps is defined, when \( f\colon E\to E\) and \( g\colon F\to F\) are linear,
+\begin{equation}
+    \begin{aligned}
+        f\otimes f\colon E\otimes F&\to E\otimes F \\
+        x\otimes y&\mapsto f(x)\otimes f(y). 
+    \end{aligned}
+\end{equation}
+
+\begin{definition}
+    Let \( \rho_1\) and \( \rho_2\) be representations of \( G\) on \( V_1\) and \( V_2\). We define the representation \( \rho_1\otimes \rho_2\) on \( V_1\otimes V_2\) by
+    \begin{equation}
+        (\rho_1\otimes \rho_2)(g)=\rho_1(g)\otimes \rho_2(g).
+    \end{equation}
+\end{definition}
+
+\begin{proposition}[\cite{BIBooYTTJooYpPYLT}]
+    Let \( (\rho_1,V_1)\) be a representation of \( G_1\) and \( (\rho_2,V_2)\) be representations of \( G_2\). The formula
+    \begin{equation}
+        \rho(g_1,g_2)=\rho_1(g_1)\otimes \rho_2(g_2)
+    \end{equation}
+    defines a representation of \( G_1\times G_2\) on \( V_1\otimes V_2\).
+\end{proposition}

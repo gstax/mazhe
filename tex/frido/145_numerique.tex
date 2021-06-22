@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (C) 2010-2013,2016-2017, 2019
+% Copyright (C) 2010-2013,2016-2017, 2019-2020
 %   Laurent Claessens
 % See the file LICENCE.txt for copying conditions.
 
@@ -142,8 +142,8 @@ Plus généralement un système qui codes des entiers signés en \( N\) bits uti
 \subsection{Représentation en virgule flottante}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{definition}[Représentation en virgule flottante]     \label{DEFooLYONooBNskty}
-    La \defe{représentation en \href{https://docs.python.org/tutorial/floatingpoint.html}{virgule flottante} normalisée}{Représentation!virgule flottante normalisée} en base \( b\) d'un nombre est la donnée de
+\begin{definition}[Représentation en virgule flottante\cite{BIBooFMSZooPmMDKU}]     \label{DEFooLYONooBNskty}
+    La \defe{représentation en virgule flottante normalisée}{Représentation!virgule flottante normalisée} en base \( b\) d'un nombre est la donnée de
     \begin{enumerate}
         \item
             Un bit \( s\) pour le signe
@@ -206,7 +206,15 @@ D'où l'idée de donner une règle particulière lorsque l'exposant vaut \( 0\).
 \end{equation}
 En particulier, si \( q=0\) et \( a=[0\ldots 0]\), nous avons le nombre zéro exact (il y a deux possibilités pour le code).
 
-Enfin, nous avons des cas particuliers lorsque l'exposant est maximum, c'est-à-dire \( q=[1111\,1111]=2^8-1=255\). Dans ce cas, le nombre codé est soit \( +\infty\) soit \( \NaN\). Nous posons \( \SimplePrec(s,q=255,a=0)=+\infty\) et \( \SimplePrec(s,q=255,a\neq 0)=NaN\). Il y a en réalité plusieurs valeurs différentes de \( \NaN\), mais nous n'entrons pas dans ces détails\cite{ooPOZNooQlGiUN}.
+Enfin, nous avons des cas particuliers lorsque l'exposant est maximum, c'est-à-dire lorsque \( q=[1111\,1111]=2^8-1=255\). Dans ce cas, le nombre codé est soit \( +\infty\) soit \( \NaN\). Nous posons 
+\begin{equation}
+\SimplePrec(s,q=255,a=0)=+\infty
+\end{equation}
+et 
+\begin{equation}
+ \SimplePrec(s,q=255,a\neq 0)=NaN.
+\end{equation}
+ Il y a en réalité plusieurs valeurs différentes de \( \NaN\), mais nous n'entrons pas dans ces détails\cite{ooPOZNooQlGiUN}.
 
 \begin{definition}[Représentation en simple précision (binaire)]        \label{DEFooEIOZooYLDVjs}
     La représentation en \defe{précision simple}{précision!simple} d'un nombre se fait sur \( 32\) bits répartis comme suit :
@@ -788,7 +796,7 @@ Si nous savons un \( I_N\) avec \( N\) grand, cette formule donne les \( I_i\) a
 Donc même en prenant vraiment n'importe quoi pour \( I_N\), nous obtenons de bonnes approximations pour \( I_i\) avec les petits \( i\). Même avec \( I_{20}=1000\) (qui est complètement faux), nous trouvons énormément de chiffres significatifs corrects pour \( I_1\).
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Comment choisir et penser le $K$?}
+\subsection{Comment choisir et penser le \texorpdfstring{$ K$}{K} ?}
 %---------------------------------------------------------------------------------------------------------------------------
 
 La formule \eqref{EqDefAABSOLU} contient une formule qui ressemble étrangement à la dérivée. La stabilité d'un problème est très liée à la dérivée de $F$. La stabilité et la dérivée ne sont pas les mêmes choses, mais il n'est pas mauvais de penser au $K$ de la stabilité comme la dérivée. Ou plus précisément : le supremum de la dérivée.
@@ -797,7 +805,7 @@ Un fil conducteur du lemme~\ref{LemITCxqyS} et des exemples~\ref{ExRZrOeoi},~\re
 
 Il faut cependant parfois faire acte d'imagination. La fonction $x\mapsto| x |$ n'est pas dérivable en $0$. Il n'empêche que $K=1$ fait fonctionner la définition de la stabilité. Remarquez que $K=1$ est le supremum de la dérivée là où elle existe.
 
-À partir du moment où c'est clair que le $K$ est le supremum de la dérivée, on comprend pourquoi c'est le gradient qui arrive dans le corollaire~\ref{CorConditionnementNormeNabla}. En effet, le gradient indique la direction de plus grande pente. C'est donc bien dans cette direction qu'il faut chercher la «plus grande dérivée».
+À partir du moment où c'est clair que le $K$ est le supremum de la dérivée, on comprend pourquoi c'est le gradient qui arrive dans le corolaire~\ref{CorConditionnementNormeNabla}. En effet, le gradient indique la direction de plus grande pente. C'est donc bien dans cette direction qu'il faut chercher la «plus grande dérivée».
 
 \begin{proposition}
 	Pour le problème stable $x=x(d)$ avec $x\in C^1(\eR^n,\eR)$, on a
@@ -1058,7 +1066,7 @@ Si le point de départ est choisi de façon à avoir \( Cr<1\) alors nous avons 
     \end{equation}
 \end{proof}
 
-Ce corollaire est une paraphrase de la proposition~\ref{PROPooRPHKooLnPCVJ}. Il en retient seulement les points intéressants en pratique.
+Ce corolaire est une paraphrase de la proposition~\ref{PROPooRPHKooLnPCVJ}. Il en retient seulement les points intéressants en pratique.
 
 \begin{corollary}     \label{CORooHKZCooEXRzcW}
     Soit \( \alpha\) une solution de l'équation \( x=g(x)\), avec \( g\) continue sur un voisinage de \( \alpha\) et dérivable dans l'intérieur. Nous supposons que
@@ -1070,7 +1078,7 @@ Ce corollaire est une paraphrase de la proposition~\ref{PROPooRPHKooLnPCVJ}. Il 
 
 Certes cette proposition demande moins d'hypothèses, mais en réalité, il ne donne pas de vrais moyens de choisir un point de départ \( x_0\). Avec les deux théorèmes précédents, nous pouvions prendre \( x_0\) n'importe où dans \( \mathopen[ a , b \mathclose]\). Le fait est que pour choisir \( x_0\) nous pouvons tracer et donner à la main un \( x_0\) proche de ce qui semble être \( \alpha\). Si ça ne converge pas, il faut donner un \(x_0\) plus proche. La proposition nous assure que si nous jouons bien à choisir \( x_0\) très proche, la suite finira par converger.
 
-Notons que le corollaire~\ref{CORooHKZCooEXRzcW} a encore l'inconvénient de demander de calculer \( g'(\alpha)\) alors que \( \alpha\) est inconnu. La résolution de l'inéquation \( | g'(x) |<1\) nous donne un certain nombre d'intervalles dans \( \eR\).
+Notons que le corolaire~\ref{CORooHKZCooEXRzcW} a encore l'inconvénient de demander de calculer \( g'(\alpha)\) alors que \( \alpha\) est inconnu. La résolution de l'inéquation \( | g'(x) |<1\) nous donne un certain nombre d'intervalles dans \( \eR\).
 
 Soient \( I_n\) les intervalles solutions de l'inéquation.  Si \( \alpha\in I_n\) alors la méthode converge. Sinon, c'est pas garantit. En tout cas nous ne devons pas savoir réellement \( \alpha\) pour appliquer le théorème. Il suffit de savoir que \( \alpha\) est dans un des \( I_n\).
 
@@ -1092,7 +1100,7 @@ C'est la méthode de Newton qui est à l'origine de la suite de la proposition \
 \end{definition}
 
 \begin{example}
-    La fonction \( x\mapsto x^3\) en \( x=0\) est un racine d'ordre \( 3\).
+    La fonction \( x\mapsto x^3\) en \( x=0\) est une racine d'ordre \( 3\).
 \end{example}
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -1117,7 +1125,7 @@ C'est la méthode de Newton qui est à l'origine de la suite de la proposition \
     \begin{equation}
         x_{n+1}=x_n-\frac{ f(x_n) }{ f'(x_n) }
     \end{equation}
-    en espérant que cela soit une meilleur approximation de \( \alpha\) que \( x_n\).
+    en espérant que cela soit une meilleure approximation de \( \alpha\) que \( x_n\).
 
     En tout cas l'erreur sur \( x_{n+1}\) est
     \begin{equation}
@@ -1282,7 +1290,7 @@ La méthode de Newton consiste a exprimer la solution $x$ de $f(x)=0$ avec $f\in
 \end{equation}
 où $x_0$ est arbitraire.
 
-Si on veut exprimer cela en terme d'algorithme, nous disons que l'algorithme de Newton est donné par la suite de problèmes
+Si on veut exprimer cela en termes d'algorithmes, nous disons que l'algorithme de Newton est donné par la suite de problèmes
 \begin{equation}        \label{EqFPourNewtonUn}
 	F_n(x_{n+1},x_n,f)=x_{n+1}-x_n+\frac{ f(x_n) }{ f'(x_n) }.
 \end{equation}

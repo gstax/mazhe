@@ -1,5 +1,162 @@
 # Journal des changements du Frido
 
+## Juin 2021
+
+- Encore à propos de limite pointée et épointée. Démonstration du théorème complet de composition de limites.
+- Énormément de relecture et de précisions à propos de la construction des réels et des suites de Cauchy dans un corps totalement ordonné. En particulier tout corps ordonné contient une copie de Q, et cette copie respecte l'ordre.
+
+## Mai 2021
+
+- Théorème de prolongement de Riemann
+- L^1 avec le produit de convolution est une algèbre de Banach.
+- cas d'égalité dans Hölder et Minkowski
+
+## Avril 2021
+
+
+## Mars-Avril 2021
+
+- Tétraèdre et bijections affines.
+- Commencer une section «géométrie dans l'espace» pour y regrouper plans, droites, etc.
+- Produit de Cauchy : mise en ordre et un peu de démonstration.
+- Il y a deux fois la partition d'un entier en parts égales. J'avais commencé à en faire une troisième. Fusion, prendre le meilleur des trois.
+- Mise en ordre; j'ai plus ou moins la progression suivantes :
+    * La topologie sur R est celle de la valeur absolue
+    * On démontre juste ce qu'il faut pour définir la racine carré (théorème des valeurs intermédiaires)
+    * On peut alors faire différentes normes, R^n, espaces vectoriels normés.
+
+## Février 2021
+
+Théorème de Hahn-Banach. 
+- Extension de fonctionnelle linéaire.
+- Le dual sépare les points dans un espace vectoriel normé.
+
+## Janvier 2021
+
+- Décision : on vire la géométrie différentielle, et en particulier :
+    * orientation
+    * intégration sur des variétés
+    * espace tangent
+    * démonstration de Brower via le théorème de Stokes
+  Tout cela nous mène trop loin et sera déplacé progressivement vers [Giulietta](http://laurent.claessens-donadello.eu/pdf/giulietta.pdf)
+
+## Décembre 2020
+
+- Encore des fonctions plateau
+- Lemme d'Urysohn en plusieurs dimensions
+- Je décide d'écrire «multiindice», sur le modèle de «multinational» et dans l'esprit des règles[1]. Idem pour "seminorme".
+- Changer énormément de \href en entrées dans la bibliographie
+- espace vectoriel topologique : métrisabilité. Ça fait pas mal de topologie générale sur les espaces vectoriels topologiques. En particulier le fait que de tels espaces séparent les fermés des compacts.
+
+[1] http://www.renouvo.org/regles.php
+
+## Novembre 2020
+
+- Dérivation de fonction composée (oui, c'est fou, mais ça n'y était pas)
+- Dérivation partielle de fonction composée 
+- Quelque version des accroissements finis avec des dérivées partielles
+
+## Distributions (octobre 2020 - Décembre 2020)
+
+- partition de l'unité
+- principe de recollement (pour les distributions)
+- permuter distribution et dérivée
+
+## Septembre-octobre 2020
+
+- L'identification matrice-application linéaire est continue.
+
+## Formes quadratiques (mars 2020)
+
+- signature d'une forme quadratique
+- réduction de Gauss
+- q-orthogonalité, existence de bases q-orthogonales
+- théorème de Sylvester
+
+## Trigonométrie (mars 2020)
+
+- Preuve de pas mal de valeurs remarquables pour les fonctions trigonométriques.
+
+## Connexe, mais pas par arcs (mars 2020)
+
+- le graphe de (t,sin(1/t)) avec (0,0) est connexe mais pas connexe par arcs.
+- connexité par arcs de la compactification en un point
+
+## Clôture algébrique (février 2020)
+
+- Existence et unicité d'une clôture algébrique
+
+## Cardinalité (janvier-février 2020)
+
+- Prouver que si A est infini, alors AxA est équipotent à A
+- Quelques autres résultats de cardinalité comme A-B=A si B est strictement subpotent à A
+- Une réunion dénombrables d'ensembles dénombrables est dénombrable.
+- Théorème de Cantor, inexistence de l'ensemble des ensembles
+- Théorème de Cantor-Bernstein et de la comparabilité cardinale : on a à peu près un ordre 
+  sur l'ensemble des ensembles.
+
+## Topologie produit, topologie engendrée (Décembre 2019)
+
+Le but est de prouver que (x,y)->x+y est continue de RxR->R.
+Plusieurs mises en ordre
+
+- Définition de la topologie engendrée par un ensemble de parties
+- Définition de la topologie produit
+- Équivalence de la limite pour la topologie métrique produit ou la topologie produit
+- Définition de la topologie sur R^n en tenant compte de tout ça.
+
+## Différentiabilité (novembre 2019 - décembre 2019)
+
+Le but est de prouver qu'une application est C^n si et seulement si ses dérivées partielles d'ordre sont C^(n-1).
+
+- Espaces d'applications multilinéaires.
+- Isomorphisme entre les espaces emboîtés et les applications multilinéaires
+
+## Octobre 2019
+
+- Déplacer plusieurs résultats sur les fonctions holomorphes qui sont en réalité des résultats sur les fonctions analytiques.
+- Prouver le théorème du prolongement analytique.
+- Intégrale de Dirichlet via une dérivation sous l'intégrale et beaucoup de séries alternées
+- Énormément de fautes d'orthographe corrigées par vuod et Bruno Turgeon (qui sont peut-être la même personne...)
+
+- Pas directement lié, mais j'ai fait un passage à python3 pour `phystricks`, qui est au passage renommé `yanntricks`.
+  Ça utilise maintenant une version de Sage compilée avec python3 (pas encore totalement officielle pour l'instant). Les
+  figures du Frido sont recompilées, et j'espère qu'il n'y aura aucune différences visuelles.
+  https://github.com/LaurentClaessens/yanntricks
+
+## Septembre 2019
+
+- Discussion plus complète entre limite pointée et épointée
+- Quotient d'un anneau par un idéal, placé avant la définition de R (qui est un quotient d'anneau par un idéal)
+- Une bonne définition des anneaux de polynômes à partir du A-module libre A^I.
+
+## Aout 2019
+
+- Lemme de Urysohn, version basique dans R
+- lim x->oo de int_0^x est égale à int_0^{oo}.
+
+## Formule de Stirling (aout 2019)
+
+- Taylor avec reste intégral.
+- Encadrement de ln(2)
+- intégrales de Wallis
+
+## Fonction Cauchy-continue (juillet 2019)
+
+Correction d'une faute : il n'est pas vrai qu'une fonction
+continue sur Q s'étend en une fonction continue sur R.
+
+- Donner un contre-exemple
+- Adapter la preuve du lemme d'extension pour l'hypothèse de Cauchy-continue
+- Prouver que q -> a^q est Cauchy-continue.
+
+## Isométries affines (juin 2019 - aout 2019)
+
+- Orientation dans un espace affine ou euclidien.
+- un peu de mise au clair à propos de la différence entre des isométries de (R^n,d) et de (R^n, ||.||).
+- sous-groupes finis des isométries affines du plan.
+- Démonstration que les rotations centrées en (0,0) sont exactement le groupe SO(2).
+- pavages du plan.
 
 ## Formes bilinéaires (mai 2019)
 
@@ -21,8 +178,8 @@
 
 - Introduction de l'exponentielle par l'équation fonctionnelle
 - Preuve que a^x est dérivable via l'utilisation de primitive
-- Déplacer Stone-Weierstrass beaucoup plus haut pour avoir la notion de primitive
-  avant de discuter la fonction puissance
+- Déplacer Stone-Weierstrass beaucoup plus haut pour avoir
+  la notion de primitive avant de discuter la fonction puissance
 - Complètement séparer le concept de primitive de celui d'intégrale
 
 ## Convexité de \| x \|^p (Février-mars 2019)
@@ -42,7 +199,7 @@ Les espaces L^p sont réflexifs, preuve
 
 - préciser qu'on ne parle que d'ellipsoïdes centrés en l'origine
 - parler de ce qu'il se passe si on se permet de bouger le centre
-- corriger quelque fautes pointées par Benoît Tran.
+- corriger quelques fautes pointées par Benoît Tran.
 
 ## hyperplan (Décembre 2018)
 
@@ -62,13 +219,14 @@ Les espaces L^p sont réflexifs, preuve
 
 ## Limite et continuité (Octobre 2018)
 
-Il y avait du flottement entre limite et continuité dans le cas d'une fonction définie sur un point isolé.
+Il y avait du flottement entre limite et continuité dans le cas d'une
+fonction définie sur un point isolé.
 - Fixer cela
 - Changer la définition de continuité pour utiliser les voisinages plutôt que la limite
 
 ## Élément premier (Octobre 2018)
 
-Ayant reçu quelque réponses d'algèbres de Gregory Berhuy, j'ai ajouté les notions d'élément premier et les démonstrations de quelque faits comme l'équivalence entre
+Ayant reçu quelques réponses d'algèbres de Gregory Berhuy, j'ai ajouté les notions d'élément premier et les démonstrations de quelques faits comme l'équivalence entre
 - (p) est un idéal premier
 - p est un élément premier
 - p est un élément irréductible
@@ -158,7 +316,7 @@ Définition de la fonction puissance x->a^x.
 
 Des incohérences ont été détectées, essentiellement dues à mon inattention et accessoirement dues au fait que Wikipédia francophone utilise une définition pas du tout standard sans prévenir[1].
 
-Les définition ont été clarifiées et unifiées. La définition de limite choisie ici est celle que les Français nomme "épointée", et qui est la seule correcte dans l'histoire de l'univers depuis (au moins) l'apparition de eukaryotes, partout sauf en France.
+Les définitions ont été clarifiées et unifiées. La définition de limite choisie ici est celle que les Français nomme "épointée", et qui est la seule correcte dans l'histoire de l'univers depuis (au moins) l'apparition de eukaryotes, partout sauf en France.
 
 [1] https://fr.wikipedia.org/wiki/Espace_topologique  
     Si vous ne voyez pas le problème avec la définition de la limite, lisez la page de discussion.
@@ -188,22 +346,22 @@ Nous définissons Q comme corps des fractions sur Z. Cela nous demande de dépla
 ## Matrices et changement de base (novembre 2017)
 
 - Mettre bien à plat les définitions de matrices associées à une application linéaire et à une forme bilinéaire
-- Donner les formules de changement de base (corriger quelque erreurs qu'il y avait là)
+- Donner les formules de changement de base (corriger quelques erreurs qu'il y avait là)
 
 ## Théorie des ensembles (novembre 2017)
 
-Suite à quelque remarques de Guillaume Deschamps, ajout de quelque précisions un peu partout dans la partie «théorie des ensembles».
+Suite à quelques remarques de Guillaume Deschamps, ajout de quelques précisions un peu partout dans la partie «théorie des ensembles».
 
 En particulier, prévenir le lecteur que la constructions des nombres n'est pas le premier chapitre à lire. Être plus clair sur ce que signifie «supposer avoir une théorie des ensembles».
 
 ## Anneau intègre (octobre 2017)
 
-Suite à une remarque de cdr[1], correction d'une faute et quelque améliorations :
+Suite à une remarque de cdr[1], correction d'une faute et quelques améliorations :
 
 - Oui, Z est intègre et euclidien, contrairement à ce qui était écrit.
 - Non, Z[X] n'est pas intègre.
 - Préciser qui de Z, Z[X] et Z/nZ est principal.
-- Quelque exemples et contre-exemples d'anneaux principaux, y compris dans les fonctions holomorphes.
+- Quelques exemples et contre-exemples d'anneaux principaux, y compris dans les fonctions holomorphes.
 
 
 [1] https://github.com/LaurentClaessens/mazhe/issues/58
@@ -253,7 +411,7 @@ Si A est un anneau intègre, il n'est pas vrai que A[X] est euclidien et princip
 * Mettre ensemble et au début toutes les choses concernant les fonctions sur R, et après celles sur R^n
 * Regrouper les choses sur les dérivées directionnelles et les mettre avant la différentielle
 * Ré-exprimer la définition de la différentielle en la mettant comme une proposition-définition pour l'unicité.
-* Quelque mots à propos des formes différentielles _avant_ la définition de df.
+* Quelques mots à propos des formes différentielles _avant_ la définition de df.
 
 ## Réorganisation des questions (4 Juillet 2017)
 

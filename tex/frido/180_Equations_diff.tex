@@ -1,5 +1,5 @@
 % This is part of Le Frido
-% Copyright (c) 2008-2009,2011-2017, 2019
+% Copyright (c) 2008-2009,2011-2017, 2019-2020
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -152,9 +152,12 @@
     \end{equation}
     tant que \( \| y(t) \|_q<\delta\).
 
+\item[\( t_1\) est un minimum]
+    Le nombre \( t_1\) est bien défini et est bien un minimum. J'en veux pour preuve\quext{J'espère que ce passage est correct. faites moi savoir si vous trouvez une erreur ou si vous pouvez me confirmer que c'est bon.} que si \( q\big( y(t_s) \big)=\delta\), on peut prendre le minimum seulement sur les \( t\in\mathopen[ 0 , t_s \mathclose]\); or par continuité \( q\big( y(t) \big)=\delta\) définit un fermé. Bref \( t_1\) est un infimum sur un compact (fermé borné) et donc bien un minimum atteint.
+
 \item[Si \( q(y_0)<\delta  \) alors \( q\big( y(t) \big) < \delta \)]
 
-    Nous posons\footnote{\( t_1\) est bien définit et est bien un minimum. J'en veux pour preuve\quext{J'espère que ce passage est correct. faites moi savoir si vous trouvez une erreur ou si vous pouvez me confirmer que c'est bon.} que si \( q\big( y(t_s) \big)=\delta\), on peut prendre le minimum seulement sur les \( t\in\mathopen[ 0 , t_s \mathclose]\); or par continuité \( q\big( y(t) \big)=\delta\) définit un fermé. Bref \( t_1\) est un infimum sur un compact (fermé borné) et donc bien un minimum atteint.}
+    Nous posons\footnote{}
     \begin{subequations}    \label{subeqsFNPJooERJkxO}
         \begin{align}
             t_1=\min\{ t>0\tq q\big( y(t) \big)=\delta \}\\
@@ -258,7 +261,7 @@ En ce qui concerne l'interprétation des équations\cite{QUMHooCSloAC},
 \end{enumerate}
 
 \begin{theorem}[Lotka-Volterra\cite{PAXrsMn}]            \label{ThoJHCLooHjeCvT}
-    Soient des constantes positives \( a,b,c,d\) et le système équations différentielles
+    Soient des constantes positives \( a,b,c,d\) et le système d'équations différentielles
     \begin{subequations}
         \begin{numcases}{}
             x'=ax-bxy\\
@@ -283,7 +286,7 @@ En ce qui concerne l'interprétation des équations\cite{QUMHooCSloAC},
     Nous divisons la preuve.
     \begin{subproof}
     \item[Comment théorème de Cauchy-Lipschitz s'applique]
-        Tel quel, le théorème de Cauchy-Lipschitz~\ref{ThokUUlgU} ne s'applique pas parce qu'il demande une condition initiale pour avoir unicité. En ce qui concerne les notations, ce qui est noté «\( y\)» dans le théorème est ici le couple \( x,y\) et la fonction \( f\) est alors
+        Le théorème de Cauchy-Lipschitz\footnote{Théorème \ref{ThokUUlgU}.} ne peut pas s'appliquer tel quel parce qu'il demande une condition initiale pour avoir unicité. En ce qui concerne les notations, ce qui est noté «\( y\)» dans le théorème est ici le couple \( x,y\) et la fonction \( f\) est alors
         \begin{equation}
             f\big( t,\begin{pmatrix}
                 x    \\
@@ -316,7 +319,7 @@ En ce qui concerne l'interprétation des équations\cite{QUMHooCSloAC},
         \begin{equation}
             0<x(t)<x(t_0) e^{a(t-t_0)},
         \end{equation}
-        c'est-à-dire que la solution ne peut pas exploser en temps fini\footnote{Voir le corollaire~\ref{CorGDJQooNEIvpp}.} : elle est bornée par le haut et le bas. Elle doit donc exister pour tout \( t\in \eR\). Par ailleurs, \( y'<dxy\) donc
+        c'est-à-dire que la solution ne peut pas exploser en temps fini\footnote{Voir le corolaire~\ref{CorGDJQooNEIvpp}.} : elle est bornée par le haut et le bas. Elle doit donc exister pour tout \( t\in \eR\). Par ailleurs, \( y'<dxy\) donc
         \begin{equation}
             0<y(t)<y(t_0) e^{d\int_{t_0}^{t}x(s)ds}
         \end{equation}
@@ -903,17 +906,19 @@ où $\alpha\neq 0$ ou $1$. Pour la résoudre, on divise l'équation par $y^{\alp
 \end{equation}
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Équation de \href{https://fr.wikipedia.org/wiki/Jacopo_Riccati}{Riccati}}
+\subsection{Équation de Riccati}
 %---------------------------------------------------------------------------------------------------------------------------
 \label{SubSecRicatti}
 
-C'est une équation de la forme
-\begin{equation}		\label{EqDiffGFeneRicatti}
-	y'=a(t)y^2+b(t)y+c(t).
-\end{equation}
+\begin{definition}[\cite{BIBooLKCRooZoJskD}]
+    C'est une équation de la forme
+    \begin{equation}		\label{EqDiffGFeneRicatti}
+        y'=a(t)y^2+b(t)y+c(t).
+    \end{equation}
+    \end{definition}
 \index{équation!de Riccati}
 
-En général, on ne peut pas la résoudre, mais si on en connaît \emph{a priori} des solutions particulières, alors on peut s'en sortir.
+En général, on ne peut pas la résoudre, mais si on en connaît \emph{à priori} des solutions particulières, alors on peut s'en sortir.
 
 \begin{enumerate}
 
@@ -1061,7 +1066,7 @@ Pour définir ce que nous entendons par une fonction de classe \( C^k\) à valeu
         \begin{equation}
             u_t(\varphi)=(f\hat g)\big( \TF^{-1}(\varphi) \big)=\hat g\big( f\TF^{-1}(\varphi) \big)=g\Big( \TF\big( f\TF^{-1}(\varphi) \big) \Big).
         \end{equation}
-        Le fait que \( \TF^{-1}(\varphi)\) soit une fonction Schwartz fait partie de la proposition~\ref{PropKPsjyzT}. Pour chaque \( t\) nous avons bien \( u_t\in\swS'(\Omega)\).
+        Le fait que \( \TF^{-1}(\varphi)\) soit une fonction Schwartz fait partie de la proposition~\ref{PROPooLWTJooReGlaN}. Pour chaque \( t\) nous avons bien \( u_t\in\swS'(\Omega)\).
 
         De plus la fonction \( h(t,x)= e^{-it\| x \|^2}(\TF^{-1}\varphi)(x)\) est dans \(  C^{\infty}(\eR\times \eR^d)\), et par conséquent l'application
         \begin{equation}
@@ -1190,6 +1195,6 @@ Pour définir ce que nous entendons par une fonction de classe \( C^k\) à valeu
         \begin{equation}
             \varphi(x)= e^{-it_0\| x \|^2}\theta(x).
         \end{equation}
-        Nous avons alors \( \hat u_{t_0}\big( x\mapsto\theta(x) \big)=0\), ce qui signifie que \( \hat u_{t_0}=0\). Du coup pour tout \( \theta\in\swS(\eR^d)\) nous avons \( u_{t_0}(\TF\theta)=0\), mais comme la transformée de Fourier est une bijection de \( \swS(\eR^d)\) (proposition~\ref{PropKPsjyzT}) nous avons en fait \( u_{t_0}(\theta)=0\) pour tout \( \theta\in\swS(\eR^d)\), c'est-à-dire \( u_{t_0}=0\) pour tout \( t_0\in \eR\) et au final \( u=0\).
+        Nous avons alors \( \hat u_{t_0}\big( x\mapsto\theta(x) \big)=0\), ce qui signifie que \( \hat u_{t_0}=0\). Du coup pour tout \( \theta\in\swS(\eR^d)\) nous avons \( u_{t_0}(\TF\theta)=0\), mais comme la transformée de Fourier est une bijection de \( \swS(\eR^d)\) (proposition~\ref{PROPooLWTJooReGlaN}) nous avons en fait \( u_{t_0}(\theta)=0\) pour tout \( \theta\in\swS(\eR^d)\), c'est-à-dire \( u_{t_0}=0\) pour tout \( t_0\in \eR\) et au final \( u=0\).
     \end{subproof}
 \end{proof}

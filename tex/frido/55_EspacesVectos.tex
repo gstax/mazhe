@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2008-2019
+% Copyright (c) 2008-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -33,7 +33,7 @@ telles que
 Si \( u\in V\), nous notons \( -u\) l'inverse de \( u\) dans le groupe \( (V,+)\).
 
 \begin{definition}[Partie libre]
-    Si \( E\) est un espace vectoriel, une partie \( A\) de \( E\) est \defe{libre}{libre!partie} si pour tout choix d'un nombre fini d'éléments \( \{ u_i \}_{i=1,\ldots, n}\), l'égalité
+    Si \( E\) est un espace vectoriel, une partie \( A\) de \( E\) est \defe{libre}{libre!partie} si pour tout choix d'un nombre fini d'éléments \( \{ u_i \}_{i=1,\ldots, n}\) de \( A\), l'égalité
     \begin{equation}
         a_1 u_1+\cdots +a_nu_n=0
     \end{equation}
@@ -67,44 +67,120 @@ Si \( A\) est une partie de l'espace vectoriel \( E\) nous notons \( \Span(A)\)\
     Une \defe{base}{base} de l'espace vectoriel \( E\) est une partie à la fois génératrice et libre.
 \end{definition}
 
+Nous prouvons à présent que tout élément non nul d'un espace vectoriel possédant une base\footnote{Nous n'avons pas démontré que tout espace vectoriel possède une base. Donc à notre niveau, il est possible que ce théorème soit sans objet pour beaucoup d'espaces.} se décompose de façon unique en combinaison linéaire finie d'éléments d'une base.
 \begin{proposition}[\cite{MonCerveau}]      \label{PROPooEIQIooXfWDDV}
-    Tout élément non nul d'un espace vectoriel possédant une base\footnote{Nous n'avons pas démontré que tout espace vectoriel possède une base. Donc à notre niveau, il est possible que ce théorème soit sans objet pour beaucoup d'espaces.} se décompose de façon unique en combinaison linéaire finie d'éléments d'une base.
+    Soient un espace vectoriel \( E\) sur \( \eK\) muni d'une base \( \{ e_i \}_{i\in I}\). Si \( v\in E\), alors il existe un unique couple \( (J, c)\) où
+    \begin{enumerate}
+        \item
+            \( J\) est une partie finie de \( I\);
+        \item
+            \( c\colon J\to \eK\) est une application
+        \item
+            \( v=\sum_{j\in J}c(j)e_j\).
+    \end{enumerate}
+    Les éléments \( c(i)\) seront notés \( v_i\) et sont les composantes de \( v\) dans la base. Sous-entendu, on prolonge \( c\) de \( J\)  vers \( I\) par zéro sur \( I\setminus J\).
 \end{proposition}
 
 \begin{proof}
-    Soit un espace vectoriel \( E\) et une base \( \{ e_i \}_{i\in I}\) où \( I\) est un ensemble a priori quelconque. Soit \( v\in E\). Vu que \( E=\Span\{ e_i \}_{i\in I}\), il existe une partie finie \( J\) de \( I\) et des coefficients \( \{ v_j \}_{j\in J}\) dans \( \eK\) tels que
+    Soit un espace vectoriel \( E\) et une base \( \{ e_i \}_{i\in I}\) où \( I\) est un ensemble à priori quelconque. Soit \( v\in E\). Vu que \( E=\Span\{ e_i \}_{i\in I}\), il existe une partie finie \( J\) de \( I\) et des coefficients \( \{ v_j \}_{j\in J}\) dans \( \eK\) tels que
     \begin{equation}
         v=\sum_{j\in J}v_je_j.
     \end{equation}
     Cela donne l'existence.
 
     En ce qui concerne l'unicité, soient \( J \) et \( K\) des parties finies de \( I\) et des coefficients \( \{ v_j \}_{j\in J}\) et \( \{ w_{k} \}_{k\in K}\) tels que
-    \begin{equation}
+    \begin{equation}        \label{EQooFKNEooICnVPP}
         v=\sum_{j\in J}v_je_j=\sum_{k\in K}w_{k}e_{k}.
     \end{equation}
-    Nous posons \( L=J\cup K\) et, pour \( l\in L\),
+    Nous posons \( L=J\cup K\). Remarquez que les unions suivantes sont des unions disjointes :
+    \begin{subequations}
+        \begin{align}
+            L&=(J\setminus K)\cup (J\cap K)\cup (K\setminus J)\\
+            J&=(J\setminus K)\cup (J\cap K)\\
+            K&=(K\cap J)\cup(K\setminus J).
+        \end{align}
+    \end{subequations}
+    Écrivons \( 0=v-v\) en utilisant les expressions de \( v\) de \eqref{EQooFKNEooICnVPP} et en décomposant les sommes :
+    \begin{subequations}
+        \begin{align}
+            0&=\sum_{j\in J}v_je_j-\sum_{k\in K}w_ke_k\\
+            &=\sum_{j\in J\setminus K}v_je_j+\sum_{j\in J\cap K}v_je_j-\sum_{k\in K\cap J}w_ke_k-\sum_{k\in K\setminus J}w_ke_k\\
+            &=\sum_{j\in J\setminus K}v_je_j+\sum_{j\in J\cap K}(v_j-w_j)e_j-\sum_{k\in K\setminus J}w_ke_k.
+        \end{align}
+    \end{subequations}
+    Là-dessus, nous posons
     \begin{equation}
         \alpha_l=\begin{cases}
             v_l    &   \text{si } l\in J\setminus K\\
-            w_l    &    \text{si } l\in K\setminus J\\
-            v_l-w_l    &    \text{si } l\in K\cap J.
+           v_l-w_l    &    \text{si } l\in J\cap K\\
+           -w_l&\text{si }l\in K\setminus J.
         \end{cases}
     \end{equation}
     Nous avons alors
-    \begin{equation}
-        \sum_{l\in L}\alpha_le_l=0,
+    \begin{equation}        \label{EQooCTWRooZKvaup}
+        \sum_{l\in L}\alpha_le_l=0.
     \end{equation}
-    ce qui implique que \( \alpha_l=0\) pour tout \( l\in L\) parce que la partie \( \{ e_i \}_{i\in I}\) est libre et que \( L\) est finie.
+    Vu que \( \{ e_i \}_{i\in I}\) est libre, la partie \( \{ e_l \}_{l\in L}\) est également libre. Donc l'équation \eqref{EQooCTWRooZKvaup} implique que que \( \alpha_l=0\) pour tout \( l\in L\).
 
-    L'unicité de la décomposition de \( v\) signifie que
+    Nous devons prouver que
     \begin{equation}
         \{ j\in J \tq v_j\neq 0 \}=\{ k\in K\tq w_k\neq 0 \}
     \end{equation}
     et que pour \( l\) dans cet ensemble, \( v_l=w_l\).
 
-    Soit \( j\in J\); il y a deux possibilités : \( j\in J\setminus K\) et \( j\in J\cap K\). Dans le premier cas nous avons déjà vu que \( \alpha_j=v_j=0\). Dans le second cas, \( \alpha_j=v_j-w_j=0\), c'est-à-dire \( v_j=w_j\).
+    Soit \( j\in J\); il y a deux possibilités : soit \( j\in J\setminus K\), soit \( j\in J\cap K\). Dans le premier cas nous avons déjà vu que \( \alpha_j=v_j=0\). Dans le second cas, \( \alpha_j=v_j-w_j=0\), c'est-à-dire \( v_j=w_j\).
 
     Donc \( j\in J\) vérifiant \( v_j\neq 0\) implique \( j\in J\cap K\) et l'égalité des coefficients. Idem avec \( k\in K\) tel que \( w_k\neq 0\) implique \( k\in J\cap K\).
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooDJSIooYcsvhO}
+    Soit un espace vectoriel admettant des bases. Un endomorphisme est une bijection si et seulement si il change toute base en une base.
+\end{lemma}
+
+\begin{proof}
+    En deux parties. Soit un espace vectoriel \( E\) possédant des bases et un endomorphisme \( f\colon E\to E\).
+    \begin{subproof}
+        \item[Si \( f\) est bijective]
+            Soit une base \( \{ v_i \}_{i\in I}\); nous devons voir que \( \{ f(v_i) \}_{i\in I}\) est une base.
+            \begin{subproof}
+                \item[Libre]
+                    Si \( J\) est une partie finie de \( I\) et si les \( \lambda_j\) sont des scalaires tels que \( \sum_{j\in J}\lambda_jf(v_j)=0\), alors
+                    \begin{equation}
+                        0=\sum_{j\in J}\lambda_jf(v_j)=f\big( \sum_{j\in J}\lambda_jv_j \big).
+                    \end{equation}
+                    Mais comme \( f\) est bijective, cela implique que \( \sum_{j\in J}\lambda_jv_j=0\). En retour, parce que \( \{ v_i \}\) est une base, cela implique que \( \lambda_j=0\) pour tout \( j\).
+                \item[Générateur]
+                    Soit \( x\in E\). Vu que \( f\) est bijective, il existe un unique \( y\in E\) tel que \( x=f(y)\). Comme \( \{ v_i \}_{i\in I}\) est une base, il existe une partie finie \( J\subset I\) et des scalaires \( \{ \lambda_j \}_{j\in J}\) tels que
+                    \begin{equation}
+                        y=\sum_{j\in J}\lambda_jv_j.
+                    \end{equation}
+                    Nous avons alors
+                    \begin{equation}
+                        x=f(y)=\sum_{j\in J}\lambda_jf(v_j),
+                    \end{equation}
+                    qui montre que \( \{ f(v_i) \}_{i\in I}\) est bien génératrice de \( E\)
+            \end{subproof}
+        \item[Si \( f\) change les bases en bases]
+            Soit un endomorphisme changeant toute base en une base. Nous devons prouver qu'il est bijectif.
+            \begin{subproof}
+                \item[Injective]
+                    Nous considérons une base \( \{ v_i \}_{i\in I}\). La partie \( \{ f(v_i) \}_{i\in I}\) est par hypothèse également une base.
+
+                    Soient \( x,y\in E\) tels que \( f(x)=f(y)\). Il existe \( J\) et \( K\) finis dans \( I\) qui permettent de décomposer \( x\) et \( y\) respectivement dans la base \( \{ f(v_i) \}_{i\in I}\). Quitte à poser \( J'=J\cup K\), nous supposons que \( J\) suffit\footnote{Nous utilisons le fait que l'union de deux parties finies d'une ensemble est finie (lemme \ref{LEMooYHGCooAwsVQN}).}. Il existe donc des scalaires \( \{ \lambda_j \}_{j\in J}\) et \( \{ \mu_j \}_{j\in J}\) tels que \( x=\sum_{j\in J}\lambda_jf(v_j)\) et \( y=\sum_{j\in J}\mu_jf(v_j)\).
+
+                    La relation \( f(x)=f(y)\) donne immédiatement, par la linéarité de \( f\),
+                    \begin{equation}
+                        \sum_{j\in J}(\lambda_j-\mu_j)f(v_j)=0.
+                    \end{equation}
+                    Du fait que \( \{ f(v_i) \}_{i\in I}\) soit une base, nous déduisons que \( \lambda_j-\mu_j=0\) pour tout \( j\). Donc \( x=y\), et \( f\) est injective.
+                \item[Surjective]
+                    Soit \( x\in E\). Vu que \( \{ f(v_i) \}_{i\in I}\) est une base, il existe des scalaires \( \lambda_j\) tels que 
+                    \begin{equation}
+                        x=\sum_{j\in J}\lambda_jf(v_j)=f\big( \sum_{j\in J}\lambda_jv_j \big).
+                    \end{equation}
+                    Donc \( f\) est surjective.
+            \end{subproof}
+    \end{subproof}
 \end{proof}
 
 \begin{definition}
@@ -242,7 +318,9 @@ Le théorème suivant est essentiellement une reformulation du théorème~\ref{T
 \begin{proposition}     \label{PROPooVEVCooHkrldw}
     Si \( E\) est un espace vectoriel de dimension finie \( n\), alors 
     \begin{enumerate}
-        \item
+        \item       \label{ITEMooZNLDooBISkJyBS}
+            toute partie contenant \( n+1\) éléments est liée.
+        \item       \label{ITEMooSGGCooOUsuBs}
             toute partie libre contenant \( n\) éléments est une base,
         \item
             toute partie génératrice contenant \( n\) éléments est une base.
@@ -250,9 +328,11 @@ Le théorème suivant est essentiellement une reformulation du théorème~\ref{T
 \end{proposition}
 
 \begin{proof}
+    Soit une partie \( M\) contenant \( n+1\) éléments. L'espace \( E\) possède une partie génératrice contenant \( n\) éléments (n'importe quelle base). Donc \( M\) est liée par le lemme \ref{LemytHnlD}.
+
     Une partie libre contenant \( n\) éléments peut être étendue en une base; si ladite extension est non triviale (c'est-à-dire qu'on ajoute vraiment au moins un élément) une telle base contiendra une partie de \( n+1\) éléments qui serait liée par le lemme~\ref{LemytHnlD}.
 
-    Pour l'autre assertion, soit une partie génératrice \( \{ v_i \}_{i\in I}\) où \( I\) contient \( n\) éléments. Par le théorème \ref{ThoMGQZooIgrXjy}\ref{ITEMooCJQGooXwjsfm} il existe \( J\subset I\) tel que \( \{ v_j \}_{j\in J}\) soit une base. Si l'inclusion \( J\subset I\) est stricte, alors la base \( \{ v_j \}_{j\in J}\) contiendrait moins de\( n\) éléments, ce qui serait en contradiction avec le théorème \ref{ThonmnWKs}\ref{ITEMooFBUAooSSZxgx}.
+    Pour la dernière assertion, soit une partie génératrice \( \{ v_i \}_{i\in I}\) où \( I\) contient \( n\) éléments. Par le théorème \ref{ThoMGQZooIgrXjy}\ref{ITEMooTZUDooFEgymQ} nous pouvons en extraire une base : il existe \( J\subset I\) tel que \( \{ v_j \}_{j\in J}\) soit une base. Si l'inclusion \( J\subset I\) était stricte, alors la base \( \{ v_j \}_{j\in J}\) contiendrait moins de \( n\) éléments, ce qui serait en contradiction avec le théorème \ref{ThonmnWKs}\ref{ITEMooFBUAooSSZxgx}.
 \end{proof}
 
 \begin{definition}\label{DefCodimension}
@@ -263,7 +343,7 @@ Soit \( F\) un sous-espace vectoriel de l'espace vectoriel \( E\). La \defe{codi
 \end{definition}
 
 \begin{probleme}
-Voir que $E/F$ a une structure vectoriel, expliciter sa dimension en fonction de celles de $E$ et $F$.
+Voir que $E/F$ a une structure vectorielle, expliciter sa dimension en fonction de celles de $E$ et $F$.
 \end{probleme}
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -331,10 +411,12 @@ Juste une remarque : dans le Frido le symbole «\( \subset\)» ne signifie pas u
 \end{corollary}
 
 \begin{proof}
-    C'est un cas particulier du lemme~\ref{LEMooSSRXooIyfgNz}.
+    Soit un espace vectoriel \( E\) ainsi qu'un sous-espace vectoriel \( V\). Si \( V=E\) nous sommes ok. Sinon nous considérons \( v\in E\setminus V\) et nous posons \( W_1=\eK v\) et \( W_2=E\).
+
+    Vu que \( V\) et \( W_1\) sont des espaces vectoriels, nous avons \( V\cap W_1=\{ 0 \}\), et vu que \( W_2=E\) nous avons \( V+W_2=E\). Le lemme~\ref{LEMooSSRXooIyfgNz} nous donne alors un supplémentaire de \( V\).
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}[Base incomplète]        \label{PROPooHDCEooMhDjPi}
     Tout espace vectoriel (non réduit à \( \{ 0 \}\)) possède une base.
 \end{proposition}
 
@@ -352,7 +434,7 @@ Juste une remarque : dans le Frido le symbole «\( \subset\)» ne signifie pas u
 \end{proof}
 
 \begin{theorem}[Base incomplète, dimension quelconque]      \label{THOooOQLQooHqEeDK}
-    Soit une partie \( \{ e_i \}_{i\in I}\) génératrice de l'espace vectoriel \( E\) (ici, \( I\) est un ensemble quelconque). Soit \( I_0\in I\) tel que \( \{ e_i \}_{i\in I_0}\) soit libre.
+    Soit une partie \( \{ e_i \}_{i\in I}\) génératrice de l'espace vectoriel \( E\) (ici, \( I\) est un ensemble quelconque\footnote{Un cas d'utilisation intéressant est de poser \( I=E\) et \( e_i=i\). Pensez-y.}). Soit \( I_0\in I\) tel que \( \{ e_i \}_{i\in I_0}\) soit libre.
 
     Alors il existe \( I_1\) tel que \( I_0\subset I_1\subset I\) tel que \( \{ e_i \}_{i\in I_1}\) soit une base de \( E\).
 \end{theorem}
@@ -362,7 +444,7 @@ Note : une telle partie \( I_0\) existe en prenant un singleton. Mais l'existenc
 \begin{proof}
     Soit \( \mA\) l'ensemble des parties \( J\) de \( I\) telles que \( I_0\subset J\subset I\) et telles que \( \{ e_i \}_{i\in J}\) soit libre.
 
-    Encore une fois, \( \mA\) est inductif pour l'ordre partiel donné par l'inclusion. Soit \( J\) un maximum. Vu que \( J\in\mA\), la partie \( \{ e_i \}_{i\in J}\) est libre. Mais elle est également génératrice parce que si \( e_k\) n'est pas dedans, \( J\) ne serait pas maximum, étant majorée par \( J\cup\{ k \}\).
+    Encore une fois, \( \mA\) est inductif pour l'ordre partiel donné par l'inclusion. Soit \( J\) un maximum par le lemme de Zorn \ref{LemUEGjJBc}. Vu que \( J\in\mA\), la partie \( \{ e_i \}_{i\in J}\) est libre. Mais elle est également génératrice parce que si \( e_k\) n'est pas dedans, \( J\) ne serait pas maximum, étant majorée par \( J\cup\{ k \}\).
 
     Donc \( \{ e_i \}_{i\in J}\) engendre tous les \( e_i\) avec \( i\in I\) et donc tous les éléments de \( E\).
 \end{proof}
@@ -417,18 +499,27 @@ Mais attention : si \( S=\eR\), l'élément \( 4+7\) de \( F(\eR)\) n'est pas \(
 \section{Applications linéaires}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Le lien entre matrice et applications linéaires est la définition \ref{DEFooJVOAooUgGKme} et toutes les propriétés qui s'en suivent.
+
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Définition}
 %---------------------------------------------------------------------------------------------------------------------------
 
 \begin{definition}      \label{DEFooULVAooXJuRmr}
-    Soient des espaces vectoriels \( E \) et \( F\) sur le corps \( \eK\). Une application \( T\colon E\to F\) est dite \defe{linéaire}{linéaire!application} si
+    Soient des espaces vectoriels \( E \) et \( F\) sur le corps \( \eK\). Soit un sous-corps \( \eL\) de \( \eK\). Une application \( T\colon E\to F\) est dite \( \eL\)-\defe{linéaire}{linéaire!application} si
     \begin{itemize}
         \item $T(x+y)=T(x)+T(y)$ pour tout $x$ et $y$ dans \( E\),
         \item $T(\lambda x)=\lambda T(x)$ pour tout $\lambda$ dans $\eK$ et \( x\) dans \( E\).
     \end{itemize}
+    Nous noterons \( \aL_{\eL}(E,F)\) l'espace des applications \( \eL\)-linéaires de \( E\) vers \( F\).
 \end{definition}
 Si vous avez bien suivi, les égalités dans la définition~\ref{DEFooULVAooXJuRmr} sont des égalités dans \( F\).
+
+\begin{normaltext}
+    Le plus souvent, si \( E\) est un espace vectoriel sur \(\eK \), alors nous ne considérerons que les applications \( \eK\)-linéaires. Autrement dit, nous écrirons le plus souvent simplement \( \aL(E,F)\) sans préciser le corps.
+
+    Il pourra pourtant arriver que, pour un espace vectoriel sur \( \eC\), nous considérions les applications seulement \( \eR\)-linéaires. Ce sera le cas dans le lemme \ref{LEMooBZHIooSQJSnM}.
+\end{normaltext}<++>
 
 \begin{lemmaDef} \label{DefDQRooVGbzSm}
     L'ensemble de toutes les applications linéaires de \( E\) vers \( F\) est noté \( \aL(E,F)\)\nomenclature{$\aL(E,F)$}{Ensemble des applications linéaires de $E$ dans $F$} et devient un espace vectoriel sur \( \eK\) avec les définitions suivantes :
@@ -464,7 +555,27 @@ U_{\lambda}(ax)=\lambda(ax)+v\neq a(\lambda x+v) =a U_{\lambda}(x).
     \end{itemize}
 \end{example}
 
-On peut observer que, si on identifie $\mathcal{M}_{1\times 1}$ et $\eR$, on obtient le premier exemple comme cas particulier.
+\begin{lemma}       \label{LEMooLGEHooVEEoiU}
+    Si une application linéaire est inversible, alors son inverse est linéaire.
+\end{lemma}
+
+\begin{proof}
+    Soient une application linéaire inversible \( f\colon V\to W\), ainsi que \( x,y\in V\). Nous avons
+    \begin{equation}
+        f\big( f^{-1}(x)+f^{-1}(y) \big)=f\big( f^{-1}(x) \big)+f\big( f^{-1}(y) \big)=x+y=f\big( f^{-1}(x+y) \big).
+    \end{equation}
+    En prenant \( f^{-1}\) des deux côtés, nous trouvons
+    \begin{equation}
+        f^{-1}(x)+f^{-1}(y)=f^{-1}(x+y).
+    \end{equation}
+    De même :
+    \begin{equation}
+        f\big( \lambda f^{-1}(x) \big)=\lambda f\big( f^{-1}(x) \big)=\lambda x=f\big( f^{-1}(\lambda x) \big),
+    \end{equation}
+    ce qui nous donne \( \lambda f^{-1}(x)=f^{-1}(\lambda x)\).
+\end{proof}
+
+On peut observer que, si on identifie $\eM(1, \eR)$ et $\eR$, on obtient le premier exemple comme cas particulier.
 
 \begin{definition}[Quelques ensembles d'applications linéaires]      \label{DEFooOAOGooKuJSup}
     Soient \( E\) et \( F\) des espaces vectoriels.
@@ -474,7 +585,7 @@ On peut observer que, si on identifie $\mathcal{M}_{1\times 1}$ et $\eR$, on obt
         \item Une application linéaire \( E\to E\) est un \defe{endomorphisme}{endomorphisme} de \( E\). L'ensemble des endomorphismes de \( E\) est noté \( \End(E)\)\nomenclature[B]{$\End(E)$}{les endomorphismes de \( E\)}.
         \item Un endomorphisme bijectif est un \defe{automorphisme}{automorphisme!d'espace vectoriel}. L'ensemble des automorphismes de \( E\) est noté \( \Aut(E)\)\nomenclature[B]{$\Aut(E)$}{automorphisme de l'espace vectoriel \( E\)}.
         \item
-            Une application linéaire bijective \( E\to F\) est un \defe{isomorphisme}{isomorphisme!espaces vectoriels} d'espace vectoriel. L'ensemble des isomorphismes \( E\to F\) est noté\footnote{Le fait d'utiliser une notation similaire à celle des matrices inversibles n'est pas anodine: le lecteur en est sans doute conscient.} \( \GL(E,F)\).
+            Une application linéaire bijective \( E\to F\) est un \defe{isomorphisme}{isomorphisme!espaces vectoriels} d'espace vectoriel. L'ensemble des isomorphismes \( E\to F\) est noté\footnote{Le fait d'utiliser une notation similaire à celle des matrices inversibles n'est pas anodine: le lecteur en est sans doute conscient.} \( \GL(E,F)\). Cela est un groupe par le lemme \ref{LEMooLGEHooVEEoiU}.
     \end{itemize}
 \end{definition}
 
@@ -653,8 +764,8 @@ La proposition~\ref{DefALUAooSPcmyK} et le théorème~\ref{ThoGkkffA} sont valab
    est une base de \( E\).
     
    En dimension finie, nous avons en plus la formule suivante :
-   \begin{equation}
-       \rang(f)+\dim\ker f=\dim E,
+   \begin{equation}     \label{EQooUEOQooLySRiE}
+       \rang(f)+\dim(\ker f)=\dim E,
    \end{equation}
    c'est-à-dire que le rang\footnote{Définition~\ref{DefALUAooSPcmyK}.} de \( f\) est égal à la codimension\footnote{Définition~\ref{DefCodimension}.} du noyau.
 \end{theorem}
@@ -753,11 +864,11 @@ Un exemple d'utilisation de ce théorème en dimension infinie sera donné dans 
 \end{proof}
 
 \begin{example}
-    Le corollaire \ref{CORooCCXHooALmxKk} n'est pas correct en dimension infinie. Par exemple en prenant \( f(e_1)=f(e_2)=e_1\) et ensuite \( f(e_k)=e_{k-1}\) pour tout \( k\geq 2\). Cette application est surjective mais pas injective.
+    Le corolaire \ref{CORooCCXHooALmxKk} n'est pas correct en dimension infinie. Par exemple en prenant \( f(e_1)=f(e_2)=e_1\) et ensuite \( f(e_k)=e_{k-1}\) pour tout \( k\geq 2\). Cette application est surjective mais pas injective.
 \end{example}
 
-Une conséquence du théorème du rang est que les endomorphismes ont un inverse à gauche et à droite égaux (lorsqu'ils existent).
-\begin{corollary}
+Une conséquence du théorème du rang est que les endomorphismes ont un inverse à gauche et à droite égaux (lorsqu'ils existent). En résumé, ce que le corolaire \ref{CORooNFJLooJtzFwN} dit est que si \( AB=\mtu\), alors \( BA=\mtu\).
+\begin{corollary}           \label{CORooNFJLooJtzFwN}
     Soit un endomorphisme \( f\) d'un espace vectoriel de dimension finie. Si \( f\) admet un inverse à gauche, alors
     \begin{enumerate}
         \item
@@ -765,17 +876,17 @@ Une conséquence du théorème du rang est que les endomorphismes ont un inverse
         \item
             \( f\) admet également un inverse à droite,
         \item
-            ils sont égaux.
+            les inverses à gauche et à droite sont égaux.
     \end{enumerate}
     Tout cela tient également en remplaçant «gauche» par «droite».
 \end{corollary}
 
 \begin{proof}
-    Soit \( g\), un inverse à gauche de \( f\) : \( gf=\id\). Cela implique que \( f\) est injective et que \( g\) est surjective, et donc qu'elles sont toutes deux bijectives par le corollaire~\ref{CORooCCXHooALmxKk}. Vu que \( f\) est bijective, elle admet également un inverse à droite, soit \( h\). Nous avons : \( gf=\id\) et \( fh=\id\).
+    Soit \( g\), un inverse à gauche de \( f\) : \( gf=\id\). Cela implique que \( f\) est injective et que \( g\) est surjective, et donc qu'elles sont toutes deux bijectives par le corolaire~\ref{CORooCCXHooALmxKk}. Vu que \( f\) est bijective, elle admet également un inverse à droite, soit \( h\). Nous avons : \( gf=\id\) et \( fh=\id\).
 
     Alors \( gfh=h\) parce que \( gf=\id\), mais également \( gfh=g\) parce que \( fh=\id\). Donc \( g=h\).\footnote{C'est le même argument que celui employé pour la preuve du lemme~\ref{LEMooECDMooCkWxXf}~\ref{ITEMooOIWTooYqmMPP}, à ceci près que nous devions montrer l'existence de l'inverse à droite.}
 \end{proof}
-C'est ce corollaire qui nous permet d'écrire \( f^{-1}\) sans plus de précisions dès que \( f\) est une bijection.
+C'est ce corolaire qui nous permet d'écrire \( f^{-1}\) sans plus de précisions dès que \( f\) est une bijection.
 
 \begin{example}[Pas en dimension infinie]
     Tout cela ne fonctionne pas en dimension infinie. Par exemple avec une base \( \{ e_k \}_{k\in \eN}\) nous pouvons considérer l'opérateur
@@ -819,7 +930,7 @@ C'est ce corollaire qui nous permet d'écrire \( f^{-1}\) sans plus de précisio
     \begin{equation}
         x=\sum_j\lambda_jf(v_j)=f\big( \sum_j\lambda_jv_j \big),
     \end{equation}
-    ce qui prouve que \( f\) est surjective. Le corollaire \ref{CORooCCXHooALmxKk} nous dit alors que \( f\) est une bijection. L'application inverse est également linéaire par le lemme \ref{LEMooRZDTooEuLTrO}.
+    ce qui prouve que \( f\) est surjective. Le corolaire \ref{CORooCCXHooALmxKk} nous dit alors que \( f\) est une bijection. L'application inverse est également linéaire par le lemme \ref{LEMooRZDTooEuLTrO}.
 
     Une application linéaire bijective (comme \( f^{-1}\)) transforme une base en une base par la proposition \ref{PROPooZFKZooBGLSex}. Donc 
     \begin{equation}
@@ -842,33 +953,13 @@ C'est ce corollaire qui nous permet d'écrire \( f^{-1}\) sans plus de précisio
             \end{equation}
             ce qui donne \( x=y\).
         \item[\( f\) est surjective]
-            C'est maintenant le corollaire \ref{CORooCCXHooALmxKk}.
+            C'est maintenant le corolaire \ref{CORooCCXHooALmxKk}.
         \item[\( g\) est surjective]
             Pour tout \( x\in E\) nous avons \( g\big( f(x) \big)=x\). Donc l'image de \( f(E)\) par \( g\) est $E$. 
         \item[\( g\) est injective]
-            C'est maintenant le corollaire \ref{CORooCCXHooALmxKk}.
+            C'est maintenant le corolaire \ref{CORooCCXHooALmxKk}.
     \end{subproof}
 \end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Injection, surjection}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{definition}
-  Une application $S: \eR^m\to\eR^n$ est dite \defe{affine}{affine (application)} si elle est la somme d'une application linéaire et d'une application constante. Autrement dit, $S$ est affine s'il existe $T: \eR^m\to\eR^n$, linéaire, telle que $S(x)-T(x)$ soit un vecteur constant dans $\eR^n$.
-\end{definition}
-
-\begin{example}     \label{EXooSUTAooEaQCuZ}
-	Les exemples les plus courants d'applications affines sont les droites et les plans ne passant pas par l'origine.
-	\begin{description}
-		\item[Les droites] Une droite dans $\eR^2$ (ou $\eR^3$) qui ne passe pas par l'origine est l'image d'une fonction de la forme $s(t) =u t +v$, avec $t \in \eR$, et $u$ et $v$ dans $\eR^2$ ou $\eR^3$ selon le cas. 
-
-		En choisissant des coordonnées adéquates, les droites peuvent être aussi vues comme graphes de fonctions affines. Dans le cas de $\eR^2$, on retrouve la fonction de l'exemple~\ref{ex_affine}, pour \( n = m = 1 \).
-
-		\item[Les plans]
-			De la même façon nous savons que tout plan qui ne passe pas par l'origine dans $\eR^3$ est le graphe d'une application affine, $P(x,y)= (a,b)^T\cdot(x,y)^T+(c,d)^T$, lorsque les coordonnées sont bien choisies.
-	\end{description}
-\end{example}
 
 \begin{lemma}[\cite{ooEPEFooQiPESf}]        \label{LEMooDAACooElDsYb}
     Soit une application linéaire \( f\colon E\to F\).
@@ -909,17 +1000,19 @@ C'est ce corollaire qui nous permet d'écrire \( f^{-1}\) sans plus de précisio
     \end{enumerate}
 \end{proof}
 
+
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Matrices}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Les matrices et les applications linéaires sont deux choses différentes. Une application linéaire\footnote{Définition \ref{DEFooULVAooXJuRmr}.} est une application d'un espace vectoriel vers un autre, et une matrice est un simple tableau de nombres sur lesquels nous définissons des opérations, de telle sorte à fournir une structure d'espace vectoriel. Le lien entre ces opérations et les opérations correspondantes sur les applications linéaires sera fait plus tard.
+Les matrices et les applications linéaires sont deux choses différentes. Une application linéaire\footnote{Définition \ref{DEFooULVAooXJuRmr}.} est une application d'un espace vectoriel vers un autre, et une matrice est un simple tableau de nombres sur lesquels nous définissons des opérations, de telle sorte à fournir une structure d'espace vectoriel. Le lien entre ces opérations et les opérations correspondantes sur les applications linéaires sera fait plus tard. Voir la définition \ref{DEFooJVOAooUgGKme} et ce qui s'en suit.
 
-%TODO: fixer les notations d'ensembles M( n x m, K) et matrice identité dans l'index des notations.
 
 %--------------------------------------------------------------------------------------------------------------------------- 
 \subsection{Définitions}
 %---------------------------------------------------------------------------------------------------------------------------
+
+Les notions topologiques sur les espaces de matrices sont pour plus tard, à commencer par la définition \ref{DEFooCQHDooYpUAhG}.
 
 \begin{definition}
     Soit un anneau \( \eA\) ainsi que des entiers \( m\), \( n\) strictement positifs. L'ensemble \( \eM(n\times n,\eA)\) est l'ensemble des applications
@@ -949,7 +1042,7 @@ Quelques ensembles de matrices particuliers.
     On note les isomorphismes naturels \( \eM(1\times m,\eA) \simeq \eA^m\) et \( \eM(n\times 1,\eA) \simeq \eA^n\).
 \end{normaltext}
 
-\begin{lemmaDef}
+\begin{lemmaDef}        \label{LEMooYWTEooQyLxKv}
     L'ensemble \( \eM(n\times m, \eA)\) muni des opérations
     \begin{description}
         \item[Somme] \( (A+B)_{ij}=A_{ij}+B_{ij}\),
@@ -958,7 +1051,7 @@ Quelques ensembles de matrices particuliers.
     pour tout \( A,B\in \eM(n\times m,\eA ) \) et \( \lambda\in \eA \) est un \( \eA\)-module (définition \ref{DEFooHXITooBFvzrR}).
 \end{lemmaDef}
 
-\begin{lemmaDef}
+\begin{lemmaDef}        \label{LEMooMBZTooKdGvON}
     Avec la multiplication
     \begin{equation}
         \begin{aligned}
@@ -979,7 +1072,7 @@ Quelques ensembles de matrices particuliers.
 
 
 \begin{remark}
-    Quelque remarques directes sur les définitions.
+    Quelques remarques directes sur les définitions.
     \begin{enumerate}
         \item
             La motivation de cette définition pour le produit apparaîtra plus loin, mais le Frido n'étant pas un livre d'introduction, j'imagine que le lecteur a déjà une idée.
@@ -991,7 +1084,7 @@ Quelques ensembles de matrices particuliers.
 \end{remark}
 
 \begin{remark}
-    Quelque remarques à propos de structures supplémentaires.
+    Quelques remarques à propos de structures supplémentaires.
 \begin{enumerate}
     \item Nous utiliserons (presque) tout le temps des matrices à coefficients dans un corps. Il est clair que, si \( \eK \) est un corps (commutatif), alors \( \eM(n\times m,\eK) \) a une structure d'espace vectoriel sur \( \eK \).
     \item Par ailleurs, sur les matrices carrées d'ordre \( n \) fixé, le produit de deux matrices est bien défini. Ainsi, \( \eM(n,\eA)\) se voit conférer une structure d'anneau, dont le neutre pour la multiplication est la matrice carrée \( \mtu_n\) (notée aussi \( \mtu\) lorsqu'il n'y a pas d'ambiguïté sur la taille), donnée par
@@ -1010,10 +1103,9 @@ Il est vite vu que si \( A\) est une matrice carrée d'ordre \( n \), alors \( A
     \begin{enumerate}
         \item
             \( (AB)^t=B^tA^t\),
-        \item
+        \item       \label{ITEMooXDYQooAlnArd}
             \( \tr(ABC)=\tr(CAB)\).
     \end{enumerate}
-    La seconde égalité est importante et est nommée \defe{invariance cyclique}{invariance cyclique!trace} de la trace.
 \end{lemma}
 
 \begin{proof}
@@ -1027,30 +1119,59 @@ Il est vite vu que si \( A\) est une matrice carrée d'ordre \( n \), alors \( A
     \end{equation}
 \end{proof}
 
+\begin{normaltext}
+    La seconde égalité est importante et est nommée \defe{invariance cyclique}{invariance cyclique!trace} de la trace. Elle sert entre autres nombreuses choses à prouver que la trace d'une matrice d'une application linéaire ne dépend pas de la base choisie. Ce sera la proposition \ref{PROPooRMYQooWkEpJJ}.
+\end{normaltext}
+
+\begin{lemma}       \label{LEMooLXAHooPRyHaF}
+    Soient des matrices \( A,B\in \eM(n,\eK)\). Si pour tout \( x,y\in \eK^n\) nous avons
+    \begin{equation}
+        \sum_{ij}A_{ij}x_iy_j=\sum_{ij}B_{ij}x_iy_j
+    \end{equation}
+    alors \( A=B\).
+\end{lemma}
+
+\begin{proof}
+    Il suffit de choisir \( x_i=\delta_{ik}\) et \( y_j=\delta_{jl}\), et d'effectuer les sommes; par exemple
+    \begin{equation}
+        \sum_{ij}A_{ij}\delta_{ik}y_j=\sum_jA_{kj}y_j.
+    \end{equation}
+    Après avoir effectué toutes les sommes nous nous retrouvons avec \( A_{kl}=B_{kl}\), ce qui signifie \( A=B\).
+\end{proof}
+
+
 %--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Application linéaire associée}
+\subsection{Identifier matrices et applications linéaires}
 %---------------------------------------------------------------------------------------------------------------------------
+
+Voir dans l'index thématique, \ref{SUBSECooAFPDooOzXdGz}.
 
 Soient deux espaces vectoriels de dimension finie \( E,F\) sur le corps \( \eK\). Nous considérons les bases\footnote{C'est le théorème~\ref{ThonmnWKs} qui nous permet de considérer des bases. Et ce théorème ne fonctionne que parce que nous avons supposé une dimension finie.} \( \{ e_i \}\) pour \( E\) et \( \{ f_{\alpha} \}\) pour \( F\). 
 
-Nous considérons l'application
-\begin{equation}        \label{EQooVZQWooMyFFeO}
-    \begin{aligned}
-        \psi\colon \eM(n\times m, \eK)&\to \aL(E,F) \\
-        A&\mapsto f_A 
-    \end{aligned}
-\end{equation}
-où \( f_A\) est définie par
-\begin{equation}
-    f_A(x)=\sum_{i\alpha}A_{\alpha i}x_if_{\alpha}
-\end{equation}
-si \( x_i\) sont les coordonnées de \( x\in E\) dans la base \( \{ e_i \}\).
+\begin{definition}      \label{DEFooJVOAooUgGKme}
+    Nous considérons l'application
+    \begin{equation}        \label{EQooVZQWooMyFFeO}
+        \begin{aligned}
+            \psi\colon \eM(n\times m, \eK)&\to \aL(E,F) \\
+            A&\mapsto f_A 
+        \end{aligned}
+    \end{equation}
+    où \( f_A\) est définie par
+    \begin{equation}        \label{EQooBVGHooJhFbMs}
+        f_A(x)=\sum_{i\alpha}A_{\alpha i}x_if_{\alpha}
+    \end{equation}
+    si \( x_i\) sont les coordonnées de \( x\in E\) dans la base \( \{ e_i \}\).
+\end{definition}
 
-Nous allons prouver un certain nombre de résultats montrant que cette application a toutes les propriétés imaginables permettant d'identifier les matrices aux applications linéaires : elle est un isomorphisme pour toutes les structure que vous pouvez raisonnablement imaginer.
+\begin{normaltext}
+    Nous allons prouver un certain nombre de résultats montrant que cette application a toutes les propriétés imaginables permettant d'identifier les matrices aux applications linéaires : elle est un isomorphisme pour toutes les structure que vous pouvez raisonnablement imaginer.
 
-À cette application \( \psi\) il manque cependant une propriété importante : elle n'est pas canonique. Elle dépend des bases choisies. Autrement dit : nous avons a priori autant d'applications \( \psi\) différentes qu'il y a de choix de bases sur \( E\) et \( F\)\quext{Bonne question. Est-ce qu'il y a moyen de construire deux choix de bases donnant la même application \( \psi\) ? Écrivez-moi si vous savez la réponse.}. %TODOooFKSRooBtOZYc
+    À cette application \( \psi\) il manque cependant une propriété importante : elle n'est pas canonique. Elle dépend des bases choisies. Autrement dit : nous avons à priori autant d'applications \( \psi\) différentes qu'il y a de choix de bases sur \( E\) et \( F\)\quext{Bonne question. Est-ce qu'il y a moyen de construire deux choix de bases donnant la même application \( \psi\) ? Écrivez-moi si vous savez la réponse.}.
 
-Nous allons prouver maintenant quelque résultats montrant que les matrices et les applications linéaires, dans le cas des espaces vectoriels \( \eK^n\) sont deux présentations de la même chose.
+    Nous allons prouver maintenant quelques résultats montrant que les matrices et les applications linéaires, dans le cas des espaces vectoriels \( \eK^n\) sont deux présentations de la même chose.
+
+    Le fait que \( \psi\) est continue sera la proposition \ref{PROPooXEQLooHvzVVm}.
+\end{normaltext}
 
 \begin{normaltext}
     Lorsque \( A\in \eM(n,\eK)\) est une matrice et \( x\in \eK^n\) un vecteur, nous notons \( Ax\) l'élément de \( \eK^n\) donné par
@@ -1062,7 +1183,7 @@ Nous allons prouver maintenant quelque résultats montrant que les matrices et l
     Cette convention et de nombreuses autres à propos de matrice sera rappelée dans \ref{SECooBTTTooZZABWA}.
 \end{normaltext}
 
-\begin{proposition}      \label{PROPooGXDBooHfKRrv}
+\begin{propositionDef}      \label{PROPooGXDBooHfKRrv}
     Soient deux espaces vectoriels de dimension finie \( E,F\) sur le corps \( \eK\). Nous considérons les bases \( \{ e_i \}\) pour \( E\) et \( \{ f_{\alpha} \}\) pour \( F\). 
 
     Nous considérons l'application
@@ -1073,7 +1194,7 @@ Nous allons prouver maintenant quelque résultats montrant que les matrices et l
         \end{aligned}
     \end{equation}
     où \( f_A\) est définie par
-    \begin{equation}
+    \begin{equation}        \label{EQooZKEKooNYjvhP}
         f_A(x)=\sum_{i\alpha}A_{\alpha i}x_if_{\alpha}
     \end{equation}
     si \( x_i\) sont les coordonnées de \( x\in E\) dans la base \( \{ e_i \}\).
@@ -1085,19 +1206,34 @@ Nous allons prouver maintenant quelque résultats montrant que les matrices et l
             \begin{equation}
                 f_A(e_i)_{\alpha}=A_{\alpha i}.
             \end{equation}
+        \item       \label{ITEMooANXFooGIuxUR}
+            Nous avons
+            \begin{equation}                \label{EQooOKOJooYgteNP}
+                f_A(e_i)=\sum_{\alpha}A_{\alpha i}f_{\alpha}.
+            \end{equation}
+        \item       \label{ITEMooXLLLooKfigfB}
+            Nous avons
+            \begin{equation}        \label{EQooAXRJooUwHbjB}
+                \big( f_A(x) \big)_{\alpha}=\sum_{i}A_{\alpha i}x_i.
+            \end{equation}
         \item       \label{ITEMooHSMLooRJZref}
             L'application \( \psi\) est une bijection.
     \end{enumerate}
-\end{proposition}
+    Si \( f\) est une application linéaire, alors la matrice \( \psi^{-1}(f)\) est la \defe{matrice associée}{matrice d'une application linéaire} à \( f\) dans les bases choisies.
+\end{propositionDef}
 
 Remarque : les bases ne sont supposées être canoniques en aucun sens du terme. Les dimensions de \( E\) et \( F\) ne sont pas non plus supposées identiques.
 
 \begin{proof}
     En nous rappelant que \( (e_j)_i=\delta_{ij}\) nous avons
-    \begin{equation}
+    \begin{equation}        \label{EQooWGZHooIBoygB}
         f_A(e_j)=\sum_{i\alpha}A_{\alpha i}(e_j)_if_{\alpha}=\sum_{\alpha}A_{\alpha j}f_{\alpha},
     \end{equation}
     donc \( f_A(e_i)_{\alpha}=A_{\alpha i}\). Cela prouve la formule du point \ref{ITEMooKZYYooZPTkpq}.
+
+    Le point \ref{ITEMooANXFooGIuxUR} est une simple somme sur \( \alpha\) de \ref{ITEMooKZYYooZPTkpq}.
+
+    La formule \eqref{ITEMooXLLLooKfigfB} est simplement la composante \( f_{\alpha}\) de la définition \ref{EQooZKEKooNYjvhP}.
 
     Prouvons que \( \psi\) est injective. Si \( f_A=f_B\), nous avons en particulier \( f_A(e_i)_{\alpha}=f_B(e_i)_{\alpha}\) et donc \( A_{\alpha i}=B_{\alpha i}\).
 
@@ -1171,7 +1307,7 @@ Nous pouvons particulariser au cas où \( E=F=G\).
 \end{proposition}
 
 \begin{proof}
-    Le fait que \( \psi\) soit un isomorphisme d'algèbre est juste la combinaison entre les proposition \ref{PROPooIYVQooOiuRhX} et \ref{PROPooCSJNooEqcmFm}.
+    Le fait que \( \psi\) soit un isomorphisme d'algèbre est juste la combinaison entre les propositions \ref{PROPooIYVQooOiuRhX} et \ref{PROPooCSJNooEqcmFm}.
 
     En ce qui concerne l'isomorphisme d'anneaux, il faut en plus identifier les neutres. Le neutre pour la composition d'applications linéaires est l'application identité et le neutre pour la multiplication de matrices est la matrice identité. Nous devons donc montrer que \( \psi(\delta)=\id\). Juste un calcul :
     \begin{equation}
@@ -1180,12 +1316,16 @@ Nous pouvons particulariser au cas où \( E=F=G\).
     Donc oui, \( f_{\delta}\) est l'identité.
 \end{proof}
 
+
+Le fait que \( \psi\) est continue sera la proposition \ref{PROPooXEQLooHvzVVm}.
+
+
 Voila. Soyez bien conscient que l'application \( \psi\) dont nous avons beaucoup parlé est surtout intéressante dans le cas des espaces de la forme \( \eK^n\). Dans ce cas, nous avons une identification canonique entre \( \eM(n,\eK)\) et \( \End(\eK^n)\) qui est un isomorphisme d'anneaux et d'algèbres.
 
 Nous verrons que ce \( \psi\) respecte encore les inverses\footnote{Proposition \ref{PROPooNPMCooPmaCwu}.} et les déterminants\footnote{Proposition \ref{PROPooFKDXooKMSolt}.}.
 
 \begin{normaltext}
-    Il convient de ne pas confondre matrice et application linéaire (bien que nous le ferons sans vergogne). Une matrice est un bête tableau de nombres, tandis qu'une application linéaire est une application entre deux espaces vectoriels vérifiant certains propriétés.
+    Il convient de ne pas confondre matrice et application linéaire (bien que nous le ferons sans vergogne). Une matrice est un bête tableau de nombres, tandis qu'une application linéaire est une application entre deux espaces vectoriels vérifiant certaines propriétés.
 
     Cependant si les espaces vectoriels \( E\) et \( F\) sont munis de bases, alors il y a une application
     \begin{equation}
@@ -1198,6 +1338,14 @@ Nous verrons que ce \( \psi\) respecte encore les inverses\footnote{Proposition 
     Cependant, sur des espaces comme \( \eR^n\) ou plus généralement sur \( \eK^n\), nous avons une base canonique et toute personne raisonnable utilise toujours la base canonique (sauf mention du contraire). Dans ces cas il est sans danger de dire «la matrice associée à telle application linéaire» sans préciser les bases.
 
     Mais si un jour vous utilisez une base autre que la base canonique sur \( \eR^n\), précisez-le et plutôt deux fois qu'une\footnote{Au passage, non, les coordonnées polaires ne sont pas une base de \( \eR^2\). C'est un système de coordonnées, et ce n'est pas la même chose.}.
+\end{normaltext}
+
+\begin{normaltext}
+    Tant que nous sommes à parler de matrice et d'applications linéaires, les plus acharnés anti-abus de language\footnote{Dont l'auteur de ces lignes fait partie.} remarqueront qu'il n'est pas vrai que «étant donné une base, une application linéaire a une matrice».
+
+    En effet, une base est une partie libre et génératrice (définition \ref{DEFooNGDSooEDAwTh}). Or une partie d'un ensemble n'est pas muni d'un ordre. Toutes les permutations de colonnes de la matrice sont encore possible d'après l'ordre que l'on met sur les vecteurs de la base.
+
+    Encore une fois, la base canonique n'a pas de problèmes parce que les \( \{ e_i \}\) de \( \eR^n\) viennent avec un ordre indiscutable. Plus généralement, très souvent, lorsqu'on construit une base, la construction suggère un ordre.
 \end{normaltext}
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -1299,7 +1447,7 @@ Nous voudrions savoir ce qu'il se passe avec le déterminant d'une matrice lorsq
     \begin{equation}
         \det(A^t)=\sum_{\sigma}\epsilon(\sigma)\prod_iA_{i,\sigma^{-1}(i)}=\sum_{\sigma}\epsilon(\sigma^{-1})\prod_iA_{i,\sigma(i)}=\det(A)
     \end{equation}
-    où nous avons utilisé le fait que \(\epsilon(\sigma^{-1})=\epsilon(\sigma)\) (corollaire \ref{CORooZLUKooBOhUPG}).
+    où nous avons utilisé le fait que \(\epsilon(\sigma^{-1})=\epsilon(\sigma)\) (corolaire \ref{CORooZLUKooBOhUPG}).
 \end{proof}
 
 Le fait que \( \det(A)=\det(A^t)\) permet, dans toutes les propositions du type «ce qui arrive au déterminant si on change telle ligne ou colonnes» de ne donner qu'une preuve pour la partie «ligne» et déduire automatiquement le cas «colonne». Le lemme suivant donne un exemple d'utilisation.
@@ -1527,7 +1675,7 @@ La réciproque n'est pas vraie : il existe des matrices dont le déterminant est
         \begin{equation}
             \det(B)=\det(A)+\det(C).
         \end{equation}
-        Mais dans la matrice \( C\), nous avons \( L_k=\lambda L_l\), ce qui implique \( \det(C)=0\) par le corollaire \ref{CORooAZFCooSYINvBl}. Donc \( \det(A)=\det(B)\) comme il se devait.
+        Mais dans la matrice \( C\), nous avons \( L_k=\lambda L_l\), ce qui implique \( \det(C)=0\) par le corolaire \ref{CORooAZFCooSYINvBl}. Donc \( \det(A)=\det(B)\) comme il se devait.
     \item[\ref{ITEMooHKZWooVZDgnf}]
         Encore un calcul :
         \begin{equation}
@@ -1648,7 +1796,7 @@ pour toute matrice \( A\).
     \end{equation}
     dans \( \eM(1, \eK)\). Notons que \( \eK\) est un corps (donc \( A_{11}\) est inversible) commutatif, ce qui permet d'écrire \( 1/A_{11}\) sans ambiguïtés.
 
-    Supposons le résultat prouvé pour \( n\), et voyons ce qu'il se passe pour \( n+1\). Vu que \( \det(A)\neq 0\), aucune de ses colonnes n'est nulle (corollaire \ref{CORooAZFCooSYINvBl}). Il existe donc un \( k\) tel que \( A_{k1}\neq 0\).
+    Supposons le résultat prouvé pour \( n\), et voyons ce qu'il se passe pour \( n+1\). Vu que \( \det(A)\neq 0\), aucune de ses colonnes n'est nulle (corolaire \ref{CORooAZFCooSYINvBl}). Il existe donc un \( k\) tel que \( A_{k1}\neq 0\).
 
     Par la proposition \ref{PROPooFQRDooRPfuxk}, la matrice
     \begin{equation}
@@ -1689,7 +1837,7 @@ pour toute matrice \( A\).
     \end{equation}
     où \( A'\) est une matrice de taille \( n\).
     
-    Voyons quelque propriétés de \( A'\). Nous savons que
+    Voyons quelques propriétés de \( A'\). Nous savons que
     \begin{equation}
         B^{(4)}=\prod_i G_iA
     \end{equation}
@@ -1751,7 +1899,9 @@ pour toute matrice \( A\).
 \end{proposition}
 
 \begin{proof}
-    Si la matrice \( A\) elle-même n'a pas de colonnes de zéros, alors nous pouvons faire un pas de réduction de Gauss et obtenir des matrices \( G_1,\ldots,  G_{N_1}\) telles que
+    Si la matrice \( A\) elle-même n'a pas de colonnes de zéros, alors nous pouvons faire un pas de réduction de Gauss\footnote{La réduction de Gauss est le théorème \ref{THOooOMMFooKxqICS}, mais le lien avec ce que nous disons ici n'est peut-être pas directement clair.} 
+% TODOooITYKooFiRuau Il faut clarifier l'utilisation de la réduction de Gauss et montrer ce qu'est un pas de réduction.
+    et obtenir des matrices \( G_1,\ldots,  G_{N_1}\) telles que
     \begin{equation}
         G_1\ldots G_{N_1}A=
       \begin{pmatrix}
@@ -1809,7 +1959,7 @@ pour toute matrice \( A\).
     \begin{equation}
         f_B(e_k)-f_C(e_k)=\sum_j\alpha_jf_B(e_j)
     \end{equation}
-    où les \( \alpha_j\) dépendent a priori de \( k\). Vu que \( f_A\circ(f_B-f_C)=0\), nous avons 
+    où les \( \alpha_j\) dépendent à priori de \( k\). Vu que \( f_A\circ(f_B-f_C)=0\), nous avons 
     \begin{equation}
         0=f_A\big( f_B(e_k)-f_C(e_k) \big)=\sum_j(f_A\circ f_B)(e_j)=\sum_j\alpha_je_j.
     \end{equation}
@@ -1884,7 +2034,7 @@ pour toute matrice \( A\).
     \begin{equation}
         G_1\ldots G_NA=\delta.
     \end{equation}
-    Donc la matrice \( G_1\ldots G_N\) est un inverse de \( A\) par le corollaire \ref{CORooBQLXooTeVfgb}.
+    Donc la matrice \( G_1\ldots G_N\) est un inverse de \( A\) par le corolaire \ref{CORooBQLXooTeVfgb}.
 \end{proof}
 
 \begin{proposition}     \label{PROPooEOKBooKUROFg}
@@ -1902,7 +2052,7 @@ pour toute matrice \( A\).
     \begin{equation}
         \det(A)=\sum_{\sigma\in S_n}\epsilon(\sigma)\prod_{i=1}^nA_{i\sigma(i)}.
     \end{equation}
-    Si la \( k\)\ieme ligne est nulle, alors \( A_{k\sigma(k)}=0\) pour tout \( \sigma\). Donc tous les produits contiennent un facteur nul. Donc \( \det(A)=0\).
+    Si la \( k\)\ieme\ ligne est nulle, alors \( A_{k\sigma(k)}=0\) pour tout \( \sigma\). Donc tous les produits contiennent un facteur nul. Donc \( \det(A)=0\).
 
     Pour toute matrice \( B\) nous avons
     \begin{equation}
@@ -2128,8 +2278,15 @@ Il est possible d'exprimer le rang d'une matrice de façon plus «intrinsèque»
 \end{definition}
 Dans la suite nous désignerons souvent par le mot «mineur» la sous-matrice carrée elle-même au lieu de son déterminant.
 
-\begin{proposition}      \label{DEFooVVBYooJbliTi}
-    Le rang d'une matrice est la taille de son plus grand mineur non nul.
+Lorsque \( A\) est une matrice, nous notons \( f_A\) l'application linéaire associée à la matrice \( A\) par l'application \eqref{EQooVZQWooMyFFeO}.
+
+Le rang d'une matrice est également le rang de son application linéaire associée.
+\begin{proposition}[Rang]       \label{PROPooCINLooFGNtwS}
+    Si \( A\) est une matrice carré, alors
+    \begin{equation}
+        \rang\big( f_A \big)=\rang(A).
+    \end{equation}
+    À gauche, c'est le rang d'une application linéaire \ref{DefALUAooSPcmyK}; à droite c'est le rang d'une matrice \ref{DEFooCSGXooFRzLRj}.
 \end{proposition}
 
 \begin{lemma} \label{LEMVecsaRgFixe}
@@ -2142,8 +2299,6 @@ Dans la suite nous désignerons souvent par le mot «mineur» la sous-matrice ca
         f_A(x_i) = 0
     \end{equation}
     pour \( i > r \).
-
-    Ici, \( f_A\) est l'application linéaire associée à la matrice \( A\) par l'application \eqref{EQooVZQWooMyFFeO}.
 \end{lemma}
 
 \begin{proof}
@@ -2212,7 +2367,7 @@ Dans la suite nous désignerons souvent par le mot «mineur» la sous-matrice ca
 \end{definition}
 
 \begin{lemma}   \label{LemZMxxnfM}
-    Une matrice de rang\footnote{Définition~\ref{DEFooVVBYooJbliTi}.} \( r\) dans \( \eM(n,\eK)\) est équivalente à la matrice par blocs
+    Une matrice de rang\footnote{Définition~\ref{DEFooCSGXooFRzLRj}.} \( r\) dans \( \eM(n,\eK)\) est équivalente à la matrice par blocs
     \begin{equation}
         J_r=\begin{pmatrix}
             \mtu_r    &   0    \\
@@ -2377,14 +2532,144 @@ Dans la suite nous désignerons souvent par le mot «mineur» la sous-matrice ca
     Nous finissons donc bien sûr une matrice comme annoncée. De plus n'ayant effectué que des combinaisons de lignes, nous avons seulement multiplié par des matrices inversibles (lemme~\ref{LemyrAXQs}).
 \end{proof}
 
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+\section{Changement de base}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Soit un espace vectoriel \( V\) muni de deux bases \( (e_i)_{i=1,\ldots, n}\) et \( (f_{\alpha})_{\alpha=1,\ldots, n}\). Les deux bases sont liées entre elles par
+\begin{equation}        \label{EQooFRQRooSMsQQB}
+    f_{\alpha}=\sum_iQ_{i\alpha}e_i.
+\end{equation}
+Ici \( Q\) n'est pas une application linéaire \( V\to V\) : \( Q\) est seulement un tableau de nombres, donnant les coordonnées des vecteurs \( f_{\alpha}\) dans la base de \( e_i\). Éventuellement \( Q\) peut être vu comme une application linéaire \( \eK^n\to \eK^n\).
+
+Dans la suite nous nommerons \( Q^{-1}\) la matrice inverse de \( Q\). Inverse au sens des bêtes tableaux de nombres, sans interprétations en tant qu'application linéaire. De même pour \( Q^t\) qui est la transposée de \( Q\).
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Changement de base : vecteurs de base}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}       \label{LEMooIHZGooOZoYZd}
+    Soit un espace vectoriel \( V\) sur \( \eK\) ainsi que deux bases \( (e_i)_{i=1,\ldots, n}\), \( (f_{\alpha})_{\alpha=1,\ldots, n}\) de \( V\) liées par \( f_{\alpha}=\sum_iQ_{i\alpha}e_i\). Alors
+    \begin{equation}    \label{EQooZQPAooAbKAdg}
+        e_i=\sum_{\alpha}Q^{-1}_{\alpha i}f_{\alpha}.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Nous multiplions l'égalité \( f_{\alpha}=\sum_iQ_{i\alpha}e_i\) par le nombre\footnote{Attention à la bonne interprétation de ce nombre : on fait bien référence à l'élément situé en \( (\alpha, j) \) de la matrice \( Q^{-1} \), et pas autre chose.} \( Q^{-1}_{\alpha j}\in \eK\)  et nous sommons sur \( \alpha\) :
+    \begin{equation}
+        \sum_{\alpha}Q^{-1}_{\alpha j}f_{\alpha}=\sum_{i\alpha}(A_{i\alpha}Q^{-1}_{\alpha j})e_i=e_j.
+    \end{equation}
+\end{proof}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Changement de base : coordonnées}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}     \label{PROPooNYYOooHqHryX}
+    Soit un espace vectoriel \( V\) sur \( \eK\). Soient deux bases \( (e_i)_{i=1,\ldots, n}\) et \( (f_{\alpha})_{\alpha=1,\ldots, n}\) liées par \( f_{\alpha}=\sum_iQ_{i\alpha}e_i\). Nous considérons un même vecteur dans les deux bases : \( \sum_ix_ie_i=\sum_{\alpha}y_{\alpha}f_{\alpha}\). Alors
+    \begin{enumerate}
+        \item       \label{ITEMooIBAEooNaUnPD}
+            \( y_{\alpha}=\sum_iQ^{-1}_{\alpha i}x_i\)
+        \item       \label{ITEMooKPWTooMwdbPu}
+            $x_i=\sum_{\alpha}Q_{i\alpha}y_{\alpha}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Soit un vecteur \( x\in V\). Il peut être écrit dans les deux bases :
+    \begin{equation}        \label{EQooGSJMooGQstMx}
+        x=\sum_ix_ie_i=\sum_{\alpha}y_{\alpha}f_{\alpha}.
+    \end{equation}
+    En remplaçant \( e_i\) par sa valeur \eqref{EQooZQPAooAbKAdg} nous avons l'égalité
+    \begin{equation}
+        \sum_{i\alpha}x_iQ^{-1}_{\alpha i}f_{\alpha}=\sum_{\alpha}y_{\alpha}f_{\alpha}.
+    \end{equation}
+    Vu que les \( f_{\alpha}\) sont linéairement indépendants, l'égalité des sommes donne l'égalité de chacun de termes :
+    \begin{equation}
+        y_{\alpha}=\sum_ix_iQ^{-1}_{\alpha i}.
+    \end{equation}
+    En identifiant \( x\in V\) au vecteur dans \( \eK^n\) de ses coordonnées dans la base \( \{ e_i \}\) nous pouvons écrire
+    \begin{equation}
+        y_{\alpha}=(Q^{-1}x)_{\alpha},
+    \end{equation}
+    Le point \ref{ITEMooIBAEooNaUnPD} est prouvé.
+
+    En ce qui concerne le point \ref{ITEMooKPWTooMwdbPu}, nous repartons encore de \eqref{EQooGSJMooGQstMx}, mais nous y substituons la définition des \( f_{\alpha}\) :
+    \begin{equation}
+        \sum_{i}x_ie_i=\sum_{\alpha i}y_{\alpha}Q_{i\alpha}e_i.
+    \end{equation}
+    Vous voulez des détails ? Allez, une étape de plus que le strict nécessaire : nous écrivons
+    \begin{equation}
+        \sum_i\big( x_i-\sum_{\alpha}y_{\alpha}Q_{i\alpha} \big)e_i=0.
+    \end{equation}
+    Par linéaire indépendance des \( e_i\), nous avons annulation de tous les coefficients, c'est à dire
+    \begin{equation}
+        x_i=\sum_{\alpha}Q_{i\alpha}y_{\alpha},
+    \end{equation}
+    comme annoncé.
+\end{proof}
+
+\begin{normaltext}
+    Attention à l'ordre des indices dans la dernière égalité : la matrice \( Q\) vient avec les indices dans l'ordre \( i\alpha\), tandis que la matrice \( Q^{-1}\) vient avec les indices dans l'ordre opposé : \( \alpha i\). C'est pour cela qu'il est intéressant de noter avec des lettres latines les indices se rapportant à la première base et avec des lettres grecques ceux se rapportant à la seconde base.
+\end{normaltext}
+
+\begin{normaltext}      \label{NORMooNWKZooPMwYTO}
+    Les formules de changement de coordonnées de la proposition \ref{PROPooNYYOooHqHryX} s'écrivent souvent de la façon suivante :
+    \begin{enumerate}
+            \item       \label{ITEMooLHQCooBRvSlp}
+                \( y_{\alpha}=(Q^{-1}x)_{\alpha}\)
+            \item       \label{ITEMooNXUGooJIeoBf}
+                \( y=Q^{-1}x\).
+            \item       \label{ITEMooEFILooNENamW}
+            $x_i=(Qy)_i $
+            \item       \label{ITEMooMOKHooFEJvIW}
+            $x=Qy$
+    \end{enumerate}
+    Ces égalités reposent sur un petit paquet d'abus de notations qu'il convient de bien comprendre. Ici, \( x\) et \( y\) sont les éléments de \( \eK^n\) donnés par les composantes de \( x\) dans les bases \( \{ e_i \}\) et \( \{ f_{\alpha} \}\), et \( Q\) est vu comme une matrice, un opérateur linéaire sur \( \eK^n\). Autrement dit, le choix des bases permet d'identifier \( V\) avec \( \eK^n\) et la matrice \( Q\) avec l'application linéaire \( f_Q\) de la proposition \ref{PROPooGXDBooHfKRrv}.
+\end{normaltext}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Changement de base : matrice d'une application linéaire}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}     \label{PROPooNZBEooWyCXTw}
+    Soit une application linéaire \( t\colon V\to V\) de matrices \( A\) et \( B\) dans les bases \( \{ e_i \}\) et \( \{ f_{\alpha} \}\). Si les bases sont liées par
+    \begin{equation}
+        f_{\alpha}=\sum_iQ_{i\alpha}e_i,
+    \end{equation}
+    alors les matrices \( A\) et \( B\) sont liées par
+    \begin{equation}
+        B=Q^{-1}AQ.
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    L'hypothèse sur le fait que \( A\) et \( B\) sont les matrices de \( t\) signifie que pour tout \( x\in V\),
+    \begin{equation}
+        t(x)=\sum_{ij}A_{ji}x_ie_j=\sum_{\alpha\beta}B_{\alpha\beta}y_{\beta}f_{\alpha}.
+    \end{equation}
+    En remplaçant \( e_j\) par son expression \eqref{EQooZQPAooAbKAdg} en termes des \( f_{\alpha}\) et \( x_i\) par son expression \( x_i=(Qy)_i\) (proposition \ref{PROPooNYYOooHqHryX}), nous avons
+    \begin{subequations}
+        \begin{align}
+            (By)_{\alpha}&=\sum_{ij\alpha}A_{ji}(Qy)_iQ^{-1}_{\alpha j}f_{\alpha}\\
+            &=\sum_{i \alpha}(Q^{-1}A)_{\alpha i}(Qy)_if_{\alpha}\\
+            &=\sum_{\alpha}(Q^{-1} AQy)_{\alpha}f_{\alpha}.
+        \end{align}
+    \end{subequations}
+    Vu que les \( f_{\alpha}\) forment une base nous en déduisons \( Q^{-1}AQy=By\). Et vu que \( y\) est un élément quelconque de \( \eK^n\), nous en déduisons l'égalité de matrices
+    \begin{equation}        \label{ooWKTYooOJfclT}
+        B=Q^{-1}AQ.
+    \end{equation}
+\end{proof}
+Il s'agit bien d'une égalité de matrices, ou à la limite d'applications linéaires sur \( \eK^n\), et non d'une égalité d'application linéaire sur \( V\).
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Espaces de polynômes}
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \label{SecEspacePolynomes}
 
-Attention : les polynômes en soi sont définis par la définition~\ref{DefRGOooGIVzkx}.
+Attention : les polynômes en soi sont définis par la définition~\ref{DEFooFYZRooMikwEL}.
 
 Pour chaque $k>0$ donné nous définissons
 \begin{equation}
@@ -2452,34 +2737,96 @@ Les applications de dérivation et intégration correspondent évidemment à des
 
 L'espace de tous les polynômes étant de dimension infinie, il peut servir de contre-exemple assez simple. Dans la sous-section~\ref{SubSecPOlynomesCE}, nous verrons que toutes les normes ne sont pas équivalentes sur l'espace des polynômes.
 
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-\section{Théorème de Sylvester}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Projection et orthogonalité}
+%---------------------------------------------------------------------------------------------------------------------------
 
-% TODO : Il y a une démonstration sur wikipédia, à voir.
-\begin{theorem}[de Sylvester]   \label{ThoQFVsBCk}
-    Soit $Q$ une forme quadratique réelle de signature \( (p,q)\). Alors pour toute base orthonormée on a
-    \begin{subequations}
-        \begin{align}
-            p&=\Card\{ i\tq Q(e_i)>0 \}\\
-            q&=\Card\{ i\tq Q(e_i)<0 \}.
-        \end{align}
-    \end{subequations}
-    Le rang de \( Q\) est \( p+q\).
-
-    Si \( A\) est la matrice de \( Q\) dans une base, alors il existe une matrice inversible \( P\) telle que
-    \begin{equation}
-        P^tAP=\begin{pmatrix}
-            -\mtu_q    &       &       \\
-                &   \mtu_p    &       \\
-                &       &   0
-        \end{pmatrix}.
+\begin{proposition}[Produit scalaire dans \( \eR^n\)]     \label{PROPooSKVRooDGVCYj}
+    Si \( x,y\in \eR^n\), nous définissons
+    \begin{equation}        \label{EQooFITHooEXDCGd}
+        x\cdot y=\sum_{i=1}^n x_iy_i.
     \end{equation}
-\end{theorem}
-\index{théorème!Sylvester}
-\index{rang}
-\index{matrice!semblables}
-\index{forme!quadratique}
+    Cela est un produit scalaire qui vérifie
+	\begin{description}
+		\item[Symétrie] $X\cdot Y=Y\cdot X$;
+		\item[Linéarité] $(\lambda X+\mu X')\cdot Y=\lambda(X\cdot Y)+\mu(X'\cdot Y)$ pour tout $\lambda$ et $\mu$ dans $\eR$;
+		\item[Défini positif] $X\cdot X\geq 0$ et $X\cdot X=0$ si et seulement si $X=0$.
+	\end{description}
+    Ce produit scalaire est le \defe{produit scalaire}{produit scalaire sur $\eR^n $} qui sera toujours considéré. C'est de lui qui découle toujours la norme, et la topologie de \( \eR^n\).
+\end{proposition}
+
+\begin{proposition}     \label{PROPooZKWXooWmEzoA}
+    Soit une application linéaire \( A\colon \eR^n\to \eR^n\). Nous considérons le produit scalaire usuel sur \( \eR^n\). Alors :
+    \begin{enumerate}
+        \item
+            Les éléments de matrice de \( A\) sont donnés par $A_{ij}=e_i\cdot Ae_j$.
+        \item
+            Nous avons la formule \( x\cdot Ay=\sum_{kl}A_{kl}x_ky_l \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Pour \( Ae_j\) nous utilisons la formule \ref{EQooOKOJooYgteNP} avec des notations plus décontractées : \( Ae_j=\sum_kA_{kj}e_k\). Ensuite nous faisons un calcul avec la formule \eqref{EQooFITHooEXDCGd} :
+    \begin{equation}
+        e_i\cdot Ae_j=e_i\cdot \sum_kA_{kj}e_k=\sum_{k}A_{kj}\delta_{ik}=A_{ij}.
+    \end{equation}
+    La seconde formule à prouver est du même tonneau, en utilisant cette fois la formule \eqref{EQooAXRJooUwHbjB} :
+    \begin{equation}
+        x\cdot Ay=\sum_kx_k(Ay)_k=\sum_{kl}x_kA_{kl}y_l=\sum_{kl}A_{kl}x_ky_l.
+    \end{equation}
+\end{proof}
+
+\begin{definition}
+	La \defe{norme}{norme!vecteur} du vecteur $X$, notée $\| X \|$, est définie par
+	\begin{equation}
+		\| X \|=\sqrt{X\cdot X}=\sqrt{x^2+y^2+z^2}
+	\end{equation}
+	si $X=(x,y,z)$. Cette norme sera parfois nommée «norme euclidienne».
+\end{definition}
+Cette définition est motivée par le théorème de Pythagore. Le nombre $X\cdot X$ est bien la longueur de la «flèche» $X$. Plus intrigante est la définition suivante :
+\begin{definition}
+	Deux vecteurs $X$ et $Y$ sont \defe{orthogonaux}{orthogonal!vecteur} si $X\cdot Y=0$.
+\end{definition}
+Cette définition de l'orthogonalité est motivée par la proposition suivante.
+
+\begin{proposition}		\label{PropProjScal}
+	Si nous écrivons $\pr_Y$  l'opération de projection sur la droite qui sous-tend $Y$, alors nous avons
+	\begin{equation}
+		\| \pr_YX \|=\frac{ X\cdot Y }{ \| Y \| }.
+	\end{equation}
+\end{proposition}
+
+\begin{proof}
+	Les vecteurs $X$ et $Y$ sont des flèches dans l'espace. Nous pouvons choisir un système d'axe orthogonal tel que les coordonnées de $X$ et $Y$ soient
+	\begin{equation}
+		\begin{aligned}[]
+			X&=\begin{pmatrix}
+				x	\\
+				y	\\
+				0
+			\end{pmatrix},
+			&Y&=\begin{pmatrix}
+				l	\\
+				0	\\
+				0
+			\end{pmatrix}
+		\end{aligned}
+	\end{equation}
+	où $l$ est la longueur du vecteur $Y$. Pour ce faire, il suffit de mettre le premier axe le long de $Y$, le second dans le plan qui contient $X$ et $Y$, et enfin le troisième axe dans le plan perpendiculaire aux deux premiers.
+
+	Un simple calcul montre que $X\cdot Y=xl+y\cdot 0+0\cdot 0=xl$. Par ailleurs, nous avons $\| \pr_YX \|=x$. Par conséquent,
+	\begin{equation}
+		\| \pr_YX \|=\frac{ X\cdot Y }{ l }=\frac{ X\cdot Y }{ \| Y \| }.
+	\end{equation}
+\end{proof}
+
+\begin{corollary}
+	Si la norme de $Y$ est $1$, alors le nombre $X\cdot Y$ est la longueur de la projection de $X$ sur $Y$.
+\end{corollary}
+
+\begin{proof}
+	Poser $\| Y \|=1$ dans la proposition~\ref{PropProjScal}.
+\end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Dualité}
@@ -2506,7 +2853,112 @@ Nous verrons plus tard qu'en dimension infinie, les applications linéaires ne s
     \end{equation}
     est sa prolongation par linéarité.
 \end{definition}
-Notons que si \( v\in E\) est un vecteur, ça n'a aucun sens a priori de parler de \( v^*\). Il s'agit bien de définir \emph{toute} la base \( \{ e_i^* \}\) à partir de toute la base \( \{ e_i \}\).
+Notons que si \( v\in E\) est un vecteur, ça n'a aucun sens à priori de parler de \( v^*\). Il s'agit bien de définir \emph{toute} la base \( \{ e_i^* \}\) à partir de toute la base \( \{ e_i \}\).
+
+\begin{lemma}[\cite{BIBooQVDOooFONdrf}]       \label{LEMooQLWNooYUpGdo}
+    Soit un espace vectoriel \( E\) de dimension finie.
+    \begin{enumerate}
+        \item       \label{ITEMooHHTLooNCjgfn}
+            Si \( \alpha\) est une forme linéaire non nulle sur \( E\), alors il existe \( x\in E\) tel que \( \alpha(x)=1\).
+        \item       \label{ITEMooBYAAooUWBKDk}
+            Si \( x\neq 0\) dans \( E\), il existe une forme linéaire \( \alpha\) sur \( E\) telle que \( \alpha(x)=1\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    En deux parties.
+    \begin{subproof}
+    \item[Pour \ref{ITEMooHHTLooNCjgfn}]
+        Vu que \( \alpha\) est non nulle nous pouvons considérer \( v\in E\) tel que \( \alpha(v)\neq 0\). Alors en posant \( x=\alpha(v)^{-1}  v\), nous avons le résultat.
+    \item[Pour \ref{ITEMooBYAAooUWBKDk}]
+        Soit un vecteur non nul que nous écrivons sous la forme \( x=\sum_{i=1}^nx_ie_i\) (pour une certaine base \( (e_i)_{i=1,\ldots, n}\) de \( E\)). Supposons que \( x_k\neq 0\). Alors la forme
+        \begin{equation}
+            \begin{aligned}
+                \alpha\colon E&\to \eK \\
+                y&\mapsto y_k/x_k 
+            \end{aligned}
+        \end{equation}
+        fait l'affaire.
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}       \label{LEMooKTREooBrnWVz}
+    Soit un espace vectoriel de dimension finie \( E\) sur le corps \( \eK\). Si \( (\alpha_1,\ldots,  \alpha_n)\) est une base de \( E^*\), alors l'application
+    \begin{equation}
+        \begin{aligned}
+            \Phi\colon E&\to \eK^n \\
+            x&\mapsto \big( \alpha_1(x),\ldots, \alpha_n(x) \big) 
+        \end{aligned}
+    \end{equation}
+    est un isomorphisme d'espaces vectoriels. 
+
+\end{lemma}
+
+\begin{proof}
+    En deux parties.
+    \begin{subproof}
+        \item[\( \Phi\) est injective]
+            Soit \( z\in \ker(\Phi)\). Nous avons \( \alpha_i(z)=0\) pour tout \( i\). Si \( z\neq 0\), alors le lemme \ref{LEMooQLWNooYUpGdo} dit qu'il existe \( \beta\in E^*\) tel que \( \beta(z)\neq 0\).
+
+    Décomposons ce \( \beta\) dans la base de \( (\alpha_i)\) :
+    \begin{equation}
+        \beta=\sum_{i=1}^n\beta_i\alpha_i.
+    \end{equation}
+    Alors nous avons
+    \begin{equation}
+        0=\beta(z)=\sum_{i=1}^n\beta_i\underbrace{\alpha_i(z)}_{=0}=0.
+    \end{equation}
+    Contradiction. Donc \( \ker(\Phi)=\{ 0 \}\) et \( \Phi\) est injective.
+
+\item[\( \Phi\) est surjective]
+    Les espaces vectoriels \( E\), \( E^*\) et \( \eK^n\) ont tout trois dimension \( n\). Donc \( \Phi\) est une application linéaire injective entre deux espaces de même dimension. Elle est donc surjective par le corolaire \ref{CORooCCXHooALmxKk}.
+    \end{subproof}
+\end{proof}
+
+
+\begin{propositionDef}[\cite{BIBooQVDOooFONdrf}]       \label{PROPooDBPGooPagbEB}
+    Soit un espace vectoriel \( E\) de dimension finie sur le corps \( \eK\). Toute base du dual \( E^*\) est duale d'une unique base de \( E\). Cette base est dite \defe{préduale}{base préduale}.
+\end{propositionDef}
+
+\begin{proof}
+    Nous considérons une base \( \mF=(\alpha_1,\ldots, \alpha_n)\) de \( E^*\). Nous devons prouver qu'il existe une unique base de \( E\) dont la base duale est \( \mF\).
+
+    \begin{subproof}
+    \item[Existence]
+        Le lemme \ref{LEMooKTREooBrnWVz} nous indique que l'application
+        \begin{equation}
+            \begin{aligned}
+                \Phi\colon E&\to \eK^n \\
+                x&\mapsto \big( \alpha_1(x),\ldots, \alpha_n(x) \big) 
+            \end{aligned}
+        \end{equation}
+        est un isomorphisme d'espaces vectoriels.
+
+        Soit la base canonique de \( \eK^n\) : \( (\epsilon_1,\ldots, \epsilon_n)\). Vu que \( \Phi\) est une isomorphisme, \( \big( \Phi^{-1}(\epsilon_i) \big)_{i=1,\ldots, n}\) est une base de \( E\). Nous allons montrer qu'elle est préduale de \( (\alpha_i)\). Nous posons \( e_i=\Phi^{-1}(\epsilon_i)\) et nous calculons :
+        \begin{subequations}
+            \begin{align}
+                \alpha_i(e_j)&=\alpha_i\big( \Phi^{-1}(\epsilon_j) \big)\\
+                &=\Phi\big( \Phi^{-1}(\epsilon_i) \big)_j  \label{SUBEQooACVAooVNwzMq}\\
+                &=(\epsilon_j)_i\\
+                &=\delta_{ij} \label{SUBEQooOYNHooSVOOyz}
+            \end{align}
+        \end{subequations}
+        Justifications :
+        \begin{itemize}
+            \item Pour \ref{SUBEQooACVAooVNwzMq}, nous remarquons que \( \alpha_i(x)=\Phi(x)_i\).
+            \item Pour \ref{SUBEQooOYNHooSVOOyz}, nous utilisons le fait que les \( \epsilon_j\) forment la base canonique de \( \eK^n\).
+        \end{itemize}
+    
+    \item[Unicité]
+        Soit une base préduale \( (e_i)\) de \( (\alpha_i)\). Nous avons, par définition, que \( \alpha_i(e_j)=\delta_{ij}\). Donc
+        \begin{equation}
+            \big( \alpha_1(e_j),\ldots, \alpha_n(e_j) \big)=\epsilon_j.
+        \end{equation}
+        Nous appliquons \( \Phi^{-1}\) à cette dernière équation pour obtenir \( e_j=\Phi^{-1}(\epsilon_j)\). Donc les \( e_j\) sont déterminés de façon unique à partir des \( \alpha_i\).
+    \end{subproof}
+\end{proof}
+
+
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Orthogonal}
@@ -2550,12 +3002,29 @@ Notons qu'on le note \( B^o\) et non \( B^{\perp}\) parce qu'on veut un peu s'ab
     Enfin \( F^{\perp}\subset\Span\{ e_{k}^*, k \in \{p+1, \dots, n\}\}\) parce que si \( \omega=\sum_{k=1}^n\omega_ke_k^*\), alors \( \omega(e_i)=\omega_i\), mais nous savons que si \( \omega\in F^{\perp}\), alors \( \omega(e_i)=0\) pour \( i\leq p\). Donc \( \omega=\sum_{k=p+1}^n\omega_ke^*_k\).
 \end{proof}
 
+La proposition \ref{PROPooNITTooCYcrrT} donnera une version plus terre à terre de la proposition \ref{PropXrTDIi} en disant que si nous avons un produit scalaire, alors \( V=F\oplus F^{\perp}\) où \( F^{\perp}\) est cette fois défini comme l'orthogonal pour le produit scalaire.
+
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Transposée : pas d'approche naïve}
 %---------------------------------------------------------------------------------------------------------------------------
 \label{SUBSECooGPXVooEYwIiJ}
 
 Il est légitime, si \( t\colon E\to E\) est une application linéaire, de dire que sa transposée soit l'application linéaire \( t^t\colon E\to E\) dont la matrice est la matrice transposée de celle de \( t\). Lorsque nous travaillons sur \( \eR^n\) muni de la base canonique, cela ne pose pas de problèmes et nous pouvons écrire des égalités du type \( \langle x, Ay\rangle =\langle A^tx, y\rangle \).
+
+\begin{proposition}[Matrice transposée et produit scalaire]     \label{PROPooNARVooEuhweD}
+    Soit une matrice réelle \( A\). En utilisant l'application linéaire associée\footnote{Définition \ref{DEFooJVOAooUgGKme}. Ici nous considérons la base canonique sur \( \eR^n\)} \( f_A\colon \eR^n\to \eR^n\), nous avons
+    \begin{equation}
+        x\cdot f_A(y)=f_{A^t}(x)\cdot y.
+    \end{equation}
+    Cette formule est souvent écrite \( x\cdot Ay=A^tx\cdot y\) ou \( \langle x, Ay\rangle =\langle A^tx, y\rangle \).
+\end{proposition}
+
+\begin{proof}
+    Il s'agit d'une calcul utilisant la formule \eqref{EQooBVGHooJhFbMs} et le produit scalaire \eqref{EQooFITHooEXDCGd} :
+    \begin{equation}
+        x\cdot f_A(y)=\sum_ix_i\big( f_A(y) \big)_i=\sum_ix_i\sum_jA_{ij}y_j=\sum_{ij}A^t_{ji}x_iy_j=\sum_jf_{A^t}(x)_jy_j=f_{A^t}(x)\cdot y.
+    \end{equation}
+\end{proof}
 
 Hélas nous allons voir que cette façon de définir une transposée est mauvaise.
 
@@ -2657,9 +3126,9 @@ Cela est la situation typique dans laquelle nous nous trouvons lorsque nous cons
     \end{equation}
     Le fait que \eqref{EqCzwftH} et \eqref{EqWlQlrR} donnent le même résultat prouve le lemme.
 \end{proof}
-En corollaire, les rangs de \( f\) et de \( f^t\) sont égaux parce que le rang est donné par la plus grande matrice carrée de déterminant non nul. Nous prouvons cependant ce résultat de façon plus intrinsèque.
+En corolaire, les rangs de \( f\) et de \( f^t\) sont égaux parce que le rang est donné par la plus grande matrice carrée de déterminant non nul. Nous prouvons cependant ce résultat de façon plus intrinsèque.
 
-\begin{lemma}[\href{http://gilles.dubois10.free.fr/algebre_lineaire/dualite.html}{Gilles Dubois}]   \label{LemSEpTcW}
+\begin{lemma}[\cite{BIBooETROooZIGZkN}]   \label{LemSEpTcW}
     Si \( f\colon E\to F\) est une application linéaire, alors
     \begin{equation}
         \rang(f)=\rang(f^t).
@@ -2810,7 +3279,7 @@ Les \defe{polynômes de Lagrange}{Lagrange!polynôme}\index{polynôme!Lagrange} 
 \end{proof}
 
 \begin{corollary}[\cite{KXjFWKA}]
-    Soit \( \eK\) un corps et \( \phi\in\eM(n,\eK)^*\) telle que pour tout \( M,N\in \eM(n,\eK)\) on ait
+    Soient un corps \( \eK\) ainsi qu'une matrice \( \phi\in\eM(n,\eK)^*\) telle que pour tout \( M,N\in \eM(n,\eK)\) on ait
     \begin{equation}
         \phi(MN)=\phi(NM).
     \end{equation}
@@ -2886,7 +3355,7 @@ la dernière égalité découlant de l'invariance cyclique de la trace\footnote{
 \end{definition}
 
 \begin{proposition}     \label{PROPooHNQOooSzeEFG}
-    Soit un corps \( \eK\). Si \( G\) est un groupe dans \( \eM(n,\eK)\) (c'est à dire un groupe de matrices à coefficients dans \( \eK\)), alors l'application
+    Soit un corps \( \eK\). Si \( G\) est un groupe dans \( \eM(n,\eK)\) (c'est-à-dire un groupe de matrices à coefficients dans \( \eK\)), alors l'application
     \begin{equation}
         \begin{aligned}
                 \rho\colon G&\to \GL(\eK^n) \\
@@ -2897,3 +3366,195 @@ la dernière égalité découlant de l'invariance cyclique de la trace\footnote{
 \end{proposition}
 
 
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+\section{Somme directe d'espaces vectoriels}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Si \( V\) et \( W\) sont des espaces vectoriels, ce que nous notons \( V\oplus W\) n'est rien d'autre que l'espace vectoriel de l'ensemble \( V\times W\).
+
+\begin{propositionDef}[\cite{ooXISFooTypogf,BIBoo4034093}]       \label{DEFooJKAWooKkkkwm}
+    Si \( V\) et \( W\) sont des espaces vectoriels sur le même corps \( \eK\), alors les définitions
+    \begin{enumerate}
+        \item
+            \( (v_1,w_1)+(v_2,w_2)=(v_1+v_2,w_1+w_2)\)
+        \item
+            \( \lambda(v,w)=(\lambda v,\lambda w)\)
+    \end{enumerate}
+    donnent une structure d'espace vectoriel sur \( V\times W\). 
+
+    Cet espace sera noté \( V\oplus W\) et est appelé \defe{somme directe}{somme directe} de \( V\) et \( W\).
+\end{propositionDef}
+
+\begin{definition}[Sous-espaces en somme directe\cite{BIBooJADFooBZwsEa}]       \label{DEFooIJDNooRUDUYF}
+    Soient \( F_1\) et \( F_2\) deux sous-espaces vectoriels d'un espace vectoriel \( E\). Nous disons que \( F_1\) et \( F_2\) sont en \defe{somme directe}{somme directe} si, pour tout élément $u$ de la somme $F_1+F_2$, il existe un unique couple $(u_1, u_2)\in F_1\times F_2$ tel que $u = u_1 + u_2$.
+\end{definition} 
+
+\begin{lemma}[\cite{MonCerveau}]       \label{LEMooDQMQooInVVDY}
+    Soient un espace vectoriel \( E\) ainsi que des sous-espaces \( E_i\) qui ont la propriété que si \( \sum_{i=1}^p v_i=0\) avec \( v_i\in E_i\), alors \( v_i=0\) pour tout \( i\).
+
+    Alors la somme \( \sum_{i=1}^pE_i\) est directe.
+\end{lemma}
+
+\begin{proof}
+    Supposons qu'un élément de la somme ait deux décompositions et montrons que ces deux décompositions sont forcément les mêmes. Soient donc \( v_i,w_i\in E_i\) satisfaisant
+    \begin{equation}
+        \sum_iv_i=\sum_iw_i.
+    \end{equation}
+    Alors\footnote{Avez-vous vraiment envie de rédiger une récurrence en utilisant la définition \ref{DEFooNEVNooJlmJOC} de la somme ?} \( \sum_{i=1}^p(v_i-w_i)=0\), et l'hypothèse montre que \( v_i-w_i=0\) pour tout \( i\).
+\end{proof}
+
+\begin{proposition}[\cite{BIBooGTTEooGCUNkM}]       \label{PROPooCASNooEqisqa}
+    Soient un espace vectoriel de dimension finie \( V\) et deux sous-espaces \( M_1\) et \( M_2\) satisfaisant
+    \begin{enumerate}
+        \item
+            \( M_1\cap M_2=\{ 0 \}\),
+        \item
+            \( \dim(M_1)+\dim(M_2)\geq \dim(V)\).
+    \end{enumerate}
+    Alors \( V=M_1\oplus M_2\).
+\end{proposition}
+
+\begin{proof}
+    Soient une base \( \{ e_i \}_{i\in I}\) de \( M_1\) et \( \{ f_{\alpha} \}\) de \( M_2\). Nous commençons par prouver que la partie \( B=\{ e_i \}\cup \{ f_{\alpha} \}\) est libre.
+
+    Supposons en effet avoir des coefficients \( a_i\) et \( b_{\alpha}\) tels que
+    \begin{equation}
+        \sum_ia_ie_i+\sum_{\alpha}b_{\alpha}f_{\alpha}.
+    \end{equation}
+    Cela implique que \( \sum_ia_ie_i=-\sum_{\alpha}b_{\alpha}f_{\alpha}\). Or \( \sum_ia_ie_i\in M_1\) et \( -\sum_{\alpha}b_{\alpha}f_{\alpha}\in M_2\). Donc les éléments \( \sum_ia_ie_i\) et \( \sum_{\alpha}b_{\alpha}f_{\alpha}\) sont dans \( M_1\cap M_2=\{ 0 \}\). Nous avons alors les égalités
+    \begin{equation}
+        \sum_ia_ie_i=0
+    \end{equation}
+    et
+    \begin{equation}
+        \sum_{\alpha}b_{\alpha}f_{\alpha}=0.
+    \end{equation}
+    La première implique \( a_i=0\) pour tout \( i\) et la seconde implique \( b_{\alpha}=0\) pour tout \( \alpha\).
+
+    Donc \( B\) est une partie libre de \( V\) contenant \( \dim(M_1)+\dim(M_2)\geq \dim(V)\) éléments. La proposition \ref{PROPooVEVCooHkrldw}\ref{ITEMooZNLDooBISkJyBS} nous indique alors qu'en réalité \( \dim(M_1)+\dim(M_2)=\dim(V)\). Vu que \( B\) est une partie libre contenant \( \dim(V)\) éléments, c'est une base par la proposition \ref{PROPooVEVCooHkrldw}\ref{ITEMooSGGCooOUsuBs}.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Structure réelle}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{propositionDef}[\cite{enwiki:990936192,BIBoo4034093,MonCerveau}]     \label{DEFooCIFSooVmcNtE}
+    Soit un espace vectoriel \( V\) sur \( \eC\). Il existe une application \( \sigma\colon V\to V\) telle que
+    \begin{enumerate}
+        \item
+            \( \sigma^2=\sigma\) (involution)
+        \item 
+            Pour tout \( \alpha,\beta\in \eR\), \( f(\alpha x+\beta y)=\bar \alpha \sigma(x)+\bar \beta \sigma(y)\).
+    \end{enumerate}
+    Une telle application est une \defe{structure réelle}{structure réelle} sur \( V\).
+\end{propositionDef}
+
+\begin{proof}
+    La proposition \ref{PROPooHDCEooMhDjPi} nous permet de considérer une base \( \{ e_i \}_{i\in I}\) de \( V\). Alors nous définissons
+    \begin{equation}
+        \sigma\big( \sum_{i\in I}\lambda_ie_i \big)=\sum_{i\in I}\bar\lambda_ie_i.
+    \end{equation}
+    Notez que la somme est toujours finie.
+\end{proof}
+
+\begin{proposition}
+    Soit un espace vectoriel \( V\) sur \( \eC\) et une structure réelle\footnote{Définition \ref{DEFooCIFSooVmcNtE}.} \( \sigma\) sur \( V\). Nous posons
+    \begin{equation}
+        V_{\eR}=\{ v\in V\tq \sigma(v)=v \}.
+    \end{equation}
+    Alors
+    \begin{enumerate}
+        \item
+            La partie \( V_{\eR}\) est un espace vectoriel réel.
+        \item
+            Nous avons la décomposition en somme directe\footnote{Définition \ref{DEFooJKAWooKkkkwm}.}
+            \begin{equation}
+                V=V_{\eR}\oplus iV_{\eR}.
+            \end{equation}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    En plusieurs parties.
+    \begin{subproof}
+    \item[Espace vectoriel réel]
+        Si \( v,w\in V_{\eR}\), alors 
+        \begin{equation}
+            \sigma(v+w)=\sigma(v)+\sigma(w)=v+w,
+        \end{equation}
+        et si \( \lambda\in \eR\),
+        \begin{equation}
+            \sigma(\lambda x)=\lambda\sigma(x)=\lambda x.
+        \end{equation}
+        Donc \( V_{\eR}\) est un espace vectoriel réel.
+    \item[Première somme directe]
+        Nous définissons
+        \begin{subequations}
+            \begin{align}
+                V^+&=\{ v\in V\tq \sigma(v)=v \},\\
+                V^-&=\{ v\in V\tq \sigma(v)=-v \}
+            \end{align}
+        \end{subequations}
+        Nous prouvons que
+        \begin{equation}
+            \begin{aligned}
+                \psi\colon V^+\times V^-&\to V \\
+                a,b&\mapsto a+b 
+            \end{aligned}
+        \end{equation}
+        est un isomorphisme d'espaces vectoriels.
+
+        Vu que \( \psi\) est linéaire, il suffit de prouver qu'elle est bijective.
+        \begin{subproof}
+        \item[Surjectif]
+            Si \( v\in V\), alors en posant \( v_+=\frac{ 1 }{2}\big( v+\sigma(v) \big)\), \( v_-=\frac{ 1 }{2}\big( v-\sigma(v) \big)\), nous avons
+            \begin{equation}
+                \begin{aligned}[]
+                    v&=v_++v_-, & v_+&\in V^+, & v_-&\in V^-,
+                \end{aligned}
+            \end{equation}
+            et donc \( v=\psi(v_+,v_-)\).
+        \item[Injectif]
+            Supposons \( \psi(a,b)=\psi(\alpha,\beta)\). Alors \( a+b=\alpha+\beta\) et donc \( a-\alpha=\beta-b\). Vu que \( a-\alpha\in V^+\)  et \( \beta-b\in V^- \), nous savons que \( a-\alpha=\beta-b\in V^+\cap V^-\). Étant donné que \( V^+\cap V^-=\{ 0 \}\), nous avons \( a-\alpha=\beta-b=0\).
+    \end{subproof}
+    Nous avons donc la somme directe \( V=V^+\oplus V^-\).
+\item[Conclusion]
+    Par définition, \( V^+=V_{\eR}\). Il nous reste à voir que \( V^-=iV^+\). Nous faisons les inclusions dans les deux sens.
+    \begin{subproof}
+    \item[\( V^-\subset iV^+\)]
+        Soit \( v\in V^-\). Nous avons \( iv\in V^+\); en effet
+        \begin{equation}
+            \sigma(iv)=-i\sigma(v)=iv.
+        \end{equation}
+        Donc \( v=i(-iv)\) avec \( -iv\in V^+\).
+    \item[$iV^+\subset V^-$]
+        Soit \( v\in V^+\), et voyons que \( iv\in V^-\). En effet,
+        \begin{equation}
+            \sigma(iv)=-i\sigma(v)=-iv.
+        \end{equation}
+    \end{subproof}
+            \end{subproof}
+\end{proof}
+
+\begin{normaltext}
+    Lorsque nous avons une structure réelle \( \sigma\) sur un espace vectoriel complexe \( V\), nous écrivons \( V=V_{\eR}\oplus iV_{\eR}\) sans préciser dans la notation «\( V_{\eR}\)» que cet ensemble dépend du choix de \( \sigma\). En particulier si \( W\) est un sous-espace de \( V\), nous utiliserons la notation \( W_{\eR}\) relativement à la même involution que celle de \( V\).
+\end{normaltext}
+
+\begin{lemma}
+    Soit un espace vectoriel complexe \( V\) muni d'une structure réelle \( \sigma\). Si \( W\) est un sous-espace de \( V\) alors \( W_{\eR}=V_{\eR}\cap W\).
+\end{lemma}
+
+\begin{proof}
+    Par définition,
+    \begin{equation}
+        W_{\eR}=\{ w\in W\tq \sigma(w)=w \}.
+    \end{equation}
+    \begin{subproof}
+    \item[\( W_{\eR}\subset W\)]
+           C'est défini en tant que sous-ensemble.
+       \item[\( W_{\eR}\subset V_{\eR}\)]
+           Si \( w\in W_\eR\), alors \( \sigma(w)=w\). Mais cette égalité est précisément également l'égalité pour être dans \( V_{\eR}\).
+    \end{subproof}
+\end{proof}
+ 
+Vous remarquerez que ce lemme ne fonctionne que parce que nous avons choisi la même structure réelle sur \( W\) que sur \( V\).

@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2006-2019
+% Copyright (c) 2006-2021
 %   Laurent Claessens, Carlotta Donadello
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -106,7 +106,7 @@ pour tout $v\in\eR^n$. Par définition, $(\omega^{\sharp})^{\flat}=\omega$.
 \section{Différentielle}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Nous avons déjà donné une définition abstraite de la différentielle dans la définition \ref{DefDifferentiellePta}. Nous en voyons maintenant quelque motivations dans le cas de fonctions sur \( \eR^2\) ou \( \eR^n\).
+Nous avons déjà donné une définition abstraite de la différentielle dans la définition \ref{DefDifferentiellePta}. Nous en voyons maintenant quelques motivations dans le cas de fonctions sur \( \eR^2\) ou \( \eR^n\).
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Exemples introductifs}
@@ -307,8 +307,11 @@ La différentielle est une application linéaire. Elle possède donc une matrice
 
     Nous avons :
     \begin{equation}
-        \frac{ d^kf_{(a+h_1,b+h_2)}-d^kf_{(a,b)}-g^{(k+1)}(a)\alpha_{k+1}(h_1,h_2) }{ \| h \| }=
-        \frac{ g^{(k)}(a+h_1)\alpha_k-g^{(k)}(a)\alpha_k-g^{(k+1)}(a)h_1\alpha_k }{ \| h \| }.
+        \begin{aligned}[]
+            \frac{ d^kf_{(a+h_1,b+h_2)}-d^kf_{(a,b)}-g^{(k+1)}(a)\alpha_{k+1}(h_1,h_2) }{ \| h \| }\\
+            \qquad=
+            \frac{ g^{(k)}(a+h_1)\alpha_k-g^{(k)}(a)\alpha_k-g^{(k+1)}(a)h_1\alpha_k }{ \| h \| }.
+        \end{aligned}
     \end{equation}
     Cela est, pour chaque \( h\neq 0\), un élément \( V_k\), mais le coefficient \( \alpha_k\) se factorise de telle sorte que nous devons seulement calculer la limite (si elle existe)
     \begin{equation}
@@ -359,7 +362,8 @@ Nous avons donc \( (d\pr_i)_a=dx_i\) pour tout \( a\). Notons que les fonctions 
 \begin{equation}
     df_a=\sum_{i=1}^n\frac{ \partial f }{ \partial x_i }(a)dx_i.
 \end{equation}
-C'est ce que nous allons faire dans le corollaire~\ref{CORooXURPooQMKvBl}.
+C'est ce que nous allons faire dans le corolaire~\ref{CORooXURPooQMKvBl}.
+:5cnext
 
 \begin{example}
     Si $F\colon \eR^2\to \eR$ est une fonction $C^2$, sa différentielle est la forme
@@ -411,75 +415,18 @@ Nous mentionnerons la différentielle extérieure dans le cas de
         Théorème de Stockes~\ref{ThoATsPuzF}.
 \end{enumerate}
 
-%--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Fonctions composées}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Cette façon de voir la différentielle nous permet de jeter un nouveau regard sur la formule de différentiation des fonctions composées. Soient
-\begin{equation}
-    \begin{aligned}[]
-        f\colon \eR^p&\to \eR^n\\
-        g\colon \eR^n&\to \eR,
-    \end{aligned}
-\end{equation}
-et $h\colon \eR^p\to \eR$ définie par
-\begin{equation}
-    h(u)=h\big( f(u) \big)=(g\circ f)(u).
-\end{equation}
-Nous allons noter $x$ les coordonnées de $\eR^p$, $a$ un point de $\eR^p$ et $u$, un vecteur de $\eR^p$ accroché au point $a$. Pour $\eR^n$, les notations seront que les coordonnées sont $y$, $b$ est un point de $\eR^n$ et $v$ est un vecteur «accroché» au point $b$.
-
-Nous avons
-\begin{equation}
-    dg_b(v)=\sum_{i=1}^n\frac{ \partial g }{ \partial y_i }(b)dy_i(v).
-\end{equation}
-Ici $dy_i(v)$ signifie la $i$ème composante de $v$. C'est simplement $v_i$. Cette formule étant valable pour tout point $b\in\eR^n$ et pour tout vecteur $v$, nous pouvons l'écrire en particulier pour
-\begin{subequations}
-    \begin{numcases}{}
-        b=f(a)\\
-        v=df_a(u).
-    \end{numcases}
-\end{subequations}
-Cela donne
-\begin{equation}        \label{Eqdgfadfau}
-    dg_{f(a)}\big( df_a(u) \big)=\sum_{i=1}^n\frac{ \partial g }{ \partial y_i }\big( f(a) \big)dy_i\big( df_a(u) \big).
-\end{equation}
-Mais
-\begin{equation}
-    df_a(u)=\sum_{j=1}^p\frac{ \partial f }{ \partial x_j }(a)dx_j(u),
-\end{equation}
-donc la $i$ème composante de ce vecteur est
-\begin{equation}
-     \big( df_a(u)\big)_i=\sum_{j=1}^p\frac{ \partial f_i }{ \partial x_j }(a)dx_j(u).
-\end{equation}
-En remplaçant $dy_i\big( df_a(u) \big)$ par cela dans l'expression \eqref{Eqdgfadfau}, nous trouvons
-\begin{equation}
-    dg_{f(a)}\big( df_a(u) \big)=\sum_{i=1}^n\frac{ \partial g }{ \partial y_i }\big( f(a) \big)\sum_{j=1}^p\frac{ \partial f_i }{ \partial x_j }(a)dx_j(u).
-\end{equation}
-Nous pouvons vérifier que cela est la différentielle de $g\circ f$ au point $a$ appliquée au vecteur $u$. En effet
-\begin{equation}
-    d(g\circ f)_a(u)=\sum_{j=1}^p\frac{ \partial (g\circ f) }{ \partial x_j }(a)dx_j(u),
-\end{equation}
-tandis que, par la dérivation de fonctions composées,
-\begin{equation}        \label{EqDerCompofg}
-    \frac{ \partial (g\circ f) }{ \partial x_j }(a)=\sum_{i=1}^n\frac{ \partial g }{ \partial y_i }\big( f(a) \big)\frac{ \partial f_i }{ \partial x_j }(a).
-\end{equation}
-Au final, ce que nous avons prouvé est que
-\begin{equation}        \label{EQooWSIYooBmsBDU}
-    d(g\circ f)_a(u)=dg_{f(a)}\big( df_a(u) \big).
-\end{equation}
-
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Continuité, dérivabilité et différentiabilité}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Le théorème suivant reprend les principales propriétés d'une fonction différentiable. Il est à ne pas confondre avec la proposition~\ref{Diff_totale} qui dira que si les dérivées partielles sont continues sur un voisinage de $a$, alors $f$ est différentiable en $a$.
+Le théorème suivant reprend les principales propriétés d'une fonction différentiable. Il est à ne pas confondre avec le théorème \ref{THOooBEAOooBdvOdr} qui dira que si les dérivées partielles sont continues sur un voisinage de $a$, alors $f$ est différentiable en $a$.
 \begin{proposition}\label{diff1}\label{ThoRapPropDiffSi}
-    Si $f$ est différentiable au point $a\in \eR^n$ alors
+    Soit un espace vectoriel normé \( V\) et une fonction \( f\colon \eR^n\to V\). Si $f$ est différentiable au point $a\in \eR^n$ alors
     \begin{enumerate}
         \item
             elle est continue en \( a\),
         \item
-            elle admet une dérivée dans toutes les directions de \( \eR^m\),
+            elle admet une dérivée dans toutes les directions de \( \eR^n\),
 \item  toutes les dérivées directionnelles $\partial_uf(a)$ existent et nous avons l'égalité
 \begin{equation}        \label{EqDiffPartRap}
     \begin{aligned}
@@ -487,7 +434,7 @@ Le théorème suivant reprend les principales propriétés d'une fonction diffé
         u&\mapsto df_a(u)=\frac{ \partial f }{ \partial u }(a)=\sum_i \frac{ \partial f }{ \partial x_i }(a)u_i,
     \end{aligned}
 \end{equation}
-si les $u^i$ sont les composantes de $u$ dans la base canonique de $\eR^n$.
+si les $u^i$ sont les composantes de $u$ dans la base canonique \( \eR^n\).
 
     \end{enumerate}
 \end{proposition}
@@ -518,6 +465,18 @@ par la linéarité de $T$ et par l'égalité $\|tu\|_m=|t|\|u\|_m$ on obtient
 \lim_{t\to 0}\frac{f(a+tu)-f(a)}{|t|}= T(u).
 \]
 Donc $f$ est dérivable suivant le vecteur $u$ et $\partial_uf(a)=T(u)=df_a(u)$.
+\end{proof}
+
+\begin{corollary}[Différentielle et dérivée]       \label{CORooTBUMooHPncPH}
+    Soit une application différentiable \( f\colon \eR\to V\) où \( V\) est un espace vectoriel normé. Alors \( f'(u)=df_u(1)\).
+\end{corollary}
+
+\begin{proof}
+    En vertu de la proposition \ref{ThoRapPropDiffSi}, nous avons
+    \begin{equation}
+        df_u(1)=\Dsdd{ f(u+t1) }{t}{0}=f'(u).
+    \end{equation}
+    Nous avons utilisé le fait que pour une fonction sur \( \eR\), l'unique dérivée partielle est la dérivée normale.
 \end{proof}
 
 \begin{corollary}       \label{CORooXURPooQMKvBl}
@@ -579,18 +538,36 @@ La formule $df_a(u)=\Dsdd{ f(a+tu) }{t}{0}$ est bien utile pour calculer des dif
     \end{equation}
     alors $f$ est différentiable en $(a,b)$.
 \end{proposition}
-Dans cet énoncé nous avons écrit $d\big( (x,y),(a,b) \big)$ la distance entre $(x,y)$ et $(a,b)$, c'est-à-dire le nombre $\sqrt{(x-a)^2+(y-b)^2}$. Afin d'écrire l'équation \eqref{eqCritDifffabsrt} sous forme plus compacte, nous introduisons le vecteur
-\begin{equation}
-    \nabla f(a,b)=\begin{pmatrix}
-        \frac{ \partial f }{ \partial x }(a,b)    \\
-        \frac{ \partial f }{ \partial y }(a,b).
-    \end{pmatrix}
-\end{equation}
-L'équation \eqref{eqCritDifffabsrt} devient alors
-\begin{equation}        \label{EqdiffComp}
-    f(X)=f(P)+\nabla f(a,b)\cdot (X-P)+\| X-P \|\alpha\big( \| X-P \| \big).
-\end{equation}
-Le vecteur $\nabla f(a,b)$ est appelé le \defe{gradient}{gradient} de $f$ au point $(a,b)$.
+
+
+\begin{normaltext}
+    Dans cet énoncé nous avons écrit $d\big( (x,y),(a,b) \big)$ la distance entre $(x,y)$ et $(a,b)$, c'est-à-dire le nombre $\sqrt{(x-a)^2+(y-b)^2}$. Afin d'écrire l'équation \eqref{eqCritDifffabsrt} sous forme plus compacte, nous introduisons le vecteur
+    \begin{equation}
+        \nabla f(a,b)=\begin{pmatrix}
+            \frac{ \partial f }{ \partial x }(a,b)    \\
+            \frac{ \partial f }{ \partial y }(a,b).
+        \end{pmatrix}
+    \end{equation}
+    L'équation \eqref{eqCritDifffabsrt} devient alors
+    \begin{equation}        \label{EqdiffComp}
+        f(X)=f(P)+\nabla f(a,b)\cdot (X-P)+\| X-P \|\alpha\big( \| X-P \| \big).
+    \end{equation}
+    Le vecteur $(\nabla f)(a,b)$ est appelé le \defe{gradient}{gradient} de $f$ au point $(a,b)$.
+\end{normaltext}
+
+\begin{remark}
+    Nous avons introduit la notation \( \nabla f\) pour le gradient d'une fonction \( f\). Nous allons par la suite introduire \( \nabla\cdot F\) pour la divergence du champ de vecteurs \( F\) et \( \nabla\times F\) pour son rotationnel.
+
+    Toutes les formules pour \( \nabla f\), \( \nabla\cdot F\) et \( \nabla\times F\) peuvent facilement être mémorisées en pensant à \( \nabla\) comme étant le vecteur
+    \begin{equation}        \label{EQooQKGQooOPeFoo}
+        \nabla=\begin{pmatrix}
+            \partial_x    \\ 
+            \partial_y    \\ 
+            \partial_z    
+        \end{pmatrix}.
+    \end{equation}
+    Nous allons ici cependant seulement penser à \eqref{EQooQKGQooOPeFoo} comme un moyen mnémotechnique; nous ne donnons pas de définitions à «\( \nabla\)» tout seul.
+\end{remark}
 
 \begin{proposition} \label{PropExistDiffDeux}
     Soit $f$ une fonction de deux variables admettant des dérivées partielles $\partial_xf(x,y)$ et $\partial_yf(x,y)$ qui sont elles-mêmes des fonctions continues de $x$ et $y$. Alors la fonction $f$ est différentiable partout.

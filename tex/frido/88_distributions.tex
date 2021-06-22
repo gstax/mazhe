@@ -1,9 +1,47 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2018
+% Copyright (c) 2011-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
 Nous donnons ici une partie de la théorie sur les distributions. L'utilisation des distributions dans le cadre des équations différentielles est mise dans le chapitre sur les équations différentielles, section~\ref{SecTNgeNms}.
+
+\begin{proposition}[\cite{BIBooWINRooQSnfWf}] \label{PropAAjSURG}
+    Soient un ouvert \( \Omega\) de \( \eR\) et une fonction intégrable \( f\colon \big( \Omega,\Borelien(\Omega),\lambda \big)\to \eC\) telle que
+    \begin{equation}
+        \int_{\Omega}f(t)\varphi(t)dt=0
+    \end{equation}
+    pour toute fonction \( \varphi\in\swD(\Omega)\). Alors \( f=0\) presque partout sur \( \Omega\).
+\end{proposition}
+
+\begin{proof}
+    Nous commençons par prouver que \( f\) est nulle sur tout compact de \( \Omega\). Soit un compact \( K\) de \( \Omega\). Le lemme d'Urysohn \ref{LEMooECTNooKagaRU} nous donne une fonction \( \theta\) à support compact qui vaut \( 1\) sur \( K\).
+
+    Nous considérons une suite régularisante \( (\phi_k)\) de fonctions toujours strictement positives (par exemple celle du lemme \ref{LEMooTDWSooSBJXdv}). Vu que \( f\theta\) est à support compact, elle est dans \( L^p(\Omega)\) et le corolaire \ref{CORooQLELooUjzIoM} s'applique :
+    \begin{equation}
+        \phi_k*(\theta f)\to \theta f.
+    \end{equation}
+    Mais, \( x\) et \( k\) étant fixés, nous avons
+    \begin{equation}        \label{EQooIUIMooMTAHCY}
+        \big( \phi_k* (\theta f) \big)(x)=\int_{\eR}\phi_k(x-t)\theta(t)f(t).
+    \end{equation}
+    La fonction
+    \begin{equation}
+        t\mapsto \phi_k(x-t)\theta(t)
+    \end{equation}
+    étant à support compact, l'hypothèse à propos de \( f\) fait que l'intégrale \eqref{EQooIUIMooMTAHCY} est nulle :
+    \begin{equation}
+        \phi_k*(\theta f)=0
+    \end{equation}
+    pour tout \( k\). En prenant la limite \( k\to \infty\),
+    \begin{equation}
+        \theta f=0.
+    \end{equation}
+    Vu que \( \theta(x)=1\) pour tout \( x\in K\), nous avons \( f(x)=0\) pour tout \( x\in K\).
+
+    Nous avons démontré que \( f\) était nulle sur tout compact de \( \Omega\).
+
+    Nous considérons maintenant une suite exhaustive \( (K_n)\) de compacts (lemme \ref{LemGDeZlOo}). La fonction \( f\) est nulle sur chaque \( K_n\), et comme \( \Omega=\bigcup_{n=0}^{\infty}K_n\), la fonction \( f\) est nulle sur \( \Omega\).
+\end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 \section{Dérivée faible}
@@ -42,7 +80,6 @@ Nous donnons ici une partie de la théorie sur les distributions. L'utilisation 
 
     Cela n'est pas étonnant du fait qu'en théorie de l'intégration, les parties de mesure nulle ne comptent pas. De ce point de vue, \( \mtu_{\eQ}=0\). D'ailleurs cette égalité est vraie dans \( L^p\) (les classes et tout ça).
 \end{example}
-<++>
 
 \begin{example}[La fonction de Heaveside n'a pas de dérivée faible]     \label{EXooRVGHooTWOCtF}
     Nous montrons que la fonction
@@ -76,6 +113,10 @@ Nous donnons ici une partie de la théorie sur les distributions. L'utilisation 
 
         La fonction \( H\) n'a donc pas de dérivée faible. Notons cependant que cela ne présume en rien la possibilité d'accepter une dérivée au sens des distributions.
 \end{example}
+
+\begin{normaltext}
+    Nous verrons dans la proposition \ref{PROPooVUDVooAlwZzB} que la dérivée de Heaveside au sens des distributions est le delta de Dirac.
+\end{normaltext}
 
 \begin{example}[Dérivée faible de la valeur absolue]
     L'exemple de base de fonction continue qui n'est pas dérivable est la valeur absolue \( f(x)=| x |\) prise en \( x=0\). Nous allons montrer ici que la fonction
@@ -154,35 +195,72 @@ La notion de dérivée partielle faible est la même que l'autre. Histoire de no
 
 Soit \( \Omega\) un ouvert de \( \eR^d\). Le but de notre histoire est de définir une distribution comme étant un élément de l'espace dual (topologique, voir définition~\ref{DEFooKSDFooGIBtrG}) de l'espace \( \swD(\Omega)\) des fonctions \( C^{\infty}\) à support compact dans \( \Omega\). Pour ce faire nous devons voir un peu de topologie sur différents espaces de fonctions. Notons que l'espace \( \swD(\Omega)\) n'est pas réduit à la fonction nulle comme en témoigne l'exemple donné par l'équation \eqref{EqOBYNEMu}.
 
-Pour chaque \( K\) compact dans \( \Omega\) et multiindice \( \alpha\in \eN^d\) nous considérons sur \(  C^{\infty}(\Omega)\) la semi-norme suivante :
-\begin{equation}    \label{EQooZSQUooAJRIFe}
-    p_{K,m}(f)=\sum_{| \mu |\leq m}\| \partial^{\mu}f \|_{K,\infty}.
-\end{equation}
-%TODO : prouver que ce sont des semi-normes.
+\begin{propositionDef}     \label{PROPooVZFHooKfSpfO}      % TODOooXAOSooLBWFDs Voir si la DEFooZTKAooWYUyDa est très différence de ceci.
+    Pour chaque \( K\) compact dans \( \Omega\) et chaque entier \( m\), l'application
+    \begin{equation}  \label{EQooZSQUooAJRIFe}
+        \begin{aligned}
+            p_{K,m}\colon \ C^{\infty}(\Omega)&\to \eR \\
+            f&\mapsto  \sum_{| \mu |\leq m}\| \partial^{\mu}f \|_{K,\infty}.
+        \end{aligned}
+    \end{equation}
+    est une seminorme.
+\end{propositionDef}
+
 En particulier,
 \begin{equation}
     p_{K,0}(f)=\sup_{x\in K}| f(x) |=\| f \|_{\infty,K}.
 \end{equation}
 
+\begin{lemma}[Formule de Leibnitz\cite{BIBooYDMJooGDtdbo}]      \label{LEMooOLQTooEHJuBc}
+    Soient des fonctions \( f,g\) \( p\) fois dérivables sur \( \eR^d\). Alors pour tout multiindices \( \alpha\) de taille plus petite ou égale à \( p\), nous avons
+    \begin{equation}
+        \partial^{\alpha}(fg)=\sum_{\beta\leq \alpha}\binom{ \alpha }{ \beta }\partial^{\beta}f\partial^{\alpha-\beta}g.
+    \end{equation}
+    Attention : lisez \cite{BIBooYDMJooGDtdbo} pour savoir ce que signifie la notation \( \binom{ \alpha }{ \beta } \) dans le contexte des multiindices.
+\end{lemma}
+\index{Formule de Leibnitz}
+
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 \section{Topologie et convergence sur des espaces de fonctions}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+\begin{normaltext}
+    Ici, \( \Omega\) est un ouvert de \( \eR^d\), et \( K\) est un compact de \( \eR^d\). Toutes les fonctions sont sur \( \eR^d\) à valeurs dans \( \eC\). Nous rappelons que les seminormes \( p_{K,m}\) sont définies en \ref{PROPooVZFHooKfSpfO} et que la topologie engendrée par une seminorme est définie en \ref{DEFooZTKAooWYUyDa}.
+
+    En tant qu'ensemble, \( \swD(\Omega)\) est l'ensemble des fonctions de classe \(  C^{\infty}\) sur \( \eR^d\) et dont le support est un compact dans \( \Omega\). L'ensemble \( \swD(K)\) est l'ensemble des fonctions de classe \(  C^{\infty}\) sur \( \eR^d\) et dont le support est un compact dans \( K\).
+\end{normaltext}
+
 \begin{definition}  \label{DefFGGCooTYgmYf}
-Les topologies que nous allons considérer sont :
+    Les topologies que nous allons considérer sont :
 \begin{enumerate}
     \item
-        Sur \(  C^{\infty}(\Omega)\), la topologie des semi-normes \( p_{K,m}\) (avec \( K\) et \( m\) comme paramètres).
+        Sur \(  C^{\infty}(\Omega)\), la topologie des seminormes \( p_{K,m}\) de la définition \ref{PROPooVZFHooKfSpfO} où \( K\) parcours les compacts de \( \Omega\) et \( m\) parcours \( \eN\).
+
+    \item       \label{ITEMooIZWSooOoIVWx}
+        Sur \( \swD(\Omega)\), la topologie induite de \(  C^{\infty}(A)\).
     \item
-        Sur \( \swD(K)\), la topologie des semi-normes \( p_{K,m}\) (avec seulement \( m\) comme paramètre).
-    \item
-        Sur \( \swD(\Omega)\), la topologie induite de \(  C^{\infty}(\Omega)\).
+        Sur \( \swD(K)\), la topologie des \( \{ p_{K,m} \}\) où seul \( m\) est variable.
 \end{enumerate}
 \end{definition}
 \index{topologie!sur $ C^{\infty}(\Omega)$ }
 \index{topologie!sur $ \swD(K)$ }
 \index{topologie!sur $ \swD(\Omega)$ }
+
 Cela n'est pas très explicite, mais heureusement nous n'aurons souvent pas besoin de plus que de la notion de convergence dans \( \swD'(\Omega)\). Rappelons que la topologie d'un espace donne la notion de convergence par la définition~\ref{DefXSnbhZX}.
+
+\begin{probleme}
+    Lorsque \( K\) est un compact dans l'ouvert \( \Omega\), je vois trois topologies possibles.
+    \begin{enumerate}
+        \item
+            La topologie induite de \( \swD(\Omega)\).
+        \item       \label{ITEMooIKPQooYDnAGU}
+            La topologie des seminormes \( \{ p_{K,m} \}\) avec \( m\in \eN\) et \( K\) fixé.
+        \item       \label{ITEMooFENRooCzXxfH}
+            La topologie des seminormes \( \{ p_{K',m} \}\) avec \( m\in \eN\) et \( K'\) parcourant les compacts dans \( K\).
+    \end{enumerate}
+    Je n'ai aucune idée de savoir si ces trois topologies sont identiques. Ça m'étonnerait que les topologies \ref{ITEMooIKPQooYDnAGU} et \ref{ITEMooFENRooCzXxfH} soient identiques.
+\end{probleme}
 
 \begin{lemma}[Convergence dans \( \swD(K)\)]    \label{LemXXwDjui}
     Si \( \alpha\) est un multiindice et si \( \varphi_n\stackrel{\swD(K)}{\longrightarrow}\varphi\), alors nous avons
@@ -264,7 +342,13 @@ Cela n'est pas très explicite, mais heureusement nous n'aurons souvent pas beso
 %\end{definition}
 
 \begin{proposition} \label{PropQAEVcTi}
-    Si \( K\) est compact dans \( \Omega\), l'espace \( \swD(K)\) est métrique et complet.
+    Soit un compact \( K\) de \( \Omega\).
+    \begin{enumerate}
+        \item
+           L'espace \( \swD(K)\) est complet.
+        \item
+            L'espace \( \swD(K)\) est métrique.
+    \end{enumerate}
 \end{proposition}
 
 \begin{proof}
@@ -318,7 +402,7 @@ Cela n'est pas très explicite, mais heureusement nous n'aurons souvent pas beso
                     \begin{equation}
                         p_k(\varphi_1-\varphi_2)=p_k\big( -(\varphi_2-\varphi_1) \big)=p_l(\varphi_2-\varphi_1)
                     \end{equation}
-                    en utilisant la propriété~\ref{ItemSHnimhDii} de la définition~\ref{DefPNXlwmi} de semi-norme.
+                    en utilisant la propriété~\ref{ItemSHnimhDii} de la définition~\ref{DefPNXlwmi} de seminorme.
                 \item
                     Nous avons
                     \begin{equation}
@@ -328,7 +412,7 @@ Cela n'est pas très explicite, mais heureusement nous n'aurons souvent pas beso
             \end{enumerate}
         \end{subproof}
 \end{proof}
-Notons que la proposition~\ref{PropLOwUvCO} nous dit que \( \swD(K)\) est complet tout autant pour la topologie des semi-normes que pour celle de la distance que nous venons de décrire. Ces deux topologies sont les mêmes. Étant métrique et complet, l'espace \( \swD(\Omega)\) et donc de Baire par le théorème~\ref{ThoBBIljNM}. Ce qui est bien avec ces deux topologies identiques c'est qu'on peut utiliser la propriété de Baire même en ne parlant que des semi-normes.
+Notons que la proposition~\ref{PropLOwUvCO} nous dit que \( \swD(K)\) est complet tout autant pour la topologie des seminormes que pour celle de la distance que nous venons de décrire. Ces deux topologies sont les mêmes. Étant métrique et complet, l'espace \( \swD(\Omega)\) et donc de Baire par le théorème~\ref{ThoBBIljNM}. Ce qui est bien avec ces deux topologies identiques c'est qu'on peut utiliser la propriété de Baire même en ne parlant que des seminormes.
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Distributions}
@@ -347,12 +431,12 @@ Le théorème suivant donne quelques façons de vérifier qu'une forme linéaire
         \item
             \( T\) est continue.
         \item   \label{ItemSPvoijoii}
-            Pour tout compact \( K\subset \Omega\) il existe \( m\in \eN\) et \( C\geq 0\) tel que pour tout \( \varphi\in\swD(K)\) nous ayons
+            Pour tout compact \( K\subset \Omega\) il existe \( m_K\in \eN\) et \( C_K\geq 0\) tels que pour tout \( \varphi\in\swD(K)\) nous ayons
             \begin{equation}
-                \big| T(\varphi) \big|\leq C p_{m,K}(\varphi)
+                \big| T(\varphi) \big|\leq C_K p_{m_K,K}(\varphi)
             \end{equation}
-            où \( p_{m,K}\) est la semi-norme donnée en \eqref{EQooZSQUooAJRIFe}.
-        \item
+            où \( p_{m,K}\) est la seminorme donnée en \eqref{EQooZSQUooAJRIFe}.
+        \item       \label{ITEMooBXFSooYtAXjy}
             \( T\) est séquentiellement continue sur \( \swD(\Omega)\).
         \item
             \( T\) est séquentiellement continue en \( 0\).
@@ -363,7 +447,7 @@ Le théorème suivant donne quelques façons de vérifier qu'une forme linéaire
 Un certain nombre d'ouvrages prennent le point~\ref{ItemSPvoijoii} comme la définition d'une distribution.
 
 \begin{definition}[Topologie sur \( \swD'(\Omega)\)]        \label{DefASmjVaT}
-    Nous munissons l'espace \( \swD'(\Omega)\) de la \defe{topologie \( *\)-faible}{topologie!$*$-faible}, c'est-à-dire celle de la famille de semi-normes
+    Nous munissons l'espace \( \swD'(\Omega)\) de la \defe{topologie \( *\)-faible}{topologie!$*$-faible}, c'est-à-dire celle de la famille de seminormes
     \begin{equation}
         \begin{aligned}
             p_{\varphi}\colon \swD'(\Omega)&\to \eR \\
@@ -372,7 +456,7 @@ Un certain nombre d'ouvrages prennent le point~\ref{ItemSPvoijoii} comme la déf
     \end{equation}
     avec \( \varphi\in\swD(\Omega)\).
 \end{definition}
-Oui, c'est bien une famille de semi-normes indicée par l'ensemble \( \swD(\Omega)\). Il n'y en a donc a priori pas du tout une quantité dénombrable.
+Oui, c'est bien une famille de seminormes indicée par l'ensemble \( \swD(\Omega)\). Il n'y en a donc à priori pas du tout une quantité dénombrable.
 
 \begin{proposition}[Convergence au sens des distributions]  \label{PropEUIsNhD}
     Nous avons \( T_n\stackrel{\swD'(\Omega)}{\longrightarrow}T\) si et seulement si \( T_n(\varphi)\to T(\varphi)\) pour tout \( \varphi\in\swD(\Omega)\).
@@ -486,6 +570,45 @@ Le lemme suivant montre une compatibilité entre la dérivée des distributions,
     Nous avons utilisé la définition \eqref{EQooMRZUooFoqPqv} de la dérivée faible.
 \end{proof}
 
+Nous avons déjà vu dans l'exemple \ref{EXooRVGHooTWOCtF} que la fonction de Heaveside n'a pas de dérivée faible. Nous allons à présent voir que cette fonction a une dérivée au sens des distributions. Intuitivement, la fonction de Heaveside a une dérivée nulle partout sauf en \( x=0\) où sa dérivée serait infinie; nous nous attendons à un delta de Dirac. 
+    
+\begin{proposition}     \label{PROPooVUDVooAlwZzB}
+    La dérivée de la fonction de Heaveside
+    \begin{equation}
+        \begin{aligned}
+            H\colon \eR&\to \eR^+ \\
+            x&\mapsto \begin{cases}
+                0    &   \text{si } x\leq 0\\
+                1    &    \text{si }x>0
+            \end{cases}
+        \end{aligned}
+    \end{equation}
+    est le delta de Dirac.
+\end{proposition}
+    
+\begin{proof}
+    Par définition, la dérivée de \( H\) au sens des distributions est la distribution \( H'\) qui fait
+    \begin{equation}
+        H'(\varphi)=-\langle H, \varphi'\rangle 
+    \end{equation}
+    pour tout élément \( \varphi\in\swD(\eR)\). Un petit calcul :
+    \begin{subequations}
+        \begin{align}
+            -\langle H, \varphi'\rangle &=-\int_{\eR}H(t)\varphi'(t)dt\\
+            &=-\int_{0}^{\infty}\varphi'(t)dt       \label{SUBEQooMRMBooEGeDra}\\
+            &=-\lim_{x\to \infty} \int_0^x\varphi'(t)dt     \label{SUBEQooZDSDooTbzgWD}\\
+            &=-\lim_{x\to \infty} \big( \varphi(x)-\varphi(0) \big)     \label{SUBEQooSUAHooOmjgcr}\\
+            &=\varphi(0).
+        \end{align}
+    \end{subequations}
+    Justifications :
+    \begin{itemize}
+    \item Pour \eqref{SUBEQooMRMBooEGeDra}, c'est que \( H(t)=0\) pour \( t\in \mathopen] -\infty , 0 \mathclose[\).
+        \item Pour \eqref{SUBEQooZDSDooTbzgWD}, c'est le lemme \ref{LEMooMUHWooZPbMDb}.
+    \item Pour \eqref{SUBEQooSUAHooOmjgcr}, c'est le corolaire \ref{CorMUIooXREleR}.
+    \end{itemize}
+\end{proof}
+
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Ordre et support d'une distribution}
 %---------------------------------------------------------------------------------------------------------------------------
@@ -530,7 +653,7 @@ Pour la proposition suivante, on peut se remémorer la définition~\ref{DefFGGCo
     \begin{equation}
         \supp(\phi)\subset\bigcup_{i=1}^pV_{x_i}.
     \end{equation}
-    Nous prenons une partition de l'unité\footnote{Lemme~\ref{LemGPmRGZ}.} subordonnée à ce recouvrement. C'est-à-dire des fonctions \( \chi_i\in\swD(V_{x_i})\) telles que pour tout \( x\in\supp(\phi)\),
+    Nous prenons une partition de l'unité\footnote{Théorème \ref{THOooQFCQooSlgLpz}.} subordonnée à ce recouvrement. C'est-à-dire des fonctions \( \chi_i\in\swD(V_{x_i})\) telles que pour tout \( x\in\supp(\phi)\),
     \begin{equation}
         \sum_{i=1}^p\chi_i(x)=1.
     \end{equation}
@@ -649,6 +772,760 @@ Pour la proposition suivante, on peut se remémorer la définition~\ref{DefFGGCo
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{L'espace \texorpdfstring{$  C^{\infty}(\eR,\swD'(\eR^d))$}{C(R,D')}}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\label{SecTEgDVWO}
+
+D'abord parlons un peu de continuité en recopiant la proposition~\ref{PropVKSNflB} dans notre contexte.
+\begin{proposition}     \label{PropIPlKQBa}
+    Soient \( I\) un intervalle ouvert de \( \eR\) et \( u\colon I\to \swD'(\eR^d)\) une fonction continue. Alors
+    \begin{enumerate}
+        \item   \label{ItemYAhnNhBi}
+            Pour tout \( \varphi\in\swD(\eR^d)\), l'application \( t\mapsto u_t(\varphi)\) est continue.
+        \item
+            Pour tout \( \varphi\in\swD(\eR^d)\), nous avons la limite
+            \begin{equation}
+                \lim_{t\to t_0} u_t(\varphi)=u_{t_0}(\varphi).
+            \end{equation}
+        \item
+            Nous avons la limite dans \( \swD'(\eR^d)\)
+            \begin{equation}
+                \lim_{t\to t_0} u_t=u_{t_0}.
+            \end{equation}
+    \end{enumerate}
+\end{proposition}
+En ce qui concerne la définition de l'espace \( C^{\infty}(I,\swD'(\eR^d))\)\nomenclature[Y]{\(  C^{\infty}(I,\swD'(\eR^d))\)}{fonctions à valeurs dans les distributions}, c'est la définition~\ref{DefDZsypWu}. Grâce au point~\ref{ItemYAhnNhBi} de la proposition~\ref{PropIPlKQBa}, nous retenons que la propriété fondamentale d'une application \( T\in C^k\big( I,\swD'(\Omega) \big)\) est que pour tout \( \varphi\in(\Omega)\), l'application
+\begin{equation}
+    \begin{aligned}
+         I&\to \eC \\
+        t&\mapsto T_t(\varphi)
+    \end{aligned}
+\end{equation}
+est de classe \( C^k\).
+
+\begin{proposition} \label{PropOTlWzog}
+    Soit \( (T_t)\in C^0\big( I,\swD'(\Omega) \big)\) et \( \psi\in\swD(I\times \Omega)\). Alors l'application
+    \begin{equation}
+        t\mapsto T_t\big( \psi(t,.) \big)
+    \end{equation}
+    est continue sur \( I\).
+\end{proposition}
+
+\begin{proof}
+    La fonction dont nous voulons prouver la continuité est une fonction \( \eR\to\eR\); il est donc loisible de se contenter de la continuité séquentielle. Soient \( t_0\in I\) et \( (t_j)\) une suite dans \( I\) convergeant vers \( t_0\). Nous posons \( U_j=T_{t_j}\) et \( \psi_j=\psi\big( t_j,. \big)\). Par hypothèse de continuité de \( (T_t)\) nous avons \( U_j\stackrel{\swD'(\Omega)}{\longrightarrow}T_{t_0}\). D'autre part le support de \( \psi\) étant compact nous avons \( \supp(\psi)\subset \mathopen[ c , d \mathclose]\times K\) où \( \mathopen[ c , d \mathclose]\subset I\) et \( K\) est compact dans \( \Omega\). Par conséquent nous avons aussi \( \supp(\psi_j)\subset K\).
+
+    Affin d'alléger les notations notons \( \tilde \psi(x)=\psi(t_0,x)\). Pour tout multiindice \( \alpha\) et pour tout \( j\) nous avons
+    \begin{equation}
+        p_{\alpha}(\psi_i-\tilde \psi)=\Big|  \partial^{\alpha}\psi(t_j,x)-\partial^{\alpha}\psi(t_0,x)    \Big|\leq | t_j-t_0 |\sup_{\substack{t\in\mathopen[ c , d \mathclose]\\x\in K}}| \partial_t\partial^{\alpha}\psi(t,x) |\to 0.
+    \end{equation}
+    Nous avons donc la convergence
+    \begin{equation}
+        \psi_j\stackrel{\swD(K)}{\longrightarrow}\psi(t_0,.).
+    \end{equation}
+
+    Étant donné que \( U_j\stackrel{\swD'(\Omega)}{\longrightarrow}T_{t_0}\) et \( \psi_j\stackrel{\swD(\Omega)}{\longrightarrow}\tilde \psi\), le point~\ref{ItemAEOtOMLiii} du corolaire~\ref{CorPGwLluz} nous donne la convergence
+    \begin{equation}
+        U_j(\psi_j)\to T_{t_0}(\tilde \psi)
+    \end{equation}
+    dans \( \eC\). Cela est bien la continuité de la fonction \( t\mapsto T_t\big( \psi(t,.) \big)\).
+\end{proof}
+
+
+\begin{proposition}[\cite{GQYneyj}] \label{PropLKtBsVi}
+    Soit \( (T_t)\in C^0\big( I,\swD'(\Omega) \big)\). Nous définissons l'application \( T\colon \swD(\Omega)\to \eC\) par la formule
+    \begin{equation}
+       T(\psi)=\int_I T_t\big( \psi(t,.) \big)\,dt
+    \end{equation}
+    pour tout \( \psi\in\swD(I\times \Omega)\). Alors \( T\in \swD'(I\times \Omega)\).
+\end{proposition}
+
+\begin{proof}
+    La proposition~\ref{PropOTlWzog} nous indique que la fonction \( t\mapsto T_t\big( \psi(t,.) \big)\) est continue. Étant donné qu'elle est seulement non nulle sur un compact, l'intégrale
+    \begin{equation}
+        \int_IT_t\big( \psi(t,.) \big)dt
+    \end{equation}
+    a un sens et est finie. L'application \( T\colon \swD(I\times \Omega)\to \eC\) ainsi définie est linéaire. Il reste à voir qu'elle est continue. Pour cela nous allons utiliser le théorème~\ref{ThoVDDBnVn}\ref{ItemSPvoijoii} qui nous dit que nous pouvons nous fixer un compact \( \mathopen[ c , d \mathclose]\times K\subset I\times\Omega\) et considérer \( \psi\in \swD\big( \mathopen[ c , d \mathclose]\times K \big)\).
+
+    Soit, pour commencer, donnée une application \( \varphi\in\swD(K)\). L'application \( t\mapsto T_t(\varphi)\) est continue et non nulle sur le  et il existe donc \( C_{\varphi}>0\) tel que
+    \begin{equation}
+        | T_t(\varphi) |\leq C_{\varphi}
+    \end{equation}
+    pour tout \( t\in\mathopen[ c , d \mathclose]\).
+
+    Nous voulons utiliser le théorème de Banach-Steinhaus dans sa version~\ref{ThoNBrmGIg} sur la famille d'applications paramétrée par \( u\in\mathopen[ c , d \mathclose]\) :
+    \begin{equation}        \label{EqBEKoqMb}
+        \begin{aligned}
+            U_u\colon \swD\big( \mathopen[ c , d \mathclose]\times K \big)&\to \eR \\
+            \psi&\mapsto T_u\big( \psi(u,.) \big).
+        \end{aligned}
+    \end{equation}
+    Commençons par prouver que cela est une application continue pour chaque \( u\). Ce sera le cas si la projection
+    \begin{equation}
+        \begin{aligned}
+            \pr\colon \swD\big( \mathopen[ c , d \mathclose]\times K \big)&\to \swD(K) \\
+            \psi&\mapsto \psi(u,.)
+        \end{aligned}
+    \end{equation}
+    est continue. Pour cela nous notons \( P_{kl}\) la seminorme sur \( \swD\big( \mathopen[ c , d \mathclose]\times K \big)\) donnée par
+    \begin{equation}
+        P_{k,l}(\psi)=\sum_{n\leq k}\sum_{| \alpha |\leq l}\sup_{\substack{t\in\mathopen[ c , d \mathclose]\\x\in K}}\big| \partial_t^n\partial^{\alpha}\psi(t,x) \big|.
+    \end{equation}
+    Nous montrons que \( \pr\) est séquentiellement continue; étant donné que les topologies sur \( \swD(K)\) et \( \swD\big( \mathopen[ c , d \mathclose]\times K \big)\) sont données par des métriques (proposition~\ref{PropQAEVcTi}), cela suffit pour assurer la continuité grâce à la proposition~\ref{PropXIAQSXr}. Montrons que si \( \psi_n\stackrel{\swD\big( \mathopen[ c , d \mathclose]\times K \big)}{\longrightarrow}0\), alors \( \pr(\psi_n)\stackrel{\swD(K)}{\longrightarrow}0\). Pour cela nous remarquons que
+    \begin{subequations}
+        \begin{align}
+            p_j\big( \pr(\psi) \big)&=\sum_{| \alpha |\leq j}\sup_{x\in K}| \partial^{\alpha}\psi(u,x) |\\
+            &\leq \sum_{| \alpha |\leq j}\sup_{t\in\mathopen[ c , d \mathclose]}\sup_{x\in K}| \partial^{\alpha}\psi(t,x) |\\
+            &=P_{0,j}(\psi).
+        \end{align}
+    \end{subequations}
+    Par conséquent
+    \begin{equation}
+        p_j\big( \pr(\psi_n) \big)\leq P_{0,j}(\psi_n)\to 0
+    \end{equation}
+    où nous avons utilisé la proposition~\ref{PropQPzGKVk}. Utilisant cette même proposition à l'envers, nous déduisons que \( \pr(\psi_n)\stackrel{\swD(K)}{\longrightarrow}0\). Les applications \( U_u\) sont donc continues; elles sont également bornées parce que si \( \psi\in\swD\big( \mathopen[ c , d \mathclose]\times K \big) \) nous avons
+    \begin{equation}
+        \sup_{u \in\mathopen[ c , d \mathclose]}\big| U_u(\psi) \big|=\sup_u \big| T_u\big( \psi(u,.) \big) \big|,
+    \end{equation}
+    et la continuité déjà évoquée, sur le compact \( \mathopen[ c , d \mathclose]\), nous dit que cette quantité est finie. Le théorème de Banach-Steinhaus peut maintenant être appliqué et il existe \( C>0\) et \( k,l\in \eN\) tels que pour tout \( \psi\in\swD\big( \mathopen[ c , d \mathclose]\times K \big)\),
+    \begin{equation}
+        \big| U_u(\psi) \big|\leq C P_{k,l}(\psi)=C\sum_{| \alpha |\leq k}\sum_{n\leq l}\sup_{t,x}\big| \partial_t^n\partial^{\alpha}\psi(t,x) \big|\leq C\sum_{| \alpha |+n\leq k+l}\sup_{t,x}\big| \partial_t^n\partial^{\alpha}\psi(t,x) \big|.
+    \end{equation}
+    Quelques remarques
+    \begin{itemize}
+        \item Nous n'avons pas mis de maximum devant le supremum (alors que la conclusion \eqref{EqIFNGhtr} en demande) parce que dans le cas des seminormes \( P_{kl}\), c'est toujours celle avec \( k\) et \( l\) le plus grand possible qui sont les plus grandes parce qu'elles sont des sommes emboitées les unes les autres.
+        \item La fusion de deux sommes est bien une majoration parce qu'il y a plus de termes dans la seconde que dans la première.
+        \item La quantité la plus à droite est (à part le \( C\)) ce que nous pouvons noter \( P_{k+l}(\psi)\) : c'est bien une des seminormes associées à l'espace de dimension \( d+1\).
+    \end{itemize}
+    Nous majorons maintenant \( T(\psi)\) par
+    \begin{equation}
+            \big| T(\psi) \big|\leq \int_c^d\big| T_t\big( \psi(t,.) \big) \big|dt
+            =\int_c^d\big|   U_t(\psi) \big|dt
+            \leq C| d-c |P_{k+l}(\psi).
+    \end{equation}
+    Maintenant le théorème~\ref{ThoVDDBnVn}\ref{ItemSPvoijoii} appliqué à l'ouvert \( I\times \Omega\) et avec \( \psi\) au lieu de \( \varphi\) nous informe que \( T\in\swD(I\times K)\).
+\end{proof}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Dérivation}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Quelques propriétés de dérivation des fonctions \( I\to \swD(\Omega)\) seront directement énoncées et démontrées dans le cas des distributions tempérées. Les résultats~\ref{PropGKoPbko} et~\ref{PropUDkgksG} seront a fortiori valables si nous remplaçons \( \swS\) par \( \swD\).
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Une équation de distribution}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Nous allons étudier l'équation
+\begin{equation}    \label{EqLLTPooJHUVvU}
+    (x-x_0)^{\alpha}u=0
+\end{equation}
+pour \( u\in\swD'(\eR)\) et \( \alpha\in \eN\) est donné fixé. Notons tout de suite que \eqref{EqLLTPooJHUVvU} est un petit abus de notation pour dire qu'en vertu de la définition~\ref{DefZVRNooDXAoTU} du produit d'une distribution par une fonction, pour tout \( \phi\in\swD(\eR)\), nous avons \( u\Big( x\mapsto (x-x_0)\phi(x) \Big)=0\).
+
+\begin{lemma}[\cite{PAXrsMn}]       \label{LemWIGKooQpGXoI}
+    Soit \( \alpha\in \eN\). Une solution à l'équation
+    \begin{equation}        \label{EqKVNEooJNwsPc}
+        (x-x_0)^{\alpha}u=0
+    \end{equation}
+    est une distribution à support dans \( \{ x_0 \}\) et d'ordre fini.
+\end{lemma}
+
+\begin{proof}
+    Nous commençons par prouver que \( u\) est une solution de \eqref{EqKVNEooJNwsPc} si et seulement si\footnote{En réalité nous n'aurons besoin que de la condition nécessaire, en particulier pour le théorème~\ref{ThoRDUXooQBlLNb}.} \( \langle u, \phi\rangle =0\) pour tout \( \phi\in\swD\) telle que
+    \begin{equation}    \label{EqYLIPooYByzwC}
+        \phi(x_0)=\ldots=\partial^{\alpha-1}\phi(x_0)=0.
+    \end{equation}
+    \begin{subproof}
+    \item[Condition nécéssaire]
+    Supposons que \( u\) soit une solution. Alors le corolaire~\ref{CorQBXHooZVKeNG} du théorème de Hadamard donne \( \psi\in\swD(\eR)\) telle que
+        $\phi(x)=(x-x_0)^{\alpha}\psi(x)$.
+    Dans ce cas, si \( u\) est solution de \eqref{EqKVNEooJNwsPc}, alors
+    \begin{equation}
+        0=\langle (x-x_0)^{\alpha}u, \psi\rangle =\langle u, (x-x_0)^{\alpha}\psi(x)\rangle =\langle u, \phi\rangle .
+    \end{equation}
+    Nous avons vu que si \( u\) est solution, alors \( \langle u, \phi\rangle =0\) pour tout \( \phi\) satisfaisant la condition \eqref{EqYLIPooYByzwC}.
+
+\item[Condition suffisante]
+    Supposons maintenant l'inverse : \( u\) est une distribution s'annulant sur toute fonction \( \phi\in\swD'\) satisfaisant \eqref{EqYLIPooYByzwC}. Nous allons alors prouver que \( u\) est une solution. Soit donc \( \psi\in \swD\) et calculons
+    \begin{equation}
+        \langle (x-x_0)u, \psi\rangle =\langle u, (x-x_0)\psi\rangle =0
+    \end{equation}
+    parce que la fonction \( (x-x_0)\psi(x)\) vérifie la condition \eqref{EqYLIPooYByzwC}.
+    \end{subproof}
+
+    Nous passons maintenant au cœur de la preuve : nous supposons que \( u\) est une solution. Si le support de \( \phi\) est contenu dans \( \eR\setminus\{ x_0 \}\) alors \( \phi\) est nulle dans un voisinage de \( x_0\) (et donc \( \partial^k\phi=0\) pour tout \( k\)) et \( \langle u, \phi\rangle =0\). Autrement dit, pour  tout \( \phi\in\swD\big( \eR\setminus\{ x_0 \} \big)\) nous avons \( \langle u, \phi\rangle =0\), ce qui signifie que \( \supp(u)\cap\big( \eR\setminus\{ x_0 \} \big)=\emptyset\) ou encore que \( \supp(u)=\{ x_0 \}\).
+
+    Maintenant que \( u\) a un support compact, la proposition~\ref{PropZLUEooHcVxQj} nous indique qu'elle est d'ordre fini.
+\end{proof}
+
+\begin{theorem}[\cite{PAXrsMn}]     \label{ThoRDUXooQBlLNb}
+    Soit \( \alpha\in \eN\) et l'équation
+    \begin{equation}        \label{EqDONTooKPfDWU}
+        (x-x_0)^{\alpha}u=0
+    \end{equation}
+    pour \( u\in\swD'(\eR)\). Les solutions sont les combinaisons linéaires des dérivées de \( \delta_{x_0}\) jusqu'à la \( \alpha\)\ieme exclue.
+\end{theorem}
+
+\begin{proof}
+    D'abord montrons que les \( \partial^i\delta_{x_0}\) sont des solutions. Avec les définition~\ref{DefZVRNooDXAoTU} et~\ref{PropKJLrfSX} des dérivées de distributions et de leur produits avec des fonctions\footnote{Comme souvent, dans l'expression suivante, il y a un abus de notation parce que \( x\) est une variable muette : il faudrait écrire «\( x\mapsto\)» au début de la grande parenthèse.},
+    \begin{equation}
+        (x-x_0)^{\alpha}\partial^i\delta_{x_0}(\phi)=\delta_{x_0}\Big( \partial^i\big( (x-x_0)^{\alpha}\phi(x) \big) \Big)
+    \end{equation}
+    Si \( i<\alpha\) alors dans chaque terme de Leibnitz\footnote{Lemme \ref{LEMooOLQTooEHJuBc}.}, il y aura un facteur \( (x-x_0)\), et la prise de \( \delta_{x_0}\) annulera. Si par contre \( i\geq \alpha\) alors il y aura le terme
+    \begin{equation}
+        \binom{ i }{ \alpha }\partial^{\alpha}\big( (x-x_0)^{\alpha} \big)\partial^{i-\alpha}=\binom{ i }{ \alpha }\alpha!(\partial^{i-\alpha}\phi)(x_0)
+    \end{equation}
+    qui est le seul terme contenant \( (\partial^{i-\alpha}\phi)(x_0)\). Il suffit alors de choisir \( \phi\in\swD(\eR) \) de sorte que
+    \begin{equation}
+        (\partial^k\phi)(x_0)=\begin{cases}
+            0    &   \text{si } k\neq i-\alpha\\
+            1    &    \text{si } k=i-\alpha
+        \end{cases}
+    \end{equation}
+    et alors on est certain que le tout n'est pas nul, et donc que \( (x-x_0)^{\alpha}(\partial^i\delta_{x_0})\neq 0\).
+
+    Jusqu'ici nous avons prouvé que \( \partial^i\delta_{x_0}\) est solution si et seulement si \( 0\leq i<\alpha\).
+
+    Il faut encore prouver que les solutions sont toutes des combinaisons linéaires de dérivées de delta de Dirac centrées en \( x_0\). Pour cela nous invoquons d'abord le lemme~\ref{LemWIGKooQpGXoI} qui nous assure que \( u\) est d'ordre fini et de support \( \{ x_0 \}\). Ensuite la proposition~\ref{PropXXPLooSkgxOz} nous indique que \( u\) doit alors être une combinaisons linéaire de dérivées de Dirac.
+\end{proof}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+\section{Localisation, principe de recollement}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{propositionDef}[\cite{BIBooPITOooZANjFn,MonCerveau}]     \label{PROPooNCHIooNOPfBt}
+    Soient un ouvert \( \Omega\) de \( \eR^d\), un ouvert \( A\) dans \( \Omega\), et \( T\in\swD'(\Omega)\). Nous définissons
+    \begin{equation}
+        \begin{aligned}
+            T|_A\colon \swD(A)&\to \eC \\
+             \phi  &\mapsto T(\bar \phi) 
+        \end{aligned}
+    \end{equation}
+    où  \(\bar \phi\colon \Omega\to \eC\) est définie par
+    \begin{equation}
+        \bar\phi(x)=\begin{cases}
+            \phi(x)    &   \text{si }  x\i A\\
+            0    &    \text{sinon. }
+        \end{cases}
+    \end{equation}
+    Alors \( T|_A\in \swD'(A)\).
+
+    Cette distribution \( T|_A\) est la \defe{restriction}{restriction d'une distribution} de \( T\) à \( A\). Elle sera aussi souvent notée \( r_A(T)\).
+\end{propositionDef}
+
+
+\begin{proof}
+    Nous allons prouver la séquentielle continuité de \( T|_A\). Ce sera suffisant par le théorème \ref{ThoVDDBnVn}\ref{ITEMooBXFSooYtAXjy}. Soit donc une suite \( \phi_n\stackrel{\swD(A)}{\longrightarrow}0\). 
+
+    \begin{subproof}
+    \item[Débroussailler]
+    Nous devons prouver que \( T|_A(\phi_n)\stackrel{\eC}{\longrightarrow}0\), c'est à dire que
+    \begin{equation}
+        T(\bar \phi_n)\stackrel{\eC}{\longrightarrow}0.
+    \end{equation}
+\item[Notations]
+    La topologie sur \( \swD(A)\) est celle de la définition \ref{DefFGGCooTYgmYf}\ref{ITEMooIZWSooOoIVWx}. Fixons un peu de notations. Si \( K\) est compact dans \( A\) et si \( m\in\eN\), nous posons
+    \begin{equation}        \label{EQooYZWHooVRrnlU}
+        \begin{aligned}
+            p_{K,m}\colon  C^{\infty}(A)&\to \eR \\
+            f&\mapsto \sum_{| \mu |\leq m}\| \partial^{\mu}f \|_{K}. 
+        \end{aligned}
+    \end{equation}
+    De même, si \( K\) est compact dans \( \Omega\) et si \( m\in \eN\) nous posons
+    \begin{equation}        \label{EQooCNPIooSiqAzt}
+        \begin{aligned}
+            q_{K,m}\colon  C^{\infty}(\Omega)&\to \eR \\
+            f&\mapsto \sum_{| \mu |\leq m}\| \partial^{\mu}f \|_{K}. 
+        \end{aligned}
+    \end{equation}
+    Les familles de seminormes \( (p_{K,m})\) et \( (q_{K,m})\) ne sont pas indexées par les mêmes ensembles et n'ont pas le même domaine. Bien que les formules \eqref{EQooYZWHooVRrnlU} et \eqref{EQooCNPIooSiqAzt} se ressemblent, elles n'ont rien à voir l'une avec l'autre.
+
+\item[La notion de convergence]
+
+    Avant de continuer, je vous conseille de bien lire l'enchainement des définitions \ref{ITEMooIZWSooOoIVWx}, \ref{ITEMooIZWSooOoIVWx} et de la proposition \ref{PropQPzGKVk} pour comprendre pourquoi \( f_n\stackrel{\swD(A)}{\longrightarrow}0\) si et seulement si \( p_{K_0,m}(f_n)\to 0\) pour tout \( m\) pour un certain compact \( K_0\) contenant tous les supports de \( f_n\).
+
+\item[$ \bar\phi_n\stackrel{\swD(\Omega)}{\longrightarrow}0$ ]
+
+    Nous utilisons le théorème \ref{ThoXYADBZr} dans les deux sens. D'abord, vu que \( \phi_n\stackrel{\swD(A)}{\longrightarrow}0\), il existe un compact \( K_0\) tel que \( \phi_n\in\swD(K_0)\) pour tout \( n\) et \( \phi_n\stackrel{\swD(K_0)}{\longrightarrow}0\), c'est à dire tel que
+    \begin{equation}        \label{EQooRRMUooIznPeE}
+        p_{K_0,m}(\phi_n)\to 0
+    \end{equation}
+    pour tout \( m\in \eN\).
+
+    Le compact \( K_0\) vérifie également \( \bar\phi_n\in \swD(K_0)\) pour tout \( n\), vu que le support de \( \bar\phi_n\) est le même que celui de \( \phi_n\). De plus sur \( K_0\) nous avons \( \phi_n=\bar\phi_n\), donc
+    \begin{equation}
+        q_{K_0,m}(\bar\phi_n)=\sum_{| \mu |\leq m}\| \partial^{\mu}\bar\phi_n \|_{K_0}=\sum_{| \mu |\leq m}\| \partial^{\mu}\phi_n \|_{K_0}=p_{K_0,m}(\phi_n).
+    \end{equation}
+    En vertu de \eqref{EQooRRMUooIznPeE} nous avons donc \( q_{K_0,m}(\bar\phi_n)\to 0\), c'est à dire que \( \bar\phi_n\stackrel{\swD(K_0)}{\longrightarrow}0\). Donc le théorème \ref{ThoXYADBZr} (dans l'autre sens, cette fois) nous indique que \( \bar\phi_n\stackrel{\swD(\Omega)}{\longrightarrow}0\).
+
+
+\item[Conclusion]
+
+    Vu que \( T\in \swD'(\Omega)\), nous avons \( T(\bar\phi_n)\stackrel{\eC}{\longrightarrow}0\). Donc
+    \begin{equation}
+        T|_A(\phi_n)=T(\bar\phi_n)\stackrel{\eC}{\longrightarrow}0.
+    \end{equation}
+    Cela prouve que \( T|_A\in \swD'(A)\) parce que \( \phi_n\) est une suite quelconque tendant vers \( 0\) dans \( \swD(A)\).
+    \end{subproof}
+\end{proof}
+
+
+\begin{lemma}[\cite{MonCerveau}]       \label{LEMooCXIZooAbeMpF}
+    Quelques propriétés de la restriction d'une distribution. Nous considérons un ouvert \( \Omega\) dans \( \eR^d\) ainsi qu'un ouvert \( A\subset \Omega\).
+    \begin{enumerate}
+        \item
+        L'application \( r_A\colon \swD'(\Omega)\to \swD'(A)\) est linéaire.
+    \item       \label{ITEMooGXSKooYomqpg}
+        Si \( \phi\in  C^{\infty}(\eR^d)\) vérifie \( \supp(\phi)\subset A\), alors
+        \begin{equation}
+            T(\phi)=r_A(T)\phi.
+        \end{equation}
+    \end{enumerate}
+\end{lemma}
+
+
+\begin{proposition}[Principe de recollement\cite{BIBooPITOooZANjFn, MonCerveau}]
+    Soient un ouvert \( \Omega\) de \( \eR^d\) ainsi que des ouverts \( \{ A_i \}_{i\in I}\) de \( \eR^d\) tels que \( \bigcup_{i\in I}A_i=\Omega\).
+
+    Pour chaque \( i\in I\) nous supposons avoir un élément \( T_i\in\swD'(\Omega_i)\) tels que
+    \begin{equation}
+        r_{A_i\cap A_j}(T_i)=r_{A_i\cap A_j}(T_j)
+    \end{equation}
+    pour tout \( i,j\in I\) tels que \( A_i\cap A_j\neq \emptyset\).
+
+    Alors il existe une unique distribution \( T\in \swD'(\Omega)\) telle que \( r_{A_i}(T)=T_i\) pour tout \( i\) dans \( I\).
+\end{proposition}
+
+\begin{proof}
+    Nous prouvons l'unicité et l'existence séparément\footnote{Ce genre phrase semble ne servir à rien, mais elle sert à éviter qu'en l'environnement \info{description} qui suit ne soit tout moche.}.
+    \begin{subproof}
+    \item[Unicité]
+        Soient \( T\) et \( U\) des distributions qui satisfont à la demande. Nous posons \( S=T-U\) et nous allons prouver que \( S=0\). Grâce à la linéarité de \( r_{A_i}\) (lemme \ref{LEMooCXIZooAbeMpF}),
+        \begin{equation}
+            r_{A_i}(S)=0
+        \end{equation}
+        pour tout \( i\) dans \( I\).
+
+        Soit \( \phi\in \swD(\Omega)\); nous notons \( K=\supp\phi)\subset\Omega\). Vu que les \( A_i\) recouvrent \( \Omega\), ils recouvrent \( K\). Il existe dont une partie finie \( J\) de \( I\) telle que \( K\subset\bigcup_{j\in J}A_j\). Et si nous prenions une partition de l'unité\footnote{Théorème \ref{THOooQFCQooSlgLpz}.} subordonnée à ces \( A_j\) ?
+
+        Soit \( \{ \psi_j \}_{j\in J}\) une telle partition de l'unité. Vu que le support de \( \phi\) est borné, le support de \( \psi_k\phi\) est également borné. Et comme un support est toujours fermé, l'application \( \psi_k\phi\) est dans \( \swD(A_k)\). En utilisant consciencieusement le lemme \ref{LEMooCXIZooAbeMpF}\ref{ITEMooGXSKooYomqpg} nous avons
+        \begin{equation}
+            S(\phi)=S\big( \sum_{k=1}^n\psi_k\phi \big)=\sum_kS(\psi_k\phi)=\sum_{k=1}^n(r_{A_k}S)(\psi_k\phi)=0
+        \end{equation}
+        parce que \( r_{A_k(S)}=0\).
+    \item[Existence, début]
+        La preuve de l'existence va se faire en plusieurs étapes.
+
+    \item[Définition de $T_K$]
+        Soit un compact \( K\) dans \( \Omega\). Vu que les \( A_j\) forment un recouvrement de \( K\), il existe une partie finie \( J\) dans \( I\) telle que \( K\subset\bigcup_{j\in J}A_j\). Nous considérons une partition de l'unité\footnote{Théorème \ref{THOooQFCQooSlgLpz}.} \( \{ \psi_j \}_{j\in J}\) sur \( K\) subordonnée au recouvrement \( \{ A_j \}_{j\in J}\).
+
+        Nous définissons alors
+        \begin{equation}
+            \begin{aligned}
+                T_K\colon \swD(K)&\to \eC \\
+                \phi&\mapsto \sum_{j\in J}T_j(\psi_j\phi). 
+            \end{aligned}
+        \end{equation}
+        Nous supposons avoir fait, pour chaque compact \( K\) de \( \Omega\), un choix de sous-recouvrement fini (c'est à dire de partie \( J\)) et un choix de partition de l'unité.
+
+    \item[$T_K=T_{K'}  $ sur les intersection]
+        Soient deux compacts \( K\), \( M\) dans \( \Omega\). Nous prouvons que si \( \phi\in\swD(K)\cap\swD(M)\), alors \( T_{K}(\phi)=T_{M}(\phi)\). Nous avons donc en main les objects suivants :
+        \begin{equation}
+            \begin{aligned}[]
+                \big( K, J, \{ A_j \}_{j\in J}, \{ \chi_j \}_{j\in J} \big)\\
+                \big( M, L, \{ A_l \}_{l\in L}, \{ \varphi_l \}_{l\in L} \big).
+            \end{aligned}
+        \end{equation}
+        Nous considérons \( \phi\in\swD(K)\cap\swD(M)\). Vu que \(\{ \varphi_l \}_{l\in L} \) est une partition de l'unité sur \( M\) et que \( \phi\) a son support contenu dans \( M\), nous avons \( \phi=\sum_{l\in L}\varphi_l\phi\), et nous pouvons écrire
+        \begin{equation}        \label{EQooXKYQooFUUovL}
+            T_K(\phi)=\sum_{j\in J}T_j(\chi_j\phi)=\sum_{j\in J}\sum_{l\in L}T_j(\chi_j\varphi_l\phi).
+        \end{equation}
+        Nous savons que \( \supp(\chi_j\varphi_l\phi)\) est dans \( A_j\cap A_l\), donc 
+        \begin{equation}
+            T_j(\chi_j\varphi_l\phi)=r_{A_j\cap A_l}(T_j)(\chi_j\varphi_l\phi).
+        \end{equation}
+        Mais l'hypothèse sur les \( T_i\) est que \( r_{A_j\cap A_l}(T_j)=r_{A_j\cap A_l}(T_l)\). Cela nous permet de continuer le calcul de \eqref{EQooXKYQooFUUovL} :
+        \begin{subequations}
+            \begin{align}
+                T_K(\phi)&=\sum_{j\in J}\sum_{l\in L}r_{A_j\cap A_l}(T_j)(\chi_j\varphi_l\phi)
+                =\sum_{jl}r_{A_j\cap A_l}(T_l)(\chi_j\varphi_l\phi)
+                =\sum_{jl}T_l(\chi_j\varphi_l\phi)\\
+                &=\sum_{l\in L}T_l\big( \varphi_l\sum_{j\in J}\chi_j\phi \big)
+                =\sum_{l\in L}T_l(\varphi_l\phi)
+                =T_M(\phi).
+            \end{align}
+        \end{subequations}
+        Bien.
+    \item[Ce qu'on pose]
+        Si \( \phi\in \swD(\Omega)\), la valeur de \( T_K(\phi)\) ne dépend pas du choix du compact \( K\) dans \( \Omega\) contenant le support de \( \phi\). Nous pouvons donc poser
+        \begin{equation}
+            \begin{aligned}
+                T\colon \swD(\Omega)&\to \eC \\
+                \phi&\mapsto T_K(\phi) 
+            \end{aligned}
+        \end{equation}
+        où \( K\) est un compact quelconque de \( \Omega\) contenant le support de \( \phi\).
+    \item[$ T$ est une distribution]
+        Nous devons prouver que \( T\colon\swD(\Omega) \to \eC\) est une distribution, c'est à dire qu'elle est linéaire et continue. Pour la linéarité nous disons que c'est bon, et nous nous concentrons sur la continuité. Pour cela nous allons nous baser sur le critère du théorème \ref{ThoVDDBnVn}\ref{ItemSPvoijoii}.
+
+        Soit une compact \( K\) dans \( \Omega\). Nous devons trouver des constantes \( m\) et \( C\) telles que \( |T(\phi)|\leq Cp_{m,K}(\phi)\) pour tout \( \phi\in \swD(K)\).
+
+        Vu que \( \phi\in \swD(K)\) nous avons \( T(\phi)=T_K(\phi)=\sum_{j\in J}T_j(\chi_j\phi)\). Étant donné que \( T_j\) est continue sur \( \swD(A_j)\) et que \( \chi_j\phi\) est une fonction de classe \(  C^{\infty}\) à support dans \( A_j\), en posant \( M_j=\supp(\chi_j)\), il existe des constantes \( m_j\in \eN\) et \( C_j\geq 0\) telles que
+        \begin{equation}
+            | T_j(\chi_j\phi) |\leq C_jp_{m_j,M_j}(\chi_j\phi).
+        \end{equation}
+        Donc
+        \begin{equation}
+            | T(\phi) |\leq \sum_{j\in J}C_j| p_{m_j,M_j}(\chi_j\phi) |=\sum_{j\in J}C_j\sum_{| \alpha |\leq m_j}\| \partial^{\alpha}(\chi_j\phi) \|_{M_j}.
+        \end{equation}
+        Nous utilisons la formule de Leibnitz\footnote{Lemme \ref{LEMooOLQTooEHJuBc}.} pour décomposer \( \partial^{\alpha}(\chi_j\phi)\) :
+        \begin{subequations}
+            \begin{align}
+            | T(\phi) |&\leq\sum_{j\in J}C_j\sum_{| \alpha |\leq m_j}\| \sum_{\beta\leq \alpha}\binom{ \alpha }{ \beta }\partial^{\alpha-\beta}\chi_j\partial^{\beta}\phi \|_{M_j}\\
+            &\leq \sum_jC_j\sum_{| \alpha |\leq m_j}\sum_{\beta\leq \alpha}\binom{ \alpha }{ \beta }\| \partial^{\alpha-\beta}\chi_j \|_{M_j}\| \partial^{\beta}\phi \|_{M_j}.
+            \end{align}
+        \end{subequations}
+        Pour chaque \( j\), il y a un nombre fini de multiindices \( \alpha\) en jeu, et pour chacun d'entre eux, un nombre fini de \( \beta\). Donc le coefficient \( \binom{ \alpha }{ \beta }\) se majore par une constante dépendante de \( j\); nous l'incluons dans \( C_j\). De même pour le coefficient \( \| \partial^{\alpha-\beta}\chi_j \|\); il se majore et s'absorbe dans \( C_j\). Nous avons donc
+        \begin{equation}
+            | T(\phi) |\leq \sum_{j\in J}C'_j\sum_{| \alpha |\leq m_j}\sum_{\beta\leq \alpha}\| \partial^{\beta}\phi \|_{M_j}.
+        \end{equation}
+        Dans ces sommes, chaque nombre de la forme \( \| \partial^{\mu}\phi \|_{M_j}\) avec \( | \mu |\leq m_j\) est pris un certain nombre de fois. On majore ce «certain nombre\footnote{Il n'est pas nécessaire de savoir exactement combien, mais si vous y tenez vous pouvez vous embarquer dans un petit peu de combinatoire.}» et on l'inclu dans la constante \( C'_j\). Cela donne
+        \begin{equation}
+            | T(\phi) |\leq \sum_{j\in J}C''_j\sum_{| \alpha |\leq m_j}\| \partial^{\alpha}\phi \|_{M_j}.
+        \end{equation}
+        L'ensemble \( M=\bigcup_{j\in J}M_j\) est un compact dans \( \Omega\) et bien entendu \( \| \partial^{\alpha}\phi \|_{M_j}\leq \| \partial^{\alpha}\phi \|_M\). Nous avons donc encore plein de majorations :
+        \begin{subequations}
+            \begin{align}
+                | T(\phi) |&\leq \sum_{j\in J}C''_j\sum_{| \alpha |\leq m_j}\| \partial^{\alpha}\phi \|_M\\
+                &\leq C\sum_{j\in J}\sum_{| \alpha |\leq m_j}\| \partial^{\alpha}\phi \|_M  \label{SUBEQooOALIooTlhSXJ}\\
+                &\leq C\sum_{j\in J}\sum_{| \alpha |\leq m}\| \partial^{\alpha}\phi \|_M    \label{SUBEQooMNSNooVcTHXP}\\
+                &\leq C'\sum_{| \alpha |\leq m}\| \partial^{\alpha}\phi \|_M \label{SUBEQooKJYOooHNwQAe}\\
+                &=C'p_{m,M}(\phi).
+            \end{align}
+        \end{subequations}
+        Justifications :
+        \begin{itemize}
+            \item Pour \ref{SUBEQooOALIooTlhSXJ}. On définit \( C=\max_{j\in J}C''_j\).
+            \item Pour \ref{SUBEQooMNSNooVcTHXP}. On définit \( m=\max_{j\in J}m_j\).
+            \item Pour \ref{SUBEQooKJYOooHNwQAe}. Comme ce qui est dans la somme ne dépend plus de \( j\), nous supprimons la somme sur \( j\) et nous incluons le nombre de termes de la somme dans le changement \( C\to C'\).
+        \end{itemize}
+        Et maintenant on admire le fait qu'en ayant fait autant de majorations dans tous les sens, nous obtenons encore une inégalité qui ait un sens. Bref, nous avons trouvé un compact \( M\), un nombre \( m\) ainsi qu'une constante \( C'\) tels que
+        \begin{equation}
+            | T(\phi) |\leq C'p_{M,m}(\phi)
+        \end{equation}
+        pour tout \( \phi\in \swD(K)\). Notons que \( M\), \( m\) et \( C'\) dépendent fortement de \( K\), mais pas de \( \phi\). Cela prouve que \( T\) est continue par \ref{ThoVDDBnVn}\ref{ItemSPvoijoii}.
+    \item[$ T$ répond à la question]
+        Il nous reste à prouver que \( T\) est bien la distribution recollée, c'est à dire que \( r_{A_i}(T)=T_i\) pour tout \( i\in I\). Le domaine de \( T_i\) et de \( r_{A_i}(T)\) est \( \swD(A_i)\). Pour être clair, les fonctions dans \( \swD(A_i)\) sont des fonctions définies sur \( \eR^d\), mais dont le support est compact dans \( A_i\).
+
+        Utilisant la définition de la restriction, pour \( \phi\in \swD(A_i)\),
+        \begin{equation}
+            r_{A_i}(T)\phi=T(\bar \phi)
+        \end{equation}
+        où
+        \begin{equation}
+            \bar\phi(x)=\begin{cases}
+                \phi(x)    &   \text{si } x\in A_i\\
+                0    &    \text{sinon. }
+            \end{cases}
+        \end{equation}
+        Mais vu que \( \phi\in \swD(A_i)\) nous avons \( \phi=\bar\phi\) et donc pas de pièges de ce côté.
+
+        Nous posons \( M=\supp(\phi)\) et nous avons
+        \begin{equation}
+            r_{A_i}(T)(\phi)=T(\bar\phi)=T(\phi)=T_M(\phi).
+        \end{equation}
+        Nous nommons \( \big( L, \{ \varphi_l \}_{l\in L} \big)\) les choix faits pour le compact \( M\) dans la construction de \( T_M\). Nous avons alors
+        \begin{equation}
+            T_M(\phi)=\sum_{l\in L}T_l(\varphi_p\phi).
+        \end{equation}
+        Mais le support de \( \varphi_k\phi\) est dans \( A_i\cap A_l\), de telle sorte que l'hypothèse faite sur les \( T_i\) aux intersections donne \( T_l(\varphi_l\phi)=T_i(\varphi_l\phi)\), et donc que
+        \begin{equation}
+            T_M(\phi)=\sum_{l\in L}T_l(\varphi_l\phi)=T_i\big( \sum_{l\in L}\varphi_l\phi \big)=T_i(\phi).
+        \end{equation}
+        La dernière égalité vient du fait que \( \{ \varphi_l \}_{l\in L}\) est une partition de l'unité sur (au moins) \( \supp(\phi)\).
+    \end{subproof}
+\end{proof}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+\section{Permuter distributions, dérivées et intégrales}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{proposition}[\cite{BIBooPITOooZANjFn}]     \label{PROPooCNYTooWCKHpV}
+    Soient un ouvert \( \Omega\subset \eR^d\), une distribution \( T\in \swD'(\Omega)\) ainsi qu'une fonction \( \phi\in C^{\infty}(\Omega\times \eR^n,\eC)\) à support dans \( K\times \eR^n\) où \( K\) est compact dans \( \Omega\).
+
+    Alors
+    \begin{enumerate}
+        \item       \label{ITEMooBIVOooHwGglM}
+            La fonction
+            \begin{equation}
+                y\mapsto T\big( \phi(.,y) \big)
+            \end{equation}
+            est de classe \(  C^{\infty}\) sur \( \eR^n\).
+        \item
+            Pour toute liste d'indices \( \alpha\) et pour tout \( y_0\in \eR^n\), nous avons
+            \begin{equation}        \label{EQooYMXXooYkceTv}
+\partial_y^{\alpha}\big( T\big( x\mapsto \phi(x,y) \big) \big)_{y=y_0}= T\big( x\mapsto(\partial_{y}^{\alpha}\phi)(x,y_0) \big).
+            \end{equation}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Nous y allons par récurrence sur les dérivations, en commençant par \( \alpha=(i)\). Pourvu que le membre de gauche de \eqref{EQooYMXXooYkceTv} existe, il est donné par
+    \begin{equation}        \label{EQooBHSSooXDrYQh}
+        \partial_y^{(i)}\big[ T\big( \phi(x,y) \big) \big]_{y=y_0}=\lim_{t\to 0} \frac{ T\big( \phi(x,y_0+te_i) \big)-T\big( \phi(x,y) \big) }{ t }.
+    \end{equation}
+    Vu que \( T\) est linéaire, nous allons travailler sur
+    \begin{equation}        \label{EQooXEFAooNzLBZx}
+        T\Big(x\mapsto \frac{ \phi(x,y_0+te_i)-\phi(x,y_0)}{t} \Big).
+    \end{equation}
+    \begin{subproof}
+        \item[Un développement]
+            Nous commençons par fixer \( y_0\), \( x\) et \( t\) et écrire un développement de Taylor à l'ordre \( 1\) avec reste intégral\footnote{Donc \( m=2\) dans la proposition \ref{PropAXaSClx}.} pour la fonction \( v(y)=\phi(x,y)\) autour de \( y=y_0\) et dans la direction \( h=te_i\) :
+            \begin{equation}        \label{EQooBMYMooAjrTGH}
+                \phi(x,y_0+te_i)=\phi(x,y_0)+t\partial_y^{(i)}\phi(x,y_0)+r(x,y_0,te_i)
+            \end{equation}
+            où
+            \begin{equation}        \label{EQooOWQZooMZXVoV}
+                r(x,y_0,te_i)=\int_0^1(1-u)(d^2v)_{y_0,ute_i}(te_i)^2du.
+            \end{equation}
+        \item[Écrire proprement le reste]
+            Nous allons maintenant dérouler les notations compliquées de différentielle seconde de l'expression \eqref{EQooOWQZooMZXVoV}. C'est la proposition \ref{PROPooFWZYooUQwzjW} qui nous dit comment faire. Le lemme \ref{LEMooVOTHooPJcrWH} est également à utiliser. D'abord
+            \begin{equation}
+                (d^2v)_{y_0+ute_i}(te_i)^2=\frac{ \partial^2v }{ \partial(te_i)\partial(te_i) }(y_0+ute_i)=t^2(\partial^2_{ii}v)(y_0+ute_i).
+            \end{equation}
+            Avec cela,
+            \begin{equation}        \label{EQooLIBWooYJshbY}
+                r(x,y_0,te_i)=t^2\int_0^1(1-u)(\partial_y^{(ii)}\phi)(x,y_0+ute_i)du.
+            \end{equation}
+            Pour rappel, la notation \( \partial_y^{(ii)}\phi\) signifie dériver deux fois selon la \( i\)\ieme composante de la variable \( y\) de \( \phi\).
+
+        \item[Régularité du reste]
+            Si vous avez peur d'étudier la régularité en \( x\) du reste à partir de l'intégrale \eqref{EQooLIBWooYJshbY}, vous pouvez simplement regarder le développement \eqref{EQooBMYMooAjrTGH} et dire que, \( t\) et \( y_0\) sont fixés. Les fonctions
+            \begin{subequations}
+                \begin{align}
+                    x&\mapsto \phi(x, y_0+te_i)\\
+                    x&\mapsto \phi(x, y_0)\\
+                    x&\mapsto (\partial^{(i)}\phi)(x,y_0)
+                \end{align}
+            \end{subequations}
+            sont de classe \(  C^{\infty}\) à support compact dans \( K\). Donc \( x\mapsto r(x,y_0,te_i)\) est également \(  C^{\infty}\) à support dans \( K\).
+
+            Nous allons d'ailleurs tellement fixer \( y_0\) et \( t\) que nous allons définir
+            \begin{equation}
+                \begin{aligned}
+                    s\colon \eR^d&\to \eC \\
+                    x&\mapsto  t^2\int_0^1(1-u)(\partial_y^{(ii)}\phi)(x,y_0+ute_i)du
+                \end{aligned}
+            \end{equation}
+            et voir \( s\in\swD(K)\). Nous pouvons donc parler de \( T(s)\) sans peurs.
+
+        \item[Beaucoup de majorations]
+            Vu que \( K\) est un compact dans \( \Omega\) et que \( T\) est dans \( \swD'(\Omega)\), le théorème \ref{ThoVDDBnVn}\ref{ItemSPvoijoii} dit qu'il existe des constantes \( m\) et \( C\) telles que \( | T(s) |\leq Cp_{m,K}(s)\). Nous avons alors les majorations suivantes :
+            \begin{subequations}        \label{SUBEQSooYPLGooOFMSyJ}
+                \begin{align}
+                | T(s) |&\leq C p_{m,K}(s)\\
+                &=C\sum_{| \mu |\leq m}\| \partial^{\mu}s \|_K\\
+                &=\sum_{|\mu|\leq m}t^2\int_0^1(1-u)(\partial_x^{\mu}\partial_y^{ii}\phi)(x,y_0+tue_i)du       \label{SUBEQooKIETooZIpBBF}\\
+                &\leq\sum_{|\mu|\leq m}t^2\int_0^1(1-u)\| (\partial_x^{\mu}\partial_y^{ii}\phi)\|_{K\times \overline{ B(y_0,1) }} du       \label{SUBEQooDYJCooFAsAxE}    \\
+                &=\frac{ Ct^2 }{2}\sum_{| \mu |\leq m}\| \partial_x^{\mu}\partial_y^{ii}\phi \|_{K\times \overline{ B(y_0,1) }}  \label{SUBEQooULTUooYlJHNO} \\
+                &\leq C't^2 \max_{| \mu |\leq m}\| \partial_x^{\mu}\partial_y^{ii}\phi \|_{K\times \overline{ B(y_0,1) }}  \label{SUBEQooQENJooOgJuxj}
+                \end{align}
+            \end{subequations}
+            Justifications:
+            \begin{itemize}
+                \item Pour \eqref{SUBEQooKIETooZIpBBF}. Pour évaluer \( \partial^{\mu}s\), nous utilisons la proposition \ref{PROPooJKXJooLxgEGd} pour permuter l'intégrale sur \( u\) avec la dérivée sur \( x\).
+                \item Pour \eqref{SUBEQooDYJCooFAsAxE}. Nous supposons que \( | t |<1\), de telle sorte que \( | ut |<1\) et que \( y_0+tue_i\) reste dans \( \overline{ B(y_0,1) }\). Notez au passage qu'il n'est pas nécessaire de prendre la fermeture; c'est juste pour le plaisir de rester sur un compact.
+                \item Pour \eqref{SUBEQooULTUooYlJHNO}. Évaluer l'intégrale : \( \int_0^1(1-u)du=1/2\).
+                \item Pour \eqref{SUBEQooQENJooOgJuxj}. Le changement de constante \( C\to C'\) intègre le nombre de termes dans la somme qui a été remplacée par son maximum et le \( 1/2\).
+            \end{itemize}
+        \item[La dérivée (enfin)]
+            Nous reprenons le calcul de la dérivée laissé en \eqref{EQooBHSSooXDrYQh} et \eqref{EQooXEFAooNzLBZx}. Nous avons
+            \begin{subequations}
+                \begin{align}
+                    T\left( x\mapsto\frac{ \phi(x,y_0+te_i)-\phi(x,y_0) }{ t } \right)&=T\left( \frac{ t(\partial_y^{(i)}\phi)(x,y_0)+s(x) }{ t }\right)\\
+                    &=T\Big( x\mapsto (\partial_y^{(i)}\phi)(x,y_0) \Big)+T\left( \frac{ s(x) }{ t } \right).
+                \end{align}
+            \end{subequations}
+            Le premier terme n'a plus de dépendance en \( t\). La limite \( t\to 0\) est donc sans problèmes. Pour le second terme, en prenant la majoration de \eqref{SUBEQSooYPLGooOFMSyJ} nous avons
+            \begin{equation}
+                | \frac{ s(x) }{ t } |\leq C't\max_{| \mu |\leq m}\| \partial_x^{\mu}\partial_y^{(ii)}\phi \|_{K\times \overline{ B(y_0,1) }}.
+            \end{equation}
+            La limite \( t\to 0\) de cela est zéro.
+        \item[Conclusion]
+            La limite du membre de droite de \eqref{EQooBHSSooXDrYQh} existe et vaut
+            \begin{equation}
+                T\Big[x\mapsto (\partial_y^{(i)}\phi)(x,y_0) \Big].
+            \end{equation}
+    \end{subproof}
+    Nous avons prouvé que
+    \begin{equation}
+        \partial^{(i)}_y\Big[ T\big( x\mapsto\phi(x,y) \big) \Big]_{y=y_0}=T\Big[ x\mapsto (\partial^{(i)}_y\phi)(x,y_0) \Big].
+    \end{equation}
+    Une récurrence permet de passer de la liste d'indices \( (i)\) à une liste générale pour terminer la preuve du résultat \eqref{EQooYMXXooYkceTv}.
+\end{proof}
+
+\begin{theorem}[Permuter distribution et intégrale\cite{BIBooPITOooZANjFn}]
+    Soit un ouvert \( \Omega\) dans \( \eR^n\). Soient \( T\in \swD'(\Omega)\) et \( \phi\in \swD(\Omega\times \eR^n)\). Alors
+    \begin{equation}
+        \int_{\eR^n}T\big( \phi(.,y) \big)dy=T\big( \int_{\eR^n}\phi(.,y)dy \big).
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Nous faisons une récurrence sur la valeur de \( n\) en partant de \ldots
+    \begin{subproof}
+    \item[\( n=1\)]
+        Vu que le support de \( \phi\) est compact dans \( \Omega\times \eR\), la proposition \ref{PropGBZUooRKaOxy} dit qu'il existe un compact \( K\) dans \( \Omega\) et \( R>0\) tel que le support de \( \phi\) soit dans \( K\times \overline{ B(0,R) }\). 
+
+        Nous introduisons plein de fonctions intermédiaires.
+        \begin{subproof}
+        \item[La fonction \( \theta\)]
+            
+
+        Considérons une seconde la fonction
+        \begin{equation}
+            \begin{aligned}
+                \theta\colon \Omega&\to \eC \\
+                x&\mapsto \int_{\eR}\phi(x,z)dz. 
+            \end{aligned}
+        \end{equation}
+        Son support est dans \( K\). Est-elle de classe \(  C^{\infty}\) ? Oui. En effet, la proposition \ref{PROPooJKXJooLxgEGd} dit que l'on peut permuter les dérivées partielles et l'intégrale. Donc toutes les dérivées partielles de \( \theta\) existes (et sont donc continues). Le théorème \ref{THOooPZTAooTASBhZ} nous indique alors que \( \theta\) est de classe \( C^{\infty}\).
+
+    \item[La fonction \( \xi\)]
+        Le corollaire \ref{CORooHHZXooXmwGmC} nous permet de considérer \( \xi\in \swD\big( B(0,R) \big)\) telle que
+        \begin{equation}
+            \int_{\eR}\xi(x)dx=1.
+        \end{equation}
+    \item[La fonction \( \psi\)]
+        Nous posons alors
+        \begin{equation}
+            \begin{aligned}
+                \psi\colon \eR^d\times \eR&\to \eC \\
+                (x,y)&\mapsto \phi(x,y)-\xi(y)\int_{\eR}\phi(x,z)dz. 
+            \end{aligned}
+        \end{equation}
+        C'est une fonction \( \psi\in \swD(\Omega\times \eR)\) telle que
+        \begin{equation}
+            \supp(\psi)\subset K\times \overline{ B(0,R) }.
+        \end{equation}
+        
+        Prouvons que pour tout \( x\in \Omega\) nous avons
+        \begin{equation}
+            \int_{\eR}\psi(x,y)dy=\int_{-R}^R\psi(x,y)dy=0.
+        \end{equation}
+        La première égalité est simplement le fait que \( \psi(x,y)=0\) lorsque \( y\notin \overline{ B(0,R) }\). Pour le fait que ce soit nul,
+        \begin{equation}
+            \int_{\eR}\psi(x,y)dy=\int_{\eR}\phi(x,y)dy-\int_{\eR}\xi(y)dy\int_{\eR}\phi(x,z)dz=0.
+        \end{equation}
+        
+    \item[La fonction \( \sigma\)]
+        Nous posons enfin
+        \begin{equation}
+            \begin{aligned}
+                \sigma\colon \Omega\times \eR&\to \eC \\
+                (x,y)&\mapsto \int_{-\infty}^y\psi(x,z)dz. 
+            \end{aligned}
+        \end{equation}
+        Nous avons \( \sigma\in C^{\infty}(\Omega\times \eR)\) et \( \supp(\sigma)\subset K\times \overline{ B(0,R) }\).
+        \end{subproof}
+       Nous pouvons maintenant entrer dans le dur. 
+
+       \begin{subproof}
+        \item[Une première égalité]
+           Nous montrons que
+           \begin{equation}     \label{EQooDRISooWsWXnj}
+               T\big( \sigma(.,y) \big)=\int_{-\infty}^yT\big( \psi(.,z) \big)dz.
+           \end{equation}
+           En voyant les deux côtés de cette égalité à prouver comme des fonctions de \( y\), nous allons montrer qu'elles sont dérivables, de même dérivée et égale en \( y<-R\).
+
+           À gauche nous permutons \( T\) avec la dérivée par la proposition \ref{PROPooCNYTooWCKHpV}:
+           \begin{equation}
+               \partial_y\big( T\big( \sigma(.,y) \big) \big)_{y=y_0}=T\big( (\partial_y\sigma)(.,y_0) \big)=T\big( \psi(.,y_0) \big)
+           \end{equation}
+           parce que \( (\partial_y\sigma)(x,y_0)=\psi(x,y_0)\). 
+
+           À droite, la proposition \ref{PropJLnPpaw} donne la première dérivée:
+           \begin{equation}
+               \partial_y\big( \int_{-\infty}^yT\big( \psi(.,z) \big)dz \big)_{y=y_0}=T\big( \psi(.,y_0) \big).
+           \end{equation}
+           Notez que la proposition \ref{PROPooCNYTooWCKHpV}\ref{ITEMooBIVOooHwGglM} dit alors que les deux membres de \eqref{EQooDRISooWsWXnj} sont de classe \(  C^{\infty}\).
+
+           Pour \( y<-R\), d'une part \( \sigma(.,y)=0\) et d'autre part, \( \int_{-\infty}^yT\big( \psi(.,z) \big)dz=0\) parce que l'intégrale est entièrement sur un domaine où \( \psi(.,y)=0\).
+
+           Donc l'égalité \eqref{EQooDRISooWsWXnj} est établie.
+
+       \item[Une seconde égalité]
+           Nous prouvons maintenant que
+           \begin{equation}     \label{EQooTKHVooEqhpHH}
+               \int_{\eR}T\big( \psi(.,z) \big)dz=0.
+           \end{equation}
+           Nous nous souvenant que \( \psi(.,r)=0\) si \( r>R\). Donc
+           \begin{subequations}
+               \begin{align}
+                   \int_{\eR}T\big( \psi(.,z) \big)dz&=\int_{-\infty}^{\infty}T\big( \psi(.,z) \big)dz\\
+                   &=\int_{-\infty}^RT\big( \psi(.,z) \big)dz\\
+                   &=T\big( \sigma(.,R) \big).
+               \end{align}
+           \end{subequations}
+           La dernière égalité est \eqref{EQooDRISooWsWXnj}.
+
+       \item[On ressort la définition de \( \psi\)]
+           C'est le moment de nous souvenir la définition de \( \psi\) et de la substituer dans \eqref{EQooTKHVooEqhpHH} en tenant compte de la linéarité de \( T\). Nous avons :
+           \begin{subequations}
+               \begin{align}
+                   0&=\int_{\eR}T\big( \psi(.,z) \big)dz\\
+                   &=\int_{\eR}T\big( \phi(.,z) \big)dz-\int_{\eR}T\Big( \xi(z)\int_{\eR}\phi(.,s)ds \Big)dz\\
+                   &=\int_{\eR}T\big( \phi(.,z) \big)dz-\int_{\eR}\xi(z)dz\,T\Big( \int_{\eR}\phi(.,s)ds \Big) \label{SUBEQooXSQMooEuUZUe} \\
+                   &=\int_{\eR}T\big( \phi(.,z) \big)dz-T\Big( \int_{\eR}\phi(.,s)ds \Big).
+               \end{align}
+           \end{subequations}
+           Justifications :
+           \begin{itemize}
+               \item Pour \eqref{SUBEQooXSQMooEuUZUe}. Le nombre \( \xi(z)\) sort de \( T\). Et \( T\big( \int_{\eR}\phi(.,s)ds \big)\) sort de l'intégrale en \( z\).
+           \end{itemize}
+           Le cas \( n=1\) est prouvé.
+        \end{subproof}
+    \item[La récurrence]
+        Nous supposons que le théorème est prouvé jusqu'à \( n\) et nous le prouvons pour \( n+1\). 
+
+        Soit donc \( \phi\in\swD(\Omega\times \eR^{n+1})\). La fonction \( y\mapsto T\big( \phi(.,y) \big)\) est continue et à support compact. Donc Fubini \ref{ThoWTMSthY} s'applique et nous allons permuter les intégrales une à une avec \( T\). Avant cela nous définissons quelque fonctions intermédiaires.
+
+        D'abord, pour \( t\in \eR\) nous posons
+        \begin{equation}
+            \begin{aligned}
+                \tilde\phi_t\colon \Omega\times \eR^n&\to \eR \\
+                (\omega,y)&\mapsto \phi\big( \omega,(y,t) \big). 
+            \end{aligned}
+        \end{equation}
+        Ensuite, nous posons
+        \begin{equation}
+            \begin{aligned}
+                \bar \phi\colon \Omega\times \eR&\to \eR \\
+                (\omega,t)&\mapsto \int_{\eR^n}\tilde \phi_t(\omega, y_1,\ldots, y_n)dy_1\ldots dy_n. 
+            \end{aligned}
+        \end{equation}
+        Maintenant nous calculons :
+        \begin{subequations}
+            \begin{align}
+                \int_{\eR^{n+1}}T\big( \phi(.,y) \big)dy&=\int_{\eR}\left[ \int_{\eR^n} T\big( \phi(.,y) \big)dy_1\ldots dy_n \right]dy_{n+1}       \label{SUBEQooBFEFooFVtHmz}\\
+                &=\int_{\eR}\left[ \int_{\eR^n}T\big( \tilde \phi_{y_{n+1}}(., y_1,\ldots, y_n) \big)dy_1\ldots dy_n \right]dy_{n+1}\\
+                &=\int_{\eR}\left[ T\big( \int_{\eR^n}\tilde \phi_{y_{n+1}}(.,y_1,\ldots, y_n) \big)dy_1\ldots dy_n \right]dy_{n+1} \label{SUBEQooROIEooVMbfii}\\
+                &=\int_{\eR}T\big( \bar\phi(.,y_{n+1}) \big)dy_{n+1}\\
+                &=T\big( \int_{\eR}\bar\phi(.,y_{n+1})dy_{n+1} \big)  \label{SUBEQooPFBOooMXUjXk}\\
+                &=T\big( \int_{\eR^{n+1}}\phi(.,y)dy \big)      \label{SUBEQooKYOPooPYHHbS}
+            \end{align}
+        \end{subequations}
+        Justifications :
+        \begin{itemize}
+            \item Pour \eqref{SUBEQooBFEFooFVtHmz}. Théorème de Fubini \ref{ThoWTMSthY}.
+            \item Pour \eqref{SUBEQooROIEooVMbfii}. Hypothèse de récurrence.
+            \item Pour \eqref{SUBEQooPFBOooMXUjXk}. Encore la récurrence, avec \( n=1\).
+            \item Pour \eqref{SUBEQooKYOPooPYHHbS}. Encore Fubini, mais dans l'autre sens.
+        \end{itemize}
+        
+    \end{subproof}
+\end{proof}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Distributions tempérées}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -745,7 +1622,7 @@ Cette définition ne fonctionne pas pour toutes les fonctions. Par exemple pour 
 \subsection{Topologie}
 %---------------------------------------------------------------------------------------------------------------------------
 
-La topologie que nous mettons sur l'espace \( \swS'(\eR^d)\) est le même type que celle que nous mettons sur \( \swD'(\eR^d)\), c'est-à-dire celle des semi-normes \( p_{\varphi}(T)=| T(\varphi) |\). La définition~\ref{DefASmjVaT} et la proposition~\ref{PropEUIsNhD} restent.
+La topologie que nous mettons sur l'espace \( \swS'(\eR^d)\) est le même type que celle que nous mettons sur \( \swD'(\eR^d)\), c'est-à-dire celle des seminormes \( p_{\varphi}(T)=| T(\varphi) |\). La définition~\ref{DefASmjVaT} et la proposition~\ref{PropEUIsNhD} restent.
 
 \begin{proposition} \label{PropQAuJstI}
     Nous avons \( T_n\stackrel{\swS'(\eR^d)}{\longrightarrow}T\) si et seulement si pour tout \( \varphi\in\swS(\eR^d)\) nous avons \( T_n(\varphi)\to T(\varphi)\).
@@ -1009,13 +1886,13 @@ Il va sans dire que nous connaissons de telles fonctions. Nous en donnons une ma
     \begin{equation}
         f(k,x)=u(k) e^{-ikx} e^{-\epsilon| x |}
     \end{equation}
-    qui est dans \( L^1(\eR\times \eR)\) en vertu du critère du corollaire~\ref{CorTKZKwP} et du fait que à la fois \( k\mapsto | u(k) | \) et \( x\mapsto  e^{-\epsilon| x |}\) sont dans \( L^1(\eR)\).
+    qui est dans \( L^1(\eR\times \eR)\) en vertu du critère du corolaire~\ref{CorTKZKwP} et du fait que à la fois \( k\mapsto | u(k) | \) et \( x\mapsto  e^{-\epsilon| x |}\) sont dans \( L^1(\eR)\).
 
     Nous pouvons donc grouper et dégrouper les intégrales et en particulier les inverser. Si nous effectuons d'abord l'intégrale sur \( k\) nous trouvons
     \begin{equation}
         \int_{\eR}u(k)\left[ \int_{\eR} e^{-ikx} e^{-\epsilon| x |}dx \right]dk=\int_{\eR} e^{-\epsilon| x |}\int_{\eR}u(k) e^{-ikx}dk\,dx=\int_{\eR} e^{-\epsilon| x |}\hat u(x)dx.
     \end{equation}
-    La fonction \( x\mapsto |  e^{-\epsilon| x |}\hat u(x) |\) est majorée (uniformément en \( \epsilon\)) par \( x\mapsto \hat u(x)\) qui est intégrable parce que la transformée de Fourier d'une fonction de \( \swS\) est dans \( \swS\) par la proposition~\ref{PropKPsjyzT}. Le théorème de la convergence dominée de Lebesque~\ref{ThoConvDomLebVdhsTf} nous permet de permuter la limite \( \epsilon\to 0 \) avec l'intégrale et obtenir
+    La fonction \( x\mapsto |  e^{-\epsilon| x |}\hat u(x) |\) est majorée (uniformément en \( \epsilon\)) par \( x\mapsto \hat u(x)\) qui est intégrable parce que la transformée de Fourier d'une fonction de \( \swS\) est dans \( \swS\) par la proposition~\ref{PropKPsjyzT}. Le théorème de la convergence dominée de Lebesgue~\ref{ThoConvDomLebVdhsTf} nous permet de permuter la limite \( \epsilon\to 0 \) avec l'intégrale et obtenir
     \begin{equation}
         \lim_{\epsilon\to 0}\int_{\eR}u(k)\int_{\eR} e^{-ikx} e^{-\epsilon| x |}dx\,dk=\int_{\eR}\hat u(x)dx=\int_{\eR}\int_{\eR}u(k) e^{-ikx}dk\,dx.
     \end{equation}
@@ -1100,146 +1977,6 @@ Si aucune ambigüité n'est à craindre, nous noterons \( f\) la distribution \(
 \end{example}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{L'espace \texorpdfstring{$  C^{\infty}(\eR,\swD'(\eR^d))$}{C(R,D')}}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\label{SecTEgDVWO}
-
-D'abord parlons un peu de continuité en recopiant la proposition~\ref{PropVKSNflB} dans notre contexte.
-\begin{proposition}     \label{PropIPlKQBa}
-    Soient \( I\) un intervalle ouvert de \( \eR\) et \( u\colon I\to \swD'(\eR^d)\) une fonction continue. Alors
-    \begin{enumerate}
-        \item   \label{ItemYAhnNhBi}
-            Pour tout \( \varphi\in\swD(\eR^d)\), l'application \( t\mapsto u_t(\varphi)\) est continue.
-        \item
-            Pour tout \( \varphi\in\swD(\eR^d)\), nous avons la limite
-            \begin{equation}
-                \lim_{t\to t_0} u_t(\varphi)=u_{t_0}(\varphi).
-            \end{equation}
-        \item
-            Nous avons la limite dans \( \swD'(\eR^d)\)
-            \begin{equation}
-                \lim_{t\to t_0} u_t=u_{t_0}.
-            \end{equation}
-    \end{enumerate}
-\end{proposition}
-En ce qui concerne la définition de l'espace \( C^{\infty}(I,\swD'(\eR^d))\)\nomenclature[Y]{\(  C^{\infty}(I,\swD'(\eR^d))\)}{fonctions à valeurs dans les distributions}, c'est la définition~\ref{DefDZsypWu}. Grâce au point~\ref{ItemYAhnNhBi} de la proposition~\ref{PropIPlKQBa}, nous retenons que la propriété fondamentale d'une application \( T\in C^k\big( I,\swD'(\Omega) \big)\) est que pour tout \( \varphi\in(\Omega)\), l'application
-\begin{equation}
-    \begin{aligned}
-         I&\to \eC \\
-        t&\mapsto T_t(\varphi)
-    \end{aligned}
-\end{equation}
-est de classe \( C^k\).
-
-\begin{proposition} \label{PropOTlWzog}
-    Soit \( (T_t)\in C^0\big( I,\swD'(\Omega) \big)\) et \( \psi\in\swD(I\times \Omega)\). Alors l'application
-    \begin{equation}
-        t\mapsto T_t\big( \psi(t,.) \big)
-    \end{equation}
-    est continue sur \( I\).
-\end{proposition}
-
-\begin{proof}
-    La fonction dont nous voulons prouver la continuité est une fonction \( \eR\to\eR\); il est donc loisible de se contenter de la continuité séquentielle. Soient \( t_0\in I\) et \( (t_j)\) une suite dans \( I\) convergeant vers \( t_0\). Nous posons \( U_j=T_{t_j}\) et \( \psi_j=\psi\big( t_j,. \big)\). Par hypothèse de continuité de \( (T_t)\) nous avons \( U_j\stackrel{\swD'(\Omega)}{\longrightarrow}T_{t_0}\). D'autre part le support de \( \psi\) étant compact nous avons \( \supp(\psi)\subset \mathopen[ c , d \mathclose]\times K\) où \( \mathopen[ c , d \mathclose]\subset I\) et \( K\) est compact dans \( \Omega\). Par conséquent nous avons aussi \( \supp(\psi_j)\subset K\).
-
-    Affin d'alléger les notations notons \( \tilde \psi(x)=\psi(t_0,x)\). Pour tout multiindice \( \alpha\) et pour tout \( j\) nous avons
-    \begin{equation}
-        p_{\alpha}(\psi_i-\tilde \psi)=\Big|  \partial^{\alpha}\psi(t_j,x)-\partial^{\alpha}\psi(t_0,x)    \Big|\leq | t_j-t_0 |\sup_{\substack{t\in\mathopen[ c , d \mathclose]\\x\in K}}| \partial_t\partial^{\alpha}\psi(t,x) |\to 0.
-    \end{equation}
-    Nous avons donc la convergence
-    \begin{equation}
-        \psi_j\stackrel{\swD(K)}{\longrightarrow}\psi(t_0,.).
-    \end{equation}
-
-    Étant donné que \( U_j\stackrel{\swD'(\Omega)}{\longrightarrow}T_{t_0}\) et \( \psi_j\stackrel{\swD(\Omega)}{\longrightarrow}\tilde \psi\), le point~\ref{ItemAEOtOMLiii} du corollaire~\ref{CorPGwLluz} nous donne la convergence
-    \begin{equation}
-        U_j(\psi_j)\to T_{t_0}(\tilde \psi)
-    \end{equation}
-    dans \( \eC\). Cela est bien la continuité de la fonction \( t\mapsto T_t\big( \psi(t,.) \big)\).
-\end{proof}
-
-
-\begin{proposition}[\cite{GQYneyj}] \label{PropLKtBsVi}
-    Soit \( (T_t)\in C^0\big( I,\swD'(\Omega) \big)\). Nous définissons l'application \( T\colon \swD(\Omega)\to \eC\) par la formule
-    \begin{equation}
-       T(\psi)=\int_I T_t\big( \psi(t,.) \big)\,dt
-    \end{equation}
-    pour tout \( \psi\in\swD(I\times \Omega)\). Alors \( T\in \swD'(I\times \Omega)\).
-\end{proposition}
-
-\begin{proof}
-    La proposition~\ref{PropOTlWzog} nous indique que la fonction \( t\mapsto T_t\big( \psi(t,.) \big)\) est continue. Étant donné qu'elle est seulement non nulle sur un compact, l'intégrale
-    \begin{equation}
-        \int_IT_t\big( \psi(t,.) \big)dt
-    \end{equation}
-    a un sens et est finie. L'application \( T\colon \swD(I\times \Omega)\to \eC\) ainsi définie est linéaire. Il reste à voir qu'elle est continue. Pour cela nous allons utiliser le théorème~\ref{ThoVDDBnVn}\ref{ItemSPvoijoii} qui nous dit que nous pouvons nous fixer un compact \( \mathopen[ c , d \mathclose]\times K\subset I\times\Omega\) et considérer \( \psi\in \swD\big( \mathopen[ c , d \mathclose]\times K \big)\).
-
-    Soit, pour commencer, donnée une application \( \varphi\in\swD(K)\). L'application \( t\mapsto T_t(\varphi)\) est continue et non nulle sur le  et il existe donc \( C_{\varphi}>0\) tel que
-    \begin{equation}
-        | T_t(\varphi) |\leq C_{\varphi}
-    \end{equation}
-    pour tout \( t\in\mathopen[ c , d \mathclose]\).
-
-    Nous voulons utiliser le théorème de Banach-Steinhaus dans sa version~\ref{ThoNBrmGIg} sur la famille d'applications paramétrée par \( u\in\mathopen[ c , d \mathclose]\) :
-    \begin{equation}        \label{EqBEKoqMb}
-        \begin{aligned}
-            U_u\colon \swD\big( \mathopen[ c , d \mathclose]\times K \big)&\to \eR \\
-            \psi&\mapsto T_u\big( \psi(u,.) \big).
-        \end{aligned}
-    \end{equation}
-    Commençons par prouver que cela est une application continue pour chaque \( u\). Ce sera le cas si la projection
-    \begin{equation}
-        \begin{aligned}
-            \pr\colon \swD\big( \mathopen[ c , d \mathclose]\times K \big)&\to \swD(K) \\
-            \psi&\mapsto \psi(u,.)
-        \end{aligned}
-    \end{equation}
-    est continue. Pour cela nous notons \( P_{kl}\) la semi-norme sur \( \swD\big( \mathopen[ c , d \mathclose]\times K \big)\) donnée par
-    \begin{equation}
-        P_{k,l}(\psi)=\sum_{n\leq k}\sum_{| \alpha |\leq l}\sup_{\substack{t\in\mathopen[ c , d \mathclose]\\x\in K}}\big| \partial_t^n\partial^{\alpha}\psi(t,x) \big|.
-    \end{equation}
-    Nous montrons que \( \pr\) est séquentiellement continue; étant donné que les topologies sur \( \swD(K)\) et \( \swD\big( \mathopen[ c , d \mathclose]\times K \big)\) sont données par des métriques (proposition~\ref{PropQAEVcTi}), cela suffit pour assurer la continuité grâce à la proposition~\ref{PropXIAQSXr}. Montrons que si \( \psi_n\stackrel{\swD\big( \mathopen[ c , d \mathclose]\times K \big)}{\longrightarrow}0\), alors \( \pr(\psi_n)\stackrel{\swD(K)}{\longrightarrow}0\). Pour cela nous remarquons que
-    \begin{subequations}
-        \begin{align}
-            p_j\big( \pr(\psi) \big)&=\sum_{| \alpha |\leq j}\sup_{x\in K}| \partial^{\alpha}\psi(u,x) |\\
-            &\leq \sum_{| \alpha |\leq j}\sup_{t\in\mathopen[ c , d \mathclose]}\sup_{x\in K}| \partial^{\alpha}\psi(t,x) |\\
-            &=P_{0,j}(\psi).
-        \end{align}
-    \end{subequations}
-    Par conséquent
-    \begin{equation}
-        p_j\big( \pr(\psi_n) \big)\leq P_{0,j}(\psi_n)\to 0
-    \end{equation}
-    où nous avons utilisé la proposition~\ref{PropQPzGKVk}. Utilisant cette même proposition à l'envers, nous déduisons que \( \pr(\psi_n)\stackrel{\swD(K)}{\longrightarrow}0\). Les applications \( U_u\) sont donc continues; elles sont également bornées parce que si \( \psi\in\swD\big( \mathopen[ c , d \mathclose]\times K \big) \) nous avons
-    \begin{equation}
-        \sup_{u \in\mathopen[ c , d \mathclose]}\big| U_u(\psi) \big|=\sup_u \big| T_u\big( \psi(u,.) \big) \big|,
-    \end{equation}
-    et la continuité déjà évoquée, sur le compact \( \mathopen[ c , d \mathclose]\), nous dit que cette quantité est finie. Le théorème de Banach-Steinhaus peut maintenant être appliqué et il existe \( C>0\) et \( k,l\in \eN\) tels que pour tout \( \psi\in\swD\big( \mathopen[ c , d \mathclose]\times K \big)\),
-    \begin{equation}
-        \big| U_u(\psi) \big|\leq C P_{k,l}(\psi)=C\sum_{| \alpha |\leq k}\sum_{n\leq l}\sup_{t,x}\big| \partial_t^n\partial^{\alpha}\psi(t,x) \big|\leq C\sum_{| \alpha |+n\leq k+l}\sup_{t,x}\big| \partial_t^n\partial^{\alpha}\psi(t,x) \big|.
-    \end{equation}
-    Quelques remarques
-    \begin{itemize}
-        \item Nous n'avons pas mis de maximum devant le supremum (alors que la conclusion \eqref{EqIFNGhtr} en demande) parce que dans le cas des semi-normes \( P_{kl}\), c'est toujours celle avec \( k\) et \( l\) le plus grand possible qui sont les plus grandes parce qu'elles sont des sommes emboitées les unes les autres.
-        \item La fusion de deux sommes est bien une majoration parce qu'il y a plus de termes dans la seconde que dans la première.
-        \item La quantité la plus à droite est (à part le \( C\)) ce que nous pouvons noter \( P_{k+l}(\psi)\) : c'est bien une des semi-normes associées à l'espace de dimension \( d+1\).
-    \end{itemize}
-    Nous majorons maintenant \( T(\psi)\) par
-    \begin{equation}
-            \big| T(\psi) \big|\leq \int_c^d\big| T_t\big( \psi(t,.) \big) \big|dt
-            =\int_c^d\big|   U_t(\psi) \big|dt
-            \leq C| d-c |P_{k+l}(\psi).
-    \end{equation}
-    Maintenant le théorème~\ref{ThoVDDBnVn}\ref{ItemSPvoijoii} appliqué à l'ouvert \( I\times \Omega\) et avec \( \psi\) au lieu de \( \varphi\) nous informe que \( T\in\swD(I\times K)\).
-\end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Dérivation}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Quelques propriétés de dérivation des fonctions \( I\to \swD(\Omega)\) seront directement énoncées et démontrées dans le cas des distributions tempérées. Les résultats~\ref{PropGKoPbko} et~\ref{PropUDkgksG} seront a fortiori valables si nous remplaçons \( \swS\) par \( \swD\).
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{L'espace \texorpdfstring{$  C^{\infty}(\eR,\swS'(\eR^d))$}{C(R,S')}}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -1297,7 +2034,7 @@ D'abord parlons un peu de continuité en recopiant la proposition~\ref{PropVKSNf
     \begin{equation}
         \varphi_k\stackrel{unif}{\longrightarrow}\varphi.
     \end{equation}
-    Nous devons montrer que \( \varphi\in\swS(\Omega)\). Le fait que \( \varphi\) soit de classe \(  C^{\infty}\) s'obtient en utilisant les semi-normes \( p_{0,\alpha}(\varphi)=\| \partial^{\alpha}\varphi \|_{\infty}\) de la même façon que dans la preuve que \( \swD(\Omega)\) était complet (proposition~\ref{PropQAEVcTi}). Nous obtenons en particulier que
+    Nous devons montrer que \( \varphi\in\swS(\Omega)\). Le fait que \( \varphi\) soit de classe \(  C^{\infty}\) s'obtient en utilisant les seminormes \( p_{0,\alpha}(\varphi)=\| \partial^{\alpha}\varphi \|_{\infty}\) de la même façon que dans la preuve que \( \swD(\Omega)\) était complet (proposition~\ref{PropQAEVcTi}). Nous obtenons en particulier que
     \begin{equation}    \label{EqSZyYkqk}
         \partial^{\alpha}\varphi_k\stackrel{unif}{\longrightarrow}\partial^{\alpha}\varphi
     \end{equation}
@@ -1335,7 +2072,7 @@ D'abord parlons un peu de continuité en recopiant la proposition~\ref{PropVKSNf
     \begin{equation}
         T_{t_j}\stackrel{\swS'(\Omega)}{\longrightarrow}T_{t_0}.
     \end{equation}
-    Montrons que nous avons aussi \( \psi_{t_j}\stackrel{\swS(\Omega)}{\longrightarrow}\psi_{t_0}\). Pour cela nous utilisons les semi-normes\footnote{Pas parce que nous en avons envie, mais bien parce qu'elles font partie de la définition de la convergence et de tous ces trucs.} \( p_{\alpha\beta}\) définies en \eqref{EqOWdChCu} :
+    Montrons que nous avons aussi \( \psi_{t_j}\stackrel{\swS(\Omega)}{\longrightarrow}\psi_{t_0}\). Pour cela nous utilisons les seminormes\footnote{Pas parce que nous en avons envie, mais bien parce qu'elles font partie de la définition de la convergence et de tous ces trucs.} \( p_{\alpha\beta}\) définies en \eqref{EqOWdChCu} :
     \begin{subequations}
         \begin{align}
             p_{\alpha\beta}(\psi_{t_j}-\psi_{t_0})&=\sum_{x\in \Omega}\Big| x^{\beta}\big( \partial^{\alpha}\psi(t_j,x)-\partial^{\alpha}\psi(t_0,x) \big)       \Big|\\
@@ -1344,13 +2081,13 @@ D'abord parlons un peu de continuité en recopiant la proposition~\ref{PropVKSNf
             &\leq| t_0-t_j |P_{(\alpha t),\beta}(\psi).
         \end{align}
     \end{subequations}
-    Pour la première majoration nous avons utilisé le théorème des accroissements finie~\ref{val_medio_2}. Pour la dernière ligne nous avons noté \( P_{\alpha\beta}\) les semi-normes de \( \swS(I\times \Omega)\) et \( (t\alpha)\) est le multiiindice qui commence par la variable \( t\) et qui continue par \( \alpha\). Étant donné que \( P_{(\alpha t)\beta}(\psi)<\infty\) nous avons bien
+    Pour la première majoration nous avons utilisé le théorème des accroissements finie~\ref{val_medio_2}. Pour la dernière ligne nous avons noté \( P_{\alpha\beta}\) les seminormes de \( \swS(I\times \Omega)\) et \( (t\alpha)\) est le multiiindice qui commence par la variable \( t\) et qui continue par \( \alpha\). Étant donné que \( P_{(\alpha t)\beta}(\psi)<\infty\) nous avons bien
     \begin{equation}
         p_{\alpha\beta}(\psi_{t_j}-\psi_{t_0})\to 0
     \end{equation}
     et donc \( \psi_{t_j}\stackrel{\swS(\Omega)}{\longrightarrow}\psi_{t_0}\).
 
-    Étant donné que \( \swS(\Omega)\) est métrisable et complet, le corollaire~\ref{CorPGwLluz} nous dit que
+    Étant donné que \( \swS(\Omega)\) est métrisable et complet, le corolaire~\ref{CorPGwLluz} nous dit que
     \begin{equation}
         T_{t_j}(\psi_{t_j})\to T_{t_0}(\psi_{t_0}),
     \end{equation}
@@ -1407,7 +2144,7 @@ Attention que la formule \eqref{EqZMDeZco} est bonne si \( \varphi\in\swS(\Omega
     \end{equation}
     et \( (\epsilon_j)\) est une suite de réels tendant vers zéro.
 
-    Vu que \( (T_t)\in C^k(I,\swS'(\Omega))\), l'application \( t\mapsto T_t(\varphi)\) est de classe \( C^k\) et en particulier l'expression \eqref{EqCTuAfXe} a une limite lorsque \( j\to \infty\). Donc \( T^{(1)}_{t_0}(\varphi)\) est bien définie. Le point~\ref{ItemAEOtOMLi} du corollaire~\ref{CorPGwLluz} nous dit que \( \lim_{j\to \infty} U_j(\varphi)= T_{t_0}^{(1)}(\varphi)\) et \( T_{t_0}^{(1)}\) est une distribution (linéaire et continue).
+    Vu que \( (T_t)\in C^k(I,\swS'(\Omega))\), l'application \( t\mapsto T_t(\varphi)\) est de classe \( C^k\) et en particulier l'expression \eqref{EqCTuAfXe} a une limite lorsque \( j\to \infty\). Donc \( T^{(1)}_{t_0}(\varphi)\) est bien définie. Le point~\ref{ItemAEOtOMLi} du corolaire~\ref{CorPGwLluz} nous dit que \( \lim_{j\to \infty} U_j(\varphi)= T_{t_0}^{(1)}(\varphi)\) et \( T_{t_0}^{(1)}\) est une distribution (linéaire et continue).
 
     Nous devons encore voir que \( t\mapsto T^{(1)}_t\) est une application \( C^0\big( I,\swS'(\Omega) \big)\). Cela est une conséquence du fait que \( (T_t)\) soit de classe \( C^1\), ce qui se traduit par le fait que l'application
     \begin{equation}
@@ -1446,7 +2183,7 @@ Attention que la formule \eqref{EqZMDeZco} est bonne si \( \varphi\in\swS(\Omega
     \begin{equation}
         \varphi_j=\frac{1}{ \epsilon_j }(\psi_{t_0+\epsilon_j}-\psi_{t_0}).
     \end{equation}
-    Nous voulons utiliser le corollaire~\ref{CorPGwLluz}\ref{ItemAEOtOMLiii} pour obtenir
+    Nous voulons utiliser le corolaire~\ref{CorPGwLluz}\ref{ItemAEOtOMLiii} pour obtenir
     \begin{equation}
         \lim_{j\to \infty} U_j(\varphi_j)=T_{t_0}\Big( \frac{ \partial \psi }{ \partial t }(t_0,.) \Big).
     \end{equation}
@@ -1466,7 +2203,7 @@ Attention que la formule \eqref{EqZMDeZco} est bonne si \( \varphi\in\swS(\Omega
     \begin{equation}
         p_{\alpha\beta}\big( \varphi_j-\frac{ \partial \psi }{ \partial t }(t_0,.) \big)=\sup_{x\in\Omega}\left| x^{\beta}\partial^{\alpha}\Big( \epsilon_j\frac{ \partial^2\psi }{ \partial t^2 }(\bar t,x) \Big) \right| \leq \epsilon_j P_{\alpha,2;\beta,0}(\psi)
     \end{equation}
-    où \( P_{\alpha,k;\beta,l}\) sont les semi-normes de \( \swS(I\times \Omega)\) avec la notation plus ou moins évidente de prendre \( \alpha\) dérivations sur \( x\), \( k\) sur \( t\) puis de multiplier par \( x^{\beta}t^l\). Au final nous avons bien
+    où \( P_{\alpha,k;\beta,l}\) sont les seminormes de \( \swS(I\times \Omega)\) avec la notation plus ou moins évidente de prendre \( \alpha\) dérivations sur \( x\), \( k\) sur \( t\) puis de multiplier par \( x^{\beta}t^l\). Au final nous avons bien
     \begin{equation}
         \lim_{j\to \infty} p_{\alpha\beta}\big( \varphi_j-\frac{ \partial \psi }{ \partial t }(t_0,.) \big)=0
     \end{equation}
@@ -1486,81 +2223,4 @@ Attention que la formule \eqref{EqZMDeZco} est bonne si \( \varphi\in\swS(\Omega
     \begin{equation}
         (\TF T_t^{(1)})(\varphi)=T_t^{(1)}(\TF \varphi)=\frac{ d }{ dt }\Big( T_t(\TF \varphi) \Big)=\frac{ d }{ dt }\Big( (\TF T_t)(\varphi) \Big)=(\TF T)_t^{(1)}(\varphi).
     \end{equation}
-\end{proof}
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Une équation de distribution}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Nous allons étudier l'équation
-\begin{equation}    \label{EqLLTPooJHUVvU}
-    (x-x_0)^{\alpha}u=0
-\end{equation}
-pour \( u\in\swD'(\eR)\) et \( \alpha\in \eN\) est donné fixé. Notons tout de suite que \eqref{EqLLTPooJHUVvU} est un petit abus de notation pour dire qu'en vertu de la définition~\ref{DefZVRNooDXAoTU} du produit d'une distribution par une fonction, pour tout \( \phi\in\swD(\eR)\), nous avons \( u\Big( x\mapsto (x-x_0)\phi(x) \Big)=0\).
-
-\begin{lemma}[\cite{PAXrsMn}]       \label{LemWIGKooQpGXoI}
-    Soit \( \alpha\in \eN\). Une solution à l'équation
-    \begin{equation}        \label{EqKVNEooJNwsPc}
-        (x-x_0)^{\alpha}u=0
-    \end{equation}
-    est une distribution à support dans \( \{ x_0 \}\) et d'ordre fini.
-\end{lemma}
-
-\begin{proof}
-    Nous commençons par prouver que \( u\) est une solution de \eqref{EqKVNEooJNwsPc} si et seulement si\footnote{En réalité nous n'aurons besoin que de la condition nécessaire, en particulier pour le théorème~\ref{ThoRDUXooQBlLNb}.} \( \langle u, \phi\rangle =0\) pour tout \( \phi\in\swD\) telle que
-    \begin{equation}    \label{EqYLIPooYByzwC}
-        \phi(x_0)=\ldots=\partial^{\alpha-1}\phi(x_0)=0.
-    \end{equation}
-    \begin{subproof}
-    \item[Condition nécéssaire]
-    Supposons que \( u\) soit une solution. Alors le corollaire~\ref{CorQBXHooZVKeNG} du théorème de Hadamard donne \( \psi\in\swD(\eR)\) telle que
-        $\phi(x)=(x-x_0)^{\alpha}\psi(x)$.
-    Dans ce cas, si \( u\) est solution de \eqref{EqKVNEooJNwsPc}, alors
-    \begin{equation}
-        0=\langle (x-x_0)^{\alpha}u, \psi\rangle =\langle u, (x-x_0)^{\alpha}\psi(x)\rangle =\langle u, \phi\rangle .
-    \end{equation}
-    Nous avons vu que si \( u\) est solution, alors \( \langle u, \phi\rangle =0\) pour tout \( \phi\) satisfaisant la condition \eqref{EqYLIPooYByzwC}.
-
-\item[Condition suffisante]
-    Supposons maintenant l'inverse : \( u\) est une distribution s'annulant sur toute fonction \( \phi\in\swD'\) satisfaisant \eqref{EqYLIPooYByzwC}. Nous allons alors prouver que \( u\) est une solution. Soit donc \( \psi\in \swD\) et calculons
-    \begin{equation}
-        \langle (x-x_0)u, \psi\rangle =\langle u, (x-x_0)\psi\rangle =0
-    \end{equation}
-    parce que la fonction \( (x-x_0)\psi(x)\) vérifie la condition \eqref{EqYLIPooYByzwC}.
-    \end{subproof}
-
-    Nous passons maintenant au cœur de la preuve : nous supposons que \( u\) est une solution. Si le support de \( \phi\) est contenu dans \( \eR\setminus\{ x_0 \}\) alors \( \phi\) est nulle dans un voisinage de \( x_0\) (et donc \( \partial^k\phi=0\) pour tout \( k\)) et \( \langle u, \phi\rangle =0\). Autrement dit, pour  tout \( \phi\in\swD\big( \eR\setminus\{ x_0 \} \big)\) nous avons \( \langle u, \phi\rangle =0\), ce qui signifie que \( \supp(u)\cap\big( \eR\setminus\{ x_0 \} \big)=\emptyset\) ou encore que \( \supp(u)=\{ x_0 \}\).
-
-    Maintenant que \( u\) a un support compact, la proposition~\ref{PropZLUEooHcVxQj} nous indique qu'elle est d'ordre fini.
-\end{proof}
-
-\begin{theorem}[\cite{PAXrsMn}]     \label{ThoRDUXooQBlLNb}
-    Soit \( \alpha\in \eN\) et l'équation
-    \begin{equation}        \label{EqDONTooKPfDWU}
-        (x-x_0)^{\alpha}u=0
-    \end{equation}
-    pour \( u\in\swD'(\eR)\). Les solutions sont les combinaisons linéaires des dérivées de \( \delta_{x_0}\) jusqu'à la \( \alpha\)\ieme exclue.
-\end{theorem}
-
-\begin{proof}
-    D'abord montrons que les \( \partial^i\delta_{x_0}\) sont des solutions. Avec les définition~\ref{DefZVRNooDXAoTU} et~\ref{PropKJLrfSX} des dérivées de distributions et de leur produits avec des fonctions\footnote{Comme souvent, dans l'expression suivante, il y a un abus de notation parce que \( x\) est une variable muette : il faudrait écrire «\( x\mapsto\)» au début de la grade parenthèse.},
-    \begin{equation}
-        (x-x_0)^{\alpha}\partial^i\delta_{x_0}(\phi)=\delta_{x_0}\Big( \partial^i\big( (x-x_0)^{\alpha}\phi(x) \big) \Big)
-    \end{equation}
-    Si \( i<\alpha\) alors dans chaque terme de Leibnitz, il y aura un facteur \( (x-x_0)\), et la prise de \( \delta_{x_0}\) annulera. Si par contre \( i\geq \alpha\) alors il y aura le terme
-    \begin{equation}
-        \binom{ i }{ \alpha }\partial^{\alpha}\big( (x-x_0)^{\alpha} \big)\partial^{i-\alpha}=\binom{ i }{ \alpha }\alpha!(\partial^{i-\alpha}\phi)(x_0)
-    \end{equation}
-    qui est le seul terme contenant \( (\partial^{i-\alpha}\phi)(x_0)\). Il suffit alors de choisir \( \phi\in\swD(\eR) \) de sorte que
-    \begin{equation}
-        (\partial^k\phi)(x_0)=\begin{cases}
-            0    &   \text{si } k\neq i-\alpha\\
-            1    &    \text{si } k=i-\alpha
-        \end{cases}
-    \end{equation}
-    et alors on est certain que le tout n'est pas nul, et donc que \( (x-x_0)^{\alpha}(\partial^i\delta_{x_0})\neq 0\).
-
-    Jusqu'ici nous avons prouvé que \( \partial^i\delta_{x_0}\) est solution si et seulement si \( 0\leq i<\alpha\).
-
-    Il faut encore prouver que les solutions sont toutes des combinaisons linéaires de dérivées de delta de Dirac centrées en \( x_0\). Pour cela nous invoquons d'abord le lemme~\ref{LemWIGKooQpGXoI} qui nous assure que \( u\) est d'ordre fini et de support \( \{ x_0 \}\). Ensuite la proposition~\ref{PropXXPLooSkgxOz} nous indique que \( u\) doit alors être une combinaisons linéaire de dérivées de Dirac.
 \end{proof}

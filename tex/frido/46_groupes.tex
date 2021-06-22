@@ -1,9 +1,9 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2019
+% Copyright (c) 2011-2020
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
-Pour rapplel, la notion de groupe est définie en \ref{DEFooBMUZooLAfbeM}.
+Pour rappel, la notion de groupe est définie en \ref{DEFooBMUZooLAfbeM}.
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Groupes}
@@ -36,7 +36,7 @@ C'est l'ensemble des éléments de \( G\) qui commutent avec \( g\).
 
 \end{definition}
 
-\begin{definition}\label{DEFooNIIMooFkZgvX}
+\begin{definition}[Sous-groupe normal]    \label{DEFooNIIMooFkZgvX}
     Un sous-groupe \( N\) de \( G\) est \defe{normal}{normal!sous-groupe} ou \defe{distingué}{distingué!sous-groupe} si pour tout \( g\in G\) et pour tout \( n\in N\), \( gng^{-1}\in N\). Autrement dit lorsque \( gNg^{-1}\subset N\).
 
     Lorsque \( N\) est normal dans \( G\) il est parfois noté \( N\normal G\)\nomenclature[]{\(N \normal G\)}{Le sous-groupe \( N\) est normal dans \( G\)}.
@@ -51,27 +51,86 @@ C'est l'ensemble des éléments de \( G\) qui commutent avec \( g\).
 \end{definition}
 
 \begin{definition}[Sous-groupe engendré]        \label{DefooRDRXooEhVxxu}
-    Soit \( A\) une partie du groupe \( G\). Le sous-groupe \defe{engendré}{sous-groupe!engendré}\index{engendré!sous-groupe} par \( A\) est l'intersection de tous les sous-groupes de \( G\) contenant \( A\). Nous notons ce groupe \( \gr(A)\)\nomenclature[R]{\( \gr\)}{groupe engendré}.
+    Soit \( A\) une partie du groupe \( G\). Le sous-groupe \defe{engendré}{sous-groupe!engendré}\index{engendré!sous-groupe} par \( A\) est l'intersection de tous les sous-groupes de \( G\) contenant \( A\). Nous notons ce groupe \( \gr_G(A)\)\nomenclature[R]{\( \gr_G\)}{groupe engendré}.
 
     Lorsque \( A \) est fini (disons \( A = \{a_1, \dots, a_n\} \)), on note aussi le sous-groupe engendré \( \langle a_1, \dots, a_n \rangle \).
 \end{definition}
 
-Le sous-groupe engendré par \( A \) est le plus petit (pour l'inclusion) groupe de \( G\) contenant \( A\). Plus formellement, nous avons le résultat suivant.
+\begin{normaltext}
+    Un sous-groupe engendré n'est jamais vide parce qu'il contient toujours au moins le neutre (parce que c'est un sous-groupe). Si \( G\) est un groupe, le sous-groupe \( \gr_G(\emptyset)\) lui-même contient \( e\)\footnote{Demandez-vous si il est possible que \( \gr(\emptyset)\) contienne d'autres éléments que \( e\).}.
+\end{normaltext}
+
+\begin{normaltext}
+    Dans de nombreux cas, le groupe «ambiant» \( G\) est entendu par le contexte et nous noterons \( \gr(A)\) au lieu de \( \gr_G(A)\).
+
+    Si par exemple \( A\) est la matrice \( \begin{pmatrix}
+        4    &   5    \\ 
+        6    &   7    
+    \end{pmatrix}\), le groupe \( \gr(A)\) est à comprendre dans \( \GL(2,\eR)\). Il faudrait être fou pour avoir en tête un autre groupe que \( \GL(2,\eR)\) sans le préciser.
+
+    D'ailleurs, connaissez-vous un groupe contenant la matrice \( A\) et n'étant pas un sous-groupe de \( \GL(2,\eC)\) ?
+\end{normaltext}
+
 \begin{lemma}
-    Tout sous-groupe de \( G\) contenant \( A\) est inclus dans \( \gr(A)\).
+    Si \( G\) est un groupe et \( A\) une partie de \( G\), alors \( \gr(A)\) est un sous-groupe de \( G\).
 \end{lemma}
 
-
-\begin{lemma}   \label{LemFUIZooBZTCiy}
-    Si \( A\) est une partie du groupe \( G\), alors le sous-groupe engendré\footnote{Définition~\ref{DefooRDRXooEhVxxu}.} par \( A\) est l'ensemble de tous les produits finis d'éléments de \( A\) et de \( A^{-1}\) (l'identité est le produit à zéro éléments).
+Le sous-groupe engendré par \( A \) est le plus petit (pour l'inclusion) groupe de \( G\) contenant \( A\). Plus formellement, nous avons le résultat suivant.
+\begin{lemma}
+    Tout sous-groupe de \( G\) contenant \( A\) contient \( \gr(A)\).
 \end{lemma}
 
 \begin{proof}
-    Nous nommons \( K\) le groupe engendré par \( A\) et par \( H\) l'ensemble de tous les produits finis d'éléments de \( A\) et de \( A^{-1}\). Cela est un sous-groupe de \( G\) contenant \( A\). Donc \( K\subset H\) parce que \( K\) est une intersection dont un des éléments est \( H\).
+    Si \( H\) est un sous-groupe de \( G\) contenant \( A\), alors \( \gr(A)\) est l'intersection de \( H\) avec tous les autres sous-groupes de \( G\) contenant \( A\). Il contient donc \( \gr(A)\).
+\end{proof}
 
-    Par ailleurs tout groupe contenant \( A\) doit contenir les inverses et les produits finis, donc \( H\subset K\).
+\begin{lemma}[\cite{BIBooERNQooTXQPvD}]   \label{LemFUIZooBZTCiy}
+    Si \( A\) est une partie du groupe \( G\), alors le sous-groupe \( \gr(A)\) engendré\footnote{Définition~\ref{DefooRDRXooEhVxxu}.} par \( A\) est l'ensemble de tous les produits finis d'éléments de \( A\) et de \( A^{-1}\) (l'identité est le produit à zéro éléments).
 
-    Au final, \( H=K\), ce qu'il fallait.
+    C'est-à-dire que tout élément de \( \gr(A)\) peut être écrit sous la forme\footnote{Les \( a_i\) négatifs correspondent aux inverses. Notons que si \( g\in A\), il n'y a pas de garanties que \( g^{-1}\) soit également dans \( A\).}
+    \begin{equation}
+        \prod_{i=1}^ng_i^{a_i}
+    \end{equation}
+    où \( a_i\in \eZ\) et \( g\colon \eN\to A\) n'est pas spécialement injective : il peut arriver que \( g_i=g_j\).
+\end{lemma}
+
+\begin{proof}
+    Vu qu'un produit vide est égal à l'identité, le lemme est vrai (un peu trivialement) dans le cas où \( A=\emptyset\). À partir de maintenant nous supposons que \( A\) est non vide.
+
+    Nous nommons \( \gr(A)\) le groupe engendré par \( A\) et par \( H\) l'ensemble
+    \begin{equation}
+        H=\{ g_1\ldots g_n\tq g_i\in A\cup A^{-1} \}.
+    \end{equation}
+    Nous commençons par prouver que \( H\) est un groupe.
+    \begin{itemize}
+        \item Vu que \( A\) est non vide, nous considérons \( a\in A\). Dans ce cas, \( e=aa^{-1}\in H\). Donc \( e\in H\).
+        \item L'inverse de \( g_1\ldots g_n\) est \( g_n^{-1}\ldots g_1^{-1}\) qui est également dans \( H\).
+        \item Le produit de \( g_1\ldots g_n\) par \( h_1\ldots h_n\) est également dans \( H\)\footnote{Et c'est ici qu'on se rend compte que la décomposition n'est probablement que rarement unique.}.
+    \end{itemize}
+    Vu que \( H\) est un groupe contenant \( A\), nous avons \( \gr(A)\subset H\) parce que \( \gr(A)\) est une intersection dont un des éléments est \( H\).
+
+    Par ailleurs tout groupe contenant \( A\) doit contenir les inverses et les produits finis, donc \( H\subset \gr(A)\).
+
+    Au final, \( H=\gr(A)\), ce qu'il fallait.
+\end{proof}
+
+\begin{lemma}       \label{LEMooCFTVooKvmyKN}
+    Soit un groupe \( G\) et un sous-groupe \( H=\gr(h_1,\ldots, h_n)\). Si \( \alpha\in G\), alors
+    \begin{equation}
+        \alpha H\alpha^{-1}=\gr(\alpha h_1\alpha^{-1},\ldots, \alpha h_n\alpha^{-1}).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Il s'agit d'une conséquence du lemme \ref{LemFUIZooBZTCiy}. Un élément de \( \gr(\alpha h_1\alpha^{-1},\ldots, \alpha h_n\alpha^{-1})\) est un produit d'éléments de \( G\) de la forme \( \alpha h_i\alpha^{-1}\) ou \( (\alpha h_j\alpha^{-1})^{-1}=\alpha h_j^{-1}\alpha^{-1}\). Or nous avons
+    \begin{equation}
+        \alpha h_i\alpha^{-1}\alpha h_j\alpha^{-1}=\alpha h_ih_j\alpha^{-1}\in \alpha H\alpha^{-1}.
+    \end{equation}
+    Donc 
+    \begin{equation}
+        \gr(\alpha h_1\alpha^{-1},\ldots, \alpha h_n\alpha^{-1})\subset \alpha H\alpha^{-1}.
+    \end{equation}
+    L'inclusion dans l'autre sens est du même tonneau.
 \end{proof}
 
 \begin{definition}[Partie génératrice, groupe monogène]  \label{DEFooWMFVooLDqVxR}
@@ -81,10 +140,10 @@ Le sous-groupe engendré par \( A \) est le plus petit (pour l'inclusion) groupe
 \end{definition}
 
 \begin{definition}[Groupe cyclique]     \label{DefHFJWooFxkzCF}
-    Un élément \( a\in G\) est un \defe{générateur}{générateur} de \( G\) si tous les éléments de \( G\) s'écrivent sous la forme \( a^n\) pour un certain \( n\in\eZ\). Un groupe fini et monogène est dit \defe{cyclique}{cyclique!groupe}.
+    Un élément \( a\in G\) est un \defe{générateur}{générateur} de \( G\) si tous les éléments de \( G\) s'écrivent sous la forme \( a^n\) pour un certain \( n\in\eZ\). Un groupe fini et monogène est dit \defe{cyclique}{groupe cyclique}.
 \end{definition}
 
-\begin{definition}
+\begin{example}
     Soit le groupe \( \big( \eZ/10\eZ,+ \big)\). L'élément \( [2]_{10}\) n'est pas générateur parce que ses puissances\footnote{Attention aux notations; en général on écrit la loi de groupe de façon multiplicative et on parle des puissances d'un élément, mais ici on écrit la loi de groupe additivement, donc les «puissances» sont en réalité les multiples.} sont
     \begin{equation}
         \gr([2]_{10})=\{ [2]_{10},[4]_{10},[6]_{10},[8]_{10},[0]_{10} \}.
@@ -93,7 +152,7 @@ Le sous-groupe engendré par \( A \) est le plus petit (pour l'inclusion) groupe
     \begin{equation}
         [3]_{10}, [6]_{10}, [9]_{10}, [2]_{10}, [5]_{10}, [8]_{10},[1]_{10},[4]_{10},[7]_{10},[0]_{10}.
     \end{equation}
-\end{definition}
+\end{example}
 
 Un exemple presque identique, mais un peu masqué sera l'exemple \ref{EXooOXAAooZMdDfP}.
 
@@ -142,21 +201,90 @@ Un exemple presque identique, mais un peu masqué sera l'exemple \ref{EXooOXAAoo
     s'il existe; dans le cas contraire, nous disons que l'ordre de \( g\) est infini.
     \end{enumerate}
 \end{definition}
-Nous verrons que le corollaire~\ref{CorpZItFX} au théorème de Lagrange dira que l'ordre d'un élément divise l'ordre du groupe.
+Nous verrons que le corolaire~\ref{CorpZItFX} au théorème de Lagrange dira que l'ordre d'un élément divise l'ordre du groupe.
 
-\begin{lemma}[\cite{PDFpersoWanadoo}]\label{LemHUkMxp}
-    Si \( H\) et \( K\) sont normaux dans le groupe \( G\) et si \( H\cap K=\{ e \}\) alors \( HK\simeq H\times K\).
+\begin{lemma}[\cite{PDFpersoWanadoo,BIBooZFPUooIiywbk}]\label{LemHUkMxp}
+    Soient un groupe \( G\) et deux sous-groupes normaux\footnote{Sous-groupe normal, définition \ref{DEFooNIIMooFkZgvX}.} \( H\) et \( K\) tels que \( H\cap K=\{ e \}\). Alors :
+    \begin{enumerate}
+        \item       \label{ITEMooDFVBooSnnlgR}
+            Tout élément de \( H\) commute avec tout élément de \( K\).
+        \item       \label{ITEMooVVBGooZSJqjp}
+            \( HK\) est un sous-groupe de \( G\).
+        \item       \label{IMTEooPCBZooQoZFOD}
+            L'application
+            \begin{equation}
+                \begin{aligned}
+                    \varphi\colon H\times K&\to HK \\
+                    (h,k)&\mapsto hk 
+                \end{aligned}
+            \end{equation}
+            est un isomorphisme de groupes.
+    \end{enumerate}
 \end{lemma}
+
+\begin{proof}
+    Point par point.
+    \begin{subproof}
+    \item[\ref{ITEMooDFVBooSnnlgR}]
+        Soient \( h\in H\) et \( k\in K\). Nous voulons montrer que \( hk=kh\). Pour cela nous considérons l'élément \( a=hkh^{-1}k^{-1}\). Vu que \( H \) est normal dans \( G\), nous avons 
+        \begin{equation}
+            kh^{-1}k^{-1}\in H
+        \end{equation}
+        et donc \( a\in H\). De même \( K\) étant normal dans \( G\), nous avons \( hkh^{-1}\in K\) et donc \( a\in K\). Au final \( a\in H\cap K=\{ e \}\). Nous avons prouvé que
+        \begin{equation}
+            hkh^{-1}k^{-1}=e,
+        \end{equation}
+        et donc que \( hk=kh\).
+    \item[\ref{ITEMooVVBGooZSJqjp}]
+        Vu que \( H\) et \( K\) sont des sous-groupes, \( \{ e \}\) est dans les deux, de telle sorte que \( e\in HK\). De plus si \( h_i\in H\) et \( k_i\in K\), la commutativité du point \ref{ITEMooDFVBooSnnlgR} donne
+        \begin{equation}
+            (h_1k_1)(h_2k_2)=h_1h_2k_1k_2\in HK.
+        \end{equation}
+        Donc le produit de deux éléments de \( HK\) est dans $HK$.
+    \item[\ref{IMTEooPCBZooQoZFOD}]
+        En trois sous-parties.
+        \begin{subproof}
+        \item[Homomorphisme]
+            Soient \( h_i\in H\) et \( k_i\in K\). En utilisant la commutativité du point \ref{ITEMooDFVBooSnnlgR} nous avons
+            \begin{subequations}
+                \begin{align}
+                    \varphi\big( (h_1,k_1)(h_2,k_2) \big)&=\varphi(h_1h_2,k_1k_2)\\
+                    &=(h_1h_2)(k_1k_2)\\
+                    &=(h_1k_1)(h_2k_2)\\
+                    &=\varphi(h_1,k_1)\varphi(h_2,k_2).
+                \end{align}
+            \end{subequations}
+        \item[Injectif]
+            Si \( \varphi(h_1,k_1)=\varphi(h_2,k_2)\) nous avons successivement
+            \begin{subequations}
+                \begin{align}
+                    h_1k_1&=h_2k_2\\
+                    h_1 k_1 h_2^{-1}&=k_2\\
+                    h_1k_1h_2^{-1}k_1^{-1}&=k_2k_1^{-1}\\
+                    h_1h_2^{-1}&=k_2k_1^{-1}.
+                \end{align}
+            \end{subequations}
+            Le membre de gauche est un élément de \( H\) et le membre de droite un élément de \( K\). Vu que \( H\cap K=\{ e \}\) nous avons \( h_1h_2^{-1}=e\) et \( k_2k_1^{-1}=e\), c'est à dire \( h_1=h_2\) et \( k_1=k_2\).
+        \item[Surjectif]
+            Une élément général de \( HK\) est \( hk\) avec \( h\in H\) et \( k\in K\). Cela est l'image de \( (h,k)\) par \( \varphi\).
+        \end{subproof}
+    \end{subproof}
+\end{proof}
 
 \begin{definition}  \label{DefvtSAyb}
     L'\defe{exposant}{exposant!d'un groupe} du groupe \( G\) est le plus petit entier non nul \( n\) tel que \( g^n=e\) pour tout \( g\in G\). S'il n'existe pas, nous disons que l'exposant du groupe est infini.
 \end{definition}
-Si l'ordre de tous les éléments acceptent un majorant commun, alors l'exposant du groupe est le plus petit commun multiple des ordres des éléments. En particulier pour un groupe fini, l'exposant est le $\ppcm$ des ordres des éléments du groupe.
+
+\begin{proposition}\label{PROPooSWHHooOzqWkw}
+    Si l'ensemble des ordres de tous les éléments d'un groupe est majoré, alors l'exposant du groupe est le plus petit commun multiple des ordres des éléments du groupe
+
+    Pour un groupe fini, l'exposant est le $\ppcm$ des ordres des éléments du groupe.
+\end{proposition}
 
 Le théorème de Burnside~\ref{ThooJLTit} nous donnera un bon paquet d'exemples de groupes d'exposant fini dans \( \GL(n,\eC)\).
 
 \begin{proposition} \label{PropSRMJooIDPBoW}
-    Soit \( H\) un sous-groupe normal de \( G\) et \( \psi\colon G\to K\) un homomorphisme.
+    Soit un groupe \( G\). Nous considérons un sous-groupe normal \( H\) de \( G\) ainsi qu'un homomorphisme \( \psi\colon G\to H\). Alors
     \begin{enumerate}
         \item
             \( \psi(H)\) est normal dans \( \psi(G)\)
@@ -214,10 +342,16 @@ Le théorème de Burnside~\ref{ThooJLTit} nous donnera un bon paquet d'exemples 
 \section{Groupe dérivé}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\begin{definition}\label{DefVUFBooNQjEdn}
-    Si \( G\) est un groupe et si \( g,h\in G\), nous notons \( [g,h]=ghg^{-1}h^{-1}\)\nomenclature[R]{\( [g,h]\)}{commutateur dans un groupe} le \defe{commutateur}{commutateur!dans un groupe} de \( g\) et \( h\). Le \defe{groupe dérivé}{dérivé!groupe}\index{groupe!dérivé} de \( G\) est le sous-groupe noté \( D(G)\)\nomenclature[R]{\( D(G)\)}{groupe dérivé} ou \( [G,G]\)\nomenclature[R]{\( [G,G]\)}{groupe dérivé} engendré par les commutateurs.
+\begin{definition}
+    Si \( G\) est un groupe et si \( g,h\in G\), nous notons \( [g,h]=ghg^{-1}h^{-1}\)\nomenclature[R]{\( [g,h]\)}{commutateur dans un groupe} le \defe{commutateur}{commutateur!dans un groupe} de \( g\) et \( h\). 
 \end{definition}
-Autrement dit, \( D(G)\) est l'intersection de tous les sous-groupes de \( G\) contenant tous les commutateurs. Intersection non vide parce que \( G\) lui-même en fait partie.
+
+L'élément neutre est toujours un commutateur : pour \( g=h \), \( [g,g]=ggg^{-1}g^{-1}=e \).
+
+\begin{definition}      \label{DEFooBNLPooShKYXa}
+    Le \defe{groupe dérivé}{dérivé!groupe}\index{groupe!dérivé} de \( G\) est le sous-groupe noté \( D(G)\)\nomenclature[R]{\( D(G)\)}{groupe dérivé} ou \( [G,G]\)\nomenclature[R]{\( [G,G]\)}{groupe dérivé} engendré\footnote{Définition \ref{DefooRDRXooEhVxxu}.} par les commutateurs.
+\end{definition}
+Autrement dit, \( D(G)\) est l'intersection de tous les sous-groupes de \( G\) contenant tous les commutateurs. Le groupe \( D(G)\) contient toujours au moins le neutre parce que c'est un groupe.
 
 En vertu du lemme~\ref{LemFUIZooBZTCiy}, le groupe dérivé de \( G\) est l'ensemble des produits finis de commutateurs. C'est-à-dire que si \( S_m\) est l'ensemble des produits de \( m\) commutateurs, alors
 \begin{equation}
@@ -598,7 +732,7 @@ L'objet de nos prochaines pérégrinations mathématiques est de montrer que tou
     \begin{equation}
         \frac{ B'(A\cap B) }{ B'(A'\cap B) }=\frac{ A'(A\cap B) }{ A'(A\cap B') }.
     \end{equation}
-    Nous devons encore justifier \( B'(A\cap B)=(A\cap B)B'\) et \( B'(A'\cap B)=(A'\cap B)B'\). Faisons le premier et laissons le second \href{http://abstrusegoose.com/395}{au lecteur}.
+    Nous devons encore justifier \( B'(A\cap B)=(A\cap B)B'\) et \( B'(A'\cap B)=(A'\cap B)B'\). Faisons le premier et laissons le second \href{https://abstrusegoose.com/395}{au lecteur}.
     Si \( b\in B'\) et \( x\in A\cap B\), alors
     \begin{equation}
         bx=x\underbrace{x^{-1}bx}_{\in B'}\in (A\cap B)B'.
@@ -693,7 +827,7 @@ Il s'agit d'un groupe qui admet une suite de composition\footnote{Voir définiti
 \end{lemma}
 
 \begin{proof}
-    Les proposition suivantes sont équivalentes :
+    Les propositions suivantes sont équivalentes :
     \begin{itemize}
         \item Le groupe \( G/H\) est abélien
         \item pour tout \( x,y\in G\), \( \bar x\bar y=\bar y\bar x\)
@@ -709,7 +843,7 @@ Il s'agit d'un groupe qui admet une suite de composition\footnote{Voir définiti
 \end{proposition}
 
 \begin{proof}
-    Grâce au lemme~\ref{LemMMOCooDJJJhy} et à la proposition~\ref{PropAPRGooHBkELf}, si la suite dérivée termine sur \( \{ e \}\) alors la suite dérivé est une suite qui répond aux conditions de la définition~\ref{DefOSYNooTROIKs} de groupe résoluble.
+    Grâce au lemme~\ref{LemMMOCooDJJJhy} et à la proposition~\ref{PropAPRGooHBkELf}, si la suite dérivée termine sur \( \{ e \}\) alors la suite dérivée est une suite qui répond aux conditions de la définition~\ref{DefOSYNooTROIKs} de groupe résoluble.
 
     Il faut donc encore montrer le sens direct. Nous supposons que \( G\) est un groupe résoluble et nous étudions sa suite dérivée. Nous avons une suite
     \begin{equation}
@@ -746,19 +880,11 @@ Il s'agit d'un groupe qui admet une suite de composition\footnote{Voir définiti
 
 \end{proof}
 
-
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Action de groupes}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Le concept d'action d'un groupe est donné par la définition \ref{DefActionGroupe}
 
-\begin{definition}[Thème~\ref{THEMEooKZHBooRCULcr}]  \label{DefActionGroupe}
-    Une \defe{action de groupe}{action}\index{action} \( G\) sur un ensemble \( E\) est la donnée, pour chaque élément \( g \in G\), d'une fonction \(\phi_g : E \to E \), de telle sorte que:
-    \begin{gather*}
-        \phi_{e}(x) = x, \hspace{2em} \forall x \in E;\\
-        \phi_{gh}(x) = \phi_g (\phi_h (x)),  \hspace{2em} \forall g,h \in G, \forall x \in E.
-     \end{gather*}
-     On dit dans ce cas que \( G \) \defe{agit}{action} sur \( E \).
-\end{definition}
 
 \begin{lemma}
     Pour tout \( g\in G\),
@@ -912,7 +1038,7 @@ C'est la formule \eqref{EqnLCHCE} qui est nommée \wikipedia{fr}{Action_de_group
         \begin{equation}
             \bigcup_{y\in\mO_x}A_y=G.
         \end{equation}
-        Les ensemble \( A_y\) divisent donc \( G\) en \( | \mO_x |\) paquets de \( | \Fix(x) |\) éléments. D'où la formule \eqref{EqCewSXT}.
+        Les ensembles \( A_y\) divisent donc \( G\) en \( | \mO_x |\) paquets de \( | \Fix(x) |\) éléments. D'où la formule \eqref{EqCewSXT}.
 
     \end{enumerate}
 \end{proof}
@@ -989,7 +1115,7 @@ où  \( g(F) = \phi_g(F) = \{ \phi_g(x) \tq x \in F\} \). L'union est disjointe,
 \end{proposition}
 
 \begin{proof}
-    Par le corollaire~\ref{CorARFVMP}, nous avons \( | G |=\sum_{x\in E'}| \mO_x |\) où \( E'\) est une transversale.  En séparant la somme entre les orbites à un élément et les autres,
+    Par le corolaire~\ref{CorARFVMP}, nous avons \( | G |=\sum_{x\in E'}| \mO_x |\) où \( E'\) est une transversale.  En séparant la somme entre les orbites à un élément et les autres,
     \begin{equation}    \label{EqeggkBs}
         | G |=\Card(\Fix_G(E))+\sum_{x\in E''}\frac{ | G | }{ | \Fix_G(x) | }
     \end{equation}  \label{EqDgYbhm}
@@ -1000,7 +1126,7 @@ où  \( g(F) = \phi_g(F) = \{ \phi_g(x) \tq x \in F\} \). L'union est disjointe,
 
 
 \begin{corollary}[Équation des classes]\index{équation!des classes}
-    Soit \( G\), un groupe et \( C_1\),\ldots, \( C_l\) la liste de ses classes de conjugaison contenant plus de un éléments. Alors
+    Soit \( G\), un groupe et \( C_1\),\ldots, \( C_l\) la liste de ses classes de conjugaison contenant plus de un élément. Alors
     \begin{equation}        \label{EqkgGmoq}
         \Card(G)=\Card\big( Z(G) \big)+\sum_i| G:Z_{g_i} |=\Card\big( Z(G) \big)+\sum_i\frac{ \Card(G) }{ \Card\big( \Fix(g_i) \big) }
     \end{equation}
@@ -1059,8 +1185,8 @@ où  \( g(F) = \phi_g(F) = \{ \phi_g(x) \tq x \in F\} \). L'union est disjointe,
 
 % TODO: preuve
 
-\begin{theorem}
-    Soit \( G\) un groupe cyclique d'ordre \( n\).
+\begin{theorem}     \label{THOooRGSTooIWyhqt}
+    Soit \( G\) un groupe cyclique\footnote{Définition \ref{DefHFJWooFxkzCF}.} d'ordre \( n\).
     \begin{enumerate}
         \item
             Tout sous-groupe de \( G\) est cyclique.
@@ -1075,6 +1201,6 @@ où  \( g(F) = \phi_g(F) = \{ \phi_g(x) \tq x \in F\} \). L'union est disjointe,
 
 % TODO: preuve
 
-\begin{definition}
+\begin{definition}      \label{DEFooQDHPooCfDEuL}
     Soit \( G\) un groupe agissant sur un ensemble \( E\). Nous disons que l'action est \defe{transitive}{transitive}\index{action!transitive} si elle possède une seule orbite. L'action est \defe{libre}{libre!action}\index{action!libre} si \( g\cdot x=g'\cdot x\) implique \( g=g'\).
 \end{definition}

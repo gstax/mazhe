@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2008-2019
+% Copyright (c) 2008-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -153,594 +153,1080 @@ Le dessin suivant montre le cas de la courbe de la fonction carré comparé à c
    \input{auto/pictures_tex/Fig_CELooGVvzMc.pstricks}
 \end{center}
 
+
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Limite de fonctions}
+\section{Topologie sur l'ensemble des réels}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\label{SECooGKHYooMwHQaD}
 
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Définition}
-%---------------------------------------------------------------------------------------------------------------------------
+Nous allons à présent donner la topologie sur \( \eR\) et ainsi résoudre les questions laissées en suspens lors de la construction des réels, voir~\ref{NormooHRDZooRGGtCd}.
 
-La définition générale de la limite est~\ref{DefYNVoWBx}. Dans le cas de fonctions \( \eR\to \eR\), elle peut s'écrire de façon plus efficace. La proposition suivante montre comment fonctionne la limite pour une fonction définie sur tout \( \eR\).
 
-\begin{proposition}[Caractérisation de la limite]       \label{PropAJQQooQQClfp}
-	Soit une fonction $f\colon \eR\to \eR$ définie sur \( \eR\) et $a\in \eR$. La fonction \( f\) admet la limite \( \ell\) pour \( x\to a\) si et seulement si il existe un réel $\ell$ tel que pour tout \( \epsilon>0\), il existe un \( \delta>0\) tel que
-	\begin{equation}\label{EqDefLimiteFonction}
-		0<| x-a |<\delta\Rightarrow| f(x)-\ell |<\varepsilon.
-	\end{equation}
+Afin de pouvoir étudier la topologie des espaces métriques, il faut savoir quelques propriétés des réels parce que nous allons étudier la fonction distance qui est une fonction continue à valeurs dans les réels.
+
+La valeur absolue de la définition~\ref{DefKCGBooLRNdJf}\ref{ItemooWUGSooRSRvYC} permet de définir une norme sur \( \eR\).
+\begin{lemma}       \label{LEMooBNAPooBTtXnX}
+    L'application
+    \begin{equation}
+         x\mapsto | x |
+    \end{equation}
+    est une norme\footnote{Définition \ref{DefNorme}.} sur $\eR$.
+\end{lemma}
+
+\begin{proof}
+  Grâce au lemme \ref{LemooANTJooYxQZDw} et à la remarque \ref{RemooJCAUooKkuglX}, on a, pour tous \(x,\ y,\ \lambda \in \eR \):
+\begin{enumerate}
+\item $| x |=0$ implique $x=0$,
+\item $| \lambda x |=| \lambda | |x |$,
+\item $| x+y |\leq | x |+| y |$,
+\end{enumerate}
+et donc, les conditions de la définition \ref{DefNorme} sont immédiatement vérifiées.
+\end{proof}
+
+\begin{definition}[Topologie sur \( \eR\) et sur \( \eQ\)]      \label{DEFooNYGIooVGHSIA}
+    Le lemme \ref{LEMooBNAPooBTtXnX} donne une norme sur \( \eR\) et \( \eQ\) à partir de la valeur absolue. La définition \ref{ThoORdLYUu} donne alors une structure d'espace topologique. Hors cas rarissimes qui seront signalés, nous utiliserons toujours cette topologie sur \( \eR\) et sur \( \eQ\).
+
+\end{definition}
+
+\begin{proposition}     \label{PropooUHNZooOUYIkn}
+    Les rationnels sont denses dans les réels\footnote{Pour les topologies usuelles données en la définition \ref{DEFooNYGIooVGHSIA}.}.
+\end{proposition}
+\index{densité!de \( \eQ\) dans \( \eR\)}
+
+\begin{proof}
+    Soient \( r\in \eR\) et \( \epsilon\in \eR^+\). Nous devons prouver l'existence d'un rationnel dans \( B(x,\epsilon)\). Le lemme~\ref{LemooHLHTooTyCZYL} dit qu'il existe un rationnel dans \( \mathopen] x-\epsilon/2 , x+\epsilon/2 \mathclose[\) et donc dans \( B(x,\epsilon)\).
+\end{proof}
+
+\begin{proposition}[\cite{MonCerveau}] \label{PropSLCUooUFgiSR}
+    Quel que soit le réel \( r\), il existe une suite croissante de rationnels convergente vers \( r\).
 \end{proposition}
 
 \begin{proof}
-    Il s'agit de montrer l'équivalence avec la définition~\ref{DefYNVoWBx}. Nous allons faire un usage intensif de la remarque~\ref{RemQDRooKnwKk}\ref{ITEMooUIHJooXAFaJa}.
-    \begin{subproof}
-    \item[Sens direct]
-        Soient \( \epsilon>0\) et \( V=B(\ell,\epsilon)\). Alors il existe un voisinage \( W\) de \( a\) dans \( \eR\) tel que
-        \begin{equation}
-            f\big( W\setminus\{ a \} \big)\subset V.
-        \end{equation}
-        Soit \( \delta\) tel que \( B(a,\delta)\subset W\). Nous avons encore
-        \begin{equation}
-            f\big( B(a,\delta)\setminus\{ a \} \big)\subset V.
-        \end{equation}
-        Soit maintenant \( x\in \eR\) tel que $0<| x-a |<\delta$. Cela signifie \( x\in B(a,\delta)\setminus\{ a \}\). Pour un tel \( x\) nous avons donc \( f(x)\in B(\ell,\epsilon)\), c'est-à-dire \( | f(x)-\ell |<\epsilon\).
-    \item[Dans l'autre sens]
-        Soient un voisinage \( V\) de \( \ell\) et \( \epsilon>0\) tel que \( B(\ell,\epsilon)\subset V\). Nous considérons \( \delta\) tel que \( 0<| x-a |<\delta\) implique \( | f(x)-\ell |<\epsilon\).
+    Soient \( x\in \eR\) et \( \delta\in \eR\); vu que \( x-\delta\) et \( x\) sont des réels, le lemme~\ref{LemooHLHTooTyCZYL} donne un élément \( x_{\delta}\in \eQ \) tel que
+    \begin{equation}
+        x-\delta<x_{\delta}<x.
+    \end{equation}
+    Il suffit alors de pêcher parmi ces \( x_{\delta}\) pour trouver une suite croissante, et on montrera que cette suite converge vers \( x \).
 
-        Avec tout cela nous posons \( W=B(x,\delta)\), et nous avons
+    Soit \( x_0\) un rationnel plus petit que \( x\). Nous posons \( \delta_0=x-x_0\) et ensuite :
+    \begin{subequations}
+        \begin{numcases}{}
+            \delta_i=x-x_i\\
+            x_{i+1}=x_{\delta_i/2} \in \eQ.
+        \end{numcases}
+    \end{subequations}
+    Ainsi nous avons pour tout \( i\) les inégalités
+    \begin{equation}
+        x_i=x-\delta_i<x-\frac{ \delta_i }{ 2 }<x_{i+1}<x.
+    \end{equation}
+    La suite \( (x_i) \) est donc une suite de rationnels, croissante et toujours plus petite que \( x\). Mais nous avons à chaque étape \( \delta_{i+1}<\frac{ \delta_i }{ 2 }\), ce qui implique que la suite des  \( \delta_i \) converge vers \( 0 \). Soit \( \epsilon>0\). Il existe \( k_0\) tel que pour tout \( k > k_0 \), \( \delta_k<\epsilon\). Pour un tel \( k \), nous avons alors
+    \begin{equation}
+        x_{k+1}\in B(x,\frac{ \delta_k }{ 2 })\subset B(x,\epsilon).
+    \end{equation}
+Tous les \( x_k \), pour \( k > k_0 + 1 \), sont tels que \( |x - x_k| < \epsilon \): la suite des \( x_k \) converge donc vers \( x \).
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Compacité pour les réels}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Pour la définition générale d'un compact, c'est \ref{DefJJVsEqs}.
+
+\begin{proposition}     \label{PROPooBFSAooKSugMj}
+    Les parties compactes de \( \eR\) sont fermées et bornées.
+\end{proposition}
+
+\begin{proof}
+Prouvons d'abord qu'un ensemble compact est borné. Pour cela, supposons que $K$ est un compact non borné vers le haut\footnote{Nous laissons à titre d'exercice le cas où $K$ est borné par le haut et pas par le bas.}. Donc il existe une suite infinie de nombres strictement croissante $x_1<x_2<\ldots$ tels que $x_i\in K$. Prenons n'importe quel recouvrement ouvert de la partie de $K$ plus petite ou égale à $x_1$, et complétons ce recouvrement par les ouverts $\mO_i=]x_{i-1},x_i[$. Le tout forme bien un recouvrement de $K$ par des ouverts.
+
+Il n'y a cependant pas moyen d'en tirer un sous recouvrement fini parce que si on ne prend qu'un nombre fini parmi les $\mO_i$, on en aura fatalement un maximum, disons $\mO_k$. Dans ce cas, les points $x_{k+1}$, $x_{k+1}$,\ldots ne seront pas dans le choix fini d'ouverts.
+
+Cela prouve que $K$ doit être borné.
+
+Pour prouver que $K$ est fermé, nous allons prouver que le complémentaire est ouvert. Et pour cela, nous allons prouver que si le complémentaire n'est pas ouvert, alors nous pouvons construire un recouvrement de $K$ dont on ne peut pas extraire de sous recouvrement fini.
+
+Si $\eR\setminus K$ n'est pas ouvert, il possède un point, disons $x$, tel que tout voisinage de $x$ intersecte $K$. Soit $B(x,\epsilon_1)$, un de ces voisinages, et prenons $k_1\in K\cap B(x,\epsilon_1)$. Ensuite, nous prenons $\epsilon_2$ tel que $k_1$ n'est pas dans $B(x,\epsilon_1)$, et nous choisissons $k_2\in K\cap B(x,\epsilon_2)$. De cette manière, nous construisons une suite de $k_i\in K$ tous différents et de plus en plus proches de $x$. Prenons un recouvrement quelconque par des ouverts de la partie de $K$ qui n'est pas dans $B(x,\epsilon_1)$. Les nombres $k_i$ ne sont pas dans ce recouvrement.
+
+Nous ajoutons à ce recouvrement les ensembles $\mO=]k_i,k_{i+1}[$. Le tout forme un recouvrement (infini) par des ouverts dont il n'y a pas moyen de tirer un sous recouvrement fini, pour exactement la même raison que la première fois.
+\end{proof}
+
+\begin{theorem}[Borel-Lebesgue]   \label{ThoBOrelLebesgue}
+    Un intervalle de \( \eR\) est compact si et seulement si il est de la forme \( \mathopen[ a , b \mathclose]\).
+\end{theorem}
+
+\begin{proof}
+    Tous les intervalles de \( \eR\) sont listés dans la proposition \ref{PROPooHPMWooQJXCAS}. Un compact est fermé et borné (proposition \ref{PROPooBFSAooKSugMj}). Donc les intervalles dont une borne est \( \pm\infty\) ne sont pas compacts. Parmi les intervalles \( \mathopen] a , b \mathclose[\), \( \mathopen] a , b \mathclose]\), \( \mathopen[ a , b \mathclose[\) et \( \mathopen[ a , b \mathclose]\), seul le dernier est fermé. Nous avons prouvé que si un intervalle est compact, alors il est de la forme \( \mathopen[ a , b \mathclose]\). 
+
+    Nous prouvons à présent l'implication inverse : tous les intervalles de la forme \( \mathopen[ a , b \mathclose]\) sont compacts.
+
+    Soit $\Omega$, un recouvrement du segment $[a,b]$ par des ouverts, c'est-à-dire que
+    \begin{equation}
+        [a,b]\subseteq\bigcup_{\mO\in\Omega}\mO.
+    \end{equation}
+    Nous notons par $M$ le sous-ensemble de $[a,b]$ des points $m$ tels que l'intervalle $[a,m]$ peut être recouvert par un sous-ensemble fini de $\Omega$. C'est-à-dire que $M$ est le sous-ensemble de $[a,b]$ sur lequel le théorème est vrai. Le but est maintenant de prouver que $M=[a,b]$.
+    \begin{description}
+        \item[$M$ est non vide] En effet, $a\in M$ parce que il existe un ouvert $\mO\in\Omega$ tel que $a\in\mO$. Donc $\mO$ tout seul recouvre l'intervalle $[a,a]$.
+        \item[$M$ est un intervalle] Soient $m_1$, $m_2\in M$. Le but est de montrer que si $m'\in[m_1,m_2]$, alors $m'\in M$. Il y a un sous recouvrement fini de l'intervalle $[a,m_2]$ (par définition de $m_2\in M$). Ce sous recouvrement fini recouvre évidemment aussi $[a,m']$ parce que $[a,m']\subseteq [a,m_2]$, donc $m'\in M$.
+        \item[$M$ est une ensemble ouvert] Soit $m\in M$. Le but est de prouver qu'il y a un ouvert autour de $m$ qui est contenu dans $M$. Mettons que $\Omega'$ soit un sous recouvrement fini qui contienne l'intervalle $[a,m]$. Dans ce cas, on a un ouvert $\mO\in\Omega'$ tel que $m\in\mO$. Tous les points de $\mO$ sont dans $M$, vu qu'ils sont tous recouverts par $\Omega'$. Donc $\mO$ est un voisinage de $m$ contenu dans $M$.
+        \item[$M$ est un ensemble fermé] $M$ est un intervalle qui commence en $a$, en contenant $a$, et qui finit on ne sait pas encore où. Il est donc soit de la forme $[a,m]$, soit de la forme $[a,m[$. Nous allons montrer que $M$ est de la première forme en démontrant que $M$ contient son supremum $s$. Ce supremum est un élément de $[a,b]$, et donc il est contenu dans un des ouverts de $\Omega$. Disons $s\in\mO_s$. Soit $c$, un élément de $\mO_s$ strictement plus petit que $c$; étant donné que $s$ est supremum de $M$, cet élément $c$ est dans $M$, et donc on a un sous recouvrement fini $\Omega'$ qui recouvre $[a,c]$. Maintenant, le sous recouvrement constitué de $\Omega'$ et de $\mO_s$ est fini et recouvre $[a,s]$.
+    \end{description}
+    Nous pouvons maintenant conclure : le seul intervalle non vide de $[a,b]$ qui soit à la fois ouvert et fermé est $[a,b]$ lui-même (proposition \ref{PropHSjJcIr}), ce qui prouve que $M=[a,b]$, 
+    et donc que $[a,b]$ est compact\footnote{Si vous n'aimez pas le coup du fermé et ouvert, le lemme \ref{LemOACGWxV} donne une autre preuve.}.
+\end{proof}
+
+
+\begin{lemma}[\cite{JUwQXOF}]\label{LemOACGWxV}
+    Si \( a<b\in \eR\) alors le segment \( \mathopen[ a , b \mathclose]\) est compact\footnote{Définition~\ref{DefJJVsEqs}}.
+\end{lemma}
+\index{compact!intervalle \( \mathopen[ a , b \mathclose]\)}
+
+\begin{proof}
+    Soit \( \{ \mO_i \}_{i\in I}\) un recouvrement de \( \mathopen[ a , b \mathclose]\) par des ouverts. Nous posons
+    \begin{equation}
+        M=\{ x\in\mathopen[ a , b \mathclose]\tq \mathopen[ a , x \mathclose] \text{ admet un sous-recouvrement fini extrait de } \{ \mO_i \}_{i\in I} \}.
+    \end{equation}
+    Notre but est de prouver que \( b\in M\).
+    \begin{subproof}
+
+    \item[\( a\) est dans \( M\)]
+
+        Le point \( a\) est naturellement dans un des \( \mO_i\). L'intervalle \( \mathopen[ a , a \mathclose]\) est donc recouvert par un seul des \( \mO_i\).
+
+    \item[\( M\) est un intervalle]
+
+        Soient \( m\in M\) et \( m'\in\mathopen[ a , m [\). Le sous-recouvrement fini qui recouvre \( \mathopen[ a , m \mathclose]\) recouvre a fortiori \( \mathopen[ a , m' \mathclose]\).
+
+    \item[Les trois possibilités restantes]
+        À ce niveau de la preuve, il reste trois possibilités pour \( M\) soit il est de la forme \( \mathopen[ a , c \mathclose]\) ou \( \mathopen[ a , c [\) avec \( c<b\), soit il est de la forme \( \mathopen[ a , b \mathclose]\). Nous allons maintenant éliminer les deux premiers cas.
+
+    \item[Ce que \( M\) n'est pas]
+
+        D'abord \( M\) n'est pas de la forme \( \mathopen[ a , c [\) avec \( c<b\). Par l'absurde, commençons par considérer \( \mO_{i_0}\) un ouvert du recouvrement qui contient \( c\); choisissons  \(m \in \mO_{i_0}\) tel que \( m<c\). Alors \( m \in M \), et, si nous joignons \( \mO_{i_0}\) à un recouvrement fini de \( \mathopen[ a , m \mathclose]\) alors nous avons un recouvrement fini de \( \mathopen[ a , c \mathclose]\). On en déduit \( c\in M\).
+
+        Ensuite \( M\) n'est pas de la forme \( \mathopen[ a , c \mathclose]\) avec \( c<b\). En effet si on a un recouvrement fini de \( \mathopen[ a , c \mathclose]\) par des ouverts, alors un de ces ouverts contient \( c\) et donc contient des éléments de \( \mathopen[ a , b \mathclose]\) plus grands que \( c\).
+    \end{subproof}
+    Nous déduisons que \( M=\mathopen[ a , b \mathclose]\) et qu'il est possible d'extraire un sous-recouvrement fini recouvrant \( \mathopen[ a , b \mathclose]\).
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]\label{LemCKBooXkwkte}
+    Si \( K_1\) et \( K_2\) sont des compacts dans \( \eR\) alors \( K_1\times K_2\) est compact dans \( \eR^2\).
+\end{lemma}
+
+\begin{proof}
+    Soit \( \{ \mO_i \}_{i\in I}\) un recouvrement de \( K_1\times K_2\) par des ouverts; grâce au lemme~\ref{LemOWVooZKndbI} nous pouvons supposer que ce sont des carrés. Pour chaque \( x\in K_1\), l'ensemble \( \{ x \}\times K_2\) est compact et donc recouvert par un nombre fini des \( \mO_i\). Soit \( R_x\) un ensemble fini des \( \mO_i\) recouvrant \( \{ x \}\times K_2\).
+
+    Vu que \( R_x\) est une collection finie de carrés nous pouvons considérer \( m_x\), le minimum des rayons. L'ensemble \( K_1\) est recouvert par les boules \( B(x,m_x)\) et il existe donc une collection finie de \( \{ x_i \}_{i\in A}\) tels que \( B(x_i,m_{x_i})\) recouvre \( K_1\).
+
+    Alors \( \{ R_{x_i} \}_{i\in A}\) recouvre \( K_1\times K_2\) parce que \( R_{x_i}\) recouvre l'ensemble \( B(x_i,m_{x_i})\times \{ K_2 \}\).
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Conséquence: les fermés bornés sont compacts}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Théorème de Borel-Lebesgue] \label{ThoXTEooxFmdI}
+    Une partie d'un espace vectoriel normé réel de dimension finie est compacte si et seulement si elle est fermée et bornée.
+\end{theorem}
+\index{théorème!Borel-Lebesgue}
+\index{compact!fermé et borné}
+
+\begin{proof}
+    Sens direct.
+    \begin{subproof}
+    \item[Compact implique borné]
+        En effet si \( K\) est non borné dans \( E\) alors \( K\) contient une suite \( (x_n)\) avec \( \| x_n \|>n\). Les boules \( B_i(x_i,\frac{ 1 }{3})\) sont disjointes. On pose \( \mO_0=\complement\bigcup_i\overline{ B(x_i,\frac{1}{ 5 }) }\), qui est ouvert comme complément d'un fermé. Pour \( i\geq 1\) nous posons \( \mO_i=B(x_i,\frac{1}{ 4 })\). Nous avons
         \begin{equation}
-            f\big( W\setminus\{ a \} \big)\subset B(\ell,\alpha)\subset V.
+            K\subset\bigcup_{i\in \eN}\mO_i
         \end{equation}
+        mais vu que \( x_i\) est uniquement dans \( \mO_i\), nous ne pouvons pas extraire de sous-recouvrement fini.
+    \item[Compact implique fermé]
+        Cela est la proposition~\ref{PropUCUknHx}.
+    \end{subproof}
+    Sens réciproque.
+    \begin{subproof}
+    \item[Un intervalle fermé et borné est compact dans \( \eR\)]
+        C'est le lemme~\ref{LemOACGWxV}.
+    \item[Un produit de segments est compact]
+        Le produit de deux compacts de \( \eR\) est un compact dans \( \eR^2\) par le lemme~\ref{LemCKBooXkwkte}.
+    \item[Un fermé et borné est compact]
+        Soit \( K\) fermé et borné. Vu que \( K\) est borné, il est contenu dans un produit de segments. L'ensemble \( K\) est donc compact parce que fermé dans un compact, lemme~\ref{LemnAeACf}.
     \end{subproof}
 \end{proof}
 
-Si aucun nombre $\ell$ ne vérifie la condition de la définition, alors on dit que la fonction n'admet pas de limite en $a$. Lorsque $f$ possède la limite $\ell$ en $a$, nous notons
-\begin{equation}
-	\lim_{x\to a} f(x)=\ell.
-\end{equation}
+\begin{example}[Compacité de la boule unité]
+    La boule unité fermée \( \overline{ B(0,1) }\) d'un espace vectoriel normé de dimension finie est compacte parce que fermée et bornée. En dimension infinie, cela n'est plus le cas. Certes la boule unité est encore fermée et bornée, mais elle n'est plus compacte. En effet nous allons donner un recouvrement par des ouverts duquel il ne sera pas possible d'extraire un sous-recouvrement fini.
 
-La proposition suivante a déjà été démontrée dans la proposition~\ref{PropFObayrf}. Nous en donnons ici une démonstration adaptée au cas \( \eR\to \eR\).
-
-\begin{proposition}
-	Soit une fonction $f\colon D\to \eR$. Si $a$ est un point d'accumulation de $D$ et s'il existe une limite de $f$ en $a$, alors il en existe une seule.
-\end{proposition}
-
-
-\begin{proof}
-    Nous prouvons qu'il ne peut pas exister deux nombres $\ell\neq\ell'$ vérifiant tout les deux la condition \eqref{EqDefLimiteFonction}.
-
-	Soient $\ell$ et $\ell'$ deux limites de $f$ au point $a$. Par définition, pour tout $\varepsilon$ nous avons des nombres $\delta$ et $\delta'$ tels que
-	\begin{equation}	\label{EqsContf2307Right}
-		\begin{aligned}[]
-			| x-a |<\delta&\Rightarrow \big| f(x)-\ell \big|<\varepsilon\\
-			| x-a |<\delta'&\Rightarrow \big| f(x)-\ell' \big|<\varepsilon
-		\end{aligned}
-	\end{equation}
-	Pour fixer les idées, supposons que $\delta<\delta'$ (le cas $\delta\geq\delta'$ se traite de la même manière).
-
-	Étant donné que $a$ est un point d'accumulation du domaine $D$ de $f$, il existe un $x\in D$ tel que $| x-a |<\delta$. Évidemment, nous avons aussi $| x-a |<\delta'$. Les conditions \eqref{EqsContf2307Right} signifient alors que ce $x$ vérifie en même temps
-	\begin{equation}
-		| f(x)-\ell |<\varepsilon,
-	\end{equation}
-	et
-	\begin{equation}
-		| f(x)-\ell' |<\varepsilon.
-	\end{equation}
-	Afin de prouver que $\ell=\ell'$, nous allons maintenant calculer $| \ell-\ell' |$ et montrer que cette distance est plus petite que tout nombre. Nous avons (voir remarque~\ref{RemTechniqueIneqs})
-	\begin{equation}	\label{EqInesq2307ellellepr}
-		| \ell-\ell' |=| \ell-f(x)+f(x)-\ell' |\leq | \ell-f(x) |+| f(x)-\ell' |<\varepsilon+\varepsilon.
-	\end{equation}
-	En résumé, pour tout $\varepsilon>0$ nous avons
-	\begin{equation}
-		| \ell-\ell' |<2\varepsilon,
-	\end{equation}
-	et donc $| \ell-\ell' |=0$, ce qui signifie que $\ell=\ell'$.
-\end{proof}
-
-\begin{remark}		\label{RemTechniqueIneqs}
-	Les inégalités \eqref{EqInesq2307ellellepr} utilisent deux techniques très classiques en analyse qu'il convient d'avoir bien compris. La première est de faire
-	\begin{equation}
-		| A-B |=| A-C+C-B |.
-	\end{equation}
-	Il s'agit d'ajouter $-C+C$ dans la norme. Évidemment, cela ne change rien.
-
-	La seconde technique est l'inégalité
-	\begin{equation}
-		| A+B |\leq| A |+| B |.
-	\end{equation}
-\end{remark}
-
-\begin{example}
-	Considérons la fonction $f(x)=2x$, et calculons la limite $\lim_{x\to 3} f(x)$. Vu que $f(3)=6$, nous nous attendons à avoir $\ell=6$. C'est ce que nous allons prouver maintenant. Pour chaque $\varepsilon>0$ nous devons trouver un $\delta>0$ tel que $| x-3 |<\delta$ implique $| f(x)-6 |<\varepsilon$. En remplaçant $f(x)$ par sa valeur en fonction de $x$ et avec quelques manipulations nous trouvons :
-	\begin{equation}
-		\begin{aligned}[]
-			| f(x)-6 |&<\varepsilon\\
-			| 2x-6 |&<\varepsilon\\
-			2| x-3 |&<\varepsilon\\
-			| x-3 |&<\frac{ \varepsilon }{2}
-		\end{aligned}
-	\end{equation}
-	Donc dès que $| x-3 |<\frac{ \varepsilon }{2}$, nous avons $| f(x)-6 |<\varepsilon$. Nous posons donc $\delta=\frac{ \varepsilon }{2}$.
-
-	Plus généralement, nous avons $\lim_{x\to a} f(x)=2a$, et cela se prouve en étudiant $| f(x)-2a |$ exactement de la même manière.
+    Autour de chacune des extrémités des vecteurs de base, nous considérons la boule \( A_i=B(e_i,\frac{1}{ 3 })\). Ensuite aussi l'ouvert
+    \begin{equation}
+        B(0,1)\setminus\bigcup_i\overline{ B(e_i,\frac{1}{ 4 })}.
+    \end{equation}
+    Le tout recouvre \( B(0,1)\) mais toutes les premières boules sont nécessaires.
 \end{example}
+\index{compact!boule unité}
+
+Le théorème de Bolzano-Weierstrass \ref{THOooRDYOooJHLfGq} nous permettra de prouver plus simplement la non compacité en dimension infinie. Voir l'exemple~\ref{ExEFYooTILPDk}.
+
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Quelque règles de calcul}
+\subsection{Suites et limites dans les réels}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{proposition}	\label{PropLimEstLineraure}
-	La limite est une opération linéaire, c'est-à-dire que si $f$ et $g$ sont des fonctions qui admettent des limites en $a$ et si $\lambda$ est un nombre réel,
-	\begin{enumerate}
+\subsubsection{Limites, convergence}
+%////////////////////////////////
 
-		\item
-			$\lim_{x\to a} (\lambda f)(x)=\lambda\lim_{x\to a} f(x)$,
-		\item
-			$\lim_{x\to a} (f+g)(x)=\lim_{x\to a} f(x)+\lim_{x\to a} g(x)$.
-	\end{enumerate}
-\end{proposition}
-En combinant les deux propriétés de la proposition~\ref{PropLimEstLineraure}, nous pouvons écrire
-\begin{equation}
-	\lim_{x\to a} (\lambda f+\mu g)(x)=\lambda\lim_{x\to a} f(x)+\mu\lim_{x\to a} g(x).
-\end{equation}
-pour toutes fonctions $f$ et $g$ admettant une limite en $a$ et pour tout réels $\lambda$ et $\mu$.
-
-En plus d'être linéaire, la limite possède les deux propriétés suivantes.
-\begin{proposition}     \label{PROPooDQFIooMMwxxJ}
-	Si $f$ et $g$ sont deux fonctions qui admettent une limite en $a$, alors
-	\begin{equation}
-		\lim_{x\to a} (fg)(x)=\lim_{x\to a} f(x)\cdot\lim_{x\to a} g(x).
+Dans le cas de suites réelles, nous avons la caractérisation suivante qui est souvent donnée comme une définition lorsque seule la topologie sur \( \eR\) est considérée.
+\begin{proposition}[Limite d'une suite numérique]	\label{PropLimiteSuiteNum}
+	La suite $(x_n)$ est convergente si et seulement s'il existe un réel $\ell$ tel que
+	\begin{equation}		\label{EqDefLimSuite}
+		\forall \epsilon>0,\,\exists N\in\eN\tq\forall n\geq N,\,| x_n-\ell |<\epsilon.
 	\end{equation}
-	Si de plus $\lim_{x\to a} g(x)\neq 0$, alors
+	Dans ce cas, le nombre $\ell$ est la limite de la suite $(x_n)$.
+\end{proposition}
+\index{convergence!suite numérique}
+\index{limite!suite numérique}
+
+\begin{propositionDef}		\label{PROPooOSXCooJWXkWH}
+    Une suite $(x_n)$ dans un espace vectoriel normé $V$ est convergente\footnote{Définition \ref{DefXSnbhZX}.} si et seulement si il existe un élément $\ell\in V$ tel que
 	\begin{equation}
-		\lim_{x\to a} \frac{ f(x) }{ g(x) }=\frac{ \lim_{x\to a} f(x) }{ \lim_{x\to a} g(x) }.
+		\forall \varepsilon>0,\,\exists N\in\eN\tq n\geq N\Rightarrow \| x_n-l \|<\varepsilon.
 	\end{equation}
-\end{proposition}
-
-\begin{theorem}     \label{ThoLimLinMul}
-    Si
-    \begin{equation} \label{Eqhypmullimlin}
-      \lim_{x\to a}f(x)=b,
-    \end{equation}
-    alors
-    \begin{equation} \label{Eqbutmultlim}
-      \lim_{x\to a}(\lambda f)(x)=\lambda b
-    \end{equation}
-    pour n'importe quel $\lambda\in\eR$.
-\end{theorem}
+	Dans ce cas, $\ell$ est la limite de la suite $(x_n)$.
+\end{propositionDef}
+    \index{convergence!dans un espace vectoriel normé}
 
 \begin{proof}
-Soit $\epsilon>0$. Afin de prouver la propriété \eqref{Eqbutmultlim}, il faut trouver un $\delta$ tel que pour tout $x$ dans $[a-\delta,a+\delta]$, on ait $| (\lambda f)(x)- \lambda b |\leq\epsilon$. Cette dernière inégalité est équivalente à $|\lambda|| f(x)-b |\leq\epsilon$. Nous devons donc trouver un $\delta$ tel que
-\begin{equation}
-| f(x)-b |\leq\frac{ \epsilon }{ | \lambda | }.
-\end{equation}
-soit vraie pour tout $x$ dans $[a-\delta,a+\delta]$. Mais l'hypothèse \eqref{Eqhypmullimlin} dit précisément qu'il existe un $\delta$ tel que pour tout $x$ dans $[a-\delta,a+\delta]$ on ait cette inégalité.
+    En deux parties.
+    \begin{subproof}
+        \item[Sens direct]
+            Si \( x_n\to \ell\) et si \( \epsilon>0\) il existe \( N_{\epsilon}\) tel que pour tout \( n\geq N\) nous avons \( x_n\in B(\ell,\epsilon)\) (parce que cette boule est un ouvert contenant \( \ell\)). Vue la définition d'une boule, cette condition s'écrit bien \( \| x_n-\ell \|<\epsilon\).
+
+        \item[Sens inverse]
+
+            Dans l'autre sens, soit \( \mO\) un ouvert contenant \( \ell\). Par définition de la topologie, il existe \( \epsilon>0\) tel que \( B(\ell,\epsilon)\subset \mO\). La condition \eqref{EqDefLimSuite} nous assure qu'il existe \( N_{\epsilon} \) tel que pour tout \( n\geq N_{\epsilon}\) nous ayons
+            \begin{equation}
+             x_n\in B(\ell,\epsilon)\subset\mO,
+             \end{equation}
+            ce qui assure que la suite \( (x_n)\) converge vers \( \ell\) pour la topologie métrique de \( V\).
+    \end{subproof}
 \end{proof}
 
-\begin{theorem}     \label{ThoLimLin}
-    Si
-    \begin{subequations}
-    \begin{align}
-        \lim_{x\to a}f(x)&=b_1\\
-        \lim_{x\to a}g(x)&=b_2,
-    \end{align}
-    \end{subequations}
-    alors
+Une façon équivalente d'exprimer le critère \eqref{EqDefLimSuite} est de dire que pour tout $\epsilon$ positif, il existe un rang $N\in\eR$ tel que l'intervalle $\mathopen[ \ell-\epsilon , \ell+\epsilon \mathclose]$ contient tous les termes $x_n$ au-delà de $N$.
+
+Il est à noter que le rang $N$ dont il est question dans la définition de suite convergente dépend de~$\epsilon$.
+
+\begin{definition}      \label{DEFooHNCTooMlQUvx}
+    Nous disons qu'une suite réelle $(x_n)$ converge\footnote{Voir la définition~\ref{PropLimiteSuiteNum} pour plus de détail.} vers $\ell$ lorsque pour tout $\varepsilon$, il existe un $N$ tel que
     \begin{equation}
-        \lim_{x\to a}(f+g)(x)=b_1+b_2.
+        n>N\Rightarrow | x_n-\ell |\leq\varepsilon.
     \end{equation}
-\end{theorem}
+\end{definition}
 
-\begin{proof}
-    Soit $\epsilon>0$. Par hypothèse, il existe $\delta_1$ tel que
-    \begin{equation}    \label{Eqfbunepsdeux}
-      | f(x)-b_1 |\leq \frac{ \epsilon }{ 2 }
-    \end{equation}
-    dès que $| x-a |\leq\delta_1$. Il existe aussi $\delta_2$ tel que
-    \begin{equation}    \label{Eqgbdeuxepsdeux}
-      | g(x)-b_2 |\leq \frac{ \epsilon }{ 2 }.
-    \end{equation}
-    dès que $| x-a |\leq \delta_2$. Tu notes l'astuce de prendre $\epsilon/2$ dans la définition de limite pour $f$ et $g$. Maintenant, ce qu'on voudrait c'est un $\delta$ tel que l'on ait $| (f+g)(x)-(b_1+b_2) |\leq \epsilon$ dès que $| x-a |\leq \delta$. Moi je dit que $\delta=\min\{ \delta_1,\delta_2 \}$ fonctionne. En effet, en utilisant l'inégalité $| a+b |\leq | a |+| b |$, nous trouvons :
-    \begin{align}
-    | (f+g)(x)-(b_1+b_2) |=| (f(x)-b_1)+(g(x)-b_2) |
-            \leq | f(x)-b_1 |+| g(x)-b_2 |.     \label{Eqfplusgfbun}
-    \end{align}
-    Comme on suppose que $| x-a |\leq\delta$, on a évidemment $| x-a |\leq\delta_1$, et donc l'équation \eqref{Eqfbunepsdeux} tient. Mais si $| x-a |\leq\delta$, on a aussi $| x-a |\leq\delta_2$, et donc l'équation  \eqref{Eqfbunepsdeux} tient également. Chacun des deux termes de \eqref{Eqfplusgfbun} est donc plus petits que $\epsilon/2$, et donc le tout est plus petit que $\epsilon$, ce qu'il fallait montrer.
-
-\end{proof}
-
-Voici une formule qui résume la linéarité de la limite :
-\begin{equation}    \label{EqLimLinRes}
-    \lim_{x\to a}[\alpha f(x)+\beta g(x)]=\alpha\lim_{x\to a}f(x)+\beta\lim_{x\to a}g(x).
-\end{equation}
-
-\begin{proposition}[\cite{TrenchRealAnalisys}]      \label{PROPooOUPNooTrClHw}
-    Soient des fonctions \( f,g\colon \eR\to \eR\) telles que \( \lim_{x\to a} f(x)=\ell\) et \( \lim_{x\to a} g(x)=\ell'\neq 0\). Alors
-    \begin{equation}
-        \lim_{x\to a} \frac{ f(x) }{ g(x) }=\frac{ \ell }{ \ell' }.
-    \end{equation}
-\end{proposition}
-
-\begin{proof}
-    Nous avons :
-    \begin{equation}
-        \left| \frac{ f(x) }{ g(x) }-\frac{ \ell }{ \ell' } \right| =\frac{ | \ell'f(x)-g(x)\ell | }{ |g(x)\ell| }.
-    \end{equation}
-    Soit \( s\), un minorant de \( | g(x) |\) sur un voisinage de \( a\); vu que la limite en \( a\) est \( \ell'\neq 0\), nous pouvons prendre par exemple \( s=\ell'/2\) : \( | g(x) |>\ell'/2\) sur \( B(a,\delta)\) dès que \( \delta\) est assez petit. Nous considérons \( x\in B(a,\delta)\). Avec cela nous avons :
-    \begin{subequations}
-        \begin{align}
-            \left| \frac{ f(x) }{ g(x) }-\frac{ \ell }{ \ell' } \right| &=\frac{ | \ell'f(x)-g(x)\ell | }{ |g(x)\ell| }\\
-            &\leq \frac{ 2 }{ | \ell'} |\left( \frac{ | \ell'f(x)-g(x)\ell | }{ | \ell' | } \right) \\
-            &\leq \frac{ 2 }{ | \ell' |^2 }\big( | \ell'f(x)-\ell\ell' |+| \ell\ell'-g(x)\ell | \big)\\
-            &=\frac{ 2 }{ | \ell' |^2 }\big( | \ell' | |f(x)-\ell |+| \ell | |\ell'-g(x) | \big).
-        \end{align}
-    \end{subequations}
-    Soient \( \epsilon>0\) et \( \delta\) tel que \( | f(x)-\ell |<\epsilon\) et \( | g(x)-\ell' |<\epsilon\) pour tout \( x\in B(a,\delta)\). Avec cela nous avons
-    \begin{equation}
-        \left| \frac{ f(x) }{ g(x) }-\frac{ \ell }{ \ell' } \right| \leq\frac{ 2 }{ | \ell' |^2\big( | \ell' |+| \ell | \big) }\epsilon.
-    \end{equation}
-    D'où la limite attendue.
-\end{proof}
-
-\begin{lemma}       \label{LemLimMajorableVois}
-    Si $\lim_{x\to a}f(x)=b$ avec $a$, $b\in\eR$, alors il existe un $\delta>0$ et un $M>0$ tels que
-    \[
-        (| x-a |\leq\delta)\Rightarrow | f(x) |\leq M.
-    \]
-\end{lemma}
-
-Ce que signifie ce lemme, c'est que quand la fonction $f$ admet une limite finie en un point, alors il est possible de majorer la fonction sur un intervalle autour du point.
-
-\begin{proof}
-    Cela va être démontré par l'absurde. Supposons qu'il n'existe pas de $\delta$ ni de $M$ qui vérifient la condition. Dans ce cas, pour tout $\delta$ et pour tout $M$, il existe un $x$ tel que $| x-a |\leq\delta$ et $| f(x) |> M$. Cela est valable pour tout $M$, donc prenons par exemple $b+1000$. Donc
-    \begin{equation}
-    \forall\delta>0,\exists x\text{ tel que } | x-a |\leq\delta\text{ et }| f(x) |>b+1000.
-    \end{equation}
-    Cela signifie qu'aucun $\delta$ ne peut convenir dans la définition de $\lim_{x\to a}f(x)=b$, ce qui contredit les hypothèses.
-\end{proof}
-
-Dans le même ordre d'idée, on peut prouver que si la limite de la fonction en un point est positive, alors elle est positive autour ce ce point. Plus précisément, nous avons la
-\begin{proposition} \label{PropoLimPosFPos}
-    Si $f$ est une fonction telle que $\lim_{x\to a}f(x)>0$, alors il existe un voisinage de $a$ sur lequel $f$ est positive.
-\end{proposition}
-
-\begin{proof}
-    Supposons que $\lim_{x\to a}f(x)=y_0$. Par la définition de la limite fait que si pour tout $x$ dans un voisinage autour de $a$, on ait $| f(x)-a |<\epsilon$. Cela est valable pour tout $\epsilon$, pourvu que le voisinage soit assez petit. Si je choisis un voisinage pour lequel $| f(x)-a |<\frac{ y_0 }{ 2 }$, alors sur ce voisinage, $f$ est positive.
-\end{proof}
-
-\begin{theorem}     \label{Tholimfgabab}
-    Si
-    \begin{align}
-        \lim_{x\to a}f(x)&=b_1&\text{et}&&\lim_{x\to a}g(x)=b_2,
-    \end{align}
-    alors
-    \begin{equation}
-        \lim_{x\to a}(fg)(x)=b_1b_2.
-    \end{equation}
-\end{theorem}
-
-\begin{proof}
-    Soit $\epsilon>0$, et tentons de trouver un $\delta$ tel que $| f(x)g(x)-b_1b_2 |\leq \epsilon$ dès que $| x-a |\leq \delta$. Nous avons
-    \begin{equation}    \label{EqfgbunbdeuxMin}
-    \begin{split}
-    | f(x)g(x)-b_1b_2 |&=|  f(x)g(x)-b_1b_2 +f(x)b_2-f(x)b_2 |\\
-            &=\left|   f(x)\big( g(x)-b_2 \big)+b_2\big( f(x)-b_1 \big)    \right|\\
-            &\leq \left|  f(x)\big( g(x)-b_2 \big)  \right|+\left|  b_2\big( f(x)-b_1 \big)    \right|\\
-            &= | f(x) | | g(x)-b_2  |+| b_2 | |f(x)-b_1 |.
-    \end{split}
-    \end{equation}
-    À la première ligne se trouve la subtilité de la démonstration : on ajoute et on enlève\footnote{Comme exercice, tu peux essayer de refaire la démonstration en ajoutant et enlevant $g(x)b_1$ à la place.} $f(x)b_2$. Maintenant nous savons par le lemme~\ref{LemLimMajorableVois} que pour un certain $\delta_1$, la quantité $| f(x) |$ peut être majoré par un certain $M$ dès que $| x-a |\leq \delta_1$. Prenons donc un tel $\delta_1$ et supposons que $| x-a |\leq \delta_1$. Nous savons aussi que pour n'importe quel choix de $\epsilon_2$ et $\epsilon_3$, il existe des nombres $\delta_2$ et $\delta_3$ tels que $| f(x)-b_1 |\leq \epsilon_2$ et $| g(x)-b_1 |\leq \epsilon_3$ dès que $| x-a |\leq\delta_2$ et $| x-a |\leq\delta_3$. Dans ces conditions, la dernière expression \eqref{EqfgbunbdeuxMin} se réduit à
-    \begin{equation}
-    | f(x)g(x)-b_1b_2 |\leq M\epsilon_2+| b_2 |\epsilon_3.
-    \end{equation}
-    Pour terminer la preuve, il suffit de choisir $\epsilon_2$ et $\epsilon_3$ tels que $M\epsilon_2+| b_2 |\epsilon_3\leq\epsilon$, et puis prendre $\delta=\min\{ \delta_1,\delta_2,\delta_3 \}$.
-
-    Remettons les choses dans l'ordre. L'on se donne $\epsilon$ au départ. La première chose est de trouver un $\delta_1$ qui permet de majorer $|f(x)|$ par $M$ selon le lemme~\ref{LemLimMajorableVois}, et puis choisissons $\epsilon_2$ et $\epsilon_3$ tels que $M\epsilon_2+| b_2 |\epsilon_3\leq\epsilon$. Ensuite nous prenons, en vertu des hypothèses de limites pour $f$ et $g$, les nombres $\delta_2$ et $\delta_3$ tels que $| f(x)-b_1 |\leq \epsilon_2$ et $| g(x)-b_2 |\leq \epsilon_3$ dès que $| x-a |\leq \delta_2$ et $| x-a |\leq \delta_3$.
-
-    Si avec tout ça on prend $\delta=\min\{ \delta_1,\delta_2,\delta_3 \}$, alors la majoration et les deux inégalités sont valables en même temps et au final
-    \[
-      | f(x)g(x)-b_1b_2 |\leq M\epsilon_2+b_2\epsilon_3\leq \epsilon,
-    \]
-    ce qu'il fallait prouver.
-
-\end{proof}
-
-À l'aide de ces petits résultats, nous pouvons déjà calculer pas mal de limites. Nous pouvons déjà par exemple calculer les limites de tous les polynômes en tous les nombres réels. En effet, nous savons la limite de la fonction $f(x)=x$. La fonction $x\mapsto x^2$ n'est rien d'autre que le produit de $f$ par elle-même. Donc
-\[
-  \lim_{x\to a}x^2=\big( \lim_{x\to a}x\big)\cdot\big( \lim_{x\to a}x \big)=a^2.
-\]
-De la même façon, nous trouvons facilement que
-\begin{equation}
- \lim_{x\to a}x^n=a^n.
-\end{equation}
-
+Le concept fondamental de cette définition est la notion de valeur absolue qui permet de donner la «distance» entre deux réels. Dans un espace vectoriel normé quelconque, cette notion est généralisée par la distance associée à la norme (définition~\ref{DefNorme}). Nous pouvons donc facilement définir le concept de convergence d'une suite dans un espace vectoriel normé.
 
 %--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Limite en l'infini}
+\subsection{Opérations sur les limites}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Non, sur \( \eR\) nous n'allons pas ajouter \( \infty\) avec la topologie d'Alexandrov de la définition \ref{PROPooHNOZooPSzKIN}. Nous n'allons pas considérer \( \hat \eR=\eR\cup\{ \infty \}\).
-
-\begin{definition}[Droite réelle achevée\cite{ooDZRQooPpOXhY}]       \label{DEFooRUyiBSUooALDDOa}
-    Nous considérons l'ensemble
+\begin{proposition}[\cite{MonCerveau}]     \label{PROPooIQOAooJPMoDD}
+    Soient des suites à valeurs réelles \( (a_i)\) et \( (b_j)\) si elles sont convergentes, alors la suite \( ab\) est convergente et
     \begin{equation}
-        \bar \eR=\eR\cup\{ +\infty,-\infty \}
+        \big( \lim_ia_i \big)\big( \lim_jb_j \big)=\lim_i(a_ib_i).
     \end{equation}
-    où \( +\infty\) et \( -\infty\) ne sont pas des éléments de \( \eR\).
-
-    Nous mettons sur \( \bar\eR\) la relation d'ordre en prenant celle de \( \eR\) à laquelle nous ajoutons les règles
-    \begin{enumerate}
-        \item
-            \( -\infty<x\) pour tout \( x\in\eR\cup\{ +\infty \}\)
-        \item
-            \( +\infty>x\) pour tout \( x\in \eR\cup\{-\infty  \}\).
-    \end{enumerate}
-
-    Nous mettons une topologie sur \( \bar\eR\) en donnant la base\footnote{Base de topologie, définition \ref{DefQELfbBEyiB}.} suivante :
-    \begin{itemize}
-        \item \( \mathopen] a , b \mathclose[\),
-        \item \( \mathopen] a , +\infty \mathclose]\),
-        \item \( \mathopen[ -\infty , b \mathclose[\)
-    \end{itemize}
-    pour tout réels \( a\) et \( b\).
-\end{definition}
-
-\begin{normaltext}
-    En principe, la notation «\( \infty\)» est réservée à l'infini du compactifié d'Alexandrov, et pour les infinis de la droite réelle achevée, il faudrait bien écrire «\( +\infty\)» et «\( -\infty\)». Cependant, nous allons souvent écrire \( \lim_{x\to \infty} \) au lieu de \( \lim_{x\to +\infty} \).
-\end{normaltext}
-
-\begin{lemma}
-    La topologie sur \( \eR\) induite de celle sur \( \bar \eR\) est la topologie usuelle.
-\end{lemma}
-
-\begin{lemma}       \label{LEMooFCIXooJuHFqk}
-    Si \( n\geq 1\) nous avons 
-    \begin{equation}        \label{EQooRRFEooLYcuRP}
-        \lim_{x\to +\infty} x^n = +\infty
-    \end{equation}
-    et
-    \begin{equation}
-        \lim_{x\to +\infty} \frac{1}{ x^n }=0.
-    \end{equation}
-\end{lemma}
-
-\begin{proof}
-    Si \( V\) est un voisinage de \( +\infty\), alors nous devons montrer qu'il existe un voisinage \( W\) de \( +\infty\) tel que \( x^n\in V\) pour tout \( x\in W\).   
-
-    Un ouvert est une union d'éléments de la base de topologie\footnote{C'est la proposition \ref{PropMMKBjgY}.}; en regardant la liste donnée dans la définition \ref{PropMMKBjgY}, nous voyons que \( V\) contient au moins une partie de la forme \( \mathopen] R , +\infty \mathclose]\). Nous supposons que \( R>1\).
-
-    Si \( x>R>1\), alors nous avons \( x^n>x\) et donc
-    \begin{equation}
-        x^n> x>R,
-    \end{equation}
-    ce qui signifie \( x\in V\).
-
-    En prenant \( W=\mathopen] R , +\infty \mathclose]\), nous avons bien \( W^n\subset V\). Cela prouve \eqref{EQooRRFEooLYcuRP}.
-
-    En ce qui concerne la seconde limite, la démonstration est du même type. Remarquez seulement que vous n'avez pas formellement le droit d'utiliser la proposition \ref{PROPooOUPNooTrClHw} en invoquant \( \frac{1}{ +\infty }=0\).
-\end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Limite en des nombres}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Nous posons la définition suivante.
-\begin{definition}      \label{DefInfNombre}
-Lorsque $a\in\eR$, on dit que la fonction $f$ \defe{tend vers l'infini quand $x$ tend vers $a$}{} si
-\[
-  \forall M\in\eR,\exists \delta\tq (| x-a |\leq \delta )\Rightarrow f(x)\geq M\text{ quand }x\in\dom f.
-\]
-\end{definition}
-Cela signifie que l'on demande que dès que $x$ est assez proche de $a$ (c'est-à-dire dès que $| x-a |\leq\delta$), alors $f(x)$ est plus grand que $M$, et que l'on peut trouver un $\delta$ qui fait ça pour n'importe quel $M$. Une autre façon de le dire est que pour toute hauteur $M$, on peut trouver un intervalle de largeur $\delta$ autour de $a$\footnote{C'est-à-dire un intervalle de la forme $[a-\delta,a+\delta]$.} tel que sur cet intervalle, la fonction $f$ est toujours plus grande que $M$.
-
-Montrons sur un dessin pourquoi je disais que la fonction $x\to 1/x$ n'est pas de ce type.
-
-
-Le problème est qu'il n'existe par exemple aucun intervalle autour de $0$ sur lequel $f$ serait toujours plus grande que $10$. En effet n'importe quel intervalle autour de $0$ contient au moins un nombre négatif. Or quand $x$ est négatif, $f$ n'est certainement pas plus grande que $10$. Nous y reviendrons.
-
-Pour l'instant, montrons que la fonction $f(x)=1/x^2$ est une fonction qui vérifie la définition~\ref{DefInfNombre}.  Avant de prendre n'importe quel $M$, prenons par exemple $100$. Nous avons besoin d'un intervalle autour de zéro sur lequel $f$ est toujours plus grande que $100$. C'est vite vu que $f(0.1)=f(-0.1)=100$, donc l'intervalle $[-\frac{ 1 }{ 10 },\frac{1}{ 10 }]$ est le bon. Partout dans cet intervalle, $f$ est plus grande que $100$. Partout ? Ben non : en $x=0$, la fonction n'est même pas définie, donc c'est un peu dur de dire qu'elle est plus grande que $100$. C'est pour cela que nous avons ajouté la condition « quand $x\in\dom f$ » dans la définition de la limite.
-
-Prenons maintenant un $M\in\eR$ arbitraire, et trouvons un intervalle autour de $0$ sur lequel $f$ est toujours plus grande que $M$. La réponse est évidemment l'intervalle de largeur $1/\sqrt{M}$, c'est-à-dire
-\[
-  \left[ -\frac{ 1 }{ \sqrt{M} },\frac{ 1 }{ \sqrt{M} } \right].
-\]
-
-\subsection{Limites quand tout va bien}
-%--------------------------------------
-
-D'abord définissons ce qu'on entend par la limite d'une fonction en un point quand il n'y a aucun infini en jeu.
-\begin{definition}      \label{DefLimPointSansInfini}
- On dit que la fonction $f$ \defe{tend vers $b$ quand $x$ tend vers $a$}{} si
-\[
-  \forall \epsilon>0,\exists\delta\tq (| x-a |\leq\delta)\Rightarrow | f(x)-b |\leq \epsilon\text{ quand }x\in\dom f.
-\]
-Dans ce cas, nous notons
-\begin{equation}
-\lim_{x\to a}f(x)=b.
-\end{equation}
-\end{definition}
-
-Commençons par un exemple très simple : prouvons que $\lim_{x\to 0}x=0$. C'est donc $a=b=0$ dans la définition. Prenons $\epsilon>0$, et trouvons un intervalle autour de zéro tel que partout dans l'intervalle, $x\leq \epsilon$. Bon ben c'est clair que $\delta=\epsilon$ fonctionne.
-
-Plus compliqué maintenant, mais toujours sans surprises.
-
-\begin{proposition}
-\[
-  \lim_{x\to 0}x^2=0.
-\]
-
 \end{proposition}
 
 \begin{proof}
-Soit $\epsilon>0$. On veut un intervalle de largeur $\delta$ autour de zéro tel que $x^2$ soit plus petit que $\epsilon$ sur cet intervalle. Cette fois-ci, le $\delta$ qui fonctionne est $\delta=\sqrt{\epsilon}$. En effet un élément de l'intervalle $[-\delta,\delta]$ est un $r$ de valeur absolue plus petite ou égale à $\delta$ :
-\[
-| r |\leq\delta=\sqrt{\epsilon}.
-\]
-En prenant le carré de cette inégalité on a :
-\[
-  r^2\leq\epsilon,
-\]
-ce qu'il fallait prouver.
+    Nous nommons \( a\) et \( b\) les limites des suites \( (a_i)\) et \( (b_j)\). Soit \( \epsilon>0\) ainsi que \( i\in \eN\). Nous avons la majoration
+    \begin{subequations}
+        \begin{align}
+            | a_ib_i-ab |&\leq | a_ib_i-a_ib |+| a_ib-ab |\\
+            &\leq | a_i | |b_i-b |+b| a_i-a |.
+        \end{align}
+    \end{subequations}
+    Vu que la suite \( (a_i)\) est convergente, elle est bornée. Nous pouvons donc majorer \( | a_i |\) par \( R>0\) qui ne dépend pas de \( i\). Soit \( \eta>0\) tel que \( (R+b)\eta<\epsilon\). Alors en prenant \( i\) assez grand pour que \( | b_i-b |<\eta\) et \( | a_i-a |<\eta\), nous avons bien
+    \begin{equation}
+        | a_ib_i-ab |\leq (R+b)\eta<\epsilon.
+    \end{equation}
 \end{proof}
 
-Calculer et prouver des valeurs de limites, mêmes très simples, devient vite de l'arrachage de cheveux à essayer de trouver le bon $\delta$ en fonction de $\epsilon$ si on n'a pas quelques théorèmes généraux. Heureusement nous en avons déjà quelque uns : \ref{PropLimEstLineraure}, \ref{PROPooDQFIooMMwxxJ}, \ref{ThoLimLinMul}, \ref{ThoLimLin}, \ref{PROPooOUPNooTrClHw}.
+\begin{proposition}     \label{PROPooICZMooGfLdPc}
+    Soient des suites \( (x_n)\) et \( (y_n)\) dans un espace vectoriel normé \( V\). Si \( x_n\stackrel{V}{\longrightarrow}x\) et \( y_n\stackrel{V}{\longrightarrow}y\), alors
+    \begin{equation}
+        x_n+y_n\stackrel{V}{\longrightarrow}x+y.
+    \end{equation}
+\end{proposition}
 
-\begin{proposition}[\cite{MonCerveau}]      \label{PROPooWXBAooAEweSF}
-    Soit \( f\colon \eR^2\to \eR\) une application continue dont la variable \( y\) varie dans un compact \( I\) de \( \eR\). Alors la fonction
+\begin{proof}
+    Soit \( \epsilon>0\). Nous considérons \( N\) tel que si \( n\geq N\), alors \( \| x_n-x \|\leq \epsilon\) et \( \| y_n-y \|\leq \epsilon\). En utilisant l'inégalité \ref{DefNorme}\ref{ItemDefNormeiii},
+    \begin{equation}
+        \| x_y+y_n-(x+y) \|\leq \| x_n-x \|+\| y_n-y \|\leq 2\epsilon.
+    \end{equation}
+    Donc la suite \( (x_n+y_n)\) converge vers \( x+y\).
+\end{proof}
+
+
+\begin{lemma}       \label{LEMooGKIPooWgpFTB}
+    La fonction
     \begin{equation}
         \begin{aligned}
-            d\colon \eR&\to \eR \\
-            x&\mapsto \sup_{y\in I} f(x,y)
+            f\colon \eR\times \eR&\to \eR \\
+            (x,y)&\mapsto x+y 
         \end{aligned}
     \end{equation}
     est continue.
-\end{proposition}
-
-\begin{proof}
-    Soit \( x_0\) fixé. Prouvons que \( d\) est continue en \( x_0\). Nous notons \( y_0\) la valeur de \( y\) qui réalise le maximum (par le théorème~\ref{ThoMKKooAbHaro} et le fait que les fonctions projection soient continues, lemme~\ref{LEMooHAODooYSPmvH}). Soit aussi \( \epsilon>0\) tellement fixé que même avec un tourne vis hydraulique, il ne bougerait pas. Nous considérons \( \delta\) tel que si \( \| (x,y)-(x_0,y_0) \|\leq \delta\) alors \( \| f(x,y)-f(x_0,y_0) \|<\epsilon\).
-
-    Si \( | x-x_0 |<\delta\) alors pour \( y\) assez proche de \( y_0\) nous avons \( \| (x,y)-(x_0,y_0) \|\leq \delta\), et donc \( \| f(x,y)-f(x_0,y_0) \|\leq \epsilon \). Cela montre qu'il existe \( \delta\) tel que \( | x-x_0 |\leq \delta\) implique \( d(x)\geq d(x_0)-\epsilon\).
-
-    Nous devons encore trouver un \( \delta\) tel que si \( | x-x_0 |\leq \delta\) alors \( d(x)\leq d(x_0)+\epsilon\). Supposons que non. Alors pour tout \( \delta\) il existe un \( x\) tel que \( | x-x_0 |\leq \delta\) et \( d(x)> d(x_0)+\epsilon\). Cela nous donne une suite \( x_i\to x_0\).
-
-    Pour chaque \( x_i\) nous notons \( y_i\) la valeur de \( y\) qui réalise le supremum correspondant. La suite \( (y_i)\) étant contenue dans un compact nous supposons prendre une sous-suite de \( (x_i)\) telle que la suite \( (y_i)\) converge. Nous nommons \( a\) la limite (et non \( y_0\) parce que nous ne savons pas si \( y_i\to y_0\)). Pour chaque \( i\) nous avons
-    \begin{equation}
-        f(x_i,y_i)>\sup_{y\in I}f(x_0,y)+\epsilon.
-    \end{equation}
-    En prenant la limite et en utilisant la continuité de \( f\),
-    \begin{equation}
-        f(x_0,a)>\sup_{y\in I} f(x_0,y)+\epsilon,
-    \end{equation}
-    ce qui est impossible.
-\end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Limites de fonctions}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{definition}\label{def_limite}
-	Soit $f\colon D\subset\eR^m\to \eR$ une fonction et $a$ un point d'accumulation de $D$.  On dit que $f$ possède une \defe{limite}{limite!fonction de plusieurs variables} s'il existe un élément $\ell\in\eR$ tel que
-	\begin{equation}		\label{Eq2807CondiionLimifnm}
-		\forall\varepsilon>0,\,\exists\delta>0\tq 0<\| x-a \|<\delta\Rightarrow | f(x)-\ell |<\varepsilon.
-	\end{equation}
-
-	Pour une fonction $f\colon D\subset\eR^m\to \eR^n$, la définition est la même, sauf que nous remplaçons la valeur absolue par la norme dans $\eR^n$. Nous disons donc que $\ell$ est la limite de $f$ lorsque $x$ tend vers $a$, et nous notons $\lim_{x\to a} f(x)=\ell$ lorsque pour tout $\varepsilon>0$, il existe un $\delta>0$ tel que
-	\begin{equation}		\label{EqDefLimRpRn}
-		0<\| x-a \|_{\eR^m}<\delta\Rightarrow\,\| f(x)-\ell \|_{\eR^n}<\varepsilon.
-	\end{equation}
-\end{definition}
-
-\begin{remark}
-	Dans l'équation \eqref{EqDefLimRpRn}, nous avons explicitement écrit les normes $\| . \|_{\eR^m}$ et $\| . \|_{\eR^n}$. Dans la suite nous allons le plus souvent noter $\| . \|$ sans plus de précision. Il est important de faire l'exercice de bien comprendre à chaque fois de quelle norme nous parlons.
-\end{remark}
-
-\begin{remark}
-	Il est important de remarquer à quel point les définitions~\ref{def_limite}, et les caractérisations~\ref{PropHOCWooSzrMjl},~\ref{PropAJQQooQQClfp} sont analogues. En réalité, la définition fondamentale est la définition de la limite dans les espaces vectoriels normés; les deux autres sont des cas particuliers, adaptés à $\eR$ et $\eR^m$. Il en sera de même pour les définitions de fonctions continues : il y aura une définition pour la continuité de fonctions entre espaces vectoriels normés, et ensuite une définition pour les fonctions de $\eR^m$ dans $\eR^n$ qui en sera un cas particulier.
-\end{remark}
-
-Tentons de comprendre ce que signifie qu'un nombre $\ell$ \emph{ne soit pas} la limite de $f$ lorsque $x\to a$. Il s'agit d'inverser la condition \eqref{Eq2807CondiionLimifnm}. Le nombre $\ell$ n'est pas une limite de $f$ pour $x\to a$ lorsque
-\begin{equation}		\label{EqCaractNonLim}
-	\exists\varepsilon>0\tq\,\forall\delta>0,\,\exists x\tq 0<\| x-a \|<\delta\text{ et }\| f(x)-\ell \|>\varepsilon,
-\end{equation}
-c'est-à-dire qu'il existe un certain seuil $\varepsilon$ tel qu'on a beau s'approcher aussi proche qu'on veut de $a$ (distance $\delta$), on trouvera toujours un $x$ tel que $f(x)$ n'est pas $\varepsilon$-proche de $\ell$.
-
-\begin{lemma}[Unicité de la limite]
-	Si $\ell$ et $\ell'$ sont deux limites de $f(x)$ lorsque $x$ tend vers $a$, alors $\ell=\ell'$.
 \end{lemma}
 
 \begin{proof}
-	Soit $\varepsilon>0$. Nous considérons $\delta$ tel que $\| f(x)-\ell \|<\varepsilon$ pour tout $x$ tel que $\| x-a \|<\delta$. De la même manière, nous prenons $\delta'$ tel que $\| x-a \|<\delta'$ implique $\| f(x)-\ell' \|<\varepsilon$. Pour les $x$ tels que $\| x-a \|$ est plus petit que $\delta$ et $\delta'$ en même temps, nous avons
-	\begin{equation}
-		\| \ell-\ell' \|=\| \ell-f(x)+f(x)-\ell' \|\leq\| \ell-f(x) \|+\| f(x)-\ell' \|<2\varepsilon,
-	\end{equation}
-	et donc $\| \ell-\ell' \|=0$ parce que c'est plus petit que $2\varepsilon$ pour tout $\varepsilon$.
+    Pour rappel, la topologie considérée sur \( \eR^n\) est celle de la définition \ref{DefFAJgTCE}. En vertu de la proposition \ref{PropXIAQSXr}, il est suffisant de prouver la continuité séquentielle. Soit donc une suite convergente
+    \begin{equation}
+        (x_n,y_n)\stackrel{\eR\times \eR}{\longrightarrow}(x,y).
+    \end{equation}
+    Nous devons prouver que
+    \begin{equation}
+        f(x_n,y_n)\stackrel{\eR}{\longrightarrow}f(x,y).
+    \end{equation}
+    La proposition \ref{PROPooNRRIooCPesgO} nous permet de déduire la convergence composante par composante : \( x_n\stackrel{\eR}{\longrightarrow}x\) et \( y_n\stackrel{\eR}{\longrightarrow}x\). En permutant somme et limite (proposition \ref{PROPooICZMooGfLdPc}) nous avons le calcul
+    \begin{equation}
+        f(x_n,y_n)=x_n+y_n\stackrel{\eR}{\longrightarrow}x+y=f(x,y).
+    \end{equation}
+    D'où la convergence demandée.
 \end{proof}
+ 
+\subsection{Exemples}
+%//////////////////////////
 
-%--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Limite à gauche et à droite}
-%---------------------------------------------------------------------------------------------------------------------------
+\begin{example}
+	Quelques suites usuelles.
+	\begin{enumerate}
+		\item
+			La suite $x_n=\frac{1}{ n }$ converge vers $0$.
+		\item
+			La suite $x_n=(-1)^n$ ne converge pas.
+	\end{enumerate}
+\end{example}
 
-Si \( a\) est à l'intérieur du domaine de \( f\), nous savons ce que signifie \( \lim_{x\to a} f(x)\). Nous donnons également une définition des limites à gauche et à droite.
-
-\begin{definition}
-    Soient \( D\subset \eR\) et une fonction \( f\colon D\to \eR\). Si \( a\in \Adh(D)\) nous définissons la \defe{limite à droite}{limite à droite} de \( f\) en \( a\) par
-    \begin{equation}        \label{EQooQKHLooMoSXVe}
-        \lim_{x\to a^+} f(x)=\lim_{x\to a} \tilde f(x)
-    \end{equation}
-    où \( \tilde f\) est la fonction \( f\) restreinte à \( D\cap\{ x\tq x>a \}\). La limite \eqref{EQooQKHLooMoSXVe} est souvent écrite sous la forme condensée
-    \begin{equation}
-        \lim_{\substack{x\to a\\x>a}}f(x).
-    \end{equation}
-
-    Pour la limite à gauche c'est un peu la même chose :
-    \begin{equation}
-        \lim_{x\to a^-} f(x)=\lim_{\substack{x\to a\\x<a}}f(x).
-    \end{equation}
-\end{definition}
-
-\begin{proposition}[\cite{ooOMWZooZvUFiG}]      \label{PROPooGDDJooDCmydE}
-    Soit une fonction \( f\colon D\to \eR\) où \( D\) est une partie de \( \eR\). Si \( a\in \Adh(D)\) alors la limite \( \lim_{x\to a} f(x)\) existe si et seulement si les limites à gauche et à droite existent et sont égales. Dans ce cas nous avons égalité :
-    \begin{equation}
-        \lim_{x\to a} f(x)=\lim_{x\to a^+} f(x)=\lim_{x\to a^-} f(x).
-    \end{equation}
-\end{proposition}
-
-\begin{normaltext}
-    Quelque remarques à propos de la proposition \ref{PROPooGDDJooDCmydE}.
+Deux limites pour voir comment ça fonctionne.
+\begin{lemma}
+    Si \( r>1\) nous avons :
     \begin{enumerate}
         \item
-            
-    Cette proposition ne se généralise pas du tout aux dimensions supérieures. Dans \( \eR^2\) par exemple, il ne faudrait pas croire que si les limites suivant toutes les directions existent alors la limite existe.
-\item
-    Cette proposition est souvent utilisée pour calculer des limites dans lesquelles arrivent des valeurs absolues. Par exemple durant la démonstration de la proposition \ref{PROPooCNDHooKRwils}.
+            \( \lim_{n\to \infty} r^n=\infty\).
+        \item
+            \( \lim_{n\to \infty} \frac{ r^n }{ n }=\infty\).
     \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Vu que \( r>1\) nous pouvons écrire \( r=1+\delta\) avec \( \delta>0\). La formule du binôme de Newton \eqref{EqNewtonB} nous donne
+    \begin{equation}
+        (1+\delta)^n=\sum_{k=0}^n{k\choose n}\delta^k>{1\choose n}\delta=n\delta.
+    \end{equation}
+    La proposition \ref{ThoooKJTTooCaxEny} (\( \eR\) est archimédien) nous indique que \( n\delta\) est arbitrairement grand lorsque \( n\) est grand, quelle que soit \( \delta>0\). Cela finit la preuve de la première limite.
+
+    Pour la seconde, nous posons \( a_n=\frac{ r^n }{ n }\). Nous avons
+    \begin{equation}
+        \frac{ a_{n+1} }{ a_n }=\frac{ n }{ n+1 }r.
+    \end{equation}
+    Vu que \( \frac{ n }{ n+1 }\to 1\), la suite \( \frac{ n }{ n+1 }r\) tend vers \( r>0\), et en particulier pour tout \( \delta>0\) tel que \( r>1+\delta\), il existe \( N\in \eN\) tel que, pour tout \( n > N \),
+    \begin{equation}
+        \frac{ n }{ n+1 }r>1+\delta.
+    \end{equation}
+    Soit maintenant \( k\in \eN\). En utilisant un produit télescopique,
+    \begin{equation}
+        a_{N+k}=a_N\frac{ a_{N+1} }{ a_N }\frac{ a_{N+2} }{ a_{N+1} }\cdots\frac{ a_{N+k} }{ a_{N+k-1} }>a_N(1+\delta)^{k-1}.
+    \end{equation}
+    Or \( (1+\delta)^{k-1}\) tend vers \( \infty\) lorsque \( k\to \infty\) par le premier point. Donc nous avons \( \lim_{n\to \infty} r^n/n=\infty\).
+\end{proof}
+
+
+\begin{definition}      \label{DEFooEWRTooKgShmT}
+    Nous disons que deux suites \( (u_n)\) et \( (v_n)\) sont \defe{équivalentes}{equivalence@équivalence!de suites} s'il existe une application \( \alpha\colon \eN\to \eR\) telle que
+    \begin{enumerate}
+        \item
+            pour tout \( n\) à partir d'un certain rang, \( u_n=v_n\alpha(n)\)
+        \item
+            \( \alpha(n)\to 1\).
+    \end{enumerate}
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Suites croissantes et bornées}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Une suite est dite \defe{contenue}{} dans un ensemble $A$ si $x_n\in A$ pour tout $n$. Une suite est \defe{bornée supérieurement}{bornée!suite} s'il existe un $M$ tel que $x_n\leq M$ pour tout $n$. De la même manière, la suite est bornée inférieurement s'il existe un $m$ tel que $x_n\geq m$ pour tout $n$.
+
+Le lemme suivant est souvent utilisé pour prouver qu'une suite est convergente.
+\begin{lemma}		\label{LemSuiteCrBorncv}
+	Une suite croissante et bornée supérieurement converge. Une suite décroissante bornée inférieurement est convergente.
+\end{lemma}
+
+Une erreur courante est de croire que la borne est la limite : le lemme n'affirme pas ça. Par contre il est vrai que la borne donne \ldots hum \ldots une borne inférieure (ou supérieure) pour la limite.
+
+% Inutile de replacer cette proposition plus loin : on en a besoin pour démontrer Weierstrass. Quitte à maintenir, il faut réénoncer pour un espace vectoriel normé et prouver.
+\begin{proposition}		\label{PropCvRpComposante}
+	Une suite $(x_n)$ dans $\eR^m$ est convergente dans $\eR^m$ si et seulement si les suites de chaque composante sont convergentes dans $\eR$. Dans ce cas nous avons
+	 \begin{equation}
+		 \lim x_n=\Big( \lim(x_n)_1,\lim (x_n)_2,\ldots,\lim (x_n)_m \Big)
+	 \end{equation}
+	 où $(x_n)_k$ dénote la $k$-ième composante de $(x_n)$.
+\end{proposition}
+
+\begin{example}
+	La suite $x_n=\big( \frac{1}{ n },1-\frac{1}{ n } \big)$ converge vers $(0,1)$ dans $\eR^2$. En effet, en utilisant la proposition~\ref{PropCvRpComposante}, nous devons calculer séparément les limites
+	\begin{equation}
+		\begin{aligned}[]
+			\lim\frac{1}{ n }&=0\\
+			\lim\big( 1-\frac{1}{ n } \big)&=1.
+		\end{aligned}
+	\end{equation}
+\end{example}
+
+\begin{example}
+	Étant donné que la suite $(-1)^n$ n'est pas convergente, la suite $x_n=\big( (-1)^n,\frac{1}{ n } \big)$ n'est pas convergente dans $\eR^2$.
+\end{example}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Suites adjacentes}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}[\cite{ooZZNWooSIipwW}]       \label{DEFooDMZLooDtNPmu}
+    Les suites \( (a_n)\) et \( (b_n)\) sont \defe{adjacentes}{suites adjacentes} si l'une est croissante, l'autre décroissante et si \( a_n-b_n\to 0\).
+\end{definition}
+
+\begin{theorem}[Théorème des suites adjaentes]      \label{THOooZJWLooAtGMxD}
+    Nous considérons des suites adjacentes \( (a_n)\) et \( (b_n)\) avec \( (a_n)\) croissante et \( (b_n)\) décroissante. Alors
+    \begin{enumerate}
+        \item
+            \( b_n\geq a_n\) pour tout \( n\),
+        \item
+            \( a_n\leq b_q\) pour tout \( n\) et \( q\). C'est-à-dire que toute la suite \( a\) est plus petite que toute la suite \( b\).
+        \item
+            les suites \( a\) et \( b\) sont convergentes,
+        \item
+            les suites \( a\) et \( b\) convergent vers la même limite, notée \( \ell\),
+        \item
+            nous avons \( a_n\leq \ell\leq b_n\) pour tout \( n\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    La suite \( n\mapsto b_n-a_n\) est décroissante parce que \( b_n-a_n\geq b_{n+1}-a_{n+1}\). Comme en plus \( b_a-a_n\to 0\) nous avons
+    \begin{equation}
+        b_n-a_n\geq 0
+    \end{equation}
+    pour tout \( n\in \eN\). De plus \( a_n\leq b_0\) pour tout \( n\) parce que si \( a_N>b_0\) alors, \( b\) étant décroissante, \( a_N>b_0\geq b_N\) qui est contraire à ce que nous venons de prouver. La suite \( a\) étant croissante et majorée, elle est convergente\footnote{Proposition \ref{LemSuiteCrBorncv}.}; notons \( \ell\) sa limite.
+
+    La suite \( b\) peut maintenant être écrite par
+    \begin{equation}
+        b_n=(b_n-a_n)+a_n
+    \end{equation}
+    qui est une somme de deux suites convergentes. Elle est donc convergente et sa limite est la somme des limites\footnote{Proposition \ref{PROPooICZMooGfLdPc}.}, donc
+    \begin{equation}
+        \lim_{n\to \infty} b_n=\lim_{n\to \infty} (b_n-a_n)+a_n=0+\ell=\ell.
+    \end{equation}
+    Voila. Donc les suites \( a\) et \( b\) convergent et ont la même limite.
+
+    Pour tout \( n,q\in \eN\) nous avons l'inégalité \( a_n\leq b_q\). En prenant la limite \( n\to \infty\) nous trouvons
+    \begin{equation}
+        \ell\leq b_q
+    \end{equation}
+    pour tout \( q\). Et de la même façon, \( b_n\geq a_q\) donne \( \ell\geq a_q\). L'un avec l'autre donne
+    \begin{equation}
+        a_q\leq \ell\leq b_q
+    \end{equation}
+    pour tout \( q\in \eN\).
+\end{proof}
+
+\begin{proposition}[\cite{ooXFPIooCLUvzV}]      \label{PROPooXOOCooGMqJNe}
+    Soit une suite \( (a_n)\) dans \( \eR\).  Nous supposons que les suites extraites \( (a_{2n})\) et \( (a_{2n+1})\) convergent vers la même limite notée \( \ell\).
+
+    Alors \( a_n\to \ell\).
+\end{proposition}
+
+\begin{proof}
+    Soit \( \epsilon>0\). Il existe \( N_1\) tel que \( | a_{2n}-\ell |\leq \epsilon\) dès que \( n\geq N_1\). Il existe également \( N_2\) dès que \( | a_{2n+1}-\ell |\leq \epsilon\) dès que \( n\geq N_2\).
+
+    Nous posons \( N=\max\{ 2N_1,2N_2+2 \}\) et nous avons, pour tout \( n\geq N\) :
+    \begin{equation}
+        | a_n-\ell |\leq \epsilon,
+    \end{equation}
+    c'est-à-dire que \( a\to \ell\).
+\end{proof}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Limite supérieure et inférieure}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{lemmaDef}      \label{ooMVZAooVVCOnP}
+    Soit \( (a_n)\) une suite dans \( \bar \eR\). Les limites suivantes existent dans \( \bar \eR\)
+    \begin{equation}
+        \limsup_{n\to\infty}a_n=\lim_{n\to \infty}\big( \sup_{k\geq n}a_k \big)
+    \end{equation}
+    et
+    \begin{equation}
+        \liminf_{n\to \infty}a_n=\lim_{n\to\infty}\big( \inf_{k\geq n}a_k \big).
+    \end{equation}
+    Elles sont nommées \defe{limite supérieure}{limite!supérieure} et la \defe{limite inférieure}{limite!inférieure} de la suite \( (a_k)\).
+\end{lemmaDef}
+\nomenclature[Y]{\( \limsup a_n\)}{limite supérieure}
+\nomenclature[Y]{\( \liminf a_n\)}{limite inférieure}
+
+\begin{proof}
+    Pour la limite supérieure, l'ensemble des \( k\geq n\) est de plus en plus petit lorsque \( n\) grandit. Donc les ensembles \( A_n=\{ a_k\tq k\geq n \}\) sont emboîtés et la suite \( n\to \sup A_n\) est une suite décroissante. Elle a donc une limite dans \( \bar \eR\).
+\end{proof}
+
+\begin{normaltext}      \label{ooEEQJooRMFzVR}
+    En ce qui concerne les suites d'ensembles, utiles en théorie des probabilités, nous définissons de même. Si les \( A_n\) sont des parties de \( \Omega\), nous définissons la \defe{limite supérieure}{limite!supérieure} et la \defe{limite inférieure}{limite!inférieure} de la suite \( A_n\) par
+\begin{equation}
+    \limsup_{n\to\infty}A_n=\bigcap_{n\geq 1}\bigcup_{k\geq n}A_k
+\end{equation}
+et
+\begin{equation}
+    \liminf_{n\to\infty}A_n=\bigcup_{n\geq 1}\bigcap_{k\geq n}A_k
+\end{equation}
+
+Nous avons
+\begin{equation}
+    \limsup A_n=\{ \omega\in\Omega\tq \omega\in A_n\text{pour une infinité de } n \}.
+\end{equation}
 \end{normaltext}
 
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-\section{Limite en compactifié d'Alexandrov}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\begin{lemma}     \label{ooAQTEooYDBovS}
+    Nous avons les formules pratiques suivantes :
+    \begin{subequations}
+        \begin{align}
+            \limsup a_n&=\inf_{n\geq 1}\big( \sup_{k\geq n}a_k \big)\\
+            \liminf a_n&=\sup_{n\geq 1}\big( \inf_{k\geq n}a_k \big).
+        \end{align}
+    \end{subequations}
+\end{lemma}
 
-Nous considérons l'espace topologique localement compact \( \eR\), et son compactifié d'Alexandrov défini en \ref{PROPooHNOZooPSzKIN}. Nous avons donc un point supplémentaire noté \( \infty\). Ce point n'est ni du côté des grands nombres positifs, ni du côté des grands nombres négatifs. Il n'est ni \( +\infty\) ni \( -\infty\).
+\begin{proof}
+    La suite \( n\mapsto \sup_{k\geq n}a_k\) est une suite décroissante, donc la limite est l'infimum. Même argument pour l'autre.
+\end{proof}
 
-\begin{proposition}
-    Dans cet espace topologique \( \hat \eR=\eR\cup\{ \infty \}\),
+\begin{lemma}       \label{ooIQIKooXWwAmM}
+    La suite \( (a_n)\) dans \( \eR\) converge si et seulement si
     \begin{equation}
-        \lim_{x\to 0} \frac{1}{ x }=\infty.
+        \limsup a_n=\liminf a_n.
+    \end{equation}
+    Dans ce cas, \( \lim a_n=\limsup a_n=\liminf a_n\).
+\end{lemma}
+
+\begin{proof}
+    Nous commençons par supposer que \( \limsup a_n=\liminf a_n=l\), et nous prouvons que \( \lim a_n\) existe et vaut \( l\). Soit \( \epsilon>0\). Il existe \( N\) tel que si \( n\geq N\) nous avons
+    \begin{equation}
+        \big| \sup_{k\geq n}a_k-l \big|<\epsilon
+    \end{equation}
+    et
+    \begin{equation}
+        \big| \inf_{k\geq n}a_k-l \big|<\epsilon.
+    \end{equation}
+    Pour tout \( k\geq N\) nous avons alors \( a_k\leq l+\epsilon\) et \( a_k\geq l-\epsilon\). Cela donne \( a_n\in B(l,\epsilon)\), c'est-à-dire \( a_k\to l\) par la proposition~\ref{PropLimiteSuiteNum}.
+
+    Dans l'autre sens, nous supposons que \( \lim_n a_n=l\) et nous prouvons que les limites supérieures et inférieures sont toutes deux égales à \( l\). Soit \( \epsilon>0\) et \( N_{\epsilon}\) tel que \( | a_n-l |<\epsilon\) pour tout \( n\geq N_{\epsilon}\). Si \( n\geq N_{\epsilon}\) nous avons
+    \begin{equation}
+        \big| \sup_{k\geq n}a_k-l \big|\leq \epsilon
+    \end{equation}
+    et donc la limite de \( \sup_{k\geq n}a_k\) lorsque \( n\to \infty\) est bien \(l\).
+\end{proof}
+
+\begin{lemma}
+    Soit une suite \( (a_i)\) dans \( \eR\). Il existe \( N\in \eN\) tel que pour tout \( i\geq N\),
+    \begin{equation}
+        x_i\leq \limsup_i(a_i).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Soit \( M\) un nombre tel que pour tout \( N\), il existe \( k\geq N\) tel que \( x_k>M\). Dans ce cas, pour tout \( N\) nous avons
+    \begin{equation}
+        \sup_{i\geq N}(a_i)\geq M
+    \end{equation}
+    et donc
+    \begin{equation}
+        \limsup_n(a_n)=\lim_{N\to \infty}\sup_{i\geq N}(a_i)\geq M.
+    \end{equation}
+\end{proof}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Ouverts, voisinage, topologie}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Lorsque $x\in E$, nous rappelons qu'un voisinage\footnote{Définition~\ref{DEFVoisinageooGHZCooLRcpXY}.} de $x$ est n'importe quel sous-ensemble de $E$ qui contient une boule ouverte centrée en $x$. La proposition \ref{ThoPartieOUvpartouv} nous dit qu'un ensemble est ouvert s'il contient un voisinage de chacun de ses points. Au passage, rappelons que l'ensemble vide est ouvert.
+
+Pour rappel, la remarque \ref{RemQDRooKnwKk}\ref{ITEMooUIHJooXAFaIz} dit que l'ensemble des boules ouvertes d'un espace métrique génère la topologie de l'espace.
+
+Nous rappelons qu'une partie $A$ d'un espace métrique est dite bornée\footnote{Définition~\ref{DefEnsembleBorne}.} s'il existe une boule\footnote{À titre d'exercice, convainquez-vous que l'on peut dire boule \emph{ouverte} ou \emph{fermée} au choix sans changer la définition.} qui contient $A$.
+
+Mais revenons à \( \eR \)\dots
+\begin{lemma}  \label{LemSupOuvPas}
+    Une partie ouverte de \( \eR\) ne contient pas son supremum.
+\end{lemma}
+
+\begin{proof}
+Soit $\mO$, un ensemble ouvert et $s$, son supremum. Si $s$ était dans $\mO$, on aurait un voisinage $B=B(s,r)$ de $s$ contenu dans $\mO$. Le point $s+r/2$ est alors à la fois dans $\mO$ et plus grand que $s$, ce qui contredit le fait que $s$ soit un supremum de $\mO$.
+\end{proof}
+
+Par le même genre de raisonnements, on montre que l'union et l'intersection de deux ouverts sont encore des ouverts.
+
+\begin{remark}
+L'intersection d'une \emph{infinité} d'ouverts n'est pas spécialement un ouvert comme le montre l'exemple suivant :
+\[
+  \mO_i=]1,2+\frac{ 1 }{ i }[.
+\]
+Tous les ensembles $\mO_i$ contiennent le point $2$ qui est donc dans l'intersection. Mais quel que soit le $\epsilon>0$ que l'on choisisse, le point $2+\epsilon$ n'est pas dans $\mO_{(1/\epsilon)+1}$. Donc aucun point au-delà de $2$ n'est dans l'intersection, ce qui prouve que $2$ ne possède pas de voisinages contenus dans $\bigcap_{i=1}^{\infty}\mO_i$.
+\end{remark}
+
+\begin{proposition}     \label{PROPooANIOooIJHelX}
+    Quelles que soient les parties $A$ et $B$ de $\eR$, nous avons
+    \begin{equation}
+        \sup(A\cap B)\leq\sup A\leq\sup(A\cup B).
     \end{equation}
 \end{proposition}
 
 \begin{proof}
-    Soit un voisinage \( V\) de \( \infty\) dans \( \hat \eR\). Il s'écrit \( V=K^c\cup\{ \infty \}\) pour un certain compact de \( \eR\). Le théorème \ref{ThoXTEooxFmdI} nous assure que \( K\) est borné. Donc il existe \( R>0\) tel que \( K\subset B(0,R)\). Pour \( x\in B(0,1/R)\) nous avons
-    \begin{equation}
-        | \frac{1}{ x } |>R,
-    \end{equation}
-    et donc \( 1/x\in K^c\). Donc aussi \( \frac{1}{ x }\in V\).
+    En deux parties.
+    \begin{subproof}
+        \item[$ \sup(A\cap B)\leq \sup(A)$ ]
+            Soit \( s=\sup(A)\). En particulier, \( s\) est un majorant de \( A\). Si \( x\in A\cap B\), alors \( x\in A\) et \( s\geq x\). Donc \( s\) est également un majorant de \( A\cap B\). Le lemme \ref{LEMooSSVKooDPhSkq} conclu que \( s\geq \sup(A\cap B)\).    
+
+        \item[$ \sup(A)\leq \sup(A\cup B)$ ]
+            Soit \( s=\sup(A\cup B)\). Par définition, \( s\) est un majorant de \( A\cup B\). À fortiori, \( s\) est un majorant de \( A\) et donc est plus grand ou égal à \( \sup(A)\).
+    \end{subproof}
 \end{proof}
 
-De la même façon, dans \( \eC\cup\{ \infty \}\) nous avons
-\begin{equation}
-    \lim_{z\to 0} \frac{1}{ z }=\infty.
-\end{equation}
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Intervalles et connexité}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Nous allons déterminer tous les sous-ensembles connexes\footnote{Définition~\ref{DefIRKNooJJlmiD}.} de $\eR$. Pour cela nous relisons d'abord la notion d'intervalle donnée en~\ref{DefEYAooMYYTz} ainsi que la proposition \ref{PROPooHPMWooQJXCAS} qui liste tous les intervalles de \( \eR\). La partie \( I\subset \eR\) est un intervalle si pour tout \( a,b\in I\), tout nombre entre \( a\) et \( b\) est également dans \( I\). Cette définition englobe tous les exemples connus d'intervalles ouverts, fermés avec ou sans infini : $[a,b]$, $[a,b[$, $]-\infty,a]$, \ldots L'ensemble \( \eR\) lui-même est un intervalle.
+
+Si \( I\) est un intervalle, les nombres \( \inf(I)\) et \( \sup(I)\)\footnote{Qui existent par la proposition~\ref{DefSupeA}, quitte à poser \( \pm\infty\) comme infimum et supremum lorsque \( I\) n'est pas borné.} sont les \defe{extrémités}{extrémité!d'un intervalle} de \( I\).
+
+\begin{definition}      \label{DefLISOooDHLQrl}
+	Étant donnés deux points $a$ et $b$ dans $\eR^p$ on appelle \defe{segment}{segment!dans $\eR^p$} d'extrémités $a$ et $b$, et on note $[a,b]$, l'image de $[0,1]$ par l'application $s: [0,1]\to \eR^p$, $s(t)= (1-t)a+tb$.  On pose $]a,b[=s\left(]0,1[\right)$, et  $]a,b]=s\left(]0,1]\right)$.
+\end{definition}
+Il faut observer que le segment $[a,b]$ est une courbe orientée : certes en tant que ensembles, $[a,b]=[b,a]$, mais si nous regardons la fonction de $t$ correspondante à $[b,a]$, nous voyons qu'elle va dans le sens inverse de celle qui correspond à $[a,b]$. Nous approfondirons ces questions lorsque nous parlerons d'arcs paramétrés autour de la section~\ref{SecArcGeometrique}.
+
+Le segment $[b,a]$ est l'image de l'application $r\colon [0,1]\to \eR^p$ donnée par $r(t)=(1-t)b+ta$.
+
+\begin{proposition} \label{PropInterssiConn}
+    Une partie de $\eR$ est connexe si et seulement si c'est un intervalle\footnote{Définition \ref{DefEYAooMYYTz}.}.
+\end{proposition}
+\index{connexité!et intervalles}
+
+\begin{proof}
+    La preuve est en deux parties. D'abord nous démontrons que si un sous-ensemble de $\eR$ est connexe, alors c'est un intervalle; et ensuite nous démontrons que tout intervalle est connexe.
+
+    Afin de prouver qu'un ensemble connexe est toujours un intervalle, nous allons prouver que si un ensemble n'est pas un intervalle, alors il n'est pas connexe. Prenons $A$, une partie de $\eR$ qui n'est pas un intervalle. Il existe donc $a$, $b\in A$ et un $x_0$ entre $a$ et $b$ qui n'est pas dans $A$. Comme le but est de prouver que $A$ n'est pas connexe, il faut couper $A$ en deux ouverts disjoints. L'élément $x_0$ qui n'est pas dans $A$ est le bon candidat pour effectuer cette coupure. Prenons $M$, un majorant de $A$ et $m$, un minorant de $A$, et définissons
+    \begin{align*}
+        \mO_1&=]m,x_0[\\
+        \mO_2&=]x_0,M[.
+    \end{align*}
+    Si $A$ n'a pas de minorant, nous remplaçons la définition de $\mO_1$ par $]-\infty,x_0[$, et si $A$ n'a pas de majorant, nous remplaçons la définition de $\mO_2$ par $]x_0,\infty[$. Dans tous les cas, ce sont deux ensembles ouverts dont l'union recouvre tout $A$. En effet, $\mO_1\cup \mO_2$ contient tous les nombres entre un minorant de $A$ et un majorant sauf $x_0$, mais on sait que $x_0$ n'est pas dans $A$. Cela prouve que $A$ n'est pas connexe.
+
+    Jusqu'à présent nous avons prouvé que si un ensemble n'est pas un intervalle, alors il ne peut pas être connexe. Pour remettre les choses à l'endroit, prenons un ensemble connexe, et demandons-nous s'il peut être autre chose qu'un intervalle ? La réponse est \emph{non} parce que s'il était autre chose, il ne serait pas connexe.
+
+    Prouvons à présent que tout intervalle est connexe. Pour cela, nous refaisons le coup de la contraposée. Nous allons donc prendre une partie $A$ de $\eR$, supposer qu'elle n'est pas connexe et puis prouver qu'elle n'est alors pas un intervalle. Nous avons deux ouverts disjoints $\mO_1$ et $\mO_2$ tels que $A\subset \mO_1\cup \mO_2$. Notons \( A_1 = A \cap \mO_1 \) et  \( A_2 = A \cap \mO_2 \); et prenons $a\in A_1$ et $b\in A_2$. Pour fixer les idées, on suppose que $a<b$. Maintenant, le jeu est de montrer qu'il existe une point $x_0$ entre $a$ et $b$ qui ne soit pas dans $A$ (cela montrerait que $A$ n'est pas un intervalle). Nous allons prouver que c'est le cas du point
+    \[
+      x_0=\sup\{ x\in\mO_1\tq x<b \}.
+    \]
+    Étant donné que l'ensemble $\mA=\{ x\in\mO_1\tq x<b \}$ est ouvert\footnote{C'est l'intersection entre l'ouvert $\mO_1$ et l'ouvert $\{x\tq x<b \}$.}, le point $x_0$ n'est pas dans l'ensemble par le lemme~\ref{LemSupOuvPas}. Nous avons donc
+    \begin{itemize}
+        \item soit $x_0$ n'est pas dans $\mO_1$,
+        \item soit $x_0\leq b$,
+        \item soit les deux en même temps.
+    \end{itemize}
+    Nous allons montrer qu'un tel $x_0$ ne peut pas être dans $A$. D'abord, remarquons que $\sup\mA\leq\sup\mO$ parce que $\mA$ est une intersection de $\mO$ avec quelque chose. Ensuite, il n'est pas possible que $x_0$ soit dans $\mO_2$ parce que tout élément de $\mO_2$ possède un voisinage contenu dans $\mO_2$. Un point de $\mO_2$ est donc toujours strictement plus grand que le supremum de $\mO_1$.
+
+    Maintenant, remarque que si $x_0\leq b$, alors $x_0=b$, sinon $b$ serait un majorant de $\mA$ plus petit que $x_0$, ce qui n'est pas possible vu que $x_0$ est le supremum de $\mA$ et donc le plus petit majorant. Oui mais si $x_0=b$, c'est que $x_0\in\mO_2$, ce qu'on vient de montrer être impossible. Nous voilà déjà débarrassé des deuxièmes et troisièmes possibilités.
+
+    Si la première possibilité est vraie, alors $x_0$ n'est pas dans $A$ parce qu'on a aussi prouvé que $x_0\notin\mO_2$. Or n'être ni dans $\mO_1$ ni dans $\mO_2$ implique de ne pas être dans $A$. Ce point $x_0=\sup\mA$ est donc hors de $A$.
+
+    Oui, mais comme $a\in\mA$, on a obligatoirement que $x_0\geq a$. Mais par construction, on a aussi que $x_0\leq b$ (ici, l'inégalité est même stricte, mais ce n'est pas important). Donc
+    \[
+      a\leq x_0\leq b
+    \]
+    avec $a$, $b\in A$, et $x_0\notin A$. Cela finit de prouver que $A$ n'est pas un intervalle.
+\end{proof}
+
+\begin{theorem}[Théorème des bornes atteintes]\label{ThoMKKooAbHaro}
+    Une fonction à valeurs réelles continue sur un compact est bornée et atteint ses bornes.
+
+	C'est-à-dire qu'il existe $x_0\in K$ tel que $f(x_0)=\inf\{ f(x)\tq x\in K \}$ ainsi que $x_1$ tel que $f(x_1)=\sup\{ f(x)\tq x\in K \}$.
+\end{theorem}
+\index{compact!et fonction continue}
+
+\begin{proof}
+    Soient un espace topologique compact \( K\) et une fonction continue \( f\colon K\to \eR\). Alors le théorème~\ref{ThoImCompCotComp} indique que \( f(K)\) est compact. Par conséquent \( f(K)\) est un fermé borné de \( \eR\) par le théorème de Borel-Lebesgue~\ref{ThoXTEooxFmdI}. Vu que \( f(K)\) est borné, la fonction \( f\) est bornée.
+
+    De plus \( f(K)\) étant fermé, son infimum est un minimum et son supremum est un maximum : il existe \( x\in K\) tel que \( f(x)=\sup f(K)\) et il existe \( y\in K\) tel que \( f(y)=\inf f(K)\).
+\end{proof}
+
+Le théorème suivant est essentiellement inutile pour les raisons suivantes :
+\begin{itemize}
+    \item 
+        Il est un cas particulier du théorème~\ref{ThoBWFTXAZNH} qui donne pour tout espace métrique, l'équivalence entre la compacité et la compacité séquentielle.
+    \item
+        Il est un cas particulier du théorème \ref{THOooRDYOooJHLfGq} qui le donne pour tous les espaces compacts.
+    \item
+        Il utilise le cas particulier de \( \eR\), qui n'est pas démontré directement dans le Frido.
+\end{itemize}
+Bref, nous ne le laissons que pour le lecteur qui n'aurait pas en tête d'autres définitions de «compact» à part «fermé borné».
+
+% Pour les raisons invoquées, il ne fait pas faire de références vers ce théorème. Le label ici ne sert qu'à le mettre dans l'index thématique.
+\begin{theorem}[Théorème de Bolzano-Weierstrass]		\label{ThoBolzanoWeierstrassRn}
+	Toute suite contenue dans un compact de \( \eR^m\) admet une sous-suite convergente.
+\end{theorem}
+
+\begin{proof}
+    Nous rappelons qu'une partie compacte de \( \eR^n\) est fermée et bornée par le théorème de Borel-Lebesgue~\ref{ThoXTEooxFmdI}.
+
+    Soit $(x_n)$ une suite contenue dans une partie bornée de $\eR^m$. Considérons $(a_n)$, la suite réelle des premières composantes des éléments de $(x_n)$ : pour chaque $n\in\eN$, le nombre $a_n$ est la première composante de $x_n$. Étant donné que la suite $(x_n)$ est bornée, il existe un $M$ tel que $\| x_n \|<M$. La croissance de la fonction racine carrée donne
+	\begin{equation}
+        | a_n |\leq\| x_n \|\leq M.
+	\end{equation}
+    La suite $(a_n)$ est donc une suite réelle bornée et donc contient une sous-suite convergente par le théorème correspondant dans \( \eR\) :  \ref{ThoBWFTXAZNH}. Soit $a_{I_1}$ une sous-suite convergente de $(a_n)$. Nous considérons maintenant $x_{I_1}$, c'est-à-dire la suite de départ dont on a enlevé tous les éléments qu'il faut pour qu'elle converge en ce qui concerne la première composante.
+
+	Si nous considérons la suite $b_{I_1}$ des \emph{secondes} composantes de $x_{I_1}$, nous en extrayons, de la même façon que précédemment, une sous-suite convergente, c'est-à-dire que nous avons un $I_2\subset I_1$ tel que $b_{I_2}$ est convergent. Notons que $a_{I_2}$ est une sous-suite de la (sous) suite convergente $x_{I_1}$, et donc $a_{I_2}$ est encore convergente.
+
+	En continuant ainsi, nous construisons une sous-sous-sous-suite $x_{I_3}$ telle que la suite des \emph{troisièmes} composantes est convergente. Lorsque nous avons effectué cette procédure $m$ fois, la suite $x_{I_m}$ est une suite dont toutes les composantes convergent, et donc est une suite convergente par la proposition~\ref{PropCvRpComposante}.
+
+	Le tableau suivant donne un petit schéma de la façon dont nous procédons. Les $\bullet$ sont les éléments de la suite que nous gardons, et les $\times$ sont ceux que nous «jetons».
+	\begin{equation}
+		\begin{array}{lccccccccccc}
+			x_{\eN}	&	\bullet&\bullet&\bullet&\bullet&\bullet&\bullet&\bullet&\bullet&\bullet&\bullet&\ldots\\
+			x_{I_1}	&	\times&\bullet&\bullet&\times&\bullet&\times&\times&\bullet&\bullet&\bullet&\ldots\\
+			x_{I_2}	&	\times&\bullet&\times&\times&\bullet&\times&\times&\bullet&\bullet&\times&\ldots\\
+			\vdots\\
+			x_{I_m}	&	\times&\times&\times&\times&\bullet&\times&\times&\times&\bullet&\times&\ldots
+		\end{array}
+	\end{equation}
+	La première ligne, $x_{\eN}$, est la suite de départ.
+\end{proof}
+
+\begin{corollary}   \label{CorFHbMqGGyi}
+    Si un suite est croissante et bornée alors elle est convergente.
+\end{corollary}
+
+\begin{proof}
+    Nous nommons \( (x_n)\) la suite et nous prenons un majorant \( M\). Toute la suite est alors contenue dans le compact \( \mathopen[ x_0 , M \mathclose]\), ce qui donne une sous-suite \( (x_{\alpha(n)})\) convergente par le théorème de Bolzano-Weierstrass~\ref{THOooRDYOooJHLfGq}. Si \( \ell\) est la limite de cette sous-suite alors nous avons \( \ell\geq x_n\) pour tout \( n\).
+
+    Pour tout \( \epsilon>0\) il existe \( K\) tel que si \( n>K\) alors \( | \ell-x_{\alpha(n)} |<\epsilon\). Vu que \( \ell\) majore la suite nous avons même
+    \begin{equation}
+        x_{\alpha(n)}+\epsilon>\ell.
+    \end{equation}
+    Vu que la suite est croissante pour tout \( m>\alpha(K)\) nous avons \( x_m+\epsilon>l\), ce qui signifie \( | x_m-\ell |<\epsilon\).
+\end{proof}
+Nous aurons une version pour les fonctions croissantes et bornées en la proposition~\ref{PropMTmBYeU}.
+
+La proposition suivante dit que la notion d'ensemble non dénombrable ne prend pas réellement de force entre \( \eR\) et \( \eR^n\) : il n'y a pas moyen de caser \( \eR\) dans \( \eR^n\) de façon à ce qu'il y tienne à son aise.
+
+\begin{proposition}
+    Une partie non dénombrable de \( \eR^n\) possède un point d'accumulation\footnote{Définition \ref{DEFooGHUUooZKTJRi}.}.
+\end{proposition}
+
+\begin{proof}
+    Soit une partie \( A\subset \eR^n\) sans point d'accumulation. Nous allons prouver que \( A\) est dénombrable.
+
+    Soient les compacts \( K_n=\overline{ B(0,n) }\). La partie \( A\cap K_n\) est finie; sinon elle aurait une partie en bijection avec \( \eN\) (proposition~\ref{PROPooUIPAooCUEFme}) et donc une suite. Or une suite dans un compact possède un point d'accumulation par le théorème~\ref{THOooRDYOooJHLfGq}.
+
+    Donc tous les \( A\cap K_n\) sont finis. Vu que \( A=\bigcup_nA\cap K_n\), l'ensemble \( A\) est une réunion dénombrable d'ensembles finis. Il est donc dénombrable.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Recouvrement par des intervalles ouverts}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Soit un ensemble \( E\) et un ensemble \( \mA\) de parties de \( E\). Soit \( A\in \mA\). Nous aimerions savoir quelles sont les éléments de \( \mA\) qui sont atteignables en partant de \( A\) et en ne «sautant» que d'intersection en intersection.
+
+Nous notons \( \mA=\{ B_i \}_{i\in I}\) où \( I\) est un ensemble d'indices (un ensemble quelconque).
+\begin{subequations}
+    \begin{align}
+        s_1(A)&=\{  i\in I\tq B_i\cap A\neq \emptyset   \}\\
+        \sigma_1(A)&=\bigcup_{B\in s_1(A)}B.
+    \end{align}
+\end{subequations}
+Et ensuite :
+\begin{subequations}
+    \begin{align}
+        s_{k+1}(A)&=\{ i\in I\tq B_i\cap \sigma_k(A)\neq \emptyset \}\\
+        \sigma_{k+1}(A)&=\bigcup_{B\in s_{k+1}(A)}B
+    \end{align}
+\end{subequations}
+
+\begin{lemma}
+    Soient un intervalle \( A\) de \( \eR\) et \( \mA=\{ I_i \}_{i=1,\ldots, N}\) un recouvrement de \( A\) par des intervalles ouverts. Si \( I_1\cap A\neq \emptyset\) alors
+    \begin{enumerate}
+        \item
+            \( \sigma_{N}=\sigma_{N+1}\)
+        \item
+            \( A\subset \sigma_N(I_1)\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Si \( \sigma_{k+1}=\sigma_k\), alors tous les \( \sigma_{k+l}\) sont identiques. De plus si \( \sigma_{k+1}\neq \sigma_k\), alors \( \sigma_{k+1}\) contient au moins un élément de plus que \( \sigma_k\). Donc \( \Card(\sigma_k)\geq k\) et en particulier \( N\leq \Card(\sigma_N)\leq N\). Cela prouve le premier point.
+
+    L'ensemble \( \sigma_N(I_1)\) est une union d'ouverts et est donc un ouvert. Quitte à renuméroter nous écrivons
+    \begin{equation}
+        \sigma_N(I_1)=I_1\cup \ldots \cup I_n.
+    \end{equation}
+    L'ensemble 
+    \begin{equation}
+        \tau=\bigcup_{k=n+1}^NI_k
+    \end{equation}
+    est ouvert et est disjoint de \( \sigma_N(I_1)\) parce que si \( I_l\) ($I_l\geq n+1$) intersectait \( \sigma_N(I_1)\), nous aurions \( l\in s_{N+1}\) ou encore \( I_l\subset \sigma_{N+1}\setminus\sigma_N\).
+
+    Donc \( \tau\) et \( \sigma_N\) sont deux ouverts disjoints qui recouvrent \( A\). Vu que \( A\) est un intervalle, il est connexe\footnote{Définition \ref{DefIRKNooJJlmiD} et proposition \ref{PropInterssiConn}.}. Donc soit \( A\subset \tau\) soit \( A\subset \sigma_N\). Comme \( I_1\cap A\neq \emptyset\) nous sommes dans le cas \( A\subset \sigma_N\).
+\end{proof}
+
+\begin{lemma}       \label{LEMooGHPTooKgFvGb}
+    Soit \( x\in \eR\). Si \( \mA=\{ I_s \}_{s\in S}\) est un ensemble d'intervalles contenant \( x\), alors \( I=\bigcup_{s\in S}I_s\) est un intervalle\footnote{Définition \ref{DefEYAooMYYTz}.}.
+\end{lemma}
+
+\begin{proof}
+    Soient \( a,b\in I \) (nous supposons \( a<b\)). Nous devons prouver que \( \mathopen[ a , b \mathclose]\subset I\). Pour cela nous considérons \( y\in \mathopen[ a , b \mathclose]\); il y a deux possibilités : soit \( y<x\) soit \( y>x\) (si \( y=x\) alors \( y\in I_s\)). 
+
+    Si \( y<x\), alors \( a\leq y<x\) et donc \( y=\in I_s\). Si \( y>x\), alors \( x<y\leq b\) et \( y\in I_t\).
+\end{proof}
+
+\begin{proposition}[\cite{BIBooVUFIooNEETXD,BIBooFEKBooFhPatO}]     \index{intervalle}
+    Un ouvert de \( \eR\) peut s'écrire comme union au plus dénombrable d'intervalles ouverts disjoints.
+
+    Plus précisément, si \( \mO\) est un ouvert de \( \eR\), il existe un ensemble \( \mF=\{ I_s \}_{s\in S}\) où
+    \begin{enumerate}
+        \item
+            Chaque \( I_s\) est un intervalle ouvert contenu dans \( \mO\),
+        \item
+            Pour \( s,t\in S\), si \( I_s\neq I_t\), alors \( I_s\cap I_t=\emptyset\).
+        \item
+            \( S\) est dénombrable,
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Pour \( x\in \mO\), nous définissons \( J_x\) comme étant l'union de tous les intervalles ouverts contenus dans \( \mO\) et contenant \( x\). Les $J_x$ ne sont pas vides parce qu'ils contiennent toujours une boule centrée en \( x\)\footnote{C'est la définition \ref{EqGDVVooDZfwSf} de la topologie métrique.}.
+    
+    En tant que union d'intervalles, \( J_x\) est un intervalle par le lemme \ref{LEMooGHPTooKgFvGb}. De plus, \( J_x\) est ouvert parce que toute union d'ouverts est ouverte.
+
+    Nous notons \( \mA\) l'ensemble des intervalles ouverts contenus dans \( \mO\), et
+    \begin{equation}
+        \mA_x=\{ I\in\mA\tq x\in I \}.
+    \end{equation}
+
+    \begin{subproof}
+        \item[Si \( y\in J_x\), alors \( J_x=J_y\)]
+            Vu que \( y\in J_x\), nous pouvons considérer \( J=\in \mA_x\cap \mA_y\). Nous avons
+            \begin{equation}
+                J_y=\bigcup_{I\in\mA_y}I\subset \bigcup_{I\in \mA_y}\underbrace{(I\cup J)}_{\in\mA_x}\subset \bigcup_{I\in\mA_x}I=J_x.
+            \end{equation}
+            L'inclusion dans l'autre sens s'obtient en écrivant la même chose en remplaçant \( x\) par \( y\) et vice-versa.
+        \item[Les \( J_x\) sont disjoints]
+            Nous prouvons à présent que pour \( x,y\in mO\), nous avons \( J_x=J_y \) ou \( J_x\cap J_y=\emptyset\). En effet si \( a\in J_x\cap J_y\), alors \( J_a=J_x\) et \( J_a=J-y\). Donc \( J_x=J_y\).
+        \item[Dénombrable]
+            C'est le moment d'écrire $\mF=\{ J_x \}_{x\in \mO}$. Vu que tout intervalle contient au moins un rationnel (proposition \ref{PropooUHNZooOUYIkn}), nous avons aussi
+            \begin{equation}
+                \mF=\{ J_x \}_{x\in \mO}=\{ J_q \}_{q\in \eQ\cap\mO}.   
+            \end{equation}
+            Cet ensemble \( \mF\) vérifie les conditions demandées.
+    \end{subproof}
+\end{proof}
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Connexité par arcs}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}      \label{DEFooOXVCooBizpgK}
+    Une partie $A$ d'un espace topologique est \defe{connexe par arcs}{connexe par arc} si pour tout $ a,b \in A$, il existe une application continue $\gamma\colon \mathopen[ 0 , 1 \mathclose]\to A$ telle que \( \gamma(0)=a\) et \( \gamma(1)=b\).
+\end{definition}
 
 \begin{normaltext}
-    Je vous laisse deviner la topologie à considérer sur \( \bar \eR=\eR\cup\{ +\infty,-\infty \}\). Dans cet espace topologique la limite \( \lim_{x\to 0} \frac{1}{ x }\) n'existe pas.
+    Un exemple d'ensemble connexe mais pas connexe par arcs est donné par la proposition \ref{PROPooVXDNooPZYKPr}. L'idée de cet exemple est de construire un ensemble en deux parties reliées par un chemin de longueur infinie.
+
+    Un espoir fou nous prend alors de croire que nous pouvons produire un exemple plus simple avec \( \eR\cup\{ \infty \}\) parce que, dans cet ensemble, \( 1\) et \( \infty\) sont reliés par un chemin de longueur infinie. La proposition \ref{PROPooLOQVooULDhZz} nous montrera que non.
 \end{normaltext}
+
+
+%TODOooAMMAooCrYxvK : mettre dans l'ordre dans ceci :
+\input{212_topologie}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Des exemples}
+%---------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{example}
+    Nous étudions l'exemple suivant :
+    \begin{equation}
+        A_1 = \{ (x, y ) \in \eR^2 \; | \; 2y^2+4y+2<x\leq \sqrt{4- y^2},\, y\in [-1.5, 0.5[ \}.
+    \end{equation}
+
+ On commence par tracer la parabole $x=2y^2+4y+2$, la circonférence $x^2+y^2=4$ et les droites $y=-1.5$ et $y=1/2$. On voit tout de suite que l'aire délimitée par les quatre courbes est donnée par l'union de deux parties. Dans la première $\sqrt{4- y^2}\leq x\leq 2y^2+4y+2$, $y\in [0,0.5]$ et dans l'autre $2y^2+4y+2\leq x\leq \sqrt{4- y^2}$, $y\in [-1.5, 0]$. L'ensemble $A_1$ est contenu dans la deuxième, \ref{LabelFigLAfWmaN}. L'intérieur de $A_1$ est donné par $\Int(A_1) = \{ (x, y ) \in \eR^2 \; | \; 2y^2+4y+2<x< \sqrt{4- y^2},\, y\in ]-1.5, 0[ \}$, et sa frontière est l'union de 3 morceaux de courbe $\ell_1$, $\ell_2$, $\ell_3$:
+      \begin{equation}
+        \begin{aligned}
+          &\ell_1=\{(x,y)\, |\, x=2y^2+4y+2,\, y\in [-1.5, 0] \}\\
+          &\ell_2=\{(x,y)\, |\, x=\sqrt{4-y^2},\, y\in [-1.5, 0] \}\\
+          &\ell_3=\{(x,y)\, |\, x\in [0.5, \sqrt{7/4}]\, y=-1.5 \}.
+        \end{aligned}
+      \end{equation}
+
+%The result is on figure \ref{LabelFigLAfWmaN}. % From file LAfWmaN
+\newcommand{\CaptionFigLAfWmaN}{}
+\input{auto/pictures_tex/Fig_LAfWmaN.pstricks}
+\end{example}
+
+\begin{example}
+    Nous étudions
+    \begin{equation}
+A_3 = \eN \times \eQ = \{ (x, y ) \in \eR^2 \; | \; x \in \eN , y \in \eQ \}.
+    \end{equation}
+    L'ensemble $A_3$ n'est pas ouvert, ni fermé, ni borné dans la topologie de $\eR^2$. En fait, comme on a vu dans les exercices du cours, $\eQ$ a intérieur vide et sa fermeture est $\eR$. L'ensemble $\eN$, par contre est fermé et non borné. On peut remarquer que tous les points de $\eN$ sont points isolés. La fermeture de $A_3$ est alors $\eN\times \eR$ et son intérieur est vide. On peut dessiner la fermeture de cet ensemble comme une famille de droites verticales $x=n$, pour tout $n$ dans $\eN$.
+\end{example}
+
+
+\begin{example}
+    Nous étudions l'ensemble
+    \begin{equation}
+ A_3 = \{ ( t , 2t ) \in \eR^2 \; | \; t \in [0, 1] \; \}.
+    \end{equation}
+
+			L'ensemble $A_3$ est un petit segment de droite. Son intérieur est vide parce que toute boule centrée en un point de la droite intersecte l'extérieur de la droite. Son adhérence et sa frontière sont $A_3$ lui-même parce que nous considérons les valeurs de $t$ dans $\mathopen[ 0 , 1 \mathclose]$ qui est un intervalle fermé. Si l'intervalle avait été ouvert, l'adhérence et la frontière auraient été trouvés en fermant :
+			\begin{equation}
+                \overline{ \{ (t,2t)\tqs t\in\mathopen[ 0 , 1 [\, \}}=\{ (t,2t)\tqs t\in\mathopen[ 0 , 1 ] \}
+			\end{equation}
+			Étant donné que son adhérence est égal à lui-même, cet ensemble est fermé (et donc pas ouvert). Il est également borné parce qu'il est contenu dans une boule de rayon $3$.
+\end{example}
+
+\begin{example}
+    Nous étudions l'ensemble
+    \begin{equation}
+        A_4 = \eQ \times \eQ = \{ (x, y ) \in \eR^2 \; | \; x \in \eQ , y \in \eQ \}.
+    \end{equation}
+			Dans $\eR$ nous savons que $\bar\eQ=\eR$, $\Int(\eQ)=\emptyset$ et $\partial\eQ=\eR$ parce que toute boule centrée en un rationnel contient un irrationnel, et inversement, toute boule centrée en un irrationnel contient un rationnel. Dans $\eR^2$ nous avons le même phénomène parce dans la boule $B\big( (p,q),r \big)$ avec $(p,q)\in\eQ\times\eQ$, se trouvent en particulier les points de la forme $(p,x)$ avec $x\in B(q,r)\subset\eR$. Évidement, certains de ces $x$ ne sont pas dans $\eQ$ et par conséquent, la boule $B\big( (p,q),r \big)$ contient les points $(p,x)\notin\eQ\times\eQ$.
+
+			De la même manière, si $(x,y)$ est un point de $\eR^2$, dans toute boule centrée en $(x,y)$, il y aura un élément de $\eQ^2$.
+
+			Par conséquent, $\Int(\eQ\times\eQ)=\emptyset$, $\overline{ \eQ\times\eQ }=\eR\times\eR$ et $\partial(\eQ\times\eQ)=\eR^2$.
+
+			Il n'est ni ouvert ni fermé (parce qu'il n'est égal ni à son intérieur ni à sa fermeture). Il n'est pas borné non plus parce qu'il existe des nombres rationnels arbitrairement grands.
+\end{example}
+
+
+
+\begin{example}
+    Nous étudions l'ensemble
+    \begin{equation}
+        A_5 = \{ (x, y ) \in \eR^2 \; | \; x \in ]0, 1[, \sin \frac 1x < y < 3 \}.
+    \end{equation}
+
+			La fonction $x\mapsto\sin(\frac{1}{ x })$ est une des fonctions dont le graphe doit être connu. La figure \ref{LabelFigAdhIntFrTrois} montre la situation. Comme d'habitude, il est fortement recommandé de refaire le dessin soi-même.
+\newcommand{\CaptionFigAdhIntFrTrois}{Les points qui dont sur l'axe vertical entre $0$ et $3$ sont sur la frontière, mais pas dans l'ensemble $A_5$.}
+\input{auto/pictures_tex/Fig_AdhIntFrTrois.pstricks}
+
+			L'ensemble $A_5$ est ouvert parce que les conditions $x\in\mathopen] 0 , 1 \mathclose[$ et $\sin\frac{1}{ x }<y<3$ sont des conditions «ouvertes» au sens où si un point les vérifient, alors on peut trouver une boule dans lequel ces conditions restent vérifiées. Cela prouve que $\Int(A_5)=A_5$.
+
+			La fermeture de $A_5$ contient en outre les points tels que $\sin\frac{1}{ x }=y$ entre $x=0$ et $x=1$ (les bornes étant incluses) ainsi que les points des trois segments de droites suivants:
+			\begin{equation}
+				\begin{aligned}[]
+					\{ (0,y)\tqs y\in\mathopen[ -1 , 3 \mathclose] \}\\
+					\{ (x,3)\tqs x\in\mathopen[ 0 , 1 \mathclose] \}\\
+					\{ (1,y)\tqs y\in\mathopen[ \sin(1) , 3 \mathclose] \}.
+				\end{aligned}
+			\end{equation}
+
+			La frontière est composée de ces trois segments et du graphe de la fonction $\sin\frac{1}{ x }$ entre $0$ et $1$.
+
+			L'ensemble $A_5$ est borné parce qu'il est contenu par exemple dans la boule centrée en $(0,0)$ et de rayon $10$. Il est ouvert et donc pas fermé.
+\end{example}
+
+
+\begin{example}\label{ItemexoEspVectoNorme0003iv}
+    Nous étudions l'ensemble
+    \begin{equation}
+        A_6 = \bigcup _{ n \in \eN_0} \{ ( \frac 1n, y ) \; | \; y \in [0,1] \; \}.
+    \end{equation}
+
+			L'ensemble $A_6$ est une union infinie de segments de droites verticaux, voir figure \ref{LabelFigAdhIntFrSix}
+\newcommand{\CaptionFigAdhIntFrSix}{Le segment sur l'axe vertical entre $y=0$ et $y=1$ fait partie de l'adhérence et de la frontière, mais pas de l'ensemble $A_6$ lui-même.}
+\input{auto/pictures_tex/Fig_AdhIntFrSix.pstricks}
+				L'intérieur est vide parce qu'autour de tout réel de la forme $\frac{1}{ n }$, il y a un réel qui n'est pas de cette forme. En ce qui concerne la frontière et l'adhérence, il s'agit de l'union de tous ces segments plus le segment en $x=0$.
+
+			En effet, la boule de rayon $r$ autour du point $(0,y)$ le point $(\frac{1}{ n },y)$ avec $n$ assez grand pour que $\frac{1}{ n }<r$.
+\end{example}
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Topologie de la droite réelle complétée}
+%---------------------------------------------------------------------------------------------------------------------------
+\label{SUBSECooKRRUooSlZSmM}
+
+Nous introduisons l'ensemble \( \bar\eR=\eR\cup\{ \pm\infty \}\). À présent les symboles \( +\infty\) et \( -\infty\) n'ont aucune signification particulière; il s'agit seulement de deux éléments que nous ajoutons à \( \eR\) pour former un ensemble que nous notons \( \bar \eR\).
+
+Pas plus tard qu'immédiatement nous leur donnons une signification en définissant une topologie sur \( \bar\eR\). Les ouverts sur \( \bar \eR\) sont
+\begin{enumerate}
+    \item
+        tous les ouverts de \( \eR\),
+    \item
+        les intervalles de la forme \( \mathopen] -\infty , a \mathclose[\) pour tous les \( a\in \eR\),
+    \item
+        les intervalles de la forme \( \mathopen] a , +\infty \mathclose[\) pour tous les \( a\in \eR\),
+    \item
+        la topologie engendrée par toutes ces parties de \( \bar \eR\).
+\end{enumerate}
+
+Par construction, les boules de \( \eR\) et les intervalles \( \mathopen] -\infty , a \mathclose[\) et \( \mathopen] a , +\infty \mathclose[\) forment une base de topologie pour \( \bar \eR\).
+
+Si \( f\) est une fonction \( f\colon \eR\to \eR\), que signifie \( \lim_{x\to \infty} f(x)\) ? Il s'agit de considérer la fonction élargie
+\begin{equation}
+    \begin{aligned}
+        \tilde f\colon \bar \eR&\to \bar\eR \\
+        x&\mapsto \begin{cases}
+            f(x)    &   \text{si } x\in \eR\\
+            0    &    \text{si } x=\pm\infty.
+        \end{cases}
+    \end{aligned}
+\end{equation}
+Ensuite, c'est la définition topologie usuelle de la limite. Notons que les limites en \( a\) ne dépendent pas de la valeur effective de \( f\) en \( a\), donc le prolongement par \( 0\) est sans conséquences. Nous pouvions tout aussi bien prolonger par \( 4\).
+
+Le même raisonnement tient pour donner un sens à \( \lim_{x\to a} f(x)=\pm \infty\).
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Quelques mots à propos de la droite réelle complétée} 
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+    La \defe{droite réelle complétée}{droite réelle complétée} est l'ensemble \( \eR\cup\{ \pm \infty \}\) où \( \pm\infty\) sont deux nouveaux éléments. Nous la notons \( \overline{ \eR }\) pour des raisons que nous verrons à peine plus bas.
+\end{definition}
+
+Cette définition ne servirait à rien si nous n'y mettions pas une topologie pour positionner les éléments \( \pm\infty\) par rapport à ceux qui existaient déjà dans \( \eR\).
+
+\begin{definition}[Topologie sur \( \bar\eR\)]
+La topologie sur \(\bar \eR\) est celle sur \( \eR\) à laquelle nous ajoutons les voisinages de \( \pm\infty\) de la façon suivante. Une partie \( V\) de \( \bar \eR\) est un voisinage de \( +\infty\) s'il existe \( m>0\) tel que \( \mathopen] m , +\infty \mathclose]\subset V\).
+\end{definition}
+
+Le lemme suivant justifie la notation \( \overline{ \eR }\) pour la droite réelle complétée\footnote{Mais ne justifie pas le qualificatif «complété» parce que l'espace métrique \( \eR\) était déjà complet.}.
+\begin{lemma}       \label{LEMooPZXHooEEXsTC}
+    L'adhérence\footnote{Définition \ref{DEFooSVWMooLpAVZR}.} de \( \eR\) dans \( \overline{ \eR }\) est \( \overline{ \eR }\).
+\end{lemma}
+
+\begin{proof}
+    Il suffit de prouver que \( +\infty\) et \( -\infty\) sont dans l'adhérence de \( \eR\). Nous le faisons pour \( +\infty\). Ce n'est pas très compliqué : si \( A\) est un ouvert contenant \( +\infty\), il contient une partie de la forme \( \mathopen] a , +\infty \mathclose]\), et donc contient des éléments de \( \eR\).
+\end{proof}
+
+Pour la suite nous utilisons la notation (pratique en probabilité)
+\begin{equation}
+    \{ f<a \}=\{ x\in S\tq f(x)<a \}.
+\end{equation}
+
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Continuité}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\begin{normaltext}
-    Nous allons considérer trois approches différentes de la continuité. La première sera de définir la continuité de fonctions de $\eR$ vers $\eR$ au moyen du critère usuel. Ensuite, nous définiront la continuité des applications entre n'importe quels espaces métriques, et nous montrerons que les deux définitions sont équivalentes dans le cas des fonctions sur $\eR$ à valeurs réelles.
-
-    Enfin, un peu plus tard nous verrons que la continuité peut également être vue en termes de limites. Encore une fois nous verrons que dans le cas de fonctions de $\eR$ vers $\eR$ cette troisième approche est équivalentes aux deux premières.
-\end{normaltext}
-
 La définition de fonction continue est la définition~\ref{DefOLNtrxB}. Dans le cas d'une fonction \( f\colon \eR\to \eR\), elle devient ceci.
 \begin{proposition}      \label{PROPooVNGEooPwbxXP}
-    La fonction \( f\colon \eR\to \eR\) est \defe{continue en $a$}{continue sur \( \eR\)} si et seulement si
-    \begin{equation}
-        \forall \epsilon>0,\exists \delta\text{ tel que } \big(| x-a |\leq\delta\big)\Rightarrow | f(x)-f(a) |\leq \epsilon.
-    \end{equation}
+    Soient \( A\subset \eR\) et \( a\in A\). La fonction \( f\colon A\to \eR\) est \defe{continue en $a$}{continue sur \( \eR\)} si et seulement si pour tout \( \epsilon>0\), il existe un \( \delta>0\) tel que si \( x\in B(a,\delta)\cap A\) alors \( | f(x)-f(a) |\leq \epsilon\).
 \end{proposition}
 
 Nous allons maintenant étudier quelques conséquences de la continuité sur \( \eR\).
@@ -830,6 +1316,37 @@ pourvu que $| x-a |$ soit plus petit que $\delta_1$ et $\delta_2$. Le bon $\delt
 \end{proof}
 
 Pour résumer ces deux théorèmes, on dit que si $f$ et $g$ sont continues en $a$, alors la fonction $\alpha f+\beta g$ est également continue en $a$ pour tout $\alpha$, $\beta\in\eR$.
+
+\begin{proposition}     \label{PROPooVNKVooJvxarf}
+    Soient des parties \( \Omega_f\) et \( \Omega_g\) dans \( \eR\). Soient \( f\colon \Omega_f\to \eR\) ainsi que \( g\colon \Omega_g\to \eR\) telles que
+    \begin{enumerate}
+        \item
+            \( g\) est continue en \( a\) et vaut \( g(a)=\ell\).
+        \item
+            \( f\) est continue en \( \ell\) et vaut \( f(\ell)=b\).
+        \item
+            \( g(\Omega_g)\subset \Omega_f\).
+    \end{enumerate}
+    Alors \( f\circ g\) est continue en \( a\).
+\end{proposition}
+
+\begin{proof}
+    Soit \( \epsilon>0\). La continuité de \( f\) dit que il existe \( \eta>0\) tel que
+    \begin{equation}
+        y\in B(\ell,\eta)\cap\Omega_f\Rightarrow\,| f(y)-f(\ell) |<\epsilon.
+    \end{equation}
+    La continuité de \( g\) donne \( \delta>0\) tel que
+    \begin{equation}
+        x\in B(a,\delta)\cap\Omega_g\Rightarrow\,| g(x)-g(a) |<\eta.
+    \end{equation}
+
+    Si \( x\in B(a,\delta)\cap\Omega_g\), alors \( g(x)\in B(\ell,\eta)\cap\Omega_f\). Donc
+    \begin{equation}
+        | (f\circ g)(x)-f(\ell) |<\epsilon.
+    \end{equation}
+    Mais \( f(\ell)=(f\circ g)(a)\). Tout cela est la continuité de \( f\circ g\) en \( a\).
+\end{proof}
+
 
 Parmi les propriétés immédiates de la continuité d'une fonction, nous avons ceci qui est souvent bien utile.
 
@@ -956,7 +1473,7 @@ L'image d'un intervalle par une fonction continue est un intervalle.
 Soient \( I\) un intervalle, \( \alpha<\beta\in f(I)\) et \( \gamma\in\mathopen] \alpha , \beta \mathclose[\). Nous considérons \(a,b\in I\) tels que \( \alpha=f(a)\) et \( \beta=f(b)\). Par le théorème des valeurs intermédiaires \ref{ThoValInter}, il existe \( t\in\mathopen] a , b \mathclose[\) tel que \( f(t)=\gamma\). Par conséquent \( \gamma\in f(I)\).
 \end{proof}
 
-\begin{corollaryDef}[Existence de la racine carrée]
+\begin{corollaryDef}[Existence de la racine carrée]     \label{DEFooGQTYooORuvQb}
     Si \( x\geq 0\) alors il existe un unique \( y\geq 0\) tel que \( y^2=x\). Ce nombre est noté \( \sqrt{x}\) et est nommé \defe{racine carrée}{racine carrée} de \( x\).
 \end{corollaryDef}
 
@@ -964,12 +1481,216 @@ Soient \( I\) un intervalle, \( \alpha<\beta\in f(I)\) et \( \gamma\in\mathopen]
     La fonction \( f\colon t\mapsto t^2\) est continue et strictement croissante. Nous avons \( f(0)=0\) et\footnote{Faites deux cas suivant \( x\geq 1\) ou non si vous le voulez, moi je prends \( x+1\).} \( f(x+1)>x\). Donc le théorème des valeurs intermédiaires~\ref{ThoValInter} nous assure qu'il existe un unique \( y\in\mathopen[ 0 , x+1 \mathclose]\) tel que \( f(y)=x\).
 \end{proof}
 
+\begin{lemma}       \label{LEMooSBOAooOOIotR}
+    La fonction racine carrée est strictement croissante.
+\end{lemma}
+
+\begin{proof}
+    Supposons que \( x<y\). Si \( \sqrt{ x }>\sqrt{ y }\), alors la croissance de la fonction carré donne \( x>y\) qui est contraire à l'hypothèse..
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Module sur les nombres complexes}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{lemmaDef}
+    Si \( z\in \eC\), alors \( z\bar z\) est un réel positif.
+
+    Nous définissons le \defe{module}{module d'un nombre complexe} sur \( \eC\) par\footnote{Définition de la racine carré : \ref{DEFooGQTYooORuvQb}.}
+    \begin{equation}
+        | z |=\sqrt{ z\bar z }.
+    \end{equation}
+\end{lemmaDef}
+
+\begin{proof}
+    Prouvons que \( z\bar z\) est un réel positif. En effet si \( z=a+bi\) alors
+    \begin{equation}
+        z\bar z=(a+bi)(a-bi)=a^2-abi+abi+b^2=a^2+b^2\geq 0.
+    \end{equation}
+\end{proof}
+
+\begin{proposition}     \label{PROPooUMVGooIrhZZg}
+Pour tout nombres complexes $z = a+bi$ et $z^\prime$, nous avons
+   \begin{enumerate}
+   \item $z \bar z = a^2 + b^2$;
+   \item $\bar{\bar{z}} = z$;
+   \item $\module z = \module {\bar z}$;
+   \item        \label{ITEMooFXKYooUOXbwH}
+       $\module{zz^\prime} = \module z \module{z^\prime}$;        
+   \item    \label{ITEMooDVMDooFDmOur}
+      \( | z_1+z_2 |\leq | z_1 |+| z_2 |\)
+   \end{enumerate}
+\end{proposition}
+
+
+\begin{lemma}       \label{LEMooHTAWooQNrXSL}
+    Nous avons \( | \real(z) |\leq | z |\) et nous avons l'égalité si et seulement si \( z\in \eR\).
+\end{lemma}
+
+\begin{proof}
+    En plusieurs points.
+    \begin{subproof}
+    \item[L'inégalité]
+        Par croissance de la fonction racine carré nous avons, en posant \( z=a+bi\) :
+        \begin{equation}        \label{EQooBFANooKcSsWi}
+            | \real(z) |=| a |=\sqrt{ | a |^2 }\leq \sqrt{ | a |^2+| b |^2 }=| z |.
+        \end{equation}
+    \item[Égalité dans un sens]
+        Si \( | \real(z) |=| z |\), alors toutes les inégalités dans \eqref{EQooBFANooKcSsWi} sont des égalités. En particulier
+        \begin{equation}
+            \sqrt{ | a |^2 }=\sqrt{ | a |^2+| b |^2 }.
+        \end{equation}
+        Par stricte croissance de la fonction racine carré, nous déduisons que \( | b |^2=0\) et donc que \( b=0\).
+    \item[Égalité dans l'autre sens]
+        Si \( z\in \eR\), alors \( \real(z)=z\), et nous avons l'égalité.
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}       \label{LEMooHWLXooSkUrGg}
+    Soient \( a,b\in \eC\). Nous avons \( | a+b |=| a |+| b |\) si et seulement si \( a\bar b=0\).
+\end{lemma}
+
+\begin{proof}
+    Nous avons toujours l'égalité
+    \begin{equation}
+        | a+b |=\sqrt{ | a |^2+| b |^2+2\real(a\bar b) }.
+    \end{equation}
+
+    Dans un premier sens nous supposons \( | a+b |=| a |+| b |\). Donc 
+    \begin{equation}
+        \sqrt{ | a |^2+| b |^2+2\real(a\bar b) }=\sqrt{ | a |^2+| b |^2+2| a | |b | },
+    \end{equation}
+    et donc que \( \real(a\bar b)=| a | |b |\). Vu que \( | a\bar b |=| a | |b |\) (proposition \ref{PROPooUMVGooIrhZZg}\ref{ITEMooFXKYooUOXbwH}), nous avons
+    \begin{equation}
+        \real(a\bar b)=| a\bar b |.
+    \end{equation}
+    Nous sommes dans le cas d'égalité du lemme \ref{LEMooHTAWooQNrXSL}. Donc \( a\bar b\in \eR\). Et il est manifestement positif parce que égal à \( | a | |b |\).
+
+     Dans l'autre sens, nous supposons que \( a\bar b=0\). En particulier \( a\bar b\in \eR\) et \( \real(a\bar b)=| a | |b |\). Nous avons alors
+    \begin{equation}
+        | a+b |=\sqrt{ | a |^2+| b |^2+2\real(a\bar b) }=| a |+| b |.
+    \end{equation}
+\end{proof}
+
+\begin{lemma}       \label{LEMooRJICooYrcAFv}
+    À propos du module.
+    \begin{enumerate}
+        \item       \label{ITEMooCTHXooHqzuvb}
+            Si \( x,y\in \eC\) nous avons
+    \begin{equation}
+        | x+y |\leq | x |+| y |.
+    \end{equation}
+        \item
+            Il y a égalité si et seulement si \( x\bar y\geq 0\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    En plusieurs points.
+    \begin{subproof}
+    \item[L'inégalité]
+            Nous considérons deux nombres complexes \( x\) et \( y\). Nous avons
+            \begin{equation}
+                | x+y |=\sqrt{ | x |^2+| y |^2+x\bar y+\bar xy }.
+            \end{equation}
+            Maintenant, \( x\bar y+y\bar x=2\real(xy)\) et \( \real(z)\leq | z |\) et la racine carré est croissante\footnote{Lemme \ref{LEMooSBOAooOOIotR}.}. Donc
+            \begin{equation}
+                | x+y |=\sqrt{ | x |^2+| y |^2+x\bar y+\bar xy }\leq \sqrt{ | x |^2+| y |^2+2| x\bar y | }=\sqrt{ | x |^2+| y |^2+2| x | |y | }=| x |+| y |.
+            \end{equation}
+        \item[Le cas d'égalité]
+            C'est le lemme \ref{LEMooHWLXooSkUrGg}.
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}       \label{LEMooXJBJooFDmhnV}
+    Si deux nombres complexes \( a,b\in \eC\) vérifient \( a\bar b\in \eR\), alors on est dans un des deux cas suivants :
+    \begin{itemize}
+        \item \( b=0\)
+        \item il existe \( \lambda\in \eR\) tel que \( a=\lambda b\).
+    \end{itemize}
+    De façon équivalente, il existe \( \alpha,\beta\in \eR\) non tous deux nuls tels que \( \alpha a+\beta b=0\).
+\end{lemma}
+
+\begin{proof}
+    Nous écrivons \( a=a_1+ia_2\) et \( b=b_1+ib_2\) avec \( a_i,b_i\in \eR\). Nous supposons \( b\neq 0\). Nous effectuons la multiplication \( a\bar b=(a+ib_2)(b_1-ib_2)\) et nous annulons la partie imaginaire :
+    \begin{equation}
+        a_2b_1-a_1b_2=0.
+    \end{equation}
+    Si \( b_1=0\) alors \( a_1b_2=0\) avec \( b_2\neq 0\), ce qui implique \( a_1=0\). Donc \( a=ia_2\), \( b=ib_2\). Résultat obtenu.
+
+    Si \( b_1\neq 0\) alors 
+    \begin{equation}
+        a_2=\frac{ a_1b_2 }{ b_1 },
+    \end{equation}
+    et nous avons du coup
+    \begin{equation}
+        a=\frac{ a_1 }{ b_1 }b.
+    \end{equation}
+    Mission accomplie.
+
+    Nous prouvons à présent la formulation équivalente. Si \( b=0\) il suffit de prendre \( \alpha=0\). Si \( a=\lambda b\) il faut prendre \( \alpha=\beta/\lambda\).
+
+    Dans l'autre sens, si \( \alpha\neq 0\) alors \( a=-(\beta/\alpha)b\) et si \( \alpha=0\) alors \( \beta\neq 0\) et il reste \( b=0\).
+\end{proof}
+
+\begin{proposition}
+    La paire \( (\eC, | . |)\) est un espace vectoriel normé\footnote{Définition d'une norme : \ref{DefNorme}.}.
+\end{proposition}
+
+\begin{proof}
+    Nous devons prouver les différents points de la définition \ref{DefNorme}.
+    \begin{enumerate}
+        \item
+            \( | z |\geq 0\) parce que la racine carré prend ses valeurs dans \( \eR^+\).
+        \item
+            Si \( | z |=0\), alors, en notant \( z=a+bi\) nous avons \( a^2+b^2=0\). La somme de deux positifs est nulle que quand les deux sont nuls. Donc \( a=b=0\).
+        \item
+            Si \( \lambda\geq 0\), alors \( (\lambda z)\overline{ \lambda z }=\lambda^2z\bar z\) et nous avons
+            \begin{equation}
+                | \lambda z |=\sqrt{ \lambda^2z\bar z }=| \lambda |\sqrt{ z\bar z }=| \lambda | |z |.
+            \end{equation}
+        \item
+            L'inégalité \( | x+y |\leq | x |+| y |\) est le lemme \ref{LEMooRJICooYrcAFv}.
+    \end{enumerate}
+\end{proof}
+
+
+
+\begin{proposition} \label{PROPooXLARooYSDCsF}
+ Si \( z_1\) et \( z_2\) sont des nombres complexes, alors 
+ \begin{equation}
+     | z_1z_2 |=| z_1 | |z_2 |.
+ \end{equation}
+ Nous avons aussi, pour tout \( n\in \eN\),
+ \begin{equation}       \label{EQooATTQooRpJeCo}
+     | z^n |=| z |^n.
+ \end{equation}
+\end{proposition}
+
+\begin{proof}
+    D'abord \( (a+bi)(c+di)=ac-db+(ad+bc)i\), de telle sorte que
+    \begin{equation}
+        | (a+bi)(c+di) |^2=(ac-bd)^2+(ad+bc)^2.
+    \end{equation}
+    Mais en calculant d'autre part \( | a+bi |^2| c+di |^2\), nous tombons sur la même valeur.
+
+    Une simple récurrence permet de conclure que \( | z^n |=| z |^n\).
+\end{proof}
+Voila. Vous êtes déjà content d'apprendre que l'on peut démontrer \( | z^n |=| z |^n\) sans faire appel à la forme trigonométrique des nombres complexes.
+
+
+\begin{lemma}   \label{LEMooONLNooXLNbtB}
+    Pour tout \( z\in \eC\) nous avons \( z\bar z=\bar z z=| z |^2\).
+\end{lemma}
+
+
+
 \subsection{Continuité de la racine carrée, invitation à la topologie induite}
 %-----------------------------------------
 
 Pourquoi nous intéresser particulièrement à cette fonction ? Parce qu'elle a une sale condition d'existence : son domaine de définition n'est pas ouvert. Or dans tous les théorèmes de continuité d'approche topologique que nous avons vus, nous avons donné des conditions \emph{pour tout ouvert}. Nous nous attendons donc a avoir des difficultés avec la continuité de $\sqrt{x}$ en zéro.
 
-Prenons $I$, n'importe quel intervalle ouvert dans $\eR^+$, et voyons que la fonction
+Prenons $I$, n'importe quel intervalle ouvert dans $\eR^+$, et voyons que la fonction\footnote{La racine carré est définie en \ref{DEFooGQTYooORuvQb}.}
 \begin{equation}
 \begin{aligned}
  f\colon \eR^+&\to \eR^+ \\
@@ -1048,599 +1769,89 @@ Il s'agit maintenant de trouver un $\epsilon$ tel que $f\big( B(0,\epsilon) \big
 \]
 le problème revient dont à trouver $\epsilon$ tel que $\sqrt{\epsilon}\leq\delta$. Prendre $\epsilon<\delta^2$ fait l'affaire.
 
+Donc voilà. Au sens de la topologie induite\footnote{Définition \ref{DefVLrgWDB}.}, de \( \eR\) vers $\eR^+$, nous pouvons dire que la fonction racine carrée est partout continue.
 
-Donc voilà. Au sens de la \href{http://fr.wikipedia.org/wiki/Topologie_induite}{topologie propre} à $\eR^+$, nous pouvons dire que la fonction racine carrée est partout continue.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Prolongement par continuité}
-%---------------------------------------------------------------------------------------------------------------------------
-
-%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\subsubsection{Discussion avec mon ordinateur}
-%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Voici un extrait de ce peut donner Sage. Nous lui donnons la fonction
-\begin{equation}    \label{EqyEHTBZ}
-    f(x)=\frac{ x+4 }{ 3x^2+10x-8 }.
-\end{equation}
-Cette fonction est faite exprès pour que le dénominateur s'annule en \( -4\). En fait \( 3x^2+10x-8=(x+4)(3x-2)\), et la fraction peut se simplifier en
-\begin{equation}
-    f(x)=\frac{1}{ 3x-2 }.
-\end{equation}
-Et avec cela nous écririons \( f(-4)=-\frac{1}{ 14 }\). Voyons comment cela passe dans Sage.
-
-\begin{verbatim}
-----------------------------------------------------------------------
-| Sage Version 5.2, Release Date: 2012-07-25                         |
-| Type "notebook()" for the browser-based notebook interface.        |
-| Type "help()" for help.                                            |
-----------------------------------------------------------------------
-sage: f(x)=(x+4)/(3*x**2+10*x-8)
-sage: f(-4)
----------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
-ValueError: power::eval(): division by zero
-\end{verbatim}
-Il produit donc une erreur de division par zéro. Cela n'est pas étonnant. Pourtant si on lui demande, il est capable de simplifier. En effet :
-\begin{verbatim}
-sage: f.simplify_full()
-x |--> 1/(3*x - 2)
-sage: f.simplify_full()(-4)
--1/14
-\end{verbatim}
-
-Nous considérons la question suivante : étant donné une fonction \( f\) définie sur \( I\setminus\{ x_0 \}\), est-il possible de définir \( f\) en \( x_0\) de telles façon à ce qu'elle soit continue ?
-
-\begin{example}
-    La fonction
-    \begin{equation}
-        \begin{aligned}
-            f\colon \eR\setminus\{ 0 \}&\to \eR \\
-            x&\mapsto \frac{1}{ x }
-        \end{aligned}
-    \end{equation}
-    n'est pas définie pour \( x=0\) et il n'y a pas moyen de définir \( f(0)\) de telle sorte que \( f\) soit continue parce que \( \lim_{x\to 0} \frac{1}{ x }\) n'existe pas.
-\end{example}
-
-%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\subsubsection{Limite et prolongement}
-%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Reprenons l'exemple de la fonction \eqref{EqyEHTBZ} que mon ordinateur refusait de calculer en zéro :
-\begin{equation}
-f(x)=\frac{ x+4 }{ 3x^2+10x-8 }=\frac{ x+4 }{ (x+4)\left( x-\frac{ 2 }{ 3 } \right) }.
-\end{equation}
-Cette fonction a une condition d'existence en $x=-4$. Et pourtant, tant que $x\neq 4$, cela a un sens de simplifier les $(x+4)$ et d'écrire
-\[
-  f(x)=\frac{ 1 }{ x-\frac{ 2 }{ 3 } }=\frac{ 3 }{ 3x-2 }.
-\]
-Étant donné que pour toute valeur de $x$ différente de $-4$, la fonction $f$ s'exprime de cette façon, nous avons que
-\[
-  \lim_{x\to -4}f(x)=\lim_{x\to -4}\left(\frac{ 3 }{ 3x-2 }\right).
-\]
-Oui, mais la fonction\footnote{Cette fonction $g$ n'est pas $f$ parce que $g$ a en plus l'avantage d'être définie en $-4$.} $g(x)=3/(3x-2)$ est continue en $-4$ et donc sa limite vaut sa valeur. Nous en déduisons que
-\[
-  \lim_{x\to -4}f(x)=-\frac{ 3 }{ 14 }.
-\]
-Que dire maintenant de la fonction ainsi définie ?
-\begin{equation}
-\tilde f(x)=
-\begin{cases}
-f(x)&\text{si }x\neq -4\\
--3/14&\text{si }x=-4.
-\end{cases}
-\end{equation}
-Cette fonction est continue en $-4$ parce qu'elle y est égale à sa limite. Les étapes suivies pour obtenir ce résultat sont :
-\begin{itemize}
-\item Repérer un point où la fonction n'existe pas,
-\item calculer la limite de la fonction en ce point, et en particulier vérifier que cette limite existe, ce qui n'est pas toujours le cas,
-\item définir une nouvelle fonction qui vaut partout la même chose que la fonction originale, sauf au point considéré où l'on met la valeur de la limite.
-\end{itemize}
-C'est ce qu'on appelle \defe{prolonger la fonction par continuité}{prolongement!par continuité} parce que la fonction résultante est continue. La prolongation de $f$ par continuité est donc en général définie par
-\begin{equation}
-\tilde f(x)=
-\begin{cases}
-f(x)            &\text{si }f(x)\\
-\lim_{y\to x}f(y)   &\text{si }f(x)
-\end{cases}
-\end{equation}
-Dans le cas que nous regardions,
-\[
-    f(x)=\frac{ x+4 }{ 3x^2+10x-8 },
-\]
-le prolongement par continuité est donné par
-\begin{equation}
-\tilde f =\frac{ 3 }{ 3x-2 }.
-\end{equation}
-Remarquons que cette fonction n'est toujours pas définie en $x=2/3$.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Prolongement par continuité}
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Second degré}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{propositionDef}[Prolongement par continuité]
-    Soit \( f\colon I\setminus\{ x_0 \}\to \eR\) telle que \( \lim_{x\to x_{0}} f(x)=\ell\in \eR\). La fonction
-    \begin{equation}
-        \begin{aligned}
-            \tilde f\colon I&\to \eR \\
-            \tilde f(x)&=\begin{cases}
-                f(x)    &   \text{si } x\neq x_0\\
-                \ell    &    \text{si } x=x_0
-            \end{cases}
-        \end{aligned}
-    \end{equation}
-    est une fonction continue sur \( I\) et est appelée le \defe{prolongement par continuité}{prolongement!par continuité} de \( f\) en \( x_0\).
-\end{propositionDef}
-Vous noterez que dans cet énoncé nous demandons \( \ell\in \eR\). Les cas \( \ell=\pm\infty\) sont donc exclus.
-
-\begin{normaltext}
-    Le lemme~\ref{LEMooUAFBooAwiXxj} donnera un autre gros morceau de prolongement par continuité. Là, ce ne sera pas juste une valeur qui manquera, mais carrément la majorité des valeurs.
-\end{normaltext}
-
-\begin{example}
-    La fonction
-    \begin{equation}
-        \begin{aligned}
-            f\colon \eR\setminus\{ -3,2 \}&\to \eR \\
-            x&\mapsto  \frac{ x^2+2x-3 }{ (x+3)(x-2) }
-        \end{aligned}
-    \end{equation}
-    admet pour limite \( \lim_{x\to -3} f(x)=\frac{ 4 }{ 5 }\). Son prolongement par continuité en \( x=-3\) est donné par
-    \begin{equation}
-        \tilde f(x)=\frac{ x-1 }{ x-2 }.
-    \end{equation}
-    Notons que les fonctions \( f\) et \( \tilde f\) ne sont pas identiques : l'une est définie pour \( x=-3\) et l'autre pas. Lorsqu'on fait le calcul
-    \begin{equation}
-        \frac{ x^2+2x-3 }{ (x+3)(x-2) }=\frac{ (x-1)(x+3) }{ (x+3)(x-2) }=\frac{ x-1 }{ x-2 },
-    \end{equation}
-    la simplification n'est pas du tout un acte anodin. Le dernier signe «\( =\)» est discutable parce que les deux dernières expressions ne sont pas égales pour tout \( x\); elles ne sont égales «que» pour les \( x\) pour lesquels les deux expressions existent.
-\end{example}
-
-Les fonctions trigonométriques donneront quelques exemples intéressants de prolongements par continuité. Voir l'exemple~\ref{ExQWHooGddTLE}. Et une avec la fonction logarithme dans l'exemple~\ref{EXooAGEOooQdQkrS}.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Théorème de la bijection}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{proposition} \label{PropOARooUuCaYT}
-    Une fonction monotone et surjective d'un intervalle $I$ sur un autre intervalle $J$ est continue sur $I$.
-\end{proposition}
-
-\begin{proposition}
-    Soient \( f\colon I\to J\) une bijection et \( f^{-1}\colon J\to I\) sa réciproque. Alors pour tout \( x_0\in I\) nous avons
-    \begin{equation}    \label{EqHQRooNmLYbF}
-        f^{-1}\big( f(x_0) \big)=x_0
-    \end{equation}
-    et pour tout \( y_0\in J\) nous avons
-    \begin{equation}    \label{EqIYTooQPvZDr}
-        f\big( f^{-1}(y_0) \big)=y_0.
-    \end{equation}
-\end{proposition}
-
-\begin{proof}
-    Nous prouvons la relation \eqref{EqHQRooNmLYbF} et nous laissons \eqref{EqIYTooQPvZDr} comme exercice au lecteur.
-
-    Soit \( x_0\in I\). Posons \( y_0=f(x_0)\). La définition de l'application réciproque est que pour \( y\in J\), \( f^{-1}(y)\) est l'unique élément \( x\) de \( I\) tel que \( f(x)=y\). Donc \( f^{-1}(y_0)\) est l'unique élément de \( I\) dont l'image est \( y_0\). C'est donc \( x_0\) et nous avons \( f^{-1}(y_0)=x_0\), c'est-à-dire
-    \begin{equation}
-        f^{-1}\big( f(x_0) \big)=x_0.
-    \end{equation}
-\end{proof}
-
-\begin{theorem}[Théorème de la bijection] \label{ThoKBRooQKXThd}
-    Soit $I$ un intervalle et $f$ une fonction continue et strictement monotone de $I$ dans \( \eR\). Nous avons alors :
-    \begin{enumerate}
-        \item
-            $f(I)$ est un intervalle de \( \eR\) ;
-        \item       \label{ITEMooMAWXooZXmVwA}
-            La fonction \( f\colon I\to f(I)\) est bijective
-        \item
-            La fonction \( f^{-1}\colon f(I)\to I\) est strictement monotone de même sens que $f$ ;
-        \item \label{ItemEJZooKuFoeFiv}
-            La fonction \( f\colon I\to f(I)\) est un homéomorphisme, c'est-à-dire que \( f^{-1}\colon f(I)\to I\) est continue.
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-
-    Prouvons les choses point par point.
-
-    \begin{enumerate}
-    \item
-
-        Supposons pour fixer les idées que \( f\) est monotone croissante\footnote{Traitez en tant qu'exercice le cas où $ f$ est décroissante.}.
-
-        Soient \( a< b\) dans \( f(I)\). Par définition il existe \( x_1,x_2\in I\) tels que \( a=f(x_1)\) et \( b=f(x_2)\). La fonction \( f\) est continue sur l'intervalle \( \mathopen[ x_1 , x_2 \mathclose]\) et vérifie \( f(x_1)<f(x_2)\). Donc le théorème des valeurs intermédiaires~\ref{ThoValInter} nous dit que pour tout \( t\) dans \( \mathopen[ f(x_2) , f(x_2) \mathclose]\), il existe un \( x_0\in\mathopen[ x_1 , x_2 \mathclose]\) tel que \( f(x_0)=t\). Cela montre que toutes les valeurs intermédiaires entre \( a\) et \( b\) sont atteintes par \( f\) et donc que \( f(I)\) est un intervalle.
-
-    \item
-
-    Nous prouvons maintenant que \( f\) est bijective en prouvant séparément qu'elle est surjective et injective.
-
-    \begin{subproof}
-
-        \item[\( f\) est surjective]
-
-            Une fonction est toujours surjective depuis un intervalle \( I\) vers l'ensemble \(\Im f \).
-
-        \item[\( f\) est injective]
-
-            Soit \( x\neq y\) dans \( I\); pour fixer les idées nous supposons que \( x<y\). La stricte monotonie de \( f\) implique que \( f(x)<f(y)\) ou que \( f(x)>f(y)\). Dans tous les cas \( f(x)\neq f(y)\).
-
-    \end{subproof}
-
-    La fonction \( f\) est donc bijective.
-
-\item
-
-    Comme d'accoutumée nous supposons que \( f\) est croissante. Soient \( y_1<y_2\) dans \( f(I)\); nous devons prouver que \( f^{-1}(y_1)\leq f^{-1}(y_2)\). Pour cela nous considérons les nombres \( x_1,x_2\in I\) tels que \( f(x_1)=y_1\) et \( f(x_2)=y_2\). Nous allons en prouver la contraposée en supposant que \( f^{-1}(y_1)>f^{-1}(y_2)\). En appliquant \( f\) (qui est croissante) à cette dernière inégalité il vient
-    \begin{equation}
-        f\big( f^{-1}(y_1) \big)\geq f\big( f^{-1}(y_2) \big),
-    \end{equation}
-    ce qui signifie
-    \begin{equation}
-        y_1\geq y_2
-    \end{equation}
-    par l'équation \eqref{EqIYTooQPvZDr}.
-
-\item
-
-    La fonction \( f^{-1}\colon f(I)\to I\) est une fonction monotone et surjective, donc continue par la proposition~\ref{PropOARooUuCaYT}.
-
-    \end{enumerate}
-\end{proof}
-
-\begin{example}
-    La fonction
-    \begin{equation}
-        \begin{aligned}
-            f\colon \mathopen[ 2 , 3 \mathclose]&\to \mathopen[ 4 , 9 \mathclose] \\
-            x&\mapsto x^2
-        \end{aligned}
-    \end{equation}
-    est une bijection. Sa réciproque est la fonction
-    \begin{equation}
-        \begin{aligned}
-            f^{-1}\colon \mathopen[ 4 , 9 \mathclose]&\to \mathopen[ 2 , 3 \mathclose] \\
-            x&\mapsto \sqrt{x}.
-        \end{aligned}
-    \end{equation}
-\end{example}
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Limite et continuité}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\label{SecLimiteFontion}
-
-Voir les remarques dans l'index thématique~\ref{THEMEooGVCCooHBrNNd} pour comprendre la place et la portée de ce qui va venir à propos de limite et de continuité.
-
-\begin{theorem}[Limite et continuité]           \label{ThoLimCont}
-La fonction $f$ est continue au point $a$ si et seulement si $\lim_{x\to a}f(x)=f(a)$.
-\end{theorem}
-
-\begin{proof}
-    Nous commençons par supposer que $f$ est continue en $a$, et nous prouvons que $\lim_{x\to a}f(x)=a$. Soit $\epsilon>0$; ce qu'il nous faut c'est un $\delta$ tel que $| x-a |\leq\delta$ implique $| f(x)-f(a) |\leq\epsilon$. La caractérisation \ref{PROPooVNGEooPwbxXP} de la continuité donne l'existence d'un $\delta$ comme il nous faut.
-
-    Dans l'autre sens, c'est-à-dire prouver que $f$ est continue au point $a$ sous l'hypothèse que $\lim_{x\to a}f(x)=f(a)$, la preuve se fait de la même façon.
-\end{proof}
-
-Nous en déduisons que si nous voulons gagner quelque chose à parler de limites, il faut prendre des fonctions non continues. En effet, si une fonction est continue en un point, la limite ne donne aucune nouvelle information que la valeur de la fonction elle-même en ce point.
-
-Prenons une fonction qui fait un saut. Pour se fixer les idées, prenons celle-ci :
-\begin{equation}    \label{EqnCtOEL}
-f(x)=
-\begin{cases}
-2x&\text{si }x\in]\infty,2[\\
-x/2&\text{si }x\in[2,\infty[
-\end{cases}
-\end{equation}
-Essayons de trouver la limite de cette fonction lorsque $x$ tend vers $2$. Étant donné que $f$ n'est pas continue en $2$, nous savons déjà que $\lim_{x\to 2}f(x)\neq f(2)$. Donc ce n'est pas $1$. Cette limite ne peut pas valoir $4$ non plus parce que si je prends n'importe quel $\epsilon$, la valeur de $f(2+\epsilon)$ est très proche de $2$, et donc ne peut pas s'approcher de $4$. En fait, tu peux facilement vérifier que \emph{aucun nombre ne vérifie la condition de limite pour $f$ en $2$}. Nous disons que la limite n'existe pas.
-
-Il ne faudrait pas en déduire trop vite que si une fonction n'est pas continue en \( a\), alors la limite \( x\to a\) n'existe pas. Ce que dit le théorème~\ref{ThoLimCont} est que si une fonction n'est pas continue en \( a\), alors sa limite (si elle existe) ne vaut pas \( f(a)\).
-
-\begin{example}[Un exemple de continuité Thème~\ref{THEMEooGVCCooHBrNNd}]     \label{EXooKREUooLeuIlv}
+Nous résolvons à présent le polynôme du second degré.
+\begin{proposition}[\cite{BIBooYVBZooOrTJTr}]       \label{PROPooEZIKooKjJroH}
     Soit la fonction
-    \begin{equation}        \label{EQooSYSWooSGsUfR}
-        f(x)=\begin{cases}
-            x    &   \text{si } x\neq 0\\
-            4    &    \text{si } x=0.
-        \end{cases}
-    \end{equation}
-    Cette fonction n'est pas continue en \( x=0\), et pourtant la limite existe : \( \lim_{x\to 0} f(x)=0\). Faisons cela en détail pour nous assurer de ce qu'il se passe.
-
-    Considérons l'ouvert \( \mathopen] 3 , 5 \mathclose[\). L'image réciproque de cet ouvert par \( f\) est la partie \( \mathopen] 3 , 5 \mathclose[\cup\{ 0 \}\) qui n'est pas ouvert. Donc la fonction \( f\) n'est pas continue comme fonction \( \eR\to \eR\).
-
-    Considérons pour comprendre la restriction \( f\colon \mathopen[ -1 , 1 \mathclose]\to \eR\). L'image inverse de \( \mathopen] 3 , 5 \mathclose[\) par cette fonction est \( \{ 0 \}\) qui n'est pas un ouvert.
-
-    Plus généralement tant qu'on considère des restrictions de \( f\) sur des parties contenant un voisinage de \( 0\), la fonction ne peut pas être continue\footnote{Les plus acharnés se demanderont ce qu'il se passe pour la restriction de \( f\) à la partie \( \{ 0 \}\) munie de la topologie induite de $\eR$.}.
-
-    Voyons ce qui en est de la continuité ponctuelle de \( f\) en \( x=0\). La définition~\ref{DefOLNtrxB} est celle de la continuité en un point; elle dit que \( f\) sera continue en \( 0\) si \( f(0)=4\) est une limite de \( f\). Nous voila parti vers la définition~\ref{DefYNVoWBx}.
-
-Soit le voisinage \( V=\mathopen] 3 , 5 \mathclose[\) de \( f(0)\). Quel que soit le voisinage \( W\) de \( 0\) dans \( \eR\), il existe un \( \epsilon>0\) tel que \( W\subset B(0,\epsilon)\). Nous avons alors
     \begin{equation}
-        f\big( W\setminus \{ a \} \big)\subset f\big( B(0,\epsilon)\setminus\{ 0 \} \big).
+        \begin{aligned}
+            f\colon \eR&\to \eR \\
+            x&\mapsto ax^2+bx+c 
+        \end{aligned}
     \end{equation}
-    Mais le nombre \( \epsilon/2\) fait partie de \( f\big( B(0,\epsilon)\setminus\{ 0 \} \big)\) et n'est pas dans \( V\). Donc \( f(0)\) n'est pas une limite de \( f\) en zéro. Cette fonction n'est donc pas continue en zéro.
-\end{example}
+    avec \( a\neq 0\). Nous notons \( \Delta=b^2-4ac\).
 
-\begin{example}[Même exemple, limite]
-    Nous avons vu que, pour la fonction \eqref{EQooSYSWooSGsUfR}, le nombre \( 4\) n'est pas une limite de \( f\) en zéro. Nous montrons à présent que \( 0\) est une limite (et même la seule par la proposition~\ref{PropFObayrf} que nous ne rappelleront plus à chaque fois) de \( f\).
-
-    Montrons que \( 0\) est une limite de \( f\) en zéro, c'est-à-dire que \( \lim_{x\to 0} f(x)=0\).
-
-    Nous suivant la définition~\ref{DefYNVoWBx}. Soit un voisinage \( V\) de \( 0\) dans \( \eR\). Il existe \( \delta\) tel que \( B(0,\delta)\subset V\). En posant \( \epsilon=\delta\) et en définissant \( W=B(0,\epsilon)\) nous avons
-    \begin{equation}
-        f\big( B(0,\epsilon)\setminus\{ 0 \} \big)=B(0,\epsilon)\setminus\{ 0 \}\subset  B(0,\delta)\subset V.
-    \end{equation}
-    Donc \( 0\) est une limite de \( f\) en zéro.
-\end{example}
-
-Nous avons déjà vu par le corollaire~\ref{CorFHbMqGGyi} qu'une suite croissante et bornée était convergente. Il en va de même pour les fonctions.
-\begin{proposition}[\cite{MonCerveau}] \label{PropMTmBYeU}
-    Si la fonction réelle \( f\colon I=\mathopen[ a , b [\to \eR\) est croissante et bornée, alors la limite
-    \begin{equation}
-        \lim_{x\to b} f(x)
-    \end{equation}
-    existe et est finie.
-\end{proposition}
-
-\begin{proof}
-    Commençons par prouver que si \( (x_n)\) est une suite dans \( I\) convergent vers \( b\), alors \( f(x_n)\) est une suite convergente. Dans un second temps nous allons prouver que si \( (x_n)\) et \( (x'_n)\) sont deux suites qui convergent vers \( b\), alors les suites convergentes \( f(x_n)\) et \( f(x'_n)\) convergent vers la même limite. Alors le critère séquentiel de la limite d'une fonction conclura (proposition~\ref{PROPooJYOOooZWocoq}).
-
-    Nous pouvons extraire de \( x_n\) une sous-suite croissante \( (x_{\alpha(n)})\). Alors la suite \( f\big( x_{\alpha(n)} \big)\) est une suite croissante et majorée, donc convergente par le corollaire~\ref{CorFHbMqGGyi}\footnote{En gros nous sommes en train de dire que toute la théorie des fonctions convexes est un vulgaire corollaire de Bolzano-Weierstrass.}. Nommons \( \ell\) la limite et montrons qu'elle est aussi limite de \( f\) sur la suite originale.
-
-    Pour tout \( \epsilon>0\), il existe \( K\) tel que si \( n>K\) alors \( \big| f\big( x_{\alpha(n)} \big)-\ell \big|<\epsilon\). Soit \( K'\) tel que pour tout \( n>K'\) nous ayons \( x_n>x_{\alpha(K')}\). Cela est possible parce que la suite est bornée par \( b\) et converge vers \( b\) : il suffit de prendre \( K'\) de telle sorte que \( | x_n-b |\leq | x_{\alpha(n)}-b |\). Si \( n>K'\) alors \( x_n>x_{\alpha(K)}\) et
-    \begin{equation}
-        f(x_n)\geq f(x_{\alpha(n)})\geq \ell-\epsilon;
-    \end{equation}
-    en résumé si \( n>K\) alors \( | f(x_n)-\ell |<\epsilon\). Cela prouve que \( f(x_n)\to\ell\).
-
-    Soit maintenant une autre suite \( (x'_n)\) qui converge également vers \( b\). Comme nous venons de le voir la suite \( f(x'_n)\) est convergente et nous nommons \( \ell'\) la limite. Si nous considérons \( (x''_n)\) la suite «alternée» (\( x_1,x'_1,x_2,x'_2,\cdots\)) alors nous avons encore une suite qui converge vers \( b\) et donc \( f(x''_n)\to \ell'\).
-
-    Mais étant donné que \( f(x_n)\) et \( f(x'_n)\) sont des sous-suites, elles doivent converger vers la même valeur. Donc \( \ell=\ell'=\ell''\).
-\end{proof}
-
-%TODO : écrire un truc sur la limite à gauche et la limite pour la topologie induite.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Règles simples de calcul}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Les opérations simples passent à la limite, sauf la division pour laquelle il faut faire attention au dénominateur.
-\begin{proposition}     \label{PropOpsSimplesLimites}
-    Soient \( f\) et \( g\) deux fonctions telles que \( \lim_{x\to a} f(x)=\alpha\) et \( \lim_{x\to a} g(x)=\beta\). Alors
     \begin{enumerate}
-        \item
-            \( \lim_{x\to a} f(x)+g(x)=\alpha+\beta\),
-        \item
-            \( \lim_{x\to a} f(x)g(x)=\alpha\beta\),
-        \item
-            s'il existe un voisinage de \( a\) sur lequel \( g\) ne s'annule pas, alors \( \lim_{x\to a} \frac{ f(x) }{ g(x) }=\frac{ \alpha }{ \beta }\).
+        \item       \label{ITEMooMKUSooWwNTba}
+            Nous avons la formule
+            \begin{equation}        \label{EQooFKPOooAbIhCx}
+                f(x)=a\big( x+\frac{ b }{ 2a } \big)^2+c-\frac{ b^2 }{ 4a }.
+            \end{equation}
+        \item       \label{ITEMooHQTBooZuaPAs}
+            Si \( a>0\), alors \( f\) a un minimum global en \( x_m=-b/2a\).
+        \item       \label{ITEMooQMXVooWsqiXz}
+            Si \( a<0\), alors \( f\) a un maximum global en \( x_M=-b/2a\).
+        \item       \label{ITEMooMAMHooNWZVQI}
+            Si \( \Delta<0\) alors \( f\) ne possède pas de racines réelles.
+        \item       \label{ITEMooKUUJooTsIHhI}
+            Si \( \Delta=0\), alors \( f\) possède une unique racine \( x_0=-b/2a\).
+        \item       \label{ITEMooQZGFooEGhMkX}
+            Si \( \Delta>0\) alors \( f\) possède exactement deux racines distinctes données par
+            \begin{equation}        \label{EQooGHDPooVkqINr}
+                \begin{aligned}[]
+                    x_1&=\frac{ -b+\sqrt{ \Delta } }{ 2a }&x_2&=\frac{ -b-\sqrt{ \Delta } }{ 2a }.
+                \end{aligned}
+            \end{equation}
     \end{enumerate}
 \end{proposition}
 
-Le résultat suivant est pratique pour le calcul des limites.
-\begin{proposition}     \label{PropChmVarLim}
-Quand la limite existe, nous avons
-\[
-  \lim_{x\to a}f(x)=\lim_{\epsilon\to 0}f(a+\epsilon),
-\]
-ce qui correspond à un «changement de variables» dans la limite.
-\end{proposition}
-
 \begin{proof}
-Si $A=\lim_{x\to a}f(x)$, par définition,
-\begin{equation}        \label{EqCondFaplusespLim}
-\forall\epsilon'>0,\,\exists\delta\text{ tel que }| x-a |\leq\delta\Rightarrow| f(x)-A |\leq\epsilon'.
-\end{equation}
-La seule subtilité de la démonstration est de remarquer que si $| x-a |\leq\delta$, alors $x$ peut être écrit sous la forme $x=a+\epsilon$ pour un certain $| \epsilon |\leq\delta$. En remplaçant $x$ par $a+\epsilon$ dans la condition~\ref{EqCondFaplusespLim}, nous trouvons
-\begin{equation}
-\forall\epsilon'>0,\,\exists\delta\text{ tel que }| \epsilon |\leq\delta\Rightarrow| f(x+\epsilon)-A |\leq\epsilon',
-\end{equation}
-ce qui signifie exactement que $\lim_{\epsilon\to 0}f(x+\epsilon)=A$.
-\end{proof}
-
-Il y a une petite différence de point de vue entre $\lim_{x\to a}f(x)$ et $\lim_{\epsilon\to 0}f(a+\epsilon)$. Dans le premier cas, on considère $f(x)$, et on regarde ce qu'il se passe quand $x$ se rapproche de $a$, tandis que dans le second, on considère $f(a)$, et on regarde ce qu'il se passe quand on s'éloigne un tout petit peu de $a$. Dans un cas, on s'approche très près de $a$, et dans l'autre on s'en éloigne un tout petit peu. Le contenu de la proposition~\ref{PropChmVarLim} est de dire que ces deux points de vue sont équivalents.
-
-% Il y a des techniques de calcul de limites décrites sur le site
-% http://bernard.gault.free.fr/terminale/limites/limite.html
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Prolongement des rationnels vers les réels}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{lemma}[\cite{MonCerveau}]        \label{LEMooUAFBooAwiXxj}
-    Soit une fonction continue\footnote{Au sens de la topologie induite; nous en avons discuté dans l'exemple~\ref{EXooHWIIooYYbfGE}.} \( f\colon \eQ\to \eR\).
-    \begin{enumerate}
-        \item
-            La limite \( \lim_{q\to x} f(q)\) existe pour tout \( x\in \eR\).
-        \item
-            Il existe un unique prolongement continu \( \tilde f\colon \eR\to \eR\).
-        \item
-            Ce prolongement est donné par
-            \begin{equation}
-            \tilde f(x)=\begin{cases}
-                f(x)    &   \text{si } x\in \eQ\\
-                \lim_{q\to x} f(q)    &    \text{sinon }
-            \end{cases}
-        \end{equation}
-    \end{enumerate}
-\end{lemma}
-
-\begin{proof}
-    Imprégniez vous bien de la la définition~\ref{DefYNVoWBx} de la limite avant de commencer.
-
+    En plusieurs parties.
     \begin{subproof}
-
-    \item[Unicité]
-
-        Prouvons rapidement l'unicité avant l'existence parce que c'est facile.
-
-        L'unicité du prolongement est la proposition~\ref{PropCJGIooZNpnGF} à propos de fonctions continues égales sur une partie denses. La densité de \( \eQ\) dans \( \eR\), si vous la cherchez est la proposition~\ref{PropooUHNZooOUYIkn}.
-
-        \item[Candidat limite]
-
-        Soit \( x\in \eR\). Vu que \( x\in \bar \eQ\), nous pouvons chercher à savoir si \( \lim_{q\to x} f(q) \) existe. Si elle existe, elle sera unique.
-
-        Soit une suite \( (q_i)\) d'éléments de \( \eQ\) qui converge vers \( x\) dans \( \eR\) (i.e. pour la topologie de \( \eR\)). Les nombres réels \( f(q_i)\) forment une suite dans \( \eR\). Nous allons montrer que cette suite converge vers un réel qui vérifie la définition de \( \lim_{q\to x}f(q)\).
-
-        Soit \( \epsilon>0\). Par la continuité de \( f\), il existe \( \delta\) tel que si \( | p-q |<\delta\) (pour \( p,q\in \eQ\)), alors \( | f(p)-f(q) |<\epsilon\). Par ailleurs, \( (q_i)\) est de Cauchy dans \( \eR\) (théorème~\ref{THOooNULFooYUqQYo} qu'il est toujours bon de citer de temps en temps). Il existe donc \( N\) tel que \( i,j>N\) implique \( | q_i-q_j |<\delta\).
-
-        Avec de tels \( i\) et \( j\), nous avons
+    \item[Pour \ref{ITEMooMKUSooWwNTba}]
+        C'est un calcul immédiat.
+    \item[Pour \ref{ITEMooHQTBooZuaPAs}]
+        Nous partons de la formule du point \ref{ITEMooMKUSooWwNTba}. Vu que \( c-\frac{ b^2 }{ 4a }\) est constant, minimiser \( f\) revient à minimiser \( x\mapsto \big( x+\frac{ b }{ 2a } \big)^2\). Comme cette dernière fonction est toujours positive, elle a un minimum global là où elle est nulle, c'est à dire en \( x_m=-b/2a\).
+    \item[Pour \ref{ITEMooQMXVooWsqiXz}]
+        Idem que pour \ref{ITEMooHQTBooZuaPAs}.
+    \end{subproof}
+    Pour la suite nous effectuons quelque manipulations à partir de \eqref{EQooFKPOooAbIhCx}. Nous avons \( f(x)=0\) lorsque
+    \begin{equation}        \label{EQooRHNGooVsKRNt}
+        (x+\frac{ b }{ 2a })^2=\frac{ b^2-4ac }{ 4a^2 }.
+    \end{equation}
+    \begin{subproof}
+    \item[Pour \ref{ITEMooMAMHooNWZVQI}]
+        À gauche de \eqref{EQooRHNGooVsKRNt} nous avons un nombre toujours positif ou nul. À droite, \( 4a^2>0\). Donc si \( b^2-4ac<0\), l'égalité est impossible et il n'y a pas de \( x\) vérifiant \( f(x)=0\).
+    \item[Pour \ref{ITEMooKUUJooTsIHhI}]
+        Si \( b^2-4ac=0\), alors la condition \eqref{EQooRHNGooVsKRNt} devient
         \begin{equation}
-            | f(q_i)-f(q_j) |<\epsilon,
+            \left( x+\frac{ b }{ 2a } \right)^2=0,
         \end{equation}
-        ce qui prouve que \( i\mapsto f(q_i)\) est une suite de Cauchy dans \( \eR\) et donc qu'elle converge.
-
-    \item[C'est bien la limite]
-
-        Nous prouvons à présent que le nombre réel \( \lim_{i\to \infty} f(q_i)\) vérifie bien la définition de la limite \( \lim_{q\to x}f(q)\).
-
-        Soit un voisinage \( V\) de \( \lim f(q_i)\) dans \( \eR\). Nous devons trouver un voisinage \( W\) de \( x\) dans \( \eR\) tel que
+        et donc \( x=-b/2a\) est l'unique solution.
+    \item[Pour \ref{ITEMooQZGFooEGhMkX}]
+        Si \( b^2-4ac>0\), nous pouvons prendre la racine carré\footnote{Définition \ref{DEFooGQTYooORuvQb}.} des deux côtés de \eqref{EQooRHNGooVsKRNt}, et la condition devient
         \begin{equation}
-            f\big( W\cap\eQ\setminus\{ x \} \big)\subset V.
+            x+\frac{ b }{ 2a }=\pm\sqrt{ \frac{ b^2-4ac }{ 4a^2 } }, 
         \end{equation}
-        Pour cela nous considérons \( \epsilon>0\) tel que \( B\big( \lim f(q_i),\epsilon \big)\subset V\). Vu que \( f\) est continue sur \( \eQ\), il existe \( \delta\) tel que
+        ce qui donne
         \begin{equation}
-            | p-q |<2\delta\Rightarrow\,| f(p)-f(q) |<\epsilon.
+            x=\frac{ -b\pm\sqrt{ b^2-4ac } }{ 2a }.
         \end{equation}
-        Nous posons \( W=B(x,\delta)\).
+        Ce sont là les deux seuls candidats pour vérifier \( f(x)=0\). 
 
-        Soit \( q\in W\cap\eQ\setminus\{ x \}\). Nous nous proposons de majorer la quantité $| f(q)-\lim f(q_i) |$ par un multiple de \( \epsilon\).
-
-        Pour cela nous considérons \( k\) suffisamment grand pour que \( | f(q_k)-\lim f(q_i)  |<\epsilon\). Et de plus, vu que \( q_i\to x\) nous considérons \( k\) suffisamment grand pour que \( | q_k-x |<\delta\). L'indice \( k\) est choisi pour vérifier les deux conditions en même temps.
-
-        Nous écrivons alors la majoration suivante :
+        Un calcul direct montre que
         \begin{equation}
-                | f(q)-\lim f(q_i) |\leq | f(q)-f(q_k) |+| f(q_k)+\lim f(q_i) |.
+            f\left( \frac{ -b+\sqrt{ b^2-4ac } }{ 2a } \right)=0
         \end{equation}
-        Le second terme est majoré par \( \epsilon\). Pour le premier terme, \( q\in B(x,\delta)\) et \( q_k\in B(x,\delta)\), donc \( | q-q_k |\leq 2\delta\), ce qui implique \( | f(q)-f(q_k) |<\epsilon\).
-
-        Au final, \( | f(q)-\lim f(q_i) |\leq 2\epsilon\). En reprenant tout le travail avec \( \epsilon/2\) au lieu de \( \epsilon\) nous trouvons \( f(q)\in B\big( \lim f(q_i),\epsilon \big)\subset V\).
-
-    \item[Intermède]
-
-        Jusqu'à présent, nous avons prouvé que
-        \begin{equation}        \label{EQooUJJKooTYRNDo}
-            \lim_{q\to x} f(q)
-        \end{equation}
-        existe et vaut
-        \begin{equation}        \label{EQooNSYCooTmECjs}
-            \lim f(q_i)
-        \end{equation}
-        lorsque \( (q_{i})\) est une suite quelconque de rationnels qui converge vers \( x\). Nous l'écrivons pour la référentier plus tard :
-        \begin{equation}        \label{EQooSGCMooKtpVMy}
-            \lim_{q\to x} f(q)=\lim f(q_i).
-        \end{equation}
-        La limite \eqref{EQooUJJKooTYRNDo} est une limit de fonction définie sur \( \eQ\subset \eR\) en un pour adhérent à l'ensemble de définition de \( f\). La limite \eqref{EQooNSYCooTmECjs} est une limite usuelle d'une suite dans \( \eR\).
-
-    \item[Le prolongement]
-
-        Nous posons
+        et que
         \begin{equation}
-            \tilde f(x)=\begin{cases}
-                f(x)    &   \text{si } x\in \eQ\\
-                \lim_{q\to x} f(q)    &    \text{sinon }
-            \end{cases}
+            f\left( \frac{ -b-\sqrt{ b^2-4ac } }{ 2a } \right)=0.
         \end{equation}
-        et nous allons prouver que \( \tilde f\) est une fonction continue sur \( \eR\).
-
-    \item[Continuité]
-
-        Soit \( a\in \eR\); nous allons montrer la continuité de \( \tilde f\) en \( a\). Nous fixonx bien entendu \( \epsilon>0\), et nous nous acharnons à majorer la quantité \( | \tilde f(x)-\tilde f(a) |\).
-
-        Vu que \( f\) est continue sur \( \eQ\) nous considérons \( \delta'\) tel que (dans \( \eQ\)) \( 0<| q-q' |<\delta'\) implique \( | f(q)-f(q') |<\epsilon\).
-
-        \begin{subproof}
-            \item[\( a\in \eQ\), \( x\in \eQ\)]
-                Alors \( \tilde f(x)=f(x)\) et \( \tilde f(a)=f(a)\). Par la continuité de \( f\) sur \( \eQ\), il existe un \( \delta\) tel que \( 0<| x-a |<\delta\) implique \( | f(x)-f(a) |<\epsilon\).
-
-            \item[\( a\in \eQ\), \( x\) irrationnel]
-
-                Nous considérons une suite de rationnels \( q_k\to x\) (vous penserez à l'utilisation du lemme \ref{LemooRTGFooYVstwS}). Nous avons la majoration
-                \begin{equation}        \label{EQooPDEMooHlwTcm}
-                    | \tilde f(x)-\tilde f(a) |=| \lim_{q\to x} f(q)-f(a) |\leq | \lim_{q\to x} f(q)-f(q_k) |+| f(q_k)-f(a) |.
-                \end{equation}
-                Nous considérons \( \delta<\delta'\) et \( k\) suffisament grand pour que \( | q_k-x |<\delta'-\delta\). Avec ces choix,
-                \begin{equation}
-                    | q_k-a |\leq | q_k-x |+| x-a |\leq \delta'.
-                \end{equation}
-                Enfin nous prenons également \( k\) suffisament grand pour avoir \( | \lim_{q\to x} f(q)-f(q_k) |\leq \epsilon\).
-
-                Les inégalités \eqref{EQooPDEMooHlwTcm} peuvent alors être prolongées pour avoir
-                \begin{equation}
-                    | \tilde f(x)-\tilde f(a) |\leq 2\epsilon.
-                \end{equation}
-                
-            \item[\( a\) irrationnel, \( x\in \eQ\)]
-
-                Nous faisons encore la majoration
-                \begin{equation}
-                    | \tilde f(x)-\tilde f(a) |=| f(x)-\lim_{q\to a} f(q) |\leq | f(x)-f(q_k) |+| f(q_k)-\lim_{q\to a} f(a) |.
-                \end{equation}
-                Nous prenons \( \delta<\delta'/2\) et nous choisissons \( k\) assez grand pour que \( | q_k-a |<\delta'/2\). De ces choix il ressort que
-                \begin{equation}
-                    | q_k-x |\leq | q_k-a |+| a-x |\leq \frac{ \delta' }{2}+\frac{ \delta' }{2}\leq \delta'.
-                \end{equation}
-                Donc \( | f(x)-f(q_k) |<\epsilon\). De plus, pour \( k\) assez grand, \( | f(q_k)-\lim_{q\to a} f(q) |\leq \epsilon\).
-
-            \item[\( a\) et \( x\) irrationnels]
-
-                Nous avons
-                \begin{equation}
-                    | \tilde f(x)-\tilde f(a) |=| \lim_{q\to x} f(q)-\lim_{r\to a} f(r) |,
-                \end{equation}
-                et nous considérons des suites de rationnels \( q_k\to x\) et \( r_i\to a\). De plus nous considérons \( \delta<\delta'/4\), et \( k,i\) suffisament grands pour avoir \( | q_k-x |\leq \delta'/4\) et \( | r_i-a |<\delta'/4\). Avec tout cela nous avons
-                \begin{equation}
-                    | q_k-r_i |\leq | q_k-x |+| x-a |+| a-r_i |\leq 3\delta'/4<\delta'.
-                \end{equation}
-                Enfin, en choisissant \( i\) et \( k\) de telle sorte à avoir \( | \lim_{q\to x} f(q)-f(q_k) |\leq \epsilon\) et \( | f(r_i)-\lim_{r\to a} f(r) |<\epsilon\) nous avons les majorations
-                \begin{subequations}
-                    \begin{align}
-                        | \tilde f(x)-\tilde f(a) |&=| \lim_{q\to x} f(q)-\lim_{r\to a} f(r) |\\
-                        &\leq | \lim_{q\to x} f(x)-f(q_k) |+| f(q_k)-f(r_i) |+| f(r_i)-\lim_{r\to q} f(r) |\\
-                        &\leq 3\epsilon.
-                    \end{align}
-                \end{subequations}
-        \end{subproof}
-
+        Donc ce sont bien des racines de \( f\) et ce sont les seules. Notez aussi qu'elles sont distinctes parce que \( \Delta\neq 0\).
     \end{subproof}
 \end{proof}
-
-\begin{proposition}     \label{PROPooXWHYooFiVYfi}
-    Soient des fonctions continues \( d,g\colon \eR\to \eR\). Si \( f\) et \( g\) sont égales sur \( \eQ\), alors elles sont égales sur \( \eR\).
-\end{proposition}
-
-\begin{proof}
-    Pour voir cette proposition comme corollaire du lemme \ref{LEMooUAFBooAwiXxj}, il faut faire un petit jeu de topologie.
-
-    Sinon nous pouvons utiliser les propriétés fondamentales des réels et de la continuité. Soit \( x\in \eR\); nous voulons montrer que \( f(x)=g(x)\). En prenant par exemple le lemme \ref{LemooRTGFooYVstwS}, il existe une suite \( q_i\) de rationnels telle que \( q_i\stackrel{\eR}{\longrightarrow}x\). 
-    
-    Par ailleurs, \( f\) et \( g\) sont continues sur \( \eR\) et donc en chaque point de \( \eR\) (théorème \ref{ThoESCaraB}). Par la caractérisation séquentielle \ref{PropFnContParSuite} de la continuité, nous avons
-    \begin{equation}
-        f(x)=\lim_{i\to \infty} f(q_i)=\lim_{i\to \infty} g(q_i)=g(x).
-    \end{equation}
-\end{proof}
-
-\begin{proposition}[\cite{MonCerveau}]      \label{PROPooTNIAooNAJDzL}
-    Soit une fonction strictement croissante \( f\colon \eQ\to \eR\). Alors la prolongation continue \( \tilde f\colon \eR\to \eR\) est également strictement croissante.
-\end{proposition}
-
-\begin{proof}
-    Soient \( x,y\in \eR\) avec \( x<y\). Notons \( d=y-x\). Nous considérons des suites de rationnels \( x_k\to x\) et \( y_l\to y\) telles que pour tout \( k\), \( x_k\in B(x,d/3)\) et \( y_k\in B(y,d/3)\). En particulier, \( x_k<y_l\) pour tout \( k\) et \( l\).
-
-    Soient des rationnels \( q\) et \( q'\) tels que pour tout \( k\),
-    \begin{equation}
-        x_k<q<q'<y_k.
-    \end{equation}
-    Pour trouver de tels rationnels, il suffit de les chercher dans \( \mathopen] x+\frac{ d }{ 3 } , y-\frac{ d }{ 3 } \mathclose[\). Cet intervalle étant de longueur \( d/3\), il contient des rationnels.
-
-    Vue la croissance de \( f\) sur \( \eQ\), nous avons, pour tout \( k\) :
-    \begin{equation}
-        f(x_k)<f(q)<f(q')<f(y_k),
-    \end{equation}
-    et à la limite :
-    \begin{equation}
-        \tilde f(x)\leq f(q)<f(q')\leq \tilde f(y).
-    \end{equation}
-    Notez que les inégalités strictes se changent en inégalités larges au passage à la limite. D'où l'utilisé de prendre \emph{deux} rationnels entre \( x_k\) et \( y_k\) pour maintenir une inégalité stricte entre \(\tilde f(x)\) et \( \tilde f(y)\).
-\end{proof}
-

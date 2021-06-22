@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2006-2019
+% Copyright (c) 2006-2021
 %   Laurent Claessens, Carlotta Donadello
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -25,69 +25,517 @@ Nous savons que $\aL(\eR^m, \eR^n)$ est un espace vectoriel normé avec la défi
 Lorsqu'il existe un $M>0$ tel que $\| df(a) \|_{\aL(\eR^m,\eR^n)}<M$ pour tout $a$ dans $U$, nous disons que la différentielle de $f$ est \defe{bornée}{bornée!différentielle} sur $U$.
 
 \begin{definition}
-	La fonction $f$ est dite \defe{de classe $\mathcal{C}^1$}{fonction!de classe  $\mathcal{C}^1$} de $U\subset\eR^m$  dans $\eR^n$ si son application différentielle $df$ est continue de $\eR^m$ dans $\aL(\eR^m, \eR^n)$. Nous écrivons $f\in\mathcal{C}^1(U,\eR^n)$\nomenclature{$C^1(U,\eR^n)$}{Les applications une fois continument dérivables}.
+    Une application \( f\colon V\to E\) entre deux espaces vectoriels normés est dite être de \defe{de classe \( C^1\)}{fonction de classe \( C^1\)} si son application différentielle \( df\colon V\to \aL(V,E)\) est continue\footnote{Sur \( \aL(V,E)\) nous considérons la topologie de la norme opérateur \ref{DefNFYUooBZCPTr}.}.
 \end{definition}
 
-\begin{proposition}		\label{PropDerContCun}
-	Une fonction \( f\colon U\to \eR^n\) où \( U\) est ouvert dans \( \eR^m\) est de classe \( C^1\) si et seulement si les dérivées partielles de $f$ existent et sont continues.
+\begin{normaltext}
+    Dans la suite, si \( \{ e_i \}\) est une base d'un espace vectoriel \( V\), nous allons noter
+    \begin{equation}
+        \begin{aligned}
+            \omega_i\colon V&\to \eR \\
+            x&\mapsto x_i.
+        \end{aligned}
+    \end{equation}
+    Ce \( \omega_i\) est ce qu'on appelle souvent \( e_i^*\). Plus généralement, si \( I\) est le multiindice \( (i_1,\ldots, i_l)\) nous notons \( \omega_I\in \aL^l(V,\eR)\) par
+    \begin{equation}
+        \begin{aligned}
+            \omega_I\colon V^l&\to \eR \\
+            (x^{(1)},\ldots, x^{(l)})&\mapsto  x^{(1)}_{i_1}\ldots x^{(l)}_{i_l}.
+        \end{aligned}
+    \end{equation}
+    Ce seront nos formes multilinéaires de base.
+\end{normaltext}
+
+Afin de garder des notations très explicites, nous ne pouvons pas écrire des formules comme
+\[
+    df_a=\sum_i\frac{ \partial f }{ \partial x_i }(a)\omega_i
+\]
+parce que si \( f\) prend ses valeurs dans \( \aL(V,\eR)\), lorsqu'on écrit \( df_a(v)\), il n'y a aucune raison à priori de vouloir que \( v\) soit pris par \( \omega_i\) au lieu de \( \partial_if(a)\).
+
+Nous introduisons donc un produit fait exprès pour dire que «c'est celui de droite qui prend».
+\begin{definition}[\cite{MonCerveau}]       \label{DEFooLULCooYjBEaZ}
+    Si \( W\) est un espace vectoriel, nous définissons le produit \( \times_n\) par
+    \begin{equation}
+        \begin{aligned}
+            \times_1\colon W\times \aL(V,\eR)&\to \aL(V,W) \\
+            (w\times_1\alpha)(v)&=\alpha(v)w
+        \end{aligned}
+    \end{equation}
+    et par
+    \begin{equation}
+        \begin{aligned}
+            \times_n\colon W\times \eR_n&\to W_n \\
+            (w\times_n\alpha)(v)&=w\times_{n-1} \alpha(v)
+        \end{aligned}
+    \end{equation}
+\end{definition}
+
+\begin{normaltext}      \label{NORMooDAZZooDiGFoW}
+    Quelque précisions sur l'énoncé de la proposition \ref{PROPooUDJLooHwzjQF}. Lorsque nous parlons de \( \partial_if\), nous supposons donnée une base de \( V\). Il n'y a aucune raison que la norme sur \( V\) soit adaptée à cette base. Nous allons donc utiliser une norme «euclidienne» adaptée à la base, et invoquer l'équivalence de toutes les normes pour dire que si une fonction est différentiable pour une norme elle l'est pour toutes les normes.
+\end{normaltext}
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{Différentielle et dérivées partielles}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+\begin{proposition}[\cite{TrenchRealAnalisys}]     \label{PROPooUDJLooHwzjQF}
+    Soient des espaces vectoriels normés de dimensions finies \( V\) et \( E\) ainsi qu'une application \( f\colon V\to E\). Nous supposons que les dérivées partielles \( \frac{ \partial f }{ \partial x_i }\) existent sur un voisinage de \( a\in V\) et qu'elles sont continues en \( a\).
+    
+    Alors
+    \begin{enumerate}
+        \item
+            l'application \( f\) est différentiable en \( a\),
+        \item
+            la différentielle est donnée par
+            \begin{equation}
+                df_a=\sum_{j=1}^n\frac{ \partial f }{ \partial x_j }(a)\times_1\omega_j.
+            \end{equation}
+    \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-	Supposons que les dérivées partielles de $f$ existent et sont continues. Nous savons alors déjà par la proposition~\ref{Diff_totale} que la fonction $f$ est différentiable et qu'elle s'exprime sous la forme
-	\[
-		df_a(h)=\sum_{i=1}^{m}\partial_if (a)h_i, \qquad \forall a \in U,\,\forall h\in\eR^m.
-	\]
-	Pour montrer que $df$ est continue, nous devons montrer que la quantité $\| df(x)-df(a) \|_{\aL(\eR^m,\eR^n)}$ peut être rendue arbitrairement petite si $\| x-a \|_m$ est rendu petit. Nous avons
-	\begin{equation}
-		\begin{aligned}
-			\| df_x-df_a \|_{\aL}&=\sup_{\| h \|=1}\| df_x(h)-df_a(h) \|\\
-			&=\sup_{\| h \|_m=1}\left\|\sum_{i=1}^{m}\left(\partial_if (x)-\partial_if (a)\right)h_i\right\|_n\leq\\
-			&\leq\sup_{\| h \|_m=1}\sum_{i=1}^{m} \left\|\left(\partial_if (x)-\partial_if (a)\right)\right\|_n|h_i|\leq\\
-			&\leq\sup_{\| h \|_m=1} \|h\|_\infty\sum_{i=1}^{m} \left\|\left(\partial_if (x)-\partial_if (a)\right)\right\|_n\\
-			&\leq \sum_{i=1}^m\| \partial_if(x)-\partial_if(a) \|.
-		\end{aligned}
-	\end{equation}
-	Dans ce calcul, nous avons utilisé le fait que si $\| h \|_m\leq 1$, alors $\| h \|_{\infty}\leq 1$. Étant donné la continuité de $\partial_if$, la dernière ligne peut être rendue arbitrairement petite lorsque $x$ est proche e $a$.
+    L'espace \( V\) a une norme que nous notons \( \| . \|_V\); nous n'allons presque pas l'utiliser. Nous nommons \( \{ e_i \}\) la base de \( V\) sous-entendue lorsque nous parlons des dérivées partielles, et nous considérons la norme \( \|  \|\) sur \( V\) donnée par \( \| v \|=\sqrt{ \sum_{i=1}^n }x_i^2\) pour \( x=\sum_ix_ie_i\). Toutes les normes et boules dont nous allons parler dans la suite seront par rapport à cette norme.
 
-Supposons maintenant que $f$ soit dans $\mathcal{C}^1(U,\eR^n)$. Alors
-\[
-\left\|\partial_if (x)-\partial_if (a)\right\|_n= \left\|df(x).e_i-df(a).e_i\right\|_n \leq  \left\|df(x)-df(a)\right\|_{\aL(\eR^m,\eR^n)},
-\]
-la continuité de $df$ implique donc celle de $\partial_i f$ pour tout $i$ dans $\{1,\ldots,m\}$.
+    Nous posons \( \epsilon>0\). La continuité des dérivées partielles en \( a\) nous permet de considérer \( \delta>0\) tel que
+    \begin{equation}        \label{EQooPBYDooAtPkGl}
+        \| \frac{ \partial f }{ \partial x_j }(s)-\frac{ \partial f }{ \partial x_j }(a) \|<\epsilon
+    \end{equation}
+    pour tout \( s\in  B(a,\delta)\), et pour tous les \( j\) en même temps\footnote{Ce qui peut n'être pas possible en dimension infine. Je dis ça comme ça, juste pour faire remarquer que cette proposition n'est peut-être pas vraie en dimension infine. Voir aussi l'exemple de la fonction \eqref{EqCJVooJOuXdN}.}.
+
+    Soit \( x\in B(a,\delta)\). Nous considérons les points 
+    \begin{equation}
+        s_j=(x_1,\ldots, x_j,a_{j+1},\ldots, a_n).
+    \end{equation}
+    Précision : \( s_n=x\).
+
+    \begin{subproof}
+        \item[Un peu de convexité]
+            Nous montrons que le segment \( [s_j,s_{j-1}]\) est dans \( B(a,\delta)\). Nous avons \( s_j-a=(x_1-a_1,\ldots, x_j-a_j,0,\ldots, 0)\), et donc
+            \begin{equation}
+                \| s_j-a \|\leq \| x-a \|<\delta,
+            \end{equation}
+            et donc \( s_j\in B(a,\delta)\) pour tout \( j\). Vu que la sphère \( B(a,\delta)\) est convexe\footnote{Proposition \ref{PROPooUQLUooDQfYLT}.}, tout le segment entre \( s_j\) et \( s_{j-1}\) est dedans.
+        \item[Accroissements finis]
+            En nous souvenant que \( x\) et \( a\) ont été fixés, nous considérons les fonctions intermédiaires suivantes :
+            \begin{subequations}
+                \begin{numcases}{}
+                    g_1(t)=f(f,a_2,\ldots, a_n)\\
+                    g_j(t)=f(x_1,\ldots, x_{j-1},t,a_{j+1},\ldots, a_n)\\
+                    g_n(t)=f(x_1,\ldots, x_{n-1},t).
+                \end{numcases}
+            \end{subequations}
+            Elles vérifient en particulier \( g_j(x_j)=f(s_j)\) et \( g_j(a_j)=f(s_{j-1})\). Donc le théorème des accroissements finis \ref{ThoAccFinis} nous donne l'existence de \( \tau_j\) entre \( x_j\) et \( a_j\) tel que
+            \begin{equation}        \label{EQooVALVooXmUmwR}
+                f(s_j)-f(s_{j-1})=g_j(x_j)-g_j(a_j)=g_j'(\tau_j)(x_j-a_j).
+            \end{equation}
+        \item[Dérivées partielles]
+            Les fonctions \( g_j\) ont été construites de telle sorte à donner les dérivées partielles de \( f\) via une simple dérivation :
+            \begin{equation}
+                g'_j(t_0)=\frac{ \partial f }{ \partial x_j }(x_1,\ldots, x_{j-1},t_0,a_{j+1},\ldots, a_n).
+            \end{equation}
+            Or lorsque\footnote{Retournez éventuellement les intervalles sur \( a_j<x_j\).} \( t_0\in [x_j,a_{j}]\), le point \( (x_1,\ldots, x_{j-1},t_0,a_{j+1},\ldots, a_n)\) est dans \( \mathopen[ s_j , s_{j-1} \mathclose]\). Cela est le cas pour \( t_0=\tau_j\). Nous notons
+            \begin{equation}
+                \bar s_j=(x_1,\ldots, x_{j-1},\tau_j,a_{j+1},\ldots, a_n)
+            \end{equation}
+            et nous avons
+            \begin{equation}
+                g'_j(\tau_j)=\frac{ \partial f }{ \partial x_j }(\bar s_j)
+            \end{equation}
+            avec \( \bar s_j\in\mathopen[ s_{j-1} , s_j \mathclose]\). Tout cela pour récrire \eqref{EQooVALVooXmUmwR} sous la forme
+            \begin{equation}
+                f(s_j)-f(s_{j-1})=\frac{ \partial f }{ \partial x_j }(\bar s_j)(x_j-a_j).
+            \end{equation}
+        \item[Une belle somme télescopique]
+            En nous souvenant que \( s_0=a\) et que \( s_n=x\), nous avons cette somme télescopique
+            \begin{subequations}
+                \begin{align}
+                    f(x)-f(a)&=\sum_{j=1}^n\big( f(s_j)-f(s_{j-1}) \big)\\
+                    &=\sum_{j=1}^n\frac{ \partial f }{ \partial x_j }(\bar s_j)(x_j-a_j)\\
+                    &=\sum_{j=1}^n\big[ (\partial_jf)(\bar s_j)-(\partial_jf)(a) \big](x_j-a_j)+\sum_{j=1}^n(\partial_if)(a)(x_j-a_j).
+                \end{align}
+            \end{subequations}
+            Nous isolons les termes qui nous intéressent dans la définition de la différentielle :
+            \begin{equation}
+                f(x)-f(a)-\sum_{j=1}^n(\partial_jf)(a)(x_j-a_j)=\sum_{j=1}^n\big[ (\partial_jf)(\bar s_j)-(\partial_jf)(a) \big](x_j-a_j).
+            \end{equation}
+        \item[Et enfin : le quotient différentiel]
+            En utilisant la majoration \eqref{EQooPBYDooAtPkGl}, et en remarquant que \( \| x-a \|\) majore \( | x_j-a_j |\) pour chaque \( j\), nous avons l'inégalité
+            \begin{equation}
+                \| f(x)-f(a)-\sum_{j=1}^n\frac{ \partial f }{ \partial x_j }(a)(x_j-a_j) \|\leq n\epsilon\| x-a \|.
+            \end{equation}
+            Autrement dit, en posant \( T=\sum_{j=1}^n\frac{ \partial f }{ \partial x_j }(a)\omega_j\) nous avons
+            \begin{equation}
+                \| f(a+h)-f(a)-T(h) \|\leq n\epsilon\| h \|,
+            \end{equation}
+            et donc
+            \begin{equation}        \label{EQooVBYTooEYutva}
+                \lim_{h\to 0} \frac{ \| f(a+h)-f(a)-T(h) \| }{ \| h \| }=0.
+            \end{equation}
+        \item[Et donc ?]
+            La limite \eqref{EQooVBYTooEYutva} nous indique que \( f\) serait différentiable de différentielle \( T\) si \( \| . \|\) était la norme sur \( V\). C'est l'équivalence de toutes les normes\footnote{Sur un espace de dimension finie, \ref{ThoNormesEquiv}.} qui fait en sorte que la norme sur \( V\) n'est pas importante.
+    \end{subproof}
 \end{proof}
-\begin{proposition}
-  Soient $U$ un ouvert de $\eR^m$ et $V$ un ouvert de $\eR^n$. Soient $f: U\to V$  dans $\mathcal{C}^1(U,V)$ et $g: V \to \eR^p$ dans $\mathcal{C}^1(V,\eR^n)$.  Alors la fonction composée $g\circ f: U\to \eR^p $ est dans $\mathcal{C}^1(U,\eR^p)$.
+
+\begin{proposition}     \label{PROPooUUOSooPuXJjQ}
+    Soient des espaces vectoriels normés de dimensions finies \( V\) et \( E\) ainsi qu'une application \( f\colon V\to E\). Nous supposons que les dérivées partielles \( \frac{ \partial f }{ \partial x_i }\) existent et sont continues sur un ouvert \( \mU\) de \( V\).
+    
+    Alors \( f\) est de classe \( C^1\) sur \( \mU\).
 \end{proposition}
-\begin{proof} On fixe $a$ dans $U$
-  \begin{equation}
-    \begin{aligned}
-     \big\|d(g\circ f)(x)&-d(g\circ f)(a)\big\|_{\aL(\eR^m,\eR^p)}\\
-     &=\left\|dg(f(x))\circ df(x)-dg(f(a))\circ df(a)\right\|_{\aL(\eR^m,\eR^p)}\leq\\
-&\leq \left\|\left(dg(f(x))-dg(f(a))\right)\circ df(x)\right\|_{\aL(\eR^m,\eR^p)}+\\
-&\quad+ \left\|dg(f(a))\circ \left(df(x)-df(a)\right)\right\|_{\aL(\eR^m,\eR^p)}\leq\\
-&\leq \left\|dg(f(x))-dg(f(a))\right\|_{\aL(\eR^n,\eR^p)}\left\| df(x)\right\|_{\aL(\eR^m,\eR^n)}+\\
-&\quad+ \left\|dg(f(a))\right\|_{\aL(\eR^n,\eR^p)}\left\| df(x)-df(a)\right\|_{\aL(\eR^n,\eR^p)}.\\
-    \end{aligned}
-  \end{equation}
-On peut conclure en passant à la limite $x\to a$ parce que les fonctions $f$, $g$, $df$ et $dg$ sont continues, de telle sorte que
-\begin{equation}
-	\begin{aligned}[]
-		\lim_{x\to a} dg\big( f(x) \big)=dg\big( f(a) \big)\\
-		\lim_{x\to a} df(x)=df(a).
-	\end{aligned}
-\end{equation}
+
+\begin{proof}
+    Nous notons \( \mU\) le voisinage sur lequel les dérivées partielles de \( f\) existent et sont continues. Il s'agit d'appliquer la proposition \ref{PROPooUDJLooHwzjQF} en chaque point de \( \mU\). Nous avons alors
+    \begin{equation}
+        df_x=\sum_{j=1}^n\frac{ \partial f }{ \partial x_j }(x)\times_1\omega_j
+    \end{equation}
+    pour tout \( x\in \mU\). Pour \( a\in V\) et \( h\in V\) supposé petit, nous avons
+    \begin{subequations}
+        \begin{align}
+            \| df_a-df_{a+h} \|_{\aL(V,E)}&=\sup_{\| v \|=1}\| df_a(v)-df_{a+h}(v) \|_E\\
+            &=\sup_{\| v \|=1}\| \sum_{j=1}^n\big( \frac{ \partial f }{ \partial x_j }(a)-\frac{ \partial f }{ \partial x_j }(a+h) \big)v_j \|\\
+            &\leq \sup_{\| v \|=1}\| \sum_{j=1}^n\big( \frac{ \partial f }{ \partial x_j }(a)-\frac{ \partial f }{ \partial x_j }(a+h) \big) \| |v_i |     \label{SUBEQooHMUIooNSjoxZ}\\
+            &\leq\| \sum_{j=1}^n\big( \frac{ \partial f }{ \partial x_j }(a)-\frac{ \partial f }{ \partial x_j }(a+h) \big) \|      \label{SUBEQooPBLWooUqNlhV}
+        \end{align}
+    \end{subequations}
+    Justifications :
+    \begin{itemize}
+        \item 
+            Pour \eqref{SUBEQooPBLWooUqNlhV}, nous avons majoré \( | v_i |\leq \| v \|=1\).
+        \item
+            Pour \eqref{SUBEQooHMUIooNSjoxZ}, nous avons utilisé le lemme \ref{LEMooIBLEooLJczmu}.
+    \end{itemize}
+    La continuité de \( \partial_jf\) conclu que \( \lim_{h\to 0}\|  df_a-df_{a+h}  \|=0\), ce qui signifie que \( df\) est continue et donc que \( f\) est de classe \( C^1\).
+\end{proof}
+ 
+\begin{theorem}     \label{THOooBEAOooBdvOdr}
+    Soient des espaces vectoriels normés de dimensions finies \( V\) et \( E\). Soit un ouvert \( \mU\) de \( V\). Une application \( f\colon V\to E\) est de classe \( C^1\) sur \( \mU\) si et seulement si ses dérivées partielles existent et sont continues sur \( \mU\).
+
+    Dans ce cas, nous avons la formule
+    \begin{equation}        \label{EQooPREWooVHVIAF}
+        df_a=\sum_i\frac{ \partial f }{ \partial x_i }(a)\times_1 \omega_i.
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Le premier sens, y compris la formule \eqref{EQooPREWooVHVIAF}, a été fait dans la proposition \ref{PROPooUUOSooPuXJjQ}. Nous supposons maintenant que \( f\) est de classe \( C^1\) sur \( \mU\) et nous allons prouver que ses dérivées partielles existent et sont continues. Pour tout \( t\neq 0\) nous avons l'égalité
+    \begin{equation}
+        \frac{ f(a+te_i)-f(a) }{ t }=\frac{ f(a+te_i)-f(a)-df_a(fe_i) }{ t }+df_a(e_i).
+    \end{equation}
+    Par définition de la différentielle, prendre la limite \( t\to 0\) à droite donne \( df_a(e_i)\) parce que la fraction tend vers zéro. La limite définissant la dérivée partielle existe donc et vaut
+    \begin{equation}
+        \frac{ \partial f }{ \partial x_i }(a)=df_a(e_i).
+    \end{equation}
+    
+    Il nous reste à prouver que les dérivées partielles sont continues :
+    \begin{subequations}
+        \begin{align}
+            \| \frac{ \partial f }{ \partial x_i }(a+h)-\frac{ \partial f }{ \partial x_i }(a) \|&=\| df_{a}(e_i)-df_{a+h}(e_i) \|\\
+            &=\| (df_{a+h}-df_a)(e_i) \|\\
+            &\leq \| df_{a+h}-df_a \|\| e_i \|\\
+            &= \| df_{a+h}-df_a \|.
+        \end{align}
+    \end{subequations}
+    Vu que \( f\) est de classe \( C^1\), la limite \( h\to 0\) de cela donne zéro.
+\end{proof}
+
+Voici une version du même théorème, démontré dans le cas seulement de dimension deux. Il rend peut-être aussi plus clairement pourquoi ça ne marche pas en dimension infinie.
+
+\begin{proposition}		\label{Diff_totale}     % Il ne faut pas référentier cette proposition, mais le théorème THOooBEAOooBdvOdr.
+    Soit $U$ un ouvert dans $\eR^m$ et $a$ un point dans $U$. Soit $f$ une application de $U$ dans $\eR^n$. Si toutes les dérivées partielles de $f$ existent sur \( U\) et sont continues au point $a$ alors $f$ est différentiable au point $a$.
+\end{proposition}
+
+\begin{proof}
+    On se limite au cas $m=2$.  Pour rendre les calculs plus simples on utilise ici la norme $\|\cdot\|_\infty$ dans l'espace $\eR^2$, mais comme on a vu plus en haut, cela ne peut pas avoir des conséquences sur la différentiabilité de $f$. Si la différentielle de $f$ au point $a$ existe alors elle est définie par la formule
+    \[
+        df_a(v)=\frac{ \partial f }{ \partial x }(a)v_1+\frac{ \partial f }{ \partial y }(a)v_2
+    \]
+    pour tout $v$ dans $\eR^m$.
+
+    On commence par prouver le résultat en supposant que les dérivées partielles de $f$ au point $a$ sont nulles. La différentiabilité de $f$ signifie que pour toute constante  $\varepsilon> 0$ il y a une constante $\delta>0$ telle que si $\|v\|_\infty\leq \delta $ alors
+    \[
+    \frac{\|f(a_1+v_1, a_2+v_2)-f(a_1, a_2)\|_n}{\|v\|_\infty}\leq \varepsilon.
+    \]
+    On écrit alors
+    \begin{equation}
+      \begin{aligned}
+       & \|f(a_1+v_1, a_2+v_2)-f(a_1, a_2)\|_n=\\
+    &=\|f(a_1+v_1, a_2+v_2)-f(a_1+v_1, a_2)+f(a_1+v_1, a_2)-f(a_1, a_2)\|_n\leq\\
+    &\leq \|f(a_1+v_1, a_2+v_2)-f(a_1+v_1, a_2)\|_n+\|f(a_1+v_1, a_2)-f(a_1, a_2)\|_n.
+      \end{aligned}
+    \end{equation}
+    Comme la dérivée partielle $\partial_x f$ est nulle au point $a$  on sait que  pour toute constante  $\varepsilon> 0$ il y a une constante $\delta_1>0$ telle que si $|v_1|\leq \delta_1 $ alors
+    \[
+    \|f(a_1+v_1, a_2)-f(a_1, a_2)\|_n\leq \varepsilon |v_1|.
+    \]
+    Pour l'autre terme on a, par la proposition~\ref{val_medio_1},
+    \begin{equation}
+       \|f(a_1+v_1, a_2+v_2)-f(a_1+v_1, a_2)\|_n\leq \sup\{\|\partial_yf(x)\|_n\,\vert\, x\in S\}|v_2|.
+    \end{equation}
+    où $S$ est le segment d'extrémités  $(a_1+v_1, a_2)$ et $ (a_1+v_1, a_2+v_2)$. Comme la  dérivée partielle $\partial_y f$ est continue et nulle au point $a$ on sait que  pour toute constante  $\varepsilon> 0$ il existe une constante $\delta_2>0$ telle que si $\|(u_1,u_2)\|_\infty\leq \delta_2 $ alors $\|\partial_yf(a_1+u_1,a_2+u_2)\|_n\leq \varepsilon$. Si on choisit $\delta = \min\{\delta_1,\,\delta_2\}$ le segment $S$ est contenu dans la boule de rayon $\delta$ centrée au point $a$ et on obtient
+    \[
+     \|f(a_1+v_1, a_2+v_2)-f(a_1, a_2)\|_n\leq \varepsilon |v_1|+\varepsilon |v_2|\leq 2\varepsilon \|v\|_\infty.
+    \]
+    Cela prouve que \( f\) est différentiable en \( (a_1,a_2)\) et que la différentielle est nulle :
+    \begin{equation}
+        df_{(a_1,a_2)}=0.
+    \end{equation}
+
+    Dans le cas général, où les dérivées partielles de $f$ au point $a$ ne sont pas spécialement nulles, on peut considérer la fonction\footnote{Vous verrez dans la discussion à propos de la fonction \eqref{EqCJVooJOuXdN} pourquoi cette fonction ne fonctionne pas dans le cas de la dimension infinie.}
+    \begin{equation}    \label{EqXHVooJeQKrB}
+        g(x,y)=f(x,y)-\partial_1 f(a)x-\partial_2 f(a)y,
+    \end{equation}
+    qui a dérivées partielles nulles au point $a$. La fonction $g$ est donc différentiables. La fonction $f$ est maintenant la somme de $g$ et de la fonction linéaire et continue $(x,y)\mapsto \partial_1 f(a)x-\partial_2 f(a)y$. On verra dans la prochaine section que la somme de deux fonctions différentiables est une fonction différentiable. Par conséquent, la fonction $f$ est différentiable.
 \end{proof}
 
 \begin{remark}
-  On peut prouver le même résultat en utilisant la continuité de l'application bilinéaire
-\begin{equation}
-  \begin{array}{rccc}
-    \circ : & \mathcal{C}^1(U,V)\times\mathcal{C}^1(V,\eR^p)  & \to & \aL(U, \eR^p)\\
-& (T,S)& \mapsto & T\circ S.
-  \end{array}
-\end{equation}
+    En dimension infinie, il n'est pas vrai que l'existence et la continuité de toutes les dérivées partielles en un point implique la différentiabilité en ce point. Pour donner un exemple, nous allons continuer l'exemple~\ref{ExHKsIelG}
+    avec la fonction~\ref{EqCJVooJOuXdN} sur un espace de Hilbert.
+
+    En dimension infinie nous aurons le théorème~\ref{ThoOYwdeVt} qui donnera quelque chose de moins fort.
 \end{remark}
 
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsubsection{Dérivée partielle de fonctions composées}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+\begin{normaltext}
+    Une petite note sur les notations du théorème de dérivation partielle de fonctions composées. La formule \eqref{EQooZMAUooIusxgD} est plus souvent écrite sous la forme
+    \begin{equation}
+		\frac{ \partial (f\circ g) }{ \partial x_i }(a)=\sum_{k=1}^n\frac{ \partial f }{ \partial y_k }\big( g(a) \big)\frac{ \partial g_k }{ \partial x_i }(a).
+    \end{equation}
+    Du point de vue du névrosé des notations précises que je suis, cette façon d'écrire est délicate à exprimer parce qu'il faudrait décider ce que signifie «noter \( x\) les variables de \( \eR^n\) et \( y\) celles de \( \eR^m\)».
+
+    Et je ne vous parle même pas des problèmes que ça pose si \( x\) est justement le nom d'une fonction quand on considère un changement de variable.
+\end{normaltext}
+
+\begin{normaltext}
+    À propos de changement de variables \ldots J'ai une bonne nouvelle : il n'y a pas de notions de «différentielle partielle» et de «différentielle totale». Ces notions sont introduites par les personnes qui utilisent de mauvaises notations pour distinguer deux notions différentes qu'ils sont incapables de distinguer par des notations claires\footnote{Là je vise la quasi totalité des sources parlant de changement de variable dans les équations différentielles et les physiciens, en particulier les mécaniciens.}.
+\end{normaltext}
+
+\paragraph{Les choses mal faites en une dimension}
+
+    Voici comment on présente (mal) les choses. Soit une fonction \( y(x)\). Si on effectue un changement de variables \( x=x(t)\), on peut voir \( y\) comme une fonction de \( t\) au lieu de \( x\), et parler de la dérivée de \( y\) à travers \( x\).
+
+    Si \( y(x)=x^2\) et si \( x(t)=\sin(t)\), on se retrouve à écrire
+    \begin{equation}        \label{EQooNGFYooCJDmNq}
+        y'(t)=2\sin(t)\cos(t)
+    \end{equation}
+    et 
+    \begin{equation}        \label{EQooYXJEooQYfCYQ}
+        y'(x)=2x.
+    \end{equation}
+    Comment l'objet \( y'\) peut dépendre du nom de la variable ?!? Notez qu'en substituant \( x=\sin(t)\) dans \eqref{EQooYXJEooQYfCYQ}, le compte n'est pas bon : on n'a pas \eqref{EQooNGFYooCJDmNq}.
+
+    Pour résoudre ce problème, on peut dire que la bonne quantité à regarder n'est pas \( y'\) mais bien \( dy\). Alors on doit en fait regarder non \( y'(x)\) mais \( y'(x)dx\) où \( dx=\cos(t)dt\). Avec ça, on a en effet
+    \begin{equation}
+        dy=\frac{ dy }{ dx }\frac{ dx }{ dt }dt=2\sin(t)\cos(t)dt,
+    \end{equation}
+    et
+    \begin{equation}
+        dy=\frac{ dy }{ dt }dt=2\sin(t)\cos(t)dt.
+    \end{equation}
+    
+    Il faut alors bien comprendre que le «\( y\)» dans \( \frac{ dy }{ dt }\) n'est pas le même que le \( y\) dans \( \frac{ dy }{ dx }\).
+
+\paragraph{Les choses bien faites en une dimension}
+
+Soit une fonction \( y\colon \eR\to \eR\). Nous considérons une application (appelée «changement de variable» si on veut, mais surtout appelée «difféomorphisme de \( \eR\) vers $\eR$») \( x\colon \eR\to \eR\).
+
+Maintenant que la notation «\( x\)» est prise pour désigner une fonction, il n'est plus possible d'écrire \( y(x)\), parce que \( y\) est une application qui prend en argument un élément de \( \eR\) et non de \(  C^{\infty}(\eR)\).
+
+On introduit donc une nouvelle fonction \( z=y\circ x\). Donc \( z(t)=y\big( x(t) \big)=\sin(t)^2\). Le nom de la variable importe peu tant que ce n'est pas un nom déjà utilisé. Nous avons alors aucune ambigüité :
+\begin{equation}
+    y'(u)=2u
+\end{equation}
+et
+\begin{equation}
+    z'(u)=2\sin(u)\cos(u).
+\end{equation}
+Notez que les égalités suivante sont parfaitement correctes et ne souffrent d'aucun problème d'interprétation :
+\begin{itemize}
+    \item 
+        \( y(t)=t^2\) 
+    \item
+        \( z(\xi)=\sin(\xi)^2\)
+    \item
+        \( x(s)=\sin(s)\)
+    \item
+        \( x\big( y(u) \big)=\sin\big( y(u) \big)=\sin(u^2)\).
+\end{itemize}
+    Si les fonctions \( y\) et \( x\) représentent des quantités physiques, certaines de ces formules sont peut-être idiotes à écrire, mais elles sont correctes.
+
+\paragraph{Les choses mal faites en dimension 2}
+
+    Soit une fonction \( f\) de la position et du temps qu'on note \( f(x,t)\). Cette fonction vérifie une équation aux dérivées partielles, mettant en jeu \( \frac{ \partial f }{ \partial x }\) et \( \frac{ \partial f }{ \partial t }\).
+
+    Coup de théâtre : on veut savoir la valeur de \( f\) le long d'une trajectoire \( x(t)\). Nous voici avec
+    \begin{equation}
+        f\big( x(t), t \big).
+    \end{equation}
+    Et là quand on veut parler de la dérivée de \( f\) par rapport à \( t\), on doit distinguer la dérivée partielle \( \frac{ \partial f }{ \partial t }\) qui consiste à ne dériver l'expression \( f\big( x(t),t \big)\) que par rapport aux \( t\) qui apparaissent «vraiment», de la «dérivée totale» qui consiste à dériver par rapport à toutes les occurrences de \( t\), y compris à travers \( x\).
+
+\paragraph{Les choses bien faites en dimension 2}
+
+Soit une fonction \( f\colon \eR^2\to \eR\). Prenons par exemple \( f(x,t)=x\sin(t)\). Soit une trajectoire \( s\colon \eR\to \eR\) que nous nous gardons bien de noter «\( x\)». Ce qu'on entend par «voir \( f\) sur la trajectoire \( s\)»  signifie en réalité considérer la fonction
+\begin{equation}
+    \begin{aligned}
+        \varphi\colon \eR&\to \eR \\
+        t&\mapsto f\big( s(t), t \big). 
+    \end{aligned}
+\end{equation}
+
+Ce qu'on aurait appelé la dérivée totale de \( f\) par rapport à \( t\) est simplement la dérivée usuelle \( \varphi'\) de \( \varphi\) en tant que bête fonction \( \eR\to \eR\). Si par exemple \( s(t)=t^2\), nous avons
+\begin{equation}
+    \varphi(t)=t^2\sin(t).
+\end{equation}
+Nous avons donc toutes les dérivées sans ambigüité :
+\begin{subequations}
+    \begin{align}
+        \frac{ \partial f }{ \partial x }(x,t)&=\sin(t)\\
+        \frac{ \partial f }{ \partial t }(x,t)&=x\cos(t)\\
+        \varphi'(t)&=2t\sin(t)+t^2\cos(t).
+    \end{align}
+\end{subequations}
+
+Le mieux serait même d'écrire \( \partial_1f\) et \( \partial_2f\) au lieu de \( \frac{ \partial f }{ \partial x }\) et \( \frac{ \partial f }{ \partial t }\), parce que ce sont des fonctions complètement déterminées par \( f\) et non par la notation \( x\) et \( t\) qu'on a choisie pour nommer les variables au moment d'écrire \( f(x,t)=x\sin(t)\).
+
+\begin{normaltext}
+    Et d'ailleurs en mathématique, il n'y a rien qui s'appelle «changement de variable». Il y a seulement des choses qui s'appellent «composition de fonction».
+
+    Cela n'est pas limité à l'analyse. Il n'y a par exemple pas de concept de «choisir une base dans laquelle une matrice est diagonale». Si \(S\) est une matrice symétrique, il existe une matrice diagonale \( D\) et une matrice orthogonale \( A \) telles que \( D=ASA^{-1}\). Quand on veut démontrer une théorème sur \( S\), on commence par démontrer le théorème dans le cas particulier où \( S\) est diagonale, puis on espère que le résultat se généralise facilement aux matrices de la forme \( ADA^{-1}\) où \( D\) est diagonale et \( A\) est orthogonale.
+\end{normaltext}
+
+\begin{normaltext}
+    Tout cela pour dire que nous allons maintenant prouver le théorème de dérivation partielle de fonctions composées. C'est ce théorème qui est utilisé chaque fois qu'on fait un «changement de variables» dans une équation aux dérivées partielles.
+\end{normaltext}
+
+\begin{definition}[\cite{ZCKMFRg, MonCerveau}]  \label{DefPNjMGqy}
+    Soient deux espaces vectoriels normés \( V\) et \( W\) ainsi qu'une application \( f\colon V\to W\). Nous disons que \( f\) est 
+    \begin{itemize}
+        \item de classe  \( C^0\) si elle est continue,
+        \item de classe \( C^k\) si sa différentielle est de classe \( C^{k-1}\).
+        \item de classe \( C^{\infty}\) si elle est de classe \( C^k\) pour tout \( k\).
+    \end{itemize}
+\end{definition}
+\index{application!différentiable}
+\index{application!de classe \( C^k\)}
+
+Le lien entre classe \( C^k\) et dérivées partielles d'ordre \( k\) sera le théorème \ref{THOooPZTAooTASBhZ}.
+
+\begin{remark}
+    Lorsque nous demandons que la différentielle de \( f\) soit continue, nous entendons bien la continuité de \( df\colon V\to \aL(V,W)\), c'est à dire la continuité de \( df_x\) par rapport à \( x\).
+\end{remark}
+
+
+\begin{theorem}[\cite{MonCerveau,BIBooKWZDooWnWJWO}]     \label{THOooKBTYooWFtoSF}
+    Soient :
+    \begin{enumerate}
+        \item
+            trois espaces vectoriels normés \( U\), \( V\) et \( W\) de dimension fine
+        \item
+            \( a\in V\), un voisinage \( \Omega\) de \( a\)
+        \item
+            des applications \( g\colon \Omega\to U\) et \( f\colon g(\Omega)\to W\)
+        \item
+            des bases de \( U\), \( V\) et \( W\) de telle sorte que parler des dérivées partielles ait un sens. Toutes les bases vont être notées \( \{ e_i \}\) sans précisions. Sinon, on ne va pas s'en sortir.
+    \end{enumerate}
+    Nous supposons que
+    \begin{enumerate}
+        \item
+            \( f\) est de classe \( C^1\) sur un voisinage de \( g(a)\)\footnote{Classe \( C^1\), définition \ref{DefPNjMGqy}.},
+        \item
+            \( g\) admet une dérivée partielle dans la direction de \( e_i\) en \( a\).
+    \end{enumerate}
+    Alors 
+    \begin{enumerate}
+        \item
+            La fonction \( f\circ g\) a une dérivée partielle dans la direction de \( e_i\) en \( a\),
+        \item
+    nous avons la formule
+    \begin{equation}        \label{EQooZMAUooIusxgD}
+        \partial_i(f\circ g)(a)=\sum_{k}(\partial_kf)\big( g(a) \big)(\partial_ig_k)(a).
+    \end{equation}
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Vu que \( f\) est différentiable en \( g(a)\), nous pouvons y utiliser le lemme \ref{LemdfaSurLesPartielles} et écrire
+    \begin{equation}        \label{EQooFZBVooTwNexc}
+        df_{g(a)}\left( \frac{ \partial g }{ \partial x_i }(a) \right)=\Dsdd{ f\big( g(a)+t\frac{ \partial g }{ \partial x_i }(a) \big) }{t}{0}
+        =\lim_{\epsilon\to 0}\frac{ f\big( g(a)+\epsilon\frac{ \partial g }{ \partial x_i }(a) \big)-f\big( g(a) \big) }{ \epsilon }.
+    \end{equation}
+    
+    Maintenant, le jeu est de travailler \( f\big( g(a)+\epsilon\partial_i(a) \big)\) de deux façons différentes. D'une part en effectuant un développement de \( f\) autour de \( g(a)\) et d'autre part dé-développant \( g(a)+\epsilon\partial_i(a)\) pour le changer en \( g(a+\epsilon e_i)\).
+
+    \begin{subproof}
+        \item[Développer \( f\)]
+            En utilisant le lemme \ref{LEMooNMTAooLgMkgH} pour \( f\) autour de \( g(a)\), nous avons
+            \begin{subequations}
+                \begin{align}
+                    f\big( g(a)+\epsilon\partial_ig(a) \big)&=f\big( g(a)+\epsilon\sum_k(\partial_ig_k)(a)e_k \big)\\
+                    &=f\big( g(a) \big)+\epsilon\sum_k(\partial_ig_k)(a)(\partial_kf)\big(g(a)+\epsilon u_k\big)
+                \end{align}
+            \end{subequations}
+            où \( u_k=\sum_{j=k+1}^n(\partial_ig_l)(a)e_l\). La forme exacte de \( u_k\) n'est pas importante pour notre histoire.
+
+            En mettant cela dans la dernière fraction de \eqref{EQooFZBVooTwNexc},
+            \begin{subequations}
+                \begin{align}
+                    &\frac{ f\big( g(a)+\epsilon(\partial_ig)(a) \big)-f\big( g(a) \big) }{ \epsilon }\\
+                    &=\frac{ f\big( g(a) \big)  +\epsilon\sum_k(\partial_ig_k)(a)(\partial_kf)\big(g(a)+\epsilon u_k\big)+\epsilon\alpha(\epsilon)-f\big( g(a) \big)   }{ \epsilon }\\
+                    &=\sum_k(\partial_ig_k)(a)(\partial_kf)\big( g(a)+\epsilon u_k\big)+\alpha(\epsilon).
+                \end{align}
+            \end{subequations}
+            Nous prenons la limite \( \epsilon\to 0\) en tenant compte du fait que \( \lim_{\epsilon\to 0}\alpha(\epsilon)=0\) et du fait que les dérivées partielles de \( f\) sont continues en \( g(a)\) (théorème \ref{THOooBEAOooBdvOdr}). Nous avons
+            \begin{equation}
+                df_{g(a)}\big( (\partial_ig)(a) \big)=\sum_k(\partial_ig_k)(a)(\partial_kf)\big( g(a) \big).
+            \end{equation}
+        \item[Développer \( g\)]
+            Nous développons maintenant \( g\) à l'intérieur de \( f\). Pour cela nous utilisons les accroissements finis \ref{PROPooYYSMooUDxtlB} pour \( g\) :
+            \begin{equation}
+                g(a)+\epsilon\frac{ \partial f }{ \partial x_i }(a)=g(a+\epsilon e_i)-\epsilon\alpha(\epsilon).
+            \end{equation}
+            Pour avancer dans \eqref{EQooFZBVooTwNexc}, nous considérons le terme
+            \begin{equation}
+         f\big( g(a)+\epsilon\frac{ \partial g }{ \partial x_i }(a) \big)=
+                f\big( g(a+\epsilon e_i)-\epsilon \alpha(\epsilon) \big)
+            \end{equation}
+            dans lequel nous allons développer \( f\) autour de \( g(a+\epsilon e_i)\). Vu que la fonction \( \epsilon\mapsto g(a+\epsilon e_i)\) est continue (elle est dérivable par hypothèse), pourvu que \( \epsilon\) soit assez petit, le point \( g(a+\epsilon e_i)\) est encore dans le voisinage de \( g(a)\) sur lequel \( f\) est de classe \( C^1\), de telle sorte qu'un développement de \( f\) ne pose pas de problèmes. Nous pouvons appliquer le lemme \eqref{LEMooNMTAooLgMkgH} : 
+            \begin{equation}
+                f\big( g(a+\epsilon e_i)-\epsilon\alpha(\epsilon) \big)=f\big( g(a+\epsilon e_i) \big)-\sum_k\epsilon\alpha(\epsilon)_k(\partial_kf)\big( g(a+\epsilon e_i)+\epsilon u_k \big)+\epsilon\beta(\epsilon).
+            \end{equation}
+            Ce que nous avons dans la limite dans \eqref{EQooFZBVooTwNexc} est
+            \begin{subequations}
+                \begin{align}
+                    &\frac{ f\big( g(a+\epsilon e_i)\big)-\sum_k\epsilon\alpha(\epsilon)_k (\partial_kf)\big( g(a+\epsilon e_i)+\epsilon u_k \big)-f\big( g(a) \big) }{ \epsilon }\\
+                    &\quad=\frac{ (f\circ g)(a+\epsilon e_i)-(f\circ g)(a) }{ \epsilon }
+                   -\sum_k\alpha(\epsilon)_k(\partial_kf)\big( f(a+\epsilon e_i)+\epsilon u_k \big).
+                \end{align}
+            \end{subequations}
+            Nous allons passer à la limite. Vu que \( f\) est de classe \( C^1\), ses dérivées partielles sont continue. Le vecteur \( u_k\) ne dépendant pas de \( \epsilon\), toute la partie \( (\partial_kf)\big( g(a+\epsilon e_i)+\epsilon u_k \big)\) peut être majorée uniformément en \( \epsilon\). Et comme \( \alpha(\epsilon)\to 0\), tout le second terme disparait.
+
+            Ce qui reste à la limite est 
+            \begin{equation}
+                df_{g(a)}\left( \frac{ \partial g }{ \partial x_i }(a) \right)=\frac{ \partial (f\circ g) }{ \partial x_i }(a).
+            \end{equation}
+    \end{subproof}
+\end{proof}
+
+Donnons un exemple d'utilisation de cette formule. Si
+\begin{equation}
+	\begin{aligned}[]
+		g\colon \eR^2\to \eR^3\\
+		f\colon \eR^3\to \eR,
+	\end{aligned}
+\end{equation}
+nous avons $\varphi\colon \eR^2\to \eR$. Les dérivées partielles de $\varphi$ sont données par les formules
+\begin{equation}
+	\frac{ \partial \varphi }{ \partial x }(x,y)=\frac{ \partial f }{ \partial x_1 }\big( g(x,y) \big)\frac{ \partial g_1 }{ \partial x }(x,y)+\frac{ \partial f }{ \partial x_2 }\big( g(x,y) \big)\frac{ \partial g_2 }{ \partial y }(x,y)+\frac{ \partial f }{ \partial x_3 }\big( g(x,y) \big)\frac{ \partial g_3 }{ \partial x }(x,y)
+\end{equation}
+et
+\begin{equation}
+	\frac{ \partial \varphi }{ \partial y }(x,y)=\frac{ \partial f }{ \partial x_1 }\big( g(x,y) \big)\frac{ \partial g_1 }{ \partial y }(x,y)+\frac{ \partial f }{ \partial x_2 }\big( g(x,y) \big)\frac{ \partial g_2 }{ \partial y }(x,y)+\frac{ \partial f }{ \partial x_3 }\big( g(x,y) \big)\frac{ \partial g_3 }{ \partial y }(x,y)
+\end{equation}
+Notez que les dérivées de $\varphi$ et des composantes de $g$ sont calculées en $(x,y)$, tandis que celles de $f$ sont calculées en $g(x,y)$.
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Différentielle et dérivée complexe}
@@ -117,6 +565,14 @@ Dans cette partie, nous désignons par \( \Omega\) un ouvert de \( \eC\).
 
 \begin{definition}  \label{DefMMpjJZ}
     Soit \( \Omega\) un ouvert dans \( \eC\). Une fonction \( f\colon \Omega\to \eC\) est \defe{holomorphe}{holomorphe}\index{fonction!holomorphe} si elle est \( \eC\)-dérivable sur \( \Omega\).
+\end{definition}
+
+Une avalanche de conditions équivalentes à l'holomorphie est donnée dans le théorème \ref{THOooOGOCooUalFaG}.
+
+\begin{definition}      \label{DEFooQSMCooOoWVZk}
+    Si \( K\) est un compact de \( \eC\), nous disons qu'une fonction est \defe{holomorphe}{holomorphe!sur un compact} sur \( K\) si il existe un ouvert contenant \( K\) sur lequel \( f\) est holomorphe.
+
+    Et si \( f\) n'est réellement définie que sur \( K\), elle est holomorphe sur \( K\) si il existe une extension holomorphe de \( f\) vers un ouvert contenant \( K\).
 \end{definition}
 
 \begin{definition}
@@ -317,7 +773,7 @@ Dans cette partie, nous désignons par \( \Omega\) un ouvert de \( \eC\).
     \begin{equation}
         \frac{ f(x+iy+\epsilon_x+i\epsilon_y)-f(x+iy) }{ \epsilon }=\frac{ \epsilon_x }{ \epsilon }.
     \end{equation}
-    Cela n'a pas de limite lorsque \( \epsilon\to 0\). Pour voir cela nous invoquons la méthode des chemins du corollaire~\ref{CorMethodeChemin} avec les chemins \( \epsilon_1(t)=t\) et \( \epsilon_2(t)=it\). Dans le premier cas, le quotient différentiel vaut \( 1\) pour tout \( t\), tandis que dans le second il vaut zéro pour tout \( t\).
+    Cela n'a pas de limite lorsque \( \epsilon\to 0\). Pour voir cela nous invoquons la méthode des chemins du corolaire~\ref{CorMethodeChemin} avec les chemins \( \epsilon_1(t)=t\) et \( \epsilon_2(t)=it\). Dans le premier cas, le quotient différentiel vaut \( 1\) pour tout \( t\), tandis que dans le second il vaut zéro pour tout \( t\).
 \end{example}
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -337,7 +793,7 @@ Nous avons déjà démontré (lemme~\ref{LemdfaSurLesPartielles}) que si $f$ est
 \begin{theorem}[Accroissements finis, inégalité de la moyenne]\label{val_medio_2}
    Soit $U$ un ouvert dans $\eR^m$ et soit $f:U\to\eR^n$ une fonction différentiable. Soient $a$ et $b$ deux points dans $U$, $a\neq b$, tels que le segment $[a,b]$ soit contenu dans $U$. Alors
    \begin{equation}
-        \|f(b)-f(a)\|_n\leq \sup_{x\in[a,b]}\|df(x)\|_{\aL(\eR^m,\eR^n)}\|b-a\|_m.
+        \|f(b)-f(a)\|_n\leq \sup_{x\in[a,b]}\|df_x\|_{\aL(\eR^m,\eR^n)}\|b-a\|_m.
    \end{equation}
 \end{theorem}
 \index{application!différentiable}
@@ -347,7 +803,7 @@ Nous avons déjà démontré (lemme~\ref{LemdfaSurLesPartielles}) que si $f$ est
 \begin{proof}
  On utilise le théorème~\ref{val_medio_1} et le fait que
 \[
-\|\partial_u f(x)\|_n\leq \|df(x)\|_{\aL(\eR^m,\eR^n)}\|u\|_m,
+\|\partial_u f(x)\|_n\leq \|df_x\|_{\aL(\eR^m,\eR^n)}\|u\|_m,
 \]
 pour tout $u$ dans $\eR^m$.
 \end{proof}
@@ -374,7 +830,7 @@ La proposition suivante est une application fondamentale du théorème des accro
 
 	Afin de voir que la condition~\ref{ItemPropCstDiffZeroii} implique la condition~\ref{ItemPropCstDiffZeroiii}, remarquons d'abord que la différentiabilité de $f$ implique que les dérivées partielles existent (proposition~\ref{diff1}) et que nous avons l'égalité $df(a).u=\sum_iu_i\partial_if(a)$ pour tout $u\in\eR^m$ (lemme~\ref{LemdfaSurLesPartielles}). L'annulation de $\sum_iu_i\partial_if(a)$ pour tout $u$ implique l'annulation des $\partial_if(a)$ pour tout $i$.
 
-	Prouvons maintenant que la propriété~\ref{ItemPropCstDiffZeroiii} implique la propriété~\ref{ItemPropCstDiffZeroii}. D'abord, par la proposition~\ref{Diff_totale}, l'existence et la continuité des dérivées partielles $\partial_if(a)$ implique la différentiabilité de $f$. Ensuite, la formule $df(a).u=\sum_i u_i\partial_if(a)$ implique que $df(a)=0$.
+    Prouvons maintenant que la propriété~\ref{ItemPropCstDiffZeroiii} implique la propriété~\ref{ItemPropCstDiffZeroii}. D'abord, par le théorème \ref{THOooBEAOooBdvOdr}, l'existence et la continuité des dérivées partielles $\partial_if(a)$ implique la différentiabilité de $f$. Ensuite, la formule $df(a).u=\sum_i u_i\partial_if(a)$ implique que $df(a)=0$.
 
 
 	Il reste à montrer que~\ref{ItemPropCstDiffZeroii} implique la condition~\ref{ItemPropCstDiffZeroi}, c'est-à-dire que l'annulation de la différentielle implique la constance de la fonction. C'est ici que nous allons utiliser le théorème des accroissements finis. En effet, si $a$ et $b$ sont des points de $U$, le théorème~\ref{val_medio_2} nous dit que
@@ -505,21 +961,508 @@ Notez cependant qu'une fonction peut être Lipschitzienne sans être différenti
     Nous avons utilisé l'équivalence de norme de la proposition~\ref{PropLJEJooMOWPNi}\ref{ItemABSGooQODmLNi}.
 \end{proof}
 
-
-
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Différentielles d'ordre supérieur}		\label{SecDiffOrdSup}
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\begin{definition}
-	Soit $U$ un ouvert de $\eR^m$ et  $f:U\subset\eR^m\to \eR^n$ une fonction. La fonction $f$ est dite \defe{deux fois différentiable}{différentiable!deux fois} au point $a$ dans $U$,  si $f$ est différentiable dans un voisinage de $a$, et sa différentielle $df$ est différentiable au point $a$ en tant que application de $U$ dans $\aL(\eR^m, \eR^n)$.
 
-La fonction $f$ sera dite deux fois différentiable sur l'ensemble $U$ si elle est deux fois différentiable en chaque point de $U$.
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Différentielle et dérivées partielles}
+%---------------------------------------------------------------------------------------------------------------------------
 
-\end{definition}
+Soient deux espaces vectoriels normés \( V\) et \( W\) ainsi qu'une application \( f\colon V\to W\). La différentielle est une application \( df\colon V\to \aL(V,W)\). Pour être clair, la différentielle seconde consiste à différentier \( df_x\) par rapport à \( x\). C'est à dire que la différentielle seconde est une application \( d(df)\colon V\to \aL\big( V,\aL(V,W) \big)\).
+
+Et c'est là que commencent les problèmes. Les différentielles successives font intervenir des emboîtements de plus en plus profonds d'espaces comme \( d^2f\colon V\to \aL\Big( V,\aL\big( V,\aL(V,W) \big) \Big)\).
+
+Nous introduisons maintenant quelque notations et lemmes pour traiter ces problèmes. Soient des espaces vectoriels normés \( V\) et \( W\). Nous commençons par les espaces emboîtés par récurrence :
+\begin{subequations}
+    \begin{numcases}{}
+        E_0=E\\
+        E_{k+1}=\aL(V,E_k).
+    \end{numcases}
+\end{subequations}
+
+\begin{lemma}[\cite{MonCerveau,BIBooLWVSooOZSJBR}]      \label{LEMooSMZQooJBVySP}
+    À propos de dimensions,
+    \begin{enumerate}
+        \item       \label{ITEMooUWEBooSzFseN}
+         $\dim(E_n)=\dim(V)^n\dim(E)$.
+     \item       \label{ITEMooFMKQooFSMpgF}
+        \( \dim\big( \aL^n(V,E) \big)=\dim(E)\dim(V)^n\).
+    \end{enumerate}
+\end{lemma}
+
+
+Nous commençons par une sorte de projection; pour \( u\in V\) nous définissons
+\begin{equation}
+    \begin{aligned}
+        \pr_u\colon \aL^n(V,E)&\to \aL^{n-1}(V,E) \\
+        \pr_u(\omega)(v_1,\ldots, v_{n-1})&=\omega(u,v_1,\ldots, v_{n-1}). 
+    \end{aligned}
+\end{equation}
+
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooTDLNooTcPkLg}
+    Nous définissons les \( \phi_k\) par récurrence. D'abord
+    \begin{equation}
+        \begin{aligned}
+            \phi_1\colon \aL^n(V,E)&\to \aL\big( V,\aL^{n-1}(V,E) \big) \\
+            \phi_1(\omega)u&=\pr_u(\omega),
+        \end{aligned}
+    \end{equation}
+    et ensuite
+    \begin{equation}
+        \begin{aligned}
+            \phi_k\colon \aL^n(V,E)&\to \aL^{n-k}(V,E)_{k} \\
+            \phi_k(\omega)u&=\phi_{k-1}\big( \pr_u(\omega) \big).
+        \end{aligned}
+    \end{equation}
+    Les applications \( \phi_k\) sont bijectives.
+\end{lemma}
+
+\begin{proof}
+    Nous prouvons par récurrence. 
+    \begin{subproof}
+        \item[Injective, \( k=1\)]
+            Soit \( \omega\in \aL^n(V,E)\) tel que \( \phi_1(\omega)=0\). Pour tout \( u\in V\) nous avons \( \phi_1(\omega)u=0\), ce qui signifie que \( \pr_u(\omega)=0\) ou encore que pour tout \( v_1,\ldots, v_{n-1}\in V\) nous avons \( \omega(u,v_1,\ldots, v_{n-1})=0\). Nous avons donc bien \( \omega=0\).
+        \item[Surjective, \( k=1\)]
+            Soit \( \alpha\in\aL\big( V,\aL^{n-1}(V,E) \big)\). Nous allons construire \( \omega\in \aL^n(V,E)\) tel que \( \phi_1(\omega)=\alpha\). Nous posons
+            \begin{equation}
+                \omega(v_0,\ldots, v_{n-1})=\alpha(v_0)(v_1,\ldots, v_{n-1}).
+            \end{equation}
+            Avec lui nous avons bien \( \pr_{v_0}(\omega)=\alpha(v_0)\).
+        \item[Injective, \( k=k\)]
+            Nous supposons que \( \phi_k(\omega)=0\), c'est à dire que pour tout \( u\in V\) nous avons 
+            \begin{equation}
+                \phi_{k-1}\big( \pr_u(\omega) \big)=0.
+            \end{equation}
+            Cela implique \( \pr_u(\omega)=0\) parce que \( \phi_{k-1}\) est injective par hypothèse de récurrence. Nous déduisons que \( \omega=0\), et que \( \phi_k\) est injective.
+
+        \item[Surjective, \( k=k\)]
+            Nous allons montrer que \(   \phi_k\colon \aL^n(V,E)\to \aL^{n-k}(V,E)_k  \) est une application linéaire injective entre deux espaces de même dimension.
+
+            Il s'agit d'utiliser le lemme \ref{LEMooSMZQooJBVySP}. D'abord
+            \begin{equation}
+                \dim\big( \aL^{n-k}(V,E)_k \big)=\dim(V)^k\dim\big( \aL^{n-k}(V,E) \big)=\dim(V)^n\dim(E).
+            \end{equation}
+            Ensuite \( \dim\big( \aL^n(V,E) \big)=\dim(V)^n\dim(E)\). Le compte est bon.
+
+            Le théorème du rang (formule \eqref{EQooUEOQooLySRiE}) avec \( \dim\big( \ker(\phi_k) \big)=0\) nous dit que le rang de \( \phi_k\) est maximal et donc que \( \phi_k\) est surjective.
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}       \label{LEMooLTYCooAoMJKD}
+    Soit \( w\in W\). Nous avons
+    \begin{equation}
+        \big[ w\times_k\phi_k(\omega_I) \big]\times_1\omega_l=w\times_{k+1}\phi_{k+1}(\omega_{l,I}).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Il s'agit d'appliquer les deux membres à un élément \( v\in V\). D'abord
+    \begin{subequations}
+        \begin{align}
+            \big[ w\times_k\phi_k(\omega_I) \big]\times_1\omega_l(v)&=\omega_l(v)w\times_k\phi_k(\omega_I)\\
+            &=w\times_k\big( \phi_k(\omega_I)v_l \big)      \label{SUBEQooMWPMooYAsYCB}
+        \end{align}
+    \end{subequations}
+    Pour \eqref{SUBEQooMWPMooYAsYCB} nous avons utilisé le fait que \( \omega_{l,I}(v)=v_l\in\eR\) et que le produit \( \times_k\) est linéaire. De l'autre côté, en utilisant les définitions de \( \times_{k}\) et de \( \phi_k\), nous avons
+    \begin{subequations}
+        \begin{align}
+            \big[ w\times_{k+1}\phi_{k+1}(\omega_{l,I}) \big]v&=w\times_k\big( \phi_{k+1}(\omega_{l,I})v \big)\\
+            &=w\times_k\phi_k\big( \pr_v(\omega_{l,I}) \big)\\
+            &=w\times_k\phi_k(v_l\omega_I)
+        \end{align}
+    \end{subequations}
+    parce que \( \pr_v(\omega_{l,I})=v_l\omega_I\).
+\end{proof}
+
+\begin{proposition}[\cite{MonCerveau}]      \label{PROPooVGRRooHSwcPl}
+    Soit une application \( f\colon V\to E\) de classe \( C^n\). Alors
+    \begin{enumerate}
+        \item
+            pour tout \( n\)-multiindice \( I\), la dérivée partielle \( \partial^n_If\) existe,
+        \item
+            nous avons la formule
+            \begin{equation}
+                (d^nf)_a=\sum_{i_1,\ldots, i_n}\frac{ \partial^nf }{ \partial x_{i_1}\ldots \partial x_{i_n} }(a)\times_n\phi_n(\omega_{i_1,\ldots, i_n})
+            \end{equation}
+            où la somme porte sur tous les multiindices de taille \( n\), le produit \( \times_n\) est la définition \ref{DEFooLULCooYjBEaZ} et l'application \( \phi_n\) est donnée dans l'énoncé du lemme \ref{LEMooTDLNooTcPkLg}.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Nous faisons tout cela par récurrence. Le cas \( n=1\) est déjà fait par le théorème \ref{THOooBEAOooBdvOdr} parce que \( \phi_1(\omega)=\omega\). Nous supposons que le résultat est démontré pour une valeur \( k\), et nous considérons \( f\) de classe \( C^n\) avec \( n\geq k+1\). L'hypothèse de récurrence dit que
+    \begin{equation}        \label{EQooBOZUooCiEIYR}
+        (d^kf)_a=\sum_{I}(\partial_{I}f)(a)\times_k\phi_k(\omega_{I})
+    \end{equation}
+    est continuement différentiable par rapport à \( a\). Nous pouvons donc utiliser la formule \eqref{EQooPREWooVHVIAF} pour calculer la différentielle de \eqref{EQooBOZUooCiEIYR} :
+    \begin{subequations}
+        \begin{align}
+            (d^{k+1}f)_a&=\sum_l\frac{ \partial (d^kf) }{ \partial x_l }(a)\times_1\omega_l\\
+            &=\sum_l\sum_{I}\big[ (\partial_l\partial_{I}f)(a)\times_k\phi_k(\omega_{I}) \big]\times_1\omega_l\\
+            &=\sum_{l,I}(\partial_{l,I}f)(a)\times_{k+1}\phi_{k+1}(\omega_{l,I})        \label{SUBEQooOXUHooFDJiow}
+        \end{align}
+    \end{subequations}
+    où nous avons utilisé le lemme \ref{LEMooLTYCooAoMJKD} pour obtenir \eqref{SUBEQooOXUHooFDJiow}.
+\end{proof}
+
+\begin{proposition}     \label{PROPooKOBVooQhrAeJ}
+    Soit une application \( f\colon V\to E\) telle que les dérivées partielles \( \frac{ \partial f }{ \partial x_{i_1}\ldots \partial x_{i_n} }\) existent et sont continues sur un ouvert \( \mU\). Alors \( f\) est de classe \( C^n\) sur \( \mU\).
+\end{proposition}
+
+\begin{proof}
+    Pour \( n=1\), cette proposition est déjà contenue dans le théorème \ref{THOooBEAOooBdvOdr}. Nous pouvons donc directement passer au pas de récurrence. Nous définissons les objets
+    \begin{equation}
+        T_k(a)=\sum_I(\partial_If)(a)\times_k\phi_k(\omega_{I})
+    \end{equation}
+    où la somme porte sur tous les \( k\)-multiindices. Ces applications \( T_k\) existent et sont continues par hypothèse. 
+
+    Le théorème \ref{THOooBEAOooBdvOdr} nous indique que \( T_1(a)=df_a\). Nous supposons maintenant que \( (d^kf)_a=T_k(a)\) et nous allons prouver que \( T_{k+1}\) est la différentielle de \( d^kf\). Pour cela nous devons prouver que
+    \begin{equation}        \label{EQooPKXDooWWVikT}
+        \lim_{h\to 0} \frac{ T_k(a+h)-T_k(a)-T_{k+1}(a)h }{ \| h \| }=0.
+    \end{equation}
+    En utilisant le lemme \ref{LEMooLTYCooAoMJKD} nous pouvons dégrossir le terme \( T_{k+1}(a)h\) :
+    \begin{subequations}
+        \begin{align}
+            T_{k+1}(a)h&=\sum_{l,I}\big[ (\partial_{l,I}f)(a)\times_{k+1}\phi_{k+1}(\omega_{l,I}) \big]h\\
+            &=\sum_{l,I}\big[ (\partial_{l,I}f)(a)\times_k\phi_k(\omega_I) \big]\times_1\omega_l(h)\\
+            &=\sum_{l,I}h_l(\partial_{l,I}f)(a)\times_k\phi_k(\Omega_I)\\
+            &=\sum_lh_l\big[ \partial_l\sum_I(\partial_If)(a) \big]\times_k\phi_k(\omega_I).        \label{SUBEQooACCZooXrxHpY}
+        \end{align}
+    \end{subequations}
+    Vu que \( \partial_If\) est une fonction dont les dérivées partielles existent et sont continues, le théorème \ref{THOooBEAOooBdvOdr} (toujours lui) nous dit qu'elle est différentiable et que
+    \begin{equation}
+        d(\partial_If)_a(h)=\sum_lh_l\partial_l(\partial_If)(a).
+    \end{equation}
+    En mettant la somme sur \( I\) tout devant dans \eqref{SUBEQooACCZooXrxHpY}, nous trouvons
+    \begin{equation}
+        T_{k+1}(a)h=\sum_Id(\partial_If)_a(h)\times_k\phi_k(\omega_I).
+    \end{equation}
+    C'est pas beau la vie ? Nous pouvons écrire le numérateur du quotient différentiel \eqref{EQooPKXDooWWVikT} :
+    \begin{subequations}
+        \begin{align}
+            T_k(a+h)-T_k(a)-T_{k+1}(a)h&=\sum_I\big[ (\partial_If)(a+h)-(\partial_If)(a) \big]\times_k\phi_k(\omega_I)\\
+                                        &\qquad-\sum_Id(\partial_If)_a(h)\times_k\phi_k(\omega_I)\\
+                                        &=\sum_I\big[ (\partial_If)(a+h)-(\partial_If)(a)-d(\partial_If)(a)h \big]\times_l\phi_k(\omega_I).
+        \end{align}
+    \end{subequations}
+    Nous utilisons le fait que l'application \( w\mapsto w\times_k\phi_k(\omega_I)\) est linéaire et commute avec la limite, c'est à dire que
+    \begin{equation}
+        \lim_{h\to 0} \big( w(h)\times_k\phi_k(\omega_I) \big)=\big( \lim_{h\to 0} w(h) \big)\times_k\phi_k(\omega_I).
+    \end{equation}
+    Et bien sûr, la somme sur les multiindices \( I\) commute également avec la limite. Donc
+    \begin{subequations}
+        \begin{align}
+        \lim_{h\to 0} \frac{ T_k(a+h)-T_k(a)-T_{k+1}(a)h }{ \| h \| }&=\sum_I\left( \lim_{h\to 0} \frac{ (\partial_If)(a+h)-(\partial_If)(a)-d(\partial_If)_ah }{ \| h \| } \right)\times_k\phi_k(\omega_I)\\
+        &=0.
+        \end{align}
+    \end{subequations}
+    Cela prouve que \( T_{k+1}\) est bien la différentielle de \( T_k\). Par récurrence, la fonction \( f\) est bien \( n\) fois continuement différentiable.
+\end{proof}
+
+Maintenant que nous avons plein de lemmes et de résultats, il est facile de démontrer un très gros résultat en peu de lignes.
+
+\begin{theorem}     \label{THOooPZTAooTASBhZ}
+    Soit une application \( f\colon V\to E\) entre deux espaces vectoriels normés de dimension finies. Nous avons équivalence entre
+    \begin{enumerate}
+        \item       \label{ITEMooBOWTooXgxhpS}
+            \( f\) est de classe \( C^n\)
+        \item       \label{ITEMooPVZHooHihSRD}
+            les dérivées partielles \( \partial_if\) sont de classe \( C^{n-1}\)
+        \item       \label{ITEMooVBQMooBleazN}
+            les dérivées partielles \( \partial^n_If\) existent et sont continues pour tout multiiindice de longueur \( n\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    En plusieurs implications.
+    \begin{subproof}
+        \item[\ref{ITEMooVBQMooBleazN} implique \ref{ITEMooBOWTooXgxhpS}]
+            C'est la proposition \ref{PROPooKOBVooQhrAeJ}.
+        \item[\ref{ITEMooBOWTooXgxhpS} implique \ref{ITEMooVBQMooBleazN}]
+            C'est la proposition \ref{PROPooVGRRooHSwcPl}.
+        \item[\ref{ITEMooVBQMooBleazN} implique \ref{ITEMooPVZHooHihSRD}]
+            En posant \( g_i=\partial_if\), l'hypothèse est que les \( \partial^{n-1}_Ig_i\) existent et sont continues pour tout multiindices \( I\) de longueur \( n-1\). En appliquant «\ref{ITEMooVBQMooBleazN} implique \ref{ITEMooBOWTooXgxhpS}» à la fonction \( g_i\), la fonction \( g_i\) est de classe \( C^{n-1}\).
+        \item[\ref{ITEMooPVZHooHihSRD} implique \ref{ITEMooVBQMooBleazN}]
+            Les fonctions \( g_i\) déjà définies sont de classe \( C^{n-1}\). Nous leur appliquons «\ref{ITEMooBOWTooXgxhpS} implique \ref{ITEMooVBQMooBleazN}», nous savons que les fonctions \( \partial^{n-1}_Ig_i\) sont continues, c'est à dire que les \( \partial_I\partial_if\). Vu que tout multiiindice de longueur \( n\) peut être écrit sous la forme \( iI\) où \( I\) est de longueur \( n-1\), nous avons prouvé que les \( \partial^n_Jf\) existent et sont continues pour tout multiindice \( J\) de longueur \( n\).
+    \end{subproof}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Espaces d'applications multilinéaires et identifications}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Si \( V\) et \( E\) sont des espaces vectoriels de dimensions finies, la différentielle de \( f\colon V\to E\) est une application \( df\colon V\to \aL(V,E)\). La différentielle seconde est une application \( d(df)\colon V\to \aL\big( V,\aL(V,E) \big)\) et ainsi de suite.
+
+Une grande difficulté de la manipulation des différentielles d'ordre supérieurs provient de cet emboîtement d'espaces d'applications linéaires. Nous nous attaquons à présent à la description de ces espaces emboîtés\footnote{Toutes les constructions, tous les énoncés et les preuves qui suivent sont de l'invention personnelle de l'auteur de ces lignes. Je n'ai trouvé nulle part une source qui s'attaque réellement à le récurrence.}.
+
+Pour la suite, nous considérerons des espaces vectoriels normés \( V\) et \( E\) de dimension finie. Nous notons \( \aL^n(V,E)\) l'espace des applications multilinéaires \( V^n\to E\).
+
+Nous introduisons le produit suivant\cite{MonCerveau} :
+\begin{equation}
+    \begin{aligned}
+        \cdot\colon W\times \aL\big( V,\aL(V,\eR) \big)   &\to \aL\big( V,\aL(V,W) \big) \\
+        \big( (w\cdot \psi)(u) \big)v&=\big( \psi(u)v \big)w. 
+    \end{aligned}
+\end{equation}
+Dans la suite, pour économiser des parenthèses et des maux de tête, nous allons noter \( \psi(u,v)\) le nombre \( \psi(u)v\). Il n'est cependant pas question de dire que \( \psi\) est une application bilinéaire. En effet, identifier \( \aL\big( V,\aL(V,W) \big)\) à l'espace des applications bilinéaires \( V\times V\to W\) ne sert pas à grand chose pour l'instant parce qu'une telle identification a le prix de devoir prouver que toutes les propriétés des différentielles passent à travers l'identification, tâche qui est à priori (conservation de la difficulté) de la même nature que celle à laquelle nous nous attachons à présent.
+
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooHCUSooXYHuBR}
+    Soient deux espaces vectoriels normés \( V\) et \( E\) ainsi que \( \psi\in\aL\big( V,\aL(V,\eR) \big)\). Pour tout \( a\in E\) nous avons
+    \begin{equation}
+        \| a\cdot \psi \|_{\aL\big( V,\aL(V,E) \big)}= \| \psi \|_{\aL\big( V,\aL(V,\eR) \big)}\| a \|_E.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Il s'agit seulement d'un calcul :
+    \begin{subequations}
+        \begin{align}
+            \| a\cdot \psi \|&=\sup_{\| v \|=1}\| (a\cdot \psi)(v) \|_{\aL(V,E)}\\
+            &=\sup_{\| v \|=1}\sup_{\| w \|=1}\| (a\cdot\psi)(v)w \|_E\\
+            &=\sup_{\| v \|=1}\sup_{\| w \|=1}\| \big( \psi(v)w \big)a \|_E  \label{SUBEQooDVSVooFkgDQb}   \\
+            &=\sup_{\| v \|=1}\sup_{\| w \|=1}| \psi(v)w |\,\| a \|_{E} \label{SUBEQooBJQDooDyZMOy}   \\
+            &=\sup_{\| v \|=1}\| \psi(v) \|\,\| a \|\\
+            &=\| \psi \|\| a \|.
+        \end{align}
+    \end{subequations}
+    Notez que dans \eqref{SUBEQooDVSVooFkgDQb}, \( | \psi(v)w |\) est un simple réel; c'est pourquoi nous le retrouvons hors de la norme \( \| . \|_E\) dans \eqref{SUBEQooBJQDooDyZMOy}, muni d'une simple valeur absolue.
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]
+    Soient \( \psi\in\aL\big( V,\aL(V,\eR) \big)\) et une fonction continue \( f\colon V\to E\). Alors la fonction
+    \begin{equation}
+        \begin{aligned}
+            g\colon V&\to \aL\big( V,\aL(V,E) \big) \\
+            x&\mapsto f(x)\cdot \psi 
+        \end{aligned}
+    \end{equation}
+    est continue.   
+\end{lemma}
+
+\begin{proof}
+    Pour des raisons de notations, nous allons écrire \( g_x\) pour \( g(x)\). Cela étant dit nous considérons \( a\in E\), une suite \( x_k\stackrel{E}{\longrightarrow}a \) et nous calculons :
+    \begin{subequations}
+        \begin{align}
+            \| g_a-g_{x_k} \|&=\sup_{\| u \|=1}\| g_a(u)-g_{x_k}(u) \|_{\aL(V,E)}\\
+            &=\sup_{\| u \|=1}\sup_{\| v \|=1}\| g_a(u)v-g_{x_k}(u)v \|_{E}\\
+            &=\sup_{\| u \|=1}\sup_{\| v \|=1}\| f(a)\psi(u)v-f(x_k)\psi(u)v \|\\
+            &=\sup_{\| u \|=1}\sup_{\| v \|=1}\| f(a)-f(x_k) \|\big| \psi(u)v \big|\\
+            &=\big| f(a)-f(x_k) \big|\sup_{u,v}| \psi(u)v |\\
+            &=\| f(a)-f(x_k) \|\,\| \psi \|.
+        \end{align}
+    \end{subequations}
+    En prenant la limite \( k\to \infty\), et en considérant que \( f\) est continue en \( a\), nous obtenons
+    \begin{equation}
+        \lim_{k\to \infty} \| g_a-g_{x_k} \|=0.
+    \end{equation}
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]
+    Soient une application différentiable \( f\colon V\to E\) ainsi que \( \psi\in\aL\big( V,\aL(V,\eR) \big)\). Soit
+    \begin{equation}
+        \begin{aligned}
+            g\colon V&\to \aL\big(V, \aL(V,E) \big) \\
+            x&\mapsto f(x)\cdot \psi. 
+        \end{aligned}
+    \end{equation}
+    Alors \( g\) est différentiable et pour tout \( a\in V\) nous avons
+    \begin{equation}
+        dg_a(h)=df_a(h)\cdot \psi.
+    \end{equation}
+\end{lemma}
+
+Notons que nous n'avons pas \( dg_a=df_a\cdot \psi\). En effet, \( df_a\in \aL( V,W )\), de telle sorte que \( df_a\cdot\psi\in \aL\big( V,\aL\big( V,\aL(V,W) \big) \big)\). Les espaces ne s'emboîtent pas dans le bon ordre.
+
+\begin{proof}
+    Il s'agit de vérifier que \( h\mapsto df_a(h)\cdot \psi\) vérifie la condition de la définition \ref{DefDifferentiellePta}. En utilisant le fait que \( (a+b)\cdot \psi = a\cdot \psi+b\cdot \psi\) ainsi que le lemme \ref{LEMooHCUSooXYHuBR} nous écrivons
+    \begin{subequations}
+        \begin{align}
+            \frac{ \| f(a+h)\cdot \psi-f(a)\cdot\psi-df_a(h)\cdot \psi\|  }{ \| h \| }&=\| \frac{ f(a+h)-f(a)-df_a(h) }{ h  }\cdot \psi\| \\
+            &=\| \frac{ f(a+h)-f(a)-df_a(h) }{ h } \|\| \psi \|.
+        \end{align}
+    \end{subequations}
+    Vu que \( f\) est différentiable en \( a\) et que \( df_a\) est la différentielle, nous avons bien
+    \begin{equation}
+        \lim_{h\to 0}  \| \frac{ f(a+h)-f(a)-df_a(h) }{ h } \|\| \psi \|=0.
+    \end{equation}
+\end{proof}
+
+
+\begin{proof}
+    Nous faisons \ref{ITEMooUWEBooSzFseN} par récurrence. D'abord \( \dim(E_0)=\dim(E)\) et ensuite
+    \begin{equation}
+        \dim(E_{k+1})=\dim\aL(V,E_k)=\dim(V)\dim(E_k)=\dim(V)^{n+1}\dim(E).
+    \end{equation}
+    
+    Pour \ref{ITEMooFMKQooFSMpgF}, si \( \{ e_i \}\) est une base de \( V\), un élément \( \omega\in \aL^n(V,E)\) est déterminé par les valeurs de \( \omega(e_{i_1},\ldots, e_{i_n})\) qui peuvent être n'importe quel vecteur de \( E\). Donc la dimension est \( \dim(V)^n\dim(E)\).
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]
+    Soit \( n\in \eN\) nous définissons par récurrence
+    \begin{equation}
+        \begin{aligned}
+            \psi_{n,0}\colon E_n&\to E_n \\
+            \alpha&\mapsto \alpha. 
+        \end{aligned}
+    \end{equation}
+    et
+    \begin{equation}
+        \begin{aligned}
+            \psi_{n,k}\colon E_n&\to \aL^k(V,E_{n-k}) \\
+            \psi_{n,k}(\alpha)(v_1,\ldots, v_k)&=\big( \psi_{n,k-1}(\alpha)(v_1,\ldots, v_{k-1}) \big)v_k. 
+        \end{aligned}
+    \end{equation}
+    L'application
+    \begin{equation}
+        \psi_{n,n}\colon E_n\to \aL^n(V,E) 
+    \end{equation}
+    est un isomorphisme isométrique.
+\end{lemma}
+
+\begin{proof}
+    Nous allons démontrer par récurrence sur \( k\) que tous les \( \psi_{n,k}\) sont des isomorphismes isométriques. Pour \( k=1\) c'est évident parce que \( \psi_{n,1}\) est l'identité.
+
+    \begin{subproof}
+        \item[Injective]
+            Soient \( \alpha\in E_n\) tels que \( \psi_{n,k+1}(\alpha)=O\). Cela signifie que pour tout \( v_1,\ldots, v_{k+1}\) nous avons
+            \begin{equation}
+                \psi_{n,k}(\alpha)(v_1,\ldots, v_k)v_{k+1}=0.
+            \end{equation}
+            c'est à dire \( \psi_{n,k}(\alpha)(v_1,\ldots, v_{k}=0)\). Vu que \( \psi_{n,k}\) est injective (hypothèse de récurrence), nous avons \( \alpha=0\).
+
+        \item[Surjective]
+            Soit \( \omega\in \aL^{k+1}(V,E_{n-k})\); nous cherchons \( \alpha\in E_n\) tel que \( \psi_{n,k+1}(\alpha)=\omega\). Cette condition s'exprime
+            \begin{equation}        \label{EQooACUOooKCKame}
+                \psi_{n,k+1}(\alpha)(v_1,\ldots, v_{k+1})=\psi_{n,k}(\alpha)(v_1,\ldots, v_k)v_{k+1}=\stackrel{!}{=}\omega(v_1,\ldots, v_{k+1}).
+            \end{equation}
+            Notez que
+            \begin{equation}
+                \psi_{n,k}(\alpha)\in \aL^k(V,E_{n-k})=\aL^k\big( V,\aL(V,E_{n-k-1}) \big).
+            \end{equation}
+            En considérant \( \sigma\in \aL^k\big( V,\aL(V,E_{n-k-1}) \big)\) donné par
+            \begin{equation}
+                \sigma(v_1,\ldots, v_k)v_{k+1}=\omega(v_1,\ldots, v_{k+1}),
+            \end{equation}
+            il existe (hypothèse de récurrence sur \( k\)) un \( \alpha\in E_n\) tel que \( \psi_{n,k}(\alpha)=\sigma\).
+
+            Pour ce \( \alpha\), la condition \eqref{EQooACUOooKCKame} est satisfaite.
+
+        \item[Isométrique]
+            Encore une fois par récurrence. Soit \( \alpha\in E_n\). Nous avons
+            \begin{subequations}
+                \begin{align}
+                    \| \psi_{n,k}(\alpha) \|_{\aL^k(V,E_{n-k})}&=\sup_{\| v_i \|=1}\| \psi_{n,k}(\alpha)(v_1,\ldots, v_k) \|_{E_{n-k}}\\
+                    &=\sup_{\| v_i \|=1}\| \psi_{n,k-1}(\alpha)(v_1,\ldots, v_{k-1})v_k \|_{E_{n-k}}\\
+                    &=\sup_{\substack{\| v_i \|=1\\i=1,\ldots, k-1}}\| \psi_{n,k-1}(v_1,\ldots, v_{k-1}) \|_{\aL(V,E_{n-k-1})}\\
+                    &=\| \psi_{n,k-1}(\alpha) \|\\
+                    &=\| \alpha \|.
+                \end{align}
+            \end{subequations}
+            La dernière égalité est l'hypothèse de récurrence. Notez la subtile utilisation du lemme \ref{LEMooQLVAooICaPvR} qui permet de donner un sens aux supremums, grace au fait que \( \{ v\in V\tq \| v \|=1 \}\) est compact.
+    \end{subproof}
+\end{proof}
+
+L'application \( \psi_{n,n}\) est l'application inverse de l'isomorphisme \( \phi_n\) donné dans le lemme \ref{LEMooTDLNooTcPkLg}.
+
+
+
+\begin{lemma}       \label{LEMooFBEGooCqrzxH}
+    Nous avons \( \psi_{n,n}=\phi_n^{-1}\).
+\end{lemma}
+
+\begin{proof}
+    Pour nous échauffer nous posons \( \omega\in\aL^n(V,\eR)\), et nous calculons
+    \begin{subequations}        \label{EQooPBQIooUValDA}
+        \begin{align}
+            \psi_{n,2}\big( \phi_n(\omega) \big)(v_1,v_2)&=\Big( \psi_{n,1}\big( \phi_n(\omega) \big)v_1 \Big)v_2\\
+            &=\big( \phi_n(\omega)v_1 \big)v_2\\
+            &=\phi_{n-1}\big( \pr_{v_1}(\omega) \big)\\
+            &=\phi_{n-2}\big( \pr_{v_2}\pr_{v_1}(\omega) \big).
+        \end{align}
+    \end{subequations}
+    Cela étant dit, nous allons prouver ceci par récurrence :
+    \begin{equation}
+        \psi_{n,k}\big( \phi_n(\omega) \big)(v_1,\ldots, v_k)=\phi_{n-k}\Big( \prod_{i=1}^k\pr_{v_i}(\omega) \Big).
+    \end{equation}
+    Notez l'ordre du produit des projections. En ce qui concerne cet ordre, pour fixer les idées voici un exemple :
+    \begin{equation}
+        \pr_{v_2}\pr_{v_1}(\omega)=\big( \pr_{v_1}(\omega) \big)(v_2)=\omega(v_1,v_2).
+    \end{equation}
+    
+    Faisons maintenant la récurrence.
+    \begin{subproof}
+        \item[Pour \( k=2\)]
+            C'est le calcul \eqref{EQooPBQIooUValDA}.
+        \item[Pour \( k+1\)]
+            C'est encore un calcul, en faisant attention à l'ordre dans lequel viennent les projections :
+            \begin{subequations}
+                \begin{align}
+                    \psi_{n,k+1}\big( \phi_n(\omega) \big)(v_1,\ldots, v_{k+1})&=\Big( \psi_{n,k}\big( \phi_n(\omega) \big)(v_1,\ldots, v_k) \Big)v_{k+1}\\
+                    &=\Big( \phi_{n-k}\big( \prod_{i=1}^k\pr_{v_i}(\omega) \big) \Big)v_{k+1}\\
+                    &=\phi_{n-k-1}\big( \pr_{v_{k+1}}\prod_{i=1}^k\pr_{v_i}(\omega) \big)\\
+                    &=\phi_{n-(k+1)}\big( \prod_{i=1}^{k+1}\pr_{v_i}(\omega) \big).
+                \end{align}
+            \end{subequations}
+    \end{subproof}
+    Il ne reste qu'à écrire la formule démontrée avec \( k=n\) :
+    \begin{equation}
+        \psi_{n,n}\big( \phi_n(\omega) \big)(v_1,\ldots, v_n)=\phi_{n-n}\big( \prod_{i=1}^n\pr_{v_i(\omega)} \big)=\omega(v_1,\ldots, v_n).
+    \end{equation}
+    Donc nous avons bien que \( \psi_{n,n}\big( \phi_n(\omega) \big)=\omega\).
+\end{proof}
+
+\begin{lemma}
+    Soient deux espaces vectoriels normés \( V\) et \( E\). Nous considérons une application linéaire \( A\colon V\to E\), une forme \( \omega\in\aL^n(V,\eR)\) ainsi que la forme
+    \begin{equation}
+        \begin{aligned}
+            \alpha\colon V&\to E_n \\
+            u&\mapsto A(u)\psi^{-1}(\omega).
+        \end{aligned}
+    \end{equation}
+    Alors
+    \begin{equation}
+        \psi_{n+1,n+1}(\alpha)(v_1,\ldots, v_{n+1})=A(v_1)\omega(v_2,\ldots, v_{n+1}).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Nous prouvons la formule suivante par récurrence :
+    \begin{equation}
+        \psi_{n+1,k}(\omega)(v_1,\ldots, v_k)=A(v_1)\phi_{n-k+1}\big( \prod_{i=2}^k\pr_{v_i}(\omega) \big).
+    \end{equation}
+    Nous commençons la récurrence avec \( k=2\), en tenant compte que \( \psi^{-1}=\phi_n\) (lemme \ref{LEMooFBEGooCqrzxH}) :
+    \begin{subequations}
+        \begin{align}
+            \psi_{n+1,2}(\alpha)(v_1,v_2)&=\big( \psi_{n+1,1}(\alpha)v_1 \big)v_2\\
+            &=\alpha(v_1)v_2\\
+            &=A(v_1)\big( \psi^{-1}(\omega)v_2 \big)\\
+            &=A(v_1)\big( \phi_n(\omega)v_2 \big)\\
+            &=A(v_1)\phi_{n-1}\big( \pr_{v_2}(\omega) \big).
+        \end{align}
+    \end{subequations}
+    C'est bon pour \( k=2\). Nous passons à la récurrence :
+    \begin{subequations}
+        \begin{align}
+            \psi_{n+1,k+1}(\omega)(v_1,\ldots, v_{k+1})&=\big( \phi_{n+1,k}(\omega)(v_1,\ldots, v_k) \big)v_{k+1}\\
+            &=A(v_1)\Big( \phi_{n-k+1}\big( \prod_{i=2}^k\pr_{v_i}\omega \big) \Big)v_{k+1}\\
+            &=A(v_1)\phi_{n-k}\big( \pr_{v_{k+1}}\prod_{i=2}^k\pr_{v_i}\omega \big)\\
+            &=A(v_1)\phi_{n-(k+1)}\big( \prod_{i=2}^{k+1}\pr_{v_i}\omega \big).
+        \end{align}
+    \end{subequations}
+    La récurrence est terminée. Nous écrivons la formule pour \( k=n+1\) en tenant compte de \( \phi_0=\id\) pour terminer la preuve de ce lemme :
+    \begin{equation}
+        \psi_{n+1,n+1}(\omega)(v_1,\ldots, v_{n+1})=A(v_1)\phi_0\big( \prod_{i=2}^{n+1}\pr_{v_i}\omega \big)=A(v_1)\omega(v_2,\ldots, v_{n+1}).
+    \end{equation}
+\end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Identification des espaces d'applications multilinéaires}
+\subsection{Identification des espaces d'applications multilinéaires (vieux)}
 %---------------------------------------------------------------------------------------------------------------------------
+\label{SUBSECooXBGUooXYFZjy}
+
+\begin{probleme}        \label{PROBooDLAWooLqHDPs}
+    Les choses dites en \ref{SUBSECooXBGUooXYFZjy} sont obsolètes par le lemme \ref{LEMooSMZQooJBVySP}. Il faut soit les retirer soit les déplacer.
+\end{probleme}
 
 La différentielle de la différentielle de $f$ est notée
 \[
@@ -536,28 +1479,11 @@ Plus précisément, l'identification se fait de la façon suivante : si \( \omeg
 \begin{equation}
     \omega(u_1,\ldots, u_{k+1})=\omega(u_1)(u_2,\ldots, u_{k+1}).
 \end{equation}
-
-Cela étant posé nous pouvons donner les définitions.
+Cela étant posé nous pouvons donner des définitions.
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Fonctions différentiables plusieurs fois}
 %---------------------------------------------------------------------------------------------------------------------------
-
-\begin{definition}[\cite{ZCKMFRg}]  \label{DefPNjMGqy}
-    La fonction \( f\colon \mO\subset V\to W\) est
-    \begin{enumerate}
-        \item
-            de classe \( C^0\) si elle est continue,
-        \item
-            de classe \( C^1\) si \( df\colon \mO\to \aL(V,W)\) est continue,
-        \item
-            de classe \( C^k\) si \( d^kf\colon \mO\to \aL^{(k)}(V,W)\) est continue,
-        \item
-            de classe \(  C^{\infty}\) si \( f\) est dans \( \bigcap_{k=0}^{\infty}C^k(V,W)\).
-    \end{enumerate}
-\end{definition}
-\index{application!différentiable}
-\index{application!de classe \( C^k\)}
 
 \begin{definition}
     Un \defe{\( C^k\)-difféomorphisme}{difféomorphisme!de classe $C^k$} est une application inversible de classe \( C^k\) dont l'inverse est également de classe \( C^k\).
@@ -583,14 +1509,7 @@ Cela étant posé nous pouvons donner les définitions.
 \subsection{Différentielle seconde, fonction de classe \texorpdfstring{$ C^2$}{C2}}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Une condition nécessaire et suffisante pour l'existence de la différentielle seconde est la suivante
-\begin{proposition}
-   Soit $U$ un ouvert de $\eR^m$ et  $f:U\subset\eR^m\to \eR^n$ une fonction. La fonction $f$ est deux fois différentiable au point $a$ si et seulement si les dérivées partielles $\partial_1 f, \ldots, \partial_m f $ sont différentiables en $a$.
-\end{proposition}
-Cela veut dire, en particulier, que $f$ est deux fois différentiable si et seulement si ses dérivées partielles secondes, $\partial_i\partial_j f$, pour tout couple d'indices $i,j$  dans $\{1,\ldots, m\}$, existent et sont continues. Pour les différentielles d'ordre supérieur on a la proposition suivante.
-
 La différentielle seconde dans l'exemple ~\ref{bilin_2diff} est symétrique, c'est-à-dire que $d^2f(a)(x_1,x_2)=d^2f(a)(x_2,x_1)$. En fait toute différentielle seconde est symétrique.
-
 
 \begin{theorem}[Schwarz]\label{Schwarz}
  Soit $U$ un ouvert de $\eR^m$ et  $f:U\subset\eR^m\to \eR^n$ une fonction de classe $\mathcal{C}^2$. Alors, pour tout couple $i,j$ d'indices dans $\{1,\ldots, m\}$ et pour tout point $a$ dans $U$, on a
@@ -633,7 +1552,7 @@ En appliquant encore une fois le théorème des accroissements finis on a
  \begin{equation}
   \partial_2\partial_1f(x+t_1h, y+s_1g) = \partial_1\partial_2 f(x+s_2h, y+t_2g).
 \end{equation}
-Il suffit maintenant de passer à la limite pour $(h,g) \to (0,0)$ et de se souvenir du fait que $f$ est $\mathcal{C}^2$ seulement si ses dérivées partielles secondes sont continues pour avoir $\partial_2\partial_1f(v)=\partial_1\partial_2 f(v)$.
+Il suffit maintenant de passer à la limite pour $(h,g) \to (0,0)$ et de se souvenir du fait que $f$ est $\mathcal{C}^2$ seulement si ses dérivées partielles secondes sont continues\footnote{Théorème \ref{THOooPZTAooTASBhZ}.} pour avoir $\partial_2\partial_1f(v)=\partial_1\partial_2 f(v)$.
 \end{proof}
 Si $f$ est deux fois différentiable $d^2f(a)$ est l'application bilinéaire associée avec la matrice symétrique
 \begin{equation}
@@ -655,9 +1574,13 @@ Cette matrice est dite la matrice \defe{hessienne}{hessienne} de $f$.
   \end{subequations}
   Ceci est vite fait en appliquant le théorème de Schwarz,~\ref{Schwarz}; ce que nous trouvons est
 \[
-\partial_y (\partial_xf)= 0\neq \partial_x(\partial_yf)= 6.
+\partial_y (\partial_xf)= 0
 \]
-Donc, l'existence d'une fonction $f$ de classe $\mathcal{C}^2$ telle que $\partial_x(x,y)= 5\sin x$ et $\partial_yf(x,y)=6x+y$ serait en contradiction avec le théorème.
+alors que
+\begin{equation}
+ \partial_x(\partial_yf)= 6.
+\end{equation}
+Vu que \( \partial_x(\partial_yf)\neq \partial_y(\partial_xf)\), le théorème \ref{Schwarz} dit que \( f\) ne peut pas être de classe \( C^2\).
 \end{example}
 
 Soit une fonction de classe \( C^2\) \( f\colon V\to \eR\) où \( V\) est un espace vectoriel de dimension \( n<\infty\). Nous avons
@@ -779,13 +1702,8 @@ Enfin pour celles qui aiment les notations matricielles de tout poil, il y a cet
 \subsection{Ordre supérieur}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Intuitivement, une fonction est de classe \( C^p\) si elle est \( p\) fois continûment différentiable. Nous posons la définition suivante.
+Intuitivement, une fonction est de classe \( C^p\) si elle est \( p\) fois continûment différentiable. Cela est la définition \ref{DefPNjMGqy}.
 
-\begin{definition}
-    Une fonction \( f\colon E\to F\) est \defe{de classe \( C^0\)}{classe \( C^0\)} si elle est continue.
-
-    Nous disons que la fonction \( f\colon E\to F\) est \defe{de classe \( C^p\)}{classe \( C^p\)} si elle est différentiable et si sa différentielle \( df\colon E\to \aL(E,F)\) est continue.
-\end{definition}
 
 Ce qui est terrible avec les différentielles d'ordre supérieurs, c'est l'emboîtement des espaces. Pour une fonction \( f\colon E\to F\), nous allons souvent poser
 \begin{subequations}
@@ -835,7 +1753,7 @@ La proposition suivante lie une bonne fois pour toute dérivée et différentiel
     En plusieurs parties et par récurrence.
     \begin{subproof}
     \item[Si \( f\) est continûment dérivable, alors \( f\) est \( C^1\) ]
-        Le candidat différentielle serait \( df_a(h)=hf'(a)\). Vérifions cela directement dans la définition :
+        Nous montrons que l'application \( T\) donnée par \( T(h)=hf'(a)\) vérifie la condition pour être la différentielle de \( f\) en \( a\) :
         \begin{equation}        \label{EQooCPWKooWdgbED}
             \frac{ f(a+h)-f(a)-f'(a)h }{ \| h \| }=\frac{ f(a+h)-f(a) }{ \| h \| }-1_h'f(a).
         \end{equation}
@@ -933,11 +1851,6 @@ au point \( x\) appliquée à \( v^{(1)}\) appliquée au point \( v^{(2)}\), \ld
         (d^3f)_x(h,h,h)=\sum_{ijk}h_ih_jh_k(\partial^3_{ijk}f)(x).
     \end{equation}
 \end{normaltext}
-
-\begin{proposition}[Dérivées partielles et fonctions \( C^k\)] \label{PropDYKooHvrfGw}
-    Soit $U$ un ouvert de $\eR^m$ et  $f:U\subset\eR^m\to \eR^n$. La fonction $f$ est de classe $C^k$ si et seulement si les dérivées partielles $\partial_1 f, \ldots, \partial_m f $ existent et sont de classe $C^{k}$.
-\end{proposition}
-% TODO : une preuve serait importante.
 
 \begin{proposition}[\cite{MonCerveau}]
     Soient des espaces vectoriels \( E\),  \( V\) et \( W\) de dimension fine, et une fonction \( f\colon E\to V\) de classe \( C^p\). Si \( \varphi\colon V\to W\) est linéaire, alors

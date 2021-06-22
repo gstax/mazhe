@@ -7,7 +7,7 @@
 \section{Fonctions holomorphes}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-La dérivée complexe est discutée à la section~\ref{SECooJWNOooOgMiWR}.
+La dérivée complexe est discutée à la section~\ref{SECooJWNOooOgMiWR}, et la définition d'une fonction holomorphe est \ref{DefMMpjJZ}.
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Équations de Cauchy-Riemann}
@@ -93,7 +93,7 @@ Les équations \eqref{EqmblExI} sont les équations de \defe{Cauchy-Riemann}{Cau
 \end{proposition}
 
 \begin{proof}
-    Soit \( f(x+iy)=f_1(x,y)+if_2(x,y)\) une fonction holomorphe. Les fonctions réelles \( f_1\) et \( f_2\) sont assujetties aux équations de Cauchy-Riemann de la proposition~\ref{PropkwIQwg} :
+    Soit \( f(x+iy)=f_1(x,y)+if_2(x,y)\) une fonction holomorphe\footnote{Définition \ref{DefMMpjJZ}.}. Les fonctions réelles \( f_1\) et \( f_2\) sont assujetties aux équations de Cauchy-Riemann de la proposition~\ref{PropkwIQwg} :
     \begin{subequations}
         \begin{numcases}{}
             \partial_xf_1=\partial_yf_2\\
@@ -271,7 +271,7 @@ Les équations \eqref{EqmblExI} sont les équations de \defe{Cauchy-Riemann}{Cau
         \item
             La fonction \( \Ind_{\gamma}\) est continue et prend effectivement des valeurs entières.
         \item
-            La fonction indice est constante sur chaque composante connexe de \( \eC\setminus \gamma\) et est nulle sur la composante non bornée.
+            La fonction indice est constante sur chaque composante connexe\footnote{Définition \ref{DEFooFHXNooJGUPPn}.} de \( \eC\setminus \gamma\) et est nulle sur la composante non bornée.
     \end{enumerate}
 \end{propositionDef}
 
@@ -364,14 +364,6 @@ Cette sous-section veut prouver le théorème de Cauchy. Comme d'habitude, une r
     ce qu'il fallait.
 \end{proof}
 
-\begin{definition}
-    Une fonction \( f\colon \Omega\to \eC\) est \defe{$\eC$-analytique}{analytique!au sens complexe} sur \( \Omega\) si pour tout \( z_0\in\Omega\), il existe une suite complexe \( (c_n)\) et \( r>0\) tels que
-    \begin{equation}
-        f(z)=\sum_{n=0}^{\infty} c_n(z-z_0)^n
-    \end{equation}
-    pour tout \( z\in B(z_0,r)\).
-\end{definition}
-
 \begin{theorem}     \label{ThomcPOdd}
     Soient \( \Omega\) ouvert dans \( \eC\) et \( f\) holomorphe sur \( \Omega\). Soient encore \( z_0\in \Omega\) et \( r_0\) tels que \( B(z_0,r_0)\subset \Omega\). Alors :
     \begin{enumerate}
@@ -390,7 +382,7 @@ Cette sous-section veut prouver le théorème de Cauchy. Comme d'habitude, une r
         En particulier \( f\) est infiniment dérivable.
     \end{enumerate}
 \end{theorem}
-\index{série!entière!fonctions holomorphes}
+\index{série entière!fonctions holomorphes}
 
 \begin{proof}
     Soit \( r>0\) tel que \( | z-z_0 |<r<r_0\). La formule de Cauchy (théorème~\ref{ThoUHztQe}) nous dit que
@@ -431,6 +423,19 @@ Cette sous-section veut prouver le théorème de Cauchy. Comme d'habitude, une r
         a_n=\frac{ f^{(n)}(z_0) }{ n! }.
     \end{equation}
 \end{proof}
+
+
+\begin{probleme}
+    L'énoncé du corolaire \ref{CORooJISDooFgwOPh} n'est peut-être pas précis.
+\end{probleme}
+
+\begin{corollary}       \label{CORooJISDooFgwOPh}
+    Si le développement de \( f\) autour de \( 0\) est
+    \begin{equation}
+        f(z)=\sum_{n\in \eZ}a_nz^n,
+    \end{equation}
+    alors \( a_0=f(0)\) et \( a_1=f'(0)\).
+\end{corollary}
 
 \begin{corollary}       \label{CorwfHtJu}
     Soit \( f\) une fonction continue sur un ouvert \( \Omega\) telle que pour toute boule \( B(a,r)\) contenue dans \( \Omega\), nous ayons
@@ -475,7 +480,7 @@ Le fait qu'une fonction holomorphe soit \(  C^{\infty}\) comme dit dans la propo
     \begin{equation}
         | g(t,z+\epsilon_i)-g(t,z) |\leq \sup_{\xi\in\mathopen[ z , z+\epsilon_i \mathclose]}\| dg_{\xi} \|\| \epsilon_i \|.
     \end{equation}
-    Vu que \( z\) est fixé et que \( \xi\) est dans le compact \( \mathopen[ z , z+\epsilon_i \mathclose]\) et que \( dg\) est continue (parce que la \( \eC\)-dérivabilité implique la continuité de la différentielle parce que nous avons l'analycité par le théorème~\ref{ThomcPOdd}), nous pouvons majorer \( \| dg_{\xi} \|\) par une constante \( M_i(z)\) qui dépend a priori de \( i\) et de \( z\).
+    Vu que \( z\) est fixé et que \( \xi\) est dans le compact \( \mathopen[ z , z+\epsilon_i \mathclose]\) et que \( dg\) est continue (parce que la \( \eC\)-dérivabilité implique la continuité de la différentielle parce que nous avons l'analycité par le théorème~\ref{ThomcPOdd}), nous pouvons majorer \( \| dg_{\xi} \|\) par une constante \( M_i(z)\) qui dépend à priori de \( i\) et de \( z\).
 
     Heureusement, nous pouvons prendre a fortiori le supremum sur \( \overline{ B(z,|\epsilon_i|) }\) (qui est tout autant compact) et supposer que \( | \epsilon_i |\) est strictement décroissante; de toutes façons, il y a un maximum parce que \( | \epsilon_i |\to 0\). Dans ce cas, il suffit de prendre le supremum de \( \| dg_{\xi} \|\) pour \( \xi\in \overline{ B(z,| \epsilon_1 |) }\) et ça contente tout le monde.
 
@@ -564,64 +569,15 @@ Pour d'autres versions du théorème de Brouwer, voir la sous-section~\ref{subSe
             (s,t)&\mapsto \gamma_s(t)=(g\circ x_s)(t).
         \end{aligned}
     \end{equation}
-    Nous avons \( g(0)\neq 0\) parce que \( g\) prend ses valeurs sur le bord. Vu que c'est une équivalence d'homotopie\footnote{Définition~\ref{DefECnFJQp}} entre \( \gamma_1\) et \( \gamma_2\), les indices devraient être égaux par le corollaire~\ref{CorGZXzuZR}.
+    Nous avons \( g(0)\neq 0\) parce que \( g\) prend ses valeurs sur le bord. Vu que c'est une équivalence d'homotopie\footnote{Définition~\ref{DefECnFJQp}} entre \( \gamma_1\) et \( \gamma_2\), les indices devraient être égaux par le corolaire~\ref{CorGZXzuZR}.
 \end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Principe des zéros isolés}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{theorem}[Principe des zéros isolés \cite{Holomorphieus}]     \label{ThoukDPBX}
-    Soient \( f\) une fonction holomorphe et \( a\), une zéro non isolé de \( f\). Alors \( f\) est nulle sur un voisinage de \( a\).
-\end{theorem}
-\index{principe!zéros isolés}
-
-\begin{proof}
-    Nous écrivons \( f\) sous la forme d'une série entière\footnote{Possible par le théorème \ref{ThomcPOdd} parce que \( f\) est holomorphe.} autour de \( a\) :
-    \begin{equation}        \label{EqgrvfVl}
-        f(z)=\sum_{n=0}^{\infty}c_n(z-a)^n
-    \end{equation}
-    valable sur une boule \( B(a,r)\). Soit \( c_m\) le premier coefficient non nul (si il n'existe pas c'est que \( f\) est nulle sur tout \( B(a,r) \) et alors le théorème est prouvé). Nous avons alors
-    \begin{equation}
-        f(z)=c_m(z-a)^m\big( 1+\sum_{k=1}^{\infty}d_k(z-a)^k \big)
-    \end{equation}
-    avec \( d_k=c_{k+m}/c_m\). Le rayon de convergence de la série \( \sum_k d_k(z-a)^k\) est le même que celui de \eqref{EqgrvfVl} parce que la suite \( \frac{ d_kr^{m+k} }{ c_m }\) reste bornée (critère d'Abel, lemme~\ref{LemmbWnFI}). Si nous posons
-    \begin{equation}
-        g(z)=1+\sum_{k=1}^{\infty}d_k(z-a)^k,
-    \end{equation}
-    alors \( g\) est une fonction continue et \( g(a)=1\). De plus
-    \begin{equation}
-        f(z)=c_m(z-a)^mg(z).
-    \end{equation}
-
-    Soit une suite \( (z_n)\) de zéros de \( f\) qui converge vers \( a\). Étant donné que \( g\) est continue, nous devrions avoir \( \lim_{k\to\infty}g(z_k)=g(a)=1\), mais si \( f(z_k)=0\) avec \( z_k\neq a\), alors \( g(z_k)=0\). Cela est un paradoxe qui nous permet de conclure que si la suite \( z_n\) existe bien, alors \( f\) est identiquement nulle sur un voisinage, c'est-à-dire que tous les \( c_n\) sont nuls.
-\end{proof}
-
-\begin{corollary}       \label{CORooFBXXooZyfUQi}
-    Soit \( f\) une fonction holomorphe sur un ouvert connexe \( \Omega\). Si \( f\) s'annule sur un ouvert (non vide) de \( \Omega\), alors \( f\) s'annule sur tout \( \Omega\).
-\end{corollary}
-\index{connexité!fonction holomorphe}
-
-\begin{proof}
-    soit
-    \begin{equation}
-        N=\{ z\in \Omega\tq f=0\text{ sur un ouvert autour de }z \}.
-    \end{equation}
-    Le fait que \( N\) soit ouvert est évident à partir de sa définition. Nous allons montrer que \( N\) est également fermé dans \( \Omega\), et donc conclure que \( N=\Omega\). Soit \( (z_n)\) une suite dans \( N\) convergente vers \( z\in \Omega\). Étant donné que \( f(z_n)=0\) et que \( f\) est continue, nous avons
-    \begin{equation}
-        f(z)=\lim_{n\to \infty} f(z_n)=0,
-    \end{equation}
-    ce qui fait de \( z\) un zéro non isolé de \( f\). Par conséquent le principe des zéros isolés (théorème~\ref{ThoukDPBX}) nous enseigne que \( f\) s'annule dans un voisinage autour de \( z\), c'est-à-dire que \( z\in N\). L'ensemble \( N\) est donc fermé.
-\end{proof}
-
-\begin{definition}
-    Si \( K\) est un compact de \( \eC\), nous disons qu'une fonction est \defe{holomorphe}{holomorphe!sur un compact} sur \( K\) si il existe un ouvert contenant \( K\) sur lequel \( f\) est holomorphe.
-
-    Et si \( f\) n'est réellement définie que sur \( K\), elle est holomorphe sur \( K\) si il existe une extension holomorphe de \( f\) vers un ouvert contenant \( K\).
-\end{definition}
-
 \begin{lemma}   \label{LEMooYYZQooClmOgG}
-    Si \( f\) est une fonction holomorphe sur le compact \( K\), alors il existe une fonction polynôme \( P_f\) et une fonction holomorphe \( h_f \) ne s'annulant pas sur \( K\) telles que \( f=h_fP_f \).
+    Si \( f\) est une fonction holomorphe\footnote{Définition \ref{DEFooQSMCooOoWVZk}.} sur le compact \( K\), alors il existe une fonction polynôme \( P_f\) et une fonction holomorphe \( h_f \) ne s'annulant pas sur \( K\) telles que \( f=h_fP_f \).
 \end{lemma}
 
 \begin{proof}
@@ -630,7 +586,7 @@ Pour d'autres versions du théorème de Brouwer, voir la sous-section~\ref{subSe
     \begin{subproof}
     \item[Quantité finie de racines]
 
-    D'abord \( f\) ne peut s'annuler qu'un nombre fini de fois sur \( K\). Sinon, on pourrait considérer une suite des racines\quext{Notez l'utilisation de la proposition~\ref{PROPooBYKCooGDkfWy} que je vous invite à ne pas considérer comme une trivialité absolue.} de \( f\) dans \( K\). Vu qu'une suite dans un compact contient une sous-suite convergente (théorème~\ref{ThoBWFTXAZNH}), la fonction \( f\) aurait un point d'accumulation de racines. Alors le principe des zéros isolés (théorème~\ref{ThoukDPBX}) nous donne un ouvert sur lequel \( f\) est nulle et donc le corollaire~\ref{CORooFBXXooZyfUQi} nous dit que \( f\) est identiquement nulle.
+    D'abord \( f\) ne peut s'annuler qu'un nombre fini de fois sur \( K\). Sinon, on pourrait considérer une suite des racines\quext{Notez l'utilisation de la proposition~\ref{PROPooBYKCooGDkfWy} que je vous invite à ne pas considérer comme une trivialité absolue.} de \( f\) dans \( K\). Vu qu'une suite dans un compact contient une sous-suite convergente (théorème~\ref{ThoBWFTXAZNH}), la fonction \( f\) aurait un point d'accumulation de racines. Alors le principe des zéros isolés (théorème~\ref{ThoukDPBX}) nous donne un ouvert sur lequel \( f\) est nulle et donc le corolaire~\ref{CORooFBXXooZyfUQi} nous dit que \( f\) est identiquement nulle.
 
 \item[Autour d'une racine]
 
@@ -968,7 +924,7 @@ Nous commençons par le lemme technique.
     \begin{equation}
         g_n(\omega)\to\frac{ \partial f }{ \partial z }(z_0,\omega).
     \end{equation}
-    De plus \( g_n\) est une fonction (de \( \omega\)) dominée par \( \frac{ 4f_K }{ r }\) qui est intégrable. Par conséquent le théorème de la convergence dominée nous indique que
+    De plus \( g_n\) est une fonction (de \( \omega\)) dominée par \( \frac{ 4f_K }{ r }\) qui est intégrable. Par conséquent le théorème de la convergence dominée\footnote{Lebesgue, théorème \ref{ThoConvDomLebVdhsTf}.} nous indique que
     \begin{equation}
         \int_{\Omega}g_n(\omega)d\mu(\omega)\to \int_{\Omega}\frac{ \partial f }{ \partial z }(z_0,\omega)d\mu(\omega),
     \end{equation}
@@ -1062,7 +1018,7 @@ Nous commençons par le lemme technique.
             L'intégrale sur \( \xi\in \partial B\) n'a pas à être effectuée explicitement : nous nous contentons de prouver qu'elle est finie.
             La fonction \( f\) est continue sur le compact \( \partial B\). Cela parce que \( B\) est une boule fermée dans l'ouvert \( \Omega\) sur lequel \( f\) est continue. Au final l'expression à droite de \eqref{EQooLQLOooKiSAKH} est bornée sur le compact \( \partial B\) et son intégrale donne un nombre fini.
 
-            Tout ceci pour invoquer le corollaire~\ref{CorTKZKwP} qui nous indique que \( g\in L^1(\eN\times \partial B)\).
+            Tout ceci pour invoquer le corolaire~\ref{CorTKZKwP} qui nous indique que \( g\in L^1(\eN\times \partial B)\).
 
             Une fois \( g\) intégrable sur l'espace produit \( \eN\times \partial B\), nous pouvons utiliser Fubini~\ref{ThoFubinioYLtPI} pour permuter les intégrales.
     \end{subproof}
@@ -1128,7 +1084,7 @@ Nous commençons par le lemme technique.
     \end{equation}
 \end{theorem}
 
-Cette théorie permet de fournir une démonstration plus technologique du corollaire~\ref{CorNxTjEj}.
+Cette théorie permet de fournir une démonstration plus technologique du corolaire~\ref{CorNxTjEj}.
 \begin{lemma}
     Si \( f\) est holomorphe sur \( \Omega\) et si \( B\) est une boule fermée dans \( \Omega\) alors pour tout \( z\in \Int(B)\) nous avons
     \begin{equation}
@@ -1175,7 +1131,7 @@ Tout ce petit monde à propos de la mesure de Radon permet également de redémo
 
 Nous nous proposons de lister les conditions que nous avons vues être équivalentes à l'holomorphie.
 
-\begin{theorem}
+\begin{theorem}         \label{THOooOGOCooUalFaG}
     Soient \( \Omega\) un ouvert de \( \eC\) et \( f\colon \Omega\to \eC\) une fonction continue. Les conditions suivantes sont équivalentes.
     \begin{enumerate}
         \item   \label{ItemOtPcTb}
@@ -1215,7 +1171,7 @@ Nous nous proposons de lister les conditions que nous avons vues être équivale
 
     L'équivalence entre~\ref{ItemEvxRSn} et~\ref{ItemOtPcTb} est la proposition~\ref{PropZOkfmO}.
 
-    L'équivalence entre~\ref{ItemOtPcTb} et~\ref{ItemVSCHtY} est d'une part le théorème~\ref{ThomcPOdd} et d'autre part le corollaire~\ref{CorwfHtJu}.
+    L'équivalence entre~\ref{ItemOtPcTb} et~\ref{ItemVSCHtY} est d'une part le théorème~\ref{ThomcPOdd} et d'autre part le corolaire~\ref{CorwfHtJu}.
 
     En ce qui concerne la dernière affirmation, si \( f\) est holomorphe en \( z_0\), alors le théorème~\ref{ThomcPOdd}\ref{ITEMooYWSOooHJtxGr} donne la série. Si au contraire nous avons la série, la proposition~\ref{PropRZCKeO} nous donne le résultat.
 \end{proof}

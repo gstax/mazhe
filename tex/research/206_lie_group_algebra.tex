@@ -1,8 +1,7 @@
 % This is part of Giulietta
-% Copyright (c) 2013-2015, 2019
+% Copyright (c) 2013-2015, 2019-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
-
 
 Here are the results which relate Lie groups and Lie algebras.
 
@@ -10,17 +9,26 @@ Here are the results which relate Lie groups and Lie algebras.
 \section{Lie algebra of a Lie group}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-\begin{propositionDef}      \label{DEFooKDCPooZOJsMD}
-    If \( G\) is a Lie group, its tangent space on at the identity is a Lie algebra. 
-    
-    This is the \defe{Lie algebra}{Lie algebra of a Lie group} is is tangent space at identity. From a notational point of view, this is written
+\begin{lemmaDef}        \label{DEFooSSDYooOwjHso}
+    Let \( G\) be a smooth Lie group and \( X\in T_eG\). The vector field \( X^L\) defined by
     \begin{equation}
-        \lG=T_eG.
+        X^L_g=dL_Xv
     \end{equation}
+    is smooth. This is the \defe{left invariant}{left invariant vector field} vector field associated with the vector \( X\in T_eG\).
+\end{lemmaDef}
+
+\begin{propositionDef}      \label{DEFooKDCPooZOJsMD}
+    Let \( G\) be a smooth Lie group. If \( X,Y\in T_eG\) we define the bracket\footnote{On the right, this is the bracket of vector fields defined in \ref{DEFooHOTOooRaPwyo}.}
+    \begin{equation}
+        [X,Y] = [X^L,Y^L]_e.
+    \end{equation}
+    The set \( T_eG\) with this bracket is a Lie algebra. This is the \defe{Lie algebra of the Lie group}{Lie algebra of a Lie group} \( G\). It will usually be denoted by \( \lG\).
+
+    The topology on \( \lG=T_eG\) is the usual one of the tangent spaces, definition \ref{}.
 \end{propositionDef}
 
 \begin{proof}
-    We know from proposition \ref{PROPooOHLQooCNetuD} that \( T_eG\) is a vector space. We have to define a Lie bracket on it. For that we use the left-invariant vector field. Let \( X\in T_eG\) and \( g\in M\) we define
+    We know from proposition \ref{PROPooEJBWooSbvypo} that \( T_eG\) is a vector space. We have to define a Lie bracket on it. For that we use the left-invariant vector field. Let \( X\in T_eG\) and \( g\in M\) we define
     \begin{equation}
         X^L_g=dL_gX
     \end{equation}
@@ -175,65 +183,6 @@ Let $\{X_1,\ldots,X_n\}$ be a basis of $\lG$ such that $X_i\in\lM$ for $1\leq i\
 is $1$ for $x_1=\ldots=x_n=0$. Thus $d\varphi_e$ is a diffeomorphism and so $\varphi$ is a locally diffeomorphic.
 \end{proof}
 
-\begin{theorem}
-Let $G$ be a Lie group whose Lie algebra is $\lG$ and $H$, a closed subgroup (not specially a \emph{Lie} subgroup) of $G$. Then there exists one and only one analytic structure on $H$ for which $H$ is a topological Lie subgroup of $G$.
-\label{tho:diff_sur_ferme}
-\end{theorem}
-
-\begin{remark}
-A \textit{topological} Lie subgroup\index{topological!Lie subgroup} is stronger that a common Lie subgroup because it needs to be a topological subgroup: it must carry \emph{exactly} the induced topology. In our definition of a Lie group, this feature doesn't appears.
-\end{remark}
-
-\begin{proof}
-   Let $\lH$ be the subspace of $\lG$ defined by
-\begin{equation}\label{eq:lH_de_G}
-  \lH=\{X\in\lG\tq \forall t\in\eR,\, e^{tX}\in H\}.
-\end{equation}
-We begin to show that $\lH$ is a subalgebra of $\lG$; i.e. to show that $t(X+Y)\in\lH$ and $t^2[X,Y]\in\lH$ if $X$, $Y\in\lH$. Remark that $X\in\lH$ and $s\in\eR$ implies $sX\in\lH$. Consider now $X$, $Y\in\lH$ and the classical formula:
-\begin{subequations}        \label{SUBEQSooASPNooZOpKRt}
-\begin{align}
-\left(  \exp(\frac{t}{n}X)\exp(\frac{t}{n}Y)  \right )^n
-                       =\exp( t(X+Y)+\frac{t^2}{2n}[X,Y]+o(\frac{1}{n^2}) ),\\
-\left(  \exp(-\frac{t}{n}X)\exp(-\frac{t}{n}Y)\exp(\frac{t}{n}X)\exp(\frac{t}{n}Y)   \right)^{n^2}
-                       =\exp\left( t^2[X,Y]+o(\frac{1}{n})\right).
-\end{align}
-\end{subequations}
-The left hand side of these equations are in $H$ for any $n$; but, since $H$ is closed, it keeps in $H$ when $n\to\infty$. The right hand side, at the limit, is just $\exp(t(X+Y))$ and $\exp(t^2[X,Y])$, which keeps in $H$ for any $t$. Thus $X+Y$ and $[X,Y]$ belong to $\lH$. The space $\lH$ is thus a Lie subalgebra of $\lG$.
-
-Let $H^*$ be the connected Lie subgroup of $G$ whose Lie algebra is $\lH$ (existence and unicity from~\ref{tho:gp_alg}). From the proof of theorem~\ref{tho:gp_alg}, we know that $H^*$ is the smallest subgroup of $G$ containing $\exp\lH$, then it is made up from products and inverses of elements of the type $e^X$ with $X\in\lH$, and thus is is included in $H$ by definition of $\lH$. So, $H^*\subset H$.
-
-We will show that if we put on $H^*$ the induced topology from $G$ and if $H_0$ denotes the identity component of $H$, then $H^*=H_0$ as topological groups. For this, we first have to show the equality as set and then prove that if $N$ is a neighbourhood of $e$ in $H^*$, then it is a neighbourhood of $e$ in $H_0$. In facts, the equality as set can be derives from this second fact. Indeed, since $H_0$ is a connected topological group, it is generated by any neighbourhood of $e$, so if one can show that any neighbourhood $N$ of $e$ in $H^*$ is a neighbourhood of $e$ in $H$, then $H^*$ is a neighbourhood of $e$ in $H_0$ and then $H_0$ should be generated by $H^*$, so that $H_0\subset H^*$ (as set). Moreover, the most general element of $H^*$ is product and inverse of $e^X$ with $X\in\lH$ and $e^X$ is connected to $e$ by the path $e^{tX}$ ($\dpt{t}{1}{0}$). Then $H^*\subset H_0$, and $H^*=H_0$ as set. Immediately, $H^*=H_0$ as topological groups from our assertion about neighbourhoods of $e$. Let us now prove it.
-
-We consider a neighbourhood $N$ of $e$ in $H^*$ and suppose that this is not a neighbourhood of $e$ in $H$. Thus there exists a sequence $c_k\in H\setminus N$ such that $c_k\to e$ in the sense of the topology on $G$. Indeed, a neighbourhood of $e$ in the sense of $H$ must contains at least a point which is not in $N$ because if we have an open set of $H$ around $e$ included in $N$, then $N$ is a neighbourhood of $e$ for $H$. So we consider a suitable sequence of such open sets around $e$ and one element not in $N$ in each of them. There is the $c_k$'s\quext{Je crois qu'on utilise l'axiome du choix.}.
-
-Using lemma~\ref{lem:decomp} with a decomposition $\lG=\lH\oplus\lM$ (i.e. $\lM$: a complementary for $\lH$ for $\lG$), one can find sequences $A_k\in\mU_m$ and $B_k\in\mU_n$ such that
-\[
-   c_k=e^{A_k}e^{B_k}.
-\]
-Here, $\mU_m$ is an open neighbourhood of $0$ in $\lM$ and $\mU_h$, an open neighbourhood of $0$ in $\lH$.
-
-As $e^{B_k}\in N$ and $c_k\in H\setminus N$, $A_k\neq 0$ and $\lim A_k=\lim B_k=0$ (because $(A,B)\to e^Ae^B$ is a diffeomorphism and $e^0e^0=e$ -- and also because all is continuous and thus has a good behaviour with respect to the limit). The set $\mU_m$ is open and bounded --this is a part of the lemma. Then there exist a sequence of positive reals numbers $r_k\in$ such that $r_kA_k\in\mU_m$ and $(r_k+1)A_k\notin\mU_m$. We know that $\mU_m$ is a bounded open subset of the vector space $\lM$, then the whole sequences $r_kA_k$ and $(r_k+1)A_k$ are in a compact domain of $\lM$. Then --by eventually considering subsequences-- there are no problems to consider limits of these sequences in $\lM$: $r_kA_k\to A\in\lM$ (not necessary in $\mU_m$). Since $A_k\to 0$, the point $A$ is the common limit of $r_kA_k\in\mU_m$ and of $(r_k+1)A_k\notin\mU_m$. Thus $A$ is in the boundary of $\mU_m$; in particular, $A\neq 0$.
-
-On the other hand, consider two integers $p,q$ with $q>0$. One can find sequences $s_k,t_k\in\eN$ and $0\leq t_k<q$ such that $pr_k=qs_k+t_k$. It is clear that
-\begin{equation}
-  \lim_{k\to\infty}\frac{t_k}{q}A_k=0,
-\end{equation}
-thus
-\[
-   \exp \frac{p}{q}A=\lim \exp\frac{pr_k}{a}A_k=\lim (\exp A_k)^{s_k},
-\]
-which belongs to $H$. By continuity, $\exp tA\in H$ for any $t\in\eR$ and finally $A\in\lH$; this contradict $A\neq 0$ so that $A\in\lM$ (because by definition, $A\in\lM$ and the sum $\lG=\lH\oplus\lM$ is direct).
-
-By its definition, $H^*$ has an analytic structure of Lie subgroup of $G$; but we had just proved that the induced topology from $G$ is the one of $H_0$ which by definition is a submanifold of $G$. So the set $H_0=H^*$ becomes a submanifold of $G$ whose topology is compatible with the analytic structure: thus it is a Lie subgroup of $G$. From analyticity, this structure is extended to the whole $H$.
-
-\begin{probleme}
-Est-ce bien vrai, tout \c ca ? En particulier, je n'utilise pas que $H_0$ est ouvert dans $H$ (ce qui est un tho de topo classique : je ne vois pas pourquoi Helgason fait tout un cin\'ema --que je ne comprends pas-- dessus). En prenant $N=H^*$, on a juste d\'emontr\'e que $H_0$ est un voisinage de $e$ dans $H$, mais ça, on le savait bien avant.
-\end{probleme}
-
-The unicity part comes from the corollary~\ref{cor:top_subgroup}.
-\end{proof}
-
-
 With the notations and the structure of theorem~\ref{tho:diff_sur_ferme}, the subgroup $H$ is discrete if and only if $\lH=\{0\}$. Indeed, recall the definition \eqref{eq:lH_de_G}:
 \[
   \lH=\{X\in\lG: \forall t\in\eR, e^{tX}\in H\},
@@ -244,9 +193,7 @@ and the fact that there exists a neighbourhood of $e$ in $H$ on which the expone
 This fact should not be placed after the following lemma. In fact, we use here just the existence of normal neighbourhood (which is a common result) while the following lemma gives much more than normal neighbourhood.
 \end{remark}
 
-The lemma (without proof):
-
-\begin{lemma}
+\begin{lemma}       \label{LEMooOBIMooVvIDnb}
  Let $G$ be a Lie group and $H$, a Lie subgroup of $G$ ($\lG$ and $\lH$ are the corresponding Lie algebras). If $H$ is a topological subspace of $G$, then there exists an open neighbourhood $V$ of $0$ in $\mG$ such that
  \begin{enumerate}
  \item $\exp$ is a diffeomorphism between $V$ and an open neighbourhood of $e$ in~$G$,
@@ -790,7 +737,7 @@ Ok. This is proved for \( G=\GL(n,\eC)\), the full matrix group. What about subg
     \begin{equation}
         \phi[X,Y]f=\Dsdd{ f\big( \gamma(t) \big) }{t}{0}=\Dsdd{ \tilde f\big( \tilde \gamma(t) \big) }{t}{0}=\clubsuit.
     \end{equation}
-    At this point, notice that \( [X,Y]\in \GL(n,\eC)'\) and \( [X,Y]=\tilde \gamma'(0)\), so that if we consider \( \tilde \phi\colon \GL(n,\eC)\to T_e\GL(n,\eC)\) we also have
+    At this point, notice that \( [X,Y]\in \GL(n,\eC)'\) and \( [X,Y]=\tilde \gamma'(0)\), so that if we consider the map \( \tilde \phi\colon \GL(n,\eC)\to T_e\GL(n,\eC)\) we also have
     \begin{equation}
         \clubsuit=\Dsdd{ \tilde f\big( \tilde \gamma(t) \big) }{t}{0}=\tilde \phi[X,Y]\tilde f=\big[ \tilde \phi(X),\tilde \phi(Y) \big]\tilde f
     \end{equation}
@@ -970,6 +917,694 @@ Ont the other hand, we know that $\IntA$ is connected, so it is generated by ele
 \end{proof}
 
 More generally, if $s$ is an isomorphism from a Lie algebra $\lA$ to a Lie algebra $\lB$, then the map $g\to sgs^{-1}$ is an isomorphism between $\AutA$ and $\AutB$ which sends $\IntA$ to $\IntB$. Indeed, consider an isomorphism $\dpt{s}{\lA}{\lB}$ and $g\in\AutA$. If $g\in\IntA$, we have to see that $sgs^{-1}\in\IntB$. By definition, $\IntA$ is the analytic subgroup of $\GL(\lA)$ which has $\ad(\lA)$ as Lie algebra. We have $g=e^{\ad A}$, then $sgs^{-1}=e^{\ad(sA)}$ which lies well in $\IntB$.
+
+\section{Fundamental vector field}\label{sec:fond_vec}
+%++++++++++++++++++++++++++++++++++++
+
+\begin{definition}
+    If $\yG$ is the Lie algebra\footnote{Lie algebra of a Lie group, definition \ref{DEFooKDCPooZOJsMD}.} of a Lie group $G$ acting on a manifold $M$ (the action of $g$ on $x$ being denoted by $x\cdot g$), the \defe{fundamental vector field}{fundamental!vector field} associated with $A\in\yG$ is given by
+    \begin{equation}			\label{EqDefChmpFond}
+       A^*_x=\Dsdd{ x\cdot e^{-tA} }{t}{0}.
+    \end{equation}
+\end{definition}
+
+If the action of $G$ is transitive, the fundamental vectors at point $x\in M$ form a basis of $T_xM$. More precisely, we have the
+
+\begin{lemma}
+For any $v\in T_xM$, there exists a $A\in\yG$ such that $v=A^*_x$, in other terms
+\[
+  \Span\{ A^*_{x}\tq A\in\yG \}=T_{x}M.
+\]
+\label{LemFundSpansTan}
+\end{lemma}
+
+\begin{proof}
+The vector $v$ is given by a path $v(t)$ in $M$. Since the action is transitive, one can write $v(t)=x\cdot c(t)$ for a certain path $c$ in $G$ which fulfills $c(0)=e$. We have to show that $v$ depends only on $c'(0)\in\yG$. We consider
+\begin{equation}  \label{eq_def_RGM}
+\begin{aligned}
+ R\colon G\times M&\to M \\
+R(g,x)&= x\cdot g,
+\end{aligned}
+\end{equation}
+so
+\begin{equation}\label{eq:v_Rc}
+   v=\Dsdd{ R(c(t),x) }{t}{0}=dR_{(e,x)}\big[  (d_tc(t),x)+(c(0),x)   \big].
+\end{equation}
+
+\end{proof}
+
+\begin{lemma}\label{lem:As_Bs_A_B}
+If $A$, $B\in\yG$ are such that $A^*=B^*$, and if the action is effective, then $A=B$.
+\end{lemma}
+
+\begin{proof}
+ We consider once again the map \eqref{eq_def_RGM} and we look at
+\[
+  v=\Dsdd{ R(c(t),x) }{t}{0}
+   =(dR)_{(e,x)}\Dsdd{ (c(t),x) }{t}{0},
+\]
+keeping in mind that $c(t)=e^{-tA}$. In order to treat this expression, we define
+\begin{subequations}
+\begin{align}
+  \dpt{R_1}{G}{M},\quad  R_1(h)&=R(h,x),\\
+  \dpt{R_2}{M}{M},\quad  R_2(y)&=R(g,y).
+\end{align}
+\end{subequations}
+So
+\[
+  v=dR_1(X)+dR_2(0)=dR_1c'(0)
+\]
+and the assumption $A^*_x=B^*_x$ becomes $dR_1 A=dR_1 B$. This makes, for small enough $t$, 
+\begin{equation}
+    R_1(e^{tA}e^{-tB})=x\cdot e^{tA}e^{-tB}=x; 
+\end{equation}
+if the action is effective, it imposes $A=B$.
+\end{proof}
+
+\begin{lemma}
+If we consider the action of a matrix group, $R_g$ acts on the fundamental field by
+\[
+  dR_g(A^*_{\xi})=\big( \Ad(g^{-1})A \big)^*_{\xi\cdot g}.
+\]
+\label{lem:dRgAstar}
+\end{lemma}
+
+\begin{proof}
+Just notice that $e^{-t\Ad(g^{-1})A}=\AD_{g^{-1}}(e^{-tA})=g^{-1} e^{-tA}g$, thus
+\begin{equation}
+  \big( \Ad(g^{-1})A \big)^*_{\xi\cdot g}=\Dsdd{ \xi\cdot ge^{-t\Ad(g^{-1})A} }{t}{0}=dR_g(A^*_{\xi}).
+\end{equation}
+\end{proof}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Exponential map}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{definition}
+    A \defe{topological group}{topological!group} is a group $G$ equipped with a topological structure such that the maps $(x,y)\in G^2\to xy\in G$ and $x\in G\to x^{-1}\in G$ are continuous.
+\end{definition}
+
+\begin{remark}\label{rem:ouvert}
+From the existence of an unique inverse for any element of $G$, the multiplication and the inversion are also open maps.
+\end{remark}
+
+\begin{definition}
+    A \defe{Lie group}{Lie!group} is a group $G$ which is in the same times an manifold such that the group operations (multiplication and inverse) are smooth.
+
+    A Lie group is \defe{analytic}{analytic Lie group} if the manifold is analytic and the group operations are analytic.
+\end{definition}
+
+\begin{probleme}
+    It seems to me that every smooth Lie group is in fact an analytic Lie group \cite{BIBooIMFVooPoybEp,BIBooTKQTooGjFxwB}. I'm not sure of that, I have not a precise statement. So from now on, we suppose that every Lie group is analytic.
+
+    The reason is that we need power expansions of the exponential map.
+\end{probleme}
+
+\subsection{Invariant vector fields}\index{invariant!vector field}
+%-----------------------------------
+
+\begin{definition}[\cite{BIBooUGWHooPbodCu}]
+    If $G$ is a Lie group, a vector field $X\in\Gamma^{\infty}(TG)$ is \defe{left invariant}{left invariant!vector field} if
+    \begin{equation}
+        (dL_g) X= X,
+    \end{equation}
+    which means that for every \( g,h\in G\),
+    \begin{equation}
+        (dL_h)_gX_g=X_{hg}.
+    \end{equation}
+    In the same way, the vector field \( Y\) is \defe{right invariant}{right!invariant!vector field} if
+    \begin{equation}
+        (dR_g)Y=Y.
+    \end{equation}
+\end{definition}
+
+When \( X\in T_eG\), we define the associated left-invariant vector field \( X^L\) by
+\begin{equation}        \label{DEFooYPUIooAzcdjP}
+    X^L_g=(dL_g)_eX.
+\end{equation}
+
+\begin{theorem}[\cite{BIBooUGWHooPbodCu}]
+	The map \( \varphi\colon X\mapsto X^L\) where \( X^L_g=(dL_g)_eX\) is a bijection from \( T_eG\) to the set of left-invariant vector fields.
+\end{theorem}
+
+\begin{proof}
+    Two parts.
+    \begin{subproof}
+        \item[Surjective]
+            Let \( X\) be a left-invariant vector field. We have \( X=(X_e)^L\) because
+            \begin{equation}
+                (X_e)^L_g=(dL_g)X_e=X_g.
+            \end{equation}
+            The first equality is the definition of the left-invariant associated vector field (equation \eqref{DEFooYPUIooAzcdjP} applied to \( X_e\)) and the second equality is the fact that \( X\) is left-invariant. Thus \( X\) is the left-invariant vector field associated with \( X_e\).
+        \item[Injective]
+            Let \( X,Y\in T_eG\) be such that \( X^L=Y^L\). In particular \( X^L_e=Y^L_e\), which means \( X=Y\).
+    \end{subproof}
+\end{proof}
+
+\begin{proposition}[\cite{BIBooUGWHooPbodCu, MonCerveau}]
+    Let \( G\) be a Lie group. The map
+    \begin{equation}
+        \begin{aligned}
+            \varphi\colon G\times \lG&\to TG \\
+            (g,X)&\mapsto X^L_g 
+        \end{aligned}
+    \end{equation}
+    is a bijection.
+
+    Moreover for each \( g\in G\), the map
+    \begin{equation}
+        \begin{aligned}
+            \varphi_g\colon \lG&\to T_gG \\
+           X&\mapsto X^L_g 
+        \end{aligned}
+    \end{equation}
+    is a vector space isomorphism.
+\end{proposition}
+
+\begin{proof}
+    Several points.
+    \begin{subproof}
+        \item[\( \varphi\) is surjective]
+            Let \( X\in TG\); there is some \( g\in G\) such that \( X\in T_gG\). Since \( X=(dL_g)_e(dL_{g^{-1}})_gX\) we have
+            \begin{equation}
+                X=(dL_{g^{-1}}X)^L_g=\varphi(g,dL_{g^{-1}}X).
+            \end{equation}
+        \item[\( \varphi\) is injective]
+            If \( \varphi(g,X)=\varphi(h,Y)\), we have \( X_g^L=Y^L_h\), so that \( g=h\). The equality  \( X_g^L=Y_g^L\) means \( (dL_g)_eX=(dL_g)_eY\). Applying \( (dL_{g^{-1}})_g\) on both sides we get \( X=Y\).
+        \item[\( \varphi_g\) is bijective]
+            These are the same verifications.
+        \item[\( \varphi_g\) is linear]
+            The map \( \varphi_g\) is nothing else than \( (dL_g)_e\), so it is linear.
+    \end{subproof}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Flow and exponential}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition} \label{PROPooUXFQooIwimav}
+    Let \( \Phi\) be the flow of the left-invariant vector field \( X\). We have
+    \begin{equation}
+        \Phi(t,g)=g\Phi(t,e).
+    \end{equation}
+\end{proposition}
+
+\begin{proposition}     \label{PROPooZHBOooGTLXsi}
+    Let \( G\) be a Lie group, \( \lG\) its Lie algebra\footnote{Definition \ref{DEFooKDCPooZOJsMD}.} and \( X\in\lG\). 
+    \begin{enumerate}
+        \item
+            There exists a unique \(  C^{\infty}\) group homomorphism \( h_X\colon (\eR,+)\to G\) such that \( \Dsdd{ h_x(t) }{t}{0}=X\).
+        \item
+            The path \( h_X\) is the maximal integral curve of \( X^L\) and \( X^R\) for the initial condition \( h_X(0)=e\).
+        \item
+            The flows of \( X^L\) and \( X^R\) are defined on \( \eR\).
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+    If \( G\) is a Lie group with algebra \( \lG\), we define the \defe{exponential}{exponential from a Lie algebra} is the map
+    \begin{equation}
+        \begin{aligned}
+            \exp\colon \lG&\to G \\
+            X&\mapsto h_X(1) 
+        \end{aligned}
+    \end{equation}
+    where \( h_X\) is the homomorphism defined by the proposition \ref{PROPooZHBOooGTLXsi}. We often write \(  e^{X} \) for \( \exp(X)\).
+\end{definition}
+
+
+The following proposition is a generalization of \ref{PROPooKDKDooCUpGzE}.
+\begin{proposition}     \label{PROPooNRVJooEDCpOI}
+    If \( X\in \lG\) and \( s,t\in \eR\) we have
+    \begin{equation}
+        e^{sX} e^{tX}= e^{(s+t)X}.
+    \end{equation}
+\end{proposition}
+
+\begin{lemma}       \label{LEMooRPHVooAtZJnz}
+    Let \( G\) be a Lie group with algebra \( \lG\). If \( n\in \eN\) we have
+    \begin{equation}
+        \exp(X)^n=\exp(nX).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Apply \( n\) times the proposition \ref{PROPooNRVJooEDCpOI}.
+\end{proof}
+
+\begin{lemma}       \label{LEMooLMTZooCvunSl}
+    Let \( G\) be a Lie group and \( X\in G\). We have
+    \begin{equation}        \label{EQooNBENooPXLENs}
+        X^R_g=\Dsdd{  e^{tX}g }{t}{0}
+    \end{equation}
+    and
+    \begin{equation}
+        X^L_g=\Dsdd{  ge^{tX} }{t}{0}
+    \end{equation}
+\end{lemma}
+
+\begin{normaltext}      \label{NORMooSATDooIhwXXr}
+    We will often write the relation \eqref{EQooNBENooPXLENs} under the form
+    \begin{equation}
+        X^R_g(t)= e^{tX}g.
+    \end{equation}
+    This is a way to implies that \( t\mapsto  e^{tX}g\) is a path for the vector \( X^R_g\). It is a common abuse of notation to write the vector and a path representing the vector with the same symbol.
+\end{normaltext}
+
+\begin{proposition}     \label{PROPooYFZZooLUOuOj}
+    Let \( G\) be a Lie group. There exists a neighbourhood \( U\) of \( 0\) in \( \lG\) and a neighbourhood \( V\) of \( e\) in \( G\) such that
+    \begin{equation}
+        \exp\colon U\to V
+    \end{equation}
+    is a \(  C^{\infty}\) diffeomorphism\footnote{\( \exp\) is \(  C^{\infty}\), invertible and he inverse is \(  C^{\infty}\) as well.}.
+\end{proposition}
+
+\begin{proposition}     \label{PROPooAICDooQcmPZB}
+    Let \( G\) be an analytic Lie group. There exists a neighbourhood \( U\) of \( 0\) in \( \lG\) and a neighbourhood \( V\) of \( e\) in \( G\) such that
+    \begin{equation}
+        \exp\colon U\to V
+    \end{equation}
+    is an analytic diffeomorphism\footnote{\( \exp\) is analytic, invertible and he inverse is analytic too.}.
+\end{proposition}
+
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Invariant vector and derivation}
+%---------------------------------------------------------------------------------------------------------------------------
+
+You may want to know how the exponential can be used to write some formulas linking left-invariant vector field and derivation of functions. Here you are.
+
+\begin{normaltext}
+    Let \( X\in \lG\), \( g\in G\) and \( u\in \eR\). Let \( f\colon G\to \eR\) be a smooth function. Using the abuse of notation described in \ref{NORMooSATDooIhwXXr} and the proposition \ref{PROPooNRVJooEDCpOI},
+    \begin{subequations}
+        \begin{align}
+            (X^Lf)(g e^{uX})&=\Dsdd{ f\big( X^L_{g e^{uX}}(t) \big) }{t}{0}\\
+            &=\Dsdd{ f\big( g e^{uX} e^{tX} \big) }{t}{0}\\
+            &=\Dsdd{ f\big( g e^{(t+u)X)} \big)}{t}{0}\\
+            &=\Dsdd{ f(g e^{tX}) }{t}{u}.
+        \end{align}
+    \end{subequations}
+    The formula
+    \begin{equation}
+        (X^Lf)(g e^{uX})=\Dsdd{ f(g e^{tX}) }{t}{u}
+    \end{equation}
+    means that \( X^L\) derives \( f\) in the direction of the path \(  e^{tX}\) at right.
+\end{normaltext}
+
+\begin{normaltext}
+    By the way, we recall that, if \( f\) is a function and \( X\) a vector field, \( (Xf)\) is a new function, given by
+    \begin{equation}
+        (Xf)(a)=X_a(f).
+    \end{equation}
+    In that sense we can write combinations like \( XYf\) or \( (X^2+X)f\) where \( X\) and \( Y\) are vector fields.
+\end{normaltext}
+
+\begin{proposition}[\cite{BIBooPBAMooNcYhCM}]       \label{PROPooKSIDooVIFkiM}
+    Let \( G\) be a Lie group with Lie algebra \( \lG\). We consider \( X,Y\in \lG\) and a smooth function \( f\colon G\to \eR\). We have\quext{My source \cite{BIBooPBAMooNcYhCM} seems to write \( (X^R)^n(Y^R)^m\) instead of \( (X^R)^n(Y^L)^m\). Let me know where I'm wrong.}
+    \begin{equation}
+        \big( (X^R)^n(Y^L)^mf \big)( e^{sX} e^{tY})=\frac{ d^n }{ du^n }\frac{ d^m }{ dv^m }\Big( f( e^{uX} e^{vY}) \Big)_{\substack{u=s\\v=t}}.
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    We have to do a proof by induction on \( (n,m)\). We start with \( (n,m)=(0,0)\) and we prove the steps \( (n,m)\to (n+1,m)\) and \( (n,m)\to (n,m+1)\).
+
+    \begin{subproof}
+        \item[\( (0,0)\)]
+            With \( (n,m)=(0,0)\) we are okay.
+        \item[\( (n+1,m)\)]
+            We have
+            \begin{equation}
+                \Big( (X^R)^{n+1}(Y^L)^mf \Big)( e^{sX} e^{tY})=\big( (X^R)(X^R)^n(Y^L)^mf \big)( e^{sX} e^{tY}).
+            \end{equation}
+            We will apply the induction hypothesis on the function \( (X^R)^n(Y^L)^mf\), but in a first time we just apply the vector field \( X^R\) to the function \( (X^R)^n(Y^L)^m\) and we evaluate at \(  e^{sX} e^{tY}\). Here is a couple of computations:
+            \begin{subequations}
+                \begin{align}
+                    \Big( (X^R)(X^R)^n(Y^L)^mf \Big)( e^{sX} e^{tY})&=\Dsdd{  \Big( (X^R)^n(Y^L)^mf \Big)\big( X^R_{ e^{sX} e^{tY}}(u) \big)  }{u}{0}\\
+                    &=\Dsdd{  \Big( (X^R)^n(Y^L)^mf \Big)(  e^{uX} e^{sX} e^{tY} )  }{u}{0}\\
+                    &=\Dsdd{  \Big( (X^R)^n(Y^L)^mf \Big)( e^{uX} e^{tY})  }{u}{s}.
+                \end{align}
+            \end{subequations}
+            At this point we use the induction hypothesis:
+            \begin{subequations}
+                \begin{align}
+                    \Dsdd{  \Big( (X^R)^n(Y^L)^mf \Big)( e^{uX} e^{tY})  }{u}{s}&=\frac{ d }{ du }\left( \frac{ d^n }{ dw^n }\frac{ d^m }{ dv^m }\big( f( e^{wX} e^{vY}) \big)_{\substack{w=u\\v=t}}  \right)_{u=s}\\
+                    &=\frac{ d^{n+1} }{ dw^{n+1} }\frac{ d^m }{ dv^m }\left( f( e^{wX} e^{vY}) \right)_{\substack{w=s\\v=t}}.
+                \end{align}
+            \end{subequations}
+        \item[\( (n,m+1)\)]
+            Same kind of computations.
+    \end{subproof}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Analytic Lie group, Taylor formula}
+%---------------------------------------------------------------------------------------------------------------------------
+
+In this subsection we study the analytic functions over an analytic Lie group.
+
+\begin{lemma}[\cite{BIBooPBAMooNcYhCM}]     \label{LEMooPILVooHQbtAH}
+    Let \( G\) be an analytic Lie group. We consider an analytic function \( f\colon G\to \eR\), an element \( X\in \lG\), a basis \( \{ X_i \}\) of \( \lG\) and \( g\in G\). There exists an absolutely converging power series \( P\) such that
+    \begin{equation}
+        f(g e^{x_1X_1+\ldots +x_nX_n})=P(x_1,\ldots, x_n).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    First we make the proof for \( g=e\).
+
+    We consider a basis \( \{ e_i \}\) of \( \lG\). Let \( U\) be a neighbourhood of \( 0\) in \( \lG\) and \( V\) a neighbourhood of \( e\) in \( G\) such that \( \exp\colon U\to V\) is an analytic diffeomorphism\footnote{By proposition \ref{PROPooAICDooQcmPZB}.}.
+
+    We consider \( U'\), the open set in \( \eR^n\) which correspond to \( U\) via the basis \( \{ e_i \}\). The map
+    \begin{equation}
+        \begin{aligned}
+            \varphi\colon U'&\to V \\
+            (x_1,\ldots, x_n)&\mapsto \exp(x_1e_1+\ldots+x_ne_n)
+        \end{aligned}
+    \end{equation}
+    is analytic chart of \( V\).
+
+    The fact that \( f\) is analytic means that the composition of \( f\) with the charts are analytic. In our case, the map \( \tilde f =f\circ\varphi\) is analytic from \( U'\subset \eR^n\) to \( \eR\). Thus there exists an absolutely converging power series \( P\) such that
+    \begin{equation}
+        \tilde f(x_1,\ldots, x_n)=P(x_1,\ldots, x_n).
+    \end{equation}
+    We conclude:
+    \begin{equation}
+        f\big( \exp(x_1e_1+\ldots +x_ne_n) \big)=f\big( \varphi(x_1,\ldots, x_n) \big)=P(x_1,\ldots, x_n).
+    \end{equation}
+    
+    If \( g\) is not \( e\), we consider the neighbourhood \( gV\) and the map
+    \begin{equation}
+        \begin{aligned}
+            \varphi\colon U&\to gV \\
+            (x_1,\ldots, x_n)&\mapsto g\exp(x_1e_1+\ldots +x_ne_n)
+        \end{aligned}
+    \end{equation}
+    is a chart, so that
+    \begin{equation}
+        f(g e^{x_1e_1+\ldots +x_ne_n})=\tilde f(x_1,\ldots, x_n)
+    \end{equation}
+    which is a power series.
+\end{proof}
+
+\begin{proposition}[Taylor formula\cite{BIBooPBAMooNcYhCM}]     \label{PROPooIYWQooZJtKiu}
+    Let \( G\) be an analytic Lie group. We suppose that \( f\colon G\to \eR\) is an analytic functions. For \( g\in G\) and \( X\in \lG\) we have
+    \begin{equation}
+        f(g e^{X})=\sum_{k=0}^{\infty}\frac{1}{ n! }\big( (X^R)^nf \big)(g).
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    We know from proposition \ref{LEMooPILVooHQbtAH} that \( f(g e^{X})=P(x_1,\ldots, x_n)\) for some power series \( P\). We consider a neighbourhood \( U\) of \( 0\) in \( \lG\) and \( V\) of \( g\) in \( G\) such that
+    \begin{equation}
+        \begin{aligned}
+            \varphi\colon U&\to V \\
+            X&\mapsto  ge^{X} 
+        \end{aligned}
+    \end{equation}
+is an analytic diffeomorphism (i.e. an analytic chart for \( G\) around \( g\)). Let \( X\in U\) and \( \delta\) such that \( tX\in U\) for all \( t\in \mathopen] -\delta , \delta \mathclose[\). Notice that \( \delta>1\). Now, \( X\) being fixed, the value of \( P(tx_1,\ldots, tx_n)\) is an absolutely convergent power series of \( t\). We have
+    \begin{equation}
+        f(g e^{tX})=P(tx_1,\ldots, tx_n)=\sum_{k=0}^{\infty}\frac{ a_m }{ m! }t^m
+    \end{equation}
+    for some constants \( a_m\in \eR\).
+
+    But considering the function
+    \begin{equation}
+        \begin{aligned}
+            r\colon \eR&\to \eR \\
+            t&\mapsto f(g e^{tX}), 
+        \end{aligned}
+    \end{equation}
+    there is an unicity of its power series expansion; thus \( a_m\) is the \( m\)-th derivative of \( r\) at \( t=0\).
+
+    But we also know from proposition \ref{PROPooKSIDooVIFkiM} that
+    \begin{equation}
+        \big( (X^L)^mf \big)(g e^{tX})=\frac{ d^m }{ du^m }\big( f(g e^{uX}) \big)_{u=t};
+    \end{equation}
+    taking that at \( t=0\) we have
+    \begin{equation}
+        a_m=\big( (X^L)^mf \big)(g)
+    \end{equation}
+    and the Taylor formula
+    \begin{equation}
+        f(g e^{tX})=\sum_{k=0}^{\infty}\frac{1}{ k! }\frac{ d^k }{ du^k }\big( f(g e^{uX}) \big)_{u=0}t^m.
+    \end{equation}
+    Finally taking \( t=1\) (recall that \( \delta>1\), so it is valid):
+    \begin{equation}
+        f(g e^{X})=\sum_{k=0}^{\infty}\frac{1}{ k! }\frac{1}{ k! }\big( (X^L)^kf \big)(g).
+    \end{equation}
+\end{proof}
+
+\begin{lemma}       \label{LEMooWKFIooRHsrFX}
+    Let \( G\) be an analytic Lie group with algebra \( \lG\). We consider a basis \( \{ e_i \}_{i=1,\ldots, n}\) of \( \lG\) and the functions
+    \begin{equation}
+        \begin{aligned}
+            f_i\colon U&\to \eR \\
+            \exp(x_1e_1+\ldots+x_ne_n)&\mapsto x_i 
+        \end{aligned}
+    \end{equation}
+    defined on a normal neighbourhood \( U\) of \( e\).
+    
+    If \( X,Y\in \lG\) satisfy
+    \begin{equation}
+        Xf_i=Yf_i
+    \end{equation}
+    for every \( i\), then \( X=Y\).
+\end{lemma}
+
+\begin{proof}
+    If \( X=\sum_kX_ke_k\) we have
+    \begin{equation}
+        X(f_i)=\Dsdd{ f_i( e^{tX}) }{t}{0}=\Dsdd{ f_i\big(  e^{t\sum_kX_ke_k} \big) }{t}{0}=\Dsdd{ tX_i }{t}{0}=X_i.
+    \end{equation}
+\end{proof}
+
+\begin{lemma}[\cite{BIBooPBAMooNcYhCM}]     \label{LEMooMJBRooMOuJpa}
+    Let \( G\) be an analytic Lie group with Lie algebra \( \lG\). For \( X,Y\in \lG\) we have:
+    \begin{enumerate}
+        \item       \label{ITEMooHVOIooKDrUSw}
+            \( \exp(tX)\exp(tY)=\exp\big( t(X+Y)+\frac{ t^2 }{2}[X,Y]+t^2\alpha(t) \big)\),
+        \item       \label{ITEMooWIQIooHphJcP}
+            \( \exp\big( t(X+Y) \big)=\exp(tX)\exp(tY)\exp(t\alpha(t))\)
+        \item       \label{ITEMooVMDCooExpIrp}
+            \( \exp(-tX)\exp(-tY)\exp(tX)\exp(tY)=\exp\big( t^2[X,Y]+t^3\alpha(t) \big)\).
+    \end{enumerate}
+    In both formulas, \( \alpha\) is a function \( \alpha\colon \eR\to \lG\) satisfying \( \lim_{t\to 0} \alpha(t)=0\).
+\end{lemma}
+
+\begin{proof}
+    Several steps.
+    \begin{subproof}
+        \item[A good function]
+        
+            Let \( \{ e_i \}_{i=1,\ldots, n}\) be a basis of \( \lG\). We consider a neighbourhood \( U\) of \( 0\) in \( \lG\) and \( V\) of \( e\) in \( G\) such that \( \exp\colon U\to V\) is an analytic diffeomorphism. On that \( U\) we consider the function
+            \begin{equation}
+                \begin{aligned}
+                    f\colon U&\to \eR \\
+                    \exp(x_1e_1+\ldots +x_ne_n)&\mapsto x_i 
+                \end{aligned}
+            \end{equation}
+            for some fixed \( i\). This function is analytic and satisfies \( f(e)=0\). 
+        \item[Some Taylor expansions] 
+            Using proposition \ref{PROPooKSIDooVIFkiM} we have
+            \begin{equation}
+                \big( (X^R)^n(X^L)^mf \big)( e^{sX} e^{tY})=\frac{ d^n }{ du^n }\frac{ d^m }{ dv^m }\big( f( e^{uX} e^{vY}) \big)_{\substack{u=s\\v=t}}.
+            \end{equation}
+            Considering the function \( q(s,t)=f( e^{sX} e^{tY})\), we have the Taylor expansion
+            \begin{equation}        \label{EQooNBOIooRxlZmP}
+                f( e^{sX} e^{tY})=q(s,t)=\sum_{m,n\geq 0}\frac{ s^n }{ n! }\frac{ t^m }{ m! }\big( (X^R)^n(Y^L)^mf \big)(e)=\sum_{m,n\geq 0}\frac{ s^n }{ n! }\frac{ t^m }{ m! }\big( X^nY^mf \big)(e).
+            \end{equation}
+            Here the second equality is due to the fact that \( (X^Lf)(e)=(X^Rf)(e)=X(f)\).
+
+        \item[The function \( Z\)]
+
+            On the other hand, when \( t\) is small enough, the element \(  e^{tX} e^{tY}\) belongs to a normal neighbourhood of \( e\), so that there exists an element \( Z(t)\in \lG\) satisfying
+            \begin{equation}
+                e^{tX} e^{tY}= e^{Z(t)}.
+            \end{equation}
+            The element \( Z(t)\) is given by
+            \begin{equation}
+                Z(t)=\exp^{-1}\big(  e^{tX} e^{tY} \big).
+            \end{equation}
+            Since the exponential is an analytic diffeomorphism\footnote{Proposition \ref{PROPooAICDooQcmPZB}.} (the inverse is analytic), \( Z\) is an analytic function around \( t=0\). Thus there exists a function \( \alpha\colon \eR\to \lG\) such that
+            \begin{equation}        \label{EQooRPGGooXtZzFy}
+                Z(t)=tZ_1+t^2Z_2+t^2\alpha(t)
+            \end{equation}
+            and \( \lim_{t\to 0} \alpha(t)=0\). Notice that \( Z(0)=0\), which explain the absence of constant term in \eqref{EQooRPGGooXtZzFy}.
+
+        \item[A formula for \( f\big(  e^{Z(t)} \big)\)]
+
+            We pose \( Z_1=\sum_ka_{1k}e_k\), \( Z_2=\sum_ka_{2k}e_k\) and \( \alpha(t)=\sum_k\sigma_k(t)e_k\), so that
+            \begin{equation}
+                Z(t)=\sum_k\big( ta_{1k}+t^2a_{2k}+t^2\alpha_k(t) \big)e_k.
+            \end{equation}
+            Applying \( f\) we have
+            \begin{equation}
+                f\big(  e^{Z(t)} \big)=ta_{1i}+t^2a_{2i}+t^2\alpha_i(t)=f\big(  e^{tZ_1+t^2Z_2} \big)+t^2\alpha_i(t).
+            \end{equation}
+            
+        \item[Some more Taylor expansions]
+
+            We use the Taylor expansion of proposition \ref{PROPooIYWQooZJtKiu} with \( g=e\) and \( X=Z(t)\):
+            \begin{equation}        \label{EQooSFKOooDAavVy}
+                f( e^{Z(t)})=\sum_k\frac{1}{ k! }\big( [tZ^L_1+t^2Z_2^L]^kf \big)(e)+t^2\alpha_i(t).
+            \end{equation}
+            Once again we can drop the \( L\) exponent since \( (X^Lf)(e)=X(f)\). We collect out of \eqref{EQooSFKOooDAavVy} the terms with \( t\) and \( t^2\):
+            \begin{equation}        \label{EQooEYUSooTDntym}
+                f( e^{tX} e^{tY})=f( e^{Z(t)})=tZ_1(f)+t^2 Z_2 +\frac{ t^2 }{2}Z_1^2 +t^2\beta(t)
+            \end{equation}
+            with \( \lim_{t\to 0} \beta(t)=0\).
+
+        \item[Comparison]
+
+            The formulas \eqref{EQooNBOIooRxlZmP} with \( s=t\) and \eqref{EQooEYUSooTDntym} are Taylor expansions of the same quantity. They are equal; we copy them here:
+            \begin{equation}
+                \sum_{m,n}\frac{ t^{m+n} }{ m!n! }\big( (X^R)^n(Y^L)^mf \big)(e)=tZ_1(f)+t^2 Z_2 +\frac{ t^2 }{2}Z_1^2 +t^2\beta(t)
+            \end{equation}
+            On the left hand side, the terms with \( t\) and \( t^2\) are obtained when \( (n,m)\) is among the possibilities $(0,1)$, $(1,0)$, $(2,0)$, $(0,2)$, and $(1,1)$. Collecting we have on the left
+            \begin{equation}
+                (X+Y)f+XYf+\frac{ 1 }{2}X^2f+\frac{ 1 }{2}Y^2f
+            \end{equation}
+            where we used the fact that \( \big( (X^R)^2f \big)(e)=X(Xf)=X^2f\).
+
+            Using lemma \ref{LEMooWKFIooRHsrFX} we have \( Z_1f=(X+Y)f\), so that \( Z_1=X+Y\) and then
+            \begin{equation}
+                \frac{ 1 }{2}[X,Y]=Z_2.
+            \end{equation}
+    \end{subproof}
+    At this point we proved that
+    \begin{equation}
+        e^{tX} e^{tY}= e^{t(X+Y)+\frac{ t^2 }{2}[X,Y]+t^2\alpha(t)}.
+    \end{equation}
+    This is \ref{ITEMooHVOIooKDrUSw}.
+
+    For point \ref{ITEMooWIQIooHphJcP}, we are searching for a function \( \beta\) such that 
+    \begin{equation}
+        e^{tX} e^{tY} e^{t\beta(t)}= e^{t(X+Y)}.
+    \end{equation}
+    We replace in the left-hand side the value of \(  e^{tX} e^{tY}\) given by the point \ref{ITEMooHVOIooKDrUSw} (this is the reason why we write \( \beta\) instead of \( \alpha\)) and we isolate \(  e^{t\beta(t)}\):
+    \begin{equation}        \label{EQooLTMBooVIChyC}
+        e^{t\beta(t)}= e^{t(X+Y)} e^{-t(X+Y)-t^2[X,Y]/2-t^2\alpha(t)}.
+    \end{equation}
+    So now our aim is to show that the right-hand side of \eqref{EQooLTMBooVIChyC} can be written as only one exponential with an argument of the form \( t\beta(t)\) satisfying \( \beta(t)\to 0\). For that, we use \ref{ITEMooHVOIooKDrUSw} once again with \( X+Y\) instead of \( X\) and \( -(X+Y)-t[X,Y]/2-t\alpha(t)\) instead of \( Y\). What we get is
+    \begin{subequations}
+        \begin{align}
+            e^{t\beta(t)}&=\exp\big( t(-t[X,Y]/3-t\alpha(t))+\frac{ t^2 }{2}\big[ X+Y,-(X+Y)-t[X,Y]/2-t\alpha(t) \big] \big)\\
+            &=\exp\big( -\frac{ t^2 }{2}[X,Y]  -t^2\alpha(t)-\frac{ t^3 }{ 4 }\big[ X+Y,[X,Y] \big]-\frac{ t^3 }{ 2 }\alpha(t)  \big).
+        \end{align}
+    \end{subequations}
+    We are done with \ref{ITEMooWIQIooHphJcP}.
+
+et
+
+    \ref{ITEMooVMDCooExpIrp}
+
+\end{proof}
+
+
+\begin{lemma}[\cite{BIBooTKQTooGjFxwB}]
+    Let \( G\) be an analytic Lie group and \( H\) be a closed subgroup of \( G\). The set
+    \begin{equation}
+        \lH=\{ X\in \lG\tq  e^{tX}\in H\forall t\in \eR \}
+    \end{equation}
+    is a vector subspace of \( \lG\).
+\end{lemma}
+
+\begin{proof}
+    Let \( X,Y\in \lH\), \( \lambda\in \eR\) and \( t\in \eR\). The element \( \lambda X\) belongs to \( \lH\). We have to prove that \( X+Y\in \lH\).
+
+    For every \( n\in \eN\), we have \(  e^{tX/n} e^{tY/n}\in H\) because \( H\) is a subgroup. For every \( n\) we also have
+    \begin{equation}
+        \big(  e^{tX/n} e^{tY/n} \big)^n\in H.
+    \end{equation}
+    we have to following computation :
+    \begin{subequations}        \label{SUBEQSooMDRVooQXBwiS}
+        \begin{align}
+            \big(  e^{tX/n} e^{tY/n} \big)^n&=\left[ \exp\left( \frac{ t(X+Y) }{ n }+\frac{ t^2 }{ n^2 }\alpha(t/n) \right)  \right]^n \label{SUBEQooUYNCooJVIWMi}\\
+            &=\exp\left( t(X+Y)+\frac{ t^2 }{n  }\alpha(t/n) \right)    \label{SUBEQooUYKKooXtGaxL}
+        \end{align}
+    \end{subequations}
+    Justifications.
+    \begin{itemize}
+        \item For \eqref{SUBEQooUYNCooJVIWMi}. This is lemma \ref{LEMooMJBRooMOuJpa}\ref{ITEMooWIQIooHphJcP}.
+        \item For \eqref{SUBEQooUYKKooXtGaxL}. The \( n\) enters the exponential from lemma \ref{LEMooRPHVooAtZJnz}.
+    \end{itemize}
+    We have the limit
+    \begin{equation}        \label{EQooTJWDooVJsDJt}
+        \lim_{n\to \infty} \exp\left( t(X+Y)+\frac{ t^2 }{n  }\alpha(t/n) \right) =  e^{t(X+Y)}
+    \end{equation}
+    because the exponential is continuous\footnote{See \ref{}.} and the properties of \( \alpha\). Since the limit exists on the right hand side of \eqref{SUBEQSooMDRVooQXBwiS}, the limit exists on the left hand side too.
+
+    The limit
+    \begin{equation}
+        \lim_{n\to \infty} \big(  e^{tX/n} e^{tY/n} \big)^n
+    \end{equation}
+    is a limit of elements in \( H\). Since \( H\) is closed, this is an element of \( H\). We deduce that \eqref{EQooTJWDooVJsDJt} is an element of \( H\).
+\end{proof}
+
+
+\begin{lemma}[\cite{BIBooTKQTooGjFxwB}]     \label{LEMooFDIIooCkSJpY}
+    Let \( G\) be an analytic Lie group and \( H\) be a closed subgroup of \( G\). We consider the set
+    \begin{equation}
+        \lH=\{ X\in \lG\tq  e^{tX}\in H\forall t\in \eR \}.
+    \end{equation}
+
+    Let \( (X_i)\) be a sequence in \( \lG\) such that\footnote{The topology and the norm on \( \lH\) are given in definition \ref{PROPooHJOXooMGANfd}.}
+    \begin{enumerate}
+        \item
+            \( X_i\to 0\)
+        \item
+            \(  e^{X_i}\in H\) for every \( i\).
+        \item
+            The limit \( \lim_{i\to \infty} \frac{ X_i }{ \| X_i \| }\) exists. We name it \( X\).
+    \end{enumerate}
+    Then \( X\in \lH\).
+\end{lemma}
+<++>
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Other stuff}
+%---------------------------------------------------------------------------------------------------------------------------
+
+The concept of normal neighbourhood will be widely used for the study of the relations between a Lie group and its algebra. Let $M$ be a differentiable manifold. If $V$ is a neighbourhood of zero in $T_pM$ on which the exponential $\dpt{\exp_p}{T_pM}{M}$ is a diffeomorphism, then $\exp_pV$ is  \defe{normal neighbourhood}{normal!neighbourhood} of $p$.
+
+\begin{lemma}
+Let $\lG$ be a Lie algebra and $A$, a linear operator on $\lG$ (see as a common vector space) such that $\forall t\in\eR$, the map $e^{tA}$ is an automorphism of $\lG$. Then $A$ is a derivation of $\lG$.
+\label{lem:autom_derr}
+\end{lemma}
+
+\begin{proof}
+Let us consider $X$, $Y\in\lG$;  the assumption is
+\[
+  e^{tA}[X,Y]=[e^{tA}X,e^{tA}Y].
+\]
+Since $e^{tA}$ is a linear map, it has a ``good behavior''\ with the derivations:
+\[
+\Dsddc{e^{tA}[X,Y]}{t}{0}=\Dsddc{e^{tA}}{t}{0}[X,Y]=A[X,Y].
+\]
+Using on the other hand the linearity of $\ad$, we can see
+\[
+  (\ad(e^{tA}X))(e^{tA}Y)
+\]
+as a product ``matrix times vector''. Then
+\begin{equation}
+\begin{split}
+  \Dsddc{[e^{tA}X,e^{tA}Y]}{t}{0}&=\Dsddc{(\ad e^{tA}X)Y}{t}{0}+\Dsddc{(\ad X)(e^{tA}Y)}{t}{0}\\
+                                 &=(\ad AX)Y+(\ad X)(AY).
+\end{split}
+\end{equation}
+Finally, $A[X,Y]=[AX,Y]+[X,AY]$.
+
+\end{proof}
+
+As notational convention, if $G$ and $H$ are Lie groups, their Lie algebra are denoted by $\lG$ and $\lH$.
+
+\begin{lemma}		\label{LemAlgEtGroupesGenere}
+	Let $\lG$ be a Lie algebra ans $\lS$ be a subset of $\lG$. The algebra of the group generated by $ e^{\lS}$ is the algebra generated by $\lS$.
+\end{lemma}
+
+Invariant vector fields are also often used in order to transport a structure from the identity of a Lie group to the whole group by $A_g(X_g)=A_e(dL_{g^{-1}}X_g)$ where $A_e$ is some structure and $X_g$, a vector at $g$.
+
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 \section{Exponential from the Lie algebra to the Lie group}
@@ -1457,6 +2092,73 @@ Let $B$ be the Killing form on $\lG$ and $K$ the analytic subgroup of $\Int(\lG)
 \end{equation}
 and the equality hold only if $\ad T=0$ i.e. if $T\in\mZ$. From the assumptions, $\lK\cap\mZ=\{0\}$; then $B(T,T)=0$ if and only if $T=0$.
 \end{proof}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+\section{Representations from the Lie algebra to the Lie group}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{proposition}[\cite{BIBooYTTJooYpPYLT}]       \label{PROPooXCGMooKlJlwp}
+    Let \( G\) be a Lie group and \( \lG\) be its Lie algebra. Let \( (\rho, V)\) be a smooth representation of \( G\). We consider the map
+    \begin{equation}
+        \begin{aligned}
+            s\colon \lG&\to \End(V) \\
+            s(X)v&=\Dsdd{ \rho( e^{tX})v }{t}{0}.
+        \end{aligned}
+    \end{equation}
+    We have the equality
+    \begin{equation}
+        \rho( e^{tX})= e^{ts(X)}
+    \end{equation}
+    as operators on \( V\).
+\end{proposition}
+
+\begin{proof}
+    Let \( X\in \lG\). We define \( M(t)=\rho( e^{tX})\) and \( N(t)= e^{ts(X)}\). These are maps from \( \eR\) to \( \End(V)\); the proposition \ref{PROPooSDNNooQtHkhA} helps to derive them.
+
+    For \( N\) we immediately have
+    \begin{equation}
+        N'(t)=s(X) e^{ts(X)}.
+    \end{equation}
+    For \( M\), we have few more prudence. We fix \( \epsilon>0\) and we write (thanks to proposition \ref{PROPooKDKDooCUpGzE})
+    \begin{equation}
+        M(t+\epsilon)=\rho( e^{(t+\epsilon)X})=\rho( e^{tX} e^{\epsilon X})= \rho( e^{tX}) e^{\epsilon X}.
+    \end{equation}
+    Now for the differential quotient,
+    \begin{equation}
+        \frac{ M(t+\epsilon)-M(t) }{ \epsilon }=\rho( e^{tX})\frac{ \rho( e^{\epsilon X})-\id }{ \epsilon }.
+    \end{equation}
+    If we compute the limit \( \epsilon\to 0\), the second factor goes, by definition to \( s(X)\). So
+    \begin{equation}
+        M'(t)=\rho( e^{tX})s(X)=s(X)M(t).
+    \end{equation}
+    So \( M\) and \( N\) satisfy the same differential equation
+    \begin{subequations}
+        \begin{numcases}{}
+            y'=s(X)y(t)\\
+            y(0)=\mtu
+        \end{numcases}
+    \end{subequations}
+    for the function \( y\colon \eR\to \End(V)\). This is a work for Cauchy-Lipschitz, theorem \ref{THOooZIVRooPSWMxg}. So we define \( f(t,m)=s(X)m\) and we show that this is Lipschitz with respect to \( m\) :
+    \begin{subequations}
+        \begin{align}
+            \| f(t_0,m_0)-f(t,m) \|=\| s(X)(m_0-m) \|\leq \| s(X) \|\| m_0-m \|.
+        \end{align}
+    \end{subequations}
+    So the function \( f\) is Lipschitz with respect to \( m\) with a Lipschitz constant bounded by \( \| s(X) \|\).
+
+    The unicity part of Cauchy-Lipschitz shows that \( M(t)=N(t)\) for every \( t\) for which the expressions make sense.
+\end{proof}
+
+\begin{theorem}[\cite{BIBooYTTJooYpPYLT}]       \label{THOooLVSNooOpzYgO}
+    Let \( G\) be a Lie group and \( \lG\) be its Lie algebra. If \( (\rho, V)\) is a representation of \( G\), the map
+    \begin{equation}
+        \begin{aligned}
+            s\colon \lG&\to \End(V) \\
+            s(X)v&=\Dsdd{ \rho( e^{tX})v }{t}{0} 
+        \end{aligned}
+    \end{equation}
+    is a representation of \( \lG\) on \( V\).
+\end{theorem}
 
 \section{Real Lie algebras}
 %++++++++++++++++++++++++++
@@ -2581,9 +3283,9 @@ Notice that if $v_+$ is in a submodule, then that submodule is the whole $V$, th
 %---------------------------------------------------------------------------------------------------------------------------
 \label{SubSecDomiunSei}
 
-We know that every representation is defined by a highest weight. The following proposition\cite{Anupam} shows that every root cannot be a highest weight of an irreducible representation.
+We know that every representation is defined by a highest weight. The following proposition shows that every root cannot be a highest weight of an irreducible representation.
 
-\begin{proposition}
+\begin{proposition}[\cite{Anupam}]
     The highest weight of an irreducible representation of a simple complex Lie algebra is an integral dominant weight.
 \end{proposition}
 
@@ -2656,4 +3358,67 @@ Let $V$ and $W$ be two highest weight cyclic modules with highest weight $\lambd
 That module is a highest weight cyclic module. The projections onto $V=Z/W$ and $W=Z/V$ are non vanishing surjective homomorphisms, so $V$ and $W$ are irreducible quotients of $Z$. But we saw bellow equation \eqref{EqVsumValpha} that $Z$ can only accept one irreducible quotient. Thus $V$ and $W$ are isomorphic.
 \end{proof}
 We denote by $\Irr_{\lG}(\lambda)$\nomenclature{$\Irr_{\lG}(\lG)$}{the unique cyclic highest weight $\lG$-module with highest weight $\lambda$.} the unique cyclic highest weight $\lG$-module with highest weight $\lambda$.
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+\section{Old stuff}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+I move here the theorems which are not really well proven and which are replaced by better ones.
+
+\begin{theorem}\label{tho:diff_sur_ferme}
+    Let $G$ be a Lie group whose Lie algebra is $\lG$ and $H$, a closed subgroup (not specially a \emph{Lie} subgroup) of $G$. Then there exists one and only one analytic structure on $H$ for which $H$ is a topological Lie subgroup of $G$.
+\end{theorem}
+
+\begin{remark}
+A \textit{topological} Lie subgroup\index{topological!Lie subgroup} is stronger that a common Lie subgroup because it needs to be a topological subgroup: it must carry \emph{exactly} the induced topology. In our definition of a Lie group, this feature doesn't appears.
+\end{remark}
+
+\begin{proof}
+   Let $\lH$ be the subspace of $\lG$ defined by
+\begin{equation}\label{eq:lH_de_G}
+  \lH=\{X\in\lG\tq \forall t\in\eR,\, e^{tX}\in H\}.
+\end{equation}
+We begin to show that $\lH$ is a subalgebra of $\lG$; i.e. to show that $t(X+Y)\in\lH$ and $t^2[X,Y]\in\lH$ if $X$, $Y\in\lH$. Remark that $X\in\lH$ and $s\in\eR$ implies $sX\in\lH$. Consider now $X$, $Y\in\lH$ and the classical formula:
+\begin{subequations}        \label{SUBEQSooASPNooZOpKRt}
+\begin{align}
+\left(  \exp(\frac{t}{n}X)\exp(\frac{t}{n}Y)  \right )^n
+                       =\exp( t(X+Y)+\frac{t^2}{2n}[X,Y]+o(\frac{1}{n^2}) ),\\
+\left(  \exp(-\frac{t}{n}X)\exp(-\frac{t}{n}Y)\exp(\frac{t}{n}X)\exp(\frac{t}{n}Y)   \right)^{n^2}
+                       =\exp\left( t^2[X,Y]+o(\frac{1}{n})\right).
+\end{align}
+\end{subequations}
+The left hand side of these equations are in $H$ for any $n$; but, since $H$ is closed, it keeps in $H$ when $n\to\infty$. The right hand side, at the limit, is just $\exp(t(X+Y))$ and $\exp(t^2[X,Y])$, which keeps in $H$ for any $t$. Thus $X+Y$ and $[X,Y]$ belong to $\lH$. The space $\lH$ is thus a Lie subalgebra of $\lG$.
+
+Let $H^*$ be the connected Lie subgroup of $G$ whose Lie algebra is $\lH$ (existence and unicity from~\ref{tho:gp_alg}). From the proof of theorem~\ref{tho:gp_alg}, we know that $H^*$ is the smallest subgroup of $G$ containing $\exp\lH$, then it is made up from products and inverses of elements of the type $e^X$ with $X\in\lH$, and thus is is included in $H$ by definition of $\lH$. So, $H^*\subset H$.
+
+We will show that if we put on $H^*$ the induced topology from $G$ and if $H_0$ denotes the identity component of $H$, then $H^*=H_0$ as topological groups. For this, we first have to show the equality as set and then prove that if $N$ is a neighbourhood of $e$ in $H^*$, then it is a neighbourhood of $e$ in $H_0$. In facts, the equality as set can be derives from this second fact. Indeed, since $H_0$ is a connected topological group, it is generated by any neighbourhood of $e$, so if one can show that any neighbourhood $N$ of $e$ in $H^*$ is a neighbourhood of $e$ in $H$, then $H^*$ is a neighbourhood of $e$ in $H_0$ and then $H_0$ should be generated by $H^*$, so that $H_0\subset H^*$ (as set). Moreover, the most general element of $H^*$ is product and inverse of $e^X$ with $X\in\lH$ and $e^X$ is connected to $e$ by the path $e^{tX}$ ($\dpt{t}{1}{0}$). Then $H^*\subset H_0$, and $H^*=H_0$ as set. Immediately, $H^*=H_0$ as topological groups from our assertion about neighbourhoods of $e$. Let us now prove it.
+
+We consider a neighbourhood $N$ of $e$ in $H^*$ and suppose that this is not a neighbourhood of $e$ in $H$. Thus there exists a sequence $c_k\in H\setminus N$ such that $c_k\to e$ in the sense of the topology on $G$. Indeed, a neighbourhood of $e$ in the sense of $H$ must contains at least a point which is not in $N$ because if we have an open set of $H$ around $e$ included in $N$, then $N$ is a neighbourhood of $e$ for $H$. So we consider a suitable sequence of such open sets around $e$ and one element not in $N$ in each of them. There is the $c_k$'s\quext{Je crois qu'on utilise l'axiome du choix.}.
+
+Using lemma~\ref{lem:decomp} with a decomposition $\lG=\lH\oplus\lM$ (i.e. $\lM$: a complementary for $\lH$ for $\lG$), one can find sequences $A_k\in\mU_m$ and $B_k\in\mU_n$ such that
+\[
+   c_k=e^{A_k}e^{B_k}.
+\]
+Here, $\mU_m$ is an open neighbourhood of $0$ in $\lM$ and $\mU_h$, an open neighbourhood of $0$ in $\lH$.
+
+As $e^{B_k}\in N$ and $c_k\in H\setminus N$, $A_k\neq 0$ and $\lim A_k=\lim B_k=0$ (because $(A,B)\to e^Ae^B$ is a diffeomorphism and $e^0e^0=e$ -- and also because all is continuous and thus has a good behaviour with respect to the limit). The set $\mU_m$ is open and bounded --this is a part of the lemma. Then there exist a sequence of positive reals numbers $r_k\in$ such that $r_kA_k\in\mU_m$ and $(r_k+1)A_k\notin\mU_m$. We know that $\mU_m$ is a bounded open subset of the vector space $\lM$, then the whole sequences $r_kA_k$ and $(r_k+1)A_k$ are in a compact domain of $\lM$. Then --by eventually considering subsequences-- there are no problems to consider limits of these sequences in $\lM$: $r_kA_k\to A\in\lM$ (not necessary in $\mU_m$). Since $A_k\to 0$, the point $A$ is the common limit of $r_kA_k\in\mU_m$ and of $(r_k+1)A_k\notin\mU_m$. Thus $A$ is in the boundary of $\mU_m$; in particular, $A\neq 0$.
+
+On the other hand, consider two integers $p,q$ with $q>0$. One can find sequences $s_k,t_k\in\eN$ and $0\leq t_k<q$ such that $pr_k=qs_k+t_k$. It is clear that
+\begin{equation}
+  \lim_{k\to\infty}\frac{t_k}{q}A_k=0,
+\end{equation}
+thus
+\[
+   \exp \frac{p}{q}A=\lim \exp\frac{pr_k}{a}A_k=\lim (\exp A_k)^{s_k},
+\]
+which belongs to $H$. By continuity, $\exp tA\in H$ for any $t\in\eR$ and finally $A\in\lH$; this contradict $A\neq 0$ so that $A\in\lM$ (because by definition, $A\in\lM$ and the sum $\lG=\lH\oplus\lM$ is direct).
+
+By its definition, $H^*$ has an analytic structure of Lie subgroup of $G$; but we had just proved that the induced topology from $G$ is the one of $H_0$ which by definition is a submanifold of $G$. So the set $H_0=H^*$ becomes a submanifold of $G$ whose topology is compatible with the analytic structure: thus it is a Lie subgroup of $G$. From analyticity, this structure is extended to the whole $H$.
+
+\begin{probleme}
+Est-ce bien vrai, tout \c ca ? En particulier, je n'utilise pas que $H_0$ est ouvert dans $H$ (ce qui est un tho de topo classique : je ne vois pas pourquoi Helgason fait tout un cin\'ema --que je ne comprends pas-- dessus). En prenant $N=H^*$, on a juste d\'emontr\'e que $H_0$ est un voisinage de $e$ dans $H$, mais ça, on le savait bien avant.
+\end{probleme}
+
+The unicity part comes from the corollary~\ref{cor:top_subgroup}.
+\end{proof}
 

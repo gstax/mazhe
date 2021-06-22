@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2019
+% Copyright (c) 2011-2020
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -239,8 +239,9 @@ Si \( S\) est un \( p\)-Sylow, alors \( p\) ne divise pas le nombre \( | G:S |=|
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Groupe monogène}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\label{SECooXIHPooWVSjhT}
 
-Le théorème suivant donne quelques informations à propos de groupes monogènes. Il impliquera dans le corollaire~\ref{CORooMBLSooMHKmAq} qu'un groupe monogène d'ordre \( n\) possède \( \varphi(n)\) générateur où \( \varphi\) est la fonction indicatrice d'Euler définie en~\ref{DEFooWYIGooRVBTil}.
+Le théorème suivant donne quelques informations à propos de groupes monogènes. Il impliquera dans le corolaire~\ref{CORooMBLSooMHKmAq} qu'un groupe monogène d'ordre \( n\) possède \( \varphi(n)\) générateur où \( \varphi\) est la fonction indicatrice d'Euler définie en~\ref{DEFooWYIGooRVBTil}.
 
 \begin{theorem}     \label{THOooDOMZooOEYHAe}
     Un groupe monogène est abélien. Plus précisément,
@@ -387,8 +388,8 @@ En particulier, vu que \( f\) est surjective, il existe un \( r\) tel que \( f([
 \end{proof}
 
 Ce dernier résultat s'étend aux groupes cycliques.
-\begin{proposition}
-    Si \( G\) est un groupe cyclique d'ordre \( n\), alors
+\begin{proposition}     \label{PROPooBZOMooVOHoYf}
+    Si \( G\) est un groupe cyclique\footnote{Définition \ref{DefHFJWooFxkzCF}.} d'ordre \( n\), alors
     \begin{equation}
         \Aut(G)=(\eZ/n\eZ)^*.
     \end{equation}
@@ -647,7 +648,7 @@ Avant le lire le théorème suivant, n'oubliez pas de lire la définition d'un p
         \begin{equation}
             h^{-1} h'=(k'k^{-1})^{-1}\in H\cap K=\{ e \}.
         \end{equation}
-        Par conséquent \( | pq |=| H\times K |=| HK |\), et \( HK=G\). Le corollaire~\ref{CoroGohOZ} nous indique que
+        Par conséquent \( | pq |=| H\times K |=| HK |\), et \( HK=G\). Le corolaire~\ref{CoroGohOZ} nous indique que
         \begin{equation}    \label{EqGjQjFN}
             G=H\times_{\varphi}K
         \end{equation}
@@ -672,7 +673,7 @@ Avant le lire le théorème suivant, n'oubliez pas de lire la définition d'un p
         \end{equation}
         ce qui signifie que \( | \varphi(\eZ/p\eZ) |\) divise \( | \eZ/p\eZ |=p\). Par conséquent, \( | \varphi(\eZ/p\eZ) |\) est égal à \( 1\) ou \( p\). Si c'est \( 1\), alors l'action est triviale et le produit est direct.
 
-        Nous supposons que \( | \varphi(\eZ/p\eZ) |=p\). Le corollaire~\ref{CorwgmoTK} nous indique que \( \Aut(\eZ/q\eZ)\) possède un unique sous-groupe d'ordre \( p\) que nous notons \( \Gamma\); c'est-à-dire que \( \Gamma=\Image(\varphi)\). Vu que \( \varphi\colon \eZ/p\eZ\to \Aut(\eZ/q\eZ)\) est un morphisme, \( \Gamma\) est généré par \( \varphi(\bar 1)\) qui est alors un élément d'ordre \( p\), comme annoncé.
+        Nous supposons que \( | \varphi(\eZ/p\eZ) |=p\). Le corolaire~\ref{CorwgmoTK} nous indique que \( \Aut(\eZ/q\eZ)\) possède un unique sous-groupe d'ordre \( p\) que nous notons \( \Gamma\); c'est-à-dire que \( \Gamma=\Image(\varphi)\). Vu que \( \varphi\colon \eZ/p\eZ\to \Aut(\eZ/q\eZ)\) est un morphisme, \( \Gamma\) est généré par \( \varphi(\bar 1)\) qui est alors un élément d'ordre \( p\), comme annoncé.
 
     \item[Unicité]
         Nous nous attaquons maintenant à l'unicité. Soient \( \varphi\) et \( \varphi'\) deux morphismes non triviaux \( \eZ/p\eZ\to \Aut(\eZ/q\eZ)\). Étant donné que \( \Aut(\eZ/q\eZ)\) ne possède qu'un seul sous-groupe d'ordre \( p\), nous savons que \( \Image(\varphi)=\Image(\varphi')=\Gamma\). Nous pouvons donc parler de \( \varphi'^{-1}\) en tant qu'application de \( \eZ/p\eZ\) dans \( \Gamma\). Nous montrons que
@@ -774,7 +775,7 @@ La définition des permutations et du groupe symétrique sont~\ref{DEFooJNPIooMu
 %---------------------------------------------------------------------------------------------------------------------------
 
 \begin{definition}      \label{DEFooEIVIooFvVkHH}
-Le groupe \( A_n\)\nomenclature[R]{\( A_n\)}{groupe alterné} des permutations paires dans \( S_n\) est la \defe{groupe alterné}{alterné!groupe}\index{groupe!alterné}.
+    Le groupe \( A_n\)\nomenclature[R]{\( A_n\)}{groupe alterné} des permutations paires\footnote{Définition \ref{PROPooKRHEooAxtmRv}.} dans \( S_n\) est la \defe{groupe alterné}{alterné!groupe}\index{groupe!alterné}.
 \end{definition}
 
 \begin{proposition} \label{PROPooCPXOooVxPAij}
@@ -802,7 +803,7 @@ Le groupe \( A_n\)\nomenclature[R]{\( A_n\)}{groupe alterné} des permutations p
         S_n \ar[r]^{\varphi}        &   S_n/H\ar[r]^{\theta}&\{ -1,1 \}.
            }
     \end{equation}
-    La composition \( \varphi\circ \theta\) est alors un homomorphisme surjectif de \( S_n\) sur \( \{ -1,1 \}\) et nous avons \( \varphi\circ\theta=\epsilon\) par la proposition~\ref{ProphIuJrC}. L'enchaînement \eqref{EqSZBPTH} nous montre que \( H=\ker(\theta\circ\varphi)=\ker(\epsilon)=A_n\).
+    La composition \( \varphi\circ \theta\) est alors un homomorphisme surjectif de \( S_n\) sur \( \{ -1,1 \}\) et nous avons \( \varphi\circ\theta=\epsilon\) par la proposition~\ref{ProphIuJrC}. L'enchainement \eqref{EqSZBPTH} nous montre que \( H=\ker(\theta\circ\varphi)=\ker(\epsilon)=A_n\).
 \end{proof}
 
 \begin{proposition}[\cite{ooFCRKooQdAaqw}]      \label{PROPooPSZVooSmAgPA}
@@ -933,7 +934,7 @@ Le groupe \( A_n\)\nomenclature[R]{\( A_n\)}{groupe alterné} des permutations p
     \begin{equation}
         \theta=(ik)(j\sigma(j)).
     \end{equation}
-    C'est a priori un \( 2\times 2\)-cycle. Mais si de plus \( \sigma(j) = i \), alors
+    C'est à priori un \( 2\times 2\)-cycle. Mais si de plus \( \sigma(j) = i \), alors
     \begin{equation}
         \theta=(ijk)
     \end{equation}
@@ -1126,7 +1127,7 @@ Le théorème suivant montre que tout groupe peut être vu, en agissant sur lui-
 
     Nous venons de prouver que \( H\) contient au moins un produit de deux transpositions. Et ce produit est différent de \( \id\) parce que \( sts^{-1}t^{-1}=\id\) impliquerait \( st=ts\).
 
-    Soient donc deux transpositions \( t_1,t_2\in H\) telles que \( t_1t_2\neq \id\). Les supports de \( t_1\) et \( t_2\) ont soit \( 1\) soit aucun éléments communs.
+    Soient donc deux transpositions \( t_1,t_2\in H\) telles que \( t_1t_2\neq \id\). Les supports de \( t_1\) et \( t_2\) ont soit \( 1\) soit aucun élément communs.
 
     \begin{subproof}
         \item[Premier cas]
@@ -1151,7 +1152,7 @@ Le théorème suivant montre que tout groupe peut être vu, en agissant sur lui-
                     \end{equation}
                     Donc le nombre \( | H |\) est un multiple de \( 4\) qui divise \( 24\). Les possibilités sont \( | H |=4,8,12,24\). La possibilité \( | H |=4\) donne \( H=V_4\); si \( |H |=24\) alors \( H=S_4\); si \( | H |=12\) alors \( H\) est d'indice \( 2\) dans \( S_4\) et \( H=A_n\) (proposition~\ref{PROPooCPXOooVxPAij}\ref{ITEMooGGAHooRYgNqq}). Quid de \( | H |=8\) ?
 
-                    D'après le corollaire~\ref{CorpZItFX} au théorème de Lagrange, l'ordre d'un élément divise l'ordre du groupe. Soit \( x\) dans \( H\) mais pas dans \( V_4\). L'ordre de \( x\) peut être \( 1\), \( 2\), \( 4\) ou \( 8\). Ordre \( 1\) serait \( x=\id\). Ordre \( 8\), pas possible parce que \( S_4\) n'a pas d'éléments d'ordre \( 8\).
+                    D'après le corolaire~\ref{CorpZItFX} au théorème de Lagrange, l'ordre d'un élément divise l'ordre du groupe. Soit \( x\) dans \( H\) mais pas dans \( V_4\). L'ordre de \( x\) peut être \( 1\), \( 2\), \( 4\) ou \( 8\). Ordre \( 1\) serait \( x=\id\). Ordre \( 8\), pas possible parce que \( S_4\) n'a pas d'éléments d'ordre \( 8\).
                     \begin{subproof}
                         \item[\( x\) d'ordre \( 2\)]
 
@@ -1217,7 +1218,7 @@ Le théorème suivant montre que tout groupe peut être vu, en agissant sur lui-
 
         \item[Pour \( n\geq 5\)]
 
-            Soit un sous-groupe \( H\) d'indice \( n\) dans \( S_n\) et l'action à gauche de \( S_n\) sur \( E=S_n/H\) (qui n'est a priori pas un groupe) donnée par \( g\cdot [s]=[gs]\).
+            Soit un sous-groupe \( H\) d'indice \( n\) dans \( S_n\) et l'action à gauche de \( S_n\) sur \( E=S_n/H\) (qui n'est à priori pas un groupe) donnée par \( g\cdot [s]=[gs]\).
 
             \begin{subproof}
                 \item[Morphisme \( \varphi\colon S_n\to S_E\)]
@@ -1347,7 +1348,7 @@ est un isomorphisme de groupes. Et enfin nous pouvons écrire
     G^+\simeq S_4.
 \end{equation}
 
-Nous allons maintenant utiliser le corollaire~\ref{CoroGohOZ} pour montrer que \( G=G^+\times_{\sigma}\ker(\rho)\). Les conditions sont remplies :
+Nous allons maintenant utiliser le corolaire~\ref{CoroGohOZ} pour montrer que \( G=G^+\times_{\sigma}\ker(\rho)\). Les conditions sont remplies :
 \begin{itemize}
     \item \( \ker(\rho)\) normalise \( G^+\) parce que \( \ker(\rho)\) ne contient que \( \pm\mtu\).
     \item \( \ker(\rho)\cap G^+=\{ \id \}\).

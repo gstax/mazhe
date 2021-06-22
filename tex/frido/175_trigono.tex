@@ -1,526 +1,7 @@
 % This is part of (everything) I know in mathematics
-% Copyright (c) 2011-2013,2016-2019
+% Copyright (c) 2011-2013,2016-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Isométries de l'espace euclidien}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Nous considérons l'espace affine euclidien \( A=\affE_n(\eR)\) modelé sur \( \eR^n\) avec sa métrique usuelle. Un premier grand résultat sera le théorème~\ref{ThoDsFErq} qui dira que les isométries de cet espace sont des applications linéaires.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Structure du groupe  \texorpdfstring{\( \Isom(\eR^n)\)}{Isom(Rn)} }
-%---------------------------------------------------------------------------------------------------------------------------
-
-Si vous ne voulez pas savoir ce qu'est un produit semi-direct de groupes, vous pouvez lire seulement le point~\ref{ITEMooLLUIooIGsknv} du théorème suivant, et passer directement à la remarque~\ref{REMooLUEZooIwvTqu}.
-\begin{theorem}     \label{THOooQJSRooMrqQct}
-    Un peu de structure sur \( \Isom(\eR^n)\).
-    \begin{enumerate}
-        \item       \label{ITEMooLLUIooIGsknv}
-            L'application
-            \begin{equation}
-                \begin{aligned}
-                    \psi\colon T(n)\times \gO(n)&\to \Isom(\eR^n) \\
-                    (v,\Lambda)&\mapsto \tau_v\circ\Lambda
-                \end{aligned}
-            \end{equation}
-            est une bijection. Ici,  \( T(n)\) est le groupe des translations de \( \eR^n\).
-        \item
-            Un couple \( (v,\Lambda)\in T(n)\times\SO(n)\) agit sur \( x\in \eR^n\) par
-            \begin{equation}
-                (v,\Lambda)x=\Lambda x+v
-            \end{equation}
-            au sens où \( \psi(v,\Lambda)x=\Lambda x+v\).
-        \item       \label{ITEMooEWSIooNKzRxB}
-            En tant que groupes,
-            \begin{equation}
-                \Isom(\eR^n)\simeq T(n)\times_{\rho}\gO(n)
-            \end{equation}
-            où \( \rho\) représente l'action adjointe de \( \gO(n)\) sur \( T(n)\) et \( \times_{\rho}\) dénotes le produit semi-direct de la définition~\ref{DEFooKWEHooISNQzi}.
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    Point par point.
-    \begin{enumerate}
-        \item
-            Prouvons que l'application proposée est injective et surjective. Notons aussi que ce point ne parle pas de structure de groupe, mais seulement d'une bijection en tant qu'ensembles.
-            \begin{subproof}
-                \item[Injection]
-                    Si \( \psi(v,\Lambda)=\psi(w,\Lambda')\) alors en appliquant sur \( x=0\) nous avons tout de suite \( v=w\). Et ensuite \( \Lambda=\Lambda'\) est immédiat.
-                \item[Surjection]
-                    Une isométrie \( g\in\Isom(\eR^n)\) est une application \( g\colon \eR^n\to \eR^n\) telle que \( d(x,y)=d\big( g(x),g(y) \big)\). Dans le cas de \( \eR^n\) cela se traduit par
-                    \begin{equation}
-                        \| x-y \|=\big\| g(x)-g(y) \big\|,
-                    \end{equation}
-                    Vu que \( x\mapsto\| x \|\) est une forme quadratique, elle tombe sous le coup du théorème~\ref{ThoDsFErq}, ce qui nous permet de dire que \( g\) est affine. Or par définition une application est affine lorsqu'elle est la composée d'une translation et d'une application linéaire.
-            \end{subproof}
-        \item
-            C'est seulement le fait que \( (\tau_v\circ\Lambda)x=\tau_v\big( \Lambda x \big)=\Lambda(x)+v\).
-        \item
-            Nous allons étudier l'application
-            \begin{equation}
-                \psi\colon T(n)\times_{\rho}O(n)\to \Isom(\eR^n).
-            \end{equation}
-            \begin{subproof}
-            \item[Le produit semi-direct est bien définit]
-                Il faut montrer que
-                \begin{equation}
-                    \begin{aligned}
-                        \rho\colon O(n)&\to \Aut\big( T(n) \big) \\
-                        \Lambda&\mapsto \AD(\Lambda)
-                    \end{aligned}
-                \end{equation}
-                est correcte.
-
-                D'abord pour \( \Lambda\in O(n)\), nous avons bien \( \rho_{\Lambda}(\tau_v)\in T(n)\) parce qu'en appliquant à \( x\in \eR^n\),
-                    \begin{equation}
-                        (\Lambda\tau_v\Lambda^{-1})(x)=\Lambda\big( \tau_v(\Lambda^{-1} x) \big)=\Lambda\big( \Lambda^{-1}x+v \big)=x+\Lambda(v)=\tau_{\Lambda(v)}(x).
-                    \end{equation}
-                    Donc \( \rho_{\Lambda}(\tau_v)=\tau_{\Lambda(v)}\).
-
-                    De plus, \( \rho_{\Lambda}\in\Aut\big( T(n) \big)\) parce que
-                    \begin{equation}
-                        \rho_{\Lambda}\big( \tau_v\circ \tau_w \big)=\rho_{\Lambda}(\tau_v)\circ\rho_{\Lambda}(\tau_v),
-                    \end{equation}
-                    comme on peut aisément vérifier que les deux membres sont égaux à \( \tau_{\Lambda(v+w)}\).
-                \item[\( \psi\) est une bijection]
-                    Cela est déjà vérifié.
-                \item[\( \psi\) est un homomorphisme]
-                    Nous avons d'une part
-                    \begin{equation}
-                        \psi\big( (v,g)(w,h) \big)=\psi\big( v\rho_g(w),gh \big)=\tau_v\circ g\circ\tau_w\circ g^{-1}\circ g\circ h=\tau_v\circ g\circ\tau_w\circ h.
-                    \end{equation}
-                    Et d'autre part,
-                    \begin{equation}
-                        \psi(v,g)\circ\psi(w,h)=\tau_v\circ g\circ \tau_w\circ h,
-                    \end{equation}
-                    ce qui est la même chose.
-            \end{subproof}
-    \end{enumerate}
-\end{proof}
-
-\begin{remark}      \label{REMooLUEZooIwvTqu}
-    Notons au passage la loi de groupe sur les couples qui est donnée, pour tout \( v,v'\in \eR^n\), \( \Lambda,\Lambda'\in\SO(n)\), par
-    \begin{equation}    \label{EqDiHcut}
-            (v,\Lambda)\cdot(v',\Lambda')=(\Lambda v'+v,\Lambda\Lambda')
-    \end{equation}
-    comme le montre le calcul suivant :
-    \begin{subequations}
-        \begin{align}
-            (v,\Lambda)\cdot(v',\Lambda')x&=(v,\Lambda)(\Lambda'x+v')\\
-            &=\Lambda\Lambda'x+\Lambda v'+v\\
-            &=(\Lambda v'+v,\Lambda\Lambda')x.
-        \end{align}
-    \end{subequations}
-\end{remark}
-
-\begin{proposition}[\cite{ooZYLAooXwWjLa}]      \label{PROPooDHYWooXxEXvl}
-    Soient \( n\geq 1\) et \( R\) un élément de \( \gO(n)\) de déterminant \( -1\) tels que \( R^2=\id\). En posant \( C_2=\{ \id,R \}\) nous avons
-    \begin{equation}
-        \gO(n)=\SO(n)\times_{\rho} C_2
-    \end{equation}
-\end{proposition}
-
-\begin{proof}
-    Notons qu'un élément \( R\) comme décrit dans l'énoncé existe. Par exemple il y a l'application  \( (x_1,\ldots, x_n)\mapsto (-x_1,x_2,\ldots, x_n)\). 
-
-    Cela étant dit, nous allons montrer que
-    \begin{equation}
-        \begin{aligned}
-            \psi\colon \SO(n)\times C_2&\to \gO(n) \\
-            (A,h)&\mapsto Ah.
-        \end{aligned}
-    \end{equation}
-    est un isomorphisme.
-    \begin{subproof}
-        \item[Injectif]
-            Soient \( A,B\in \SO(n)\) et \( h,k\in C_2\) tels que \( \psi(A,h)=\psi(B,k)\), c'est-à-dire tels que \( Ah=Bk\). Vu que \( \det(A)=\det(B)=1\) nous avons \( \det(h)=\det(k)\). Mais comme \( C_2\) contient un élément de déterminant \( 1\) et un élément de déterminant \( -1\), nous avons \( h=k\). De là \( A=B\).
-        \item[Surjectif]
-            Soit \( X\in\gO(n)\). Si \( \det(X)=1\) alors \( X\in \SO(n)\) et \( X=\psi(X,\mtu)\). Si par contre \( \det(X)=-1\) alors \( XR\in\SO(n)\) parce que \( \det(XR)=1\) et nous avons
-            \begin{equation}
-                \psi(XR,R)=XR^2=X.
-            \end{equation}
-        \item[Homomorphisme]
-            Nous avons
-            \begin{equation}
-                \psi\Big( (A,h)(B,k) \Big)=\psi\big( A\rho_h(B),hk \big)=A(hBh^{-1})hk=AhBk,
-            \end{equation}
-            tandis que
-            \begin{equation}
-                \psi(A,h)\psi(B,k)=AhBk,
-            \end{equation}
-            qui est la même chose.
-    \end{subproof}
-\end{proof}
-
-\begin{lemma}[\cite{JGAdTA}]
-    Si \( n\geq 3\), alors toute droite est intersection de deux plans non isotropes.
-\end{lemma}
-
-\begin{proposition}[\cite{ooZYLAooXwWjLa}]      \label{PROPooVEEUooJQmmkN}
-    Si une isométrie de \( \eR^n\) fixe un ensemble \( F\) de points, alors elle fixe l'espace affine engendrée par \( F\).
-\end{proposition}
-
-\begin{proof}
-    Soit \( f\in \Isom(\eR^n)\) fixant \( F\). Par le théorème~\ref{ThoDsFErq}, c'est une application affine et l'ensemble \( \Fix(f)\) des points fixés par \( f\) est un sous-espace affine de \( \eR^n\), grâce à la proposition~\ref{PROPooYRCJooIcmUVI}.
-
-    Donc \( \Fix(f)\) est un espace affine contenant \( F\). Vu que l'espace affine engendré par \( F\) est l'intersection de tous les espaces affines contenant \( F\), il est en particulier contenu dans \( \Fix(f)\).
-\end{proof}
-
-\begin{corollary}       \label{CORooZHZZooDgTzsW}
-    Si \( f\) et \( g\) sont des isométries de \( \eR^n\) qui coïncident sur \( F\), alors elles coïncident sur l'espace affine engendré par \( F\).
-\end{corollary}
-
-\begin{proof}
-    Nous considérons \( h=g^{-1}\circ f\) qui est une isométrie de \( \eR^n\) fixant \( F\). Elle fixe donc, par la proposition~\ref{PROPooVEEUooJQmmkN}, l'espace affine engendré par $F$. Or tout point fixé par \( h\) est un point sur lequel \( g\) et \( f\) coïncident.
-\end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Classification des isométries de \( \eR\)}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{definition}
-    Soit \( x\in \eR\); nous notons \( \sigma_x\) la \defe{réflexion}{réflexion}\nomenclature[R]{\( \sigma_x\)}{réflexion par rapport à \( x\)} par rapport à \( x\), c'est-à-dire
-    \begin{equation}
-        \sigma_x(y)=2x-y.
-    \end{equation}
-\end{definition}
-
-\begin{theorem}[\cite{ooZYLAooXwWjLa}]
-    Toute isométrie de \( \eR\) est composée d'au plus \( 2\) réflexions. Plus précisément toute isométrie de \( \eR\) est dans une des trois catégories suivantes :
-    \begin{itemize}
-        \item l'identité (\( 0\) réflexions),
-        \item les réflexions,
-        \item les translations (\( 2\) réflexions)
-    \end{itemize}
-\end{theorem}
-
-\begin{proof}
-    Nous divisions la preuve en fonction du nombre de points fixés par l'isométrie \( f\in\Isom(\eR)\).
-    \begin{subproof}
-        \item[\( f\) fixe deux points distincts]
-            Alors elle fixe l'espace affine engendrée par ces deux points par la proposition~\ref{PROPooVEEUooJQmmkN}. Donc \( f\) fixe tout \( \eR\) et est l'identité.
-        \item[\( f\) fixe un unique point]
-            Soit \( x\) l'unique point fixé par \( f\) et considérons \( y\neq x\). Vu que \( x=f(x)\) et que \( f\) est une isométrie,
-            \begin{equation}
-                d\big( x,f(y) \big)=d\big( f(x),f(y) \big)=d(x,y).
-            \end{equation}
-            Donc \( f(y)\) est à égale distance de \( x\) que \( y\). Autrement dit, \( f(y)\) est soit \( y\) soit \( \sigma_x(y)\). Mais comme \( x\) est unique point fixe, \( f(y)=\sigma_x(y)\). Ce raisonnement étant valable pour tout \( y\neq x  \) nous avons \( f=\sigma_x\).
-        \item[\( f\) n'a pas de points fixes]
-            Soient \( x\in \eR\) et \( y=\frac{ x+f(x) }{ 2 }\). Nous posons \( g=\sigma_y\circ f\). Alors \( x\) est un point fixe de \( g\) parce que
-            \begin{equation}
-                g(x)=\sigma_y\big( f(x) \big)=2y-f(x)=x.
-            \end{equation}
-            Donc soit \( g\) est l'identité soit \( g\) est une réflexion (par les points précédents). La possibilité \( g=\id\) est exclue parce que cela ferait \( f=\sigma_y\) alors que \( f\) n'a pas de points fixes. Donc \( g\) est une réflexion; et comme \( x\) est un point fixe de \( g\) nous avons \( g=\sigma_x\). Au final
-            \begin{equation}
-                f=\sigma_y\circ\sigma_x.
-            \end{equation}
-            Montrons que cela implique que \( f\) est une translation :
-            \begin{equation}
-                \sigma_y\sigma_x(z)=\sigma_y(2x-z)=2y-2x+z=z+2(y-x).
-            \end{equation}
-            Donc \( \sigma_y\circ\sigma_x\) est la translation de vecteur \( 2(y-x)\).
-    \end{subproof}
-\end{proof}
-
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Segment, plan médiateur et équidistance}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{lemma}   \label{LEMooSZZWooPDHnGl}
-    Un point \( M\) est sur la médiatrice du segment \( [A,B]\) si et seulement si \( \| M-A \|=\| M-B \|\).
-\end{lemma}
-
-\begin{lemma}       \label{LEMooVBVUooOTFFXT}
-    Soient \( A\) et \( B\) de points de \( \eR^3\). Alors le plan médiateur du segment \( [A,B]\) est le lieu des points de \( \eR^3\) à être équidistants de \( A\) et \( B\).
-\end{lemma}
-
-\begin{proof}
-    Nous nommons \( \sigma\) ce plan.
-
-    Soit \( X\) un point équidistant de \( A\) et \( B\). Alors dans le plan \( (A,B,X)\), le triangle \( ABX\) est isocèle en \( X\), et la hauteur issue de \( X\) coupe perpendiculairement \( [A,B]\) en son milieu. Cela prouve que \( X\) est dans le plan médiateur du segment \( [A,B]\) (lemme~\ref{LEMooSZZWooPDHnGl}).
-
-    Mettons au contraire que \( X\) est dans le plan médiateur de \( [A,B]\). Nous avons \( (X,M)\perp (A,B)\). Donc le triangle \( A,B,X\) est isocèle en \( X\) et donc \( X\) est équidistant de \( A\) et \( B\).
-\end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Isométries du tétraèdre régulier}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{definition}
-    Un polyèdre \defe{régulier}{régulier!polyèdre} est un polyèdre dont les faces sont des polygones réguliers identiques dont tous les sommets joignent le même nombre d'arrêtes.
-\end{definition}
-
-Le \defe{tétraèdre}{tétraèdre} est une pyramide à base triangulaire dont toutes les faces sont des triangles équilatéraux.
-
-\begin{proposition}[Isométries affines du tétraèdre régulier]       \label{PROPooVNLKooOjQzCj}
-    Soient \( T\) un tétraèdre régulier et \( \Iso(T)\) son groupe d'isométries affines (définition~\ref{DEFooZGKBooGgjkgs}). Alors
-    \begin{equation}
-        \Iso(T)\simeq S_4
-    \end{equation}
-    où \( S_4\) est le groupe des permutations de quatre objets.
-\end{proposition}
-
-\begin{proof}
-    Commençons par prouver qu'une isométrie préserve les sommets : l'image d'un sommet est un sommet. Pour cela nous considérons \( g\in \Iso(T)\) et nous supposons que l'image d'un sommet \( x\) soit à l'intérieur d'une arrête. Soient \( g(y)\) et \( g(z)\) deux points distincts de cette arrête situés à égale distance de \( g(x)\). Cela est possible parce que \( g\) est une bijection de \( \eR^3\). Aussi : \( y\neq z\). Mais une application affine préserve l'alignement (vous ne le croyez pas  ? regardez la forme donnée par le lemme \eqref{LEMooZZAIooOMiayy}), donc \( x\), \( y\) et \( z\) foment un triangle isocèle en \( x\) de points alignés et appartenant à \( T\). Cela est impossible si \( x\) est un sommet.
-
-    Donc l'image d'un sommet est un sommet. Si nous numérotons les sommets \( x_1\),\ldots, \( x_4\), nous obtenons un morphisme de groupe \( \varphi\colon \Isom(T) \to S_4\) qui envoie \( g\) sur la permutation qui envoie \( 1\) sur le numéro du sommet \( g(x_1)\), \( 2\) sur le numéro du sommet \( g(x_2)\), etc.
-
-    \begin{subproof}
-    \item[Le morphisme \( \varphi\) est injectif]
-        Supposons \( \varphi(g_1)=\varphi(g_2)\). Alors \( g_1^{-1}\circ g_2\) est une isométrie de \( (\eR^3,d)\) qui fixe les quatre sommets. Une application affine \( \eR^4\to\eR^3\) fixant \( 4\) point est l'identité par le lemme~\ref{LEMooDUMVooFtfFOe}. Donc \( g_1^{-1}g_2=\id\), ce qui prouve que \( g_1=g_2\). Vous noterez que nous utilisons l'unicité de l'inverse dans un groupe.
-
-    \item[\( \varphi\) est surjectf]
-
-        Nous savons que \( S_4\) est engendré par les transpositions (proposition~\ref{PropPWIJbu}). Or les transpositions sont dans l'image de \( \varphi\). En effet, notons les sommets de notre tétraèdre par \( A\), \( B\), \( D\) et \( D\) et considérons la transposition \( A\leftrightarrow B\). Elle est l'image par \( \varphi\) de la réflexion selon le plan \( \sigma\), médiateur du segment \( [A,B]\). Pour nous assurer de cela, nous devons nous assurer que \( C\) et \( D\) appartiennent à \( \sigma\). Cela est le contenu du lemme~\ref{LEMooVBVUooOTFFXT}.
-
-    \item[Conclusion]
-
-        L'application \( \varphi\) est un morphisme bijectif, c'est-à-dire un isomorphisme.
-
-    \end{subproof}
-\end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Représentation de \( S_4\) via les isométries du tétraèdre}
-%---------------------------------------------------------------------------------------------------------------------------
-\label{SUBSECooVEASooDUbsBh}
-
-
-\begin{normaltext}
-    Lorsque le tétraèdre a son barycentre en l'origine de \( \eR^3\), l'isomorphisme \( \varphi\colon \Iso(T)\to S_4\) donne une représentation de dimension \( 3\) de \( S_4\). Nous avons calculé les caractères de \( S_4\) en la section \ref{SecUMIgTmO} sans avoir besoin de savoir que l'une des représentations de dimension \( 3\) est cella que nous venons de trouver via le groupe des isométries du tétraèdre. Nous allons cependant également y calculer les caractères de la représentations \( \varphi\), pour le sport.
-\end{normaltext}
-
-Une des représentations trouvées (la représentation \( \rho_s\)) peut être vue comme le groupe \( \Iso(T)\) des isométries affine du tétraèdre grâce à la proposition \ref{PROPooVNLKooOjQzCj} qui donne un isomorphisme de groupe \( S_4\simeq \Iso(T)\) lorsque \( T\) est un tétraèdre régulier de \( \eR^3\).
-
-Si le barycentre de \( T\) est situé à l'origine de \( \eR^3\), alors les éléments de \( \Iso(T)\) sont des applications linéaires parce que
-\begin{itemize}
-    \item les affinités laissent invariantes les barycentres (proposition~\ref{PROPooGSPZooRnVgiU}),
-    \item les affinités qui laissent l'origine invariante sont linéaires (corollaire~\ref{CORooATCNooUwEPNI}).
-\end{itemize}
-Nous allons à présent calculer la trace de cette représentation, en utilisant le fait que nous la connaissions explicitement. Nous savons que les caractères sont constants sur les classes de conjugaison; nous allons donc écrire une matrice par classe de conjugaison (qui sont données dans l'exemple~\ref{EXooQAXRooBsPURs}).
-
-Pour tout cela nous allons considérer un tétraèdre dont le centre (isobary) est en \( (0,0,0)\) et une base de \( \eR^3\) formée de trois sommets \( e_1\), \( e_2\) et \( e_3\). Vu que l'isobarycentre des quatre sommes est en \( (0,0,0)\), le quatrième somme est forcément le point de coordonnées \( e_4(-1,-1,-1)\), de telle sorte que \( e_1+e_2+e_3+e_4=0\).
-
-\begin{description}
-    \item[Les transpositions]
-
-        Quelle isométrie de $\eR^3$ permute deux sommets du tétraèdre sans bouger les autres ? Pour permuter les sommets \( e_1\) et \( e_2\) en laissant \( e_3\) et \( e_4\), c'est le symétrie par rapport au plan médiateur de \( [e_1,e_2]\). Ce plan passe par les sommets \( e_3\) et \( e_4\), parce que le tétraèdre étant régulier, les points \( e_3\) \( e_4\) sont équidistants de \( e_1\) et \( e_2\). Le lemme~\ref{LEMooVBVUooOTFFXT} dit qu'alors ces points dont partie du plan médiateur.
-
-        Dans notre base, la matrice de la transposition précédemment nommée \( (12)\) est
-        \begin{equation}
-            \begin{pmatrix}
-                0    &   1    &   0    \\
-                1    &   0    &   0    \\
-                0    &   0    &   1
-            \end{pmatrix},
-        \end{equation}
-        dont la trace est \( 1\). Donc \( \chi_s(12)=1\).
-
-    \item[Les bitranspositions]
-
-        La bitransposition \( (12)(34)\) est le produit des transpositions selon les plans médiateur de \( [e_1,e_2]\) et \( [e_3,e_4]\). Ces deux plans sont perpendiculaires, et l'intersection est la droite qui passe par les milieux. Cette droite est perpendiculaire aux deux segments en même temps. La matrice est :
-        \begin{equation}
-            \begin{pmatrix}
-                0    &    1   &   -1    \\
-                1    &   0    &   -1    \\
-                0    &   0    &   -1
-            \end{pmatrix}
-        \end{equation}
-        parce que \( e_1\mapsto e_2\), \( e_2\mapsto e_1\) et \( e_3\mapsto e_4\). Pour rappel, la matrice est formée des images des vecteurs de base. Cela donne
-        \begin{equation}
-            \chi_s\big( (12)(34) \big)=-1.
-        \end{equation}
-
-    \item[Les \( 3\)-cycles]
-
-        La symétrie qui permute cycliquement les points \( e_1\), \( e_2\) et \( e_3\) est la rotation d'angle \( 2\pi/3\) dans le plan formé par les extrémités de ces trois vecteurs. Heureusement, la trace est invariante par changement de base; donc nous pouvons calculer la trace d'une rotation d'angle \( 2\pi/3\) dans n'importe quelle base. Par exemple :
-        \begin{equation}
-            \chi_s\big( (12)(34) \big)=\tr\begin{pmatrix}
-                1    &   0    &   0    \\
-                0    &   \cos(2\pi/3)    &   \sin(2\pi/3)    \\
-                0    &   -\sin(2\pi/3)    &   \cos(2\pi/3)
-            \end{pmatrix}=1+2\cos(2\pi/3)=0.
-        \end{equation}
-
-        Notons que, sans cette interprétation géométrique, nous y arrivons aussi facilement : dans notre base le \( 3\)-cycle est \( e_1\mapsto e_2\mapsto e_3\mapsto e_1\), donc la matrice est :
-        \begin{equation}
-            \begin{pmatrix}
-                0    &   0    &   1    \\
-                1    &   0    &   0    \\
-                0    &   1    &   0
-            \end{pmatrix},
-        \end{equation}
-        dont la trace est manifestement nulle : \( \chi_s\big( (123) \big)=0\).
-
-    \item[Le \( 4\)-cycle]
-
-        Il fait \( e_1\mapsto e_2\mapsto e_3\mapsto e_4\mapsto e_1\), dont la matrice est
-        \begin{equation}        \label{EQooONDUooYlduup}
-            \begin{pmatrix}
-                0    &   0    &   -1    \\
-                1    &   0    &   -1    \\
-                0    &   1    &   -1
-            \end{pmatrix},
-        \end{equation}
-        et la trace est \( \chi_s\big( (1,2,3,4) \big)=-1\).
-\end{description}
-Nous avons retrouvé les caractères de la représentation \( \rho_s\), et nous pouvons vérifier qu'elle est irréductible.
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-\section{Transformations de Lorentz}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Nous considérons dans cette section un nombre réel \( c>0\) ainsi l'espace \( \eR^2\) muni du produit pseudo-scalaire\footnote{Définition \ref{DEFooLPBGooXLxubc}.} donné par la matrice
-\begin{equation}
-    \eta=\begin{pmatrix}
-        c^2    &   0    \\ 
-        0    &   -1    
-    \end{pmatrix}.
-\end{equation}
-Et pour faire plus vrai, nous notons \( (x_0,x_1)\) les coordonnées sur \( \eR^2\). Ainsi
-\begin{equation}
-    x\cdot y=c^2x_0y_0-x_1y_1.
-\end{equation}
-Nous insistons sur le fait que cela n'est pas un produit scalaire.
-
-\begin{lemma}[\cite{MonCerveau}]        \label{LEMooPZPZooVAdPVj}
-    Soit \( c>0\). L'application
-    \begin{equation}
-        \begin{aligned}
-        \varphi\colon \mathopen] -c , c \mathclose[&\to \eR \\
-            v&\mapsto \frac{ -v/c }{ \sqrt{ 1-\frac{ v^2 }{ c^2 } } } 
-        \end{aligned}
-    \end{equation}
-    est une bijection.
-\end{lemma}
-
-\begin{proof}
-    Nous commençons par mentionner le fait que \( \varphi\) est continue du fait que le dénominateur ne s'annule pas. Une petite étude fonction montre que
-    \begin{equation}
-        \lim_{v\to -c} \varphi(v)=\infty,
-    \end{equation}
-    et
-    \begin{equation}
-        \lim_{v\to c} \varphi(v)=-\infty,
-    \end{equation}
-    et
-    \begin{equation}
-        \varphi'(v)=-\frac{1}{ c\sqrt{ 1-\frac{ v^2 }{ c^2 } } }-\frac{ v^2/c^3 }{ \left( 1-\frac{ v^2 }{ c^2 } \right)^{3/2} }<0.
-    \end{equation}
-    Tout cela fait que \( \varphi\) est bijective (entre autres par le théorème des valeurs intermédiaires \ref{ThoValInter} et la théorème dérivée et croissance \ref{PropGFkZMwD}).
-\end{proof}
-
-\begin{theorem}     \label{THOooYHDWooWxVovH}
-    Soit une bijection\quext{À mon avis, il y a moyen d'affaiblir cette hypothèse. Écrivez-moi si vous avez une idée.} \( f\colon \eR^2\to \eR^2\) telle que 
-    \begin{equation}
-        f(x)\cdot f(y)=x\cdot y
-    \end{equation}
-    pour tout \( x,y\in \eR^2\). Alors :
-    \begin{enumerate}
-        \item
-            \( f\) est linéaire.
-        \item
-            Il existe un unique choix de \( (x,\sigma_1,\sigma_2)\in \eR\times \{ \pm1 \}\times \{ \pm1 \}\) tel que la matrice de \( f\) ait la forme
-            \begin{equation}
-                f=\begin{pmatrix}
-                    \sigma_1\cosh(\xi)    &   \frac{ \sigma_1\sigma_2 }{ c }\sinh(\xi)    \\ 
-                    c\sinh(\xi)    &   \sigma_2\cosh(\xi)    
-                \end{pmatrix}.
-            \end{equation}
-        \item
-        Il existe un unique \( v\in\mathopen] -c , c \mathclose[\) tel que la matrice de \( f\) ait la forme
-            \begin{equation}
-                f=\begin{pmatrix}
-                    \frac{ \sigma_1 }{ \sqrt{ 1-\frac{ v^2 }{ c^2 } } }    &   -\frac{ \sigma_1\sigma_2 }{ c^2 }\frac{ v }{ \sqrt{ 1-\frac{ v^2 }{ c^2 } } }    \\ 
-                    \frac{ -v }{ \sqrt{ 1-\frac{ v^2 }{ c^2 } } }    &   \frac{ \sigma_2 }{ \sqrt{ 1-\frac{ v^2 }{ c^2 } } }    
-                \end{pmatrix}.
-            \end{equation}
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    Le fait que \( f\) doive être linéaire est la proposition \ref{ThoDsFErq}. Nous posons 
-    \begin{equation}
-         A=\begin{pmatrix}
-            \alpha    &   \beta    \\ 
-            \gamma    &   \delta    
-        \end{pmatrix}
-    \end{equation}
-    et, conformément à la proposition \ref{PROPooSYQMooEnZFdp} nous imposons \( A^t\eta A=\eta\). Après un petit produit matriciel nous obtenons :
-    \begin{equation}
-        \begin{pmatrix}
-            c^2\alpha^2-\gamma^2    &   c^2\alpha\beta-\gamma\delta    \\ 
-            c^2\alpha\beta-\gamma\delta    &   c^2\beta^2-\delta^2    
-        \end{pmatrix}=\begin{pmatrix}
-            c^2    &   0    \\ 
-            0    &   -1    
-        \end{pmatrix}.
-    \end{equation}
-    Voila quatre équations à résoudre pour les quatre inconnues \( \alpha, \beta,\gamma, \delta\). Déjà les équations des termes anti-diagonaux sont les mêmes. Nous recopions le reste :
-    \begin{subequations}
-        \begin{numcases}{}
-            c^2\alpha^2-\gamma^2=c^2            \label{SUBEQooXZUGooITKZnH}\\
-            c^2\alpha\beta-\gamma\delta=0       \label{SUBEQooDWQRooBeDaPw}\\
-            c^2\beta^2-\delta^2=1.              \label{SUBEQooJAFLooGxmbaO}
-        \end{numcases}
-    \end{subequations}
-    C'est le moment d'utiliser la proposition \ref{PROPooWEHGooOBqSHY}. La relation \eqref{SUBEQooXZUGooITKZnH} donne
-    \begin{equation}
-        \alpha^2-\left( \frac{ \gamma }{ c } \right)^2=1,
-    \end{equation}
-    ce qui implique l'existence (unique) de \( \xi_1\in \eR\) et \( \sigma_1\in \{ \pm 1 \}\) tels que
-    \begin{subequations}        \label{SUBEQSooQUSIooRZRYSW}
-        \begin{align}
-            \gamma&=c\sinh(\xi_1)\\
-            \alpha&=\sigma_1\cosh(\xi_1).
-        \end{align}
-    \end{subequations}
-    La relation \eqref{SUBEQooJAFLooGxmbaO} implique quant à elle l'existence de \( \xi_2\in \eR\) et \( \sigma_2\in\{ \pm 1 \}\) tels que
-    \begin{subequations}        \label{SUBEQSooLFHCooXVetmK}
-        \begin{align}
-            \delta&=\sigma_2\cosh(\xi_2)\\
-            \beta&=\frac{1}{ c }\sinh(\xi_2).
-        \end{align}
-    \end{subequations}
-    
-    Nous substituons maintenant toutes les valeurs \eqref{SUBEQSooQUSIooRZRYSW} et \eqref{SUBEQSooLFHCooXVetmK} dans \eqref{SUBEQooDWQRooBeDaPw}. Cela donne
-    \begin{equation}        \label{EQooHTMSooVYzJUS}
-        \sigma_1\cosh(\xi_1)\sinh(\xi_2)=\sinh(\xi_1)\cosh(\xi_2).
-    \end{equation}
-    Nous mettons cette relation au carré et nous substituons \( \cosh(\xi_1)^2=1+\sinh^2(\xi_1)\). Ce que nous trouvons est
-    \begin{equation}
-        \sinh(\xi_1)^2=\sinh(\xi_2)^2,
-    \end{equation}
-    qui implique que \( \xi_1=\pm\xi_2\). Nous posons donc \( \xi_2=\sigma_3\xi_1\) pour un certain \( \sigma_3\in \{ \pm 1 \}\). Cela nous permet d'alléger la notation et d'écrire \( \xi\) au lieu de \( \xi_1\).
-    
-    Nous remettons la valeur \( \xi=\xi_1=\sigma_3\xi_2\) dans l'équation \eqref{EQooHTMSooVYzJUS} en tenant compte du fait que \( \sinh\) est impaire et \( \cosh\) est paire :
-    \begin{equation}
-        \sigma_1\sigma_3\cosh(\xi)\sinh(\xi)=\sigma_2\sinh(\xi)\cosh(\xi).
-    \end{equation}
-    Et cela nous enseigne que \( \sigma_3=\sigma_1\sigma_2\).
-
-    Jusqu'à présent nous avons prouvé qu'il existe un unique \( \xi\in \eR\) et \( \sigma_1,\sigma_2\in \{ \pm 1 \}\) tels que
-    \begin{equation}        \label{EQooYZIVooCTdmSh}
-        A=\begin{pmatrix}
-            \sigma_1\cosh(\xi)    &   \frac{ \sigma_1\sigma_2 }{ c }\sinh(\xi)    \\ 
-            c\sinh(\xi)    &   \sigma_2\cosh(\xi)    
-        \end{pmatrix}.
-    \end{equation}
-    
-Nous utilisons à présent la bijection du lemme \ref{LEMooPZPZooVAdPVj}. Il existe un unique \( v\in \mathopen] -v , v \mathclose[\) tel que \( \sinh(\xi)=\varphi(v)\). En utilisant \( \cosh(\xi)^2=1+\varphi(v)^2\), nous trouvons
-    \begin{equation}
-        \cosh(\xi)^2=\frac{1}{ 1-\frac{ v^2 }{ c^2 } }.
-    \end{equation}
-    Mais comme le cosinus hyperbolique est toujours strictement positif, nous pouvons prendre la racine carré des deux côtés :
-    \begin{equation}
-        \cosh(\xi)=\frac{1}{ \sqrt{ 1-\frac{ v^2 }{ c^2 } } }.
-    \end{equation}
-    En substituant dans \eqref{EQooYZIVooCTdmSh}, nous trouvons le résultat annoncé.
-\end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Trigonométrie}
@@ -567,16 +48,22 @@ Nous utilisons à présent la bijection du lemme \ref{LEMooPZPZooVAdPVj}. Il exi
 
     L'assertion concernant le sinus se démontre de même.
 
-    En ce qui concerne le fait que les fonctions \( \sin\) et \( \cos\) sont de classe \(  C^{\infty}\) sur \( \eR\), il faut invoquer le corollaire~\ref{CorCBYHooQhgara}.
+    En ce qui concerne le fait que les fonctions \( \sin\) et \( \cos\) sont de classe \(  C^{\infty}\) sur \( \eR\), il faut invoquer le corolaire~\ref{CorCBYHooQhgara}.
 \end{proof}
 
-Par substitution directe dans les séries, nous avons immédiatement
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooZMJTooJPnyfv}
+    Nous avons
 \begin{subequations}        \label{SUBEQooTTNNooXzApSM}
     \begin{align}
         \cos(0)&=1\\
-        \sin(0)&=1.
+        \sin(0)&=0.
     \end{align}
 \end{subequations}
+\end{lemma}
+
+\begin{proof}
+Par substitution directe dans les séries.
+\end{proof}
 
 \begin{lemma}       \label{LEMooBBCAooHLWmno}
     En ce qui concerne la dérivation, nous avons
@@ -594,7 +81,7 @@ Par substitution directe dans les séries, nous avons immédiatement
 
 \begin{lemma}       \label{LEMooAEFPooGSgOkF}
     Les fonctions sinus et cosinus vérifient
-    \begin{equation}
+    \begin{equation}        \label{EQooNYCZooApyyRd}
         \cos^2(x)+\sin^2(x)=1
     \end{equation}
     pour tout \( x\in \eR\).
@@ -605,7 +92,7 @@ Par substitution directe dans les séries, nous avons immédiatement
     \begin{equation}
         f'(x)=2\sin(x)\cos(x)+2\cos(x)(-)\sin(x)=0.
     \end{equation}
-    La fonction \( f\) est donc constante par le corollaire~\ref{CORooEOERooYprteX}. Nous avons donc pour tout \( x\) :
+    La fonction \( f\) est donc constante par le corolaire~\ref{CORooEOERooYprteX}. Nous avons donc pour tout \( x\) :
     \begin{equation}
         f(x)=f(0)=\sin^2(0)+\cos^2(0)=1.
     \end{equation}
@@ -619,7 +106,7 @@ Par substitution directe dans les séries, nous avons immédiatement
 La fonction puissance a déjà fait l'objet de nombreuses définitions et extensions. Voir le thème \ref{THEMEooBSBLooWcaQnR}. Nous allons maintenant définir \( a^z\) pour \( a>0\) et \( z\in \eC\). 
 
 \begin{definition}      \label{DEFooRBTDooNLcWGj}
-    Pour le nombre \( e\in \eR\) et le nombre imaginaire pur \( iy\) (\( y\in \eR\)), nous définisson
+    Pour le nombre \( e\in \eR\) et le nombre imaginaire pur \( iy\) (\( y\in \eR\)), nous définissons
     \begin{equation}
         e^{iy}=\exp(iy)
     \end{equation}
@@ -658,7 +145,7 @@ Le rayon de convergence\footnote{Définition \ref{DefZWKOZOl}.} de la série exp
     Donc \( R=\infty\).
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}     \label{PROPooWSDKooJREQGk}
     Pour tout \( z\in \eC\) nous avons
     \begin{equation}
         \exp(z)= e^{z}.
@@ -674,7 +161,7 @@ Le rayon de convergence\footnote{Définition \ref{DefZWKOZOl}.} de la série exp
             Nous avons la formule \(  e^{z+w}= e^{z}e^w\) pour tout \( z,w\in \eC\).
         \item
             \( (e^z)^{-1}= e^{-z}\)
-        \item
+        \item       \label{ITEMooIFYFooUniuKS}
             \( (\exp(z))^n=\exp(nz)\).
     \end{enumerate}
 \end{proposition}
@@ -694,14 +181,13 @@ Le rayon de convergence\footnote{Définition \ref{DefZWKOZOl}.} de la série exp
     \end{subequations}
     Nous avons utilisé la formule du binôme (proposition~\ref{PropBinomFExOiL}).
 
-    Les autres propriétés énoncées sont des corollaires :
+    Les autres propriétés énoncées sont des corolaires :
     \begin{equation}
         e^{z} e^{-z}= e^{0}=1.
     \end{equation}
 \end{proof}
 
 D'autres propriétés de l'exponentielle sur \( \eC\), entre autres l'holomorphie, sont données dans le théorème \ref{THOooNGOIooEECfAv}.
-
 
 \begin{lemma}[\cite{MonCerveau}]        \label{LEMooTDGKooWdpUTD}
     Soient \( a>0\), \( z\in \eC\) et \( n\in \eZ\). Alors
@@ -710,11 +196,24 @@ D'autres propriétés de l'exponentielle sur \( \eC\), entre autres l'holomorphi
     \end{equation}
 \end{lemma}
 
+\begin{proof}
+    Il s'agit d'un calcul utilisant les propositions \ref{PropdDjisy}\ref{ITEMooIFYFooUniuKS} et \ref{PROPooWSDKooJREQGk} :
+    \begin{subequations}
+        \begin{align}
+            (a^z)^n&=\big(  e^{z\ln(a)} \big)^n\\
+            &=\exp\big( z\ln(a) \big)^n\\
+            &=\exp\big( nz\ln(a) \big)\\
+            &= e^{nz\ln(a)}\\
+            &=a^{nz}.
+        \end{align}
+    \end{subequations}
+\end{proof}
+
 %--------------------------------------------------------------------------------------------------------------------------- 
 \subsection{Formules de trigonométrie}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Le lemme suivant est un premier pas pour la paramétrisation du cercle dont nous parlerons dans la proposition \ref{PROPooZEFEooEKMOPT}.
+Le lemme suivant est un premier pas pour le paramétrage du cercle dont nous parlerons dans la proposition \ref{PROPooZEFEooEKMOPT}.
 \begin{lemma}       \label{LEMooHOYZooKQTsXW}
     Nous avons la formule
     \begin{equation}        \label{EQooRVPJooTMwNTU}
@@ -740,12 +239,13 @@ Le lemme suivant est un premier pas pour la paramétrisation du cercle dont nous
 \end{proof}
 
 \begin{lemma}       \label{LEMooJAWBooJGfZIL}
-    Nous avons les formules d'addition d'angles\footnote{Rien ne nous empêche de donner ce nom à ces formules, mais seriez vous capable de définir précisément le mot «angle» ?}
+    Nous avons les formules d'addition d'angles\footnote{Rien ne nous empêche de donner ce nom à ces formules, mais seriez-vous capable de définir précisément le mot «angle» ?}
     \begin{subequations}        \label{SUBEQSooFSSMooHcYwRc}
         \begin{align}
             \cos(a+b)=\cos(a)\cos(b)-\sin(a)\sin(b) \label{EQooJYEMooQaOMib}\\
             \sin(a+b)=\cos(a)\sin(b)+\sin(a)\cos(b) \label{EQooECAUooQzckDv}\\
-            \cos(a-b)=\cos(a)\cos(b)+\sin(a)\sin(b) \label{EQooCVZAooQfocya}
+            \cos(a-b)=\cos(a)\cos(b)+\sin(a)\sin(b) \label{EQooCVZAooQfocya}\\
+            \sin(a-b)=\sin(a)\cos(b)-\cos(a)\sin(b).
         \end{align}
     \end{subequations}
     pour tout \( a\), \( b\) réels.
@@ -795,8 +295,8 @@ Le lemme suivant est un premier pas pour la paramétrisation du cercle dont nous
     Plusieurs choses à propos de la périodicité de la fonction \( \cos\).
     \begin{enumerate}
         \item
-            La fonction \( \cos\) est périodique.
-        \item
+            La fonction \( \cos\) est périodique\footnote{Définition \ref{DEFooHUZAooYyBmwe}.}.
+        \item       \label{ITEMooVPMWooBqidZG}
             Un nombre \( T>0\) est une période si et seulement si \( \cos(T)=1\) et \( \sin(T)=0\).
     \end{enumerate}
     
@@ -882,50 +382,56 @@ Le lemme suivant est un premier pas pour la paramétrisation du cercle dont nous
 \end{proof}
 
 \begin{proposition}     \label{PROPooKNLAooLwQHea}
-    La fonction \( \sin\) est périodique de période \( \pi\) et
+    La fonction \( \sin\) est périodique de période \( 2\pi\) et
     \begin{equation}
         2\pi=\min\{ T>0\tq \sin(T)=0,\cos(T)=1 \}.
     \end{equation}
 \end{proposition}
 
+\begin{proof}
+    La proposition \ref{PROPooFRVCooKSgYUM} dit que \( \cos\) est périodique. Vu que \( \sin=-\cos'\) par le lemme \ref{LEMooBBCAooHLWmno}, la fonction \( \sin\) est également périodique par le lemme \ref{LEMooHWQYooXcNLts}. Si \( T\) est une période de \( \cos\), alors \( T\) est une période de \( \sin\).
+
+    Mais \( \sin'=\cos\), de telle sorte que les périodes de \( \sin\) sont périodes de \( \cos\). Bref, \( T\) est une période de \( \sin\) si et seulement si \( T\) est une période de \( \cos\).
+\end{proof}
+
 \begin{normaltext}
 Notons que tout ceci ne nous donne pas la plus petite indication d'ordre de grandeur de la valeur de \( \pi\). Cela peut encore être \( 0.1\) autant que \( 500\).
 \end{normaltext}
 
-\begin{proposition}[\cite{ooUMDHooHrJpfV}]      \label{PROPooMWMDooJYIlis}
-    Des propriétés à la chaîne à propos des sinus, cosinus et de leurs périodes.
+\begin{proposition}[\cite{ooUMDHooHrJpfV,MonCerveau}]      \label{PROPooMWMDooJYIlis}
+    Des propriétés à la chaine à propos des sinus, cosinus et de leurs périodes.
     \begin{enumerate}
-        \item
-            Le nombre \( 2\pi\) est le plus petit nombre strictement positif tel que
-            \begin{subequations}
-                \begin{numcases}{}
-                    \cos(2\pi)=1\\
-                    \sin(2\pi)=0.
-                \end{numcases}
-            \end{subequations}
-        \item
+        \item       \label{ITEMooRJZHooCXcKmM}
+            Nous avons
+            \begin{equation}
+                2\pi=\min\{ x>0\tq \cos(x)=1, \sin(x)=0 \}.
+            \end{equation}
+        \item       \label{ITEMooTNHMooUtOjNC}
             Les fonctions \( \sin\) et \( \cos\) sont périodiques de période \( 2\pi\).
-        \item
+        \item       \label{ITEMooSPZBooIQLUXh}
             Nous avons \( \cos(\pi)=- 1\) et \( \sin(\pi)=0\).
         \item
             Pour tout \( a\in \eR\) nous avons
             \begin{subequations}
                 \begin{align}
-                    \cos(a+\pi)&=-\cos(\pi)\\
-                    \sin(a+\pi)&=-\sin(\pi).
+                    \cos(a+\pi)&=-\cos(a)\\
+                    \sin(a+\pi)&=-\sin(a).
                 \end{align}
             \end{subequations}
         \item       \label{ITEMooHDQNooYHVCkg}
-            Le nombre \( \pi\) est le plus petit \( T>0\) tel que \( \cos(T)=-1\) et \( \sin(T)=0\).
-        \item
             Nous avons
-            \begin{subequations}
+            \begin{equation}
+                \pi=\min\{ x>0\tq \cos(x)=-1,\sin(x)=0 \}.
+            \end{equation}
+        \item       \label{ITEMooWFNUooYAybDB}
+            Nous avons
+            \begin{subequations}        \label{SUBEQSooBTNPooSvCAHO}
                 \begin{numcases}{}
                     \cos(\pi/2)=0\\
                     \sin(\pi/2)=1.
                 \end{numcases}
             \end{subequations}
-        \item
+        \item       \label{ITEMooIRALooBMGOXP}
             Nous avons les formules
             \begin{subequations}        \label{EQSooRJZGooCFVqbZ}
                 \begin{numcases}{}
@@ -934,8 +440,11 @@ Notons que tout ceci ne nous donne pas la plus petite indication d'ordre de gran
                 \end{numcases}
             \end{subequations}
             pour tout \( x\in \eR\).
-        \item
-            Le nombre \( \pi/2\) est le plus petit \( T\) vérifiant \( \sin(T)=1\), \( \cos(T)=0\).
+        \item       \label{ITEMooMQQPooGwOdbt}
+            Nous avons
+            \begin{equation}
+                \frac{ \pi }{2}=\min\{ x>0 \tq \sin(x)=1,\cos(x)=0 \}.
+            \end{equation}
         \item
             Nous avons les valeurs
             \begin{subequations}
@@ -945,7 +454,12 @@ Notons que tout ceci ne nous donne pas la plus petite indication d'ordre de gran
                 \end{numcases}
             \end{subequations}
         \item       \label{ITEMooQKPKooEPeHER}
-            Le nombre \( \pi/2\) est le plus petit \( T>0\) tel que \( \cos(T)=0\).
+            Nous avons
+            \begin{equation}
+                \frac{ \pi }{2}=\{ x>0\tq \cos(x)=0 \}.
+            \end{equation}
+        \item               \label{ITEMooMEXUooGfSInJ}
+            Pour tout \( x\in \mathopen] 0 , \frac{ \pi }{ 2 } \mathclose[\), nous avons \( \cos(x)>0\) et \( \sin(x)>0\).
     \end{enumerate}
 \end{proposition}
 
@@ -1009,7 +523,7 @@ Notons que tout ceci ne nous donne pas la plus petite indication d'ordre de gran
             \end{subequations}
             Encore une fois par minimalité de \( 2\pi\), cela ne va pas. Conclusion : \( \sin(\pi/2)=1\).
         \item
-            Il s'agit encore d'utiliser les formules d'addition d'angle en tenant compte du fait que \( \cos(\pi/2)=0\) et \( \sin(\pi/2)=1\).
+            Il s'agit encore d'utiliser les formules d'addition d'angle en tenant compte des valeurs remarquables \( \cos(\pi/2)=0\) et \( \sin(\pi/2)=1\).
         \item
         Supposons \( x_0\in\mathopen] 0 , \pi/2 \mathclose[\) tel que \( \sin(x_0)=1\) et \( \cos(x_0)=0\). En utilisant les formules \eqref{EQSooRJZGooCFVqbZ} nous avons
             \begin{subequations}
@@ -1029,14 +543,121 @@ Notons que tout ceci ne nous donne pas la plus petite indication d'ordre de gran
             \end{subequations}
         \item
             Si \( \cos(x_0)=0\) alors \( \sin(x_0)=-1\) (parce que \( \sin(x_0)=1\) est déjà exclu). Alors \( \cos(x_0+\pi/2)=1\) et \( \sin(x_0+\pi/2)=0\), ce qui est également impossible.
+        \item
+        La fonction cosinus est continue (proposition \ref{PROPooZXPVooBjONka}) et \( \cos(0)=1\). Le théorème des valeurs intermédiaires implique que si \( \cos(x)\leq 0\), alors il existe \( t\in \mathopen] 0 , x \mathclose]\) avec \( \cos(x)=0\). Cela n'est pas possible pour \( x<\pi/2\) par par le point \ref{ITEMooMQQPooGwOdbt}.
+
+        Le cosinus est positif sur l'intervalle considéré et \( \sin'(x)=\cos(x)\). Donc \( \sin(0)=0\) et la dérivée est positive. La proposition \ref{PropGFkZMwD} conclu que \( \sin\) est strictement croissante et donc strictement positive.
     \end{enumerate}
+\end{proof}
+
+\begin{lemma}[Positivité\cite{MonCerveau}]      \label{LEMooFESYooBoiuol}
+    À propos de positivité de la fonction cosinus.
+    \begin{enumerate}
+        \item       \label{ITEMooIXSDooJyCQyb}
+            \( \cos(0)=1\)
+        \item       \label{ITEMooWJEVooGZykbO}
+            \( \cos(x)>0\) pour \( x\in\mathopen[ 0 , \pi/2 \mathclose[\).
+            \item       \label{ITEMooANEPooLGmYtc}
+                \( \cos(\pi/2)=0\).
+            \item       \label{ITEMooRDWJooZXWyfv}
+            \( \cos(x)<0\) pour \( x\in \mathopen] \pi/2 , 3\pi/2 \mathclose[\)
+            \item       \label{ITEMooFKPAooBNlvPU}
+                \( \cos(3\pi/2)=0\).
+            \item       \label{ITEMooIDZGooBTDvDF}
+            \( \cos(x)>0\) pour \( x\in\mathopen] 3\pi/2 , 2\pi \mathclose]\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    En plusieurs points.
+    \begin{subproof}
+    \item[Pour \ref{ITEMooIXSDooJyCQyb}]
+        C'est déjà fait dans le lemme \ref{LEMooZMJTooJPnyfv}.
+    \item[Pour \ref{ITEMooWJEVooGZykbO}]
+        C'est la proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooMEXUooGfSInJ}.
+    \item[Pour \ref{ITEMooANEPooLGmYtc}]
+        C'est la proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooWFNUooYAybDB}.
+    \item[Pas d'annulation entre \( \pi/2\) et \( \pi\)]
+    Nous montrons à présent que \( \cos\) ne s'annule pas entre \( \pi/2\) et \( \pi\). Supposons que \( \cos(\frac{ \pi }{2}+s)=0\) avec \( s\in\mathopen] 0 , \pi/2 \mathclose[\). Vu que \( \cos(x)^2+\sin(x)^2=0\) (lemme \ref{LEMooAEFPooGSgOkF}), nous avons
+        \begin{subequations}
+            \begin{numcases}{}
+                \cos(\frac{ \pi }{2}+s)=0\\
+                \sin(\frac{ \pi }{2}+s)=\epsilon
+            \end{numcases}
+        \end{subequations}
+        avec \( \epsilon\in\{ \pm 1 \}\). Utilisant trois fois la proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooIRALooBMGOXP} nous trouvons
+        \begin{subequations}
+            \begin{numcases}{}
+                \cos(x+\frac{ 3\pi }{2})=\sin(x)\\
+                \sin(x+\frac{ 3\pi }{2})=-\cos(x)
+            \end{numcases}
+        \end{subequations}
+        pour tout \( x\). Nous appliquons cela à \( x=\frac{ \pi }{2}+s\), en nous souvenant que \( \cos(x+2\pi)=\cos(x)\) et \( \sin(x+2\pi)=\sin(x)\) (par \ref{PROPooMWMDooJYIlis}\ref{ITEMooTNHMooUtOjNC}) :
+        \begin{equation}
+            \cos(s)=\cos(\frac{ \pi }{2}+s+\frac{ 3\pi }{2})=\sin(\frac{ \pi }{2}+s)=\epsilon
+        \end{equation}
+        et
+        \begin{equation}
+            \sin(s)=\sin(\frac{ \pi }{2}+s+\frac{ 3\pi }{2})=-\cos(\frac{ \pi }{2}+s)=0.
+        \end{equation}
+        Si \( \epsilon=1\), nous avons une contradiction avec \ref{PROPooMWMDooJYIlis}\ref{ITEMooRJZHooCXcKmM}. Si \( \epsilon=-1\), nous avons une contradiction avec \ref{PROPooMWMDooJYIlis}\ref{ITEMooHDQNooYHVCkg}.
+
+        Donc \( \cos(x)\neq 0\) pour \( x\in \mathopen] \frac{ \pi }{2} , \pi \mathclose]\).
+    \item[\( \cos(x)<0\) sur \( {\mathopen] \pi/2 , \pi \mathclose]}\)]
+    Nous savons que \( \cos(\pi)=-1\) (\ref{PROPooMWMDooJYIlis}\ref{ITEMooSPZBooIQLUXh}). Étant donné que \( \cos\) est continue et qu'elle ne s'annule pas sur \( \mathopen] \pi/2 , \pi \mathclose]\), nous en déduisons qu'elle y est partout strictement négative.
+    \item[Pour \ref{ITEMooRDWJooZXWyfv}, \ref{ITEMooFKPAooBNlvPU}, \ref{ITEMooIDZGooBTDvDF}]
+        Il est directement visible sur le développement de définition que \( \cos(-x)=\cos(x)\). Et comme \( \cos(x+2\pi)=\cos(x)\), nous avons
+        \begin{equation}
+            \cos(\pi+s)=\cos(-\pi-s)=\cos(\pi-s).
+        \end{equation}
+        Donc toutes les valeurs (et donc tous les signes) de \( \cos(x)\) sur \(\mathopen[ \pi , 2\pi \mathclose] \) peuvent être déduits de ceux sur \( \mathopen[ 0 , \pi \mathclose]\).
+    \end{subproof}
 \end{proof}
 
 \begin{corollary}   \label{CORooTFMAooHDRrqi}
     Des nombres \( x,y\in \eR\) vérifient \(  e^{ix}= e^{iy}\) si et seulement si il existe \( k\in\eZ\) tel que \( y=x+2k\pi\).
 \end{corollary}
 
-Tout cela nous permet de calculer quelque valeurs remarquables de cosinus et sinus ainsi que d'écrire le tableau de variations de sinus et cosinus.
+\begin{proof}
+    Le lemme \ref{LEMooHOYZooKQTsXW} donne \(  e^{ix}=\cos(x)+i\sin(x)\). Nous devons donc prouver que
+    \begin{subequations}    \label{SUBEQSooIHUGooAUchjn}
+        \begin{numcases}{}
+            \cos(x)=\cos(y)\\
+            \sin(x)=\sin(y)
+        \end{numcases}
+    \end{subequations}
+    si et seulement si il existe \( k\in \eZ\) tel que \( y=x+2k\pi\).
+
+    \begin{subproof}
+    \item[$ \Leftarrow$]
+        Si \( y=x+2k\pi\), le résultat est correct parce que la proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooTNHMooUtOjNC} dit que \( \sin\) et \( \cos\) sont périodiques de période \( 2\pi\).
+
+
+    \item[$ \Rightarrow$]
+        Supposons que \( x>y\). Nous calculons \( \sin(x-y)\) et \( \cos(x-y)\) en utilisant les formules du lemme \ref{LEMooJAWBooJGfZIL} et en tenant compte de \eqref{SUBEQSooIHUGooAUchjn}. Cela donne \( \cos(x-y)=1\) et \( \sin(x-y)=0\). La proposition \ref{PROPooFRVCooKSgYUM}\ref{ITEMooVPMWooBqidZG} dit alors que \( x-y\) est une période de la fonction \( \cos\).
+
+        Or \emph{la} période de \( \cos\) est \( 2\pi\) (proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooTNHMooUtOjNC}). Donc toutes les périodes de \( \cos\) sont les \( 2k\pi\) avec \( k\in \eN\) (lemme \ref{LEMooOGFGooCnTDjO}).
+    \end{subproof}
+\end{proof}
+
+
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooBIPFooQNiTqZ}
+    À propos de croissance et décroissance des fonctions trigonométriques.
+    \begin{enumerate}
+        \item
+        Sur \( \mathopen] 0 , \pi \mathclose[\), la fonction \( \cos\) est décroissante.
+        \item
+        Sur \( \mathopen] -\pi , 0 \mathclose[\), la fonction \( \cos\) est décroissante.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Nous savons que \( \cos'=\sin\) par le lemme \ref{LEMooBBCAooHLWmno}. La liaison entre dérivée et croissance est la proposition \ref{PropGFkZMwD}. Les signes de la fonction cosinus sont dans le lemme \ref{LEMooFESYooBoiuol}. Les signes de la fonction sinus peuvent être déduits de la proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooIRALooBMGOXP}.
+
+    Vous avez tout en main.
+\end{proof}
+
+Tout cela nous permet de calculer quelques valeurs remarquables de cosinus et sinus ainsi que d'écrire le tableau de variations de sinus et cosinus.
 
 \begin{lemma}       \label{LEMooIGNPooPEctJy}
     Nous avons les valeurs remarquables
@@ -1063,15 +684,15 @@ Tout cela nous permet de calculer quelque valeurs remarquables de cosinus et sin
 \end{lemma}
 
 \begin{proof}
-    Il faut utiliser la formule \eqref{EQooJYEMooQaOMib} avec \( \cos(\pi)=\cos(2\pi/3+\pi/3)\) en sachant que \( \cos(\pi)=-1\). Ensuite \( \cos(\2\pi/3)=\cos(\pi/3+\pi/3)\). En décomposant ainsi, nous exprimons \( -1=\cos(\pi)\) en termes de \( \cos(\pi/3)\) et de \( \sin(\pi/3)\). En substituant \( \sin^2(\pi/3)=1-\cos^2(\pi/3)\) nous trouvons que le nombre \( \cos(\pi/3)\) vérifie l'équation
+    Il faut utiliser la formule \eqref{EQooJYEMooQaOMib} avec \( \cos(\pi)=\cos(2\pi/3+\pi/3)\) en sachant que \( \cos(\pi)=-1\). Ensuite \( \cos(2\pi/3)=\cos(\pi/3+\pi/3)\). En décomposant ainsi, nous exprimons \( -1=\cos(\pi)\) en termes de \( \cos(\pi/3)\) et de \( \sin(\pi/3)\). En substituant \( \sin^2(\pi/3)=1-\cos^2(\pi/3)\) nous trouvons que le nombre \( \cos(\pi/3)\) vérifie l'équation
     \begin{equation}
         4x^3-3x+1=0.
     \end{equation}
-    Croyez-le ou non, les solutions de cette équation sont \( x=-1\) et \( x=1/2\). Allez. Faisons comme si nous le savions pas. En tout cas, ces deux nombres sont des solutions, et nous avons la factorisation
+    Croyez-le ou non, les solutions de cette équation sont \( x=-1\) et \( x=1/2\). Allez. Faisons comme si nous le savions pas. En tout cas, ces deux nombres sont des solutions, et nous avons la factorisation\footnote{Factorisation d'un polynôme en sachant des racines, proposition \ref{PropHSQooASRbeA}.}
     \begin{equation}
         4x^3-3x+1=(2x-1)^2(x+1).
     \end{equation}
-    Donc \( 1/2\) est de multiplicité \( 2\) et \( -1\) de multiplicité \( 1\). Le théorème~\ref{ThoSVZooMpNANi} nous dit qu'il n'y a alors pas d'autres racines que ces deux là\footnote{Nous attirons votre attention sur le fait que cela n'est en aucun cas une trivialité.}.
+    Donc \( 1/2\) est de multiplicité \( 2\) et \( -1\) de multiplicité \( 1\). Le théorème~\ref{ThoSVZooMpNANi} nous dit qu'il n'y a alors pas d'autres racines que ces deux-là\footnote{Nous attirons votre attention sur le fait que cela n'est en aucun cas une trivialité.}.
 
     Nous en déduisons que la valeur de \( \cos(\pi/3)\) est soit \( 1/2\) soit \( -1\). La proposition~\ref{PROPooMWMDooJYIlis}\ref{ITEMooHDQNooYHVCkg} nous dit qu'il est impossible que \( \cos(\pi/3)\) soit égal à \( -1\) parce que \( \pi/3<\pi\). Donc \( \cos(\pi/3)=1/2\) comme annoncé.
 \end{proof}
@@ -1084,21 +705,110 @@ Tout cela nous permet de calculer quelque valeurs remarquables de cosinus et sin
     Bref, à notre niveau, nous sommes encore loin de pouvoir faire des raisonnements trigonométriques sur base de géométrie dans les triangles.
 \end{remark}
 
-\begin{example}\label{developcosenpisur3}
-    Développer la fonction \( \cos\) autour de \( x=\frac{ \pi }{ 3 }\). Utiliser la valeur remarquable du lemme \ref{LEMooRMHAooDEAPMw}. Nous développons autour de \( h=0\) la fonction \( \cos(\frac{ \pi }{ 3 }+h)\) :
-    \begin{equation}
-        \cos\big( \frac{ \pi }{ 3 }+h \big)\sim \cos\big( \frac{ \pi }{ 3 } \big)+h\cos'(\frac{ \pi }{ 3 })+\frac{ h^2 }{2}\cos''\big( \frac{ \pi }{ 3 } \big)=\frac{ 1 }{2}-\frac{ \sqrt{3} }{2}h-\frac{1}{ 4 }h^2.
-    \end{equation}
-    Il est aussi possible d'écrire cela en notant \( x=x_0+h\), c'est-à-dire en remplaçant \( h\) par \( x-\frac{ \pi }{ 3 }\) :
-    \begin{equation}
-        \cos(x)\sim\frac{ 1 }{2}-\frac{ \sqrt{3} }{ 2 }(x-\frac{ \pi }{ 3 })-\frac{1}{ 4 }(x-\frac{ \pi }{ 3 })^2.
-    \end{equation}
-\end{example}
+\begin{proposition}     \label{PROPooJFAGooYjRJcb}
+    Pour tout \( x\in \mathopen[ 0 , \pi/4 \mathclose[\) nous avons \( \cos(x)>\sin(x)\).
+\end{proposition}
 
-Pour donner une idée nous avons dessiné sur le graphe suivant la fonction sinus et ses développements d'ordre \( 4\) autour de zéro et autour de \( 3\pi/4\).
-\begin{center}
-   \input{auto/pictures_tex/Fig_WJBooMTAhtl.pstricks}
-\end{center}
+\begin{proof}
+    Nous posons \( f(x)=\cos(x)-\sin(x)\). Elle vérifie \( f(0)=1\). En utilisant les dérivées du lemme \ref{LEMooBBCAooHLWmno}, nous trouvons
+    \begin{equation}
+        f'(x)=-\big( \sin(x)+\cos(x) \big).
+    \end{equation}
+Mais sur \( \mathopen] 0 , \pi/2 \mathclose[\) nous avons \( \cos(x)>0\) et \( \sin(x)>0\) (proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooMEXUooGfSInJ}). Donc \( f\) est strictement décroissante. Elle ne peut donc passer qu'une seule fois par zéro. Le lemme \ref{LEMooIGNPooPEctJy} nous indique que \( f(\pi/4)=0\). Donc \( f(x)>0\) sur \( \mathopen[ 0 , \pi/4 \mathclose[\).
+\end{proof}
+<++>
+
+\begin{proposition}
+    Quelque valeurs trigonométriques.
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item
+            Pour le sinus :
+            \begin{enumerate}
+                \item
+                    \( \sin(0)=0\)
+                \item
+                    \( \sin(\pi/6)=1/2\)
+                \item
+                    \( \sin(\pi/4)=\sqrt{ 2 }/2\)
+                \item
+                    \( \sin(\pi/3)=\sqrt{ 3 }/2\)
+                \item
+                    \( \sin(\pi/2)=1\)
+            \end{enumerate}
+            
+        \item
+            Pour le cosinus :
+            \begin{enumerate}
+                \item
+                    \( \cos(0)=1\)
+                \item
+                    \( \cos(\pi/6)=\sqrt{ 3 }/2\)
+                \item
+                    \( \cos(\pi/4)=\sqrt{ 2 }/2\)
+                \item
+                    \( \cos(\pi/3)=1/2\)
+                \item
+                    \( \cos(\pi/2)=0\)
+            \end{enumerate}
+        \item
+            Pour la tangente :
+            \begin{enumerate}
+                \item
+                    \( \tan(0)=0\)
+                \item
+                    \( \tan(\pi/6)=\sqrt{ 3 }/3\)
+                \item
+                    \( \tan(\pi/4)=1\)
+                \item
+                    \( \tan(\pi/3)=\sqrt{ 3 }\)
+                \item
+                    \( \tan(\pi/2)\) est non défini.
+            \end{enumerate}
+    \end{enumerate}
+\end{multicols}
+\end{proposition}
+
+\begin{proof}
+    Plusieurs ont déjà été faites. Les autres ne seront pas démontrées dans l'ordre énoncé.
+    \begin{subproof}
+        \item[$\sin(0)=0$]
+            Substitution dans la définition \eqref{EQooCMRFooCTtpge}.
+        \item[$ \sin(\pi/4)=\sqrt{ 2 }/2$] 
+            C'est le lemme \ref{LEMooIGNPooPEctJy}.
+        \item[$ \sin(\pi/3)=1/\sqrt{ 2 }$] 
+            Nous utilisons la formule \( \sin^2(x)+\cos^2(x)=1\) avec \( x=\pi/3\). Cela donne \( \sin^2(\pi/3)=1/2\). Nous en déduisons que \( \sin(\pi/3)\) vaut \( \pm\frac{1}{ \sqrt{ 2 } }\).
+
+            La proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooHDQNooYHVCkg} nous dit que \( \sin\) est positive sur \(\mathopen[ 0 , \pi \mathclose]\). Donc c'est bien la possibilité \( 1/\sqrt{ 2 }\) qui est la bonne.
+        \item[$\sin(\pi/6)=1/2$ et $\cos(\pi/6)=\sqrt{ 3 }/2 $]
+            Nous partons de l'équation \eqref{SUBEQooLRJDooQuFvux} pour écrire
+            \begin{equation}
+                \sin(\pi/3)=2\cos(\pi/6)\sin(\pi/6).
+            \end{equation}
+            Nous avons déjà vu que \( \sin(\pi/3)=\sqrt{ 3 }/2\). En posant \( x=\sin(\pi/6)\) nous avons également \( \cos(\pi/6)=\sqrt{ 1-x^2 }\) parce que nous savons que la fonction cosinus est positive sur \( \mathopen[ 0 , \pi/2 \mathclose]\) (proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooMEXUooGfSInJ}). Nous avons donc l'équation
+            \begin{equation}
+                \frac{ \sqrt{ 3 } }{2}=2x\sqrt{ 1-x^2 }.
+            \end{equation}
+            Nous passons au carré et posons \( y=x^2\). Après quelque manipulations, 
+            \begin{equation}
+                16y^2-16y+3=0.
+            \end{equation}
+            Cela donne deux possibilités pour \( y\) : \( \frac{ 3 }{ 4 }\) et \( \frac{1}{ 4 }\). Vu que \( x>0\), nous pouvons simplement passer à la racine carré : \( x=\sqrt{ 3 }/2\) ou \( x=1/2\).
+
+            Notez que si nous avion posé \( x=\cos(\pi/6)\) au lieu de \( x=\sin(\pi/6)\), nous aurions obtenu le même résultat. Donc \( \sin(\pi/6)\) et \( \cos(\pi/6)\) peuvent tout deux avoir les valeurs \( \sqrt{ 3 }/2\) ou \( 1/2\). Cela fait \( 4\) possibilités.
+
+            Étant donné que \( \sin^2(\pi/6)+\cos^2(\pi/6)=1\), les deux possibilités avec \( \sin(\pi/6)=\cos(\pi/6)\) sont exclues.
+
+            La proposition \ref{PROPooJFAGooYjRJcb} nous dit aussi que \( \cos(\pi/6)>\sin(\pi/6)\). Donc \( \cos(\pi/6)=\sqrt{ 3 }/2\) et \( \sin(\pi/6)=1/2\).
+        \item[$\sin(\pi/2)=1 $] C'est dans \eqref{SUBEQSooBTNPooSvCAHO}.
+        \item[$\cos(0)=1 $] Substitution dans la définition.
+        \item[$\cos(\pi/6)=\sqrt{ 3 }/2 $] Déjà fait avec le sinus de \( \pi/6\).
+        \item[$\cos(\pi/4)=\sqrt{ 2 }/2 $]  Lemme \ref{LEMooIGNPooPEctJy}.
+        \item[$\cos(\pi/3)=1/2 $] Lemme \ref{LEMooRMHAooDEAPMw}.
+        \item[$\cos(\pi/2)=0 $] Dans \eqref{SUBEQSooBTNPooSvCAHO}.
+    \end{subproof}
+    Toutes les valeurs pour la tangente s'obtiennent maintenant par la définition en calculant \( \tan(x)=\frac{ \sin(x) }{ \cos(x) }\).
+\end{proof}
 
 Voici un tableau qui rappelle les valeurs à retenir pour les fonctions sinus, cosinus et tangente.
 \begin{equation}\label{PGooIMQFooTnBdIl}
@@ -1152,3 +862,19 @@ celui de la fonction cosinus :
     \end{numcases}
 \end{subequations}
 avec \( r\in\mathopen] 0 , \infty \mathclose[\) et \( \theta\in\mathopen[ 0 , 2\pi [\). Le jacobien vaut \( r\).
+
+\begin{example}\label{developcosenpisur3}
+    Développer la fonction \( \cos\) autour de \( x=\frac{ \pi }{ 3 }\). Utiliser la valeur remarquable du lemme \ref{LEMooRMHAooDEAPMw}. Nous développons autour de \( h=0\) la fonction \( \cos(\frac{ \pi }{ 3 }+h)\) :
+    \begin{equation}
+        \cos\big( \frac{ \pi }{ 3 }+h \big)\sim \cos\big( \frac{ \pi }{ 3 } \big)+h\cos'(\frac{ \pi }{ 3 })+\frac{ h^2 }{2}\cos''\big( \frac{ \pi }{ 3 } \big)=\frac{ 1 }{2}-\frac{ \sqrt{3} }{2}h-\frac{1}{ 4 }h^2.
+    \end{equation}
+    Il est aussi possible d'écrire cela en notant \( x=x_0+h\), c'est-à-dire en remplaçant \( h\) par \( x-\frac{ \pi }{ 3 }\) :
+    \begin{equation}
+        \cos(x)\sim\frac{ 1 }{2}-\frac{ \sqrt{3} }{ 2 }(x-\frac{ \pi }{ 3 })-\frac{1}{ 4 }(x-\frac{ \pi }{ 3 })^2.
+    \end{equation}
+\end{example}
+
+Pour donner une idée nous avons dessiné sur le graphe suivant la fonction sinus et ses développements d'ordre \( 4\) autour de zéro et autour de \( 3\pi/4\).
+\begin{center}
+   \input{auto/pictures_tex/Fig_WJBooMTAhtl.pstricks}
+\end{center}

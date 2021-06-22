@@ -1,5 +1,5 @@
 % This is part of Le Frido
-% Copyright (c) 2011,2017-2019
+% Copyright (c) 2011,2017-2020
 %   Laurent Claessens,Carlotta Donadello
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -250,7 +250,7 @@ Le plus souvent, pour alléger les notations, il est plus pratique d'utiliser l'
 %---------------------------------------------------------------------------------------------------------------------------
 
 De la même manière que l'utilisation «à l'envers» de la formule de dérivation du produit avait donné la méthode d'intégration par parties, nous allons voir que que l'utilisation «à l'envers» de la formule de dérivation d'une fonction composée donne lieu à la méthode d'intégration par changement de variables.
-\begin{proposition}
+\begin{proposition}     \label{PROPooMVIUooZmvHxS}
     Soient \( I\) et \( J\) des intervalles de \( \eR\), \( u\colon I\to J\) une fonction qui est dérivable de dérivée continue et \( f\colon J\to \eR\) une fonction admettant une primitive \( F\). Alors la fonction
     \begin{equation}
         x\mapsto F\big( u(x) \big)
@@ -326,7 +326,7 @@ Le théorème \ref{ThoRWXooTqHGbC} fixe la relation entre la recherche des primi
 
 En effet nous avons le choix entre
 \begin{itemize}
-\item trouver une primitive de $f$ comme dans la section précédente et appliquer ensuite la formule du corollaire \ref{ThoRWXooTqHGbC} ;
+\item trouver une primitive de $f$ comme dans la section précédente et appliquer ensuite la formule du corolaire \ref{ThoRWXooTqHGbC} ;
 \item écrire une intégrale pour la nouvelle variable $u = u(x)$ sur l'intervalle entre $u(a)$ et $u(b)$.
 \end{itemize}
 
@@ -385,7 +385,7 @@ Jusqu'à présent nous avons utilisé des changements de variables dans lesquels
     \begin{equation}
         \int_{1/2}^{\sqrt{3}/2}\sqrt{1-x^2}dx.
     \end{equation}
-    Nous posons \( x=\sin(\theta)\) parce que nous savons que \( 1-\sin^2(\theta)=\cos^2(\theta)\); nous espérons que le changement de variables simplifie l'expression\footnote{Lorsqu'on fait un changement de variables, il s'agit toujours d'\emph{espérer} que l'expression se simplifie. Il n'y a pas moyen de savoir a priori si tel changement de variable va être utile. Il faut essayer.}. Les substitutions à faire dans l'intégrale sont :
+    Nous posons \( x=\sin(\theta)\) parce que nous savons que \( 1-\sin^2(\theta)=\cos^2(\theta)\); nous espérons que le changement de variables simplifie l'expression\footnote{Lorsqu'on fait un changement de variables, il s'agit toujours d'\emph{espérer} que l'expression se simplifie. Il n'y a pas moyen de savoir à priori si tel changement de variable va être utile. Il faut essayer.}. Les substitutions à faire dans l'intégrale sont :
     \begin{subequations}
         \begin{numcases}{}
             x=\sin(\theta)\\
@@ -494,6 +494,166 @@ Nous allons nous contenter de donner un exemple de chaque type.
     \end{equation}
   \end{subequations}
 \end{Aretenir}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Approximation de \texorpdfstring{$ \ln(2)$}{ln(2)}}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Taylor, reste intégral]     \label{THOooDGCJooXKmFTT}
+    Soit une fonction \( f\colon \mathopen[ a , b \mathclose]\to \eR\) de classe \( C^{n+1}\). Alors pour tout \( N\leq n\) nous avons
+    \begin{equation}        \label{EQooSCKCooXcKzCc}
+        f(b)=f(a)+\sum_{k=1}^N\frac{ f^{(k)}(a) }{ k! }(b-a)^k+\frac{1}{ N! }\int_a^b(b-t)^Nf^{(N+1)}(t)dt.
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Notons que dans l'énoncé, \( n\) est fixé; nous faisons une récurrence sur \( N\). Ça ne change pas grand chose, mais il faut être conscient de ce qui est exactement dans l'hypothèse du théorème et ce qui est dans l'hypothèse de récurrence.
+
+    Bref, \( n\) est fixé, la fonction \( f\) est de classe \( C^{n+1}\) et nous vérifions d'abord la formule avec \( N=1\). À droite dans \eqref{EQooSCKCooXcKzCc} nous avons
+    \begin{equation}        \label{EQooETPRooJHcOXh}
+        f(a)+f'(a)(b-a)\int_a^b(b-t)f''(t)dt.
+    \end{equation}
+    Nous évaluons l'intégrale à part en faisant une intégration par parties\footnote{Proposition \ref{PROPooRLFIooQHnyJY}.}. Il s'agit de poser
+    \begin{subequations}
+        \begin{align}
+            u&=b-t\\
+            v'&=f'',
+        \end{align}
+    \end{subequations}
+    de déduire
+    \begin{subequations}
+        \begin{align}
+            u'&=-1\\
+            v&=f'
+        \end{align}
+    \end{subequations}
+    et d'écrire
+    \begin{subequations}
+        \begin{align}
+            \int_a^b(b-t)f''(t)dt&=\left[ (b-t)f'(t) \right]^b_a-\int_a^b(-)f'(t)dt\\
+            &=-(b-a)f'(a)+\int_a^bf'(t)dt\\
+            &=-(b-a)f'(a)+f(b)-f(a).
+        \end{align}
+    \end{subequations}
+    Dans le calcul nous avons utilisé le théorème fondamental du calcul intégral \ref{ThoRWXooTqHGbC}. En remettant ça dans \eqref{EQooETPRooJHcOXh} nous trouvons \( f(b)\) comme il se doit.
+    
+    En ce qui concerne la récurrence, nous devons calculer
+    \begin{equation}        \label{EQooKQWZooGBvtlZ}
+        f(a)+\sum_{k=1}^{N+1}\frac{ f^{(k)(a)} }{ k! }(b-a)^k+\frac{1}{ (N+1)! }\int_a^b(b-t)^{N+1}f^{(N+2)}(t)dt.
+    \end{equation}
+    Ici encore, il s'agit de faire une intégration par partie, et sortir de la somme le terme \( k=N+1\). L'intégration par partie donne
+    \begin{equation}
+        \int_a^b(b-t)^{N+1}f^{(N+2)}(t)dt=-(b-a)^{N+1}f^{(N+1)}(a)+(N+1)\int_a^b(b-t)^Nf^{(N+1)}(t)dt.
+    \end{equation}
+    En remettant tout ensemble, il y a encore deux termes qui se simplifient, et des termes qui se remettent pour former la formule de récurrence. Bref, on obtient que \eqref{EQooKQWZooGBvtlZ} se réduit bien à \( f(b)\).
+\end{proof}
+
+Cette formule avec reste intégral sert par exemple à prouver un encadrement pour \( \ln(2)\), voir la proposition \ref{PROPooHOMYooFclkCU}.
+
+\begin{proposition}[Approximation de \( \ln(2)\)\cite{BIBooSJDCooHjuWeU}]       \label{PROPooHOMYooFclkCU}
+    Pour tout \( n\) nous avons
+    \begin{equation}
+        \left| \ln(2)-\sum_{k=1}^n\frac{ (-1)^{k+1} }{ k } \right|\leq \frac{1}{ n+1 }.
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    Nous écrivons la formule de Taylor avec reste intégral du théorème \ref{THOooDGCJooXKmFTT} pour la fonction \( f=\ln\) et pour \( a=1\) et \( b=x\). Cela donne :
+    \begin{equation}
+        \ln(x)=\ln(1)+\sum_{k=1}^N\frac{ \ln^{(k)}(1) }{ k! }(x-1)^k+\frac{1}{ N! }(x-t)^N\ln^{(N+1)}(t)dt.
+    \end{equation}
+    Sachant que la dérivée du logarithme\footnote{Voir la proposition \ref{ExZLMooMzYqfK}.} est \( 1/x\) et faisant une petite récurrence, pour \( k\geq 1\) nous avons
+    \begin{equation}
+        \ln^{(k)}(x)=\frac{ (-1)^{k+1}(k-1)! }{ x^k }.
+    \end{equation}
+    En remplaçant,
+    \begin{equation}
+        \ln(x)=\sum_{k=1}^N\frac{ (-1)^{k+1} }{ k }(x-1)^k+\int_1^x\frac{ (-1)^N(x-t)^N }{ t^{N+1} }dt.
+    \end{equation}
+    C'est le moment de poser \( x=2\) et de faire les simplifications qui s'imposent,
+    \begin{equation}
+        \ln(2)=\sum_{k=1}^N\frac{ (-1)^{k+1} }{ k }+\int_1^2\frac{ (-1)^N(2-t)^N }{ t^{N+1} }dt.
+    \end{equation}
+    Nous déplaçons la somme à gauche, et nous prenons la valeur absolue des deux côtés :
+    \begin{subequations}
+        \begin{align}
+            | \ln(2)-\sum_{k=1}^N\frac{ (-1)^{k+1} }{ k } |&=| \int_1^2\frac{ (-1)^N(2-t)^N }{ t^{N+1} }dt |\\
+            &\leq\int_1^2\int_1^2\frac{ (2-t)^N }{ t^{N+1} }dt \label{SUBEQooZSXEooVcbJpd}\\
+            &\leq \int_1^2(2-t)^N       \label{SUBEQooHGZLooGIhoVt}.
+        \end{align}
+    \end{subequations}
+    Justifications :
+    \begin{itemize}
+        \item Pour \ref{SUBEQooZSXEooVcbJpd}. Majoration en rentrant la valeur absolue dans l'intégrale, suppression de \( (-1)^N\), et le fait que pour \( t\in \mathopen[ 1 , 2 \mathclose]\), \( 2-t\geq 0\).
+        \item Pour \ref{SUBEQooHGZLooGIhoVt}. Majoration en supprimant purement et simplement le dénominateur \( t^N+1\geq 1\).
+    \end{itemize}
+    Ais-je vraiment besoin de vous dire que la dernière intégrale se calcule en posant le changement de variables\footnote{Proposition \ref{PROPooMVIUooZmvHxS}.} \( u=2-t\) ? Le résultat est que
+    \begin{equation}
+        \int_1^2(2-t)^Ndt=\frac{1}{ N+1 }.
+    \end{equation}
+\end{proof}
+
+\begin{example}[\cite{MonCerveau}]      \label{EXooYMEEooMGpUNM}
+    La convergence de l'encadrement \eqref{PROPooHOMYooFclkCU} n'est pas terrible. Pour avoir une erreur de \( \frac{1}{ 10 }\), il faut
+    \begin{equation}
+        \frac{1}{ 10 }=\frac{1}{ n+1 },
+    \end{equation}
+    ce qui demande \( n=9\). Ça reste jouable, même pour les jeunes d'aujourd'hui. Écrivons \( 9\) termes :
+    \begin{equation}
+        | \ln(2)-1+\frac{ 1 }{2}-\frac{1}{ 3 }+\frac{1}{ 4 }-\frac{1}{ 5 }+\frac{1}{ 6 }-\frac{ 1 }{ 7 }+\frac{1}{ 8 }-\frac{1}{ 9 } |\leq \frac{1}{ 10 }.
+    \end{equation}
+    En calculant\footnote{Moi j'ai utilisé Sage, mais si tu es au tableau, débrouilles-toi.},
+    \begin{equation}
+        | \ln(2)-\frac{ 1879 }{ 2520 } |\leq\frac{1}{ 10 }.
+    \end{equation}
+    Voici donc un bel encadrement
+    \begin{equation}
+        \frac{ 1879 }{ 2520 }-\frac{1}{ 10 }\leq \ln(2)\leq \frac{ 1879 }{ 2520 }+\frac{1}{ 10 }.
+    \end{equation}
+    Pour avoir quelque chose avec des virgules, d'abord un peu de calcul mental donne
+    \begin{equation}
+        \frac{ 1879 }{ 2520 }\simeq 0.745634920634921.
+    \end{equation}
+    Donc en majorant et minorant, disons, la troisième décimale\footnote{Notez ici que nous utilisons le fait que la division euclidienne, elle, donne un encadrement pour les fractions. Pensez-y.}, on n'est pas moins précis que le $\frac{1}{ 10 }$. On a
+    \begin{equation}
+        0.744-\frac{1}{ 10 }\leq \ln(2)\leq 0.746+\frac{1}{ 10 }.
+    \end{equation}
+    Bref, on retient l'approximation
+    \begin{equation}
+        0.644\leq \ln(2)\leq 0.846.
+    \end{equation}
+    
+    Pour la quantité de travail, avouez que ce n'est pas terrible comme résultat. Eh oui; le calcul numérique c'est tout un métier; il existe des méthodes nettement plus efficaces que ce que nous venons de faire.
+\end{example}
+
+\begin{proposition}[Formule de Taylor avec reste intégral\cite{VBYOJrU,ooSZKEooLejXAh}]\label{PropAXaSClx}
+    Soient \( X\) et \( Y\) des espaces normés et un ouvert \( \mO\subset X\). Si \( f\in C^m(\mO,Y)\) et si \( [p,x]\subset \mO\) alors
+    \begin{equation}
+        \begin{aligned}[]
+            f(x)=f(p)&+\sum_{k=1}^{m-1}\frac{1}{ k! }(d^kf)_p (x-p)^k \\
+            &+\frac{1}{ (m-1)! }\int_0^1(1-t)^{m-1}(d^mf)_{ p+t(x-p) }(x-p)^m\,dt 
+        \end{aligned}
+    \end{equation}
+    où \( \omega_pu^k\) signifie \( \omega_p(u,\ldots, u)\) lorsque \( \omega\in \Omega^k\). Cette formule est le \defe{développement de Taylor}{Taylor avec reste intégral} à l'ordre \( m-1\).
+\end{proposition}
+\index{formule!Taylor!reste intégral}
+
+\begin{remark}
+    Quelque remarques sur l'énoncé.
+    \begin{enumerate}
+        \item
+            
+Dans le cas \( m=2\), la proposition \ref{PROPooFWZYooUQwzjW} donne de bonnes formules pour calculer \( (d^2f)_a(u,v)\).
+\item
+Notez que l'intégrale n'est pas une intégrale faisant intervenir les espaces \( X\) ou \( Y\). Elle est une simple intégrale d'une fonction \( \eR\to \eR\), comme définie par la mesure de Lebesgue de la définition \ref{DefooYZSQooSOcyYN}.
+\item
+Comme expliqué dans l'exemple \ref{ExZHZYcNH}, toute ces applications de différentielles se réduisent à des termes de la forme
+\begin{equation}
+    f^{(k)}(p)(x-p)^k
+\end{equation}
+dans le cas d'une fonction \( \eR\to\eR\).
+    \end{enumerate}
+\end{remark}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Constructions plus naïves de l'intégrale dans le cas réel}
@@ -879,7 +1039,7 @@ Il y a des cas où l'intégrabilité d'une fonction n'est pas évidente. Cependa
 \begin{proposition}
   Toute fonction continue à support compact est intégrable.
 \end{proposition}
-Cette proposition n'est a priori pas étonnante, vu qu'une fonction continue sur un support compact est bornée (théorème de Weierstrass~\ref{ThoWeirstrassRn}).
+Cette proposition n'est à priori pas étonnante, vu qu'une fonction continue sur un support compact est bornée (théorème de Weierstrass~\ref{ThoWeirstrassRn}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Réduction d'une intégrale multiple}
@@ -930,7 +1090,7 @@ Vérifiez, comme exercice, qu'on obtient le même résultat en intégrant d'abor
 \end{example}
 
 \begin{example}
-  Dans les hypothèses du théorème~\ref{fub}  l'ordre des intégrations partielles ne change pas la valeur de l'intégrale. En fait, si les calculs sont faites par des êtres humains l'ordre d'intégration peut faire une certaine différence comme dans cet exemple. On veut évaluer la valeur de l'intégrale
+  Dans les hypothèses du théorème~\ref{fub}  l'ordre des intégrations partielles ne change pas la valeur de l'intégrale. En fait, si les calculs sont faits par des êtres humains l'ordre d'intégration peut faire une certaine différence comme dans cet exemple. On veut évaluer la valeur de l'intégrale
 \[
 \int_{\eR^2}f(x,y)\, dV
 \]
@@ -941,7 +1101,7 @@ où
 		0	&	 \text{sinon.}
 	\end{cases}
 \end{equation}
-Les deux section de $f(x,y)=y\sin(xy)$ sont continues. Si on intègre d'abord par rapport à $y$ on obtient
+Les deux sections de $f(x,y)=y\sin(xy)$ sont continues. Si on intègre d'abord par rapport à $y$ on obtient
 \[
 -\int_1^2\frac{ \pi\cos(\pi x) }{ x }dx+\int_1^2\frac{ \sin(\pi x) }{ x^2 }dx,
 \]
@@ -957,7 +1117,7 @@ qui n'est pas du tout immédiat, alors que, si on intègre d'abord par rapport �
 
 On veut évaluer l'intégrale de la fonction $f(x,y)=\sqrt{1-x^2}$ sur son domaine, la boule unité $B((0,0),1)$. La théorie introduite jusqu'ici n'est pas suffisante pour résoudre  ce problème, parce que $B((0,0),1)$ n'est pas pavable. Les parties bornées de $\eR^p$ sur lesquelles on peut intégrer des fonctions sont dites mesurables (au sens de Riemann) parce que, comme on verra dans la suite, la mesure d'une partie de $\eR^p$ est l'intégrale (s'il existe) de sa fonction caractéristique.
 
-On peut dire que une partie de $\eR^p$  est mesurable si son bord est <<assez régulier>>. Dans $\eR^2$ il est suffisant que le bord de $A$ soit une réunion finie de courbes paramétrées continues. En particulier, on est très souvent dans un des deux cas suivantes
+On peut dire qu'une partie de $\eR^p$  est mesurable si son bord est <<assez régulier>>. Dans $\eR^2$ il est suffisant que le bord de $A$ soit une réunion finie de courbes paramétrées continues. En particulier, on est très souvent dans un des deux cas suivants
 \begin{description}
 \item[Régions du premier type] $A$ est borné et contenu entre les graphes de deux fonctions continues de $x$
 \[
@@ -975,7 +1135,7 @@ avec $h_1$ et $h_2$ continues.
 \input{auto/pictures_tex/Fig_RegioniPrimoeSecondoTipo.pstricks}
 
 \begin{example}
- Il y a des régions qui sont des deux types au même temps, comme les boules centrées à l'origine, le triangle de sommets  $(0,0)$, $(0,a)$ et $(b,0)$, ou la région $C$ délimité par les courbes $y=2x$ et $y=x^2$. Cette dernière admets les représentations suivantes
+ Il y a des régions qui sont des deux types au même temps, comme les boules centrées à l'origine, le triangle de sommets  $(0,0)$, $(0,a)$ et $(b,0)$, ou la région $C$ délimité par les courbes $y=2x$ et $y=x^2$. Cette dernière admet les représentations suivantes
 \[
 C= \{(x,y)\in\eR^2 \,:\, 0\leq x\leq 1, \, x^2\leq y\leq 2x\},
 \]
@@ -1123,14 +1283,14 @@ où $D_a$ est le disque de rayon $a$ centré en $(0,0)$, donc le volume $B$ sera
 \[
 2 \int_{D_a}\sqrt{a^2-x^2-y^2} dV.
 \]
-Cet intégrale est un peu ennuyeuse à calculer. On peut simplifier le calcul en observant que pour $\bar z$ fixé dans l'intervalle $[-a,a]$ la section de la boule au niveau $\bar z$ est un disque de rayon $\sqrt{a^2-z^2}$. L'aire d'un tel disque est  $\pi (a^2+z^2)$. Si on réduit l'intégrale de volume de la façon
+Cette intégrale est un peu ennuyeuse à calculer. On peut simplifier le calcul en observant que pour $\bar z$ fixé dans l'intervalle $[-a,a]$ la section de la boule au niveau $\bar z$ est un disque de rayon $\sqrt{a^2-z^2}$. L'aire d'un tel disque est  $\pi (a^2+z^2)$. Si on réduit l'intégrale de volume de la façon
 \[
 \int_{B} 1\, dV=\int_{-a}^{a}  \sqrt{a^2-z^2}\, dz,
 \]
 on obtient tout de suite la valeur cherchée : le volume de $B$ est $4/3 \pi a^3$.
 \end{example}
 \begin{example}
-	On calcul l'intégrale de $f(x,y,z)=z$ sur la pyramide $P$ bornée par le plans $x=0$, $y=0$, $x+y+z=1$, $x+y+z/2=1$. On remarque tout de suite que le plans $x+y+z=1$, $x+y+z/2=1$ se coupent en la droite $x+y=1$, $z=0$ (on se souvient qu'\emph{une} droite dans $\eR^3$, c'est \emph{deux} équations). Cela veut dire que la projection de $P$ sur le plan $x$-$y$ est le  triangle $T$ borné par les droites $x=z=0$, $y=z=0$ et $x+y=1$, $z=0$.
+	On calcule l'intégrale de $f(x,y,z)=z$ sur la pyramide $P$ bornée par le plans $x=0$, $y=0$, $x+y+z=1$, $x+y+z/2=1$. On remarque tout de suite que le plans $x+y+z=1$, $x+y+z/2=1$ se coupent en la droite $x+y=1$, $z=0$ (on se souvient qu'\emph{une} droite dans $\eR^3$, c'est \emph{deux} équations). Cela veut dire que la projection de $P$ sur le plan $x$-$y$ est le  triangle $T$ borné par les droites $x=z=0$, $y=z=0$ et $x+y=1$, $z=0$.
 On  décrit donc $P$ par
 \[
 P=\{(x,y,z)\in\eR^3\,\vert\, (x,y)\in T, \, 1-2x-2y\leq z\leq 1-x-y\}
@@ -1185,4 +1345,1063 @@ Réciproquement, si $f$ est intégrable sur $E$, alors $f$ est mesurable.
     \begin{equation}
         \int_a^{\infty}f\leq\lim_{b\to\infty}\int_a^bf.
     \end{equation}
+\end{proof}
+
+
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Lemme de Morse}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}[Lemme de Morse]     \label{LemNQAmCLo}
+    Soit \( f\in C^3(\mU,\eR)\) où \( \mU\) est un ouvert de \( \eR^n\) contenant \( 0\). Nous supposons que \( df_0=0\) et que \( d^2f_0\) est non dégénérée\footnote{En tant qu'application bilinéaire.} et de signature \( (p,n-p)\). Alors il existe un \( C^1\)-difféomorphisme \( \varphi\) entre deux voisinages de \( 0\) dans \( \eR^n\) tel que
+    \begin{enumerate}
+        \item
+            \( \varphi(0)=0\),
+        \item
+            si \( \varphi(x)=u\) alors
+            \begin{equation}
+                f(x)-f(0)=u_1^2+\cdots +u_p^2-u_{p+1}^2-\ldots-u_n^2.
+            \end{equation}
+    \end{enumerate}
+    Une autre façon de dire est qu'il existe un \( C^1\)-difféomorphisme local \( \psi\) tel que
+    \begin{equation}
+        (f\circ\psi)(x)-f(0)=x_1^2+\cdots +x_p^2-x_{p+1}^2-\ldots-x_n^2.
+    \end{equation}
+\end{lemma}
+\index{lemme!de Morse}
+\index{développement!Taylor}
+\index{application!différentiable}
+\index{forme!quadratique}
+\index{théorème!inversion locale!utilisation}
+\index{action de groupe!sur des matrices}
+\index{extrémum}
+
+\begin{proof}
+    Nous allons noter \( Hf\) la matrice hessienne de \( f\), c'est-à-dire \( Hf_a=d^2f_a\in\aL^{(2)}(\eR^n,\eR)\). Écrivons la formule de Taylor avec reste intégral (proposition~\ref{PropAXaSClx} avec \( p=0\) et \( m=2\)) :
+    \begin{equation}
+        f(x)-f(0)=\underbrace{df_0(x)}_{=0}+\int_0^1(1-t)\underbrace{d^2f_{tx}(x,x)}_{x^t(Hf)_{tx}x=\langle Hf_{tx}x, x\rangle }dt=x^tQ(x)x
+    \end{equation}
+    avec
+    \begin{equation}
+        Q(x)=\int_0^1(1-t)(Hf)_{tx}dt
+    \end{equation}
+    qui est une intégrale dans \( \aL^{(2)}(\eR^n,\eR)\). Nous prouvons à présent que \( Q\) est de classe \( C^1\) en utilisant le résultat de différentiabilité sous l'intégrale~\ref{PropAOZkDsh}. Pour cela nous passons aux composantes (de la matrice) et nous considérons
+    \begin{equation}
+        \begin{aligned}
+            h_{kl}\colon U\times\mathopen[ 0 , 1 \mathclose]&\to \eR \\
+            h_{kl}(x,t)&=(1-t)\frac{ \partial^2f  }{ \partial x_k\partial x_l }(tx).
+        \end{aligned}
+    \end{equation}
+    Étant donné que \( f\) est de classe \( C^3\), la dérivée de \( h_{kl}\) par rapport à \( x_i\) ne pose pas de problèmes :
+    \begin{equation}
+        \frac{ \partial h_{kl} }{ \partial x_i }=t(t-1)\frac{ \partial^3f  }{ \partial x_i\partial x_k\partial x_l }(tx),
+    \end{equation}
+    qui est encore continue à la fois en \( t\) et en \( x\). La proposition~\ref{PropAOZkDsh} nous montre à présent que
+    \begin{equation}
+        Q_{kl}(x)=\int_0^1(1-t)h_{kl}(tx)dt
+    \end{equation}
+    est une fonction \( C^1\). Étant donné que les composantes de \( Q\) sont \( C^1\), la fonction \( Q\) est également \( C^1\).
+
+    Nous avons \( Q(0)=\frac{ 1 }{2}(Hf)_0\in S_n\cap \GL(n,\eR)\), d'abord parce que \( f\) est \( C^2\) (et donc la matrice hessienne est symétrique), ensuite par hypothèse \( d^2f_0\) est non dégénérée.
+    %TODO : prouver que la matrice hessienne est symétrique lorsque f est C^2 (ou vérifier que c'est déjà fait), et référentier ici.
+
+    À partir de là, le lemme~\ref{LemWLCvLXe} donne un voisinage \( V\) de \( Q(0)\) dans \( S_n\) et une application \( \phi\) de classe \( C^1\)
+    \begin{equation}
+            \phi\colon V\to \GL(n,\eR) \\
+    \end{equation}
+    telle que pour tout \( A\in V\),
+    \begin{equation}
+        \phi(A)^tQ(0)\phi(A)=A.
+    \end{equation}
+    Si on pose \( M=\phi\circ Q\), et si \( x\) est dans un voisinage de zéro, \( Q\) étant continue nous avons \( Q(x)\in V\) et donc
+    \begin{equation}
+        Q(x)=M(x)^tQ(0)M(x).
+    \end{equation}
+    Notons que l'application \( \eM\colon \eR\to \GL(n,\eR)\) est de classe \( C^1\) parce que \( Q\) et \( \phi\) le sont.
+
+    Nous avons
+    \begin{equation}
+        f(x)-f(0)=x^tQ(x)x=x^tM(x)^tQ(0)M(x)x=y(x)^tQ(0)y(x)
+    \end{equation}
+    où \( y(x)=M(x)x=(\phi\circ Q)(x)x\) est encore une fonction de classe \( C^1\) parce que la multiplication est une application \(  C^{\infty}\).
+
+    D'un autre côté le théorème de Sylvester~\ref{ThoQFVsBCk} nous donne une matrice inversible \( P\) telle que
+    \begin{equation}
+        Q(0)=P^t\begin{pmatrix}
+            \mtu_p    &       \\
+            &   -\mtu_{n-p}
+        \end{pmatrix}P.
+    \end{equation}
+    Et nous posons enfin \( u=\varphi(x)=Py(x)\) qui est toujours de classe \( C^1\) et qui donne
+    \begin{subequations}
+        \begin{align}
+            f(x)-f(0)&=y^tQ(0)y\\
+            &=y^tP^t\begin{pmatrix}
+                \mtu    &       \\
+                    &   -\mtu
+            \end{pmatrix}Py\\
+            &=u^t\begin{pmatrix}
+                \mtu    &       \\
+                    &   -\mtu
+            \end{pmatrix}u\\
+            &=u_1^2+\cdots +u_p^2-u_{p+1}^2-\ldots -u_n^2.
+        \end{align}
+    \end{subequations}
+
+    Nous devons maintenant montrer que, quitte à réduire son domaine à un ouvert plus petit, \( \varphi\) est un \( C^1\)-difféomorphisme. Dans la chaine qui donne \( \varphi\), seule l'application
+    \begin{equation}
+        \begin{aligned}
+            g\colon U\subset \eR^n&\to \eR^n \\
+            x&\mapsto M(x)x
+        \end{aligned}
+    \end{equation}
+    est sujette à caution. Nous allons appliquer le théorème d'inversion locale. Nous savons que \( g\) est de classe \( C^1\) et donc différentiable; calculons la différentielle en utilisant la formule \eqref{EqOWQSoMA} :
+    \begin{equation}
+        dg_0(x)=\Dsdd{ g(tx) }{t}{0}=\Dsdd{ tM(tx)x }{t}{0}=M(0)x.
+    \end{equation}
+    Note que nous avons utilisé la règle de Leibnitz pour la dérivée d'un produit, mais le second terme s'est annulé. Donc \( dg_0=M(0)\in \GL(n,\eR)\) et \( g\) est localement un \( C^1\)-difféomorphisme.
+
+    Il suffit de restreindre \( \varphi\) au domaine sur lequel \( g\) est un \( C^1\)-difféomorphisme pour que \( \varphi\) devienne lui-même un \( C^1\)-difféomorphisme.
+
+\end{proof}
+
+\begin{definition}
+    Un point \( a\) est un \defe{point critique}{point critique!définition} de la fonction différentiable \( f\) si \( df_a=0\).
+\end{definition}
+
+\begin{corollary}[\cite{XPautfO}]
+    Les points critiques non dégénérés d'une fonction \( C^3\) sont isolés.
+\end{corollary}
+
+\begin{proof}
+    Soit \( a\) un point critique non dégénéré. Par le lemme de Morse~\ref{LemNQAmCLo}, il existe un \( C^1\)-difféomorphisme \( \psi\) et un entier \( p\) tel que
+    \begin{equation}
+        (f\circ \psi)(x)=x_1^2+\cdots +x_p^2-x_{p+1}^2-\ldots -x_n^2+f(a)
+    \end{equation}
+    sur un voisinage \( \mU\) de \( a\). Vue la formule générale \( df_x(u)=\nabla f(x)\cdot u\), si \( x\) est un point critique de \( f\), alors \( \nabla f(x)=0\). Dans notre cas, les points critiques de \( f\circ \psi\) dans \( \mU\) doivent vérifier \( x_i=0\) pour tout \( i\), et donc \( x=a\).
+
+    Nous devons nous assurer que la fonction \( f\) elle-même n'a pas de points critiques dans \( \mU\). Pour cela nous utilisons la formule générale de dérivation de fonction composée :
+    \begin{equation}
+        \nabla(f\circ\psi)(x)=\sum_k \frac{ \partial f }{ \partial y_k }\big( g(x) \big)\nabla g_k(x).
+    \end{equation}
+    Si \( \psi(x)\) est une point critique de \( f\), alors le membre de droite est le vecteur nul parce que tous les \( \partial_kf\big( \psi(x) \big)\) sont nuls. Par conséquent le membre de gauche est également nul, et \( x\) est un point critique de \( f\circ\psi\). Or nous venons de voir que \( f\circ\psi\) n'a pas de points critiques dans \( \mU\).
+
+    Donc \( f\) n'a pas de points critiques dans un voisinage d'un point critique non dégénéré.
+\end{proof}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+\section{Autres intégrales sympathiques}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Intégrale de Wallis}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}[\cite{BIBooBKPHooAHRmLD}]     \label{LEMooMGUVooIIQSmC}
+    Soit \( n>0\). En posant \( I_n=\int\sin^n(x)dx\), nous avons :
+    \begin{equation}
+        I_n=\frac{ \cos(x)\sin^{n-1}(x) }{ n }+\frac{ n-1 }{ n }I_{n-2},
+    \end{equation}
+    c'est-à-dire
+    \begin{equation}
+        \int\sin^n(x)dx=\frac{ n-1 }{ n }\int\sin^{n-2}(t)dt-\frac{ \sin^{n-1}(x)\cos(x) }{ n }.
+    \end{equation}
+
+    De la même manière,
+    \begin{equation}        \label{EQooWJMIooSgBbJx}
+        \int\cos^n(x)dx=\frac{ \cos^{n-1}(x)\sin(x) }{ n }+\frac{ n-1 }{ n }\int\cos^{n-2}(x)dx.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Nous posons \( I_n=\int\sin^n(t)dt\), et nous y allons par récurrence. D'abord pour \( n=1\). Dans ce cas, la formule à démontrer se réduit à
+    \begin{equation}
+        \int\sin(x)dx=\cos(x).
+    \end{equation}
+    Pas de problèmes.
+
+    Pour \( n\geq 2\), nous évaluons l'intégrale \( I_n\) en utilisant une intégration par partie\footnote{Proposition \ref{PROPooRLFIooQHnyJY}.} en posant
+    \begin{subequations}
+        \begin{numcases}{}
+            u=\sin^{n-1}(t)\\
+            v'=\sin(t)
+        \end{numcases}
+    \end{subequations}
+    et en déduisant
+    \begin{subequations}
+        \begin{numcases}{}
+            u'=(n-1)\sin^{n-2}(t)\cos(t)\\
+            v=-\cos(t).
+        \end{numcases}
+    \end{subequations}
+    Nous avons alors le calcul
+    \begin{subequations}
+        \begin{align}
+            I_n&=-\cos(x)\sin^{n-1}(x)+\int(n-1)\sin^{n-2}(x)\cos^2(x)dx\\
+            &=-\cos(x)\sin^{n-1}(x)+(n-1)\int\sin^{n-2}\underbrace{\cos^2(x)}_{=1-\sin^2(x)}dx\\
+            &=\cos(x)\sin^{n-1}(x)+(n-1)\underbrace{\int\sin^{n-2}(x)dx}_{=I_{n-2}}-(n-1)\underbrace{\int\sin^n(x)}_{=I_n}dx
+        \end{align}
+    \end{subequations}
+    Nous avons donc déjà prouvé que
+    \begin{equation}
+        I_n=\cos(x)\sin^{n-1}(x)+(n-1)(I_{n-2}-I_n).
+    \end{equation}
+    En isolant \( I_n\),
+    \begin{equation}
+        I_n=\frac{ \cos(x)\sin^{n-1}(x) }{ n }+\frac{ n-1 }{ n }I_{n-2}.
+    \end{equation}
+
+    La formule \eqref{EQooWJMIooSgBbJx} se démontre de la même façon.
+\end{proof}
+
+\begin{lemma}[\cite{BIBooFMRSooRYnhNf,BIBooSZLCooXWYESD}]       \label{LEMooUOIBooLyMDft}
+    Nous posons
+    \begin{equation}
+        W_n=\int_0^{\pi/2}\cos^n(t)dt.
+    \end{equation}
+    Alors :
+    \begin{enumerate}
+        \item
+            une formule de récurrence :
+            \begin{equation}        \label{EQooILMZooBUgJpk}
+                W_n=\frac{ n-1 }{ n }W_{n-2},
+            \end{equation}
+        \item et une formule un peu explicite :
+            \begin{equation}        \label{EQooUYIDooEpHCnP}
+                W_{2n}=\frac{ (2n)! }{ (2^nn!)^2 }\frac{ \pi }{2}.
+            \end{equation}
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Le nombre \( W_n\) est seulement la seconde intégrale du lemme \ref{LEMooMGUVooIIQSmC}, évaluée entre \( 0\) et \( \pi/2\). En partant donc de \eqref{EQooWJMIooSgBbJx}, nous avons
+    \begin{equation}
+        W_n=\int_0^{\pi/2}\cos^n(x)dx=\left[ \frac{ \cos^{n-1}(x)\sin(x) }{ n } \right]_0^{\pi/2}+\frac{ n-1 }{ n }\int_0^{\pi/2}\cos^{n-2}(x)dx.
+    \end{equation}
+    Le terme aux bords disparaît grâce aux valeurs trigonométriques remarquables\footnote{Par exemple la proposition \ref{PROPooMWMDooJYIlis}\ref{ITEMooQKPKooEPeHER}.}. Il reste immédiatement
+    \begin{equation}
+        W_n=\frac{ n-1 }{ n }W_{n-2}.
+    \end{equation}
+    À partir de là, nous démontrons \eqref{EQooUYIDooEpHCnP} par récurrence. D'abord pour \( n=0\), c'est l'égalité \( W_0=\pi/2\) qui est correcte parce que
+    \begin{equation}
+        \int_0^{\pi/2}\cos^0(x)dx=\int_0^{\pi/2}1dx.
+    \end{equation}
+    Pour la récurrence elle-même,
+    \begin{subequations}
+        \begin{align}
+            W_{2(n+1)}&=\frac{ 2n+1 }{ 2(n+1) }W_{2n}\\
+            &=\frac{ 2n+1 }{ 2n+2 }\frac{ (2n)! }{ (2^nn!)^2 }\frac{ \pi }{ 2 }\\
+            &\text{\ldots pas mal de petits calculs \ldots}\\
+            &=\frac{ (2n+2)! }{ \big( (n+1)!2^{n+1} \big)^2 }\frac{ \pi }{2}.
+        \end{align}
+    \end{subequations}
+    Voila.
+\end{proof}
+
+Maintenant, la suite \( (W_n)\) se divise en ses termes pairs et ses termes impairs. Pour les pairs, nous avons une formule assez explicite donnée par le lemme \ref{LEMooUOIBooLyMDft}. Pour les termes impairs, nous n'avons rien. Dans tous les cas, nous avons la formule de récurrence
+\begin{equation}
+    W_n=\frac{ n-1 }{ n }W_{n-2}
+\end{equation}
+qui ne sert à rien pour déduire des choses sur les termes impairs à partir de ce que l'on sait des termes pairs.
+
+Sommes-nous perdus ? Non. La situation se débloque grâce au lemme suivant.
+
+\begin{lemma}       \label{LEMooZFBVooQsOuOx}
+    La suite donnée par
+    \begin{equation}
+        W_n=\int_0^{\pi/2}\cos^n(x)dx
+    \end{equation}
+    est décroissante.
+\end{lemma}
+
+\begin{proof}
+    Vu que l'intégrale est sur \( \mathopen[ 0 , \pi/2 \mathclose]\), le nombre \( \cos(x)\) prend ses valeurs dans \( \mathopen[ 0 , 1 \mathclose]\). Nous avons donc
+    \begin{equation}
+        \cos^{n+1}(x)\leq \cos^n(x).
+    \end{equation}
+    Les intégrales suivent les mêmes inégalités.
+\end{proof}
+
+Ce lemme permet de relancer le jeu parce que les termes impairs sont coincés entre les termes pairs, qui décroissent. Les termes impairs doivent donc décroître à la même vitesse. Le lemme suivant met cela en musique.
+
+\begin{lemma}       \label{LEMooAXTEooLBXQuM}
+    Nous posons
+    \begin{equation}
+        W_n=\int_0^{\pi/2}\cos^n(x)dx
+    \end{equation}
+    La fonction \( \alpha\colon \eN\to \eR\) définie par \( W_n=\alpha(n)W_{n-1}\) vérifie \( \lim_{n\to \infty} \alpha(n)=1\).
+\end{lemma}
+
+\begin{proof}
+    Parce que nous en aurons besoin, nous triturons d'abord un peu la formule de récurrence \eqref{EQooILMZooBUgJpk}. D'abord nous l'inversons un peu pour avoir
+    \begin{equation}
+        W_n=\frac{ n+2 }{ n }W_{n+2},
+    \end{equation}
+    et ensuite nous écrivons
+    \begin{equation}        \label{EQooYINNooBUKUYB}
+        W_{n-1}=\frac{ n+1 }{ n }W_{n+1}.
+    \end{equation}
+    Ne vous posez pas de questions, ça va être utile. Le fait que la suite soit décroissante (lemme \ref{LEMooZFBVooQsOuOx}) nous permet d'écrire
+    \begin{equation}
+        W_{n+2}\leq W_n\leq W_{n-1}.
+    \end{equation}
+    En y remplaçant \( W_n\) par \( \alpha(n)W_{n+1}\) et \( W_{n-1}\) par \eqref{EQooYINNooBUKUYB},
+    \begin{equation}
+        W_{n+1}\leq \alpha(n)W_{n+1}\leq \frac{ n+1 }{ n }W_{n+1}.
+    \end{equation}
+    Nous simplifions par \( W_{n+1}\) et nous trouvons l'encadrement, valable pour tout \( n\) :
+    \begin{equation}
+        1\leq \alpha(n)\leq \frac{ n+1 }{ n }.
+    \end{equation}
+    Nous en déduisons par la règle de l'étau que \( \alpha(n)\to 1\).
+\end{proof}
+
+\begin{lemma}       \label{LEMooWQZAooOXAPQO}
+    Soit
+    \begin{equation}
+        W_n=\int_0^{\pi/2}\cos^n(x)dx.
+    \end{equation}
+    Encore plusieurs choses à dire.
+    \begin{enumerate}
+        \item
+            Pour tout \( n\) nous avons
+            \begin{equation}        \label{EQooLOLFooMIwMXN}
+                nW_nW_{n-1}=\frac{ \pi }{2}.
+            \end{equation}
+            \item
+                Nous avons l'équivalence de suites\footnote{Définition \ref{DEFooEWRTooKgShmT}.}
+                \begin{equation}
+                    W_n\sim\sqrt{ \frac{ \pi }{ 2n } }.
+                \end{equation}
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    En deux parties
+    \begin{subproof}
+        \item[La suite constante]
+            Nous posons \( K_n=nW_nW_{n-1}\). Grâce aux formules de récurrence \eqref{EQooILMZooBUgJpk} que nous écrivons sous la forme
+            \begin{subequations}
+                \begin{align}
+                    W_n&=\frac{ n-1 }{ n }W_{n-2}\\
+                    W_{n+1}&=\frac{ n }{ n+1 }W_{n-1},
+                \end{align}
+            \end{subequations}
+            nous avons
+            \begin{equation}
+                K_{n+1}=(n+1)W_{n+1}W_n=(n+1)\frac{ n }{ n+1 }\frac{ n-1 }{ n }W_{n-2}W_{n_2}=(n-1)W_{n-1}W_{n-2}=K_{n-1}.
+            \end{equation}
+            Nous avons montré que \( K_{n+1}=K_{n-1}\).
+
+            Il nous reste à prouver que \( K_1=K_2=\frac{ \pi }{2}\). Pour cela nous avons immédiatement \( W_0=\frac{ \pi }{2}\) ainsi que
+            \begin{equation}
+                W_1=\int_0^{\pi/2}\cos(t)dt=1.
+            \end{equation}
+            Pour \( W_2\), il ne faut pas calculer d'intégrales, mais seulement utiliser la formule \eqref{EQooUYIDooEpHCnP}. Nous trouvons vite \( W_2=\frac{ \pi }{ 4 }\). Donc
+            \begin{equation}
+                K_1=W_1W_0=\frac{ \pi }{2}
+            \end{equation}
+            et
+            \begin{equation}
+                K_2=2W_2W_1=\frac{ \pi }{2}.
+            \end{equation}
+        \item[L'équivalence de suites]
+            Soit la fonction \( \alpha\)  définie par \( W_n=\alpha(n)W_{n-1}\). Le lemme \ref{LEMooAXTEooLBXQuM} nous dit que \( \alpha(n)\to 1\). Nous l'utilisons dans \eqref{EQooLOLFooMIwMXN} :
+            \begin{equation}
+                \frac{ \pi }{2}=nW_nW_{n-1}=n\alpha(n)W_{n-1}^2.
+            \end{equation}
+            Donc
+            \begin{equation}
+                W_{n-1}^2=\frac{ \pi }{ 2n\alpha(n) },
+            \end{equation}
+            et
+            \begin{equation}
+                W_{n-1}\sqrt{ \frac{1}{ \alpha(n) } }\sqrt{ \frac{ \pi }{ 2n } }.
+            \end{equation}
+            Vu que le coefficient \( \sqrt{ 1/\alpha(n) }\) tend vers \( 1\) pour \( n\to 1\), nous avons l'équivalence demandée.
+    \end{subproof}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Formule de Stirling}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}[\cite{BIBooFRPFooFDvXrp}]     \label{LEMooDXJOooOGFcIv}
+    Si \( n\in \eN\) nous avons la formule
+    \begin{equation}
+        \ln(1+\frac{1}{ n })=2\sum_{k=0}^{\infty} \frac{1}{ 2k+1 } \left( \frac{1}{ 2n+1 } \right)^{2k+1}
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Il s'agit d'utiliser astucieusement le développement de la proposition \ref{PROPooKPBIooJdNsqX}. Nous avons d'une part
+    \begin{equation}
+        \ln(1+t)=\sum_{k=1}^{\infty}(-1)^{k+1}\frac{ x^k }{ k }
+    \end{equation}
+    et d'autre part,
+    \begin{equation}
+        -\ln(1-t)=\sum_{k=1}^{\infty}\frac{ x^k }{ k }.
+    \end{equation}
+    Cela permet de calculer, en utilisant l'associativité de la série\footnote{Proposition \ref{PROPooUEBWooUQBQvP}.}
+    \begin{subequations}\label{EQooYVXHooNDetVx}
+        \begin{align} 
+            \ln\left( \frac{ 1+t }{ 1-t } \right)&=\ln(1+t)-\ln(1-t)\\
+            &=\sum_{k=1}^{\infty}\left( \frac{ (-1)^{k+1}x^k }{ k }+\frac{ x^k }{ k } \right)\\
+            &=2\sum_{k=0}^{\infty}\frac{ x^{2k+1} }{ 2k+1 }     \label{SUBEQooIIOBooXYoHkK}
+        \end{align}
+    \end{subequations}
+    parce que tous les termes pairs s'annulent, tandis que les termes impairs sont doublés. Notez que la somme dans \eqref{SUBEQooIIOBooXYoHkK} commence à \( k=0\), contrairement aux autres qui commencent à \( 1\).
+   
+    Et là c'est l'astuce : on écrit l'égalité \eqref{EQooYVXHooNDetVx} avec le \( t\) qu'il faut pour que
+    \begin{equation}
+        \frac{ 1+t }{ 1-t }=1+\frac{1}{ n }.
+    \end{equation}
+    Nous posons donc \( t=\frac{1}{ 2n+1 }\) nous avons
+    \begin{equation}
+        \ln\left( 1+\frac{1}{ n } \right)=2\sum_{k=0}^{\infty}  \frac{1}{ 2k+1 } \left( \frac{1}{ 2n+1 } \right)^{2k+1},
+    \end{equation}
+    ce qu'il fallait.
+\end{proof}
+
+
+\begin{lemma}[Formule de Stirling\cite{MEHuVnb,BIBooZRVYooGKkFmy,BIBooFMRSooRYnhNf,BIBooFRPFooFDvXrp,BIBooEFYIooBvytzQ}]        \label{LemCEoBqrP}
+    Nous avons l'équivalence de suites\footnote{Définition \ref{DEFooEWRTooKgShmT}.}
+    \begin{equation}
+        n!\sim \left( \frac{ n }{ e } \right)^n\sqrt{2\pi n}.
+    \end{equation}
+\end{lemma}
+\index{formule de Stirling}
+
+\begin{proof}
+    Nous posons
+    \begin{equation}
+        a_n=\frac{ n! }{ \sqrt{ 2n } \left( \frac{ n }{ e } \right)^n }
+    \end{equation}
+    et \( b_n=\ln(a_n)\).
+    \begin{subproof}
+        \item[Une formule pour \( b_n-b_{n+1}\)]
+            Nous faisons un beau calcul qui utilise les formules de la proposition \ref{PROPooLAOWooEYvXmI} ainsi que \( \ln(e)=1\) :
+            \begin{subequations}        \label{SUBEQSooZTABooBukFGM}
+                \begin{align}
+                    b_n-b_{n+1}&=\ln\left( \frac{ a_n }{ a_{n+1} } \right)\\
+                    &=\ln\left(     \frac{ (n+1)^{n+1/2} }{ n^{n+1/2} }\frac{1}{ e }    \right)\\
+                    &=\ln\left( (\frac{ n+1 }{ n })^{n+1/2} \right)-1\\
+                    &=\left( n+\frac{1}{ 2 } \right)\ln(1+\frac{1}{ n })-1.
+                \end{align}
+            \end{subequations}
+        \item[La suite \( (b_n)\) est décroissante]
+            Nous écrivons l'égalité \eqref{SUBEQSooZTABooBukFGM} en utilisant le lemme \ref{LEMooDXJOooOGFcIv} :
+            \begin{subequations}
+                \begin{align}
+                    b_n-b_{n+1}&=(n+\frac{ 1 }{2})\ln(1+\frac{1}{ n })-1\\
+                    &=\frac{ 1 }{2}(2n+1)2\sum_{k=0}^{\infty}\frac{1}{ 2k+1 }\left( \frac{1}{ 2n+1 } \right)^{2k+1}-1\\
+                    &=(2n+1)\sum_{k=1}^{\infty}\frac{1}{ 2k+1 }\left( \frac{1}{ 2n+1 } \right)^{2k+1}\\
+                    &=\sum_{k=1}^{\infty}  \frac{1}{ 2k+1 }  \left( \frac{1}{ 2n+1 } \right)^{2k}.
+                \end{align}
+            \end{subequations}
+            Notez que le terme \( k=0\) s'est simplifié avec le \( -1\). Vu que le tout est une somme de termes positifs, nous avons
+            \begin{equation}
+                b_n-b_{n+1}>0
+            \end{equation}
+            et la suite est décroissante.
+        \item[Majoration pour \( b_n-b_{n+1}\)]
+            Vu que \( \frac{1}{ 2k+1 }<1\), nous pouvons majorer :
+            \begin{equation}
+                b_n-b_{n+1}\leq \sum_{k=1}^{\infty}\left( \frac{1}{ (2n+1)^2 } \right)^k.
+            \end{equation}
+            Nous remarquons que cela est une série géométrique déjà traitée dans la proposition \ref{PROPooWOWQooWbzukS}. Nous faisons un peu de calcul en partant de 
+            \begin{equation}
+                \sum_{k=1}^{\infty}q^n=\frac{ q }{ 1-q }
+            \end{equation}
+            avec \( q=\frac{1}{ (2n+1)^2 }\). Après quelques simplifications,
+            \begin{equation}
+                b_n-b_{n+1}\leq \frac{1}{ 4 }\frac{ 1 }{ n(n+1) }
+            \end{equation}
+        \item[Le coup de la somme télescopique]
+            Nous avons
+            \begin{equation}
+                b_1-b_n=(b_1-b_2)+(b_2-b_3)+\ldots+(b_{n_1}-b_n).
+            \end{equation}
+            Chacun de ces termes est majoré; nous avons donc
+            \begin{equation}
+                b_1-b_n<\frac{1}{ 4 }\sum_{m=1}^{n-1}\frac{1}{ m(m+1) }\leq \frac{1}{ 4 }\sum_{m=1}^{\infty}\frac{1}{ m(m+1) }=\frac{1}{ 4 }
+            \end{equation}
+            grâce au lemme \ref{LEMooKDHPooPlFTIT} pour la dernière somme.
+        \item[La suite \( b_n\) est bornée vers le bas]
+
+            Vu que \( b_1=1-\frac{ \ln(2) }{2}\), nous avons
+            \begin{equation}
+                b_n>b_1-\frac{1}{ 4 }=\frac{ 3 }{ 4 }-\frac{ \ln(2) }{ 2 }.
+            \end{equation}
+            En utilisant la majoration de l'exemple \ref{EXooYMEEooMGpUNM} nous trouvons
+            \begin{equation}
+                0.327\leq b_n\leq 0.427.
+            \end{equation}
+            Cet encadrement n'est pas très important. Le point est que la suite \( (b_n)\) soit bornée vers le bas; savoir que la borne est strictement positive n'est pas indispensable.
+
+        \item[Une limite pour \( (a_n)\)]
+            La suite \( (b_n)\) est décroissante et bornée vers le bas, donc elle est convergente par le lemme \ref{LemSuiteCrBorncv}. Vu que l'exponentielle est une fonction continue\footnote{Parce qu'elle est dérivable, voir par exemple le théorème \ref{ThoKRYAooAcnTut}.}, la suite \( a_n= e^{b_n}\) est également convergente.
+
+            Vu que \( \lim_{n\to \infty} b_n>0\), nous avons \( \lim_{n\to \infty} a_n= e^{\lim_{n\to \infty} b_n}>1\).
+
+            L'important est que nous sachions que \( (a_n)\) est une suite convergente. Nous notons \( L\) sa limite :
+            \begin{equation}
+                \lim_{n\to \infty} \frac{ n! }{ \sqrt{ 2n }\left( \frac{ n }{ e } \right)^n }=L.
+            \end{equation}
+            Ou encore :
+            \begin{equation}
+                \lim_{n\to \infty} \frac{ n! }{ L\sqrt{ 2n }\left( \frac{ n }{ e } \right)^n }=1.
+            \end{equation}
+            Autrement dit, en posant
+            \begin{equation}        \label{EQyiBooFVCCooJbGpsW}
+                n!=\alpha(n)L\sqrt{ 2n }\left( \frac{ n }{ e } \right)^n,
+            \end{equation}
+            nous avons \( \lim_{n\to \infty} \alpha(n)=1\).
+
+        \item[Introduction de Wallis]
+            Nous avons déjà parlé dans le lemme \ref{LEMooUOIBooLyMDft} du nombre
+            \begin{equation}
+                W_{2n}=\frac{ (2n)! }{ (2^nn!)^2 }\frac{ \pi }{2}.
+            \end{equation}
+            Le lemme \ref{LEMooWQZAooOXAPQO} implique que la suite \( I_n=W_{2n}\) est équivalente à \( \sqrt{ \pi/4n }\). 
+            
+            Cela étant dit, nous faisons un gros calcul en remplaçant les factorielles dans \( W_{2n}\) par la formule \eqref{EQyiBooFVCCooJbGpsW}. Après pas mal de calculs\footnote{Si vous êtes en manque de papier de brouillon, c'est le moment de vous inquiéter.}, nous trouvons
+            \begin{equation}
+                I_n=\frac{ \alpha(2n) }{ \alpha(n)^2 }\frac{1}{ \sqrt{ n } }\frac{ \pi }{ 2n }.
+            \end{equation}
+            Nous avons donc
+            \begin{equation}
+                \sqrt{ \frac{ \pi }{ 4n } }\sim \frac{ \alpha(2n) }{ \alpha(n)^2 }\frac{ \pi }{ \sqrt{ n } }\frac{1}{ 2L }.
+            \end{equation}
+            Il existe donc une fonction \( \beta(n)\) avec \( \beta(n)\to 1\) telle que
+            \begin{equation}
+                \frac{ \sqrt{ \pi } }{2}\frac{1}{ \sqrt{ n } }=\beta(n)\frac{ \alpha(2n) }{ \alpha(n)^2 }\frac{ \pi }{ \sqrt{ n } }\frac{1}{ 2L }.
+            \end{equation}
+            En simplifiant par \( 1/\sqrt{ n }\),
+            \begin{equation}
+                \frac{ \sqrt{ \pi } }{2}=\beta(n)\frac{ \alpha(2n) }{ \alpha(n)^2 }\frac{\pi}{ 2L }.
+            \end{equation}
+            Nous prenons à présent la limite \( n\to \infty\) en nous rappelant que \( \alpha\) et \( \beta \) donnent \( 1\). Après simplifications, nous trouvons
+            \begin{equation}
+                L=\sqrt{ \pi }.
+            \end{equation}
+            
+        \item[La fin]
+            Nous introduisons la valeur \( L=\sqrt{ \pi }\) dans l'expression \eqref{EQyiBooFVCCooJbGpsW} de la factorielle :
+            \begin{equation}
+                n!=\alpha(n)\sqrt{ 2\pi n }\left( \frac{ n }{ e } \right)^n.
+            \end{equation}
+    \end{subproof}
+    La dernière équation est exactement ce qui signifie l'équivalence de suite demandée.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{La fonction sinus cardinal, intégrale de Dirichlet}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}
+    La fonction \defe{sinus cardinal}{sinus cardinal} est
+    \begin{equation}
+        f(t)=\begin{cases}
+            1    &   \text{si } t=0 \\
+            \frac{ \sin(t) }{ t }    &    \text{sinon. }
+        \end{cases}
+    \end{equation}
+\end{definition}
+Elle sert à plein de choses. Entre autres, le lemme \ref{LEMooEEWSooZwLSAP} montrera que la fonction \( x\mapsto | \sin(x)/x |\) a une intégrale sur \( \eR\) qui vaut \( \infty\). Cela nous permettra de donner un exemple d'une fonction dans \( L^1(\eR)\) dont la transformée de Fourier n'est pas dans \( L^1(\eR)\) (lemme \ref{LEMooROPHooOSguhN}).
+
+\begin{normaltext}
+    Le but que nous nous fixons maintenant est de prouver que
+    \begin{equation}
+        \int_{0}^{\infty}\frac{ \sin(t) }{ t }dt=\frac{ \pi }{2}.
+    \end{equation}
+
+    Un adage dit que si un théorème est trop long, c'est qu'il n'a pas assez de lemmes. Nous allons faire plein de lemmes.
+\end{normaltext}
+
+\begin{lemma}       \label{LEMooMJFBooAjtNjV}
+    La fonction sinus cardinal est continue.
+\end{lemma}
+
+\begin{proof}
+    Elle est continue en zéro parce que le lemme \ref{LEMooZYNEooYkwsWD} nous donne
+    \begin{equation}
+        \lim_{t\to 0}\frac{ \sin(t) }{ t }=1.
+    \end{equation}
+\end{proof}
+
+Nous commençons par une mauvaise nouvelle.
+\begin{lemma}[\cite{MonCerveau}]           \label{LEMooEEWSooZwLSAP}
+    Nous avons
+    \begin{equation}
+        \int_{\eR}| \frac{ \sin(x) }{ x } |dx=\infty.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Soit \( \delta>0\) tel que sur l'intervalle \( \mathopen[ \frac{ \pi }{2}-\delta , \frac{ \pi }{ 2 }+\delta \mathclose]\), nous ayons \( \sin(x)>0.9\)\footnote{Ça existe par une astucieuse combinaison du théorème \ref{ThoValInter} des valeurs intermédiaires, de la valeur remarquable \( \sin(\pi/2)=1\) (de \eqref{SUBEQSooBTNPooSvCAHO}) et du fait que \( \sin\) est continue (proposition \ref{PROPooZXPVooBjONka}).} .
+
+    Les intervalles \( I_k=\mathopen[ \frac{ \pi }{2}-\delta+2k\pi , \frac{ \pi }{2}+\delta+2k\pi \mathclose]\) sont disjoints et la fonction que nous intégrons est partout positive. Nous découpons
+    \begin{equation}
+        \eR=C+\bigcup_{k=0}^{\infty}\mathopen[ \frac{ \pi }{2}-\delta+2k\pi , \frac{ \pi }{2}+\delta+2k\pi \mathclose]
+    \end{equation}
+    où \( C\) est le complémentaire qu'il faut pour faire \( \eR\).
+
+    La \( \sigma\)-additivité de l'intégrale de Lebesgue (proposition \ref{PROPooDWYNooWKJmEV}) nous indique que
+    \begin{equation}
+        \int_{\eR}\big| \frac{ \sin(x) }{ x } \big|= \int_C\big| \frac{ \sin(x) }{ x } \big|+  \sum_{k=0}^{\infty}\int_{I_k}\big| \frac{ \sin(x) }{ x } \big|dx
+    \end{equation}
+    Vu que tous les termes sont positifs, nous obtenons une majoration en en supprimant un. Allons-y :
+    \begin{subequations}        \label{SUBEQSooSRAYooEOBwiC}
+        \begin{align}
+            \int_{\eR}\big| \frac{ \sin(x) }{ x } \big|dx&\geq \sum_{k=0}^{\infty}\int_{I_k}\big| \frac{ \sin(x) }{ x } \big|dx\\
+            &\geq\sum_{k=0}^{\infty}0.9\int_{I_k}\frac{ 1 }{ x }dx\\
+            &\geq 0.9\sum_{k=0}^{\infty}2\delta\frac{1}{ \frac{ \pi }{2}-\delta+2k\pi }     \label{SUBEQooKMURooVuIpCo}\\
+            &\geq 1.8\delta\sum_{k=0}^{\infty}\frac{1}{ 2\pi(k+1) }     \label{SUBEQooJCQOooYqUCps}\\
+            &=\frac{ 1.8\delta }{ 2\pi }\sum_{k=0}^{\infty}\frac{1}{ k+1 }.
+        \end{align}
+    \end{subequations}
+    Justifications :
+    \begin{itemize}
+        \item Pour \eqref{SUBEQooKMURooVuIpCo}, nous avons majoré \( \frac{1}{ x }\) par \( \frac{1}{ \frac{ \pi }{ 2 }+\delta+2k\pi }\) sur \( I_k\).
+        \item Pour \eqref{SUBEQooJCQOooYqUCps}, nous avons dit que \( \frac{ \pi }{2}+\delta<2\pi\).
+    \end{itemize}
+    La dernière somme dans \eqref{SUBEQSooSRAYooEOBwiC} diverge.
+
+    Donc la fonction sinus cardinal n'est pas dans \( L^1(\eR)\).
+\end{proof}
+
+La mauvaise nouvelle suivante en est un corolaire immédiat.
+\begin{lemma}       \label{LEMooBEQRooHaugKj}
+    La fonction \( t\mapsto \frac{ \sin(t) }{ t }\) n'est pas intégrable sur \( \mathopen[ 0 , \infty \mathclose[\) au sens de Lebesgue.
+\end{lemma}
+
+\begin{proof}
+    Le lemme \ref{LEMooEEWSooZwLSAP} nous dit que \( \int_0^{\infty}| f |=\infty\). Dans ce cas, \( \int_0^{\infty}f\) n'existe pas par le lemme \ref{LEMooMWKTooIKomSw}.
+\end{proof}
+
+Donc l'intégrale \( \int_0^{\infty}\frac{ \sin(t) }{ t }dt\) n'existe pas parce que la définition de l'intégrale de Lebesgue ne permet pas de profiter des compensations qui arrivent entre les valeurs positives et négatives.
+
+Nous définissons donc
+\begin{equation}        \label{EQooWAQLooTFOPbl}
+    \int_0^{\infty}\frac{ \sin(t) }{ t }dt=\lim_{b\to \infty} \int_0^b\frac{ \sin(t) }{ t }dt.
+\end{equation}
+Pour chaque \( b\), l'intégrale existe sans problèmes (fonction continue sur le compact \( \mathopen[ 0 , b \mathclose]\)), et les compensations se font. Il n'est pas pas sans espoir que la limite \eqref{EQooWAQLooTFOPbl} existe et valle un nombre fini.
+
+\begin{lemma}[\cite{BIBooCFXJooWrArNT}]     \label{LEMooTFVZooRAmjUN}
+    La limite
+    \begin{equation}
+        \lim_{b\to \infty}\int_0^b\frac{ \sin(t) }{ t }dt
+    \end{equation}
+    existe dans \( \eR\).
+\end{lemma}
+
+\begin{proof}
+    En plusieurs parties.
+    \begin{subproof}
+        \item[Découpage]
+
+            Nous découpons l'intervalle \( \mathopen[ 0 , b \mathclose]\) en morceaux du type \( \mathopen[ k\pi , (k+1)\pi \mathclose]\) et un morceau restant lorsque \( b\) n'est pas un multiple de \( \pi\) :
+            \begin{equation}
+                \mathopen[ 0 , b \mathclose]=\bigcup_{k=0}^{N(b)-1}\mathopen[ k\pi , (k+1)\pi \mathclose]\cup\mathopen[ N(b)\pi , b \mathclose]
+            \end{equation}
+            où \( N(b)\) est un entier bien choisi\quext{Il me semble que le traitement de ce terme manque dans \cite{BIBooCFXJooWrArNT}.}. En tout cas \( \lim_{b\to \infty}N(b)=\infty\).
+
+        \item[Majoration 1]
+
+            Pour chaque \( b\in \eR^+\) nous avons
+            \begin{equation}
+                \int_0^b\frac{ \sin(t) }{ t }dt=\sum_{k=0}^{N(b)}\int_{\mathopen\big[ k\pi , (k+1)\pi \mathclose\big]}\frac{ \sin(t) }{ t }dt+\int_{\mathopen[ \big( N(b)+1 \big)\pi , b \mathclose]}\frac{ \sin(t) }{ t }
+            \end{equation}
+            Dans le dernier terme, nous majorons \( | \sin(t) |\leq 1\) et \( \frac{1}{ t }\leq \big( N(b)+1 \big)\pi\). Cela donne
+            \begin{equation}
+                \left|  \int_{\mathopen\big[ \big(N(b)+1\big)\pi  , b \mathclose\big]}\frac{ \sin(t) }{ t } \right|\leq \frac{ b-\big( N(b)+1 \big)\pi }{ \big( N(b)+1 \big)\pi }\leq \frac{1}{ N(b)+1 }
+            \end{equation}
+            où nous avons encore majoré \( b\leq \big( N(b)+2 \big)\pi\).
+
+        \item[Majoration 2]
+
+            En ce qui concerne les autres termes, sur l'intervalle \( \mathopen[ k\pi , (k+1)\pi \mathclose]\), nous avons \( \sin(t)=(-1)^k| \sin(t) |\). Nous avons alors
+            \begin{equation}        \label{EQooHZPRooFuwRWQ}
+                \int_0^b\frac{ \sin(t) }{ t }dt=\sum_{k=0}^{N(b)}(-1)^k\int_{k\pi}^{(k+1)\pi}\frac{ | \sin(t) | }{ t }dt+\alpha(b)
+            \end{equation}
+            où \( | \alpha(b) |\leq \frac{1}{ N(b)+1 }\); l'important est que \( \lim_{b\to \infty}\alpha(b)=0\).
+            
+        \item[Une suite alternée]
+
+            L'inégalité \eqref{EQooHZPRooFuwRWQ} nous incite à étudier la série \( \sum_{k=0}^{\infty}(-1)^ka_k\) en ayant posé
+            \begin{equation}
+                a_k=\int_{k\pi}^{(k+1)\pi}\frac{ | \sin(t) | }{ t }dt.
+            \end{equation}
+            Nous montrons à présent que la suite \( (a_k)\) vérifie les conditions du critère des séries alternées \ref{THOooOHANooHYfkII}.
+
+            D'abord, \( a_{k+1}\leq a_k\). En effet en utilisant le changement de variables\footnote{Le théorème \ref{THOooUMIWooZUtUSg} est toujours bon à citer.} \( u=t-\pi\),
+            \begin{equation}
+                a_{k+1}=\int_{(k+1)\pi}^{(k+2)\pi}\frac{ | \sin(t) | }{ t }dt=\int_{k\pi}^{(k+1)\pi}\frac{ | \sin(u+\pi) | }{ u+\pi }du=\int_{k\pi}^{(k+1)\pi}\frac{ | \sin(u) | }{ u+\pi }du<a_k.
+            \end{equation}
+            Nous avons utilisé le fait que \( | \sin(u+\pi) |=| \sin(u) |\) pour tout \( u\).
+
+            De plus, vu que \( | \sin(t) |\leq 1\) et que \( t\in\mathopen[ k\pi , (k+1)\pi \mathclose]\), nous avons
+            \begin{equation}
+                \int_{k\pi}^{(k+1)\pi}\frac{ | \sin(t) | }{ t }\leq \int_{k\pi}^{(k+1)\pi}\frac{1}{ k\pi }=\frac{ (k+1)\pi-k\pi }{ k\pi }=\frac{1}{ k }.
+            \end{equation}
+            Donc \( a_k\leq\frac{1}{ k }\to 0\).
+
+            Le critère des séries alternées \ref{THOooOHANooHYfkII} nous dit que
+            \begin{equation}
+                \sum_{k=0}^{\infty}(-1)^ka_k<\infty.
+            \end{equation}
+
+        \item[Conclusion]
+            Nous repartons de \eqref{EQooHZPRooFuwRWQ} :
+            \begin{equation} 
+                \int_0^b\frac{ \sin(t) }{ t }dt=\sum_{k=0}^{N(b)}(-1)^k\int_{k\pi}^{(k+1)\pi}\frac{ | \sin(t) | }{ t }dt+\alpha(b).
+            \end{equation}
+            Cette égalité est valable pour tout \( b\in \eR^+\). Le passage à la limite \( b\to 0\) à droite donne un nombre fini; donc à gauche aussi, et nous avons prouvé que
+            \begin{equation}
+                \lim_{b\to\infty} \int_0^b\frac{ \sin(t) }{ t }dt<\infty.
+            \end{equation}
+    \end{subproof}
+\end{proof}
+Notre tache n'est donc pas sans espoir. Au moins l'intégrale que nous cherchons à évaluer est finie.
+
+\begin{lemma}       \label{LEMooARPIooDPSGwR}
+    Soit \( x\in \mathopen] 0 , \infty \mathclose[\). L'intégrale
+    \begin{equation}
+        F(x)=\int_0^{\infty} e^{-tx}\frac{ \sin(t) }{ t }dt
+    \end{equation}
+    existe au sens de Lebesgue usuel.
+\end{lemma}
+
+\begin{proof}
+    Vu qu'en \( t=0\) nous avons \( \frac{ \sin(t) }{ t }=1\), il n'y a pas de problèmes de ce côté. Lorsque \( t>1\) nous avons la majoration
+    \begin{equation}
+        |  e^{-tx}\frac{ \sin(t) }{ t } |\leq |  e^{-tx} |.
+    \end{equation}
+    Lorsque \( t\) est assez grand, le lemme \ref{LEMooNYFVooXjFShk} nous donne aussi la majoration
+    \begin{equation}
+        |  e^{-tx} |\leq \frac{1}{ t^2 }.
+    \end{equation}
+    La proposition \ref{PropBKNooPDIPUc}\ref{ITEMooJFSXooHmgmEj} implique que \( \int_1^{\infty}\frac{1}{ t^2 }<\infty\). Et les majorations font que la proposition \ref{PROPooGTMVooPHcrRl} nous donne le résultat.
+\end{proof}
+
+\begin{lemma}[\cite{BIBooCFXJooWrArNT}]     \label{LEMooRDCSooBrWmep}
+    Il existe une constante \( C\in \eR\) telle que
+    \begin{equation}
+        I(x)=\int_0^{\infty} e^{-tx}\frac{ \sin(t) }{ t }dt=-\arctan(x)+C
+    \end{equation}
+    pour tout \( x>0\).
+\end{lemma}
+
+\begin{proof}
+    En permutant dérivée et intégrale, nous allons prouver que \( I'(x)=-\frac{1}{ 1+x^2 }\).
+
+    \begin{subproof}
+        \item[Permuter]
+            Nous posons
+            \begin{equation}
+                f(x,t)= e^{-tx}\frac{ \sin(t) }{ t },
+            \end{equation}
+            et nous vérifions les hypothèses du théorème \ref{ThoMWpRKYp}.
+
+            \begin{enumerate}
+                \item
+                    Pour chaque \( x>0\) fixé, la fonction \( t\mapsto f(x,t)\) est intégrable sur \( \mathopen[ 0 , \infty \mathclose[\), c'est le lemme \ref{LEMooARPIooDPSGwR}.
+                    \item
+                        Pour \( t>0\) fixé, la fonction \( x\mapsto f(x,t)\) est dérivable.
+                    \item
+                        Nous avons la dérivée partielle
+                        \begin{equation}
+                            \frac{ \partial f }{ \partial x }(x,t)=- e^{-tx}\sin(t)
+                        \end{equation}
+                        qui vérifie
+                        \begin{equation}
+                            | \frac{ \partial f }{ \partial x }(x,t) |\leq  e^{-tx},
+                        \end{equation}
+                        alors que la fonction \( t\mapsto  e^{-tx}\) est intégrable sur \( \mathopen[ 0 , \infty \mathclose[\).
+            \end{enumerate}
+            Nous pouvons donc dériver sous l'intégrale et obtenir
+            \begin{equation}
+                F'(x)=-\int_0^{\infty} e^{-xt}\sin(t)dt.
+            \end{equation}
+        \item[Quelques intégrations par partie]
+            Nous posons
+            \begin{equation}
+                J(x)=\int_0^{\infty} e^{-xt}\sin(t)dt,
+            \end{equation}
+            et nous allons la faire par parties\footnote{Proposition \ref{PROPooRLFIooQHnyJY}.}, en deux fois.
+
+            D'abord en posant \( u= e^{-xt}\) et \( v'=\sin(t)\) nous avons
+            \begin{equation}
+                J(x)=\left[ - e^{-xt}\cos(t) \right]_{t=0}^{t=\infty}-\int_0^{\infty}(-)x e^{-xt}(-)\cos(t)dt=1-x\int_0^{\infty} e^{-xt}\cos(t)dt.
+            \end{equation}
+            Nous faisons l'intégrale encore par parties en posant \( u= e^{-xt}\) et \( v'=\cos(t)\) :
+            \begin{equation}
+                \int_0^{\infty} e^{-xt}\cos(t)dt=\left[  e^{-xt}\sin(t) \right]_0^{\infty}-\int_0^{\infty}(-) e^{-xt}\sin(t)dt=J(x).
+            \end{equation}
+            Donc
+            \begin{subequations}
+                \begin{align}
+                    J(x)&=1-x\int_0^{\infty} e^{-xt}\cos(t)dt\\
+                    &=1-x\int_0^{\infty} e^{-xt}\cos(t)dt\\
+                    &=1-x\Big( x\underbrace{\int_0^{\infty} e^{-xt}\sin(t)dt}_{J(x)} \Big)\\
+                    &=1-x^2J(x).
+                \end{align}
+            \end{subequations}
+            Voila qui prouve que \( J(x)=\frac{1}{ 1+x^2 }\), et donc que
+            \begin{equation}
+                F'(x)=-J(x)=-\frac{1}{ 1+x^2 }.
+            \end{equation}
+            
+        \item[Et enfin]
+
+            Le théorème \ref{THOooUSVGooOAnCvC}\ref{ITEMooMNHLooOVhIIb} nous dit que la dérivée de la fonction \( \arctan\) est précisément \( 1/(1+x)\). Donc \( F\) et \( \arctan\) ont la même dérivée (au signe près). Donc il existe \( C\in \eR\) tel que
+            \begin{equation}
+                F(x)=-\arctan(x)+C
+            \end{equation}
+            pour tout \( x>0\).
+
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}       \label{LEMooEOYHooVIMCCa}
+    Nous avons
+    \begin{equation}
+        F(x)=\int_0^{\infty} e^{-xt}\frac{ \sin(t) }{ t }dt=-\arctan(x)+\frac{ \pi }{2}
+    \end{equation}
+    pour tout \( x>0\).
+\end{lemma}
+
+\begin{proof}
+    Le but de ce lemme est de fixer la constante laissée arbitraire dans le lemme \ref{LEMooRDCSooBrWmep}. Nous savons qu'il existe \( C\in \eR\) tel que
+    \begin{equation}        \label{EQooTZGXooUxfAjT}
+        F(x)=-\arctan(x)+C.
+    \end{equation}
+    Le but est de prendre la limite \( x\to\infty\) des deux côtés.
+
+    Par le lemme \ref{LEMooSFALooVRBdNb}, nous avons \( | \frac{ \sin(t) }{ t } |\leq 1\) sur \( \mathopen[ 0 , \infty \mathclose[\). Donc
+    \begin{equation}
+        F(x)\leq \int_0^{\infty} e^{-xt}dt=\left[ -\frac{1}{ x } e^{-xt} \right]_{t=0}^{t=\infty}=\frac{1}{ x }.
+    \end{equation}
+    Vu que \( F(x)\leq \frac{1}{ x }\) pour tout \( x\), nous avons certainement \( \lim_{x\to \infty} F(x)=0\).
+
+    D'autre part,
+    \begin{equation}
+        \lim_{x\to \infty} \arctan(x)=\frac{ \pi }{2}.
+    \end{equation}
+    
+    En passant à la limite dans \eqref{EQooTZGXooUxfAjT}, nous avons
+    \begin{equation}
+        0=-\frac{ \pi }{2}+C,
+    \end{equation}
+    et donc \( C=\pi/2\).
+\end{proof}
+
+Nous avons maintenant la formule
+\begin{equation}
+    F(x)=\int_0^{\infty} e^{-tx}\frac{ \sin(t) }{ t }dt=-\arctan(x)+\frac{ \pi }{2}
+\end{equation}
+qui est valable pour tout \( x>0\).
+
+Notre but sera de prendre la limite \( x\to 0\) des deux côtés. Vu que \( \arctan\) est continue, le membre de droite ne pose pas de problèmes et donne \( \pi/2\). Pour le membre de gauche, il faut encore permuter une limite et une intégrale.
+
+Pour la suite, nous allons étudier\cite{BIBooCFXJooWrArNT}
+\begin{equation}
+    \int_0^{\infty}(1- e^{-xt})\frac{ \sin(t) }{ t }dt.
+\end{equation}
+Cette intégrale n'existe pas au sens de Lebesgue et est définie par
+\begin{equation}
+    L(x)=\lim_{b\to \infty} \int_0^b(1- e^{-xt})\frac{ \sin(t) }{ t }dt.
+\end{equation}
+Rien n'indique cependant pour l'instant que cette limite existe.
+
+\begin{lemma}[\cite{BIBooCFXJooWrArNT}]     \label{LEMooZGODooLaBuHo}
+    Soit \( x>0\). Nous posons
+    \begin{equation}        \label{EQooJXWMooRbbCtt}
+        L_k(x)=\int_{k\pi}^{(k+1)\pi}(1- e^{-tx})\frac{ | \sin(t) | }{ t }dt.
+    \end{equation}
+    La suite \( (L_k(x))_{k\in \eN}\) satisfait le critère des séries alternées\footnote{Théorème \ref{THOooOHANooHYfkII}.}, c'est-à-dire que cette suite est positive, décroissante à limite nulle.
+\end{lemma}
+
+\begin{proof}
+    Notons que chacune des intégrales \( L_k(x)\) est sans problèmes : fonction continue sur un compact. Trois éléments à prouver.
+    \begin{subproof}
+        \item[Positive]
+            Vu que dans toute notre histoire, \( x,t>0\), nous avons \( 1- e^{-tx}>0\) et donc toute la fonction intégrée est positive.
+        \item[Tend vers zéro]
+            Vu que \( 1- e^{-tx}<1\), nous avons
+            \begin{equation}        \label{EQooCGAQooDSvbln}
+                L_k(x)\leq \int_{k\pi}^{(k+1)\pi}\frac{1}{ t }dt\leq \pi\frac{1}{ k\pi }=\frac{1}{ k }.
+            \end{equation}
+            Donc \( \lim_{k\to \infty} L_k(x)=0\).
+        \item[Décroissante]
+            Nous devons à présent prouver que \( L_k(x)\) est décroissante en \( k\) lorsque \( x\) est fixé.
+
+            Nous avons \( L_{k+1}(0)=L_k(0)\) pour tout \( k\). Nous allons montrer que \( L'_{k+1}(x)<L'_k(x)\) pour tout \( x>0\). De cette façon nous aurons bien \( L_{k+1}(x)<L_k(x)\) pour tout \( k\) et \( x\).
+
+            En permutant (encore) intégrale et dérivée,
+            \begin{subequations}
+                \begin{align}
+                    L_{k+1}'(x)&=\int_{(k+1)\pi}^{(k+2)\pi} e^{-tx}| \sin(t) |dt        \label{EQooAGGCooSoPHnz}\\
+                    &=\int_{k\pi}^{(k+1)\pi} e^{-(u+\pi)x}| \sin(u+\pi) |       \label{SUBEQooEWZSooQtZBYI}\\
+                    &= e^{-\pi x}\int_{k\pi}^{(k+1)\pi} e^{-ux}| \sin(u) |du    \label{SUBEQooYGDQooLWqrvg}\\
+                    &= e^{-\pi x}L_k'(x).
+                \end{align}
+            \end{subequations}
+            Justifications :
+            \begin{itemize}
+                \item Pour \eqref{EQooAGGCooSoPHnz}, permuter dérivée et intégrale; je ne donne pas tout le détail. Ça a déjà été fait.
+                \item Pour \eqref{SUBEQooEWZSooQtZBYI}, nous avons fait le changement de variables \( u=t-\pi\).
+                \item Pour \eqref{SUBEQooYGDQooLWqrvg}, nous avons utilisé le fait que \( | \sin(u+\pi) |=| \sin(u) |\) ainsi que \(  e^{-(u+\pi)x}= e^{-ux} e^{-\pi x}\) par \eqref{EQooEWIHooDRAQGR}.
+            \end{itemize}
+            Nous avons donc prouvé que
+            \begin{equation}
+                L_{k+1}'(x)= e^{-\pi x}L'_{k}(x)<L_k'(x).
+            \end{equation}
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}       \label{LEMooSWFDooGLfwoD}
+    Pour chaque \( x>0\), nous avons la limite
+    \begin{equation}
+        \lim_{b\to \infty} \int_0^{b}(1- e^{-tx})\frac{ \sin(t) }{ t }dt=\sum_{k=0}^{\infty}(-1)^kL_k(x)<\infty.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Nous fixons (provisoirement) \( b\) et nous découpons l'intervalle d'intégration comme
+    \begin{equation}
+        \mathopen[ 0 , b \mathclose]=\bigcup_{k=1}^N\mathopen[ k\pi , (k+1)\pi \mathclose]\cup\mathopen\big[ (N+1)\pi  , b \mathclose\big]
+    \end{equation}
+    où \( N\) est une fonction de \( b\); quelque chose comme \( N(b)\) est le plus grand entier tel que \(\big( N(b)+1 \big)\pi\leq \pi\). Sur chacun des intervalles nous avons \( \sin(t)=(-1)^k| \sin(t) |\). Nous avons donc
+    \begin{equation}       \label{EQooGBEDooSeuwMN}
+        \begin{aligned}[]
+            \int_0^b(1- e^{-tx})\frac{ \sin(t) }{ t }dt&=\sum_{k=0}^{N(b)}(-1)^k\int_{k\pi}^{(k+1)\pi}(1- e^{-tx})\frac{ | \sin(t) | }{ t }dt\\
+                &\quad+\int_{(N+1)\pi}^b(1- e^{-tx})\frac{ \sin(t) }{ t }dt
+        \end{aligned}
+    \end{equation}
+    Le premier terme est \( \sum_{k=0}^{N(b)}L_k(x)\), dont nous savons que la limite \( b\to \infty\) existe parce que \( L_k(x)\) vérifie le critère des séries alternées (lemme \ref{LEMooZGODooLaBuHo}). En ce qui concerne le second terme,
+    \begin{equation}
+        \big|\int_{(N+1)\pi}^b (1- e^{-tx})\frac{ \sin(t) }{ t }\big| <  \frac{  b-( N+1 )\pi    }{ ( N+1 )\pi }<\frac{1}{ N(b)+1 }.
+    \end{equation}
+    La dernière inégalité est le fait que \( N(b)\) est choisi pour avoir \( b-\big( N(b)+1 \big)\pi<\pi\).
+
+            Les deux termes de \eqref{EQooGBEDooSeuwMN} ont donc une limite lorsque \( b\to \infty\). Nous pouvons donc passer à la limite en sommant les deux limites :
+            \begin{equation}
+                \int_0^{\infty}(1- e^{-tx})\frac{ \sin(t) }{ t }dt=\sum_{k=0}^{\infty}(-1)^kL_k(x).
+            \end{equation}
+            Cette égalité est valable pour chaque \( x>0\). 
+            
+            Le fait que la limite soit finie est dans le critère des séries alternées. Pour chaque \( x\), la suite \( L_k(x)\) vérifie ce critère par le lemme \ref{LEMooZGODooLaBuHo}.
+\end{proof}
+
+\begin{lemma}       \label{LEMooNZVSooDbZCZx}
+    Nous avons
+    \begin{equation}
+        \lim_{x\to 0^+} \int_0^{\infty}(1- e^{-tx})\frac{ \sin(t) }{ t }dt=0.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    La définition de l'intégrale ainsi que le lemme \ref{LEMooSWFDooGLfwoD} nous ont déjà donné
+    \begin{equation}
+        \int_0^{\infty}(1- e^{-tx})\frac{ \sin(t) }{ t }dt=\lim_{b\to \infty} \int_0^b(1- e^{-tx})\frac{ \sin(t) }{ t }dt=\sum_{k=0}^{\infty}(-1)^kL_k(x)
+    \end{equation}
+    ainsi que l'assurance que le tout est un nombre réel fini\footnote{De toutes façons, il n'existe pas de nombres réels infinis, mais vous voyez ce que je veux dire.}.
+
+    \begin{subproof}
+        \item[Majoration pour la série alternée]
+
+            Nous majorons un peu. Pour \( x>0\) et \( N\in \eN\) nous avons
+            \begin{subequations}        \label{SUBEQSQooLIGNooNAzpmi}
+                \begin{align}
+                    | \sum_{k=0}^N(-1)^kL_k(x) |&\leq \sum_{k=0}^N| L_k(x) |\\
+                    &=\sum_{k=0}^N\big|   \int_{k\pi}^{(k+1)\pi}(1- e^{-tx})\frac{ | \sin(t) | }{ t }dt   \big| \label{EQooIIVVooJvHFhS}\\
+                    &\leq \sum_{k=0}^N\int_{k\pi}^{(N+1)\pi}(1- e^{-tx})\frac{ | \sin(t) | }{ t }dt\\
+                    &=\int_0^{(N+1)\pi}(1- e^{-tx})\frac{ | \sin(t) | }{ t }dt\\
+                    &\leq \int_0^{(N+1)\pi}tx\frac{ | \sin(t) | }{ t }dt    \label{SUBEQooZPVVooTBZzdl}\\
+                    &\leq \int_0^{(N+1)\pi}xdt\\
+                    &=x(N+1)\pi.
+                \end{align}
+            \end{subequations}
+            Justifications :
+            \begin{itemize}
+                \item Pour \eqref{EQooIIVVooJvHFhS} c'est la définition \eqref{EQooJXWMooRbbCtt}.
+                \item Pour \eqref{SUBEQooZPVVooTBZzdl}, c'est le fait que \( 0\leq 1- e^{-u}\leq u\) pour tout \( u\geq 0\) ainsi que la sous-additivité de l'intégrale de la proposition \ref{PropOPSCooVpzaBt}.
+            \end{itemize}
+
+        \item[Majoration pour l'intégrale]
+            
+            Nous fixons \( N\in \eN\), et nous avons :
+            \begin{subequations}        \label{SUBEQSooSBSJooMAkJPh}
+                \begin{align}
+                    \big| \lim_{b\to \infty} \int_0^b(1-e^{-tx})\frac{ \sin(t) }{ t } dt\big|&=\big| \sum_{k=0}^{\infty}(-1)^kL_k(x) \big|\\
+                    &=\big| \sum_{k=0}^N(-1)^kL_k(x)+\sum_{k=N+1}^{\infty}(-1)^kL_k(x) \big|\\
+                    &\leq\big| \sum_{k=0}^N(-1)^kL_k(x) \big|+\big| \sum_{k=N+1}^{\infty}(-1)^kL_k(x) \big|\\
+                    &\leq\big| \sum_{k=0}^N(-1)^kL_k(x) \big|+L_{N+1}(x)    \label{SUBEQooYFWDooYKhYtd}\\
+                    &\leq\big| \sum_{k=0}^N(-1)^kL_k(x) \big|+\frac{1}{ N+1 }    \label{SUBEQooDDRGooNDfxqO}\\
+                \end{align}
+            \end{subequations}
+            Justifications :
+            \begin{itemize}
+                \item Pour \eqref{SUBEQooYFWDooYKhYtd} c'est le reste du critère des séries alternées, théorème \ref{THOooOHANooHYfkII}\ref{ITEMooWEPWooXhLMYL}.
+                \item Pour \eqref{SUBEQooDDRGooNDfxqO} c'est la majoration \eqref{EQooCGAQooDSvbln} déjà faite.
+            \end{itemize}
+
+        \item[Les deux ensemble]
+            Pour chaque \( N\) et pour chaque \( x>0\) nous avons, en mettant \eqref{SUBEQSQooLIGNooNAzpmi} au bout de \eqref{SUBEQSooSBSJooMAkJPh} :
+            \begin{equation}
+                \big| \int_0^{\infty}(1- e^{-tx})\frac{ \sin(t) }{ t }dt \big|\leq x(N+1)\pi+\frac{1}{ N+1 }.
+            \end{equation}
+            En prenant la limite \( x\to 0\) nous trouvons
+            \begin{equation}
+                \lim_{x\to 0} \int_0^{\infty}(1- e^{-tx})\frac{ \sin(t) }{ t }dt\leq \frac{1}{ N+1 }
+            \end{equation}
+            pour tout \( N\). Donc cette limite est nulle :
+            \begin{equation}
+                \lim_{x\to 0} \int_0^{\infty}(1- e^{-tx})\frac{ \sin(t) }{ t }dt=0.
+            \end{equation}
+    \end{subproof}
+\end{proof}
+
+Maintenant que nous avons fait plein de lemmes, nous pouvons énoncer notre résultat principal, et le démontrer facilement.
+
+\begin{theorem}[Intégrale de Dirichlet\cite{BIBooCFXJooWrArNT}]
+    Nous avons
+    \begin{equation}
+        \lim_{b\to \infty} \int_0^b\frac{ \sin(t) }{ t }dt=\frac{ \pi }{2}.
+    \end{equation}
+\end{theorem}
+\index{intégrale de Dirichlet}
+
+Nous avons écrit \( \lim_{b\to \infty} \int_0^b\frac{ \sin(t) }{ t }dt\) et non \( \int_0^{\infty}\frac{ \sin(t) }{ t }dt\) parce que cette dernière intégrale n'existe pas vraiment au sens de Lebesgue, voir le lemme \ref{LEMooBEQRooHaugKj}. Dans la suite nous écrirons cependant \( \int_0^{\infty}\frac{ \sin(t) }{ t }dt\), en gardant en tête que cela n'est défini que via la limite.
+
+\begin{proof}
+    Nous nommons \( D\) la valeur que nous cherchons. Le lemme \ref{LEMooTFVZooRAmjUN} nous assure que
+    \begin{equation}
+        D=\lim_{b\to \infty} \int_0^b\frac{ \sin(t) }{ t }<\infty.
+    \end{equation}
+    Le lemme \ref{LEMooEOYHooVIMCCa} nous donne, quant à lui,
+    \begin{equation}
+        \lim_{b\to \infty} \int_0^b e^{-tx}\frac{ \sin(t) }{ t }dt=-\arctan(x)+\frac{ \pi }{2}.
+    \end{equation}
+    Vu que les deux limites existent, on peut permuter somme et limite\footnote{C'est une phrase un peu grandiloquente pour dire que \( \lim_{b\to a} f(b)-\lim_{b\to a} g(b)=\lim_{b\to a} (f(b)-g(b))  \). Ici nous avons \( a=\infty\) et les fonctions \( f\) et \( g\) sont celles définies par les intégrales.} :
+    \begin{subequations}
+        \begin{align}
+            D+\arctan(x)-\frac{ \pi }{2}&=\lim_{b\to \infty} \big(    \int_0^b\frac{ \sin(t) }{ t } +  \int_0^b e^{-tx}\frac{ \sin(t) }{ t }dt  \big)\\
+            &=\lim_{b\to \infty} \int_0^b(1- e^{-xt})\frac{ \sin(t) }{ t }dt.    \label{SUBEQooXIUNooPZnCPb}
+        \end{align}
+    \end{subequations}
+     Pour \eqref{SUBEQooXIUNooPZnCPb}, nous avons des fonctions bornées sur un intervalle borné (\( \mathopen] 0 , b \mathclose[\)), donc il n'y a pas de mal à sommer les intégrales.
+         
+         Donc pour tout \( x>0\), nous avons
+         \begin{equation}
+             D+\arctan(x)-\frac{ \pi }{2}=\int_0^{\infty}(1- e^{-xt})\frac{ \sin(t) }{ t }dt.
+         \end{equation}
+         Nous passons à la limite \( x\to 0\) en utilisant le lemme \ref{LEMooNZVSooDbZCZx} et le fait que \( \arctan(0)=0\) (lemme \ref{LEMooPQNCooDkEUyw}) :
+         \begin{equation}
+             D-\frac{ \pi }{2}=0,
+         \end{equation}
+         c'est à dire que résultat annoncé.
 \end{proof}

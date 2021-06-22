@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2006-2019
+% Copyright (c) 2006-2021
 %   Laurent Claessens, Carlotta Donadello
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -333,7 +333,7 @@ La même propriété, avec la même démonstration, tient dans le cas d'espaces 
 	Si les $g_k$ sont continues et si $\sum g_k$ converge uniformément, alors $\sum g_k$ est continue.
 \end{theorem}
 
-Le corollaire suivant permet de considérer des séries de fonctions indexées par exemple par \( \eZ\) plutôt que par \( \eN\).
+Le corolaire suivant permet de considérer des séries de fonctions indexées par exemple par \( \eZ\) plutôt que par \( \eN\).
 \begin{corollary}
     Une famille dénombrable de fonctions continues convergeant normalement converge vers une fonction continue.
 \end{corollary}
@@ -382,9 +382,8 @@ Le corollaire suivant permet de considérer des séries de fonctions indexées p
 \section{Permuter limite et dérivée}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Pour permuter différentielle et limite, ce sera le théorème \ref{ThoLDpRmXQ}.
-
-\begin{theorem}[\cite{TrenchRealAnalisys,ooCPZDooOqIIEz}]     \label{THOooXZQCooSRteSr}
+Une version avec intégrales de la démonstration qui suit est dans \ref{NORMALooGYUEooKrYjyz}. Le même pour les dérivées partielles sera le théorème  \ref{ThoSerUnifDerr}.
+\begin{theorem}[\cite{TrenchRealAnalisys,ooCPZDooOqIIEz, MonCerveau}, thème \ref{THEMEooJGEHooNzQkMT}]     \label{THOooXZQCooSRteSr}
     Soient une suite de fonctions \( f_i\colon \eR\to \eR\), une fonction \( f\colon \eR\to \eR\) et une fonction \( g\colon \eR\to \eR\) telles que
     \begin{enumerate}
         \item
@@ -396,116 +395,319 @@ Pour permuter différentielle et limite, ce sera le théorème \ref{ThoLDpRmXQ}.
     \end{enumerate}
     Alors
     \begin{enumerate}
-        \item
-            \( f\) est de classe \( C^1\),
-        \item
+        \item       \label{ITEMooYSWDooFFeQCd}
+            \( f_i\to f\) uniformément sur tout compact.
+        \item       \label{ITEMooFAWUooVQJPZh}
             \( f'=g\),
         \item
-            \( f_i\to f\) uniformément sur tout compact.
+            \( f\) est de classe \( C^1\),
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-  On commence par démonter la convergence uniforme sur les compacts des~$f_i$.
-  Soit~$K \subseteq \eR$ un intervalle compact contenant~$x$.
-  Il suffit de montrer que la suite~$(f_i)_i$ restreinte à $K$ est une suite de
-  Cauchy pour la norme uniforme.  Soit~$\epsilon > 0$.
-  On note~$\omega_i$ le module de continuité de~$f_i'$.
-  Par le lemme~\ref{LEMooKPPSooPIncvn}, il existe~$N \geq 0$ tel que pour tout \( \delta>0\) nous ayons
-  \begin{equation}\label{eq:1}
-    \omega_i(\delta) \leq \omega_g(\delta) + \epsilon.
-  \end{equation}
+    Un point à la fois.
+    \begin{subproof}
+        \item[Pour \ref{ITEMooYSWDooFFeQCd}]
+            Soit un compact \( K\subset \eR\). Dans cette partie, toutes les fonctions en jeu sont restreintes à \( K\). En particulier, lorsque nous parlerons du module de continuité\footnote{Définition \ref{DEFooYARJooYyzMMP}.} \( \omega_g\) pour \( g\) ou \( \omega_i\) pour \( f'_i\), nous parlerons en réalité des fonctions \( g|_K\) et \( f'_i|_K\).
+
+            Ceci dit, nous allons montrer que \( (f_i)\) est une suite de Cauchy pour la norme uniforme\footnote{Et si vous avez bien suivi l'avertissement, c'est bien de la norme uniforme sur \( K\) que nous parlons.}.
   
-  Soit~$y\in K$, $n \in \eN$ et~$\alpha_n = \frac{x-y}{n+1}$.
-  Pour tout~$i \geq 0$,
+  Soit~$\epsilon > 0$. On note~$\omega_i$ le module de continuité de~$f_i'$. Soient $y\in K$, $n \in \eN$ et posons $\alpha_n = \frac{y-x}{n+1}$.
+  Pour tout~$i \geq 0$, nous avons la somme télescopique
   \begin{equation}
-    f_i(y) = f_i(x) + \sum_{k=0}^n \left( f_i(x+(k+1)\alpha_n) - f_i(x+k\alpha_n) \right),
+      f_i(y) = f_i(x) + \sum_{k=0}^n \Big[  f_i(x+(k+1)\alpha_n) - f_i(x+k\alpha_n) \Big].
   \end{equation}
-  c'est une somme télescopique.
-  Par le théorème des accroissements finis, il existe pour tout~$0\leq k\leq n$
-  un réel~$u_{n,i,k} \in [k,(k+1)\alpha_n]$ tel que
+  Par le théorème des accroissements finis \ref{ThoAccFinis}, il existe pour tout~$0\leq k\leq n$
+  un réel~$u_{n,i,k} \in [k\alpha_n,(k+1)\alpha_n]$ tel que
   \begin{equation}
-    f_i(x+(k+1)\alpha_n) - f_i(x+k\alpha_n) = \alpha_n f'_i(x+ u_{n,i,k}),
+    f_i(x+(k+1)\alpha_n) - f_i(x+k\alpha_n) = |\alpha_n| f'_i(x+ u_{n,i,k}),
   \end{equation}
   de sorte que
   \begin{equation}
-    f_i(y) = f_i(x) + \alpha_n \sum_{k=0}^n  f'_i(x+ u_{n,i,k}).
+    f_i(y) = f_i(x) + |\alpha_n| \sum_{k=0}^n  f'_i(x+ u_{n,i,k}).
   \end{equation}
   Et pour tout~$i,j \geq 0$, on obtient
-  \begin{align}
-    \left| f_i(y) - f_j(y) \right| &\leq \left| f_i(x) - f_j(x) \right|
-                                     + \alpha_n \sum_{k=0}^n \left| f'_i(x+ u_{n,i,k}) - f'_j(x+u_{n,j,k}) \right|.
-  \end{align}
-  Or
-  \begin{align}
-    \left| f'_i(x+ u_{n,i,k}) - f'_j(x+u_{n,j,k}) \right| &\leq  \left| f'_i(x+ u_{n,i,k}) - f'_i(x+u_{n,j,k}) \right| +  \left| f'_i(x+ u_{n,j,k}) - f'_j(x+u_{n,j,k}) \right| \\
-                                                          &\leq \omega_i(\alpha_n) + \|f'_i-f'_j\|,
-  \end{align}
-  et il suit que pour tout~$i,j \geq N$,
-  \begin{align}
-    \left| f_i(y) - f_j(y) \right| & \leq  \left| f_i(x) - f_j(x) \right| + |x-y| \left(\omega_i(\alpha_n) + \|f'_i+f'_j\|_K \right)\\
-    &\leq \left| f_i(x) - f_j(x) \right| + |x-y| \left(\omega_g(\alpha_n) + \epsilon + \|f'_i+f'_j\|_K \right), \label{eq:2}
-  \end{align}
-  où la dernière inégalité vient de~\eqref{eq:1}.
-  Comme~$g$ est continue (limite uniforme de fonctions continues) sur un
-  compact, elle est uniformément continue et
-  $\lim_{\delta\to 0} \omega_g(\delta) = 0$.
-  Donc l'inégalité~\eqref{eq:2}, avec~$n\to \infty$ devient
-  \begin{equation}\label{eq:3}
-  \left| f_i(y) - f_j(y) \right| \leq \left| f_i(x) - f_j(x) \right| + |x-y|
-    \left(\epsilon + \|f'_i+f'_j\|_K \right).
-  \end{equation}
-
-  Comme~$K$ est borné, $\left| x-y \right|$ est borné par une quantité~$M$ ne
-  dépendant que de~$K$.
-  En prenant dans~\eqref{eq:3} le supremum par rapport à~$y$, on obtient
-  \begin{equation}
-    \|f_i-f_j\|_K \leq  \left| f_i(x) - f_j(x) \right| + |x-y|
-    \left(\epsilon + \|f'_i+f'_j\|_K \right).
-  \end{equation}
-  
-  Étant donné
-  que~$\left( f_i(x) \right)_i$ est une suite de Cauchy, que~$\left( f'_i
-  \right)_i$ est une suite de Cauchy pour la norme uniforme sur~$K$,
-  il suit que~$(f_i|_K)_i$ est une suite de Cauchy. Donc elle converge uniformément vers une
-  limite~$f|_K$.
-  
-  \bigskip
-  Montrons maintenant que la limite~$f$ de la suite~$(f_i)_i$ est dérivable
-  et que~$f'=g$.
-  Soit~$y\in \eR$ et soit~$K$ un voisinage compact de~$y$. On reprend les
-  notations précédentes. Pour tout~$\delta \in \eR$ suffisamment petit
-  $y+\delta \in K$, et pour tout~$i \geq 0$ on a alors
-  \begin{subequations}
+  \begin{subequations}      \label{SUBEQSooUYFTooWPVfWt}
       \begin{align}
-    \Big| \frac{1}\delta \big( f(y+\delta) &- f(y) \big) - g(y) \Big|\\
-    &\leq  \frac1\delta \left| f(y)-f_i(y) \right| + \frac1\delta \left| f(y+\delta) - f_i(y+\delta)  \right|
-      + \left| \frac1\delta \left(f_i(y+\delta) - f_i(y)\right) - g(y) \right|\\
-    &\leq \frac2\delta \|f_i - f\|_K  + \left| \frac1\delta \left(f_i(y+\delta) - f_i(y)\right) - g(y) \right|.
+    \left| f_i(y) - f_j(y) \right| &\leq \left| f_i(x) - f_j(x) \right| + |\alpha_n| \sum_{k=0}^n \left| f'_i(x+ u_{n,i,k}) - f'_j(x+u_{n,j,k}) \right|\\
+    &\leq | f_i(x)-f_j(x) |\\
+    &\qquad+|\alpha_n|\sum_{k=0}^n \left| f'_i(x+ u_{n,i,k}) - f'_i(x+u_{n,j,k}) \right| \nonumber  \\
+    &  \qquad +  |\alpha_n|\sum_{k=0}^n\left| f'_i(x+ u_{n,j,k}) - f'_j(x+u_{n,j,k}) \right| \nonumber\\
+    &\leq | f_i(x)-f_j(x) |      \label{EQooYMHKooDFYPIf}\\     
+    &\qquad+ |\alpha_n|\sum_{k=0}^n \left| f'_i(x+ u_{n,i,k}) - f'_i(x+u_{n,j,k}) \right|\nonumber\\
+    &\qquad + |\alpha_n|\sum_{k=0}^n  \| f'_i-f'_j \|   \nonumber \\
+    &\leq  | f_i(x)-f_j(x) |+|\alpha_n|\sum_{k=0}^n  \omega_i(|\alpha_n|) + |\alpha_n|\sum_{k=0}^n  \| f'_i-f'_j \|        \label{EQooGHDOooMMNXdj}\\
+    &\leq  \left| f_i(x) - f_j(x) \right| + |x-y| \left(\omega_i(|\alpha_n|) + \|f'_i-f'_j\|_K \right)      \label{EQooZCFIooNDojBX}         \\
+    &\leq | f_i(x)-f_j(x) |+M\Big( \omega_i\big( \frac{ M }{ n+1 } \big)+\| f_i'-f_j' \|_K \Big)        \label{SUBEQooISWEooBfnJVN}
       \end{align}
   \end{subequations}
-  Par le théorème des accroissements finis, il existe~$u\in[y-|\delta|, y+|\delta|]$ tel que
+  Justifications :
+  \begin{itemize}
+      \item Pour \eqref{EQooYMHKooDFYPIf}
+          La norme supremum est forcément plus grande que la valeur en un point.
+      \item Pour \eqref{EQooGHDOooMMNXdj}
+  Remarquer que \( \| x+u_{n,i,k}-(x+u_{n,j,k}) \|=\| u_{n,i,k}-u_{n,j,k} \|\leq |\alpha_n|\). Cela est donc une bonne occasion de prendre la définition \eqref{EQooKWUVooSORHXN} du module de continuité :
   \begin{equation}
-    \frac1\delta \left(f_i(y+\delta) - f_i(y)\right) = f'_i(u).
+     \left| f'_i(x+ u_{n,i,k}) - f'_i(x+u_{n,j,k}) \right|\leq \omega_i(\alpha_n) .
   \end{equation}
-  Il suit,
-  \begin{align}
-    \left| \frac{1}\delta \left( f(y+\delta) - f(y) \right) - g(y) \right| &\leq \frac2\delta \|f_i - f\|_K +
-                                                                             \left| f'_i(u) - f'_i(y) \right| + \|f_i'-g\| \\
-    &\leq \frac2\delta \|f_i - f\|_K + \omega_i(\delta) + \|f_i'-g\|.
-  \end{align}
-  En prenant~$i \to \infty$, on obtient
+    \item  Pour \eqref{EQooZCFIooNDojBX}, il y a \( n+1\) termes dans les sommes et \( \alpha_n=(y-x)/(n+1)\).
+    \item Pour \eqref{SUBEQooISWEooBfnJVN}, nous travaillons uniquement sur le compact \( K\). En particulier \( x,y\in K\) et il existe un nombre \( M\) ne dépendant que de \( K\) tel que \( | y-x |<M\). De plus \( \omega_i\) est décroissante. Donc en remplaçant \( | y-x |\) par \( M\) nous majorons.
+  \end{itemize}
+
+    Recopions notre dernière inéquation :
+    \begin{equation}
+        | f_i(y) - f_j(y)| \leq | f_i(x)-f_j(x) |+M\Big( \omega_i\big( \frac{ M }{ n+1 } \big)+\| f_i'-f_j' \|_K \Big)
+    \end{equation}
+    Vu que \( f_i\) est de classe \( C^1\), la fonction \( f'_i\) est continue. Et vu que nous travaillons sur le compact \( K\), elle est même uniformément continue (proposition \ref{PROPooBWUFooYhMlDp}). Le lemme \ref{LemeERapq} dit qu'une fonction uniformément continue a un module de continuité continu en zéro : $\lim_{\delta\to 0} \omega_i(\delta) = 0$. Nous pouvons donc prendre la limite \( n\to 0\) pour nous supprimer le module de continuité :
+    \begin{equation}
+        | f_i(y)-f_j(y) |\leq | f_i(x)-f_j(x) |+M\| f_i'-f_j' \|_K.
+    \end{equation}
+  Nous prenons maintenant le supremum par rapport à~$y$ :
   \begin{equation}
-    \left| \frac{1}\delta \left( f(y+\delta) - f(y) \right) - g(y) \right| \leq \omega_g(\delta).
+    \|f_i-f_j\|_K \leq  \left| f_i(x) - f_j(x) \right| + M \|f'_i+f'_j\|_K.
   \end{equation}
-  Or~$\lim_{\delta\to 0}\omega_g(\delta) = 0$, donc~$f$ est dérivable en~$y$
-  et~$f'(y) = g(y)$.
+  
+  Par hypothèse nous avons la convergence simple \( f_i\to f\), c'est à dire la convergence \( f_i(x)\stackrel{\eR}{\longrightarrow}f_i(x)\) pour tout \( x\). Pour le \( x\) que nous nous sommes fixés, la suite \( i\mapsto f_i(x)\) est donc une suite de Cauchy dans \( \eR\).
+
+  Soit \( \epsilon>0\). Il existe \( N\in \eN\) tels que si \( i,j>N\) nous avons \( | f_i(x)-f_j(x) |<\epsilon\). De même la convergence uniforme \( f'_i\stackrel{\| . \|_K}{\longrightarrow} g\) implique que \( f'_k\) est également de Cauchy pour la norme uniforme. Donc pour un \( i,j>N\) (éventuellement un autre \( N\), mais on prend le maximum entre les deux), nous avons \( \| f'_i-f'_j \|<\epsilon\).
+
+  Donc si \( i,j>N\) nous avons
+  \begin{equation}
+    \|f_i-f_j\|_K \leq \epsilon + M \epsilon=(M+1)\epsilon.
+  \end{equation}
+
+  Nous avons donc prouvé que \( (f_i)\) est une suite de Cauchy pour la norme \( \| . \|_K \). Cela implique que \( (f_i)\) a une limite uniforme sur \( K\). Vu que nous avons déjà \( f_i\to f\), nous en déduisons que sur \( K\), cette limite est uniforme :
+  \begin{equation}
+      f_i\stackrel{\| . \|_K}{\longrightarrow}f.
+  \end{equation}
+    Voila qui prouve la convergence uniforme sur tout compact.
+
+\item[Pour \ref{ITEMooFAWUooVQJPZh}]
+    Nous ne savons encore rien de la fonction limite \( f\). Nous montrons qu'elle est dérivable et que \( f'=g\).
+  
+    Soient $y\in \eR$ et un voisinage compact $K=\overline{ B(y,\delta) }$ de~$y$ avec \( \delta>0\). Pour tout \( i>0\) nous avons :
+  \begin{subequations}
+      \begin{align}
+          \Big| &  \frac{ f(y+\delta)-f(y) }{ \delta }  - g(y) \Big|\\
+          &\leq   \frac{ | f(y)-f_i(y)|}{ \delta }  +\frac{ | f(y+\delta)-f_i(y+\delta) | }{ \delta }+\big| \frac{ f_i(y+\delta)-f_i(y) }{ \delta }-g(y) \big|\\
+          &\leq \frac{ 2 }{ \delta } \|f_i - f\|_K + \big| \frac{ f_i(y+\delta)-f_i(y) }{ \delta }-g(y) \big|\\
+          &\leq \frac{ 2 }{ \delta }\| f_i-f \|_K+| f_i'(u)-g(y) |  \label{SUBEQooUKMFooGvbSKz} \\
+          &\leq \frac{ 2 }{ \delta }\| f_i-f \|_K+| f'_i(u)-f_i'(y) |+| f_i'(y)-g(y) | \\
+          &\leq \frac{ 2 }{ \delta }\| f_i-f \|_K+| f'_i(u)-f_i'(y) |+\| f_i'-g \|_K  \label{SUBEQooWHLZooCGTjeH} \\
+          &\leq \frac{ 2 }{ \delta }\| f_i-f \|_K+   \omega_i(| u-y |)    +\| f_i'-g \|_K   \\
+          &\leq \frac{ 2 }{ \delta }\| f_i-f \|_K      +\| f_i'-g \|_K + \omega_i(2\delta)    \label{SUBEQooVRWIooCwEWPE}  \\
+          &\leq \frac{ 2 }{ \delta }\| f_i-f \|_K      +\| f_i'-g \|_K + \omega_g(2\delta)    \label{SUBEQooQNMMooRsAjyb}  \\
+          &\leq 
+      \end{align}
+  \end{subequations}
+  Justifications :
+  \begin{itemize}
+      \item 
+  Pour \ref{SUBEQooUKMFooGvbSKz}. Nous avons utilisé le théorème des accroissements finis \ref{ThoAccFinis}, qui assure l'existence de \( u\in B(y,\delta) \) tel que
+  \begin{equation}
+      \frac{ f_i(y+\delta)-f_i(y) }{ \delta }=f_i'(u).
+  \end{equation}
+  \item Pour \ref{SUBEQooWHLZooCGTjeH}. Nous faisons un supremum sur le \( y\in K\) dans le dernier terme.
+  \item Pour \ref{SUBEQooVRWIooCwEWPE}. Nous majorons \( | u-y |\) par le diamètre \( 2\delta\) du compact \( K=\overline{ B(y,\delta) }\).
+  \item Pour \ref{SUBEQooQNMMooRsAjyb}. Le lemme \ref{LEMooKPPSooPIncvn} et le fait que \(   f'_i\stackrel{\| . \|_K}{\longrightarrow}g \).
+  \end{itemize}
+
+  Recopions la dernière inégalité :
+  \begin{equation}
+      \big| \frac{ f(y+\delta)-f(y) }{ \delta }-g(y) \big|\leq \frac{ 2 }{ \delta }\| f_i-f \|_K+\| f'_i-g \|_K+\omega_g(2\delta).
+  \end{equation}
+  Nous prenons la limite \( i\to \infty\). Par le point \ref{ITEMooYSWDooFFeQCd} nous savons que \( \| f_i-f \|_K\to 0\). Par hypothèse nous savons aussi que \( \| f'_i-g \|_K\to 0\). Nous restons donc avec
+  \begin{equation}
+      \big| \frac{ f(y+\delta)-f(y) }{ \delta }-g(y) \big|\leq \omega_g(2\delta).
+  \end{equation}
+  Or, par uniforme continuité de \( g\), nous avons $\lim_{\delta\to 0}\omega_g(\delta) = 0$, donc la limite dans le membre de gauche se passe bien et
+  \begin{equation}
+      \lim_{\delta\to \delta}\frac{ f(y+\delta)-f(y) }{ \delta }=g(y),
+  \end{equation}
+  ce qui signifie que \( f\) est dérivable en \( y\) et que la dérivée est \( g(y)\).
+    \end{subproof}
 \end{proof}
 
-\begin{theorem}		\label{ThoSerUnifDerr}
-	Soit $U\subset\eR^n$ ouvert, $f_k\colon U\to \eR$ et $f_k$ de classe $C^1$. Supposons que $f_k$ converge simplement vers $f$ et que $\partial_if_k$ converge uniformément sur tout compact  vers une fonction $g_i$ pour $i=1,\ldots,n$. Alors $f$ est de classe $C^1$ et $\partial_if=g_i$. De plus, $f_k$ converge vers $f$ uniformément.
+\begin{probleme}
+    Aussi incroyable que cela puisse paraitre, je n'ai pas trouvé d'énoncés du théorème \ref{ThoSerUnifDerr}. Donc soyez \randomGender{prudent}{prudente}. C'est donc une adaptation personnelle du cas sur \( \eR\). Écrivez moi si vous avez un problème ou un doute.
+\end{probleme}
+
+\begin{probleme}
+    De plus, l'énoncé de \ref{ThoSerUnifDerr} demande la convergence uniforme des dérivées directionnelles dans toutes les directions. Je ne serais pas étonné que la convergence uniforme seulement des dérivées partielles dans les directions «de base» suffise.
+\end{probleme}
+
+\begin{theorem}[\cite{TrenchRealAnalisys,ooCPZDooOqIIEz, MonCerveau}, thème \ref{THEMEooJGEHooNzQkMT}]	\label{ThoSerUnifDerr}
+    Soient des espaces vectoriels normés \( V\) et \( W\). Soient un ouvert \( U\) de \( V\) et des fonctions \( f_k\colon U\to W\), une autre fonction \( f\colon U\to W\) ainsi que, pout toute direction\footnote{Ici le mot «direction» n'a pas de sens particulier; c'est juste un élément quelconque. Si nous faisions de la géométrie différentielle hard-core, ce serait un vecteur tangent.} \( \alpha\in V\), des fonctions \( g_{\alpha}\colon U\to W\). Nous supposons que
+    \begin{enumerate}
+        \item
+               Les \( f_k\) sont de classe \( C^1\).
+           \item
+               \( f_k\to f\) simplement.
+           \item
+               \( \partial_{\alpha}f_k\to g_{\alpha}\) uniformément sur tout compact.
+    \end{enumerate}
+    Alors
+    \begin{enumerate}
+        \item       \label{ITEMooQOSUooQGSUXC}
+            Nous avons la convergence \( f_i\to f\) uniformément sur tout compact.
+        \item        \label{ITEMooGFPLooGYEvkh}
+           Pour toute direction \( \alpha\), nous avons \( \partial_{\alpha}f=g_{\alpha}\).
+        \item
+           La fonction \( f\) est de classe \( C^1\) sur \( U\).
+    \end{enumerate}
 \end{theorem}
 \index{permuter!dérivée et limite}
+
+\begin{proof}
+    En plusieurs parties.
+    \begin{subproof}
+    \item[Uniforme convergence sur les boules fermées]
+    Soit \( a\in U\). Nous considérons \( r>0\) tel que \( \overline{ B(a,r) }\subset U\) (ça existe parce que \( U\) est ouvert; il suffit de prenre \( r\) plus petit qu'un qui fait que \( B(a,r)\subset U\)), et nous posons \( K=\overline{ B(a,r) }\). Nous allons prouver l'uniforme convergence \( f_i\stackrel{\|  .\|_{\overline{ B(a,r) }}}{\longrightarrow}f\), et nous verrons plus tard comment faire pour l'uniforme convergence sur un compact général dans \( U\).
+
+    Nous restreignons toutes les fonctions à \( K\). Nous notons \( \omega_{\alpha, i}\) le module de continuité\footnote{Définition \ref{DEFooYARJooYyzMMP}.} de \( \partial_{\alpha}f_i\). Pour chaque \( n\in \eN\) nous définissons encore
+    \begin{equation}
+        \begin{aligned}
+            \alpha_n\colon V&\to V \\
+            x&\mapsto \frac{ a-x }{ n+1 }. 
+        \end{aligned}
+    \end{equation}
+    Soit \( x\in \overline{ B(a,r) }\). Nous écrivons la somme télescopique
+    \begin{equation}        \label{EQooMXVLooXFceGH}
+        f_i(x)=f_i(a)+\sum_{k=0}^n\big[ f_i\big(a+(k+1)\alpha_n(x)\big)-f_i\big(a+k\alpha_n(x)\big) \big]
+    \end{equation}
+    Notez que les points auxquels sont évalués \( f_i\) sont dans \( \overline{ B(a,r) }\) parce que, si \( l\in \mathopen[ 0 , n+1 \mathclose]\), nous avons
+    \begin{equation}
+            \| a+l\alpha_n(x)-a \|=\| l\alpha_n(x) \|
+            =l\frac{ \| a-x \| }{ n+1 }
+            \leq\| a-x \|
+            \leq r.
+    \end{equation}
+    Ce point est important parce que rien ne nous dit que \(U\) est convexe; pour la suite nous avons besoin que tous les points sur les segments entre \( a\) et les différents points que nous allons considérer restent dans \( \overline{ B(a,r) }\). C'est d'ailleurs pour cette convexité de la boule que nous commençons notre preuve par le cas où \( K\) est une boule. Bref.
+
+    Le théorème des accroissements finis \ref{PROPooCAWBooINcNxj} nous assure l'existences d'éléments
+    \begin{equation}
+        y_{k,i}\in \mathopen\big[ a+(k+1)\alpha_n(x)   , a+k\alpha_x(x) \mathclose\big]
+    \end{equation}
+    tels que
+    \begin{equation}
+        f_i\big( a+(k+1)\alpha_n(x) \big)-f_i\big( a+k\alpha_n(x) \big)=(\partial_{\beta}f)\big( y_{k,i}(x) \big)\alpha_n(x).
+    \end{equation}
+    Notez que les \( y_{j,i}(x)\) sont dans \( \overline{ B(a,r) }\).
+    
+    Soit \( \epsilon>0\). Nous allons calculer \( \| f_i(x)-f_j(x) \|\) en substituant les valeurs de \( f_i(x)\) et \( f_j(x)\) données par \eqref{EQooMXVLooXFceGH}. Nous avons :
+    \begin{subequations}
+        \begin{align}
+          \clubsuit=  \| f_i(x)-f_j(x) \|&\leq \| f_i(a)-f_j(a) \|+\sum_{k=0}^n\| \alpha_n(x) \|\| (\partial_{\beta}f_i)\big( y_{k,i}(x) \big)-(\partial_{\beta}f_j)\big( y_{k,j}(x) \big) \|\\
+            &\leq \epsilon+\frac{r }{ n+1 }  \sum_{k=0}^n\| (\partial_{\beta}f_i)\big( y_{k,i}(x) \big)-(\partial_{\beta}f_j)\big( y_{k,j}(x) \big) \|\\            \label{SUBEQooMORPooGIwgIE}
+            &\leq \epsilon+\frac{r }{ n+1 }  \sum_{k=0}^n\| (\partial_{\beta}f_i)\big( y_{k,i}(x) \big)-(\partial_{\beta}f_i)\big( y_{k,j}(x) \big)\| \\
+            \nonumber&\qquad+ \frac{ r }{ n+1 }\sum_{k=0}^n\|(\partial_{\beta}f_i)\big( y_{k,j}(x) \big) -(\partial_{\beta}f_j)\big( y_{k,j}(x) \big) \|\\       
+                &\leq \epsilon+\frac{r }{ n+1 }  \sum_{k=0}^n\big\|    \omega_{\beta,i}\big( \| y_{k,i}(x)-y_{k,j}(x) \| \big)  \big\|    \label{SUBEQooGWYAooNOSapX} \\
+                \nonumber&\qquad+\frac{ r }{ n+1 }\sum_{k=0}^n \| \partial_{\beta}f_i-\partial_{\beta}f_j   \|\\
+                &\leq \epsilon+\frac{r }{ n+1 }  \sum_{k=0}^n\big\|    \omega_{\beta,i}\big( \| y_{k,i}(x)-y_{k,j}(x) \| \big)  \big\| 
+                +\frac{ r }{ n+1 }\sum_{k=0}^n \epsilon    \label{SUBEQooSFKSooDDPIbd}
+        \end{align}
+    \end{subequations}
+    Justifications :
+    \begin{itemize}
+        \item Pour \eqref{SUBEQooMORPooGIwgIE}.  Majoration \( \| \alpha_n(x) \|\leq \frac{ r }{ n+1 }\). De plus nous considérons des \( i\) et \( j\) assez grands pour que \( \| f_i(a)-f_j(a) \|_K\leq \epsilon\). Cela est possible parce que \( (f_i)\) est une suite de Cauchy pour la norme uniforme sur \( K\).
+        \item Pour \eqref{SUBEQooGWYAooNOSapX}. Utilisation du module de continuité, définition \ref{DEFooYARJooYyzMMP}.
+        \item Pour \eqref{SUBEQooSFKSooDDPIbd}. Nous avons la convergence uniforme \( \partial_{\beta}f_i\stackrel{\overline{ B(a,r) }}{\longrightarrow}g_{\beta}\), de sorte que \( i\mapsto \partial_{\beta}f_i\) est une suite de Cauchy. Si \( i\) et \( j\) sont assez grands, nous pouvons majorer \( \| \partial_{\beta}f_i-\partial_{\beta}f_j \|\leq \epsilon\).
+    \end{itemize}
+    Étudions deux minutes ce qui est dans le module de continuité de \eqref{SUBEQooSFKSooDDPIbd}. Nous avons \( y_{k,i}(x)\in\mathopen\big[ a+(k+1)\alpha_n(x) , a+k\alpha_n(x) \mathclose]\), donc la différence \( \| y_{k,i}(x)-y_{k,j}(x) \|\) se majore par la taille de cet intervalle :
+    \begin{equation}
+        \| y_{k,i}(x)-y_{k,j}(x) \|\leq \| a-k\alpha_n(x)-\big( a+(k+1)\alpha_n(x) \big) \|=\| \alpha_n(x) \|.
+    \end{equation}
+    Vu que le module de continuité est une fonction croissante,
+    \begin{equation}
+        \omega_{\beta,i}\big( \| y_{k,i}(x)-y_{k,j}(x) \| \big)\leq \omega_{\beta,i}\big( \| \alpha_n(x) \| \big)\leq \omega_{\beta,i}\left( \frac{ \| a-x \| }{ n+1 } \right)\leq \omega_{\beta,i}\left( \frac{ r }{ n+1 } \right).
+    \end{equation}
+    En substituant tout ça dans \eqref{SUBEQooSFKSooDDPIbd}, nous continuons :
+    \begin{equation}
+            \clubsuit\leq \epsilon+\frac{ r }{ n+1 }\sum_{k=0}^n\omega_{\beta,i}\big(  \frac{ r }{ n+1 }  \big)+r\epsilon
+            \leq \epsilon+r\omega_{\beta,i}\left( \frac{ r }{ n+1 } \right)+r\epsilon
+    \end{equation}
+    Résumons. Pour tout \( x\in \overline{ B(a,r) }\), pour tout \( n\in \eN\), si \( i\) et \( j\) sont assez grands, nous avons la majoration
+    \begin{equation}
+        \| f_i(x)-f_j(x) \|\leq \epsilon+r\omega_{\beta,i}\big( \frac{ r }{ n+1 } \big)+r\epsilon.
+    \end{equation}
+    Nous pouvons prendre la limite \( n\to \infty\) de deux côtés. Vu que \( \partial_{\beta}f_i\) est uniformément continue\footnote{Elle est continue sur un compact, proposition \ref{PROPooBWUFooYhMlDp}.}, le module de continuité tend vers zéro (lemme \ref{LemeERapq}).
+
+    Si \( i\) et \( j\) sont assez grands, nous avons donc
+    \begin{equation}
+        \| f_i(x)-f_j(x) \|\leq \epsilon(1+r),
+    \end{equation}
+    et donc aussi
+    \begin{equation}
+        \| f_i-f_j \|_{\overline{ B(a,r) }}\leq \| f_i(x)-f_j(x) \|\leq \epsilon(1+r).
+    \end{equation}
+    Cela prouve que \( (f_i)\) est une suite de Cauchy pour \( \| . \|_K\). Donc \( f_i\) converge uniformément vers une certaine fonction. Vu qu'elle converge simplement vers \( f\), elle converge uniformément vers \( f\).
+
+        Nous avons donc prouvé que
+        \begin{equation}
+            f_i\stackrel{\| . \|_{\overline{ B(a,r) }}}{\longrightarrow}f,
+        \end{equation}
+        c'est à dire la convergence uniforme sur toute boule compacte.
+    \item[Convergence uniforme sur tout compact]
+        Soient un compact \( K\) de \( U\), et \( \epsilon>0\). L'ensemble \( \{ B(x,r) \}_{x\in K, r>0}\) est un recouvrement de \( K\) par des ouverts. On en extrait un sous-recouvrent fini, et on ferme les boules sans changer le fait que ce soit un recouvrement :
+        \begin{equation}
+            K\subset \bigcup_{i=1}^n\overline{ B(a_i, r_i) }.
+        \end{equation}
+        Vue la convergence uniforme sur toute boule fermée, pour chaque \( i\), il existe \( N_i\) tel que \( n>N_i\) implique
+        \begin{equation}
+            \| f_n-f \|_{\overline{ B(a_i,r_i) }}<\epsilon.
+        \end{equation}
+        En prenant \( N>\max\{ N_i \}\), nous avons
+        \begin{equation}
+            \| f_n-f \|_K<\epsilon
+        \end{equation}
+        pour tout \( n>N\).
+    \item[Pour \ref{ITEMooGFPLooGYEvkh}]
+        Soit \( a\in U\) et un voisibage compact \( K=\overline{ B(a,\delta) }\) de \( a\). Nous considérons une direction \( u\) avec \( \| u \|=1\). Nous calculons un peu :
+        \begin{subequations}
+            \begin{align}
+                \heartsuit=\| \frac{ f(a+\delta u)-f(a) }{ \delta }-g_u(a) \|&\leq \| \frac{ f(a+\delta u)-f_i(a+\delta u) }{ \delta } \|\\
+                &\quad +\|  \frac{ f_i(a+\delta u)-f_i(a) }{ \delta }-g_u(a) \|      \nonumber\\
+                &\quad +\| \frac{ f_i(a)-f(a) }{ \delta } \|        \nonumber\\  
+                &\leq \frac{ 2 }{ \delta }\| f_i-f \|+\| \frac{ f_i(a+\delta u)-f_i(a) }{ \delta }-g(a) \|
+            \end{align}
+        \end{subequations}
+        Ici, la norme \( \| f_i-f \|\) est une norme supremum sur \( K\) (vous devriez l'avoir deviné du contexte). C'est le moment d'utiliser le théorème des accroissements finis \ref{PROPooCAWBooINcNxj} : il existe \( y\in \mathopen[ a+\delta u , a \mathclose]\) tel que 
+        \begin{equation}
+            \frac{ f_i(a+\delta u)-f_i(a) }{ \delta }=(\partial_if_i)(y)
+        \end{equation}
+        Nous continuons :
+        \begin{subequations}
+            \begin{align}
+                \heartsuit&\leq\frac{ 2 }{ \delta }\| f_i-f \|+\| (\partial_uf_i)(y)-g(a) \|\\
+                &\leq \frac{ 2 }{ \delta }\| f_i-f \|+\| (\partial_uf_i)(y)-(\partial_uf_i)(a) \|+\| (\partial_uf_i)(a)-g(a) \| \label{SUBEQooCLCQooGcFAZD}
+            \end{align}
+        \end{subequations}
+        Nous introduisons le module de continuité\footnote{Définition \ref{DEFooYARJooYyzMMP}.} \( \omega_{i,u}\) de \( (\partial_uf_i)\) pour traiter le premier terme :
+        \begin{equation}
+            \| (\partial_uf_i)(y)-(\partial_uf_i)(a) \|\leq\omega_{i,u}\big( \| y-a \| \big)\leq \omega_{i,u}(\delta).
+        \end{equation}
+        Nous utilisons aussi la convergence uniforme sur tout compact (point \ref{ITEMooQOSUooQGSUXC}) \( \partial_uf_i\stackrel{\| . \|_K}{\longrightarrow}g_u\) pour majorer le second terme de \eqref{SUBEQooCLCQooGcFAZD} par \( \epsilon\) lorsque \( i\) est grand.
+
+        Nous continuons. Pour tout \( i\) assez grand, nous avons
+        \begin{equation}
+                \| \frac{ f(a+\delta u)-f(a) }{ \delta }-g_u(a) \|\leq \frac{ 2 }{ \delta }\| f_i-f \|+\epsilon+\omega_{i,u}(\delta).
+        \end{equation}
+        Nous prenons la limite \( i\to \infty\) en tenant compte du lemme \ref{LEMooKPPSooPIncvn} : \( \lim_{i\to \infty} \omega_{i,u}(\delta)=\omega_g(\delta)\) :
+        \begin{equation}
+                \| \frac{ f(a+\delta u)-f(a) }{ \delta }-g_u(a) \|\leq \epsilon+\omega_g(\delta).
+        \end{equation}
+        Et enfin en prenant la limite \( \delta\to 0\) nous trouvons que pour tout \( \epsilon\),
+        \begin{equation}
+            \lim_{\delta\to 0} \| \frac{ f(a+\delta u)-f(a) }{ \delta }-g_u(a) \|\leq \epsilon,
+        \end{equation}
+        et donc nous avons prouvé que
+        \begin{equation}
+            \lim_{\delta\to 0} \| \frac{ f(a+\delta u)-f(a) }{ \delta }-g_u(a) \|=0.
+        \end{equation}
+        Cela prouve que \( (\partial_uf)(a)\) existe et vaut \( g_u(a)\).
+    \end{subproof}
+    Vu que les \( g_u\) sont de classe \( C^1\), la fonction \( f\) est également de classe \( C^1\) par le théorème \ref{THOooBEAOooBdvOdr}.
+\end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Densité des polynômes}
@@ -700,7 +902,7 @@ Nous pouvons maintenant énoncer et démontrer une forme nettement plus généra
             \end{equation}
             Supposons \( f_1(x)=f_2(y)\). Vu que \( f\) sépare, si ce ne sont pas les parties réelles, ce sont les parties imaginaires. C'est-à-dire que  \( f_2(x)\neq f_2(y)\). Mais d'autre part, \( if=f_2+if_1\in A\),  donc en réalité \( f_2\in A_1\) également.
     \end{subproof}
-    Le partie \( A_1\) dans \( C(X,\eR)\) vérifie les hypothèses de Stone-Weierstrass réel \ref{THOooMDILooGPXbTW}, donc \( A_1\) est dense dans \( C(X,\eR)\). Le même raisonnement montre que \( A_2\) est également dense dans \( C(X,\eR)\)\quext{Il me semble même que \( A_1=A_2\) et qu'il y a un raccourcis possible dans cette preuve en exploitant ce fait. Écrivez-moi pour dire ce que vous en pensez.}
+    Le partie \( A_1\) dans \( C(X,\eR)\) vérifie les hypothèses de Stone-Weierstrass réel \ref{THOooMDILooGPXbTW}, donc \( A_1\) est dense dans \( C(X,\eR)\). Le même raisonnement montre que \( A_2\) est également dense dans \( C(X,\eR)\)\quext{Il me semble même que \( A_1=A_2\) et qu'il y a un raccourci possible dans cette preuve en exploitant ce fait. Écrivez-moi pour dire ce que vous en pensez.}
 
     Soit maintenant le vif de la preuve : \( f\in C(X,\eC)\) avec \( f=u+iv\), les fonctions \( u\) et \( v \) étant dans \( C(X,\eR)\). Nous avons des suites \( u_{k}\stackrel{unif}{\longrightarrow}u\) et \( v_k\stackrel{unif}{\longrightarrow}v\) pour des suites \( (u_k) \) et \( (v_k)\) dans \( C(X,\eR)\).
 
@@ -721,7 +923,7 @@ Nous pouvons maintenant énoncer et démontrer une forme nettement plus généra
     La fonction \( g\) dont les composantes sont les \( g_i\) ainsi construits vérifie \( \| g-f \|_{\infty}\leq n\epsilon\).
 \end{proof}
 
-Attention toutefois que rien n'assure que les fonctions construites par le corollaire~\ref{CORooNIUJooLDrPSv} prennent leurs valeurs dans \( B\).
+Attention toutefois que rien n'assure que les fonctions construites par le corolaire~\ref{CORooNIUJooLDrPSv} prennent leurs valeurs dans \( B\).
 
 Le théorème suivant est un des énoncés les plus classiques de Stone-Weierstrass. Il découle évidemment du théorème général~\ref{ThoWmAzSMF} (encore qu'il faut alors bien comprendre qu'il faut traiter la fonction \( x\mapsto \sqrt{x}\) séparément). Il en existe cependant une preuve indépendante.
 
@@ -757,7 +959,7 @@ Le théorème suivant est un des énoncés les plus classiques de Stone-Weierstr
     \end{subequations}
     Vu que \( (f_n) \) est de Cauchy, si \( n\) et \( m\) sont assez grands, cela tend vers zéro. La suite \( (F_n)\) converge donc vers une certaine fonction \( F\).
 
-    Le théorème~\ref{ThoSerUnifDerr} nous permet de permuter la limite et la dérivée pour conclure que \( F'=f\) et donc que \( f\) a une primitive sur \( K\).
+    Le théorème~\ref{THOooXZQCooSRteSr} nous permet de permuter la limite et la dérivée pour conclure que \( F'=f\) et donc que \( f\) a une primitive sur \( K\).
 \end{proof}
 
 \begin{proposition}[\cite{MQKDooSuEGxk}]        \label{PropKKGAooDQYGKg}
@@ -977,7 +1179,7 @@ Pour toute la suite de cette section, nous allons considérer \( a^x\) uniquemen
         a^{m/n}=(a^m)^{1/n},
     \end{equation}
     ce qui définit la fonction puissance sur \( \eQ^+\). Enfin nous posons
-    \begin{equation}
+    \begin{equation}        \label{DEFooTUCVooXikxRh}
         a^{-q}=\frac{1}{ a^q }
     \end{equation}
     lorsque \( q\in \eQ^+\).
@@ -1145,7 +1347,7 @@ Le lemme suivant montre que la définition sur \( \eQ^-\) est cohérente avec ce
                     \lim_{q\to \infty} g_a(q)=0,&& \lim_{q\to -\infty} g_a(q)=\infty.
                 \end{align}
            \end{subequations}
-         \item
+       \item      \label{ITEMooGOEVooKVoVpZ}
             Si \( a>1\)  alors \( g_a\) est croissante et
             \begin{subequations}
                 \begin{align}
@@ -1173,9 +1375,9 @@ Le lemme suivant montre que la définition sur \( \eQ^-\) est cohérente avec ce
 \begin{proposition}[\cite{MonCerveau}]      \label{PROPooIIDGooTRtlUD}
     Soit \( a>0\). Nous avons
     \begin{equation}
-        \lim_{x\to 0} a^x=1.
+        \lim_{q\to 0} a^q=1.
     \end{equation}
-    Notons que dans cette limite, \( x\in \eQ\) parce que nous n'avons même pas encore défini \( a^x\) lorsque \( x\) est irrationnel.
+    Notons que cette limite est une limite dans \( \eQ\) parce que nous n'avons même pas encore défini \( a^x\) lorsque \( x\) est irrationnel.
 \end{proposition}
 
 \begin{proof}
@@ -1219,6 +1421,56 @@ Le lemme suivant montre que la définition sur \( \eQ^-\) est cohérente avec ce
     ce qui prouve la continuité (caractérisation séquentielle, proposition \ref{PropFnContParSuite}) de \( g_a\).
 \end{proof}
 
+\begin{proposition}     \label{PROPooQRFSooVzYdJM}
+    Soit \( a>0\) dans \( \eR\). La fonction
+    \begin{equation}
+        \begin{aligned}
+            g_a\colon \eQ&\to \eR \\
+            q&\mapsto a^q 
+        \end{aligned}
+    \end{equation}
+    est Cauchy-continue.
+\end{proposition}
+
+\begin{proof}
+    En quelque étapes.
+    \begin{subproof}
+        \item[Pour \( a>1\)]
+            Avant de nous lancer dans la preuve directe, nous prouvons une petite formule. Soit \( \epsilon>0\). Vu que, par la proposition \ref{PROPooIIDGooTRtlUD}, \( \lim_{q\to 0} g_a(q)=1\), il existe \( \delta>0\) tel que \( 0<q<\delta\) implique \( | 1-g_a(q) |<\epsilon\).
+
+            Soient maintenant \( p,q\in \eQ\) tels que \( | p-q |<\delta\). En utilisant de plus la définition \eqref{DEFooTUCVooXikxRh} et la formule du lemme \ref{LEMooJYGUooHhLASp},
+            \begin{subequations}
+                \begin{align}
+                    | g_a(q)-g_a(p) |=| g_a(q) |\left| 1-\frac{ g_a(p) }{ g_a(q) } \right| =| g_a(p) | | 1-g_a(p-q) |\leq | g_a(q) |\epsilon.
+                \end{align}
+            \end{subequations}
+            
+            Nous y allons pour la preuve directe. Soit une suite de Cauchy \( (q_n)\) dans \( \eQ\). Nous devons prouver que la suite \( n\mapsto g_a(q_n)\) est de Cauchy dans \( \eR\). Soit \( \epsilon>0\).
+
+            La suite \((q_n)\) étant de Cauchy dans \( \eQ\), elle l'est également dans \( \eR\), elle est bornée parce que convergente vu que \( \eR\) est complet\footnote{Théorème \ref{THOooNULFooYUqQYo}.}. Vu que \( g_a\) est croissante\footnote{Proposition \ref{PROPooGCBZooTcyGtO}\ref{ITEMooGOEVooKVoVpZ}.} et que \( (q_n)\) est bornée, il existe \( M\) tel que \( | g_a(q_n) |\leq M\) pour tout \( n\).
+
+            Nous considérons \( \delta\) tel que \( 0<q<\delta\) implique \( | 1-g_a(q) |\leq \epsilon\), ainsi que \( N\) tel que \( i,j>N\) implique \( | q_i-q_j |\leq \delta\) (là nous utilisons le fait que \( (q_n)\) est de Cauchy). Pour de tels \( N, i,j\) nous avons
+            \begin{equation}
+                | g_a(q_i)-g_a(q_j) |\leq M\epsilon.
+            \end{equation}
+            Donc la suite \( g_a(g_n)\) est de Cauchy.
+
+        \item[Pour \( a=1\)]
+            La fonction \( g_a\) est constante.
+        \item[Pour \( 0\leq a<1\)]
+            J'imagine que ça se fait comme \( a>1\), mais en renversant quelque inégalités\quext{Je n'ai pas essayé. Faites-le et écrivez-moin pour me dire si ça marche.}.
+    \end{subproof}
+\end{proof}
+
+\begin{normaltext}
+    L'ingrédient magique qui fait fonctionner la proposition \ref{PROPooQRFSooVzYdJM} est le fait que \( g_a(x+y)=g_a(x)g_a(y)\) couplé au fait que \( \lim_{q\to 0} g_a(q)=1\). 
+    C'est cela qui débloque la situation pour étendre la fonction puissance de \( \eQ\) vers \( \eR\) en utilisant le lemme \ref{LEMooUAFBooAwiXxj}. 
+
+    Le chemin suivit par \cite{BIBooXUZHooOHWxiF} pour étendre la fonction puissance de \( \eQ\) vers \( \eR\) est un peu différent : il définit \( a^x=\sup\{ a^q\tq q<x,q\in \eQ \}\). La preuve que cette définition donne \( x\mapsto a^x\) continue sur \( \eR\) repose, elle aussi, essentiellement sur le fait que \( \lim_{q\to 0} a^q=1\).
+
+    Il y a donc une certaine justice.
+\end{normaltext}
+
 \begin{propositionDef}[Fonction puissance\cite{MonCerveau}]  \label{DEFooOJMKooJgcCtq}
     Si \( a>0\) et \( x\in \eR\), la fonction
     \begin{equation}
@@ -1227,7 +1479,7 @@ Le lemme suivant montre que la définition sur \( \eQ^-\) est cohérente avec ce
             x&\mapsto a^x. 
         \end{aligned}
     \end{equation}
-    est continue par le lemme \ref{LEMooKDBPooLQwxMD}. Si \( x\in \eR\) nous définissons
+    est Cauchy-continue par la proposition \ref{PROPooQRFSooVzYdJM}. Si \( x\in \eR\) nous définissons
     \begin{equation}
         a^x=\tilde g_a(x)
     \end{equation}
@@ -1237,7 +1489,7 @@ Le lemme suivant montre que la définition sur \( \eQ^-\) est cohérente avec ce
 \end{propositionDef}
 
 \begin{proposition}[\cite{MonCerveau}]      \label{PROPooVADRooLCLOzP}
-    Quelque propriétés de la fonction puissance. 
+    Quelques propriétés de la fonction puissance. 
     \begin{enumerate}
         \item       \label{ITEMooQHYRooJIewyp}
             Pour \( a>0\), la fonction \( g_a\colon x\mapsto a^x\) est continue sur \( \eR\).
@@ -1419,7 +1671,7 @@ Pour rappel, la proposition suivantes, dans le cas de \( \alpha\in \eQ^+\) est l
             \begin{equation}
                 0<(x+s)^{\alpha_0}-x^{\alpha_0}.
             \end{equation}
-            De plus nous avons \( 1<x<x+s\) et \( \alpha_0<\alpha_i\) pour tout \( i\). Donc le corollaire \ref{CORooYWNNooLwKmiD} s'applique et nous avons, pour tout \( i\) :
+            De plus nous avons \( 1<x<x+s\) et \( \alpha_0<\alpha_i\) pour tout \( i\). Donc le corolaire \ref{CORooYWNNooLwKmiD} s'applique et nous avons, pour tout \( i\) :
             \begin{equation}
                 0<(x+s)^{\alpha_0}-x^{\alpha_0}<(x+s)^{\alpha_i}-x^{\alpha_i}.
             \end{equation}
@@ -1479,7 +1731,7 @@ Notons que les voisinages sur lesquels \( f_{\alpha}\) est injective sont assez 
 \end{lemma}
 
 \begin{proof}
-    Soient \( x>1\), et \( \alpha>0\). Nous allons montrer que \( \{ f_{\alpha_i} \}\) est équicontinue en \( x\). Soit \( s\) tel que \( 1<x<x+s\); le corollaire \ref{CORooYWNNooLwKmiD} nous enseigne que 
+    Soient \( x>1\), et \( \alpha>0\). Nous allons montrer que \( \{ f_{\alpha_i} \}\) est équicontinue en \( x\). Soit \( s\) tel que \( 1<x<x+s\); le corolaire \ref{CORooYWNNooLwKmiD} nous enseigne que 
     \begin{equation}
         (x+s)^p-x^p<(x+s)^q-x^q
     \end{equation}
@@ -1613,7 +1865,7 @@ Notons que les voisinages sur lesquels \( f_{\alpha}\) est injective sont assez 
             \begin{equation}
                 \big( \lim_ja^{x_j} \big)^{y_i}=f_{y_i}\big( \lim_ja^{x_j} \big)=\lim_j\big( f_{y_i}(a^{x_j}) \big)=\lim_ja^{x_jy_i}.
             \end{equation}
-            Nous avons utilisé le résultats déjà démontré dans le cas des rationnels. La suite \( j\mapsto x_jy_i\) est une suite dans \( \eQ\) qui converge vers le réel \( xy_i\), donc la limite sur \( j\) redonne la fonction puissance :
+            Nous avons utilisé le résultat déjà démontré dans le cas des rationnels. La suite \( j\mapsto x_jy_i\) est une suite dans \( \eQ\) qui converge vers le réel \( xy_i\), donc la limite sur \( j\) redonne la fonction puissance :
             \begin{equation}        \label{EQooWORSooFoRBod}
                 \big( \lim_ja^{x_j} \big)^{y_i}=\lim_ja^{x_jy_i}=a^{xy_i}.
             \end{equation}
@@ -2055,7 +2307,7 @@ La proposition suivante donne la dérivée de \( x\mapsto x^q\) pour tout \( q\i
 \subsection{Hölder}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Notre étude de la fonction puissance permet de démontrer quelque inégalités de Hölder. Voir le thème \ref{THEMEooUJVXooZdlmHj}.
+Notre étude de la fonction puissance permet de démontrer quelques inégalités de Hölder. Voir le thème \ref{THEMEooUJVXooZdlmHj}.
 
 \begin{theorem}[\cite{BIBooWAUMooIUnSOs}]       \label{THOooPPDPooJxTYIy}
     Si \( 1\leq p <  \infty\), alors pour tout \( x\in \eR^n\) nous avons
@@ -2080,7 +2332,7 @@ Notre étude de la fonction puissance permet de démontrer quelque inégalités 
     \end{equation}
 \end{proof}
 
-Le corollaire suivant donne une façon de majorer une norme \( \ell^p\) par une norme \( \ell^q\) moyennant un facteur. Notons cependant que l'inégalité de Hölder de la proposition \ref{PROPooQZTNooGACMlQ} est plus précise. Ce corollaire est suffisant pour prouver l'équivalence des normes \( \ell^p\).
+Le corolaire suivant donne une façon de majorer une norme \( \ell^p\) par une norme \( \ell^q\) moyennant un facteur. Notons cependant que l'inégalité de Hölder de la proposition \ref{PROPooQZTNooGACMlQ} est plus précise. Ce corolaire est suffisant pour prouver l'équivalence des normes \( \ell^p\).
 \begin{corollary}       \label{CORooEZGHooACHOiB}
     Soient \( p\geq 1\) et \( q\leq \infty\). Pour tout \( x\in \eR^n\) nous avons
     \begin{equation}
@@ -2125,9 +2377,7 @@ Nous allons maintenant attaquer ce problème.
     \begin{equation}        \label{EQooTWBQooBLLKSt}
         y_1(x)y_2(-x)=1
     \end{equation}
-    pour tout \( x\).
-
-    Notons que cette identité est encore valable avec \( y_1=y_2\). Nous avons en particulier \( y_1(x)y_1(-x)=1\) et \( y_2(x)y_2(-x)=1\), et nous notons au passage que \( y_1(x)\) et \( y_2(x)\) ne s'annulent pas.
+    pour tout \( x\). Notons que cette identité est encore valable avec \( y_1=y_2\). Nous avons en particulier les égalités \( y_1(x)y_1(-x)=1\) et \( y_2(x)y_2(-x)=1\), et nous notons au passage que \( y_1(x)\) et \( y_2(x)\) ne s'annulent pas.
 
     En substituant dans \eqref{EQooTWBQooBLLKSt} la valeur \( y_2(-x)=\frac{1}{ y_2(x) }\) nous trouvons
     \begin{equation}
@@ -2136,7 +2386,7 @@ Nous allons maintenant attaquer ce problème.
     ce qui signifie \( y_1(x)=y_2(x)\).
 \end{proof}
 
-Dans la proposition suivante, \( S^1\) désigne l'ensemble des nombres complexes de norme \( 1\), dont une paramétrisation est donnée dans la proposition \ref{PROPooZEFEooEKMOPT} :
+Dans la proposition suivante, \( S^1\) désigne l'ensemble des nombres complexes de norme \( 1\), dont un paramétrage est donnée dans la proposition \ref{PROPooZEFEooEKMOPT} :
 \begin{equation}
     S^1=\{  e^{ix}\tq x\in \eR \}=\{  e^{ix}\tq x\in \mathopen[ 0 , 2\pi \mathclose[ \}.
 \end{equation}
@@ -2204,6 +2454,14 @@ Dans la proposition suivante, \( S^1\) désigne l'ensemble des nombres complexes
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \label{AppSecTaylorR}
 
+\begin{definition}      \label{DEFooCLGZooRuEkTe}
+    Soit un ouvert \( \Omega\subset \eC\). Une fonction \( f\colon \Omega\to \eC\) est \defe{$\eC$-analytique}{analytique!au sens complexe} sur \( \Omega\) si pour tout \( z_0\in\Omega\), il existe une suite complexe \( (c_n)\) et \( r>0\) tels que
+    \begin{equation}
+        f(z)=\sum_{n=0}^{\infty} c_n(z-z_0)^n
+    \end{equation}
+    pour tout \( z\in B(z_0,r)\).
+\end{definition}
+
 \begin{definition}
     Soit une fonction \( f\colon \eR\to \eR\). Si il existe, nous définissons le \( n\)\ieme\ \defe{polynôme de Taylor}{polynôme de Taylor} de $f$ au point \( a\in \eR\) par
     \begin{equation}
@@ -2238,6 +2496,16 @@ pour tout \( x\) dans un voisinage de \( a\). Autrement dit, même si toutes les
     nous n'avons aucune garantie de \( T=f\), même pas sur le rayon de convergence de la série entière définissant \( P\). Et nous n'avons pas de garanties d'avoir un rayon de convergence plus grand que \( 0\).
 
     Notons toutefois que les polynômes étant denses pour la norme supremum parmi les fonctions continues\footnote{Théorème \ref{ThoGddfas}.}, pour tout compact, il existe une suite de polynômes qui converge uniformément uniformément \( f\). Mais ces polynômes ne sont pas spécialement ceux de Taylor.
+\end{normaltext}
+
+\begin{normaltext}
+    Ce que nous venons de dire en \ref{NORMooADIZooUmevqk} n'est pas vrai pour les fonctions analytiques\footnote{Définition \ref{DEFooCLGZooRuEkTe} qu'il faut écrire pour \( \eR\) au lieu de $\eC$}. Une fonction analytique \( f\colon \Omega\to \eR\) s'écrit, autour de \( 0\), sous la forme
+    \begin{equation}
+        f(x)=\sum_{n=0}^{\infty}a_nx^n.
+    \end{equation}
+    Demander \( f^{(k)}(0)=0\) pour tout \( k\) implique \( a_n=0\) pour tout \( n\), et donc \( f=0\) sur un voisinage de \( 0\).
+
+    La condition d'analycité est donc très rigide.
 \end{normaltext}
 
 Le théorème de Taylor que nous démontrons à présent n'est pas un résultat que va dans le sens de \( \lim_{n\to \infty} P_n(x)=f(x)\). C'est un résultat qui dit juste que \( \lim_{x\to a} P_n(x)=f(a)\), et que la limite va d'autant plus vite que \( n\) est grand.
@@ -2842,28 +3110,6 @@ En pratique, le développement limité à l'ordre $n$ d'une fonction autour d'un
 \end{proposition}
 
 
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Application au calcul de limites}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Lors d'un calcul de limite, développer une partie d'une expression peut être utile.
-
-\begin{example}
-    À calculer :
-    \begin{equation}
-        \lim_{x\to 0} \frac{ \ln(1+x) }{ x }.
-    \end{equation}
-    Cela est une indétermination de type \( \frac{ 0 }{ 0 }\). Le développement limité du numérateur nous donne une fonction \( \alpha(x)\) telle que \( \lim_{x\to 0} \alpha(x)=0\) et
-    \begin{equation}
-        \frac{ \ln(1+x) }{ x }=\frac{ x-\frac{ x^2 }{2}+x^2\alpha(x) }{ x }=1-\frac{ x }{ 2 }+x\alpha(x).
-    \end{equation}
-    Sur le membre de droite la limite est facile à calculer :
-    \begin{equation}
-        \lim_{x\to 0} \frac{ \ln(1+x) }{ x }=\lim_{x\to 0} \Big( 1-\frac{ x }{ 2 }+x\alpha(x) \Big) =1.
-    \end{equation}
-\end{example}
-
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Développement au voisinage de l'infini}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3057,7 +3303,7 @@ Le \defe{plan tangent}{plan!tangent} au graphe de $f$ au point $\big(a,b,f(a,b)\
 \begin{equation}
 	T_{(a,b)}(x,y) = f(a,b) + \frac{\partial f}{\partial x}(a,b) (x-a) + \frac{\partial f}{\partial y}(a,b) (y-b)
 \end{equation}
-essayez d'écrire l'équation de la droite tangente au graphe de $f(x)$ au point $x=a$ en terme de la dérivée de $f$, et comparez votre résultat à cette formule.
+essayez d'écrire l'équation de la droite tangente au graphe de $f(x)$ au point $x=a$ en termes de la dérivée de $f$, et comparez votre résultat à cette formule.
 
 Un des principaux théorèmes pour tester la différentiabilité d'une fonction est le suivant.
 
@@ -3298,10 +3544,8 @@ Cette proposition signifie que si la fonction est strictement positive en un poi
 	\begin{equation}
 		\{ X\in\eR^{n^2}\tqs \det(X)\neq 0 \}.
 	\end{equation}
-	Mais le déterminant est un polynôme, et donc une fonction continue. Cet ensemble est par conséquence ouvert par le corollaire~\ref{CorfneqzOuvert}.
+	Mais le déterminant est un polynôme, et donc une fonction continue. Cet ensemble est par conséquence ouvert par le corolaire~\ref{CorfneqzOuvert}.
 \end{example}
-
-
 
 La proposition suivante montre que la limite peut «passer à travers» les fonctions continues.
 \begin{proposition}[limite de fonction composée]		\label{PropLimCompose}
@@ -3346,6 +3590,26 @@ lorsque $f$ est continue.
 	\end{subequations}
 	Nous avons $(g\circ f)(x)=2$ pour tout $x$, ainsi que $\lim_{x\to 0} f(x)=0$, mais la limite $\lim_{y\to 0} g(y)$ n'existe pas.
 \end{remark}
+
+	En général, lorsqu'un ensemble est donné par des inégalités, prendre la fermeture consiste à transformer les inégalités strictes en inégalités non strictes; prendre l'intérieur consiste à rendre stricte toutes les inégalités; la frontière consiste \emph{en gros} à transformer toutes les inégalités en égalités (nous allons voir que pour la frontière, c'est un peu plus de travail). Comprenez bien que cela n'est vrai que «en général». Il faut toujours bien regarder sur chaque exemple s'il n'y a pas l'un ou l'autre point problématique.
+
+	La proposition \ref{Propfaposfxposcont} sera une des clefs pour dire que si une inégalité stricte est satisfaite en un point, alors elle sera satisfaite en tout point dans un voisinage.
+    Voir aussi l'exemple \ref{exoEspVectoNorme0008}.
+
+\begin{example}     \label{exoEspVectoNorme0008}
+Soit $f : \eR \to \eR$ une fonction continue. Montrer que le sous-ensemble $A$ de $\eR ^2$ défini par $A = \left\{ (x,y) \in \eR ^2; \ y>f(x) \right\}$ est ouvert.
+
+Prouver que l'ensemble $B=\{ (x,y)\in\eR^2\tqs y\geq f(x) \}$ est fermé.
+
+	Nous considérons la fonction $g\colon \eR^2\to \eR$ donnée par $g(x,y)=f(x)-y$. Cela est une fonction continue parce que c'est une différence de fonctions continues. Par définition,
+	\begin{equation}
+		A=\{ (x,y)\in\eR^2\tq g(x,y)>0 \}.
+	\end{equation}
+	Par la proposition \ref{Propfaposfxposcont}, autour de chaque point $(x,y)$ tel que $g(x,y)>0$ (c'est-à-dire autour de chaque point de $A$), il existe une boule sur laquelle $g$ reste strictement positive. L'ensemble $A$ est donc ouvert.
+
+	Pour prouver que l'ensemble $B$ est fermé, prouver que le complémentaire est ouvert, c'est-à-dire que les points tels que $y-f(x)<0$ forment un ouvert. Cela revient au même que ce que nous avons fait pour $A$.
+
+\end{example}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Champs de vecteurs}

@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2015,2017-2019
+% Copyright (c) 2011-2015,2017-2020
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -46,7 +46,7 @@ Nous avons déjà parlé de primitive de fonction continue en la proposition \re
 \end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Théorème taubérien de Hardi-Littlewood}
+\subsection{Théorème taubérien de Hardy-Littlewood}
 %---------------------------------------------------------------------------------------------------------------------------
 
 Un théorème \defe{taubérien}{taubérien}\index{théorème!taubérien} est un théorème qui compare les modes de convergence d'une série.
@@ -372,7 +372,7 @@ Nous prouvons le théorème pour la norme \( \| . \|_2\).
     \begin{equation}
         V=\Span\{ \phi_{\alpha_n}\tq n\in \eN \}.
     \end{equation}
-    Il suffit de prouver que \( \phi_m\in \bar V\) pour tout \( m\) parce qu'un corollaire du théorème de Stone-Weierstrass~\ref{CorRSczQD} montre que \( \Span\{ \phi_k\tq k\in \eN \}\) est dense dans \( C\) pour la norme \( \| . \|_2\).
+    Il suffit de prouver que \( \phi_m\in \bar V\) pour tout \( m\) parce qu'un corolaire du théorème de Stone-Weierstrass~\ref{CorRSczQD} montre que \( \Span\{ \phi_k\tq k\in \eN \}\) est dense dans \( C\) pour la norme \( \| . \|_2\).
 
     Si \( \alpha_n\to \infty\), nous avons :
     \begin{equation}
@@ -526,10 +526,10 @@ Nous allons présenter deux théorèmes donnant la continuité de \( F\).
     Soit \( (\Omega,\mu)\) est un espace mesuré, soit \( x_0\in \eR^m\) et \( f\colon U\times \Omega\to \eR\) où \( U\) est ouvert dans \( \eR^m\). Nous supposons que
     \begin{enumerate}
         \item
-            La fonction \( f(x,.)\) est dans \( L^1(\Omega,\mu)\) pour tout \( x \in \eR^m\).
+            Pour chaque \( x\in \eR^m\), la fonction \( \omega\mapsto f(x,\omega)\) est dans \( L^1(\Omega,\mu)\).
         \item
-            La fonction \( f(.,\omega)\) est continue en \( x_0\) pour tout \( \omega\in\Omega\).
-            %TODO : peut-être qu'on peut dire seulement pour presque tout omege dans Omega, voir la proposition~\ref{prop:fdefint}.
+            Pour chaque \( \omega\in \Omega\), la fonction \( x\mapsto f(x,\omega)\) est continue en \( x_0\).
+            %TODO : peut-être qu'on peut dire seulement pour presque tout omega dans Omega, voir la proposition~\ref{prop:fdefint}.
         \item       \label{ItemNAuYNG}
             Il existe une fonction \( G\in L^1(\Omega)\) telle que
             \begin{equation}
@@ -629,14 +629,14 @@ Déduire la continuité sur un ouvert à partir de l'uniforme convergence sur to
 
 Nous traitons à présent de la dérivabilité de la fonction \( F\) définie comme intégrale de \( f\).
 
-\begin{theorem}[Dérivation sous le signe intégral\cite{MesIntProbb}]    \label{ThoMWpRKYp}
+\begin{theorem}[Dérivation sous le signe intégral, formule de Leibnitz\cite{MesIntProbb,BIBooSNRXooSXmdxt}]    \label{ThoMWpRKYp}
     Soit \( (\Omega,\mu)\) un espace mesuré et une fonction \( f\colon \eR\times \Omega\to \eR\) dont nous voulons étudier la dérivabilité en \(a\in \eR\). Nous supposons qu'il existe \( \delta>0\), \( A\) mesurable de mesure nulle dans \( \Omega\) tels que
     \begin{enumerate}
-        \item
-            \( f(x,.)\) soit dans \( L^1(\Omega)\).
-        \item
+        \item   \label{ITEMooAFVMooAeCEco}
+           Pour tout \( x\in \eR\), la fonction \( \omega\mapsto f(x,\omega)\) soit dans \( L^1(\Omega)\).
+       \item       \label{ITEMooXIZXooGPYFyT}
             L'application \( x\mapsto f(x,\omega)\) est dérivable pour tout \( x\in B(a,\delta)\) et pour tout \( \omega\in \complement A\).
-        \item
+        \item   \label{ITEMooDTTIooWkldfB}
             Il existe une fonction \( G\) intégrable sur \( \Omega\) telle que
             \begin{equation}
                 \left| \frac{ \partial f }{ \partial x }(x,\omega) \right| \leq G(\omega)
@@ -659,46 +659,134 @@ Nous traitons à présent de la dérivabilité de la fonction \( F\) définie co
     \begin{equation}
         \lim_{n\to \infty} \frac{ F(a)-F(x_n) }{ a-x_n }
     \end{equation}
-    existe et ne dépend pas de la suite choisie, alors la fonction \( F\) est dérivable en \( a\) et sa dérivée vaut cette limite. Par linéarité de l'intégrale, nous devons étudier la limite
+    existe et ne dépend pas de la suite choisie, alors la fonction \( F\) est dérivable en \( a\) et sa dérivée vaut cette limite. Autrement dit, nous nous mettons en devoir d'étudier la limite
     \begin{equation}    \label{EqLIiralx}
-        \lim_{n\to \infty} \int_{\Omega}\frac{ f(a,\omega)-f(x_n,\omega) }{ a-x_n }d\omega,
+        \lim_{n\to \infty} \int_{\Omega}\frac{ f(a,\omega)-f(x_n,\omega) }{ a-x_n }d\omega.
     \end{equation}
-    montrer qu'elle existe, ne dépend pas de la suite choisie et vaut \( \int_{\Omega}\partial_xf(a,\omega)d\omega\). Nous sommes donc dans un problème d'inversion de limite et de dérivée pour lequel nous allons utiliser le théorème de la convergence dominée de Lebesgue. D'abord nous posons
-    \begin{equation}    \label{EqAFOUbQB}
-        g_n(\omega)=\frac{ f(x_n,\omega)-f(a,\omega) }{ x_n-a }.
-    \end{equation}
-    Cela est une suite de fonctions dans \( L^1(\Omega)\) parce qu'à la fois \( a\) et \( x_n\) sont dans \( B(a,\delta)\). De plus nous avons
-    \begin{equation}
-        \lim_{n\to \infty} g_n(\omega)=\frac{ \partial f }{ \partial x }(a,\omega)
-    \end{equation}
-    parce que nous savons que \( f\) est dérivable en \( a\) pour tout \( \omega\in\complement A\). En ce qui concerne la majoration de \( g_n\), nous utilisons le théorème des accroissements finis (théorème~\ref{ThoAccFinis}) sur le numérateur de \eqref{EqAFOUbQB}. Pour tout \( n\) et pour tout \( \omega\in \complement A\), il existe un \( \theta_{n,\omega}\) dans \( \mathopen] a , x_n \mathclose[\) tel que
-        \begin{equation}
-            f(x_n,\omega)-f(a,\omega)=\frac{ \partial f }{ \partial x }(\theta_{n,\omega},\omega)(x_n-a),
-        \end{equation}
-        donc
-        \begin{equation}
-            | g_n(\omega) |=\left| \frac{ \partial f }{ \partial x }(\theta_{n,\omega},\omega) \right| \leq G(\omega).
-        \end{equation}
-        La dernière inégalité provient des hypothèses. Le théorème de la convergence dominée de Lebesgue (théorème~\ref{ThoConvDomLebVdhsTf}) nous permet alors de calculer la limite \eqref{EqLIiralx} :
-        \begin{equation}
-            \lim_{n\to \infty} \int_{\Omega}g_n(\omega)d\omega=\int_{\Omega}\lim_{n\to \infty} g_n(\omega)d\omega=\int_{\Omega}\frac{ \partial f }{ \partial x }(a,\omega)d\omega.
-        \end{equation}
-        Notons que l'existence de la dernière intégrale fait partie du théorème de la convergence dominée.
+    montrer qu'elle existe, ne dépend pas de la suite choisie et vaut \( \int_{\Omega}\partial_xf(a,\omega)d\omega\). On y va.
 
-        Nous avons donc prouvé que la limite de gauche existait et ne dépendant pas de la suite choisie. Donc \( F\) est dérivable en \( a\) et la dérivée vaut cette limite :
-        \begin{equation}
-            F'(a)=\int_{\Omega}\frac{ \partial f }{ \partial x }(a,\omega)d\mu(\omega).
-        \end{equation}
+    \begin{subproof}
+        \item[La bonne suite de fonctions]
+            D'abord nous posons
+            \begin{equation}    \label{EqAFOUbQB}
+                g_n(\omega)=\frac{ f(x_n,\omega)-f(a,\omega) }{ x_n-a }.
+            \end{equation}
+            Nous montrons à présent que cette suite vérifie les hypothèses du théorème de la convergence dominée \ref{ThoConvDomLebVdhsTf}.
+            \begin{itemize}
+                \item
+                    Chacune des fonctions \( g_n\) est dans \( L^1(\Omega)\) parce que, \( a\) étant fixé, l'élément \( x_n\) est dans \( B(a,\delta)\setminus\{ a \}\); le dénominateur n'a donc aucun rôle. L'hypothèse \ref{ITEMooAFVMooAeCEco} montre que \( \omega\mapsto f(x_n\omega)\) et \( \omega\mapsto f(a,\omega)\) sont dans \( L^1\). La somme est donc dans \( L^1\) (proposition \ref{PROPooFIYEooCpdmwZ}).
+                \item
+                    Par l'hypothèse \ref{ITEMooXIZXooGPYFyT}, pour chaque \( \omega\) nous avons une fonction dérivable. Nous pouvons donc passer à la limite :
+                    \begin{equation}
+                        \lim_{n\to \infty} g_n(x)=\frac{ \partial f }{ \partial x }(a,\omega).
+                    \end{equation}
+
+                \item
+            
+                    En ce qui concerne la majoration de \( g_n\), nous utilisons le théorème des accroissements finis \ref{ThoAccFinis}\ref{ITEMooXRQKooDBFpdQ}. Pour chaque \( \omega\), ce théorèmes peut être utilisé sur la fonction \( x\mapsto f(x,\omega)\) qui est dérivable. Nous avons :
+                    \begin{equation}
+                        \big| \frac{  f(x_n,\omega)-f(a,\omega)   }{ x_n-a  } \big|\leq \sup_{x\in \mathopen[ a , x_n \mathclose]}| \frac{ \partial f }{ \partial x }(x,\omega) |\leq G(\omega). 
+                    \end{equation}
+                    Nous avons utilisé l'hypothèse \ref{ITEMooDTTIooWkldfB}.
+            \end{itemize}
+            Les hypothèses de la convergence dominée sont satisfaites.
+                
+            \item[Convergence dominée]
+                Le théorème de la convergence dominée de Lebesgue (théorème~\ref{ThoConvDomLebVdhsTf}) nous permet alors de calculer la limite \eqref{EqLIiralx} :
+                \begin{equation}
+                    \lim_{n\to \infty} \int_{\Omega}g_n(\omega)d\omega=\int_{\Omega}\lim_{n\to \infty} g_n(\omega)d\omega=\int_{\Omega}\frac{ \partial f }{ \partial x }(a,\omega)d\omega.
+                \end{equation}
+                Notons que l'existence de la dernière intégrale fait partie du théorème de la convergence dominée.
+
+                Nous avons donc prouvé que la limite de gauche existait et ne dépendant pas de la suite choisie. Donc \( F\) est dérivable en \( a\) et la dérivée vaut cette limite :
+                \begin{equation}
+                    F'(a)=\int_{\Omega}\frac{ \partial f }{ \partial x }(a,\omega)d\mu(\omega).
+                \end{equation}
+    \end{subproof}
 \end{proof}
 
-\begin{theorem}
-		Supposons $f$ continue et sa dérivée partielle $\frac{ \partial f }{ \partial x }$ continue sur $[\alpha,\beta]\times[a,\alpha[$. Supposons que $F(x)=\int_a^{\infty}f(x,t)dt$ converge et que $\int_a^{\infty}\frac{ \partial f }{ \partial x }dt$ converge uniformément. Alors $F$ est $C^1$ sur $[\alpha,\beta]$ et
-		\begin{equation}
-			\frac{ dF }{ dx }=\int_a^{\infty}\frac{ \partial f }{ \partial x }dt.
-		\end{equation}
-\end{theorem}
-
 En ce qui concerne les fonctions dans \( \eR^n\), il y a les  propositions~\ref{PropDerrSSIntegraleDSD} et~\ref{PropAOZkDsh} qui parlent de différentiabilité sous l'intégrale.
+
+\begin{probleme}
+    Attention : l'énoncé et la démonstration de la proposition \ref{PROPooJKXJooLxgEGd} sont de moi. Écrivez-moi pour
+\begin{itemize}
+    \item me dire si ça vous semble correct (ou pas),
+    \item me donner un lien vers une source qui énonce et démontre ce résultat.
+\end{itemize}
+\end{probleme}
+
+
+\begin{proposition}[\cite{MonCerveau}]     \label{PROPooJKXJooLxgEGd}
+    Soient un espace mesuré \( (\Omega,\mu)\) ainsi qu'une fonction \( f\colon \eR^n\times \Omega\to \eC\). Si \( \omega\in \Omega\) est fixé, nous notons
+    \begin{equation}
+        \begin{aligned}
+            f_{\omega}\colon \eR^n&\to \eC \\
+            x&\mapsto f(x,\omega) 
+        \end{aligned}
+    \end{equation}
+    et si \( x\in \eR^n\) est fixé, nous notons
+    \begin{equation}
+        \begin{aligned}
+            f_x\colon \Omega&\to \eC \\
+            \omega&\mapsto f(x,\omega). 
+        \end{aligned}
+    \end{equation}
+    Soient \( \delta>0\), \( A\) de mesure nulle dans \( \Omega\) et une liste d'indices\footnote{Voir \ref{NORMooRRZCooMOKAzY}.} \( \alpha\) tels que
+    \begin{enumerate}
+        \item
+            pour tout \( x\in \eR^n\), la fonction \( f_x\) est dans \( L^1(\Omega)\),
+        \item
+            la dérivée partielle multiple \( \partial^{\alpha}f_{\omega}(x)\) existe pour tout \( x\in B(a,\delta)\) et pour tout \( \omega\in A^c\).
+        \item pour toute queue \( \beta\) de la liste d'indice \( \alpha\), il existe une fonction \( G_{\beta}\in L^1(\Omega)\) telle que
+            \begin{equation}
+                | (\partial^{\beta}f_{\omega})(x) |\leq G_{\beta}(\omega)
+            \end{equation}
+            pour tout \( x\in B(a,\delta)\) et \( \omega\in A^{c}\).
+    \end{enumerate}
+    Enfin nous posons
+    \begin{equation}
+        F(x)=\int_{\Omega}f(x,\omega)d\mu(\omega).
+    \end{equation}
+    Alors pour toute queue de suite \( \beta\) et \( \alpha\), nous avons
+    \begin{enumerate}
+        \item
+            \( (\partial^{\beta}F)\) existe en \( a\),
+        \item
+            nous avons la formule
+            \begin{equation}        \label{EQooTDDWooAcLRwX}
+                (\partial^{\beta}F)(x)=\int_{\Omega}(\partial^{\beta}f_{\omega})(a)d\mu(\omega).
+            \end{equation}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Nous allons faire une récurrence sur \( \alpha\). Plus précisément, si \( | \alpha |=p\), nous allons ajouter une dérivation à la fois, et dans l'ordre inverse de \( \alpha\). Donc nous commençons par \( \partial_{\alpha_p}\), puis par \( (\partial_{p-1}, \partial_p)\), etc.
+
+    Nous commençons par prouver la formule \eqref{EQooTDDWooAcLRwX} dans le cas de \( \beta=(\alpha_p)\). Et pour alléger les notations nous notons \( \alpha_p=i\). Nous posons
+    \begin{equation}
+        \begin{aligned}
+            \varphi\colon \eR\times \Omega&\to \eC \\
+            (t,\omega)&\mapsto f(a+te_i,\omega). 
+        \end{aligned}
+    \end{equation}
+    Posons \( H(t)=F(a+te_i)\), c'est à dire
+    \begin{equation}
+        H(t)=\int_{\Omega}f(a+te_i,\omega)d\mu(\omega)=\int_{\Omega}\varphi(t,\omega)d\mu(\omega).
+    \end{equation}
+    En utilisant le théorème \ref{ThoMWpRKYp} sur la fonction \( \varphi\) nous trouvons
+    \begin{equation}
+        H'(0)=\int_{\Omega}\varphi'(0,\omega)d\mu(\omega)=\int_{\Omega}\frac{ \partial f }{ \partial x_i }(a,\omega)d\mu(\omega),
+    \end{equation}
+    ce qui est la formule demandée dans le cas \( \alpha=(i)\).
+
+    Pour la récurrence, nous supposons que la formule est démontrée pour \( \beta=(\alpha_{p-k},\ldots, \alpha_p)\), et nous montrons qu'elle fonctionne encore pour \( \sigma=(i, \beta)\).
+
+    Il s'agit simplement de remarquer que la fonction
+    \begin{equation}
+        g(x,\omega)=(\partial^{\beta}f_{\omega})(x)
+    \end{equation}
+    vérifie encore les conditions du théorème \ref{ThoMWpRKYp}\quext{Je n'ai pas fait cette vérification. Écrivez-moi si vous l'avez faite.}.
+\end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Absolue continuité}
@@ -878,7 +966,7 @@ Une conséquence de la proposition~\ref{PropDerrSSIntegraleDSD} est que si elle 
 \index{permuter!différentielle et intégrale!\( \eR^n\)}
 
 \begin{proof}
-    En vertu de la proposition~\ref{PropDerrSSIntegraleDSD}, toutes les dérivées partielles de \( F\) sont continues. Cela implique que \( F\) est de classe \( C^1\) par la proposition~\ref{PropDerContCun} et que la différentielle s'écrive en terme des dérivées partielles avec la formule usuelle. Nous avons alors
+    En vertu de la proposition~\ref{PropDerrSSIntegraleDSD}, toutes les dérivées partielles de \( F\) sont continues. Cela implique que \( F\) est de classe \( C^1\) par le théorème \ref{THOooBEAOooBdvOdr} et que la différentielle s'écrive en termes des dérivées partielles avec la formule usuelle. Nous avons alors
     \begin{subequations}
         \begin{align}
             (dF)_a(u)&=\sum_k\frac{ \partial F }{ \partial x_k }(a)u_k\\
@@ -912,7 +1000,7 @@ Un autre théorème tourne autour du pot, et me semble inutile.
 \end{theorem}
 
 \begin{proof}
-    Étant donné que les dérivées partielles de \( F\) en \( a\) existent et sont continues, la proposition~\ref{PropDerContCun} dit que \( F\) est différentiable et que
+    Étant donné que les dérivées partielles de \( F\) en \( a\) existent et sont continues, le théorème \ref{THOooBEAOooBdvOdr} dit que \( F\) est différentiable et que
     \begin{equation}
         dF_a(u)=\sum_{k=1}^n\frac{ \partial F }{ \partial x_k }(a)u_k.
     \end{equation}
@@ -956,7 +1044,7 @@ Notons qu'en passant aux composantes, ce théorème fonctionne tout aussi bien p
     \begin{equation}
         \frac{ \partial^{p-1}g_i }{ \partial x_{i_1}\ldots\partial x_{i_{p-1}} }
     \end{equation}
-    sont continues et \( g_i\) est de classe \( C^{p-1}\) par la proposition~\ref{PropDYKooHvrfGw}.
+    sont continues et \( g_i\) est de classe \( C^{p-1}\) par le théorème \ref{THOooPZTAooTASBhZ}.
 
     En repartant de \eqref{EqZLTooVKmGln} nous avons alors bien ce qui était annoncé :
     \begin{equation}
@@ -985,7 +1073,7 @@ Notons qu'en passant aux composantes, ce théorème fonctionne tout aussi bien p
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Deux théorème de point fixe}
+\section{Deux théorèmes de point fixe}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Nous allons voir Picard. Les autres théorème de point fixe que sont Brouwer, Schauder et Markov-Kakutani sont plus bas\footnote{Dans la section \ref{SECooDWMPooWZgzRZ}.} parce qu'ils utilisent de l'intégration. Voir le thème \ref{THEMEooWAYJooUSnmMh} pour les retrouver.
@@ -1264,8 +1352,6 @@ Le théorème de Cauchy-Arzella \ref{ThoHNBooUipgPX} sera pour plus tard parce q
         C'est le fait que \( f\) soit bornée dans le cylindre de sécurité qui fait en sorte que cela tende vers zéro lorsque \( s\to s_0\).
     \end{subproof}
 
-
-
     L'équation \eqref{EqPGLwcL} signifie que \( y\) est un point fixe de \( \Phi\). L'espace \( \mF\) étant complet le théorème de point fixe de Picard (théorème~\ref{ThoEPVkCL}) s'applique. Nous allons montrer qu'il existe un \( p\in\eN\) tel que \( \Phi^p\) soit contractante. Par conséquent \( \Phi^p\) aura un unique point fixe qui sera également unique point fixe de \( \Phi\) par la remarque~\ref{remIOHUJm}.
 
 \item[Contractante]
@@ -1329,6 +1415,9 @@ Le théorème de Cauchy-Arzella \ref{ThoHNBooUipgPX} sera pour plus tard parce q
 Le théorème de Cauchy-Lipschitz donne existence et unicité d'une solution maximale. Cependant cette solution peut ne pas exister partout où les hypothèses sur \( f\) sont remplies. En d'autres termes, il peut arriver que \( f\) soit Lipschitz jusqu'à \( t_1\), mais que la solution maximale ne soit définie que jusqu'en \( t_2<t_1\). Ce cas fait l'objet du théorème d'explosion en temps fini~\ref{CorGDJQooNEIvpp}.
 
 Sous quelques hypothèses nous pouvons nous assurer de l'existence d'une solution unique sur tout \( \eR\).
+
+
+\ifbool{isGiulietta}{Ce théorème de Cauchy-Lipschitz global est utilisé pour faire le lien entre les représentations des algèbres de Lie et celles du groupe, voir la proposition \ref{PROPooXCGMooKlJlwp}.}{}
 
 \begin{theorem}[Cauchy-Lipschitz global\cite{ooJZJPooAygxpk,KXjFWKA}]       \label{THOooZIVRooPSWMxg}
     Soit un intervalle \( I\) de \( \eR\), \( y_0\in \eR^n\), \( t_0\in I\) et une fonction continue \( f\colon I\times \eR^n\to \eR^n\) telle que pour tout compact \( K\) dans \( I\), il existe \( k>0\) tel que

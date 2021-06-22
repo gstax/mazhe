@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2019
+% Copyright (c) 2011-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -51,7 +51,7 @@ Ce théorème sera généralisé à tous les \( L^p(\eR^d)\) par le théorème~\
     \begin{equation}
         \int_Ag^+=\int_A g^-
     \end{equation}
-    pour tout ensemble mesurable \( A\subset I\). Si nous notons \( dx\) la mesure de Lebesgue, les mesures \( g^+dx\) et \( g^-dx\) sont par conséquent égales et dominées par \( dx\). Par le corollaire~\ref{CorZDkhwS} du théorème de Radon Nikodym, les fonctions \( g^+\) et \( g^-\) sont égales.
+    pour tout ensemble mesurable \( A\subset I\). Si nous notons \( dx\) la mesure de Lebesgue, les mesures \( g^+dx\) et \( g^-dx\) sont par conséquent égales et dominées par \( dx\). Par le corolaire~\ref{CorZDkhwS} du théorème de Radon Nikodym, les fonctions \( g^+\) et \( g^-\) sont égales.
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -69,28 +69,95 @@ Ce théorème sera généralisé à tous les \( L^p(\eR^d)\) par le théorème~\
 
 Le théorème qui permet de dire que le produit de convolution n'est pas tout à fait ridicule est le suivant.
 
-\begin{theorem}[\cite{MesIntProbb}]     \label{THOooMLNMooQfksn}
-    Soient \( f,g\in L^1(\eR^n)\).
+\begin{theorem}[\cite{MesIntProbb,BIBooILUOooWJfTok}]     \label{THOooMLNMooQfksn}
+    Soient \( f,g\in L^1(\eR^d)\).
     \begin{enumerate}
         \item
-            Pour presque tout \( x\in \eR^n\), la fonction
+            Pour presque tout \( x\in \eR^d\), la fonction
             \begin{equation}
-                y\mapsto g(x-y)f(y)
+                \begin{aligned}
+                    h_x\colon \eR^d&\to \eC \\
+                    y&\mapsto g(x-y)f(y)
+                \end{aligned}
             \end{equation}
-            est dans \( L^1(\eR^n)\).
+            est dans \( L^1(\eR^d)\).
         \item
-            \( f*g\in L^1(\eR^n)\).
+            \( f*g\in L^1(\eR^d)\).
         \item
             \( \| f*g \|_1\leq \| f \|_1\| g \|_1\).
     \end{enumerate}
 \end{theorem}
 
-\begin{proposition}     \label{PROPooNBHNooInwoar}
-    L'ensemble \( L^1(\eR^n)\) devient alors une algèbre de Banach.
-\end{proposition}
+\begin{proof}
+    Nous considérons l'application
+    \begin{equation}
+        \begin{aligned}
+            \phi\colon \eR^d\times \eR^d&\to \eR^d\times \eR^d \\
+            (x,y)&\mapsto (x-y,y). 
+        \end{aligned}
+    \end{equation}
+    Cela est un \( C^1\)-difféomorphisme dont le jacobien vaut
+    \begin{equation}
+        J_{\phi}(x,y)=\det\begin{pmatrix}
+            (\partial_1\phi_1)(x,y)    &   (\partial_2\phi_1)(x,y)    \\ 
+            (\partial_1\phi_2)(x,y)    &   (\partial_2\phi_2)(x,y)    
+        \end{pmatrix}=\det\begin{pmatrix}
+            1    &   -1    \\ 
+            0    &   1    
+        \end{pmatrix}=1.
+    \end{equation}
+    C'est une première bonne chose.
+    
+    Ensuite nous considérons la fonction
+    \begin{equation}
+        \begin{aligned}
+            \alpha\colon \eR^d\times \eR^d&\to \eC \\
+            (x,y)&\mapsto f(y)g(x). 
+        \end{aligned}
+    \end{equation}
+    Par hypothèse, pour chaque \( y\), la fonction \( x\mapsto |\alpha(x,y)|\) est dans \( L^1(\eR^d)\). Bref, le calcul suivant a un sens :
+    \begin{subequations}
+        \begin{align}
+            \int_{\eR^d}\left[ \int_{\eR^d}| \alpha |dx \right]dy&=\int_{\eR^d}\left[ \int_{\eR^d}| f(y)g(x) |dx \right]dy\\
+            &=\int_{\eR^d}\left[ | f(y) |\int_{\eR^d}| g(x) |dx \right]dy\\
+            &=\| f \|_{L^1(\eR^d)}\| g \|_{L^1(\eR^d)}  \label{SUBEQooMYLWooPeNLlk}\\
+            &<\infty.
+        \end{align}
+    \end{subequations}
+    Le corollaire \ref{CorTKZKwP} nous dit alors que \( \alpha\in L^1(\eR^d\times \eR^d)\). Et notons au passage que
+    \begin{equation}        \label{EQooLCWNooHLLdRd}
+        \| \alpha \|_{L^1(\eR^d\times \eR^d)} =\int_{\eR^d\times \eR^d}| \alpha | =\| f \|_{L^1(\eR^d)}\| g \|_{L^1(\eR^d)}
+    \end{equation}
+    parce que le théorème de Fubini \ref{ThoFubinioYLtPI} permet de scinder l'intégrale et de retomber sur \eqref{SUBEQooMYLWooPeNLlk}.
+    
+    Vu que \( \alpha\in L^1(\eR^d\times \eR^d)\), nous pouvons utiliser le changement de variable \ref{THOooUMIWooZUtUSg} avec l'application \( \phi\) ci-dessus. En notant \( \lambda\) la mesure de Lebesgue,
+    \begin{subequations}
+        \begin{align}
+            \infty>\int_{\eR^d\times \eR^d}| \alpha |d\lambda&=\int_{\eR^d\times \eR^d}\big( | \alpha |\circ\phi \big)| J_{\phi} |d\lambda\\
+            &=\int_{\eR^d\times \eR^d}| \alpha |(x-y,y)d\lambda(x,y)\\
+            &=\int_{\eR^d\times \eR^d}| f(y)g(x-y) |d\lambda(x,y)\\
+            &=\int_{\eR^d}\left[ \int_{\eR^d}| f(y)g(x-y) |dy \right]dx.
+        \end{align}
+    \end{subequations}
+    Nous avons scindé l'intégrale avec le théorème de Fubini pour la dernière étape.
 
-\begin{lemma}
-    Le produit de convolution est commutatif : \( f*g=g*f\).
+    Passons à l'intégrabilité de \( f*g\). Nous avons
+    \begin{equation}        \label{EQooXMFYooKPIGfU}
+        | (f*g)(x) |\leq \int_{\eR^d}| f(y)g(x-y) |dy.
+    \end{equation}
+    Or nous venons de voir que \eqref{EQooXMFYooKPIGfU} était, en tant que fonction de \( x\), intégrable sur \( \eR^d\) et que
+    \begin{equation}
+        \int_{\eR^d}| (f*g)(x) |dx\leq\int_{\eR^d}\left[ \int_{\eR^d}| f(y)g(x-y) |dy \right]dx=\int_{\eR^d\times \eR^d}| \alpha |d\lambda<\infty.
+    \end{equation}
+    Cela prouve que \( f*g\in L^1(\eR^d)\), mais en nous souvenant de \eqref{EQooLCWNooHLLdRd}, cela prouve aussi que
+    \begin{equation}
+        \int_{\eR^d}| (f*g)(x) |dx\leq\int_{\eR^d\times \eR^d}| \alpha |d\lambda=\| f \|_{L^1(\eR^d)}\| g \|_{L^1(\eR^d)},
+    \end{equation}
+    c'est à dire que \( \| f*g \|_{L^2(\eR^d)}\leq \| f \|_{L^1(\eR^d)}\| g \|_{L^1(\eR^d)}\).
+\end{proof}
+
+\begin{lemma}       \label{LEMooMRWZooHjrnHD}
+    Le produit de convolution est commutatif : pour tout \( f,g,h\in L^1(\eR^d)\) nous avons \( f*g=g*f\).
 \end{lemma}
 
 \begin{proof}
@@ -103,6 +170,79 @@ Le théorème qui permet de dire que le produit de convolution n'est pas tout à
         (f*g)(x)=\int_{\eR^n}g(z)f(x-z)dz=(g*f)(x).
     \end{equation}
     Attention : on pourrait croire qu'un signe apparaît du fait que \( z=x-y\) donne \( dz=-dy\). Mais en réalité, l'intégrale \( \int_{-\infty}^{+\infty}\) devient par le même changement de variables \( \int_{+\infty}^{-\infty}\) qui redonne un nouveau signe au moment de remettre dans l'ordre.
+\end{proof}
+
+\begin{lemma}[\cite{BIBooHPBJooQKPdfj,MonCerveau}]      \label{LEMooTUMSooSmnlHc}
+    Le produit de convolution est associatif sur \( L^1(\eR^d)\).
+\end{lemma}
+
+\begin{proof}
+    Soient \( f,g,h\in L^1(\eR^d)\). L'existence de \( (f*g)*h\) ne fait pas de doute grâce au théorème \ref{THOooMLNMooQfksn}. Nous avons d'abord
+    \begin{subequations}
+        \begin{align}
+            \big( (f*g)*h \big)(u)&=\int_{\eR^d}(f*g)(x)h(u-x)dx\\
+            &=\int_{\eR^d}\left[ \int_{\eR^d}f(y)g(x-y)dy \right]h(u-x)dx\\
+            &=\int_{\eR^d}\left[ \int_{\eR^d}f(y)g(x-y)h(u-x)dy \right]dx.      \label{SUBEQooJKRHooDaScXV}
+        \end{align}
+    \end{subequations}
+    Nous permutons les intégrales en suivant la procédure \ref{NORMooKIRJooPvyPWQ}. Pour cela nous commençons par poser
+    \begin{equation}
+        \begin{aligned}
+            s\colon \eR^d\times \eR^d&\to \eC \\
+            (x,y)&\mapsto f(y)g(x-y)h(u-x),
+        \end{aligned}
+    \end{equation}
+    et nous vérifions que \( | s |\) peut être successivement intégrée par rapport à \( y\) puis \( x\). D'abord l'intégrale par rapport à \( y\) est
+    \begin{equation}
+        \int_{\eR^d}| f(y) | |g(x-y) |dy,
+    \end{equation}
+    qui existe et qui vaut \(   (| f |*| g |)(x)   \) parce que \( | f |\) et \( | g |\) sont dans \( L^1(\eR^d)\). D'après le théorème \ref{THOooMLNMooQfksn}, la fonction \( | f |*| g |\) est encore dans \( L^1(\eR^d)\). En ce qui concerne l'intégrale du résultat par rapport à \( x\), nous avons
+    \begin{equation}
+        \int_{\eR^d}(| g |*| g |)(x)| h(u-x) |dx,
+    \end{equation}
+    qui existe et qui vaut \( \big( (| f |*| g |)*| h |\big)(u)\). Le corollaire \ref{CorTKZKwP} nous assure donc que \( s\in L^1(\eR^d\times \eR^d)\).
+
+    Nous permutons donc les intégrales dans \eqref{SUBEQooJKRHooDaScXV} pour obtenir
+    \begin{equation}        \label{EQooHXTBooOpmXcB}
+        \big( (f*g)*h \big)(u)=\int_{\eR^d}f(y)\left[ \int_{\eR^d}g(x-y)h(u-x)dx \right]dy.
+    \end{equation}
+    Attardons-nous un instant sur l'intégrale interne, et utilisons l'invariance par translation de l'intégrale (lemme \ref{LEMooGKOGooPLYaUO}). Nous effectuons la translation \( x\to x+y\) :
+    \begin{subequations}
+        \begin{align}
+            \int_{\eR^d}g(x-y)h(u-x)&=\int_{\eR^d}g(x)h(u-x-y)dx\
+            &=\int_{\eR^d}g(x)h\big( (u-y)-x \big)dx\\
+            &=(g*h)(u-y).
+        \end{align}
+    \end{subequations}
+    Nous pouvons reprendre notre calcul en \eqref{EQooHXTBooOpmXcB} :
+    \begin{subequations}
+        \begin{align}
+        \big( (f*g)*h \big)(u)&=\int_{\eR^d}f(y)\left[ \int_{\eR^d}g(x-y)h(u-x)dx \right]dy\\
+        &=\int_{\eR^d}f(y)(g*h)(u-y)\\
+        &=\big( f*(g*h) \big)(u).
+        \end{align}
+    \end{subequations}
+    C'est ce que nous voulions.
+\end{proof}
+
+\begin{proposition}     \label{PROPooNBHNooInwoar}
+    Le couple \( \big( L^1(\eR^d), * \big)\) est une algèbre de Banach\footnote{Algèbre de Banach, définition \ref{DefVKuyYpQ}.}.
+\end{proposition}
+
+\begin{proof}
+    Point par point.
+    \begin{subproof}
+        \item[algèbre]
+            La définition d'une algèbre est \ref{DefAEbnJqI}. Les différents points sont dans la linéarité de l'intégrale.
+        \item[Commutative]
+            C'est la proposition \ref{LEMooMRWZooHjrnHD}.
+        \item[Associative]
+            C'est le lemme \ref{LEMooTUMSooSmnlHc}.
+        \item[Normé]
+            L'espace \( L^1\) a une norme; c'est la norme \( \|  \|_{L^1}\).
+        \item[Complet]
+            C'est le théorème de Riesz-Fischer \ref{ThoGVmqOro}.
+    \end{subproof}
 \end{proof}
 
 La proposition suivante est une conséquence de l'inégalité de Minkowski sous forme intégrale de la proposition \ref{PropInegMinkKUpRHg}\ref{ItemDHukLJiii}.
@@ -333,7 +473,7 @@ Une bonne partie de la douleur qu'évoque mot « densité » consiste à montrer
     Ces nombres sont les \defe{coefficients de Fourier}{coefficients!de Fourier} de \( f\). 
 \end{definition}
 
-Ces trois définitions n'ont a priori aucun rapport entre elles, et rien en particulier ne devrait vous faire penser à une égalité du type
+Ces trois définitions n'ont à priori aucun rapport entre elles, et rien en particulier ne devrait vous faire penser à une égalité du type
 \begin{equation}
     f(x)=\sum_{n=-\infty}^{\infty}c_n(f)e_n(x).
 \end{equation}
@@ -454,7 +594,7 @@ L'espace \( L^2\) est l'espace \( L^p\) définit en \ref{DEFooKMJQooXeaUtp} avec
 
     \begin{subproof}
         \item[Pour de vraies fonctions]
-            Nous commençons par analyser l'intégrale \eqref{EQooGLVUooObPmaX} dans le cas où \( f\) et \( g\) sont des fonctions, c'est à dire des représentants d'éléments de \( L^2\).
+            Nous commençons par analyser l'intégrale \eqref{EQooGLVUooObPmaX} dans le cas où \( f\) et \( g\) sont des fonctions, c'est-à-dire des représentants d'éléments de \( L^2\).
 
             Dans ce cas, l'inégalité de Hölder (proposition~\ref{ProptYqspT}) avec \( p=q=2\) nous indique que le produit \( f\bar g\) est un élément de \( L^1\). Par conséquent la formule a un sens.
 
@@ -533,7 +673,7 @@ En tant qu'ensemble,
 \begin{equation}
     S^1=\{  e^{it} \}_{t\in \eR},
 \end{equation}
-sans garanties que cette paramétrisation soit une bijection.
+sans garanties que ce paramétrage soit une bijection.
 
 Il y a essentiellement deux façons de définir une intégrale sur \( S^1\).
 \begin{enumerate}
@@ -652,7 +792,7 @@ Nous pouvons donc sans crainte affirmer que toute fonction continue \( f\colon S
     Point par point.
     \begin{enumerate}
         \item
-            Soient \( x',y'\in \eR\) tels que \(  e^{ix'}= e^{ix}\) et \(  e^{iy'}= e^{iy}\). Alors \( x'=x+2l\pi\) et \( y'=y+2l'\pi\) pour certains entiers \( l,l'\in \eZ\) (corollaire \ref{CORooTFMAooHDRrqi}). Nous avons alors \( | x'-y'+2k\pi |=| x-y+2\pi(k+l-l') |\) et
+            Soient \( x',y'\in \eR\) tels que \(  e^{ix'}= e^{ix}\) et \(  e^{iy'}= e^{iy}\). Alors \( x'=x+2l\pi\) et \( y'=y+2l'\pi\) pour certains entiers \( l,l'\in \eZ\) (corolaire \ref{CORooTFMAooHDRrqi}). Nous avons alors \( | x'-y'+2k\pi |=| x-y+2\pi(k+l-l') |\) et
             \begin{equation}
                 \inf_{k\in \eZ}| x'-y'+2k\pi |=\inf_{k\in \eZ}| x-y+2k\pi |.
             \end{equation}
@@ -690,7 +830,7 @@ Nous pouvons donc sans crainte affirmer que toute fonction continue \( f\colon S
         \end{enumerate}
 \end{proof}
 
-Le cercle est bien connu pour être symétrique et en particulier avoir une symétrie sous les rotations. Nous allons voir quelque résultats qui vont dans le sens de dire que la distance définie sur \( S^1\) respecte cette symétrie.
+Le cercle est bien connu pour être symétrique et en particulier avoir une symétrie sous les rotations. Nous allons voir quelques résultats qui vont dans le sens de dire que la distance définie sur \( S^1\) respecte cette symétrie.
 
 \begin{lemma}       \label{LEMooCQCAooAEctbe}
     Plusieurs points à propos de l'invariance de la topologie sous les rotations.
@@ -749,7 +889,7 @@ Le cercle est bien connu pour être symétrique et en particulier avoir une sym�
     \end{enumerate}
 \end{proof}
 
-Nous allons voir maintenant quelque résultats à propos de \(B_d(1,r)\) qui a la bonne figure d'être un ouvert qui s'étale symétriquement en partant de \( 1\) (le point le plus à droite du cercle). Par rapport à la figure \ref{LabelFigJOQVoolPTsYPZK}, il s'agit ni plus ni moins que de voir qu'une boule de rayon \( r\) autour de \( 1\) est bien la partie indiquée (symétrique par rapport à \( 1\) et de longueur d'arc \( r\) des deux côtés). De plus, ce voisinage n'est autre que la partie du cercle située à droite de la ligne en pointillés.
+Nous allons voir maintenant quelques résultats à propos de \(B_d(1,r)\) qui a la bonne figure d'être un ouvert qui s'étale symétriquement en partant de \( 1\) (le point le plus à droite du cercle). Par rapport à la figure \ref{LabelFigJOQVoolPTsYPZK}, il s'agit ni plus ni moins que de voir qu'une boule de rayon \( r\) autour de \( 1\) est bien la partie indiquée (symétrique par rapport à \( 1\) et de longueur d'arc \( r\) des deux côtés). De plus, ce voisinage n'est autre que la partie du cercle située à droite de la ligne en pointillés.
 \newcommand{\CaptionFigJOQVoolPTsYPZK}{Un voisinage de \( 1\) dans \( S^1\).}
 \input{auto/pictures_tex/Fig_JOQVoolPTsYPZK.pstricks}
 
@@ -788,8 +928,7 @@ Le lemme suivant montre que que les boules autour de \( 1\) sont délimitées pa
 
 Si \( r<\pi\), alors nous partons de la formule \eqref{EQooRVPJooTMwNTU} qui dit que \(  e^{ir}=\cos(e)+i\sin(r)\). D'après le lemme \ref{LEMooMYNVooIWWsiV}, un élément de \( B_d(1,r)\) est de la forme \(  e^{iy}\) avec \( y\in \mathopen] -r , r \mathclose[\). Nous voudrions donc prouver que \( \cos(y)>\cos(r)\) dès que \( y\in\mathopen] -r , r \mathclose[\) et \( r<\pi\).
 
-    %TODOooBZPCooAFVbcT
-Sur \( \mathopen] -r , 0 \mathclose[\), la fonction \( \cos\) est croissante, donc si \( y<0\) alors 
+Sur \( \mathopen] -r , 0 \mathclose[\), la fonction \( \cos\) est croissante\footnote{Lemme \ref{LEMooBIPFooQNiTqZ}.}, donc si \( y<0\) alors 
     \begin{equation}
         \cos(y)>\cos(-r)=\cos(r).
     \end{equation}
@@ -891,11 +1030,11 @@ De la même façon, sur \( \mathopen] 0,r \mathclose[\), la fonction \( \cos\) e
                 \begin{equation}
                     d(a,sa)=\inf_{k\in \eZ}| y+2k\pi |\leq | y |<\delta<\epsilon.
                 \end{equation}
-                Nous nous avons trouvé \( \delta>0\) tel que \( s\in B(1,\delta)\) implique \( d(a,as)<\epsilon\). Cela est la limite que nous devions prouver.
+                Nous avons trouvé \( \delta>0\) tel que \( s\in B(1,\delta)\) implique \( d(a,as)<\epsilon\). Cela est la limite que nous devions prouver.
             \item
                 Soit \( \epsilon>0\). Soit \( r>0\) tel que si \( b\in B(a,r)\), alors \( | g(b)-g(a) |<\epsilon\); l'existence d'un tel \( r\) est la continuité de \( g\) en \( a\). Nous considérons \( \delta>0\) tel que \( s\in B(1,\delta)\) implique \( sa\in B(a,r)\); l'existence d'un tel \( \delta\) est le point \ref{ITEMooEUDIooDuynRg} de ce lemme.
 
-                Avec tout cela nous avons \( | g(as)-g(a) |<\epsilon\) dès que \( s\in B(1,\delta)\). Cela est la limite \( \lim_{s\to 1} g(as)=g(a)\) que nous voulions prouver.
+                Avec tout cela nous avons \( | g(as)-g(a) |<\epsilon\) dès que \( s\in B(1,\delta)\). Nous avons donc, comme nous le voulions, la limite \( \lim_{s\to 1} g(as)=g(a)\).
     \end{enumerate}
 \end{proof}
 
@@ -907,7 +1046,7 @@ De la même façon, sur \( \mathopen] 0,r \mathclose[\), la fonction \( \cos\) e
             \alpha_s(g)(u)&=g(u\bar s)-g(u).
         \end{aligned}
     \end{equation}
-    Quelque propriétés avec \( 1\leq p<\infty\) :
+    Quelques propriétés avec \( 1\leq p<\infty\) :
     \begin{enumerate}
         \item
             Si \( f\in L^p(S^1)\), alors \( \alpha_s(f)\in L^p(S^1)\).
@@ -1062,7 +1201,7 @@ Cette définition appelle plusieurs remarques.
     \end{equation}
     \begin{subproof}
     \item[\( \psi\in L^1(S^1\times S^1)\)]
-        Nous utilisons le corollaire \ref{CorTKZKwP}, et pour cela nous calculons les intégrales en chaîne\footnote{Dans les expressions suivantes, les symboles «\( ds\)» et «\( dz\)» n'ont pas d'autres valeurs que purement de notation pour indiquer le nom de la variable d'intégration.} :
+        Nous utilisons le corolaire \ref{CorTKZKwP}, et pour cela nous calculons les intégrales en chaine\footnote{Dans les expressions suivantes, les symboles «\( ds\)» et «\( dz\)» n'ont pas d'autres valeurs que purement de notation pour indiquer le nom de la variable d'intégration.} :
         \begin{subequations}
             \begin{align}
                 \int_{S^1}\left[ \int_{S^1}| f(s)g(z\bar s) |dz \right]]ds&=\int_{S^1}| f(s) |\underbrace{\left[ \int_{S^1}| g(z\bar s) |dz \right]}_{=A<\infty}ds\\
@@ -1072,7 +1211,7 @@ Cette définition appelle plusieurs remarques.
         \end{subequations}
         Le fait que \( A<\infty\) provient directement de l'hypothèse \( g\in L^1(S^1)\)\footnote{Avec un changement de variables \( z\mapsto z\bar s\) que je vous conseille d'être capable de justifier.}.
         
-        Par le corollaire sus-cité nous avons bien \( \psi\in L^1(S^1\times S^1)\).
+        Par le corolaire sus-cité nous avons bien \( \psi\in L^1(S^1\times S^1)\).
     \item[Et par Fubini]
         Le théorème de Fubini \ref{ThoFubinioYLtPI}\ref{ITEMooVFGWooZTePQS} nous renseigne que pour presque tout \( z\in S^1\), l'application
         \begin{equation}
@@ -1219,7 +1358,7 @@ Notez que dans cette démonstration, l'uniforme continuité de \( g\) a été ut
         \begin{equation}
             \bigcap_{k\in \eN}A_k=\emptyset.
         \end{equation}
-        Nous avons, dans un compact, des fermés emboîtés dont l'intersection est vide. Le corollaire \ref{CORooQABLooMPSUBf} nous dit qu'il existe un indice à partir duquel tous les \( A_k\) sont vides.
+        Nous avons, dans un compact, des fermés emboîtés dont l'intersection est vide. Le corolaire \ref{CORooQABLooMPSUBf} nous dit qu'il existe un indice à partir duquel tous les \( A_k\) sont vides.
     \end{subproof}
     
     Soit \( \delta=t_k\) pour un \( k\) tel que \( A_k\) est vide. Nous avons
@@ -1355,7 +1494,7 @@ Voici une version un peu forte sous l'hypothèse de continuité. Vu que \( S^1\)
 
             Soit \( \epsilon>0\). L'uniforme continuité de \( g\) signifie qu'il existe \( \delta>0\) tel que pour tout \( a\in S^1\) si \( s\in B(a,\delta)\), alors \( \big| g(s)-g(a) \big|<\epsilon\). Si \( u\in B(1,\delta)\) nous avons aussi \( \bar u\in B(1,\delta)\) et donc \( s\bar u\in B(s,\delta)\); ça c'est le lemme \ref{LEMooCQCAooAEctbe}\ref{ITEMooCIPYooTyPQLj}.
 
-            Pour tout \( a\in S^1\) nous avons la chaîne
+            Pour tout \( a\in S^1\) nous avons la chaine
             \begin{equation}
                 u\in B(1,\delta)\Rightarrow a\bar u\in B(a,\delta)\Rightarrow \big| g(a\bar u)-g(a) \big|<\epsilon.
             \end{equation}
@@ -1414,7 +1553,7 @@ Voici une version un peu forte sous l'hypothèse de continuité. Vu que \( S^1\)
 \end{proof}
 
 %--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Base hilbertienne (suite des polynômes trigononétriques)}
+\subsection{Base hilbertienne (suite des polynômes trigonométriques)}
 %---------------------------------------------------------------------------------------------------------------------------
 
 Voici le plan pour la suite :
@@ -1609,7 +1748,7 @@ Si vous voulez une raison inavouable pour justifier ce facteur \( \frac{1}{ b-a 
 \section{Sur \( \mathopen[ 0 , 2\pi \mathclose[\)}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Le produit de convolution est un peut subtil parce que \( f(t-x)\) n'est pas défini a priori pour tout \( t,x\in \mathopen[ 0 , 2\pi \mathclose[\), vu que \( f\) n'est définie que sur \( \mathopen[ 0 , 2\pi \mathclose[\). Au moins trois solutions s'offrent à nous :
+Le produit de convolution est un peut subtil parce que \( f(t-x)\) n'est pas défini à priori pour tout \( t,x\in \mathopen[ 0 , 2\pi \mathclose[\), vu que \( f\) n'est définie que sur \( \mathopen[ 0 , 2\pi \mathclose[\). Au moins trois solutions s'offrent à nous :
 \begin{itemize}
     \item 
        considérer implicitement la fonction prolongée par périodicité.
@@ -1671,7 +1810,7 @@ Pour rappel, les éléments de \( L^2\) sont des classes de fonctions à valeurs
 
 En pratique, nous n'allons pas souvent travailler avec des fonctions sur intervalle symétrique \( \mathopen[ -T , T \mathclose]\), mais le plus souvent nous serons sur \( \mathopen[ 0 , 2\pi \mathclose]\).
 
-Nous notons ici une conséquence du théorème~\ref{ThoGVmqOro} dans le cas de l'espace \( L^2\). La proposition suivante est une petite partie du corollaire~\ref{CorQETwUdF}, qui sera d'ailleurs démontré de façon indépendante.
+Nous notons ici une conséquence du théorème~\ref{ThoGVmqOro} dans le cas de l'espace \( L^2\). La proposition suivante est une petite partie du corolaire~\ref{CorQETwUdF}, qui sera d'ailleurs démontré de façon indépendante.
 
 \begin{proposition}
     Si nous avons une suite de réels \( (a_k)\) telle que \( \sum_{k=0}^{\infty}| a_k |^2<\infty\) alors la suite
@@ -1832,7 +1971,7 @@ Un espace de Banach \( B\) est \defe{uniformément convexe}{uniformément convex
     Donc en posant \( \delta_k(\epsilon)=k\delta(\epsilon/k)\), nous avons le résultat escompté.
 \end{proof}
 
-\begin{definition}[Projection normale\cite{BIBooPYEZooTxohAd}]
+\begin{definition}[Projection normale\cite{BIBooPYEZooTxohAd}]      \label{DEFooMYYLooJyACPL}
     Soient un espace de Banach \( B\) ainsi que \( V\subset B\). Soit \( a\in B\). La fonction
     \begin{equation}
         \begin{aligned}
@@ -1953,7 +2092,7 @@ Un espace de Banach \( B\) est \defe{uniformément convexe}{uniformément convex
                     \begin{equation}
                         \| a-b \|\leq \| a-b_k \|
                     \end{equation}
-                    pour tout \( k\). Mais comme nous avons \( m\leq \| a-b_k \|\to m\), nous avons \( \| a-b \|=m\), c'est à dire que \( b\) est une projection normale de \( a\) sur \( V\).
+                    pour tout \( k\). Mais comme nous avons \( m\leq \| a-b_k \|\to m\), nous avons \( \| a-b \|=m\), c'est-à-dire que \( b\) est une projection normale de \( a\) sur \( V\).
             \end{subproof}
     \end{subproof}
 \end{proof}
@@ -2038,9 +2177,12 @@ Nous allons démontrer les inégalités de Hanner dans le théorème \ref{THOooZ
         d(\theta)=\big(a^2+b^2+2ab\cos(\theta)\big)^{p/2}+\big(a^2+b^2-2ab\cos(\theta)\big)^{p/2}.
     \end{equation}
     Trouvons le minimum de cette fonction de \( \theta\). D'abord sa dérivée :
-    \begin{equation}
-        d'(\theta)=pab\sin(\theta)\big[ \big( a^2+b^2-2ab\cos(\theta) \big)^{p/2-1}-\big( a^2+b^2+2ab\cos(\theta) \big)^{p/2-1}  \big]=pab\sin(\theta)s(\theta).
-    \end{equation}
+    \begin{subequations}
+        \begin{align}
+            ad'(\theta)&=pab\sin(\theta)\big[ \big( a^2+b^2-2ab\cos(\theta) \big)^{p/2-1}-\big( a^2+b^2+2ab\cos(\theta) \big)^{p/2-1}  \big]\\
+            &=pab\sin(\theta)s(\theta).
+        \end{align}
+    \end{subequations}
     Nous avons \( s(\theta)=0\) pour \( \theta=\pi/2\) et \( \theta=3\pi/2\). Il faut surtout remarquer que \( 1<p<2\), ce qui donne \( \frac{ p }{2}-1<0\). La fonction \( x\mapsto x^{p/2-1}\) est donc décroissante. Cela pour dire que
     \begin{equation}
         s(0)=\left( | a-b |^2 \right)^{p/2-1}-\left( | a+b |^2 \right)^{p/2-1}>0.
@@ -2074,7 +2216,7 @@ Encore dans la catégorie des lemmes pour les inégalités de Hanner, nous avons
 \begin{proof}
     La fonction \( \eta\) est une fonction de classe \(  C^{\infty}\) sur \( \mathopen] 0 , \infty \mathclose[\setminus\{ 1 \}\). Quelle est sa régularité en \( a=1\) ? Le fait qu'elle y soit dérivable pas clair à cause de la valeur absolue. En tout cas, la fonction \( x\mapsto| x-1 |\) n'est pas dérivable en \( x=1\), mais peut-être que les exposants aident à lisser. Nous y reviendrons.
 
-    Afin de  suivre les calculs nous introduisons quelque fonctions :
+    Afin de  suivre les calculs nous introduisons quelques fonctions :
     \begin{subequations}
         \begin{align}
             so(x)&=1+x^{1/p}\\
@@ -2206,52 +2348,145 @@ Toujours dans la catégorie des lemmes pour les inégalités de Hanner, nous avo
     Le lemme \ref{LEMooTCNEooADpNai} dit que \( \eta\) est strictement convexe, et le lemme \ref{LEMooNUDOooVfVPkw} conclu que \( \xi\) est convexe.
 \end{proof}
 
-Et enfin, les inégalités de Hanner\quext{Dont la démonstration n'est pas terminée.}.
-\begin{theorem}[Inégalités de Hanner\cite{ooKGWWooAybolH}]       \label{THOooZRRYooBTBQKW}
-    Soit \( 1<p<2\). Nous avons :
+\begin{lemma}[\cite{BIBooGPACooYtOhPP}]     \label{LEMooWIPYooMZqjbn}
+    Soit \( 1<p<2\). Nous considérons les fonctions
     \begin{equation}
-        \big( \| f \|_p+\| g \|_p \big)^p+\Big| \| f \|_p+\| g \|_p \Big|^p\leq \| f+g \|_p^p+\| f-g \|_p^p\leq 2\| f \|_p^p+2\| g \|_p^p.
+        \begin{aligned}
+            \alpha\colon \mathopen[ 0 , 1 \mathclose]&\to \eR \\
+            x&\mapsto (1+x)^{p-1}+(1-x)^{p-1} 
+        \end{aligned}
+    \end{equation}
+    et
+    \begin{equation}
+        \begin{aligned}
+            \beta\colon \mathopen[ 0 , 1 \mathclose]&\to \eR \\
+            x&\mapsto x^{1-p}\big( (1+x)^{p-1}-(1-x)^{p-1} \big).
+        \end{aligned}
+    \end{equation}
+    Soient \( A,B\in \eR\). Nous avons
+    \begin{equation}
+        \alpha(x)| A |^p+\beta(x)| B |^p\leq | A+B |^p+| A-B |^p.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Plusieurs étapes.
+    \begin{subproof}
+        \item[\( \beta(x)\leq \alpha(x)\)]
+            Nous avons \( \alpha(1)=\beta(1)=2^{p-1}\). Pour les autres valeurs de \( x\), nous allons raisonner avec la dérivée. La valeur de \( \alpha'(x)\) est facile à calculer
+            \begin{equation}
+                \alpha'(x)=(p-1)(x+1)^{p-2}-(p-1)(1-x)^{p-2}.
+            \end{equation}
+            Pour \( \beta'(x)\) c'est un peu plus lourd. En substituant \( (1+x)^{p-1}=(1+x)^{p-2}(1+x)\) et \( (1-x)^{p-1}=(1-x)^{p-2}(1-x)\) nous pouvons regrouper les termes en \( (1+x)^{p-2}\) et \( (1-x)^{p-2}\). Après un peu de travail,
+            \begin{equation}
+                \beta'(x)=\frac{ p-1 }{ x^p }\big( (1-x)^{p-2}-(1+x)^{p-2} \big).
+            \end{equation}
+            Cela nous permet de calculer \( \alpha'-\beta'\) :
+            \begin{equation}
+                \alpha'(x)-\beta'(x)=(p-1)\big( 1+\frac{1}{ x^p } \big)\big( (1+x)^{p-2}-(1-x)^{p-2} \big).
+            \end{equation}
+            Vu que \( 1<p<2\), le nombre \( p-2\) est strictement négatif; afin de travailler avec des exposants positifs, nous écrivons
+            \begin{equation}
+                \alpha'(x)-\beta'(x)=\underbrace{(p-1)}_{>0}\underbrace{\big( 1+\frac{1}{ x^p } \big)}_{>0}\underbrace{\left( \frac{1}{ (1+x)^{2-p}}-\frac{1}{ (1-x)^{2-p} }  \right)}_{<0}.
+            \end{equation}
+            Nous avons \( \alpha'(x)-\beta'(x)<0\) pour tout \( x\in \mathopen] 0 , 1 \mathclose]\). Du fait qu'en plus nous ayons \( \alpha(1)=\beta(1)\), nous déduisons que \( \alpha(x)\geq \beta(x)\).
+        \item[Une petite étude de fonction]
+            Soit \( R\in \mathopen[ 0 , 1 \mathclose]\). Nous considérons la fonction
+            \begin{equation}
+                \begin{aligned}
+                    F\colon \mathopen[ 0 , 1 \mathclose]\eR&\to \eR \\
+                    x&\mapsto \alpha(x)+R^p\beta(x). 
+                \end{aligned}
+            \end{equation}
+            Nous montrons maintenant que cette fonction a un maximum global pour \( x=R\). D'abord sa dérivée :
+            \begin{equation}
+                F'(x)=\underbrace{(p-1)}_{>0}\underbrace{\Big( (1-x)^{p-1}-(1+x)^{p-2} \Big)}_{<0}\Big( 1-\left( \frac{ R }{ x } \right)^p \Big)
+            \end{equation}
+            Nous avons
+            \begin{itemize}
+                \item \( F'(x)=0\) pour \( x=R\),
+                \item \( F'(x)<0\) pour \( x>R\),
+                \item \( F'(x)>0\) pour \( x<R\).
+            \end{itemize}
+            Donc \( x=R\) est bien un maximum global.
+        \item[Pause]
+            Nous avons les petits résultats utiles pour commencer à prouver. Petite pause avant de commencer; pas de panique, ça ne va pas être trop violent.
+        \item[Pour \( 0<B<A\)]
+            Nous devons prouver que
+            \begin{equation}        \label{EQooEPKRooBYJDSF}
+                \alpha(x)A^p+\beta(x)B^p\leq (A+B)^p+(A-B)^p.
+            \end{equation}
+            En divisant par \( A^p\) et en posant \( R=B/A\), l'inéquation \eqref{EQooEPKRooBYJDSF} est équivalente à
+            \begin{equation}
+                \alpha(x)+\beta(x)R^p\leq (1+R)^p+(1-R)^p
+            \end{equation}
+            où \( R\in \mathopen] 0 , 1 \mathclose[\) parce que nous avons supposé \( 0<B<A\). Nous avons (il y a un petit calcul pour \( F(R)\))
+            \begin{equation}
+                (1+R)^p+(1-R)^p=F(R)\geq F(x)=\alpha(x)+\beta(x)R^p.
+            \end{equation}
+            ok.
+        \item[Pour \( 0<A<B\)]
+            Lorsque \( 0<A<B\) nous avons 
+            \begin{subequations}
+                \begin{align}
+                    \alpha(x)| A |^p+\beta(x)| B |^p&=\alpha(x)A^p+\beta(x)^p\\
+                    &\leq \alpha(x)B^p+\beta(x)A^p      \label{SUBEQooSHNUooCoWMFB}\\
+                    &\leq (B+A)^p+(B-A)^p       \label{SUBEQooBPYVooPsAjbq}\\
+                    &=| A+B |^p+| A-B |^p.
+                \end{align}
+            \end{subequations}
+            Justification :
+            \begin{itemize}
+                \item Pour \eqref{SUBEQooSHNUooCoWMFB}, c'est parce que \( \alpha(x)>\beta(x)\); alors en mettant le plus grand de \( A\) et \( B\) devant le \( \alpha\) au lieu du \( \beta\), nous majorons.
+                \item Pour \eqref{SUBEQooBPYVooPsAjbq}, c'est l'inégalité dans le cas \( 0<B<A\), mais en inversant les noms de \( A\) et \( B\).
+            \end{itemize}
+        \item[Pour \( 0<A=B\)]
+            Toutes les expressions sont continues par rapport à \( B\) (fixons \( x\) et \( A\)). Nous avons prouvé pour \( B<A\) et pour \( B>A\). Par continuité, l'inégalité est encore valide pour \( A=B\).
+        \item[Pour \( A<0\), \( B>0\)]
+            En posant \( A'=-A\) nous avons \( A'>0\) et nous pouvons écrire
+            \begin{equation}
+                | A+B |^p+| A-B |^p=| -A'+B |^p+| -A'-B |^p=| B-A' |^p+| B+A' |^p\geq \alpha(x)| A' |^p+\beta(x)| B |^p.
+            \end{equation}
+            Nous avons utilisé, avec \( A'\) et \( B\) le cas déjà prouvé \( A',B>0\).
+        \item[Pour \( A>0\), \( B<0\)]
+            Celui-là, je vous le laisse.
+        \item[Pour \( A<0\), \( B<0\)]
+            Posez \( A'=-A\) et \( B'=-B\) et hop.
+    \end{subproof}
+\end{proof}
+
+
+\begin{theorem}[Inégalités de Hanner\cite{ooKGWWooAybolH,BIBooGPACooYtOhPP}]       \label{THOooZRRYooBTBQKW}
+    Soit un espace mesuré \(  (\Omega,\tribA,\mu)\). Soit \( 1<p<2\) and \( f,g\in L^p(\Omega,\tribA,\mu)\); nous avons
+    \begin{equation}
+        \big( \| f \|_p+\| g \|_p \big)^p+\Big| \| f \|_p-\| g \|_p \Big|^p
+                \leq \| f+g \|_p^p+\| f-g \|_p^p
+     %           \leq 2\| f \|_p^p+2\| g \|_p^p.        
+     % Je laisse tomber cette partie parce qu'elle est -je crois- inutile pour le théorème de Weienersmith
     \end{equation}
     Il y a égalité si et seulement si \( f(t) \) et \( g(t)\) sont colinéaires pour presque tout \( t\).
 \end{theorem}
 
 \begin{proof}
-    Nous supposons fait le cas de \( f,g\colon \Omega\to \eR^+\). Nous passons au cas de fonctions à valeurs dans \( \eC\).
+    Nous supposons que \( \| f \|_p\geq \| g \|_p\) pour fixer les idées. De toutes façons, la symétrie des formules nous fait passer de ce cas à l'autre sans difficulté.
 
-    Considérons \( f,g\in L^p\). Nous posons
-    \begin{subequations}
-        \begin{align}
-            f^*(t)=| f(t) |\\
-            g^*(t)=| g(t) |,
-        \end{align}
-    \end{subequations}
-    et nous écrivons l'inéquation du lemme \ref{LEMooDHRCooQiSpyC} pour les nombres \( f(t)\) et \( g(t)\) :
-    \begin{equation}    \label{EQooICUMooPhECbN}
-        \big| f(t)+g(t) \big|^p+\big| f(t)-g(t) \big|^p\geq \big(  f^*(t)+g^*(t) \big)+| f^*(t)-g^*(t) |,
+    Soit \( x\in \mathopen[ 0 , 1 \mathclose]\). Nous écrivons l'inégalité du lemme \ref{LEMooWIPYooMZqjbn} pour \( A=| f(\omega) | \) et \( B=| g(\omega) |\) :
+    \begin{equation}
+        \alpha(x)| f(\omega) |^p+\beta(x)| g(\omega) |^p\leq \big| f(\omega)+g(\omega) \big|^p+\big| f(\omega)-g(\omega) \big|^p.
     \end{equation}
-    avec égalité si et seulement si il existe \( \lambda_1,\lambda_2\in \eR\) tels que \( \lambda_1f(t)+\lambda_2g(t)=0\).
-
-    Nous intégrons sur \( \Omega\) (la variable d'intégration est \( t\in \Omega\)) :
-    \begin{equation}        \label{EQooNFIAooQjjuOn}
-        \| f+g \|^p+\| f-g \|^p\geq \| f^*+g^* \|^p+\| f^*-g^* \|^p.
+    Nous intégrons cela par rapport à \( \omega\) sur \( \Omega\) :
+    \begin{equation}
+        \alpha(x)\| f \|_p^p+\beta(x)\| g \|_p^p\leq \| f+g \|^p_p+\| f-g \|_p^p.
     \end{equation}
-    Vu que nous avons une inégalité pour tout \( t\), la seule manière d'avoir une égalité dans \eqref{EQooNFIAooQjjuOn} est d'avoir une égalité dans \eqref{EQooICUMooPhECbN} pour presque tout \( t\) dans \( \Omega\).
-    
-    Nous sommes maintenant en mesure de prouver la première inégalité. Nous avons :
-    \begin{subequations}
-        \begin{align}
-            \big( \| f \|+\| g \| \big)^p+\big| \| f \|-\| g \| \big|^p
-            &=\big( \| f^* \|+\| g^* \| \big)^p+\big| \| f^* \|-\| g^* \| \big|^p    \label{SUBEQooTYCRooPhXwLT}\\
-            &\leq \| f^*+g^* \|^p+\| f^*-g^* \|^p       \label{SUBEQooXIHFooKJukkk}\\
-            &\leq \| f+g \|^p+\| f-g \|^p   \label{SUBEQooGKIVooBNxNah}
-        \end{align}
-    \end{subequations}
-    Justifications :
-    \begin{itemize}
-        \item Pour \ref{SUBEQooTYCRooPhXwLT} : \( \| f \|=\| f^* \|\) et \( \| g \|=\| g^* \|\).
-        \item Pour \ref{SUBEQooXIHFooKJukkk} : la propriété est supposée prouvée pour les fonctions à valeurs dans \( \eR^+\).
-        \item Pour \ref{SUBEQooGKIVooBNxNah} : la relation \eqref{EQooNFIAooQjjuOn}
-    \end{itemize}
+    Et là vient l'idée qu'on se demande ce qui est passé par l'esprit du mec qui a tout combiné : nous évaluons cela pour \( x=\frac{ \| g \|_p }{ \| f \|_p }\), ce qui est permis parce que nous avons supposé \( \| f \|_p\geq \| g \|_p \). Faites le calcul, collectez les termes identiques, vous obtiendrez
+    \begin{equation}
+        \big( \| f \|_p+\| g \|_p \big)^p+\big( \| f \|_p-\| g \|_p \big)^p\leq \| f+g \|^p_p+\| f-g \|_p^p.
+    \end{equation}
+    Et vu que \( \| f \|_p\geq \| g \|_p\), nous pouvons gratuitement faire
+    \begin{equation}
+        \| f \|_p-\| g \|_p=\big| \| f \|_p-\| g \|_p \big|.
+    \end{equation}
+    Fini pour Hanner.
 \end{proof}
 
 %--------------------------------------------------------------------------------------------------------------------------- 
@@ -2405,7 +2640,7 @@ Et enfin, les inégalités de Hanner\quext{Dont la démonstration n'est pas term
 \subsection{Uniforme convexité des espaces de Lebesgue}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{proposition}[\label{BIBooRISHooBcPPKQ}]     \label{PROPooFNLJooDlyIKV}
+\begin{proposition}[\cite{BIBooRISHooBcPPKQ}]     \label{PROPooFNLJooDlyIKV}
     Si \( 1<p<\infty\), l'espace \( L^p(\Omega,\tribA, \mu)\) est uniformément convexe\footnote{Définition \ref{DEFooOPQBooBhufew}.}.
 \end{proposition}
 
@@ -2463,7 +2698,7 @@ Et enfin, les inégalités de Hanner\quext{Dont la démonstration n'est pas term
 %---------------------------------------------------------------------------------------------------------------------------
 
 \begin{proposition}     \label{PROPooTZMRooCvQtGg}
-    Si \( 1<p<\infty\), et si \( V\) est un sous-espace vectoriel fermé de \( L^p(\Omega,\tribA, \mu)\), alors la projection normale de \( a\in L^p\) sur \( V\) existe et est unique.
+    Si \( 1<p<\infty\), et si \( V\) est un sous-espace vectoriel fermé de \( L^p(\Omega,\tribA, \mu)\), alors la projection normale\footnote{Définition \ref{DEFooMYYLooJyACPL}.} de \( a\in L^p\) sur \( V\) existe et est unique.
 \end{proposition}
 
 \begin{proof}
@@ -2555,10 +2790,813 @@ Nous pouvons donner une preuve directe, sans passer par l'uniforme convexité, d
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Dualité et théorème de représentation de Riesz}
+\section{Théorèmes de Hahn-Banach}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Dans la suite \( E'\) est le dual topologique, c'est-à-dire l'espace des formes linéaires et continues sur \( E\).
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Applications \( \eR\)-linéaires et \( \eC\)-linéaires}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{lemma}[\cite{BIBooFMTKooRcLRXg}]        \label{LEMooBZHIooSQJSnM}
+    Soit un espace vectoriel \( X\) sur \( \eC\). Nous considérons\footnote{Voir la définition \ref{DEFooULVAooXJuRmr} pour les notations.} l'application
+    \begin{equation}        \label{EQooLYYGooJfKIfu}
+        \begin{aligned}
+            \psi\colon \aL_{\eR}(X,\eR)&\to \aL_{\eC}(X,\eC) \\
+            f&\mapsto \big[ x\mapsto f(x)-if(ix) \big]. 
+        \end{aligned}
+    \end{equation}
+    est bien définie et est une bijection.
+
+    Si \( f\) se décompose en \( f(x)=f_1(x)+if_2(x)\), alors \( f=\psi(f_1)\).
+\end{lemma}
+
+\begin{proof}
+    En plusieurs parties.
+    \begin{subproof}
+        \item[Bien définie]
+            Nous devons avant tout prouver que \eqref{EQooLYYGooJfKIfu} a un sens : si \( f\in \aL_{\eR}(X,\eR)\), alors nous devons prouver que \( \psi(f)\in\aL_\eC(X,\eC)\), c'est à dire que \( \psi(f)\) est \( \eC\)-linéaire. Soient donc \( x,y\in X\) et \( \alpha,\beta\in \eR\) de telle sorte que \( \alpha+\beta i\) soit un élément générique de \( \eC\). Prouver que
+            \begin{equation}
+                \psi(f)(x+y)=\psi(f)(x)+\psi(f)(y)
+            \end{equation}
+            est un simple calcul. Ensuite
+            \begin{subequations}
+                \begin{align}
+                    \psi(f)\big( (\alpha+i)x \big)&=f\big( (\alpha+i\beta)x \big)-if\big( i(\alpha+i\beta)x \big)\\
+                    &=\alpha f(x)+\beta f(ix)-i\alpha f(ix)-i(-\beta)f(x)\\
+                    &=(\alpha+i\beta)\big( f(x)-if(ix) \big)\\
+                    &=(\alpha+i\beta)\psi(f)(x).
+                \end{align}
+            \end{subequations}
+        \item[\( \psi\) est injective]
+            Soient \( f,g\in \aL_{\eR}(X,\eR)\) telles que \( \psi(f)=\psi(g)\). Nous avons l'égalité
+            \begin{equation}        \label{EQooOFWHooIJutnV}
+                f(x)+if(ix)=g(x)-ig(ix),
+            \end{equation}
+            qui est une égalité dans \( \eC\) en sachant que les nombres \( f(x)\), \( f(ix)\), \( g(x)\) et \( g(ix)\) sont des réels. En séparant les parties réelles et imaginaires dans \eqref{EQooOFWHooIJutnV} nous trouvons \( f(x)=g(x)\) et \( f(ix)=g(ix)\). Chacune de ces deux égalités nous assurent que \( f=g\).
+        \item[\( \psi\) est surjective]
+            Soit \( g\in \aL_{\eC}(X,\eC)\). Nous séparons ses parties réelles et imaginaires :
+            \begin{equation}
+                g(x)=g_1(x)+ig_2(x).
+            \end{equation}
+            Avec \( g_1,g_2\in \aL_{\eR}(X,\eR)\). Nous allons prouver que \( g=\psi(g_1)\).
+
+            Ensuite, utilisant la \( \eC\)-linéarité de \( g\) pour calculer \( g(ix)\) de deux façon différentes. D'une part
+            \begin{equation}        \label{EQooRMJAooQlTJLY}
+                g(ix)=g_1(ix)+ig_2(ix),
+            \end{equation}
+            et d'autre part
+            \begin{equation}        \label{EQooCJQHooFVJXGa}
+                g(ix)=i\big( g_1(x)+ig_2(x) \big).
+            \end{equation}
+            En égalisant les parties réelles et imaginaires de \eqref{EQooRMJAooQlTJLY} et de \eqref{EQooCJQHooFVJXGa},
+            \begin{subequations}
+                \begin{align}
+                    g_1(x)&=g_2(ix)\\
+                    g_2(x)&=-g_1(ix),
+                \end{align}
+            \end{subequations}
+            et en particulier \( g_1(ix)=g_2(-x)\).
+            
+            Nous pouvons maintenant calculer
+            \begin{subequations}
+                \begin{align}
+                    \psi(g_1)(x)&=g_1(x)-ig_1(ix)\\
+                    &=g_1(x)-ig_2(-x)\\
+                    &=g_1(x)+ig_2(x)\\
+                    &=g(x).
+                \end{align}
+            \end{subequations}
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}[\cite{BIBooFMTKooRcLRXg}]     \label{LEMooUFMFooEXecXE}
+    Soient un espace vectoriel \( X\) sur \( \eC\) ainsi qu'une seminorme\footnote{Définition \ref{DefPNXlwmi}.} \( p\). Soit \( f\in\aL_{\eR}(X,\eR)\). Nous avons
+    \begin{equation}
+        | \psi(f)(x) |\leq p(x)\quad\forall x\in X
+    \end{equation}
+    si et seulement si
+    \begin{equation}
+        | f(x) |\leq p(x)\quad\forall x\in X
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    En deux parties.
+    \begin{subproof}
+    \item[\( \Rightarrow\)]
+        Nous supposons que \( f\in \aL_{\eR}(X,\eR)\) vérifie \( | \psi(f)(x) |\leq p(x)\) pour tout \( x\). L'observation à faire est \( f(x)=\real\big( \psi(f)(x) \big)\). Nous avons alors\quext{Dans \cite{BIBooFMTKooRcLRXg}, l'auteur sépare le calcul en deux parties : une majoration pour \( f(x)\) et une pour \( -f(x)\). Je ne vois pas où est le mal à la faire d'un seul coup.}
+        \begin{equation}
+            | f(x) |=| \real\big( \psi(f)(x) \big) |\leq | \psi(f)(x) |\leq p(x).
+        \end{equation}
+    \item[\( \Leftarrow\)]
+        Nous supposons que \( | f(x) |\leq p(x)\) pour tout \( x\). Soit \( x\in X\). Si \( \psi(f)(x)=0\), alors nous avons bien \( | \psi(f)(x) |\leq p(x)\) parce qu'une seminorme est toujours positive. Nous supposons donc que \( \psi(f)(x)\neq 0\).
+
+        La décomposition polaire (proposition \ref{PROPooRFMKooURhAQJ}) du nombre complexe \( \psi(f)x\) donne un \( \theta\in \eR\) tel que $\psi(f)x= e^{i\theta}| \psi(f)x |$. Donc
+        \begin{equation}        \label{EQooFYVFooOvOTHz}
+            | \psi(f)(x) |= e^{-i\theta}\psi(f)(x)=\psi(f)( e^{-i\theta}x).
+        \end{equation}
+        Ces égalités montrent entre autres que \( \psi(f)( e^{-i\theta}x)\in \eR^+\); et en particulier, il est égal à sa partie réelle. Vu la définition \eqref{EQooLYYGooJfKIfu}, ça nous dit que
+        \begin{equation}
+            \psi(f)( e^{-i\theta}x)=f( e^{-i\theta}x).
+        \end{equation}
+        Nous pouvons alors continuer les égalités \eqref{EQooFYVFooOvOTHz} en mettant des normes partout :
+        \begin{equation}
+            | \psi(f)(x) |=| \psi(f)( e^{-i\theta}x) |=| f( e^{-i\theta}x) |\leq p( e^{-i\theta}x)=|  e^{-i\theta} |p(x)=p(x).
+        \end{equation}
+    \end{subproof}
+\end{proof}
+
+Pour le corolaire suivante, vous devriez vous souvenir de la définition \ref{DefNFYUooBZCPTr} de la norme opérateur.
+
+\begin{corollary}[\cite{MonCerveau}]        \label{CORooZEKAooENCDNJ}
+    Soit \( (X,\| . \|)\) un espace vectoriel normé sur \( \eC\). Pour \( \lambda>0\) nous considérons les normes \( N_{\lambda}(x)=\lambda\| x \|\). Soit \( \eK=\eR\) ou \( \eC\). Pour \( f\in\aL_{\eK}(X,\eK)\) nous avons
+    \begin{equation}
+        N_{\lambda}(x)\leq | f(x) |\,\forall x\in X
+    \end{equation}
+    si et seulement si \( \lambda\leq \| f \|\).
+\end{corollary}
+
+\begin{proof}
+    Les \( N_{\lambda}\) sont des normes et en particulier des seminormes.  Soit \( \lambda\in \eR^+\). Il y a deux possibilités : \( \lambda\leq \| f \|\) et \( \lambda > \| f \|\).
+    \begin{subproof}
+        \item[Si \( \lambda\leq \| f \|\)]
+            Soit \( \lambda\leq \| f \|\). Nous avons pour tout \( x\) :
+            \begin{equation}
+                N_{\lambda}(x)=\lambda\| x \|\leq \| f \|\| x \|\leq | f(x) |.
+            \end{equation}
+        \item[Si \( \lambda>\| f \|\)]
+            Pour tout \( x\in X\) nous avons
+            \begin{equation}
+                \frac{ | f(x) | }{ \| x \| }\leq \| f \|<\lambda,
+            \end{equation}
+            et donc
+            \begin{equation}
+                | f(x) |<\lambda\| x \|=N_{\lambda}(x).
+            \end{equation}
+    \end{subproof}
+\end{proof}
+
+\begin{proposition}[\cite{BIBooFMTKooRcLRXg, MonCerveau}]       \label{PROPooGNFHooVkuizI}
+    Soit un espace vectoriel normé \( (X,\| . \|)\) sur \( \eC\). Si \( f\in \aL_{\eR}(X,\eR)\), alors
+    \begin{equation}
+        \| f \|_{\aL_{\eR}(X,\eR)}=\| \psi(f) \|_{\aL_{\eC}(X,\eC)}.
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    Nous rappelons que le lemme \ref{LEMooIBLEooLJczmu} donne
+    \begin{equation}
+        \| f \|\| x \|\leq | f(x) |
+    \end{equation}
+    pour tout \( x\in X\).
+    Nous considérons les normes \( N_{\lambda}(x)=\lambda\| x \|\) du corollaire \ref{CORooZEKAooENCDNJ}.
+
+    \begin{subequations}
+        \begin{align}
+                                &\qquad m\leq \| f \|\\
+            \Longleftrightarrow &\qquad N_m\leq \| f(x) \|\, \forall x\in X \label{SUBEQooBHQIooXKchCS} \\
+            \Longleftrightarrow &\qquad N_m\leq | \psi(f)x |,\forall x\in X     \label{SUBEQooAHTQooQFNEal}\\
+            \Longleftrightarrow &\qquad m\leq \| \psi(f) \| \label{SUBEQooUZIFooRDnBmv}
+        \end{align}
+    \end{subequations}
+    Justifications:
+    \begin{itemize}
+        \item Pour \ref{SUBEQooBHQIooXKchCS}. Lemme \ref{LEMooUFMFooEXecXE} avec \( \eK=\eR\) et le fait que \( N_m\) est une seminorme.
+        \item Pour \ref{SUBEQooAHTQooQFNEal}. Lemme \ref{LEMooUFMFooEXecXE}.
+        \item Pour \ref{SUBEQooUZIFooRDnBmv}. Lemme \ref{LEMooUFMFooEXecXE} avec \( \eK=\eC\).
+    \end{itemize}
+    Nous avons donc \( m\leq \| f \|\) si et seulement si \( m\leq \| \psi(f) \|\). Pour en déduire que \( \| f \|=\| \psi(f) \|\), il est peut-être de bon ton de citer le lemme \ref{LemooHLHTooTyCZYL}.
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Hahn-Banach}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem}[Hahn-Banach\cite{brezis,TQSWRiz}]
+    Soit \( E\), un espace vectoriel réel et une application \( p\colon E\to \eR\) satisfaisant
+    \begin{enumerate}
+        \item
+            \( p(\lambda x)=\lambda p(x)\) pour tout \( x\in E\) et pour tout \( \lambda>0\),
+        \item
+            \( p(x+y)\leq p(x)+p(y)\) pour tout \( x,y\in E\).
+    \end{enumerate}
+    Soit de plus \( G\subset E\) un sous-espace vectoriel muni d'une application \( g\colon G\to \eR\) vérifiant \( g(x)\leq p(x)\) pour tout \( x\in G\). Alors il existe \( f\in\aL(E,\eR)\) telle que \( f(x)=g(x)\) pour tout \( x\in G\) et \( f(x)\leq p(x)\) pour tout \( x\in E\).
+\end{theorem}
+\index{théorème!Hahn-Banach}
+
+\begin{proof}
+    Si \( h\) une application linéaire définie sur un sous-espace de \( E\), nous notons \( D_h\) ledit sous-espace.
+
+    \begin{subproof}
+    \item[Un ensemble inductif]
+
+        Nous considérons \( P\), l'ensemble des fonctions linéaires suivant
+        \begin{equation}
+            P=\Big\{  h\colon D_h\to \eR\tq
+            \begin{cases}
+                G\subset D_h\\
+                h(x)=g(x)&\forall x\in G\\
+                h(x)\leq p(x)&\forall x\in D_h
+            \end{cases}
+        \Big\}
+        \end{equation}
+        Cet ensemble est non vide parce que \( g\) est dedans. Nous le munissons de la relation d'ordre \( h_1\leq h_2\) si et seulement si \( D_{h_1}\subset D_{h_2}\) et \( h_2\) prolonge \( h_1\). Nous montrons à présent que \( P\) est un ensemble inductif. Soit un sous-ensemble totalement ordonné \( Q\subset P\); nous définissons une fonction \( h\) de la façon suivante. D'abord \( D_h=\sup_{l\in Q}D_l\) et ensuite
+        \begin{equation}
+            \begin{aligned}
+                h\colon D_h&\to \eR \\
+                x&\mapsto l(x)&\text{si } x\in D_l
+            \end{aligned}
+        \end{equation}
+        Cela est bien définit parce que si \( x\in D_l\cap D_{l'}\) alors, vu que \( Q\) est totalement ordonné (i.e. \( l\leq l'\) ou \( l'\leq l\)), on a obligatoirement \( D_l\subset D_{l'}\) et \( l'\) qui prolonge \( l\) (ou le contraire). Donc \( h\) est un majorant de \( Q\) dans \( P\) parce que \( h\geq l\) pour tout \( l\in Q\). Cela montre que \( P\) est inductif (définition~\ref{DefGHDfyyz}). Le lemme de Zorn~\ref{LemUEGjJBc} nous dit alors que \( P\) possède un maximum \( f\) qui va être la réponse à notre théorème.
+
+    \item[Le support de \( f\)]
+
+        La fonction \( f\) est dans \( P\); donc \( f(x)\leq p(x)\) pour tout \( x\in D_h\) et \( f(x)=g(x)\) pour tout \( x\in G\). Pour terminer nous devons montrer que \( D_f=E\). Supposons donc que \( D_f\neq E\) et prenons \( x_0\notin D_f\). Nous allons contredire la maximalité de \( f\) en considérant la fonction \( h\) donnée par \( D_h=D_f+\eR x_0 \) et
+        \begin{equation}
+            h(x+tx_0)=f(x)+t\alpha
+        \end{equation}
+        où \( \alpha\) est une constante que nous allons fixer plus tard.
+
+        Nous commençons par prouver que \( f\) est dans \( P\). Nous devons prouver que
+        \begin{equation}    \label{EqOIXrlFe}
+            h(x+tx_0)=f(x)+t\alpha\leq p(x+tx_0)
+        \end{equation}
+        Pour cela nous allons commencer par fixer \( \alpha\) pour avoir les relations suivantes :
+        \begin{subequations}    \label{EqMDNkcQk}
+            \begin{numcases}{}
+                f(x)+\alpha\leq p(x+x_0)    \label{EqDYmRWEY}\\
+                f(x)-\alpha\leq p(x-x_0)
+            \end{numcases}
+        \end{subequations}
+        pour tout \( x\in D_f\). Ces relations sont équivalentes à demander \( \alpha \) tel que
+        \begin{subequations}
+            \begin{numcases}{}
+                \alpha\leq p(x+x_0)-f(x)\\
+                \alpha\geq f(x)-p(x-x_0)
+            \end{numcases}
+        \end{subequations}
+        Nous nous demandons donc s'il existe un \( \alpha\) qui satisfasse
+        \begin{equation}
+            \sup_{y\in D_f}\big( f(y)-p(y-x_0) \big)\leq \alpha\leq \inf_{z\in D_f}\big( p(z+x_0)-f(z) \big).
+        \end{equation}
+        Ou encore nous devons prouver que pour tout \( y,z\in D_f\),
+        \begin{equation}
+            p(z+x_0)-f(x)\geq f(y)-p(y-x_0)\geq 0.
+        \end{equation}
+        Par les propriétés de \( p\) et de \( f\),
+        \begin{equation}
+        p(z+x_0)+p(y-x_0)-f(z)-f(y)\geq p(z+y)-f(z+y)\geq 0.
+        \end{equation}
+        La dernière inégalité est le fait que \( f\in P\). Un choix de \( \alpha\) donnant les inéquations \eqref{EqMDNkcQk} est donc possible.
+
+        À partir des inéquations \eqref{EqMDNkcQk} nous obtenons la relation \eqref{EqOIXrlFe} de la façon suivante. Si \( t>0\) nous multiplions l'équation \eqref{EqDYmRWEY} par \( t\) :
+        \begin{equation}
+            tf(x)+t\alpha\leq tp(x+x_0).
+        \end{equation}
+        Et nous écrivons cette relation avec \( x/t\) au lieu de \( x \) en tenant compte de la linéarité de \( f\) :
+        \begin{equation}
+            f(x)+t\alpha\leq  tp\big( \frac{ x }{ t }+x_0 \big)=p(x+tx_0).
+        \end{equation}
+        Avec \( t<0\), c'est similaire, en faisant attention au sens des inégalités.
+
+        Nous avons donc construit \( h\colon D_h\to \eR\) avec \( h\in P\), \( D_f\subset D_h\) et \( h(x)=f(x)\) pour tout \( x\in D_f\). Cela pour dire que \( h>f\), ce qui contredit la maximalité de \( f\). Le domaine de \( f\) est donc \( E\) tout entier.
+
+        La fonction \( f\) est donc une fonction qui remplit les conditions.
+
+    \end{subproof}
+\end{proof}
+
+\begin{definition}  \label{DefPJokvAa}
+    Un espace topologique est \defe{localement convexe}{convexité!locale} si tout point possède un système fondamental de voisinages formé de convexes.
+\end{definition}
+%TODO : il faudrait parler de système fondamental de voisinages.
+
+\begin{definition}[Hyperplan qui sépare]
+    Soit \( E\) un espace vectoriel topologique ainsi que \( A\), \( B\) des sous-ensembles de \( E\). Nous disons que l'hyperplan d'équation \( f=\alpha\) \defe{sépare au sens large}{hyperplan!séparer!au sens large} les parties \( A\) et \( B\) si \( f(x)\leq \alpha\) pour tout \( x\in A\) et \( f(x)\geq \alpha\) pour tout \( x\in B\).
+
+    La séparation est \defe{au sens strict}{hyperplan!sépare!au sens strict} s'il existe \( \epsilon>0\) tel que
+    \begin{subequations}
+        \begin{align}
+            f(x)\leq \alpha-\epsilon&&\text{pour tout } x\in A\\
+            f(x)\geq \alpha+\epsilon&&\text{pour tout } x\in B.
+        \end{align}
+    \end{subequations}
+\end{definition}
+
+\begin{theorem}[Hahn-Banach, première forme géométrique\cite{TQSWRiz}]  \label{ThoSAJjdZc}
+    Soit \( E\) un espace vectoriel topologique et \( A\), \( B\) deux convexes non vides disjoints de \( E\). Si \( A\) est ouvert, il existe un hyperplan fermé qui sépare \( A\) et \( B\) au sens large.
+\end{theorem}
+
+\begin{theorem}[Hahn-Banach, seconde forme géométrique] \label{ThoACuKgtW}
+    Soient un espace vectoriel topologique localement convexe\footnote{Définition~\ref{DefPJokvAa}.} ainsi que des convexes non vides disjoints \( A\) et \( B\) tels que \( A\) soit compact et \( B\) soit fermé. Alors il existe un hyperplan fermé qui sépare strictement \( A\) et \( B\).
+\end{theorem}
+
+\begin{proof}
+    Vu que \( B\) est fermé, \( A\) est dans l'ouvert \( E\setminus B\). Donc si \( a\in A\), il existe un voisinage ouvert convexe de \( a\) inclus dans \( A\). Soit \( U_a\) un voisinage ouvert et convexe de \( 0\) tel que \( (a+U_a)\cap B=\emptyset\).
+
+    Vu que la fonction \( (x,y)\mapsto x+y\) est continue, nous pouvons trouver un ouvert convexe \( V_a\) tel que \( V_a+V_a\subset U_a\). L'ensemble \( a+V_a\) est alors un voisinage ouvert de \( a\) et bien entendu \( \bigcup_a(a+V_a)\) recouvre \( A\) qui est compact. Nous en extrayons un sous-recouvrement fini, c'est-à-dire que nous considérons \( a_1,\ldots, a_n\in A\) tels que
+    \begin{equation}
+        A\subset \bigcup_{i=1}^n(a_i+V_{a_i}).
+    \end{equation}
+    Nous posons alors
+    \begin{equation}
+        V=\bigcap_{i=1}^nV_{a_i}.
+    \end{equation}
+    Cet ensemble est non vide parce et il contient un voisinage de zéro parce que c'est une intersection finie de voisinages de zéro. Soit \( x\in A+V\). Il existe \( i\) tel que
+    \begin{equation}
+        x\in a_i+U_{a_i}+V\subset a_i+V_{a_i}+V_{a_i}\subset a_i+U_{a_i}\subset E\setminus B.
+    \end{equation}
+    Donc \( (A+V)\cap B=\emptyset\). L'ensemble \( A+V\) est alors un ouvert convexe disjoint de \( B\). Par la première forme géométrique du théorème de Hahn-Banach~\ref{ThoSAJjdZc} nous avons un hyperplan qui sépare \( A+V\) de \( B\) au sens large : il existe \( f\in E'\setminus\{ 0 \}\) tel que \( f(a)+f(v)\leq f(b)\) pour tout \( a\in A\), \( v\in V\) et \( b\in B\).
+
+    Il suffit donc de trouver un \( v\in V\) tel que \( f(v)\neq 0\) pour avoir la séparation au sens strict. Cela est facile : \( V\) étant un voisinage de zéro et \( f\) étant linéaire, si elle était nulle sur \( V\), elle serait nulle sur \( E\).
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Prolongement de fonctionnelles (cas fini)}
+%---------------------------------------------------------------------------------------------------------------------------
+
+Nous allons prouver quelque lemmes qui permettent de prolonger des fonctionnelles d'un sous-espace vers un sous-espace contenant un nombre fini de dimensions en plus.
+
+\begin{lemma}[\cite{BIBooMXTXooOsgBRx}]     \label{LEMooHWSJooGVmIPV}
+    Soient un espace vectoriel réel normé \( X\) ainsi qu'un sous-espace \( M\). Soient \( \ell\in\aL(M,\eR)\) de norme finie, et \( x_1\in X\setminus M\). On pose \( M_1=\Span\{ M, x_1 \}\). Alors il existe \( \ell_1\in\aL(M_1,\eR)\) tel que
+    \begin{enumerate}
+        \item
+            \( \ell_1(x)=\ell(x)\) pour tout \( x\in M\),
+        \item
+            \( \| \ell_1 \|_{\aL(M_1,\eR)}=\| \ell \|_{\aL(M,\eR)}\)
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Si \( \ell=0\), alors c'est facile : on prend \( \ell_1=0\). Nous commençons par supposer que \( \| \ell \|=1\); nous ferons le cas général ensuite.
+    \begin{subproof}
+        \item[Deux fonctions]
+            Nous considérons les fonctions
+            \begin{equation}
+                \begin{aligned}
+                    f_+\colon M&\to \eR \\
+                    z&\mapsto \| x_1+z \|-\ell(z) 
+                \end{aligned}
+            \end{equation}
+            et
+            \begin{equation}
+                \begin{aligned}
+                    f_-\colon M&\to \eR \\
+                    z&\mapsto -\| x_1+z \|-\ell(z). 
+                \end{aligned}
+            \end{equation}
+            Pour tout \( z_1,z_2\in M\) nous avons
+            \begin{subequations}
+                \begin{align}
+                    f_+(z_1)-f_-(z_2)&=\| x_1+z_1 \|-\ell(z_1)+\| x_1+z_2 \|-\ell(z_2)\\
+                    &=\| x_1+z_1 \|+\| x_1+z_2 \|-\ell(z_1-z_2)\\
+                    &\geq \| (x_1+z_1)-(x_1+z_2) \|-\ell(z_1-z_2)\\
+                    &=\| z_1-z_2  \|-\ell(z_1-z_2)\\
+                    &\geq 0
+                \end{align}
+            \end{subequations}
+            parce que \( \| \ell \|=1\). Nous en déduisons que \( f_+(z_1)\geq f_-(z_2)\).
+
+        \item[Un entre les deux]
+
+            En posant
+            \begin{subequations}
+                \begin{align}
+                    c_-&=\sup_{z\in M}\big( -\| x_1+z \|-\ell(z) \big)\\
+                    c_+&=\inf_{z\in M}\big(  \| x_1+z \|-\ell(z) \big),
+                \end{align}
+            \end{subequations}
+            nous avons \( c_-\leq c_+\). Nous choisissons \( c_1\in \mathopen[ c_- , c_+ \mathclose]\).
+        \item[La définition]
+            Si \( x\in M_1=\Span{M,x_1}\), alors il existe \( y\in M\) et \( \lambda\in \eR\) tels que
+            \begin{equation}
+                x=\lambda x_1+y.
+            \end{equation}
+            Nous posons alors
+            \begin{equation}        \label{EQooVTFTooFyfXbK}
+                \ell_1(x)=\lambda c_1+\ell(y).
+            \end{equation}
+            Voila qui définit notre \( \ell_1\). Nous devons prouver qu'elle satisfait \( \| \ell_1 \|=1\) et \( \ell_1(x)=\ell(x)\) pour tout \( x\in M\). La seconde condition est facile : si \( x\in M\), alors \( \lambda=0\) dans \eqref{EQooVTFTooFyfXbK} et nous avons bien \( \ell_1(x)=\ell(x)\).
+
+            Pour la condition sur la norme, nous allons devoir un peu travailler.
+        \item[\( | \ell_1(x) |\leq \| x \|\) pour tout \( x\in M_1\)]
+            Soit \( x\in M_1\). Nous avons \( x=\lambda x_1+y\) avec \( \lambda\in \eR\) et \( y\in M\). i
+
+            \begin{subproof}
+            \item[Si \( \lambda=0\)]
+                Alors \( x\in M\) et \( |\ell_1(x)|=|\ell(x)|\leq \| x \|\) parce que \( \| \ell \|=1\).
+            \item[Si \( \lambda\neq 0\)]
+                Soient \( z_1,z_2\in M\). Par définition de \( c_1\), \( c_+\) et \( c_-\) nous avons les inégalités
+                \begin{equation}
+                    -\| x_1+z_1 \|-\ell(z_1)\leq c_-\leq c_1\leq c_+\leq \| x_1+z_2 \|-\ell(z_2).
+                \end{equation}
+                Nous écrivons ces inégalités pour \( z_1=z_2=y/\lambda\) :
+                \begin{equation}        \label{EQooGYXSooIffZoL}
+                    -\| x_1+\frac{ y }{ \lambda } \|-\ell(y/\lambda)\leq c_1\leq \| x_1+\frac{ y }{ \lambda } \|-\ell(y/\lambda).
+                \end{equation}
+            \item[Si \( \lambda>0\)]
+                Nous multiplions \eqref{EQooGYXSooIffZoL} par \( \lambda\) et nous profitons de la linéarité de \( \ell\) :
+                \begin{equation}
+                    -\| \lambda x_1+y \|-\ell(y)\leq \lambda c_1\leq \| \lambda x_1+y \|+\ell(y),
+                \end{equation}
+                donc
+                \begin{equation}        \label{EQooYRULooBebNTq}
+                    -\| \lambda x_1+y \|\leq \underbrace{\lambda c_1+\ell(y)}_{=\ell_1(\lambda x_1+y)}\leq \| \lambda x_1+y \|
+                \end{equation}
+                Nous en déduisons que
+                \begin{equation}
+                    | \ell(\lambda x_1+y) |\leq \| \lambda x_1+y \|,
+                \end{equation}
+                ce qu'il fallait.
+            \item[Si \( \lambda<0\)]
+                Le calcul est le même, mais il faut faire attention à bien reverser les inégalités au bon moment, et en manipulant bien les valeur absolues. Nous avons par exemple
+                \begin{equation}
+                    \lambda\|  x_1+\frac{ y }{ \lambda } \|=-\big\| | \lambda |x_1+\frac{ | \lambda |y }{ \lambda } \big\|=-\| -\lambda x_1-y \|=-\| \lambda x_1+y \|.
+                \end{equation}
+                En multipliant encore \eqref{EQooGYXSooIffZoL} par \( \lambda\), nous trouvons
+                \begin{equation}
+                    -\lambda\| x_1+\frac{ y }{ \lambda } \|-\ell(y)\geq \lambda c_1\geq \lambda\| x_1+\frac{ y }{ \lambda } \|-\ell(y).
+                \end{equation}
+                qui devient
+                \begin{equation}
+                    \| \lambda x_1+y \|\geq \lambda c_1+\ell(y)\geq -\| \lambda x_1+y \|,
+                \end{equation}
+                qui revient au même que \eqref{EQooYRULooBebNTq}.
+            \end{subproof}
+        \item[Première conclusion]
+            Nous avons prouvé que \( | \ell_1(x) |\leq \| x \|\) pour tout \( x\) dans \( M_1\). Cela signifie que \( \| \ell_1 \|_{M_1'}\leq 1\). Pour prouver que \( \| \ell_1 \|=1\) nous prouvons l'inégalité inverse :
+            \begin{equation}
+                \| \ell_1 \|_{M_1'}=\sup_{x\in M_1}\frac{ | \ell_1(x) | }{ \| x \| }\geq\sup_{x\in M}\frac{ | \ell_1(x) | }{ \| x \| }=\sup_{x\in M}\frac{ | \ell(x) | }{ \| x \| }=\| \ell \|_{M}=1.
+            \end{equation}
+            Nous en déduisons que \( \| \ell_1 \|=1\) et cela termine la preuve dans le cas où \( \|\ell \|=1\).
+    \end{subproof}
+    Maintenant, si \( \| \ell \|=a\neq 1\), nous considérons la forme linéaire \( f=\ell/a\) qui satisfait \( \| f \|=1\). Par la partie déjà prouvée, nous définissons une extension \( f_1\colon M_1\to \eR\) telle que \( \| f_1 \|=1\).
+
+    Il suffit alors de poser \( \ell_1=af_1\), et nous avons le résultat.
+\end{proof}
+
+Ce lemme est également valable pour les complexes.
+
+\begin{lemma}[\cite{MonCerveau}]       \label{LEMooBYEGooRswAmh}
+    Soit un espace vectoriel normé \( X\) sur \( \eC\). Soit \( \ell\in \aL_{\eC}(X,\eC)\) de norme finie. Soient un sous-espace \( M\) de \( X\) ainsi qu'un élément \( a\in X\setminus M\). Il existe \( \ell_1\in\aL_{\eC}\big( \Span_{\eC}(M, a) \big)\) tel que
+    \begin{enumerate}
+        \item
+            \( \ell_1(x)=\ell(x)\) pour tout \( x\in M\),
+        \item
+            \( \| \ell_1 \|=\| \ell \|\).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Nous considérons l'application \( \psi\) du lemme \ref{LEMooBZHIooSQJSnM}. La proposition \ref{PROPooGNFHooVkuizI} nous indique qu'on posant \( f=\psi^{-1}(\ell)\), nous avons 
+    \begin{equation}
+        f\in\aL_{\eR}(M,\eR)
+    \end{equation}
+    vérifiant \( \| \ell \|=\| f \|\).
+
+    L'espace \( X\) peut être vu comme vectoriel sur \( \eR\). Le lemme \ref{LEMooHWSJooGVmIPV} permet de prolonger \( f\) à
+    \begin{equation}
+        f_1\in\aL_{\eR}\big( \Span_{\eR}(M,a),\eR \big)
+    \end{equation}
+    vérifiant \( \| \ell \|=\| f \|=\| f_1 \|\).
+
+    Vu que \( M\) est déjà un espace vectoriel sur \( \eC\), l'espace \( \Span_{\eC}(M,a)\) qui nous intéresse est donné par
+    \begin{equation}
+        \Span_{\eC}(M,a)=\Span_{\eR}(M,a,ia).
+    \end{equation}
+    Nous pouvons donc utiliser une deuxième fois le lemme \ref{LEMooHWSJooGVmIPV} avec le vecteur \( ia\), et définir une extension
+    \begin{equation}
+        f_2\in\aL_{\eR}\big( \Span_{\eR}(M,a,ia),\eR \big)=\aL_{\eR}\big( \Span_{\eC}(M,a),\eR \big)
+    \end{equation}
+    vérifiant \( \| \ell \|=\| f \|=\| f_1 \|=\| f_2 \|\).
+
+    En utilisant à nouveau la proposition \ref{PROPooGNFHooVkuizI}, nous avons encore une extension
+    \begin{equation}
+        \psi(f_2)\in\aL_{\eC}\big( \Span_{\eC}(M,a),\eC \big)
+    \end{equation}
+    vérifiant \( \| \ell \|=\| f \|=\| f_1 \|=\| f_2 \|=\| \psi(f_2) \|\).
+
+    Et voila ! La fonctionnelle \( \psi(f_2)\) est celle que nous voulions.
+\end{proof}
+
+Les lemmes \ref{LEMooHWSJooGVmIPV} et \ref{LEMooBYEGooRswAmh} permettent de prolonger une forme linéaire une dimension réelle ou complexe à la fois. Rien ne nous permet de prolonger d'une infinité de dimensions d'un seul coup. Le théorème de Hahn-Banach va nous permettre de faire une infinité de dimension d'un coup à l'aide du lemme de Zorn.
+
+\begin{theorem}[Hahn-Banach\cite{BIBooMXTXooOsgBRx}]        \label{THOooTZSSooBKfxXE}
+    Soit \( X\), un espace vectoriel normé sur \( \eK\) (\(=\eR\) ou \( \eC\)). Soient un sous-espace \( M\), et une fonctionnelle linéaire \( \ell\in\aL_{\eK}(X,\eK)\) de norme finie. Il existe \( f\in\aL_{\eK}(X,\eK)\) telle que 
+    \begin{enumerate}
+        \item
+            \( f(x)=\ell(x)\) pour tout \( x\in M\),
+        \item
+            \( \| f \|_{\aL(X,\eK)}=\| \ell \|_{\aL(M,\eK)}\).
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Nous considérons l'ensemble \( \mE\) des paires \( (N,f)\) telles que
+    \begin{enumerate}
+        \item
+            \( N\) est un sous-espace de \( X\) contenant \( M\),
+        \item
+            \( f\in \aL(N,\eK)\)
+        \item
+            \( \| f \|=\| \ell \|\)
+        \item
+            \( f(x)=\ell(x)\) pour tout \( x\in M\).
+    \end{enumerate}
+    Cet ensemble n'est pas vide parce que \( (M, \ell)\in \mE\). Nous mettons un ordre partiel sur \( \mE\) en posant \( (N,f)\leq (N',f')\) si et seulement si \( N\subset N'\) et \( f'|_{N}=f\).
+    \begin{subproof}
+        \item[\( \mE\) est inductif]
+            Nous commençons par prouver que \( (\mE,\leq)\) est un ensemble inductif\footnote{Définition \ref{DefGHDfyyz}.}. Soit une partie \( \mF\) totalement ordonnée dans \( \mE\).
+
+            \begin{subproof}
+            \item[L'espace vectoriel]
+                
+
+            Nous commençons par poser
+            \begin{equation}
+                Y=\bigcup_{(N,f)\in\mF}N.
+            \end{equation}
+            Et nous prouvons que c'est un espace vectoriel. Soient \( x,y\in Y\). Supposons \( x\in N_1\) et \( y\in N_2\). Vu que \( \mF\) est totalement ordonné, nous avons \( N_1\subset N_2\) (ou le contraire). Donc \( x+y\in N_2\subset Y\). De même pour \( \lambda x\) avec \( \lambda\in \eK\) et \( x\in Y\).
+
+        \item[La fonctionnelle]
+            Nous devons trouver une fonctionnelle \( g\) sur \( Y\). Soit \( y\in Y\). Commençons par prouver que l'ensemble
+            \begin{equation}
+                \{ f(y)\tq (N,f)\in \mF, y\in N \}
+            \end{equation}
+            est un singleton. Soient \( (N_1,f_1), (N_2,f_2)\in\mF\) avec \( y\in N_1\cap N_2\). Nous supposons que \( (N_1,f_1)\leq (N_2,f_2)\) (sinon c'est le contraire). Alors \( f_2(y)=f_2|_{N_1}(y)=f_1(y)\). Nous pouvons donc définir
+            \begin{equation}
+                \begin{aligned}
+                    g\colon Y&\to \eK \\
+                    y&\mapsto f(y) 
+                \end{aligned}
+            \end{equation}
+            où \( (N,f)\in \mF\) est tel que \( y\in N\).
+        \item[\( g\) est linéaire]
+            Soient \( x,y\in Y\). Nous supposons que \( x\in N_1\) et \( y\in N_2\) avec \( N_1\subset N_2\). Donc \( x,y,x+y\in N_2\) et nous avons \( g(x)=f_2(x)\), \( g(y)=f_2(y)\) et \( g(x+y)=f_2(x+y)\). La linéarité de \( f_2\) fait alors le boulot. Même raisonnement pour \( g(\lambda x)=\lambda g(x)\).
+        \item[\( g\) se restreint à \( \ell\)]
+            Soit \( x\in M\). Nous avons \( g(x)=f(x)\) pour un couple \( (N,f)\in \mF\) vérifiant \( x\in N\). Vu que \( f\) prolonge \( \ell\) nous avons \( g(x)=f(x)=\ell(x)\).
+        \item[Norme de \( g\)]
+            Nous devons voir que \( \| g \|_{\aL(Y,\eK)}=\| \ell \|_{\aL(M,\eK)}\). L'inégalité dans un sens est facile pour qui comprend la norme opérateur\footnote{Si ce n'est pas votre cas, vous ne devriez franchement pas être en train de lire ces lignes. Ce n'est que mon avis; après tout, vous faites comme vous le sentez.}. Étant donné que \( M\subset Y\) nous avons
+            \begin{equation}
+                \| g \|_{\aL(Y,\eK)}=\sup_{y\in Y}\frac{ | g(y) | }{ \| y \| }\geq\sup_{y\in M}\frac{ | g(y) | }{ \| y \| }=\sup_{y\in M}\frac{ | \ell(y) | }{ \| y \| }=\| \ell \|_{\aL(M,\eK)}.
+            \end{equation}
+            L'inégalité dans l'autre sens n'est pas trop compliquée non plus. Prenons \( x\in Y\) vérifiant \( \| x \|=1\). Nous considérons \( (N,f)\in \mE\) tel que \( x\in N\). Alors
+            \begin{equation}
+                | g(x) |=| f(x) |\leq\| f \|=\| \ell \|.
+            \end{equation}
+            Donc \( \| g \|\leq \| \ell \|\).
+        \item[Conclusion pour le moment]
+            Nous avons prouvé que \( (Y,g)\) est un majorant de \( \mF\). Donc \( (\mE,\leq)\) est un ensemble inductif.
+            \end{subproof}
+        \item[Lemme de Zorn]
+            Vu que \( (\mE,\leq)\) est un ensemble inductif non vide, il possède un élément maximum par lemme de Zorn \ref{LemUEGjJBc}. Nous nommons \( (Y,f)\) un tel élément maximal.
+        \item[Fin de la preuve]
+            Nous devons prouver que \( Y=X\), de telle sorte que \( f\in\aL(Y,\eK)\) soit définie sur \( X\). Supposons que \( Y\neq X\). Dans ce cas nous considérons \( x_1\in X\setminus Y\). Suivant que \( \eK\) est \( \eR\) ou \( \eC\), nous utilisons le lemme \ref{LEMooHWSJooGVmIPV} ou \ref{LEMooBYEGooRswAmh} pour construire la paire
+            \begin{equation}
+                \big( \Span_{\eK}(Y,x_1),f_1 \big)
+            \end{equation}
+            qui majore \( (Y,f)\). Contradiction avec la maximalité de \( (Y,f)\). Donc \( Y=X\).
+    \end{subproof}
+\end{proof}
+
+\begin{corollary}[\cite{MonCerveau}]        \label{CORooOBDHooJpiBrs}
+    Voici trois façons différentes de dire la même chose, par ordre décroissant de frime.
+    \begin{enumerate}
+        \item
+            Le dual d'un espace vectoriel normé sépare les points.
+        \item
+            Les fonctionnelles bornées d'un espace vectoriel normé séparent les points.
+        \item
+            Si \( X\) est un espace vectoriel normé sur \( \eK\) (\( =\eR\) ou \( \eC\)), et si \( x,y\in X\), alors il existe une application \( f\in\aL(X,\eK)\) telle que \( f(x)\neq f(y)\).
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    Le théorème de la base incomplète \ref{THOooOQLQooHqEeDK} nous permet de considérer une base \( \{ e_i \}_{i\in I}\) de \( X\) telle que \( e_0=x\) et \( e_1=y\).
+
+    Évacuons quelque objections.
+    \begin{itemize}
+        \item Si \( x\) et \( y\) sont colinéaires, on complète seulement \( \{ x \}\) et ça ne changera rien pour la suite\footnote{Soyez quand même \randomGender{attentifs}{attentives} à ne pas vous laisser enfumer.}.
+        \item En écrivant «\( e_0\)» et «\( e_1\)»  ne prétends pas que \( I\) soit un ensemble de nombres. C'est juste une facilité d'écriture pour éviter de dire «il existe \( \alpha,\beta\in I\) tels que \( x=e_{\alpha}\) et \( y=e_{\beta}\)».
+    \end{itemize}
+    Nous considérons l'application linéaire
+    \begin{equation}
+        \begin{aligned}
+            \ell\colon \Span_{\eK}(e_0,e_1)&\to \eK \\
+            \alpha e_1+\beta e_2&\mapsto \alpha. 
+        \end{aligned}
+    \end{equation}
+    Cette application est parfaitement bornée. Le théorème de Hahn-Banach \ref{THOooTZSSooBKfxXE} nous permet de considérer une extension \( f\) sur \( X\). Cette extension a la même norme et est donc bornée (donc continue par la proposition \ref{PROPooQZYVooYJVlBd}). C'est donc un élément du dual de \( X\).
+
+    Comme \( f=\ell\) sur \( \Span(e_0,e_1)\), nous avons \( f(x)\neq f(y)\).
+\end{proof}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Théorème de Tietze}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{definition}
+Si \( E\) et \( F\) sont des espaces normés, une application \( f\colon E\to F\) est \defe{presque surjective}{presque!surjective} s'il existe \( \alpha\in\mathopen] 0 , 1 \mathclose[\) et \( C>0\) tels que pour tout \( y\in \overline{ B_F(0,1) }\), il existe \( x\in\overline{ B_E(0,C) }\) tel que \( \| y-f(x) \|\leq \alpha\).
+\end{definition}
+
+\begin{lemma}[\cite{KXjFWKA}]   \label{LemBQLooRXhJzK}
+    Soient \( E\) et \( F\) des espaces de Banach et \( f\in\cL(E,F)\)\footnote{L'ensemble des applications linéaires continues}. Si \( f\) est presque surjective, alors
+    \begin{enumerate}
+        \item   \label{ItemTSOooYkxvBui}
+            \( f\) est surjective
+        \item\label{ItemTSOooYkxvBuii}
+            pour tout \( y\in \overline{ B_F(0,1) }\), il existe \( x\in\overline{ B_E(0,\frac{ C }{ 1-\alpha }) }\) tel que \( y=f(x)\).
+    \end{enumerate}
+\end{lemma}
+Le point~\ref{ItemTSOooYkxvBuii} est une précision du point~\ref{ItemTSOooYkxvBui} : il dit quelle est la taille de la boule de \( E\) nécessaire à obtenir la boule unité dans \( F\).
+
+\begin{proof}
+    Soit \( y\in \overline{ B_F(0,1) }\). Nous allons construire \( x\in B\big( 0,\frac{ C }{ 1-\alpha } \big)\) qui donne \( f(x)=y\). Ce \( x\) sera la limite d'une série que nous allons construire par récurrence. Pour \( n=1\) nous utilisons la presque surjectivité pour considérer \( x_1\in\overline{ B_E(0,C) } \) tel que \( \| y-f(x_1) \|\leq \alpha\). Ensuite nous considérons la récurrence
+    \begin{equation}
+        x_n\in \overline{ B_E(0,C) }
+    \end{equation}
+    tel que
+    \begin{equation}
+        \big\| y-\sum_{i=1}^n\alpha^{i-1}f(x_i) \big\|\leq \alpha^n
+    \end{equation}
+    Pour montrer que cela existe nous supposons que la série est déjà construire jusqu'à \( n>1\) :
+    \begin{equation}
+        \frac{1}{ \alpha^n }\Big( y-\sum_{i=1}^n\alpha^{i-1}f(x_i) \Big)\in \overline{ B_F(0,1) }
+    \end{equation}
+    À partir de là, par presque surjectivité il existe un \( x_{n+1}\in \overline{ B_E(0,C) }\) tel que
+    \begin{equation}
+        \big\| \frac{ y-\sum_{i=1}^n\alpha^{i-1}f(x_i) }{ \alpha^n }-f(x_{n+1}) \big\|\leq \alpha.
+    \end{equation}
+    En multipliant par \( \alpha^{n}\), le terme \( \alpha^nf(x_{n+1})\) s'intègre bien dans la somme :
+    \begin{equation}
+        \big\| y=\sum_{i=1}^{n+1}\alpha^{i-1}f(x_i) \big\|\leq \alpha^{n+1}.
+    \end{equation}
+    Nous nous intéressons à une éventuelle limite à la somme des \( \alpha^{n-1}x_n\). D'abord nous avons la majoration \( \| \alpha^{n-1}x_n \|\leq \alpha^{n-1}C\), et vu que par la définition de la presque surjectivité \( 0<\alpha<1\), la série
+    \begin{equation}
+        \sum_{n=1}^{\infty}\alpha^{n-1}x_n
+    \end{equation}
+    converge absolument\footnote{Définition~\ref{DefVFUIXwU}.} parce que la suite des normes est une suite géométrique de raison \( \alpha\). Vu que \( E\) est de Banach, la convergence absolue implique la convergence simple (la suite des sommes partielles est de Cauchy et Banach est complet). Nous posons
+    \begin{equation}
+        x=\sum_{n=1}^{\infty}\alpha^{n-1}x_n\in E,
+    \end{equation}
+    et en termes de normes, ça vérifie
+    \begin{equation}
+        \| x \|\leq\sum_{n=1}^{\infty}\alpha^{n-1}\| x_n \|\leq C\sum_{n=1}^{\infty}\alpha^{n-1}=\frac{ C }{ 1-\alpha }.
+    \end{equation}
+    Donc c'est bon pour avoir \( x\in B\big( 0,\frac{ C }{ 1-\alpha } \big)\). Nous devons encore vérifier que \( y=f(x)\). Pour cela nous remarquons que
+    \begin{equation}
+        \| y-f\Big( \sum_{n=1}^N\alpha^{n-1}x_n \Big) \|\leq \alpha^N.
+    \end{equation}
+    Nous pouvons prendre la limite \( N\to \infty\) et permuter \( f\) avec la limite (par continuité de \( f\)). Vu que \( 0<\alpha<1\) nous avons
+    \begin{equation}
+        \| y-f(x) \|=0.
+    \end{equation}
+\end{proof}
+
+\begin{theorem}[Tietze\cite{KXjFWKA,ytMOpe}]   \label{ThoFFQooGvcLzJ}
+    Soit un espace métrique \( (X,d)\) et un fermé \( Y\subset X\). Soit \( g_0\in C^0(Y,\eR)\). Alors \( g_0\) admet un prolongement continu sur \( X\).
+\end{theorem}
+
+\begin{proof}
+    Soit l'opération de restriction
+    \begin{equation}
+        \begin{aligned}
+            T\colon (C^0_b(X,\eR),\| . \|_{\infty})&\to (C^0_b(Y,\eR),\| . \|_{\infty}) \\
+            f&\mapsto f|_Y.
+        \end{aligned}
+    \end{equation}
+    L'application \( T\) est évidemment linéaire. Elle est de plus borné pour la norme opérateur usuelle donnée par la proposition~\ref{DefNFYUooBZCPTr} parce que \( \| T(f) \|\leq \| f \|<\infty\). L'application \( T\) est alors continue par la proposition~\ref{PROPooQZYVooYJVlBd}.
+
+    \begin{subproof}
+    \item[Presque surjection]
+
+    Soit \( g\in C^0_b(Y,\eR)\) avec \( \| g \|_{\infty}\leq 1\). Nous posons
+    \begin{subequations}
+        \begin{align}
+            Y^+=\{ x\in Y\tq \frac{1}{ 3 }\leq g(x)\leq 1 \}\\
+            Y^-=\{ x\in Y\tq -1\leq g(x)\leq -\frac{1}{ 3 } \}.
+        \end{align}
+    \end{subequations}
+    Nous considérons alors
+    \begin{equation}
+        \begin{aligned}
+            f\colon X&\to \eR \\
+            x&\mapsto \frac{1}{ 3 }\frac{ d(x,Y^-)-d(x,Y^+) }{ d(x,Y^-)+d(x,Y^+) }
+        \end{aligned}
+    \end{equation}
+    Vu qu'en valeur absolue le dénominateur est plus grand que le numérateur nous avons \( \| f \|_{\infty}\leq \frac{1}{ 3 }\). Notons que
+    \begin{itemize}
+        \item Si \( x\in Y^+\) alors \( f(x)=\frac{1}{ 3 }\) et \( g(x)\in\mathopen[ \frac{1}{ 3 } , 1 \mathclose]\);
+        \item Si \( x\in Y^-\) alors \( f(x)=-\frac{1}{ 3 }\) et \( g(x)\in\mathopen[-1,-\frac{1}{ 3 } \mathclose]\);
+        \item Si \( x\) n'est ni dans \( Y^+\) ni dans \( Y^-\) alors nous avons\footnote{Nous rappelons que \( \| g \|=1\), donc \( g(x)\) est forcément ente \( -1\) et \( 1\).} \( g(x)\in\mathopen[ -\frac{1}{ 3 } , \frac{1}{ 3 } \mathclose]\) et donc \( \big| f(x)-g(x) \big|\leq \big| f(x) \big|+\big| g(x) \big|\leq \frac{ 2 }{ 3 }\).
+    \end{itemize}
+    Dans les deux cas nous avons \( \big| f(x)-g(x) \big|\in\mathopen[ 0 , \frac{ 2 }{ 3 } \mathclose]\) pour tout \( x\in X\). Cela prouve que
+    \begin{equation}
+        \| T(f)-g \|_{Y,\infty}\leq \frac{ 2 }{ 3 }.
+    \end{equation}
+    En résumé nous avons pris \( g\) dans la boule \( \overline{ B(0,1) }\) de \( \big( C^0_b(Y,\eR), \| . \|_{\infty} \big)\) et nous avons construit une fonction \( f\) dans la boule \( \overline{ B(0,\frac{1}{ 3 }) }\) de \( \big( C^0_b(X,\eR),\| . \|_{\infty} \big)\) telle que \( \| T(f)-g \|_{\infty}\leq \frac{ 2 }{ 3 }\). L'application \( T\) est donc une presque surjection avec \( \alpha=\frac{1}{ 3 }\) et \( C=\frac{ 2 }{ 3 }\).
+
+\item[Prolongement dans les boules unité fermées]
+
+    La proposition~\ref{PropSYMEZGU} nous assure que les espaces \( C^0_b(X,\eR)\) et \( C_b^0(Y,\eR)\) sont de Banach (complets), et le lemme~\ref{LemBQLooRXhJzK} nous dit alors que \( T\) est surjective et que pour tout \( g\in\overline{ B(0,1) }\), il existe
+    \begin{equation}
+        f\in\overline{ B\left( 0,\frac{ 1/3 }{ 1-\frac{ 2 }{ 3 } } \right) }=\overline{ B(0,1) }.
+    \end{equation}
+    telle que \( g=T(f)\).
+
+
+\item[Prolongement pour les boules ouvertes]
+
+    Jusqu'à présent nous avons montré qu'une fonction \( g\in\overline{ B(0,1) }\) admet une prolongement continu dans \( \overline{ B(0,1) }\). Nous allons montrer que si \( g\) est dans la boule ouverte \( B(0,1)\) de \( \big( C^0_b(Y,\eR),\| . \|_{\infty} \big)\) alors \( g\) admet un prolongement dans la boule ouverte \( B(0,1)\) de \( \big( C_b^0(X,\eR),\| . \|_{\infty} \big)\).
+
+    Soit \( g\in B_{C^0_b(Y)}(0,1) \) et son prolongement \( h\in \overline{ B_{C_b^0(X)}(0,1) }\). Si \( \| h \|_{\infty}<1\) alors le résultat est vrai. Sinon nous considérons l'ensemble
+    \begin{equation}
+        Z=\{ x\in X\tq | h(x) |=1 \}.
+    \end{equation}
+    Nous avons \( Y\cap Z=\emptyset\) parce que nous avons \( h=g\) sur \( Y\) et nous avons choisi \( \| g \|_{\infty}<\infty\). Par ailleurs \( Y\) est fermé par hypothèse et \( Z\) est fermé parce que \( h\) est continue; par conséquent \( Y\cap Z\) est fermé, donc\footnote{Si vous avez l'intention de dire que \( \overline{ Y\cap Z }=\bar Y\cap\bar Z=Y\cap Z=\emptyset\), allez d'abord voir l'exemple~\ref{ExBFLooUNyvbw}. Ici c'est correct parce que \( Y\) et \( Z\) sont fermés.}
+    \begin{equation}
+        \bar Y\cap\bar Z=Y\cap Z=\emptyset.
+    \end{equation}
+    Nous posons
+    \begin{equation}
+        \begin{aligned}
+            u\colon X&\to \eR^+ \\
+            x&\mapsto \frac{ d(x,Z) }{ d(x,Y)+d(x,Z) }
+        \end{aligned}
+    \end{equation}
+    Le dénominateur n'est pas nul parce qu'il faudrait \( d(x,Y)=d(x,Z)=0\), ce qui demanderait \( x\in \bar Y\cap\bar Z\), ce qui n'est pas possible. Nous posons \( f=uh\). Si \( x\in Y\) alors \( u(x)=1\), donc \( f\) est encore un prolongement de \( g\). De plus \( f\) est encore continue, et donc encore un bon candidat. Enfin si \( x\) est hors de \( Y\) alors \( d(x,Y)>0\) (strictement parce que \( Y\) est fermé) et donc \( 0<u(x)<1\), ce qui donne \( | f(x) |<| h(x) |\leq 1\). Donc \( \| f \|_{\infty}<1\).
+
+    Nous avons donc trouvé qu'une fonction dans la boule ouverte \( B_{C^0_b(Y)}(0,1)\) se prolonge en une fonction dans la boule ouverte \( B_{C^0_b(X)}(0,1)\).
+
+\item[Le cas non borné]
+
+Soit enfin \( g_0\in C^0(Y,\eR)\). Nous allons nous ramener au cas de la boule unité ouverte en utilisant un homéomorphisme \( \phi\colon \eR\to \mathopen] -1 , 1 \mathclose[\). L'application \( g=\phi\circ g_0\) est dans la boule unité ouvert de \( C^0(Y,\eR)\) et donc admet un prolongement \( f\) dans la boule unité ouverte de \( C^0(X)\). L'application \( f_0=\phi^{-1}\circ f\) est un prolongement continu de \( g_0\).
+
+    \end{subproof}
+\end{proof}
+
+Un homéomorphisme \( \phi\colon \eR\to \mathopen] -1 , 1 \mathclose[\) est donné par exemple par la fonction \( \phi(t)=\frac{ 2 }{ \pi }\arctan(t)\) dont le graphique est donné ci-dessous :
+\begin{center}
+    \input{auto/pictures_tex/Fig_FXVooJYAfif.pstricks}
+\end{center}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Dualité, réflexivité et théorème de représentation de Riesz}
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Dans la suite \( E'\) est le dual topologique, c'est-à-dire l'espace des formes linéaires et continues sur \( E\). Nous notons également \( V''\) le dual de \( (V',\| . \|)\). Certes en tant qu'ensembles, \( (V',*)\) et \( (V',\| . \|) \) sont identiques, mais comme ils n'ont pas la même topologie, les duaux ne sont pas les mêmes.
+
+Bref, \( V''\) est l'ensemble des applications linéaires continues \( (V',\| . \|)\to \eC\). Et lorsque nous disons \( \eC\) ici, ça peut aussi bien être \( \eR\) selon le contexte.
+
+De plus nous considérons que \( V''\) la norme opérateur qui dérive de la norme de \( V'\), laquelle dérive de la norme vectorielle sur \( V\).
+
+\begin{propositionDef}      \label{PROPooMAQSooCGFBBM}
+    Soit un espace vectoriel normé $V$ sur $\eR$ ou $\eC$. Nous considérons l'application
+    \begin{equation}
+        \begin{aligned}
+            J\colon V&\to V'' \\
+            J(x)\varphi&= \varphi(x).
+        \end{aligned}
+    \end{equation}
+    \begin{enumerate}
+        \item       \label{ITEMooNVVSooNFXgnE}
+            L'application \( J\) est bien définie : \( J(x)\) est continue.
+        \item       \label{ITEMooKURHooZZWpbu}
+            L'application \( J\) est continue.
+        \item       \label{ITEMooTFYVooKhMOjp}
+             Elle est injective.
+    \end{enumerate}
+
+    Lorsque \( J\) est bijective, l'espace \( V\) est dit \defe{réflexif}{réflexif}.
+\end{propositionDef}
+
+\begin{proof}
+    Point par point.
+    \begin{subproof}
+        \item[\ref{ITEMooNVVSooNFXgnE}]
+            Nous commençons par montrer que \( J(x)\colon (V',\| . \|)\to \eC\) est continue pour chaque \( x\in V\). Soit une suite \( \varphi_k\stackrel{\| . \|}{\longrightarrow}0\). Nous avons :
+            \begin{equation}
+                J(x)\varphi_k=\varphi_k(x)\leq \| \varphi_k \|\| x \|\to 0
+            \end{equation}
+            où vous aurez noté l'utilisation du lemme~\ref{LEMooIBLEooLJczmu}.  Cela prouve que \( J(x)\) est continue et donc que \( J\) est bien à valeurs dans \( V''\).
+        \item[\ref{ITEMooKURHooZZWpbu}]
+
+            Soit une suite \( x_k\stackrel{V}{\longrightarrow}0\), et étudions \( \| J(x_k) \|\) pour la norme dans \( V''\). Nous posons \( x'_k=x_k/\| x_k \|\) et nous calculons (encore une fois, nous écrivons «\( \eC\)», mais ça pourrait être \( \eR\))
+            \begin{equation}
+                \| J(x_k) \|=\sup_{\| \varphi \|=1}| J(x_k)\varphi |_{\eC}=\sup_{\| \varphi \|=1}| \varphi(x_k) |=\| x_k \|\sup_{\| \varphi \|=1}| \varphi(x'_k) |\leq \| x_k \|\to 0.
+            \end{equation}
+            La dernière inégalité pourrait être sans doute une égalité\quext{Écrivez-moi si vous en êtes certain.}, mais nous n'en avons pas besoin ici.
+        \item[\ref{ITEMooTFYVooKhMOjp}]
+            Soient \( x\neq y\) dans \( V\). Le corollaire \ref{CORooOBDHooJpiBrs} nous permet de considérer un élément \( \varphi\in V'\) tel que \( \varphi(x)\neq \varphi(y)\). Nous avons alors
+            \begin{equation}
+                J(x)\varphi\neq J(y)\varphi,
+            \end{equation}
+            et donc \( J(x)\neq J(y)\). Cela prouve que \( J\) est injective.
+    \end{subproof}
+\end{proof}
+
+Voici déjà un bel énoncé. Pour des espaces mesurés \( (\Omega,\tribA,\mu)\) plus généraux, voir l'arme totale en le théorème \ref{ThoLPQPooPWBXuv}.
 
 \begin{proposition}[\cite{PAXrsMn}, thème~\ref{THEMEooULGFooPscFJC}] \label{PropOAVooYZSodR}
     Soit \( 1<p<2\) et \( q\) tel que \( \frac{1}{ p }+\frac{1}{ q }=1\). L'application
@@ -2667,7 +3705,7 @@ Dans la suite \( E'\) est le dual topologique, c'est-à-dire l'espace des formes
 
                 \item[\( \ell(f)=\Phi_g(f)\)]
 
-                    Soit \( f\in L^p\). En vertu de la densité de \( L^2\) dans \( L^p\) prouvée dans le corollaire~\ref{CorFZWooYNbtPz} nous pouvons considérer une suite \( (f_n)\) dans \( L^2\) telle que \( f_n\stackrel{L^p}{\longrightarrow}f\). Pour tout \( n\) nous avons
+                    Soit \( f\in L^p\). En vertu de la densité de \( L^2\) dans \( L^p\) prouvée dans le corolaire~\ref{CorFZWooYNbtPz} nous pouvons considérer une suite \( (f_n)\) dans \( L^2\) telle que \( f_n\stackrel{L^p}{\longrightarrow}f\). Pour tout \( n\) nous avons
                     \begin{equation}
                         \ell(f_n)=\Phi_g(f_n).
                     \end{equation}
@@ -2688,7 +3726,7 @@ Dans la suite \( E'\) est le dual topologique, c'est-à-dire l'espace des formes
 \end{lemma}
 
 \begin{proof}
-    Soit \( D=\overline{ B(a,r) }\) un disque fermé dans le complémentaire de \( S\) (ce dernier étant fermé, le complémentaire est ouvert). Posons \( E=g^{-1}(D)\). Prouvons que \( \mu(E)=0\) parce que cela prouverait que \( g(x)\in D\) pour seulement un ensemble de mesure nulle. Mais \( S^c\) pouvant être écrit comme une union dénombrable de disques fermés\footnote{Tout ouvert peut être écrit comme union dénombrable d'éléments d'une base de topologie par la proposition~\ref{PropMMKBjgY} et $\eC$ a une base dénombrable de topologie par la proposition~\ref{PropNBSooraAFr}.}, nous aurions \( g(x)\in S^c\) presque nulle part.
+    Soit \( D=\overline{ B(a,r) }\) un disque fermé dans le complémentaire de \( S\) (ce dernier étant fermé, le complémentaire est ouvert). Posons \( E=g^{-1}(D)\). Prouvons que \( \mu(E)=0\) parce que cela prouverait que \( g(x)\in D\) pour seulement un ensemble de mesure nulle. Mais \( S^c\) pouvant être écrit comme une union dénombrable de disques fermés\footnote{Tout ouvert peut être écrit comme union dénombrable d'éléments d'une base de topologie par la proposition~\ref{DEFooLEHPooIlNmpi} et $\eC$ a une base dénombrable de topologie par la proposition~\ref{PropNBSooraAFr}.}, nous aurions \( g(x)\in S^c\) presque nulle part.
 
     Vu que \( \frac{1}{ \mu(E) }\int_Ea=a\) nous avons
     \begin{subequations}
@@ -2705,8 +3743,9 @@ Dans la suite \( E'\) est le dual topologique, c'est-à-dire l'espace des formes
 
 Dans toute la partie d'analyse fonctionnelle, sauf mention du contraire, nous considérons dans \( L^p\) des fonctions à valeurs complexes, et donc les éléments du dual sont des applications linéaires continues à valeurs dans \( \eC\).
 
-\begin{theorem}[Théorème de représentation de Riesz, thème~\ref{THEMEooULGFooPscFJC}, \cite{MathAgreg,TLRRooOjxpTp,LRBWftc,ooRCYWooNAeaTA}]  \label{ThoLPQPooPWBXuv}
-    Soit \( 1\leq p<\infty\) et un espace mesuré \( (\Omega,\tribA,\mu)\). Soit \( q\) tel que \( \frac{1}{ p }+\frac{1}{ q }=1\) avec la convention que \( q=\infty\) si \( p=1\). Alors l'application
+\begin{theorem}[Théorème de représentation de Riesz, thème~\ref{THEMEooULGFooPscFJC}, \cite{MathAgreg,TLRRooOjxpTp,LRBWftc,ooRCYWooNAeaTA}]
+                \label{ThoLPQPooPWBXuv}
+    Soit un espace mesuré \( (\Omega,\tribA,\mu)\). Soit \( q\) tel que \( \frac{1}{ p }+\frac{1}{ q }=1\) avec la convention que \( q=\infty\) si \( p=1\). Alors l'application
     \begin{equation}
         \begin{aligned}
             \Phi\colon L^q&\to (L^p)' \\
@@ -2999,7 +4038,7 @@ Dans toute la partie d'analyse fonctionnelle, sauf mention du contraire, nous co
 \index{dual!de $L^p(\Omega)$}
 
 \begin{proof}
-    En plusieurs parties, en notant toujours \( p\) et \( q\) les exposants conjugués, c'est à dire \( \frac{1}{ p }+\frac{1}{ q }=1\).
+    En plusieurs parties, en notant toujours \( p\) et \( q\) les exposants conjugués, c'est-à-dire \( \frac{1}{ p }+\frac{1}{ q }=1\).
     \begin{subproof}
         \item[Pour \ref{ITEMooNCVEooTyNsoJ}]
             Le théorème \ref{ThoLPQPooPWBXuv}\ref{ITEMooSQQBooWSFBmX} nous indique que
@@ -3112,298 +4151,6 @@ Dans \cite{ooHGADooNGZnbt}, il est dit que « la preuve [du lemme suivant], un p
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Théorèmes de Hahn-Banach}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-\begin{theorem}[Hahn-Banach\cite{brezis,TQSWRiz}]
-    Soit \( E\), un espace vectoriel réel et une application \( p\colon E\to \eR\) satisfaisant
-    \begin{enumerate}
-        \item
-            \( p(\lambda x)=\lambda p(x)\) pour tout \( x\in E\) et pour tout \( \lambda>0\),
-        \item
-            \( p(x+y)\leq p(x)+p(y)\) pour tout \( x,y\in E\).
-    \end{enumerate}
-    Soit de plus \( G\subset E\) un sous-espace vectoriel muni d'une application \( g\colon G\to \eR\) vérifiant \( g(x)\leq p(x)\) pour tout \( x\in G\). Alors il existe \( f\in\aL(E,\eR)\) telle que \( f(x)=g(x)\) pour tout \( x\in G\) et \( f(x)\leq p(x)\) pour tout \( x\in E\).
-\end{theorem}
-\index{théorème!Hahn-Banach}
-
-\begin{proof}
-    Si \( h\) une application linéaire définie sur un sous-espace de \( E\), nous notons \( D_h\) ledit sous-espace.
-
-    \begin{subproof}
-    \item[Un ensemble inductif]
-
-        Nous considérons \( P\), l'ensemble des fonctions linéaires suivant
-        \begin{equation}
-            P=\Big\{  h\colon D_h\to \eR\tq
-            \begin{cases}
-                G\subset D_h\\
-                h(x)=g(x)&\forall x\in G\\
-                h(x)\leq p(x)&\forall x\in D_h
-            \end{cases}
-        \Big\}
-        \end{equation}
-        Cet ensemble est non vide parce que \( g\) est dedans. Nous le munissons de la relation d'ordre \( h_1\leq h_2\) si et seulement si \( D_{h_1}\subset D_{h_2}\) et \( h_2\) prolonge \( h_1\). Nous montrons à présent que \( P\) est un ensemble inductif. Soit un sous-ensemble totalement ordonné \( Q\subset P\); nous définissons une fonction \( h\) de la façon suivante. D'abord \( D_h=\sup_{l\in Q}D_l\) et ensuite
-        \begin{equation}
-            \begin{aligned}
-                h\colon D_h&\to \eR \\
-                x&\mapsto l(x)&\text{si } x\in D_l
-            \end{aligned}
-        \end{equation}
-        Cela est bien définit parce que si \( x\in D_l\cap D_{l'}\) alors, vu que \( Q\) est totalement ordonné (i.e. \( l\leq l'\) ou \( l'\leq l\)), on a obligatoirement \( D_l\subset D_{l'}\) et \( l'\) qui prolonge \( l\) (ou le contraire). Donc \( h\) est un majorant de \( Q\) dans \( P\) parce que \( h\geq l\) pour tout \( l\in Q\). Cela montre que \( P\) est inductif (définition~\ref{DefGHDfyyz}). Le lemme de Zorn~\ref{LemUEGjJBc} nous dit alors que \( P\) possède un maximum \( f\) qui va être la réponse à notre théorème.
-
-    \item[Le support de \( f\)]
-
-        La fonction \( f\) est dans \( P\); donc \( f(x)\leq p(x)\) pour tout \( x\in D_h\) et \( f(x)=g(x)\) pour tout \( x\in G\). Pour terminer nous devons montrer que \( D_f=E\). Supposons donc que \( D_f\neq E\) et prenons \( x_0\notin D_f\). Nous allons contredire la maximalité de \( f\) en considérant la fonction \( h\) donnée par \( D_h=D_f+\eR x_0 \) et
-        \begin{equation}
-            h(x+tx_0)=f(x)+t\alpha
-        \end{equation}
-        où \( \alpha\) est une constante que nous allons fixer plus tard.
-
-        Nous commençons par prouver que \( f\) est dans \( P\). Nous devons prouver que
-        \begin{equation}    \label{EqOIXrlFe}
-            h(x+tx_0)=f(x)+t\alpha\leq p(x+tx_0)
-        \end{equation}
-        Pour cela nous allons commencer par fixer \( \alpha\) pour avoir les relations suivantes :
-        \begin{subequations}    \label{EqMDNkcQk}
-            \begin{numcases}{}
-                f(x)+\alpha\leq p(x+x_0)    \label{EqDYmRWEY}\\
-                f(x)-\alpha\leq p(x-x_0)
-            \end{numcases}
-        \end{subequations}
-        pour tout \( x\in D_f\). Ces relations sont équivalentes à demander \( \alpha \) tel que
-        \begin{subequations}
-            \begin{numcases}{}
-                \alpha\leq p(x+x_0)-f(x)\\
-                \alpha\geq f(x)-p(x-x_0)
-            \end{numcases}
-        \end{subequations}
-        Nous nous demandons donc s'il existe un \( \alpha\) qui satisfasse
-        \begin{equation}
-            \sup_{y\in D_f}\big( f(y)-p(y-x_0) \big)\leq \alpha\leq \inf_{z\in D_f}\big( p(z+x_0)-f(z) \big).
-        \end{equation}
-        Ou encore nous devons prouver que pour tout \( y,z\in D_f\),
-        \begin{equation}
-            p(z+x_0)-f(x)\geq f(y)-p(y-x_0)\geq 0.
-        \end{equation}
-        Par les propriétés de \( p\) et de \( f\),
-        \begin{equation}
-        p(z+x_0)+p(y-x_0)-f(z)-f(y)\geq p(z+y)-f(z+y)\geq 0.
-        \end{equation}
-        La dernière inégalité est le fait que \( f\in P\). Un choix de \( \alpha\) donnant les inéquations \eqref{EqMDNkcQk} est donc possible.
-
-        À partir des inéquations \eqref{EqMDNkcQk} nous obtenons la relation \eqref{EqOIXrlFe} de la façon suivante. Si \( t>0\) nous multiplions l'équation \eqref{EqDYmRWEY} par \( t\) :
-        \begin{equation}
-            tf(x)+t\alpha\leq tp(x+x_0).
-        \end{equation}
-        Et nous écrivons cette relation avec \( x/t\) au lieu de \( x \) en tenant compte de la linéarité de \( f\) :
-        \begin{equation}
-            f(x)+t\alpha\leq  tp\big( \frac{ x }{ t }+x_0 \big)=p(x+tx_0).
-        \end{equation}
-        Avec \( t<0\), c'est similaire, en faisant attention au sens des inégalités.
-
-        Nous avons donc construit \( h\colon D_h\to \eR\) avec \( h\in P\), \( D_f\subset D_h\) et \( h(x)=f(x)\) pour tout \( x\in D_f\). Cela pour dire que \( h>f\), ce qui contredit la maximalité de \( f\). Le domaine de \( f\) est donc \( E\) tout entier.
-
-        La fonction \( f\) est donc une fonction qui remplit les conditions.
-
-    \end{subproof}
-\end{proof}
-
-\begin{definition}  \label{DefPJokvAa}
-    Un espace topologique est \defe{localement convexe}{convexité!locale} si tout point possède un système fondamental de voisinages formé de convexes.
-\end{definition}
-%TODO : il faudrait parler de système fondamental de voisinages.
-
-\begin{definition}[Hyperplan qui sépare]
-    Soit \( E\) un espace vectoriel topologique ainsi que \( A\), \( B\) des sous-ensembles de \( E\). Nous disons que l'hyperplan d'équation \( f=\alpha\) \defe{sépare au sens large}{hyperplan!séparer!au sens large} les parties \( A\) et \( B\) si \( f(x)\leq \alpha\) pour tout \( x\in A\) et \( f(x)\geq \alpha\) pour tout \( x\in B\).
-
-    La séparation est \defe{au sens strict}{hyperplan!sépare!au sens strict} s'il existe \( \epsilon>0\) tel que
-    \begin{subequations}
-        \begin{align}
-            f(x)\leq \alpha-\epsilon&&\text{pour tout } x\in A\\
-            f(x)\geq \alpha+\epsilon&&\text{pour tout } x\in B.
-        \end{align}
-    \end{subequations}
-\end{definition}
-
-\begin{theorem}[Hahn-Banach, première forme géométrique\cite{TQSWRiz}]  \label{ThoSAJjdZc}
-    Soit \( E\) un espace vectoriel topologique et \( A\), \( B\) deux convexes non vides disjoints de \( E\). Si \( A\) est ouvert, il existe un hyperplan fermé qui sépare \( A\) et \( B\) au sens large.
-\end{theorem}
-
-\begin{theorem}[Hahn-Banach, seconde forme géométrique] \label{ThoACuKgtW}
-    Soient un espace vectoriel topologique localement convexe\footnote{Définition~\ref{DefPJokvAa}.} ainsi que des convexes non vides disjoints \( A\) et \( B\) tels que \( A\) soit compact et \( B\) soit fermé. Alors il existe un hyperplan fermé qui sépare strictement \( A\) et \( B\).
-\end{theorem}
-
-\begin{proof}
-    Vu que \( B\) est fermé, \( A\) est dans l'ouvert \( E\setminus B\). Donc si \( a\in A\), il existe un voisinage ouvert convexe de \( a\) inclus dans \( A\). Soit \( U_a\) un voisinage ouvert et convexe de \( 0\) tel que \( (a+U_a)\cap B=\emptyset\).
-
-    Vu que la fonction \( (x,y)\mapsto x+y\) est continue, nous pouvons trouver un ouvert convexe \( V_a\) tel que \( V_a+V_a\subset U_a\). L'ensemble \( a+V_a\) est alors un voisinage ouvert de \( a\) et bien entendu \( \bigcup_a(a+V_a)\) recouvre \( A\) qui est compact. Nous en extrayons un sous-recouvrement fini, c'est-à-dire que nous considérons \( a_1,\ldots, a_n\in A\) tels que
-    \begin{equation}
-        A\subset \bigcup_{i=1}^n(a_i+V_{a_i}).
-    \end{equation}
-    Nous posons alors
-    \begin{equation}
-        V=\bigcap_{i=1}^nV_{a_i}.
-    \end{equation}
-    Cet ensemble est non vide parce et il contient un voisinage de zéro parce que c'est une intersection finie de voisinages de zéro. Soit \( x\in A+V\). Il existe \( i\) tel que
-    \begin{equation}
-        x\in a_i+U_{a_i}+V\subset a_i+V_{a_i}+V_{a_i}\subset a_i+U_{a_i}\subset E\setminus B.
-    \end{equation}
-    Donc \( (A+V)\cap B=\emptyset\). L'ensemble \( A+V\) est alors un ouvert convexe disjoint de \( B\). Par la première forme géométrique du théorème de Hahn-Banach~\ref{ThoSAJjdZc} nous avons un hyperplan qui sépare \( A+V\) de \( B\) au sens large : il existe \( f\in E'\setminus\{ 0 \}\) tel que \( f(a)+f(v)\leq f(b)\) pour tout \( a\in A\), \( v\in V\) et \( b\in B\).
-
-    Il suffit donc de trouver un \( v\in V\) tel que \( f(v)\neq 0\) pour avoir la séparation au sens strict. Cela est facile : \( V\) étant un voisinage de zéro et \( f\) étant linéaire, si elle était nulle sur \( V\), elle serait nulle sur \( E\).
-\end{proof}
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Théorème de Tietze}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-\begin{definition}
-Si \( E\) et \( F\) sont des espaces normés, une application \( f\colon E\to F\) est \defe{presque surjective}{presque!surjective} s'il existe \( \alpha\in\mathopen] 0 , 1 \mathclose[\) et \( C>0\) tels que pour tout \( y\in \overline{ B_F(0,1) }\), il existe \( x\in\overline{ B_E(0,C) }\) tel que \( \| y-f(x) \|\leq \alpha\).
-\end{definition}
-
-\begin{lemma}[\cite{KXjFWKA}]   \label{LemBQLooRXhJzK}
-    Soient \( E\) et \( F\) des espaces de Banach et \( f\in\cL(E,F)\)\footnote{L'ensemble des applications linéaires continues}. Si \( f\) est presque surjective, alors
-    \begin{enumerate}
-        \item   \label{ItemTSOooYkxvBui}
-            \( f\) est surjective
-        \item\label{ItemTSOooYkxvBuii}
-            pour tout \( y\in \overline{ B_F(0,1) }\), il existe \( x\in\overline{ B_E(0,\frac{ C }{ 1-\alpha }) }\) tel que \( y=f(x)\).
-    \end{enumerate}
-\end{lemma}
-Le point~\ref{ItemTSOooYkxvBuii} est une précision du point~\ref{ItemTSOooYkxvBui} : il dit quelle est la taille de la boule de \( E\) nécessaire à obtenir la boule unité dans \( F\).
-
-\begin{proof}
-    Soit \( y\in \overline{ B_F(0,1) }\). Nous allons construire \( x\in B\big( 0,\frac{ C }{ 1-\alpha } \big)\) qui donne \( f(x)=y\). Ce \( x\) sera la limite d'une série que nous allons construire par récurrence. Pour \( n=1\) nous utilisons la presque surjectivité pour considérer \( x_1\in\overline{ B_E(0,C) } \) tel que \( \| y-f(x_1) \|\leq \alpha\). Ensuite nous considérons la récurrence
-    \begin{equation}
-        x_n\in \overline{ B_E(0,C) }
-    \end{equation}
-    tel que
-    \begin{equation}
-        \big\| y-\sum_{i=1}^n\alpha^{i-1}f(x_i) \big\|\leq \alpha^n
-    \end{equation}
-    Pour montrer que cela existe nous supposons que la série est déjà construire jusqu'à \( n>1\) :
-    \begin{equation}
-        \frac{1}{ \alpha^n }\Big( y-\sum_{i=1}^n\alpha^{i-1}f(x_i) \Big)\in \overline{ B_F(0,1) }
-    \end{equation}
-    À partir de là, par presque surjectivité il existe un \( x_{n+1}\in \overline{ B_E(0,C) }\) tel que
-    \begin{equation}
-        \big\| \frac{ y-\sum_{i=1}^n\alpha^{i-1}f(x_i) }{ \alpha^n }-f(x_{n+1}) \big\|\leq \alpha.
-    \end{equation}
-    En multipliant par \( \alpha^{n}\), le terme \( \alpha^nf(x_{n+1})\) s'intègre bien dans la somme :
-    \begin{equation}
-        \big\| y=\sum_{i=1}^{n+1}\alpha^{i-1}f(x_i) \big\|\leq \alpha^{n+1}.
-    \end{equation}
-    Nous nous intéressons à une éventuelle limite à la somme des \( \alpha^{n-1}x_n\). D'abord nous avons la majoration \( \| \alpha^{n-1}x_n \|\leq \alpha^{n-1}C\), et vu que par la définition de la presque surjectivité \( 0<\alpha<1\), la série
-    \begin{equation}
-        \sum_{n=1}^{\infty}\alpha^{n-1}x_n
-    \end{equation}
-    converge absolument\footnote{Définition~\ref{DefVFUIXwU}.} parce que la suite des normes est une suite géométrique de raison \( \alpha\). Vu que \( E\) est de Banach, la convergence absolue implique la convergence simple (la suite des sommes partielles est de Cauchy et Banach est complet). Nous posons
-    \begin{equation}
-        x=\sum_{n=1}^{\infty}\alpha^{n-1}x_n\in E,
-    \end{equation}
-    et en termes de normes, ça vérifie
-    \begin{equation}
-        \| x \|\leq\sum_{n=1}^{\infty}\alpha^{n-1}\| x_n \|\leq C\sum_{n=1}^{\infty}\alpha^{n-1}=\frac{ C }{ 1-\alpha }.
-    \end{equation}
-    Donc c'est bon pour avoir \( x\in B\big( 0,\frac{ C }{ 1-\alpha } \big)\). Nous devons encore vérifier que \( y=f(x)\). Pour cela nous remarquons que
-    \begin{equation}
-        \| y-f\Big( \sum_{n=1}^N\alpha^{n-1}x_n \Big) \|\leq \alpha^N.
-    \end{equation}
-    Nous pouvons prendre la limite \( N\to \infty\) et permuter \( f\) avec la limite (par continuité de \( f\)). Vu que \( 0<\alpha<1\) nous avons
-    \begin{equation}
-        \| y-f(x) \|=0.
-    \end{equation}
-\end{proof}
-
-\begin{theorem}[Tietze\cite{KXjFWKA,ytMOpe}]   \label{ThoFFQooGvcLzJ}
-    Soit un espace métrique \( (X,d)\) et un fermé \( Y\subset X\). Soit \( g_0\in C^0(Y,\eR)\). Alors \( g_0\) admet un prolongement continu sur \( X\).
-\end{theorem}
-
-\begin{proof}
-    Soit l'opération de restriction
-    \begin{equation}
-        \begin{aligned}
-            T\colon (C^0_b(X,\eR),\| . \|_{\infty})&\to (C^0_b(Y,\eR),\| . \|_{\infty}) \\
-            f&\mapsto f|_Y.
-        \end{aligned}
-    \end{equation}
-    L'application \( T\) est évidemment linéaire. Elle est de plus borné pour la norme opérateur usuelle donnée par la proposition~\ref{DefNFYUooBZCPTr} parce que \( \| T(f) \|\leq \| f \|<\infty\). L'application \( T\) est alors continue par la proposition~\ref{PROPooQZYVooYJVlBd}.
-
-    \begin{subproof}
-    \item[Presque surjection]
-
-    Soit \( g\in C^0_b(Y,\eR)\) avec \( \| g \|_{\infty}\leq 1\). Nous posons
-    \begin{subequations}
-        \begin{align}
-            Y^+=\{ x\in Y\tq \frac{1}{ 3 }\leq g(x)\leq 1 \}\\
-            Y^-=\{ x\in Y\tq -1\leq g(x)\leq -\frac{1}{ 3 } \}.
-        \end{align}
-    \end{subequations}
-    Nous considérons alors
-    \begin{equation}
-        \begin{aligned}
-            f\colon X&\to \eR \\
-            x&\mapsto \frac{1}{ 3 }\frac{ d(x,Y^-)-d(x,Y^+) }{ d(x,Y^-)+d(x,Y^+) }
-        \end{aligned}
-    \end{equation}
-    Vu qu'en valeur absolue le dénominateur est plus grand que le numérateur nous avons \( \| f \|_{\infty}\leq \frac{1}{ 3 }\). Notons que
-    \begin{itemize}
-        \item Si \( x\in Y^+\) alors \( f(x)=\frac{1}{ 3 }\) et \( g(x)\in\mathopen[ \frac{1}{ 3 } , 1 \mathclose]\);
-        \item Si \( x\in Y^-\) alors \( f(x)=-\frac{1}{ 3 }\) et \( g(x)\in\mathopen[-1,-\frac{1}{ 3 } \mathclose]\);
-        \item Si \( x\) n'est ni dans \( Y^+\) ni dans \( Y^-\) alors nous avons\footnote{Nous rappelons que \( \| g \|=1\), donc \( g(x)\) est forcément ente \( -1\) et \( 1\).} \( g(x)\in\mathopen[ -\frac{1}{ 3 } , \frac{1}{ 3 } \mathclose]\) et donc \( \big| f(x)-g(x) \big|\leq \big| f(x) \big|+\big| g(x) \big|\leq \frac{ 2 }{ 3 }\).
-    \end{itemize}
-    Dans les deux cas nous avons \( \big| f(x)-g(x) \big|\in\mathopen[ 0 , \frac{ 2 }{ 3 } \mathclose]\) pour tout \( x\in X\). Cela prouve que
-    \begin{equation}
-        \| T(f)-g \|_{Y,\infty}\leq \frac{ 2 }{ 3 }.
-    \end{equation}
-    En résumé nous avons pris \( g\) dans la boule \( \overline{ B(0,1) }\) de \( \big( C^0_b(Y,\eR), \| . \|_{\infty} \big)\) et nous avons construit une fonction \( f\) dans la boule \( \overline{ B(0,\frac{1}{ 3 }) }\) de \( \big( C^0_b(X,\eR),\| . \|_{\infty} \big)\) telle que \( \| T(f)-g \|_{\infty}\leq \frac{ 2 }{ 3 }\). L'application \( T\) est donc une presque surjection avec \( \alpha=\frac{1}{ 3 }\) et \( C=\frac{ 2 }{ 3 }\).
-
-\item[Prolongement dans les boules unité fermées]
-
-    La proposition~\ref{PropSYMEZGU} nous assure que les espaces \( C^0_b(X,\eR)\) et \( C_b^0(Y,\eR)\) sont de Banach (complets), et le lemme~\ref{LemBQLooRXhJzK} nous dit alors que \( T\) est surjective et que pour tout \( g\in\overline{ B(0,1) }\), il existe
-    \begin{equation}
-        f\in\overline{ B\left( 0,\frac{ 1/3 }{ 1-\frac{ 2 }{ 3 } } \right) }=\overline{ B(0,1) }.
-    \end{equation}
-    telle que \( g=T(f)\).
-
-
-\item[Prolongement pour les boules ouvertes]
-
-    Jusqu'à présent nous avons montré qu'une fonction \( g\in\overline{ B(0,1) }\) admet une prolongement continu dans \( \overline{ B(0,1) }\). Nous allons montrer que si \( g\) est dans la boule ouverte \( B(0,1)\) de \( \big( C^0_b(Y,\eR),\| . \|_{\infty} \big)\) alors \( g\) admet un prolongement dans la boule ouverte \( B(0,1)\) de \( \big( C_b^0(X,\eR),\| . \|_{\infty} \big)\).
-
-    Soit \( g\in B_{C^0_b(Y)}(0,1) \) et son prolongement \( h\in \overline{ B_{C_b^0(X)}(0,1) }\). Si \( \| h \|_{\infty}<1\) alors le résultat est vrai. Sinon nous considérons l'ensemble
-    \begin{equation}
-        Z=\{ x\in X\tq | h(x) |=1 \}.
-    \end{equation}
-    Nous avons \( Y\cap Z=\emptyset\) parce que nous avons \( h=g\) sur \( Y\) et nous avons choisi \( \| g \|_{\infty}<\infty\). Par ailleurs \( Y\) est fermé par hypothèse et \( Z\) est fermé parce que \( h\) est continue; par conséquent \( Y\cap Z\) est fermé, donc\footnote{Si vous avez l'intention de dire que \( \overline{ Y\cap Z }=\bar Y\cap\bar Z=Y\cap Z=\emptyset\), allez d'abord voir l'exemple~\ref{ExBFLooUNyvbw}. Ici c'est correct parce que \( Y\) et \( Z\) sont fermés.}
-    \begin{equation}
-        \bar Y\cap\bar Z=Y\cap Z=\emptyset.
-    \end{equation}
-    Nous posons
-    \begin{equation}
-        \begin{aligned}
-            u\colon X&\to \eR^+ \\
-            x&\mapsto \frac{ d(x,Z) }{ d(x,Y)+d(x,Z) }
-        \end{aligned}
-    \end{equation}
-    Le dénominateur n'est pas nul parce qu'il faudrait \( d(x,Y)=d(x,Z)=0\), ce qui demanderait \( x\in \bar Y\cap\bar Z\), ce qui n'est pas possible. Nous posons \( f=uh\). Si \( x\in Y\) alors \( u(x)=1\), donc \( f\) est encore un prolongement de \( g\). De plus \( f\) est encore continue, et donc encore un bon candidat. Enfin si \( x\) est hors de \( Y\) alors \( d(x,Y)>0\) (strictement parce que \( Y\) est fermé) et donc \( 0<u(x)<1\), ce qui donne \( | f(x) |<| h(x) |\leq 1\). Donc \( \| f \|_{\infty}<1\).
-
-    Nous avons donc trouvé qu'une fonction dans la boule ouverte \( B_{C^0_b(Y)}(0,1)\) se prolonge en une fonction dans la boule ouverte \( B_{C^0_b(X)}(0,1)\).
-
-\item[Le cas non borné]
-
-Soit enfin \( g_0\in C^0(Y,\eR)\). Nous allons nous ramener au cas de la boule unité ouverte en utilisant un homéomorphisme \( \phi\colon \eR\to \mathopen] -1 , 1 \mathclose[\). L'application \( g=\phi\circ g_0\) est dans la boule unité ouvert de \( C^0(Y,\eR)\) et donc admet un prolongement \( f\) dans la boule unité ouverte de \( C^0(X)\). L'application \( f_0=\phi^{-1}\circ f\) est un prolongement continu de \( g_0\).
-
-    \end{subproof}
-\end{proof}
-
-Un homéomorphisme \( \phi\colon \eR\to \mathopen] -1 , 1 \mathclose[\) est donné par exemple par la fonction \( \phi(t)=\frac{ 2 }{ \pi }\arctan(t)\) dont le graphique est donné ci-dessous :
-\begin{center}
-    \input{auto/pictures_tex/Fig_FXVooJYAfif.pstricks}
-\end{center}
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Espace de Schwartz}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -3489,15 +4236,15 @@ Pour simplifier les notations (surtout du côté de Fourier), nous allons parfoi
 %---------------------------------------------------------------------------------------------------------------------------
 
 \begin{lemmaDef}        \label{LEMDEFooZEFVooMMmiBr}
-    Les \( p_{\alpha,\beta}\) donnés par l'équation \eqref{EqOWdChCu} ci-dessus sont des semi-normes\footnote{Définition~\ref{DefPNXlwmi}.}. La topologie considérée sur \( \swS(\eR^d)\) est celle des semi-normes \( p_{\alpha,\beta}\).
+    Les \( p_{\alpha,\beta}\) donnés par l'équation \eqref{EqOWdChCu} ci-dessus sont des seminormes\footnote{Définition~\ref{DefPNXlwmi}.}. La topologie considérée sur \( \swS(\eR^d)\) est celle des seminormes \( p_{\alpha,\beta}\).
 \end{lemmaDef}
 %TODO : une preuve pour égayer la galerie.
 
 \begin{normaltext}      \label{NORMooVQESooRwJShl}
-Nous avons un enchaînement de résultats qui nous aident à prouver la continuité d'une application \( T\colon \swS(\eR^d)\to X\).
+Nous avons un enchainement de résultats qui nous aident à prouver la continuité d'une application \( T\colon \swS(\eR^d)\to X\).
 \begin{enumerate}
     \item
-        La topologie de \( \swS(\eR^d)\) est donnée par une famille dénombrable de semi-normes. Donc la proposition~\ref{PROPooMJEQooHtIyeX} nous dit que \( \swS(\eR^d)\) est métrisable.
+        La topologie de \( \swS(\eR^d)\) est donnée par une famille dénombrable de seminormes. Donc la proposition~\ref{PROPooMJEQooHtIyeX} nous dit que \( \swS(\eR^d)\) est métrisable.
     \item
         La proposition~\ref{PROPooKNVUooMbLZoy} nous dit alors que si \( X\) est métrique, toute application séquentiellement continue \( T\colon \swS(\eR^d)\to X\) est continue.
     \item
@@ -3513,7 +4260,7 @@ Nous avons un enchaînement de résultats qui nous aident à prouver la continui
 \end{normaltext}
 
 \begin{lemma}[\cite{OEVAuEz}]   \label{LemRJhCbkO}
-    La topologie sur \( \swS(\eR^d)\) est donnée aussi par les semi-normes
+    La topologie sur \( \swS(\eR^d)\) est donnée aussi par les seminormes
     \begin{equation}
         q_{n,m}=\max_{| \alpha |\leq n}\sup_{x\in \eR^d}\big( 1+\| x \| \big)^m\big| \partial^{\alpha}\varphi(x) \big|.
     \end{equation}

@@ -1,5 +1,5 @@
 % This is part of (almost) Everything I know in mathematics
-% Copyright (c) 2010-2017, 2019
+% Copyright (c) 2010-2017, 2019, 2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -8,15 +8,15 @@
 
 Most of the results about differential geometry come from \cite{kobayashi, madore, Helgason, ms_book, dgbook}.
 
-\subsection{Definition and examples}
-%-----------------------------------
+\subsection{Definition, charts}
+%------------------------------
 
 \begin{definition}
-    A $n$-dimensional \defe{differentiable manifold}{differentiable!manifold}\index{manifold} is a set $M$ and a system of charts $\{(\mU_{\alpha},\varphi_{\alpha})\}_{\alpha\in I}$ where each set $\mU_{\alpha}$ is open in $\eR^n$ and the maps $\dpt{\varphi_{\alpha}}{\mU_{\alpha}}{M}$ are injective and satisfy the three following conditions:
+    Let \( \mA\) be a class of functions as \(  C^{\infty}\), \( C^k\), or analytic. A $n$-dimensional \( \mA\)-\defe{manifold}{differentiable!manifold}\index{manifold} is a set $M$ and a set of maps $\{(\mU_{\alpha},\varphi_{\alpha})\}_{\alpha\in I}$ where each set $\mU_{\alpha}$ is open in $\eR^n$ and the maps $\dpt{\varphi_{\alpha}}{\mU_{\alpha}}{M}$ are injective and satisfy the three following conditions:
 
     \begin{itemize}
     \item every $x\in M$ is contained in at least one set $\varphi_{\alpha}(\mU_{\alpha})$,
-    \item for any two charts $\dpt{\varphi_{\alpha}}{\mU_{\alpha}}{M}$ and $\dpt{\varphi_{\beta}}{\mU_{\beta}}{M}$, the set
+    \item for any two maps $\dpt{\varphi_{\alpha}}{\mU_{\alpha}}{M}$ and $\dpt{\varphi_{\beta}}{\mU_{\beta}}{M}$, the set
     \[
        \varphi_{\alpha}^{-1}( \varphi_{\alpha}(\mU_{\alpha})\cap\varphi_{\beta}(\mU_{\beta}) )
     \]
@@ -25,62 +25,87 @@ Most of the results about differential geometry come from \cite{kobayashi, mador
     \[
       \dpt{  (\varphi_{\beta}^{-1}\circ\varphi_{\alpha})  }{   \varphi_{\alpha}^{-1}( \varphi_{\alpha}(\mU_{\alpha})\cap\varphi_{\beta}(\mU_{\beta})  )   }{\mU_{\beta}}
     \]
-    is differentiable\footnote{In the sequel, by ``differentiable'' we always mean smooth. If this map is differentiable, $C^k$, analytic,\ldots then the manifold is said to be differentiable, $C^k$, analytic,\ldots} as map from $\eR^n$ to $\eR^n$.
+    is in the class \( \mA\) as map from $\eR^n$ to $\eR^n$.
     \end{itemize}
+    In most of the cases, we will use \(  C^{\infty}\) or analytic manifolds. The expression ``smooth manifold'' means \(  C^{\infty}\) manifold.
+
+    The maps \( (U_{\alpha}, \varphi_{\alpha})\) are said ``definition charts'', but the definition \ref{DEFooQLPIooPGagtz} and the proposition \ref{PROPooUDVFooEJeluM} will show that they are not really special.
 \end{definition}
 
-Each time we say ``manifold``, we mean ``differentiable manifold``. We will only consider manifolds with Hausdorff topology (see later for the definition of a topology on a manifold). Any open set of $\eR^n$ is a differentiable manifold if we choose the identity map as chart system. Most of surfaces $z=f(x,y)$ in $\eR^3$ are manifolds, depending on certain regularity conditions on~$f$.
+\begin{example}
+    Any open set of $\eR^n$ is a smooth manifold if we choose the identity map as maps.
+\end{example} 
 
-If $M_1$ and $M_2$ are two differentiable manifolds, a map $\dpt{f}{M_1}{M_2}$ is \defe{differentiable}{differentiable!map} if $f$ is continuous and for each two coordinate systems $\dpt{\varphi_1}{\mU_1}{M_1}$ and $\dpt{\varphi_2}{\mU_2}{M_2}$, the map $\varphi_2^{-1}\circ f\circ\varphi_1$ is differentiable on its domain. One can show that if $\dpt{f}{M_1}{M_2}$ and $\dpt{g}{M_2}{M_3}$ are differentiable, then $\dpt{g\circ f}{M_1}{M_3}$ is differentiable.
+Most of surfaces $z=f(x,y)$ in $\eR^3$ are manifolds, depending on certain regularity conditions on~$f$.
 
-\subsubsection{Example: the sphere}\index{sphere}
+\begin{definition}[\cite{MonCerveau}]       \label{DEFooQLPIooPGagtz}
+    Let \( M\) be a manifold with its maps \(  \{ (U_{\alpha}, \varphi_{\alpha}) \}_{\alpha\in I}   \). A \( C^k\)-\defe{chart}{chart} of \( M\) is a couple \( (V,\psi)\) where \( V\) is open in \( \eR^n\) and \( \psi\colon V\to M\) is such that for every \( \alpha\in I\), the maps
+    \begin{equation}
+        \psi^{-1}\circ \varphi_{\alpha}\colon \varphi_{\alpha}^{-1}\big( \psi(V) \big)\to V
+    \end{equation}
+    and
+    \begin{equation}
+        \varphi_{\alpha}^{-1}\circ \psi\colon \psi^{-1}\big( \varphi_{\alpha}(U) \big)\to U_{\alpha}
+    \end{equation}
+    are of class \( C^k\).
+\end{definition}
 
-The sphere $S^n$ is the set
-\[
-  S^n=\{  (x_1,\ldots, x_{n+1})\in\eR^{n+1}\tq \|x\|=1  \}
-\]
-for which we consider the following open set in $\eR^n$:
-\[
-   \mU=\{  (u_1,\ldots,u_n)\in\eR^n\tq\|u\|<1  \}
-\]
-and the charts $\dpt{\varphi_i}{\mU}{S}$, and $\dpt{\tilde{\varphi}_i}{\mU}{S}$
-\begin{subequations}
-\begin{align}
-   \varphi_i(u_1,\ldots,u_n)&=(u_1,\ldots,u_{i-1}, \sqrt{  1-\|u\|^2  },u_i,\ldots,u_n )\\
-   \tilde{\varphi}_i(u_1,\ldots,u_n)&=(u_1,\ldots,u_{i-1}, -\sqrt{  1-\|u\|^2  },u_i,\ldots,u_n ).
-\end{align}
-\end{subequations}
-These map are clearly injective. To see that $\varphi(\mU)\cup\tilde{\varphi}(\mU)=S$, consider $(x_1,\ldots,x_{n+1})\in S$. Then at least one of the $x_i$ is non zero. Let us suppose $x_1\neq 0$, thus $x_1^2=1-(x_2^2+\cdots+x_{n+1}^2)$ and
-\begin{equation}\label{eq:xupm}
-   x_1=\pm\sqrt{1-(\ldots)}.
-\end{equation}
-If we put $u_i=x_{i+1}$, we have $x=\varphi(u)$ or $x=\tilde{\varphi}(u)$ following the sign in relation \eqref{eq:xupm}. The fact that $\varphi^{-1}\circ\tilde{\varphi}$ and $\tilde{\varphi}^{-1}\circ\varphi$ are differentiable is a ``first year in analysis exercise``.
+\begin{lemma}       \label{LEMooGAMVooIWUzmy}
+    Let \( (M,\{ (U_{\alpha}, \varphi_{\alpha}) \}_{\alpha\in I}) \) be a manifold. If \( (V,\psi)\) is a chart, the set
+    \begin{equation}
+        \psi^{-1}\big(\varphi_{\alpha}(U_{\alpha})\big)
+    \end{equation}
+    is open in \(\eR^n\).
+\end{lemma}
 
-\subsubsection{Example: projective space}
+\begin{proof}
+    By definition \ref{DEFooQLPIooPGagtz}, the map \( \varphi_{\alpha}\circ \psi \colon V\to U_{\alpha}\) is \( C^k\) and, in particular, continuous\footnote{Definition \ref{DefOLNtrxB}\ref{ITEMooEHGWooDdITRV}.}. Thus if \( \mO\) is open in \( U_{\alpha}\), then \( (\varphi_{\alpha}^{-1}\circ\psi)^{-1}(\mO)\) is open in \( V\). Since \( V\) is open in \( \eR^n\), an open set in \( V\) is open in \( \eR^n\). The set \( U_{\alpha}\) is in particular open in \( U_{\alpha}\), thus the part
+    \begin{equation}
+        (\varphi_{\alpha}^{-1}\circ \psi)^{-1}(U_{\alpha})=(\psi^{-1}\circ\varphi_{\alpha})(U_{\alpha})
+    \end{equation}
+    is open in \( \eR^n\).
+\end{proof}
 
-On $\eR^{n+1}\setminus\{o\}$, we consider the equivalence relation $v\sim\lambda w$ for all non zero $\lambda\in\eR$, and we put
-\[
-  \eR P^n=\left(\eR^{n+1}\setminus\{o\}\right)/\sim.
-\]
-This is the set of all the one dimensional subspaces of $\eR^{n+1}$. This is the real \defe{projective space}{projective!real space} of dimension $n$. We set $\mU=\eR^n$ and
-\[
-  \varphi_i(u_1,\ldots,u_n)=\Span\{ (u_1,\ldots,u_{i-1},1,u_i,\ldots,u_n) \}.
-\]
-One can see that this gives a manifold structure to $\eR P^n$. Moreover, the map
-		\begin{equation}
-		\begin{aligned}
-			A \colon S^n &\to \eR P^n\
-			v&\mapsto \Span v
-		\end{aligned}
-	\end{equation}
-is differentiable.
+\begin{proposition}[\cite{MonCerveau}]      \label{PROPooUDVFooEJeluM}
+    If \( (V_1,\psi_1)\) and \( (V_2,\psi_2)\) are \( C^k\)-charts, then the map
+    \begin{equation}
+        \psi_2^{-1}\circ \psi_1\colon \psi_1^{-1}\big( \psi_2(V_2) \big)\to V_2
+    \end{equation}
+    is of class \( C^k\).
+\end{proposition}
 
-Let us show how to identify $\eR\cup\{ \infty \}$ to $\eR P^1$, the set of directions in the plane $\eR^2$. Indeed consider any vertical line $l$ (which does contain the origin). A non vertical vector subspace of $\eR^2$ intersects $l$ in one and only one point, while the vertical vector subspace is associated with the infinite point.
+\begin{proof}
+    Let \( q\in \psi_1^{-1}\big( \psi_2(V_2) \big)\). We will prove that \( \psi_2^{-1}\circ\psi_1\) is \( C^k\) on a neighbourhood of \( q\).  Let \( p=\psi_1(q)\) and \( (U_{\alpha},\varphi_{\alpha})\) be a definition chart around \( p\). We consider
+    \begin{equation}
+        A=\varphi_{\alpha}(U_{\alpha})\cap\psi_1(V_1)\cap\psi_2(V_2).
+    \end{equation}
+    The point \( p\) belongs to \( A\). We set \( U'=\varphi_{\alpha}^{-1}(A)\), \( V_1'=\psi_1^{-1}(A)\) and \( V_2'=\psi_2^{-1}(A)\). We show that
+    \begin{equation}
+        \psi_2^{-1}\circ\psi_1\colon V_1'\to V_2'
+    \end{equation}
+    is \( C^k\).
+
+    We have
+    \begin{equation}
+        \psi_2^{-1}\circ\psi_1=\psi_2^{-1}\circ\varphi\circ\varphi^{-1}\circ\psi_1.
+    \end{equation}
+    Since \( \psi_1\) and \( \psi_2\) are charts, the maps \( \psi_2^{-1}\circ \varphi\) and \( \varphi^{-1}\circ\psi_1\) are \( C^k\), so that the compound function is \( C^k\) by theorem \ref{ThoAGXGuEt}.
+\end{proof}
+
+\begin{lemma}       \label{LEMooOPPJooXezOHS}
+    Let \( M\) be a \( C^k\) manifold and \( p\in M\). There exists a chart \( (V,\psi)\) of \( M\) around \( p\) such that \( 0\in V\) and \( p=\psi(0)\).
+\end{lemma}
+
+\begin{proof}
+    By definition there exists a chart \( (U_{\alpha},\varphi_{\alpha})\) around \( p\) and \( u\in U_{\alpha}\) such that \( p=\varphi_{\alpha}(u)\). Let \( V=U-u\) and \( \psi(x)=\varphi_{\alpha}(x+u)\).
+
+    Then \( V\) is an open set and \( \psi(0)=\varphi_{\alpha}(u)=p\).
+\end{proof}
 
 \subsection{Topology}
 %--------------------
 
-\begin{propositionDef}
+\begin{propositionDef}      \label{DEFooHGNOooNqGmxE}
     Let \( M\) be a manifold. A subset $V\subset M$ is \defe{open}{topology!on manifold} if for every chart $\dpt{\varphi}{\mU}{M}$, the set $\varphi^{-1}(V\cap\varphi(\mU))$ is open in $\mU$. 
 
     The set of open sets in \( M\) is a topology.
@@ -106,33 +131,101 @@ Let us show how to identify $\eR\cup\{ \infty \}$ to $\eR P^1$, the set of direc
     We proof the continuity of $\dpt{\varphi}{\mU}{M}$; for an open set $V$ in $M$, we have to show that $\varphi^{-1}(V)$ is open in $\mU\subset\eR^n$. But the definition of the topology on $M$, is precisely the fact that $\varphi^{-1}(V\cap\varphi(\mU))$ is open.
 \end{proof}
 
+\begin{lemma}       \label{LEMooGDMZooLCtnuA}
+    The topology of \( \eR^n\) as manifold is the same as the usual one.
+\end{lemma}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Regularity}
+%---------------------------------------------------------------------------------------------------------------------------
+
 \begin{definition}
     If $M$ and $M$ are two analytic manifolds, a map $\dpt{\phi}{M}{N}$ is \defe{regular}{regular}\label{PgDefRegular} at $p\in M$ if it is analytic at $p$ and $\dpt{d\phi_p}{T_pM}{T_{\phi(p)}N}$ is injective.
 \end{definition}
+
+\begin{definition}[\cite{BIBooXDPUooVeTGwz}]        \label{DEFooFNTHooEwsqXB}
+    Let \( M\) and \( N\) be \( C^k\)-manifolds. We say that a map \( h\colon M\to N\) is \( C^k\) if the two following conditions hold:
+    \begin{enumerate}
+        \item
+            The map \( h\) is continuous\footnote{With respect to the topology of the definition \ref{DEFooHGNOooNqGmxE}.}.
+        \item
+            for every \( p\in M\), there exists charts \( (U,\varphi)\) around \( p\) and \( (V,\psi)\) around \( h(p)\) such that
+            \begin{enumerate}
+                \item
+                    \( h\big( \varphi(U) \big)\subset\psi(V)\)
+                \item       \label{SUBITEMooXQFUooRxMVnw}
+                    the map \( \psi^{-1}\circ h\circ\varphi\colon U \to V \) is \( C^k\) (definition \ref{DefPNjMGqy}).
+            \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+For the sake of the following lemma, we say «\( mC^k\)» for «manifold»-\( C^k\) (definition \ref{DEFooFNTHooEwsqXB}) and «\( uC^k\)» for «usual» \( C^k\) (definition \ref{DefPNjMGqy} for normed vector spaces). The lemma will say that the two notions are the same, so that we can only say «\( C^k\)».
+\begin{lemma}[\cite{MonCerveau}]
+    We consider the manifolds \( M=\eR^m\) and \( N=\eR^n\) with the identify as charts. A map \( f\colon M\to N\) is \( mC^k\) if and only if it is \( uC^k\).
+\end{lemma}
+
+\begin{proof}
+    For the sake of notations, we set the charts \( U=\eR^m\), \( V=\eR^n\) and \( \psi_m\colon U\to M\), \( \psi_n\colon V\to N\). The maps \( \psi_n\) and \( \psi_m\) are the identity.
+    \begin{subproof}
+    \item[\( \Rightarrow\)]
+        The hypothesis that \( f\colon M\to N\) is \( mC^k\) says that the map \( \psi_n^{-1}\circ f\circ\psi_m\) is \( uC^k\). Thus the map
+        \begin{equation}
+            f=\psi_n\circ\psi_n^{-1}\circ f\circ\psi_m\circ\psi_m^{-1}
+        \end{equation}
+        is \( uC^k\) too.
+    \item[\( \Leftarrow\)]
+        Since \( f\) is \( uC^k\) and since \( \psi_n\) and \( \psi_m\) are the identity, the map \( \psi_n^{-1}\circ f\circ\psi_m\) is \( uC^k\), which means that \( f\) is \( mC^k\).
+    \end{subproof}
+\end{proof}
 
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Tangent and cotangent bundle}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+\begin{definition}
+    An open set \( \Omega\subset \eR^n\) is a manifold with the identify chart \( (\Omega, \varphi)\) where \( \phi\colon \Omega\to \Omega\) is the identity.
+\end{definition}
+
+\begin{lemma}
+    Let \( \gamma\colon \eR\to M\) be a \( C^1\) path. Let \( f\colon M\to \eR\) be a \( C^1\)-function. Then the map \( f\circ \gamma\colon \eR\to \eR\) is \( C^1\).   
+\end{lemma}
+
+\begin{proof}
+    Let \( a\in \eR\) and \( p=\gamma(a)\). We consider a chart \( (U,\varphi)\) of \( M\) around \( p\). We decompose
+    \begin{equation}
+        f\circ \gamma= f\circ \varphi\circ \varphi^{-1}\circ\gamma.
+    \end{equation}
+    Since \( \varphi\) is a chart, the maps \( f\circ\varphi\) and \( \varphi^{-1}\circ\gamma\) are \( C^1\).
+\end{proof}
+
+
 \subsection{Tangent vector}
 %--------------------------
 
-As first attempt, we define a tangent vector of $M$ at the point $x\in M$ as the ``derivative'' of a path $\dpt{\gamma}{(-\epsilon,\epsilon)}{M}$ such that $\gamma(0)=x$. It is denoted by
-\[
-\gamma'(0)= \dsdd{\gamma(t)}{t}{0}.
-\]
-The question is to correctly define de derivative in the right hand side. Such a definition is achieved as follows. 
-
 \begin{definition}      \label{DEFooJJVIooDUBwDJ}
-    A \defe{tangent vector}{} to the manifold $M$ is a linear map $X\colon  C^{\infty}(M)\to \eR$ which can be written under the form
-    \begin{equation}  \label{eq_deftgpath}
-       Xf=(f\circ X)'(0)=\Dsdd{f(X(t))}{t}{0}
+    Let \( \gamma\colon \eR\to M\) be a \( C^1\) path\footnote{The concept of map of class \( C^k\) between two manifolds is the definition \ref{DEFooFNTHooEwsqXB}.}. We consider the operator
+    \begin{equation}
+        \begin{aligned}
+            \nabla_{\gamma}\colon C^k(M,\eR)&\to \eR \\
+            f&\mapsto \Dsdd{ (f\circ\gamma)(t) }{t}{0}. 
+        \end{aligned}
     \end{equation}
-    for a certain path $X\colon \eR\to M$. Notice the abuse of notation between the tangent vector and the path which defines it.
-
-    A more formal way to define a tangent vector is to say that it is an equivalent class of path in the sense that two path are equivalent if and only if they induced maps by \eqref{eq_deftgpath} are equals.
+    We define
+    \begin{equation}
+        T_aM=\{ \nabla_{\gamma}\tq \gamma\in C^k(\eR,M),\gamma(0)=a \}.
+    \end{equation}
+    This is the \defe{tangent space}{tangent space} at \( a\).
 \end{definition}
+
+If \( \gamma\colon \eR\to M\) is a path, we also use the notation
+\begin{equation}        \label{EQooJQVRooLziKoH}
+    \nabla_{\gamma}=\Dsdd{ \gamma(t) }{t}{0}.
+\end{equation}
+If one sees \( \eR\) as a manifold, then the expression \( \Dsdd{ 2t+1 }{t}{0}\) can stand for the number \( 1\) (usual derivative of \( t\mapsto 2t+1\) at \( t=0\)) or for the operator
+\begin{equation}
+    \Dsdd{ 2t+1 }{t}{0}\phi=2\phi'(1).
+\end{equation}
 
 \begin{remark}      \label{REMooJQFHooQuoZxt}
     The notation \( \gamma'(0)\) for the tangent vector to the curve \( \gamma\) has to be taken with caution. In particular, \( \gamma'(0)\) is not defined by the limit
@@ -142,111 +235,612 @@ The question is to correctly define de derivative in the right hand side. Such a
     because when \( M\) is a manifold, there is in general no notion of difference between the points of \( M\), so that the difference \( \gamma(\epsilon)-\gamma(0)\) has no meaning.
 
     The only definition of \( \gamma'(0)\) is as differential operator.
-
-    The manifold could, of course have some additional structure which allows to write the differential quotient \eqref{EQooVMGFooFUCNEY}. This is the case when \( M=\eR^n\) or when \( M\) is a matrix group. In these cases, the question of the link between \( \gamma'(0)\) and the ``true'' derivative of \( \gamma\) has to be studied.
-
-    In that case we have the same notational problem with ``$df$''. Let \( f\colon M\to \eR\) where \( M\) is a manifold like \( \eR^n\). The symbol \( df_a\) with \( a\in M\) can be the differential of \( f\) as function \( M\to \eR\), so that \( df_a\) is a linear map from \( \eR^n\) to \( \eR\). But \( df_a\) can also be the linear map \( df_a\colon T_aM\to T_{f(a)}\eR\) where the spaces \( T_aM\) and \( T_{f(a)}\eR\) are made of differential operators.
-
-    This is the point of the section \ref{SECooTSAJooNtjgMD}.
 \end{remark}
 
-Using the chain rule $d(g\circ f)(a)=dg(f(a))\circ df(a)$ for the differentiation in $\eR^n$, one sees that this equivalence notion doesn't depend on the choice of $\varphi$. In other words, if $\varphi$ and $\tilde{\varphi}$ are two charts for a neighbourhood of $x$, then $(\varphi^{-1} \circ\gamma)'(0)=(\varphi^{-1} \circ\sigma)'(0)$ if and only if $(\tilde{\varphi}^{-1} \circ\gamma)'(0)=(\tilde{\varphi}^{-1} \circ\sigma)'(0)$. The space of all tangent vectors at $x$ is denoted by $T_xM$. There exists a bijection $[\gamma]\leftrightarrow (\varphi^{-1}\circ\gamma)'(0)$ between $T_xM$ and $\eR^n$, so $T_xM$ is endowed with a vector space structure.
+%---------------------------------------------------------------------------------------------------------------------------
+\subsection{Vector space structure on the tangent space}
+%---------------------------------------------------------------------------------------------------------------------------
 
-If $(\mU,\varphi)$ is a chart around $X(0)$, we can express $Xf$ using only well know objects by defining the function $\tilde f =f\circ\varphi$ and $\tX=\varphi^{-1}\circ X$
-\[
-  Xf=\Dsdd{ (\tilde f \circ\tX)(t) }{t}{0}=\left.\dsd{\tilde f }{x^{\alpha}}\right|_{x=\tX(0)}\left.\frac{d\tX^{\alpha}}{dt}\right|_{t=0}.
-\]
-In this sense, we write
+If \( X\) and \( Y \) are elements of \( T_pM\), and if \( \lambda\in \eR\) the definitions of \( \lambda X\) and \( X+Y\) are just the usual definitions: 
 \begin{equation}
-  X=\frac{d\tX^{\alpha}}{dt} \dsd{}{x^{\alpha}}
+    \begin{aligned}
+        \lambda X\colon  C^{\infty}(M)&\to \eR \\
+        f&\mapsto \lambda X(f) 
+    \end{aligned}
 \end{equation}
-and we say that $\{\partial_1,\ldots,\partial_n\}$ is a basis of $T_xM$. As far as notations are concerned, from now a tangent vector is written as $X=X^{\alpha}\partial_{\alpha}$ where $X^{\alpha}$ is related to the path $\dpt{X}{\eR}{M}$ by $X^{\alpha}=d\tX^{\alpha}/dt$. We will no more mention the chart $\varphi$ and write
-\[
-  Xf=\Dsdd{f(X(t))}{t}{0}.
-\]
-Correctness of this short notation is because the equivalence relation is independent of the choice of chart. When we speak about a tangent vector to a given path $X(t)$ without specification, we think about $X'(0)$.
-
-All this construction gives back the notion of tangent vector when $M\subset \eR^m$. In order to see it, think to a surface in $\eR^3$. A tangent vector is precisely given by a derivative of a path: if $\dpt{c}{\eR}{\eR^n}$ is a path in the surface, a tangent vector to this curve is given by
-\[
-   \lim_{t\to 0}\frac{c(t_0)-c(t_0+t)}{t}
-\]
-which is a well know limit of a difference in $\eR^n$.
-
-\label{pg:vecto_vecto}Let us precise how does a tangent vector acts on maps others than $\eR$-valued functions. If $V$ is a vector space and $\dpt{f}{M}{V}$, we define
-\[
-   Xf=(Xf^i)e_i
-\]
-where $\{e_i\}$ is a basis of $V$ and the functions $\dpt{f^i}{M}{\eR}$, the decomposition of $f$ with respect to this basis. If we consider a map $\dpt{\varphi}{M}{N}$ between two manifolds, the natural definition is $Xf:=dfX$. More precisely, if we consider local coordinates $x^{\alpha}$ and a function $\dpt{f}{M}{\eR}$,
-\begin{equation}\label{eq:dvp_phi}
-   (d\varphi X)f=\Dsdd{  (f\circ\varphi\circ X)(t) }{t}{0}=\dsd{f}{x^{\alpha}}\dsd{\varphi^{\alpha}}{x\hbeta}\frac{dX\hbeta}{dt}.
-\end{equation}
-Now we are in a notational trouble: when we write $X=X^{\alpha}\partial_{\alpha}$, the ``$X^{\alpha}$``{} is the derivative of the ``$X^{\alpha}$``{} which appears in the path $X(t)=(X^1(t),\ldots,X^n(t))$ which gives $X$ by $X=X'(0)$. So equation \eqref{eq:dvp_phi} gives
+and
 \begin{equation}
-   X(\varphi):=d\varphi X=X\hbeta(\partial_{\beta}\varphi^{\alpha})\partial_{\alpha}.
+    \begin{aligned}
+        X+Y\colon  C^{\infty}(M)&\to \eR \\
+        f&\mapsto X(f)+Y(f). 
+    \end{aligned}
 \end{equation}
+The real questions is: are \( \lambda X\) and \( X+Y\) elements of \( T_pM\) ?
 
-\subsection{Differential of a map}
-%------------------------------------------
-
-Let $\dpt{f}{M_1}{M_2}$ be a differentiable map, $x\in M_1$ and $X\in T_xM_1$, i.e. $\dpt{X}{\eR}{M_1}$ with $X(0)=x$ and $X'(0)=X$. We can consider the path $Y=f\circ X$ in $M_2$. The tangent vector to this path is written $df_x X$.
-
-\begin{proposition}
-If $\dpt{f}{M_1}{M_2}$ is a differentiable map between two differentiable manifolds, the map
-		\begin{equation}
-		\begin{aligned}
-			df_x \colon T_xM_1 &\to T_{f(x)}M_2\
-			X'(0)&\mapsto (f\circ X)'(0)
-		\end{aligned}
-	\end{equation}
-is linear.
+\begin{proposition}[\( T_pM\) is  a vector space\cite{MonCerveau}]  \label{PROPooEJBWooSbvypo}
+    Let \( M\) be a \( C^k\) manifold.
+    \begin{enumerate}
+        \item
+            The set \( T_pM\) is  a vector space
+        \item
+            The dimension of \( T_pM\) is the same as the dimension of \( M\).
+    \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-We consider local coordinates $\dpt{x}{\eR^n}{M_1}$ and $\dpt{y}{\eR^m}{M_2}$. The maps $\dpt{f}{M_1}{M_2}$ and $\dpt{y^{-1}\circ f\circ x}{\eR^n}{\eR^m}$ will sometimes be denoted by the same symbol $f$. We have $(x^{-1}\circ X)(t)=(x_1(t),\ldots,x_n(t))$ and $(y^{-1}\circ Y)(t)=\big( y_1(x_1(t),\ldots,x_n(t),\ldots, y_m(x_1(t),\ldots,x_n(t)  \big)$, so that
-\[
-  Y'(0)=\left(   \sum_{i=1}^n \dsd{y_1}{x_i}x_i'(0),\ldots,\sum_{i=1}^n \dsd{y_m}{x_i}x_i'(0)   \right)\in\eR^m
-\]
-which can be written in a more matricial way under the form
-\[
-   Y'(0)=\left( \dsd{y_i}{x_j}x'_j(0) \right).
-\]
-So in the parametrisations $x$ and $y$, the map $df_x$ is given by the matrix $\partial y^i/\partial x_j$ which is well defined from the only given of $f$.
+    Let \( p\in M\) and a chart \( (U,\varphi)\) of \( M\) around \( p\) such that \( p=\varphi(0)\) (lemma \ref{LEMooOPPJooXezOHS}). We consider \( X,Y\in T_pM\) and paths \( \gamma\colon \eR\to M\), \( \sigma\colon \eR\to M\) such that \( X=\nabla_{\gamma}\) and \( Y=\nabla_{\sigma}\).
+
+    \begin{subproof}
+    \item[Sum]
+        
+
+    We aim to find a path \( s\colon \eR\to M\) such that \( \nabla_s=X+Y\). We set
+    \begin{equation}        \label{EQooYNAOooKkKmxo}
+        \begin{aligned}
+            s\colon \eR&\to M \\
+            t&\mapsto \varphi\Big( \varphi^{-1}\big( \gamma(t) \big)+\varphi^{-1}\big( \sigma(t) \big) \Big). 
+        \end{aligned}
+    \end{equation}
+    This path satisfy \( s(0)=\varphi\Big( \varphi^{-1}(p)+\varphi^{-1}(p) \Big)=\varphi(0)=p\). In order to prove that \( \nabla_s=X+Y\) we consider \( f\in C^k(M,\eR)\) and we compute \( \nabla_s(f)\) :
+    \begin{subequations}        \label{SUBEQSooKOGNooGISCax}
+        \begin{align}
+            \Dsdd{ (f\circ s)(t) }{t}{0}&=\Dsdd{ (f\circ\varphi)\Big( \varphi^{-1}\big( \gamma(t) \big)+\varphi^{-1}\big( \sigma(t) \big) \Big) }{t}{0}\\
+            &=\sum_k\partial_k(f\circ \varphi)(0)\Dsdd{ \varphi^{-1}\big( \gamma(t) \big)_k+\varphi^{-1}\big( \sigma(t) \big)_k }{t}{0}.
+        \end{align}
+    \end{subequations}
+    We used the theorem \ref{THOooKBTYooWFtoSF} with the maps \( f\circ \varphi\colon \eR^n\to \eR\) and
+    \begin{equation}
+        \begin{aligned}
+            g\colon \eR&\to \eR^n \\
+            t&\mapsto \varphi^{-1}\big( \gamma(t) \big)+\varphi^{-1}\big( \sigma(t) \big). 
+        \end{aligned}
+    \end{equation}
+    We focus on one term:
+    \begin{subequations}
+        \begin{align}
+            \sum_k\partial_k(f\circ \varphi)(0)\Dsdd{ \varphi^{-1}\big( \gamma(t) \big)_k }{t}{0} &=\Dsdd{ (f\circ\varphi)\big( \varphi^{-1}(\gamma(t)) \big) }{t}{0}\\
+            &=\Dsdd{ f\big( \gamma(t) \big) }{t}{0}\\
+            &=\nabla_{\gamma}(f).
+        \end{align}
+    \end{subequations}
+    The two terms of \eqref{SUBEQSooKOGNooGISCax} sum to \( \nabla_{\gamma}(f)+\nabla_{\sigma}(f)\), so that \( \nabla_s=\nabla_{\gamma}+\nabla_{\sigma}=X+Y\).
+
+\item[Product]
+
+        We ail to find a path \( s\colon \eR\to M\) such that \( \nabla_s=\lambda X\). The answer is easy: \( s(t)=\gamma(\lambda t)\). Indeed:
+        \begin{equation}
+            \Dsdd{ (f\circ s)(t) }{t}{0}=\Dsdd{ (f\circ \gamma)(\lambda t) }{t}{0}=\lambda \Dsdd{ (f\circ \gamma)(t) }{t}{0}=\lambda X(f).
+        \end{equation}
+        We used the lemma \ref{LEMooXHVBooHYjXdq}.
+    \end{subproof}
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Differential of a map}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{propositionDef}[Differential of a map\cite{MonCerveau}]
+    Let \( M\), \( N\) be \( C^1\)-manifolds. Let \( a\in M\). Let \( \phi\in C^1(M,N)\). We consider two paths \( \gamma\) and \( \sigma\) such that \( \gamma(0)=\sigma(0)=a\) and
+    \begin{equation}
+        \nabla_{\gamma}=\nabla_{\sigma}.
+    \end{equation}
+    Then
+    \begin{equation}
+        \nabla_{\phi\circ \gamma}=\nabla_{\phi\circ \sigma}.
+    \end{equation}
+    We define
+    \begin{equation}        \label{EQooQNZPooMVaSQC}
+        \begin{aligned}
+            d\phi_a\colon T_aM&\to T_{\phi(a)}N \\
+            \nabla_{\gamma}&\mapsto \nabla_{\phi\circ \gamma}. 
+        \end{aligned}
+    \end{equation}
+    We have the formula
+    \begin{equation}
+        d\phi_a(\nabla_{\gamma})f=\nabla_{\phi\circ \gamma}(f)=\Dsdd{ (f\circ\phi\circ\gamma)(t) }{t}{0}
+    \end{equation}
+    where \( a=\gamma(0)\).
+\end{propositionDef}
+
+\begin{proof}
+    Let \( f\in C^1(N,\eR)\). The map \( f\circ\phi\colon M\to \eR\) belongs to \( C^1(M,\eR)\) so that we can apply \( \nabla_{\gamma}\) and \( \nabla_{\sigma}\) on it. By hypothesis,
+    \begin{equation}
+        \nabla_{\gamma}(f\circ \phi)=\nabla_{\sigma}(f\circ \phi).
+    \end{equation}
+    Using the definition of \( \nabla\),
+    \begin{equation}
+        \nabla_{\gamma}(f\circ\phi)=\Dsdd{ (f\circ \phi\circ \gamma)(t) }{t}{0}=\nabla_{\phi\circ\gamma}(f).
+    \end{equation}
+    and
+    \begin{equation}
+        \nabla_{\sigma}(f\circ\phi)=\Dsdd{ (f\circ \phi\circ \sigma)(t) }{t}{0}=\nabla_{\phi\circ\sigma}(f).
+    \end{equation}
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooBOZBooNJMccB}
+    Let \( M,N\) be \( C^1\)-manifolds. We consider \( C^1\)-maps \( f\colon M\to N\) and \( \phi\colon N\to \eR\). Let \( \gamma\colon \eR\to M\) be a \( C^1\)-path. We have
+    \begin{equation}
+        \nabla_{\gamma}(\phi\circ f)=\nabla_{f\circ \gamma}(\phi).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    By definition,
+    \begin{equation}
+        \nabla_{\gamma}(\phi\circ f)=\Dsdd{ (\phi\circ f\circ \gamma)(t) }{t}{0}=\Dsdd{ \phi\big( (f\circ \gamma)(t) \big) }{t}{0}=\nabla_{f\circ\gamma}(\phi).
+    \end{equation}
+\end{proof}
+
+\begin{proposition}
+    Let \( M\) and \( N\) be \( C^1\)-manifolds. Let \( f\in C^1(M,N)\) and \( a\in M\). The map \( df_a\colon T_aM\to T_{f(a)}N\) is linear.
+\end{proposition}
+
+\begin{proof}
+    We consider two tangent vectors \( \nabla_{\gamma}\) and \( \nabla_{\sigma}\) to \( M\) at \( a\). We know that there exists a path \( s\colon \eR\to M\) such that \( \nabla_{\gamma}+\nabla_{\sigma}=\nabla_s\). This is proposition \ref{PROPooEJBWooSbvypo}, see equation \eqref{EQooYNAOooKkKmxo}.
+
+    Let \( \phi\in C^1(N,\eR)\) be a test function; we have
+    \begin{subequations}
+        \begin{align}
+            df_a(\nabla_{\gamma}+\nabla_{\sigma})\phi&=df_a(\nabla_s)\phi  \label{EQooIMZIooQlZODR}\\
+            &=\nabla_s(\phi\circ f)     \label{EQooXMHHooGpbAge}\\
+            &=\nabla_{\gamma}(\phi\circ f)+\nabla_{\sigma}(\phi\circ f)\\
+            &=\nabla_{f\circ \gamma}(\phi)+\nabla_{f\circ \sigma}(\phi)     \label{EQooHMZAooArgfTN}\\
+            &=df_a(\nabla_{\gamma})\phi+df_a(\nabla_{\sigma})\phi.
+        \end{align}
+    \end{subequations}
+    Justifications:
+    \begin{itemize}
+        \item For \eqref{EQooIMZIooQlZODR}: definition od the path \( s\).
+        \item For \eqref{EQooXMHHooGpbAge}: definition \eqref{EQooQNZPooMVaSQC} of \( df_a\).
+        \item For \eqref{EQooHMZAooArgfTN}: lemma \ref{LEMooBOZBooNJMccB}.
+    \end{itemize}
+\end{proof}
+
+\begin{lemma}       \label{LEMooSCVHooYPiGse}
+    Let \( \varphi\colon U\to M\) be a chart around \( a\in M\) with \( \varphi(s)=a\) (\( s\in U\)). We have \( v\in T_aM\) if and only if there exists reals numbers \( \{ v_k \}_{k=1,\ldots, n}\) such that
+    \begin{equation}        \label{EQooNEDSooOhyrCZ}
+        v(f)=\sum_{k=1}^nv_k\partial_k(f\circ \varphi)(s).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Two parts.
+    \begin{subproof}
+    \item[\( \Rightarrow\)]
+    Let \( \gamma\colon \eR\to M\) be a path for the vector \( v\): \( v=\nabla_{\gamma}\). By the regularity hypothesis\footnote{The manifold \( M\) is \( C^k\), the charts maps are \( C^k\) and all that.}, the maps \( f\circ \varphi\colon U\to \eR\) and \( \varphi^{-1}\circ\gamma\colon \eR \to U \) are differentiable usual maps.
+
+    Thus, using the equalities of lemma \ref{LemdfaSurLesPartielles} and theorem \ref{THOooIHPIooIUyPaf}, we can write
+    \begin{subequations}
+        \begin{align}
+            \nabla_{\gamma}f&=\Dsdd{ (f\circ\gamma)(t) }{t}{0}\\
+            &=\Dsdd{ (f\circ\varphi)\circ(\varphi^{-1}\circ\gamma)(t) }{t}{0}\\
+            &=d(f\circ \varphi)_{(\varphi^{-1}\circ\gamma)(0)}\big( (\varphi^{-1}\circ\gamma)'(0) \big)\\
+            &=d(f\circ \varphi)_{s}\big( (\varphi^{-1}\circ\gamma)'(0) \big)\\
+            &=\sum_k\partial_k(f\circ \varphi)(s)(\varphi^{-1}\circ\gamma)'(0)_k
+        \end{align}
+    \end{subequations}
+    Let \( v_k=(\varphi^{-1}\circ\gamma)'(0)\) and we have the result.
+\item[$ \Leftarrow$ ]
+    \end{subproof}
+\end{proof}
+
+\begin{normaltext}      \label{NORMooXAJGooDNyxjv}
+    If \( v\in \eR^n\) and if \( a\in \eR^n\), we can speak of \( v\in T_a\eR^n\) with the abuse of notation \( v=\nabla_{\gamma}\) where
+    \begin{equation}
+        \begin{aligned}
+            \gamma\colon \eR&\to \eR^n \\
+            t&\mapsto a+tv.
+        \end{aligned}
+    \end{equation}
+    You have to keep in mind that \( v\) is an element of \( \eR^n\) (a list of numbers) while \( \nabla_{\gamma}\) is an element of \( T_a\eR^n\) (a differential operator). Writing «\( v=\nabla_{\gamma}\)» is an abuse of notation.
+
+    The object \( \nabla_{\gamma}\) is what one could name «the vector \( v\) tied to the point \( a\)».
+\end{normaltext}
+
+This remark is formalised by the following proposition which provides a canonical isomorphism between \( \eR^n\) and \( T_a\eR^n\).
+
+\begin{proposition}     \label{PROPooRXIIooFmhqJd}
+    Let \( M\) be a \( C^k\) manifold and \( a\in M\). We consider a chart \( \varphi\colon U\to M\) around \( a\). For \( v\in \eR^n\) we define
+    \begin{equation}
+        \gamma_{a,v}(t)=\varphi\big( \varphi^{-1}(a)+tv \big).
+    \end{equation}
+    \begin{enumerate}
+        \item
+            The map \( \gamma_{a,v}\colon \eR\to M\) is \( C^k\).
+        \item
+            The map
+            \begin{equation}
+                \begin{aligned}
+                    \psi\colon \eR^n&\to T_aM \\
+                    v&\mapsto \nabla_{\gamma_{a,v}} 
+                \end{aligned}
+            \end{equation}
+            is a bijection.
+        \item
+            We have the handy equalities
+            \begin{equation}
+                \psi(v)f=d\varphi_s(v)f=\nabla_{s,v}(f)=\Dsdd{ (f\circ\varphi)\big( \varphi^{-1}(a)+tv \big) }{t}{0}=\sum_kv_k\partial_k(f\circ\varphi)\big( \varphi^{-1}(x) \big)
+            \end{equation}
+            where \( \nabla_{s,v}\) is the operator defined in proposition \ref{PROPooRXIIooFmhqJd}.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    The map \( \gamma_{a,v}\) is continuous as composed of continuous maps. The set \( \eR\) is a manifold with the identity as charts. Thus the condition \ref{DEFooFNTHooEwsqXB}\ref{SUBITEMooXQFUooRxMVnw} to be checked reduces to 
+    \begin{equation}
+        \tilde \gamma_{a,v}=\varphi^{-1}\circ\gamma_{a,v}.
+    \end{equation}
+    We consider the \(  C^{\infty}\) map
+    \begin{equation}
+        \begin{aligned}
+            l\colon \eR&\to \eR^n \\
+            t&\mapsto \varphi^{-1}(a)+tv. 
+        \end{aligned}
+    \end{equation}
+    We have \( \tilde \gamma_{a,v}=\varphi^{-1}\circ\varphi \circ l\). Thus \( \tilde \gamma\) is \(  C^{\infty}\).
+
+    Remain to prove that \( \psi\) is a bijection.
+    \begin{subproof}
+        \item[Injective]
+            Suppose that \( \psi(v)=\psi(w)\). For every \( f\in C^k(M)\) we have \( \nabla_{a,v}(f)=\nabla_{a,w}(f)\), which means
+            \begin{equation}        \label{EQooMXJWooQKpzCG}
+                \Dsdd{ f\Big( \varphi\big( \varphi^{-1}(a)+tv \big) \Big) }{t}{0}=\Dsdd{ f\Big( \varphi\big( \varphi^{-1}(a)+tw \big) \Big) }{t}{0}.
+            \end{equation}
+            We apply this to the function \( f=\pr_k\circ\varphi^{-1}\) :
+            \begin{equation}
+                f\Big( \varphi\big( \varphi^{-1}(a)+tv \big) \Big)=\varphi^{-1}(a)_k+tv_k,
+            \end{equation}
+            so that
+            \begin{equation}
+                \nabla_{a,v}(f)=\Dsdd{ \varphi^{-1}(a)_k+tv_k }{t}{0}=v_k.
+            \end{equation}
+            The equation \eqref{EQooMXJWooQKpzCG} implies \( v_k=w_k\) for every \( k\).
+        \item[Surjective]
+            The map \( f\circ \varphi\colon U \to \eR \) is a usual \( C^k\) function. The formulas of the lemma \ref{LemdfaSurLesPartielles} are valid; in particular the ones concerning the directional derivative. We have
+            \begin{subequations}
+                \begin{align}
+                    \nabla_{a,v}(f)&=\Dsdd{ (f\circ \varphi)\big( \varphi^{-1}(a)+tv \big) }{t}{0}\\
+                    &=\partial_v(f\circ \varphi)\big( \varphi^{-1}(a) \big)\\
+                    &=\sum_k v_k\partial_k(f\circ\varphi)\big( \varphi^{-1}(a) \big).
+                \end{align}
+            \end{subequations}
+            This is the general form \eqref{EQooNEDSooOhyrCZ} for the action of a tangent vector on \( f\).
+    \end{subproof}
+\end{proof}
+
+\begin{proposition}     \label{PROPooKMCGooDEuaWz}
+    Let \( \varphi\colon U\to M\) be a chart satisfying \( \varphi(s)=a\). 
+    \begin{enumerate}
+        \item       \label{ITEMooSFUBooNXgGuu}
+            The set\footnote{We use the abuse of notation of \ref{NORMooXAJGooDNyxjv}.} \( \{ d\varphi_s(e_i) \}_{i=1,\ldots, n}\) is a basis of \( T_aM\).
+        \item       \label{ITEMooPYPVooKkHrkQ}
+            For every \( X\in T_aM\), there exists an unique \( v\in \eR^n\) such that 
+            \begin{equation}
+                X=d\varphi_{s}(v).
+            \end{equation}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    For part \ref{ITEMooSFUBooNXgGuu}, we have to prove that the vectors of the form \( d\varphi_s(e_i)\) are linearly independent and spanning \( T_aM\).
+    \begin{subproof}
+        \item[Spanning]
+            Lemma \ref{LEMooSCVHooYPiGse} says that, if \( v\in T_aM\), there exist numbers \( v_k\) such that
+            \begin{equation}
+                v(f)=\sum_{k=1}^nv_k\partial_k(f\circ\varphi)(s)
+            \end{equation}
+            We consider the path
+            \begin{equation}
+                \begin{aligned}
+                    \gamma_k\colon \eR&\to U \\
+                    t&\mapsto s+te_k. 
+                \end{aligned}
+            \end{equation}
+            Now we have
+            \begin{subequations}
+                \begin{align}
+                    v(f)&=\sum_{k=1}^nv_k\partial_k(f\circ\varphi)(s)\\
+                    &=\sum_kv_k\Dsdd{ (f\circ\varphi)(s+te_k) }{t}{0}\\
+                    &=\sum_kv_k\Dsdd{ (f\circ\varphi\circ\gamma_k)(t) }{t}{0}\\
+                    &=\sum_kv_kd\varphi_{\gamma_k(0)}(\nabla_{\gamma_k})f\\
+                    &=\sum_kv_kd\varphi_s(\nabla_{\gamma_k})f\\
+                    &=\sum_kv_kd\varphi_s(e_k).
+                \end{align}
+            \end{subequations}
+            The last equality is the abuse of notation explained in \ref{NORMooXAJGooDNyxjv}.
+        \item[Independent]
+            We suppose that
+            \begin{equation}
+                \sum_{k=1}^nv_kd\varphi_s(e_k)=0
+            \end{equation}
+            for some numbers \( v_k\). It means that for every \( C^k\) functions \( f\colon M\to \eR\) we have
+            \begin{equation}
+                \sum_{k}v_k\partial_k(f\circ \varphi)(s)=0.
+            \end{equation}
+            Since the function
+            \begin{equation}
+                \begin{aligned}
+                    \pr_i\colon \eR^n&\to \eR \\
+                    x&\mapsto x_i 
+                \end{aligned}
+            \end{equation}
+            is \(  C^{\infty}\), we can choose \( f=\pr_k\circ\varphi^{-1}\). Then we have
+            \begin{subequations}
+                \begin{align}
+                    0&=\sum_kv_k\partial_k(\pr_i\circ\varphi^{-1}\circ\varphi)(s)\\
+                    &=\sum_kv_k\partial(s\mapsto s_i)(s)\\
+                    &=\sum_kv_k\delta_{ki}\\
+                    &=v_i.
+                \end{align}
+            \end{subequations}
+            We conclude that \( v_i=0\) for every \( i\) and we are done.
+    \end{subproof}
+    Now we prove part \ref{ITEMooPYPVooKkHrkQ}. From part \ref{ITEMooSFUBooNXgGuu} there is a set of numbers \( v_i\) such that
+    \begin{equation}
+        X=\sum_iv_i
+    \end{equation}
+    We pose \( v=\sum_iv_ie_i\) and we use the linearity of \( d\varphi_s\) :
+    \begin{equation}
+        X=\sum_iv_id\varphi_s(e_i)=\sum_id\varphi_s(v_ie_i)=d\varphi_s\big( \sum_iv_ie_i \big)=d\varphi_s(v).
+    \end{equation}
+    For the unicity, let \( v,w\in \eR^n\) such that \( d\varphi_s(v)=d\varphi_s(w)\). Thus we have \( d\varphi_s(v-w)=0\) which implies \( v=w\).
+\end{proof}
+
+\begin{lemma}[\cite{MonCerveau}]
+    Let \( a\) and \( b\) be different points in the manifold \( M\). Then
+    \begin{equation}
+        T_aM\cap T_bM=\{ 0 \}.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    The operator which maps every function to zero belongs to \( T_aM\) and \( T_bM\). This is easy. The tricky part is the contrary. Let \( v\in T_aM\) and \( w\in T_bM\) both non zero. We consider charts \( \varphi\colon U\to M\) and \( \psi\colon V\to M\) such that
+    \begin{itemize}
+        \item \( U\cap V=\emptyset\)
+        \item \( \varphi(U)\cap \psi(V)=\emptyset\)
+        \item \( a=\varphi(s)\) and \( b=\psi(t)\) with \( s\in U\) and \( t\in V\).
+    \end{itemize}
+    Let \( \phi\in C^k(M,\eR)\). By lemma \ref{LEMooSCVHooYPiGse} we have
+    \begin{equation}        \label{EQooTQKZooIeQNaU}
+        v(\phi)=\sum_kv_k\partial_k(\phi\circ \varphi)(s)
+    \end{equation}
+    and
+    \begin{equation}
+        w(\phi)=\sum_kw_k\partial_k(\phi\circ \varphi)(t).
+    \end{equation}
+    The trick now is to build a function \( \phi\) for which \( v(\phi)\neq w(\phi)\).
+
+    Let \( r>0\) such that \( \overline{ B(s,r) }\subset U\). We use the Urysohn lemma \ref{PROPooBOZIooAhKbPs} to create a function \( p\colon U\to \eR\) such that
+    \begin{itemize}
+        \item \( p=1\) on a neighbourhood of \( s\),
+        \item \( p=0\) outside \( \overline{ B(s,r) }\),
+        \item \( p\in  C^{\infty}(U)\).
+    \end{itemize}
+    We also consider a \(  C^{\infty}\) function \( q\colon U\to \eR\) such that \( (\partial_kq)(s)=\alpha_k\) for some numbers \( \alpha_k\) to be fixed later.
+
+    Finally we build
+    \begin{equation}
+        \begin{aligned}
+            \phi\colon M&\to \eR \\
+            x&\mapsto \begin{cases}
+                (pq)\big( \varphi^{-1}(x) \big)    &   \text{if }  x\in \varphi(U)\\
+                0    &    \text{otherwise. }
+            \end{cases}
+        \end{aligned}
+    \end{equation}
+    This function is \( C^k\). Indeed there are two possibilities : \( x\in \varphi(U)\) or \( x\notin\varphi(U)\). In the first case \( \phi\) is the composition of \( pq\) (which is \(  C^{\infty}\)) with \( \varphi^{-1}\) which is \( C^k\). If \( x\notin\varphi(U)\), then it is in particular outside \( \varphi\big( \overline{ B(s,r) } \big)\) which is closed.
+
+    The set of points outside of \( \varphi\big( \overline{ B(s,r) } \big)\) is open. Thus there is a neighbourhood of \( x\) which does not intersect \( \varphi\big( \overline{ B(r,s) } \big)\). The function \( \phi\) is zero in this neighbourhood, so that \( \phi\) is \(  C^k\).
+
+    We can compute the values of \( v(\phi)\) and \( w(\phi)\). The easiest if \( w(\phi)=0\) because \( \phi=0\) on a neighbourhood of \( b\). For \( v(\phi)\) we use the formula \ref{EQooTQKZooIeQNaU}. We have
+    \begin{equation}
+        \partial_k(\phi\circ\varphi)(s)=\partial_k(q)(s)=\alpha_k
+    \end{equation}
+    because \( p=1\) on a neighbourhood of \( \varphi^{-1}(a)\). Thus we have
+    \begin{equation}
+        v(\phi)=\sum_kv_k\alpha_k.
+    \end{equation}
+    We can choose the \( \alpha_k\) in such a way that \( v(\phi)\neq 0\) because \( v\neq 0\).
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Topology on a tangent space}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{propositionDef}[\cite{BIBooDLJSooYWJiIT}]        \label{PROPooHJOXooMGANfd}
+    Let \( M\) be a \( C^k\) manifold. Let \( a\in M\) and \( \varphi\colon U\to M\) be a chart around \( a\). We define \( s=\varphi^{-1}(a)\). For \( v\in T_aM\) we define
+    \begin{equation}
+        \| v \|_{T_aM}=\| (d\varphi_s)^{-1}(v) \|_{\eR^n}.
+    \end{equation}
+    This is a norm on the vector space \( T_aM\).
+
+    The topology on \( T_aM\) is the one induced by this norm\footnote{Keep in mind that, since \( T_aM\) is finite dimensional, all the norm are equivalent (theorem \ref{ThoNormesEquiv}), so that this norm is not special.}.
+\end{propositionDef}
+
+\begin{proof}
+    Several points.
+    \begin{subproof}
+    \item[\( \| v \|\geq 0\)]
+        From the very definition, yes.
+    \item[\( \| v \|=0\) si et seulement si \( v=0\)]
+        If \( \| v \|=0\), then \( \| (d\varphi_s)^{-1}(v) \|_{\eR^n}=0\). Since the norm on \( \eR^n\) is a norm, this implies \( (d\varphi_s)^{-1}(v)=0\). And since \( d\varphi_s\) is a linear bijection, we conclude \( v=0\).
+    \item[\( \| \lambda v \|=| \lambda |\| v \|\)]
+        Because \( d\varphi_s^{-1}\) is linear.
+    \item[\( \| v+w \|\leq \| v \|+\| v \|\)]
+        Because \( d\varphi_s^{-1}\) is linear and the corresponding property on \( \eR^n\).
+    \end{subproof}
+\end{proof}
+
+Now we are allowed to write \( \| v \|\) when \( v\in T_aM\). But we have to keep in mind that it depends on the choice of a local chart.
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Tangent bundle}
+%---------------------------------------------------------------------------------------------------------------------------
+
+
+\begin{lemma}       \label{LEMooXFNQooXwCMNB}
+    Let \( M\) be a manifold and \( (U,\varphi)\) be a chart and \( \gamma\) be a path. We set \( a=\varphi^{-1}\big( \gamma(0) \big)\), \(v= (\varphi^{-1}\circ\gamma)'(0)\) and
+    \begin{equation}
+        \begin{aligned}
+            \sigma\colon \eR&\to M \\
+            t&\mapsto \varphi(a+tv). 
+        \end{aligned}
+    \end{equation}
+    Then we have \( \nabla_{\gamma}=\nabla_{\sigma}\).   
+\end{lemma}
+
+\begin{proof}
+    Let \( \phi\in C^k(M, \eR)\). 
+    \begin{subequations}
+        \begin{align}
+            \nabla_{\sigma}(\phi)&=\Dsdd{ \phi\big( \sigma(t) \big) }{t}{0}\\
+            &=\Dsdd{ (\phi\circ \varphi)\big( a+t(\varphi^{-1}\circ\gamma)'(0) \big) }{t}{0}\\
+            &=\sum_k\partial_k(\phi\circ\varphi)(a)(\varphi^{-1}\circ\gamma)'(0)_k  \label{SUBEQooFDVFooFzACbX}\\
+            &=\Dsdd{ (\phi\circ\varphi)\big( (\varphi^{-1}\circ\gamma)(t) \big) }{t}{0}\\
+            &=\Dsdd{ (\phi\circ\varphi\circ\varphi^{-1}\circ\gamma)(t) }{t}{0}\\
+            &=\Dsdd{ (\phi\circ\gamma)(t) }{t}{0}\\
+            &=\nabla_{\gamma}(\phi).
+        \end{align}
+    \end{subequations}
+    For \eqref{SUBEQooFDVFooFzACbX}: the maps \( \phi\circ\varphi\colon U\to \eR\) and \( \varphi^{-1}\circ\gamma\colon \eR\to U\) are \( C^k\) maps, so that we can apply the formula \eqref{EQooZMAUooIusxgD}:
+\end{proof}
+
+\begin{lemma}       \label{LEMooGPCBooXMTddG}
+    Let \( M\) be a manifold, \( (U,\varphi)\) be a chart, \( a\in U\) and \( v,w\in \eR^n\). We define \( \gamma_v(t)=\varphi(a+tv)\) and \( \gamma_w(t)=\varphi(a+tw)\). If \( v\neq w\) then 
+    \begin{equation}
+        \nabla_{\gamma_v}\neq \nabla_{\gamma_w}.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    We suppose \( v\neq w\). If \( w\) is a multiple of \( v\), an adaptation of the «product» part of proposition \ref{PROPooEJBWooSbvypo} shows that \( \nabla_{\gamma_v}\neq \nabla_{\gamma_w}\).
+
+    Of \( v\) and \( w\) are nor aligned, we consider a basis \( \{ e_1,\ldots, e_n \}\) of \( \eR^n\) such that \( e_1=v\) and \( e_2=w\) (theorem \ref{THOooOQLQooHqEeDK}). Now we consider the function
+    \begin{equation}
+        \begin{aligned}
+            f\colon \eR^n&\to \eR \\
+            x&\mapsto (x-a)_1. 
+        \end{aligned}
+    \end{equation}
+    We will show that the result of \( \nabla_{\gamma_v}\) and \( \nabla_{\gamma_w}\) on the function \( f\circ\varphi^{-1}\) are not equal. First we have
+    \begin{subequations}
+        \begin{align}
+            \nabla_{\gamma_v}(f\circ\varphi^{-1})&=\Dsdd{ (f\circ\varphi^{-1})\big( \gamma_v(t) \big) }{t}{0}\\
+            &=\Dsdd{ (f\circ\varphi^{-1}\circ\varphi)(a+tv) }{t}{0}\\
+            &=\Dsdd{ f(a+tv) }{t}{0}\\
+            &=\Dsdd{ (tv)_1 }{t}{0}\\
+            &=\Dsdd{ t }{t}{0}\\
+            &=1.
+        \end{align}
+    \end{subequations}
+    In the same way we get
+    \begin{equation}
+        \nabla_{\gamma_w}(f\circ\varphi^{-1})=\Dsdd{ f(a+tw) }{t}{0}=\Dsdd{ (tw)_1 }{t}{0}=\Dsdd{ 0 }{t}{0}=0.
+    \end{equation}
 \end{proof}
 
 
-Let $\dpt{x}{\mU}{M}$ and $\dpt{y}{\mV}{M}$ be two charts systems around $p\in M$. Consider the path $c(t)=x(0,\ldots,t,\ldots 0)$ where the $t$ is at the position $k$. Then, with respect to these coordinates,
-\[
-  c'(0)f=\Dsdd{ f(c(t))  }{t}{0}=\dsd{f}{x^i}\frac{dc^i}{dt}=\dsd{f}{x^k},
-\]
-so $c'(0)=\partial/\partial x^k$. Here, implicitly, we wrote $c^i=(x^i)^{-1}\circ c$ where $(x^i)^{-1}$ is the $i$th component of $x^{-1}$ seen as element of $\eR^n$. We can make the same computation with the system $y$. With these abuse of notation,
-\begin{equation}
-   \dsd{}{x^i}=\sum_j\dsd{y^j}{x^i}\dsd{}{y^j}
-\end{equation}
-as it can be seen by applying it on any function $\dpt{f}{M}{\eR}$. More precisely if $\dpt{x}{\mU}{M}$ and $\dpt{y}{\mU}{M}$ are two charts (let $\mU$ be the intersection of the domains of $x$ and $y$), let $\dpt{f}{M}{\eR}$ and $\ovf=f\circ x$, $\tilde f =f\circ y$. The action of the vector $\partial_{x^i}$ of the function $f$ is given by
-\[
-  \partial_{x^i}f=\dsd{\ovf}{x^i}
-\]
-where the right hand side is a real number that can be computed with usual analysis on $\eR^n$. This real \emph{defines} the left hand side. Now, $\ovf=\tilde f \circ y^{-1}\circ x$, so that
-\[
-   \dsd{\ovf}{x^i}=\dsd{ (\tilde f \circ y^{-1}\circ x) }{x^i}=\dsd{\tilde f }{y^j}\dsd{y^j}{x^i}
-\]
-where $\dsd{\tilde f }{y^j}$ is precisely what we write now by $\partial_{y^j}f$ and $\dsd{y^j}{x^i}$ must be understood as the derivative with respect to $x^i$ of the function $\dpt{(y^{-1}\circ x)}{\eR^n}{\eR^n}$.
+\begin{proposition}     \label{PROPooMEPPooRonxuh}
+    Let \( M\) be a manifold, \( (U, \varphi)\) a chart. If \( s\in U\) the map\footnote{We use the notation \eqref{EQooJQVRooLziKoH}.}
+    \begin{equation}        \label{EQooJMTJooZNzREy}
+        \begin{aligned}
+            \psi\colon \eR^n&\to T_{\varphi(s)}M \\
+            v&\mapsto \Dsdd{ \varphi(s+tv) }{t}{0} 
+        \end{aligned}
+    \end{equation}
+    is a vector space isomorphism.
+\end{proposition}
 
-Let $\dpt{f}{M}{N}$ and $\dpt{g}{N}{\eR}$; the definitions gives
-\[
-  (df_xX)g=\Dsdd{(g\circ f)(X(t))}{t}{0}
-          =\dsd{g}{y^i}\dsd{f^i}{x^{\alpha}}\frac{dX^{\alpha}}{dt}.
-\]
-This shows that $\dsd{f^i}{x^{\alpha}}\frac{dX^{\alpha}}{dt}$ is $(df_xX)^i$.  But $dX^{\alpha}/dt$ is what we should call $X^{\alpha}$ in the decomposition $X=X^{\alpha}\partial_{\alpha}$ then the matrix of $df$ is given by $\dsd{f^i}{x^{\alpha}}$. So we find back the old notion of differential.
+\begin{proof}
+    We need to prove that \( \psi\) is surjective, injective and linear.
+    \begin{subproof}
+    \item[Surjective] Lemma \ref{LEMooXFNQooXwCMNB}.
+    \item[Injective] Lemme \ref{LEMooGPCBooXMTddG}.
+    \item[Linear]
+        Let \( v,w\in \eR^n\). If set \( \sigma(t)=s+t(v+w)\), we have
+        \begin{subequations}
+            \begin{align}
+                \psi(v+w)\phi&=\Dsdd{ (\phi\circ \varphi)\big( s+t(v+w) \big) }{t}{0}\\
+                &=\Dsdd{ (\phi\circ \varphi)\circ \sigma(t) }{t}{0}\\
+                &=\sum_k\partial_k(\phi\circ\varphi)\big( \sigma(0) \big)\sigma'(0)_k\\
+                &=\sum_k\partial_k(\phi\circ\varphi)\big( \sigma(0) \big)(v_k+w_k)\\
+                &=\sum_k\partial_k(\phi\circ\varphi)\big( \sigma(0) \big)v_k+\sum_k\partial_k(\phi\circ\varphi)\big( \sigma(0) \big)w_k\\
+                &=\Dsdd{ (\phi\circ\varphi)\big( \sigma(0)+tv \big) }{t}{0}+\Dsdd{ (\phi\circ\varphi)\big( \sigma(0)+tw \big) }{t}{0}\\
+                &=\psi(v)\phi+\psi(w)\phi.
+            \end{align}
+        \end{subequations}
+        In the same way, if \( \lambda\in \eR\) we set \( \sigma(t)=s+t\lambda v\) and we have
+        \begin{subequations}
+            \begin{align}
+                \psi(\lambda v)\phi&=\Dsdd{ (\phi\circ\varphi)(s+t\lambda v) }{t}{0}\\
+                &=\Dsdd{ (\phi\circ\varphi)\big( \sigma(t) \big) }{t}{0}\\
+                &=d(\phi\circ\varphi)_{\sigma(0)}\sigma'(0)\\
+                &=\lambda d(\phi\circ\varphi)_{\sigma(0)}(v)\\
+                &=\lambda\psi(v)\phi.
+            \end{align}
+        \end{subequations}
+    \end{subproof}
+\end{proof}
 
-\begin{remark}
-If $X\in T_xM$ and $f$ is a \emph{vector valued} function on $M$, then one can define $Xf$ by exactly the same expression. In this case,
-\[
-  df X=\Dsdd{f(v(t))}{t}{0}=Xf.
-\]
-\end{remark}
+\begin{lemma}[\cite{MonCerveau}]        \label{LEMooZWFAooDlYaJm}
+    Let \( M\) be a \( C^k\) manifold, and \( \varphi\colon U\to M\) be a local chart. A map \( X\colon M\to TM\) is a \( C^k\) vector field on \( \varphi(U)\) if and only it can be written under the form
+    \begin{equation}
+        X_x(f)=\sum_{k=1}^nv_k(x)\partial_k(f\circ\varphi)\big( \varphi^{-1}(x) \big)
+    \end{equation}
+    for some \( C^k\) maps \( v_k\colon M\to \eR\).
+\end{lemma}
 
-A map $\dpt{f}{M_1}{M_2}$ is an \defe{immersion}{immersion} at $p\in M_1$ if $\dpt{df_p}{T_pM_1}{T_{f(p)}M_2}$ is injective. It is a \defe{submersion}{submersion} if $df_p$ is surjective.
+\begin{lemma}       \label{LEMooIQZWooOSLNXB}
+    If \( x\in M\) and \( v\in \eR^n\) we have
+    \begin{equation}        \label{EQooBVOBooBTfYWC}
+        \psi(v)f=\sum_kv_k\partial_k(f\circ\varphi)(s)
+    \end{equation}
+    where \( s=\varphi^{-1}(x)\).
+\end{lemma}
+
+\begin{proof}
+    We use the linearity of proposition \ref{PROPooMEPPooRonxuh}:
+    \begin{subequations}
+        \begin{align}
+            \psi(v)f&=\sum_kv_k\psi(e_k)f\\
+            &=\sum_kv_k\Dsdd{ f\big( \varphi(s+te_k) \big) }{t}{0}\\
+            &=\sum_kv_k\Dsdd{ (f\circ\varphi)(s+te_k) }{t}{0}\\
+            &=\sum_kv_k\partial_k(f\circ\varphi)(s).
+        \end{align}
+    \end{subequations}
+\end{proof}
+
+\begin{theorem}     \label{THOooTSQXooLvJMQb}
+    Let \( M\) be a manifold. We consider the definition maps \( \{ U_{\alpha}, \varphi_{\alpha} \}\) of \( M\). Then the set \( TM\) becomes a manifold with the maps \( V_{\alpha}=U_{\alpha}\times \eR^n\) and
+    \begin{equation}
+        \begin{aligned}
+            \psi_{\alpha}\colon U_{\alpha}\times \eR^n&\to TM \\
+            (x,v)&\mapsto \Dsdd{ \varphi_{\alpha}(x+tv) }{t}{0}. 
+        \end{aligned}
+    \end{equation}
+\end{theorem}
+
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Vector field}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\begin{definition}[Vector field]
+    Let \( M\) be a \(  C^{\infty}\) manifold. A \defe{vector field}{vector field} is a map \( X\colon M\to TM\) such that \( X(p)\in T_pM\) for every \( p\in M\).
+
+    We will always write \( X_p\) instead of \( X(p)\).
+\end{definition}
+
+\begin{proposition}
+    Let \( M\) be a \( C^{k+1}\) manifold, \( X\) be a \( C^k\) vector field and \( f\colon M \to \eR\) be a \( C^k\) function. Then the map
+    \begin{equation}
+        \begin{aligned}
+            X(f)\colon M&\to \eR \\
+            p&\mapsto X_p(f) 
+        \end{aligned}
+    \end{equation}
+    is \( C^{k-1}\).
+\end{proposition}
 
 \subsection{Tangent and cotangent bundle}
 %--------------------------------------
@@ -260,7 +854,7 @@ If $M$ is a $n$ dimensional manifold, as set the tangent bundle\index{tangent!sp
 	The tangent bundle admits a $2n$ dimensional manifold structure for which the projection
 	\begin{equation}
 		\begin{aligned}
-			\pi \colon TM &\to M\
+			\pi \colon TM &\to M\\
 			T_pM&\mapsto p
 		\end{aligned}
 	\end{equation}
@@ -278,8 +872,9 @@ The map $\psi_{\beta}^{-1}\circ\psi_{\beta}$ is differentiable because
 \]
 which is a composition of differentiable maps. The set $TM$ endowed with this structure is called the \defe{tangent bundle}{tangent!bundle}.
 
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Vector space structure on the tangent space}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Decomposition of vectors}
 %---------------------------------------------------------------------------------------------------------------------------
 
 If \( X,Y\in T_pM\) are tangent vectors, one can define \( X+Y\) and \( \lambda X\) for every \( \lambda\in\eR\). The second one is easy:
@@ -346,15 +941,6 @@ when \( X_k\) and \( Y_k\) are reals.
 
 The tangent space \( T_pM\) is thus a vector space.
 
-\begin{proposition}     \label{PROPooOHLQooCNetuD}
-    Let \( M\) be a differentiable manifold and \( x\in M\). The set of tangent vectors of \( M\) at \( x\) is a vector space denoted by \( T_xM\).
-\end{proposition}
-% when it is proved, remove the quext TODOooNHVGooLYbUkg.
-
-\begin{proposition}     \label{PROPooWXNDooPeORjA}
-    Let \( p\in M\) and \( \varphi\colon U\to M\) be a chart around \( p\) with \( U\) open in \( \eR^m\). If \( a\in U\) and \( p=\varphi(a)\), then  the set \( \{  d\varphi_a(e_i) \}\) is a basis of \( T_pM\).
-\end{proposition}
-
 \begin{lemma}       \label{LEMooVCSJooEuDZFz}
     Let \( M\) and \( N\) be smooth manifolds of dimension \( m\) and \( n\) with charts \( \varphi\colon U\to M\) and \( \psi\colon V\to N\) around \( p\in M\) and \( f(p)\in N\). We consider basis \( \{ e_i \}_{i=1,\ldots, m}\) of \( \eR^m\) and \( \{ e'_{\alpha} \}_{\alpha=1,\ldots, n}\) of \( \eR^n\).
 
@@ -365,7 +951,7 @@ The tangent space \( T_pM\) is thus a vector space.
     Let subdivise.
     \begin{subproof}
         \item[Notations]
-            As a preliminary remark, the fact that the proposed sets are basis is the proposition \ref{PROPooWXNDooPeORjA}. For the notations, we write
+            As a preliminary remark, the fact that the proposed sets are basis is the proposition \ref{PROPooKMCGooDEuaWz}\ref{ITEMooSFUBooNXgGuu}. For the notations, we write
             \begin{subequations}
                 \begin{align}
                     \frac{ \partial  }{ \partial x_i }&=d\varphi_{\varphi^{-1}(p)}(e_i),\\
@@ -389,7 +975,7 @@ The tangent space \( T_pM\) is thus a vector space.
             \end{equation}
             Taking the \( \alpha\)\th\ component on both side we have our result \eqref{EQooISXNooJOzUmS}.
         \item[Matrix]
-            The matrix of a linear map is defined by the formula \eqref{EQooOMSCooGsSBIA}. In our case,
+            The matrix of a linear map is defined by the proposition \ref{PROPooGXDBooHfKRrv}. In our case,
             \begin{equation}
                     (df_p)_{\alpha i}=\left( df_p\big( \frac{ \partial  }{ \partial x_i } \big) \right)_{\alpha} =\Big( df_p\circ d\varphi_{\varphi^{-1}(p)}e_i \Big)_{\alpha}.
             \end{equation}
@@ -407,33 +993,309 @@ The tangent space \( T_pM\) is thus a vector space.
 \subsection{Commutator of vector fields}
 
 \begin{lemma}       \label{LEMooPSWEooVKLWMQ}
-    If \( X\) is a smooth vector field on the manifold \( M\) and if \( f\) is a smooth function, then the formula
+    If \( X\) is a \( c^k\) vector field on the \( C^k\) manifold \( M\) and if \( f\) is a \( c^k\) function, then the formula
     \begin{equation}
         (Xf)(x)=X_x(f)
     \end{equation}
-    defines a smooth function \( Xf\) on \( M\).
+    defines a \( C^{k-1}\) function \( Xf\) on \( M\).
 \end{lemma}
 
 \begin{propositionDef}      \label{DEFooHOTOooRaPwyo}
-    If $X$, $Y\in\cvec(M)$, one defines the \defe{commutator}{commutator of vector fields} $[X,Y]$ by
-    \begin{equation}
-      [X,Y]_xf=X_x(Yf)-Y_x(Xf).
+    Let \( M\) be a \( C^k\) manifold with \( k\geq 2\). Let $X$, $Y\in\cvec(M)$.
+    \begin{enumerate}
+        \item       \label{ITEMooZKKUooQjYftU}
+    For every \( x\in M\), the operator \( [X,Y]_x\) defined by
+    \begin{equation}        \label{EQooDSKWooXdjPPP}
+      [X,Y]_xf=X_x(Yf)-Y_x(Xf)
     \end{equation}
-    where \( Yf\) and \( Xf\) are defined by virtue of lemma \ref{LEMooPSWEooVKLWMQ}.
+    is an element of \( T_xM\).
+
+    Here, \( Yf\) and \( Xf\) are defined by virtue of lemma \ref{LEMooPSWEooVKLWMQ}.
+\item       \label{ITEMooPGPLooQrKxWY}
+    The map \( x\mapsto [X,Y]_x\) is a vector field of class \( C^{k-1}\).
+    \end{enumerate}
+
+    The so-defined vector field \( [X,Y]\) is the \defe{commutator}{commutator of vector fields} of \( X\) and \( Y\).
 \end{propositionDef}
 
-If $X=X^i\partial_i$ and $Y=Y^j\partial_j$, then
-$XY(f)=X^i\partial_i(Y^j\partial_jf)
-     =X^i\partial_i Y^j\partial_j f+X^iY^j\partial^2_{ij}f$.
-From symmetry $\partial^2_{ij}f=\partial^2_{ji}f$, the difference $XYf-YXf$ is only $X^i\partial_iY^j-Y^i\partial_iX^j$, so that
-\begin{equation}
-  [X,Y]^i=XY^i-YX^i
-\end{equation}
-where $X^i$ and $Y^i$ are seen as functions from $M$ to $\eR$.
+\begin{proof}
+    Point by point.
+    \begin{subproof}
+        \item[\ref{ITEMooZKKUooQjYftU}]
+            From lemma \ref{LEMooZWFAooDlYaJm}, we have \( C^k\) functions \( v_k\colon M\to \eR\) such that
+            \begin{equation}
+                X_x(f)=\sum_kv_k(x)\partial_k(f\circ \varphi)\big( \varphi^{-1}(x) \big),
+            \end{equation}
+            and the same for \( Y\) :
+            \begin{equation}
+                Y_y(f)=\sum_lw_l(y)\partial_l(f\circ\varphi)\big( \varphi^{-1}(y) \big).
+            \end{equation}
+            We need to compute \( X_x(Yf)\), that is
+            \begin{equation}        \label{EQooAHMYooWRttQr}
+                X_x(Yf)=\sum_kv_k(x)\partial_k(Yf\circ\varphi)\big( \varphi^{-1}(x) \big).
+            \end{equation}
+            The easy part of that is
+            \begin{equation}
+                (Yf\circ\varphi)(s)=(Yf)\big( \varphi(s) \big)=\sum_l(w_l\circ\varphi)(s)\partial_l(f\circ \varphi)(s).
+            \end{equation}
+            This is a product of two functions \( w_l\circ\varphi\colon U\to \eR\) and \( f\circ\varphi\colon U\to \eR\). For computing the partial derivative, we use the usual Leibnitz rule :
+            \begin{equation}
+                \partial_k(Yf\circ\varphi)(s)=\sum_{l}\partial_k(w_l\circ\varphi)(s)\partial_l(f\circ\varphi)(s)+\sum_l(w_l\circ\varphi)(s)\partial_k\partial_l(f\circ\varphi)(s).
+            \end{equation}
+            We can put that in \eqref{EQooAHMYooWRttQr}, with the definition \( s=\varphi^{-1}(x)\in U\subset \eR^n\) :
+            \begin{subequations}
+                \begin{align}
+                    X_x(Yf)&=\sum_kv_k(x)\sum_l\partial_k(w_l\circ\varphi)(s)\partial_l(f\circ\varphi)(s)\\
+                    &\quad +\sum_{kl}v_k(x)(w_l\circ\varphi)(s)\partial_k\partial_l(f\circ\varphi)(s)\\
+                    &=\sum_{kl}v_k(x)\partial_k(w_l\circ\varphi)(s)\partial_l(f\circ\varphi)(s)\\
+                    &\quad+\sum_{kl}v_k(x)w_l(x)\partial_k\partial_l(f\circ\varphi)(s).
+                \end{align}
+            \end{subequations}
+            The expression of \( Y_x(Xf)\) is the same, permuting \( v\) and \( w\). The commutator has \( 4\) terms :
+            \begin{equation}
+                \begin{aligned}[]
+                    [X,Y]_xf&=\sum_{kl}v_k(x)\partial_k(w_l\circ\varphi)(s)\partial_l(f\circ\varphi)(s)\\
+                    &\quad+\sum_{kl}v_k(x)w_l(x)\partial_k\partial_l(f\circ\varphi)(s)\\
+                    &\quad -\sum_{kl}w_k(x)\partial_k(v_l\circ\varphi)(s)\partial_l(f\circ\varphi)(s)\\
+                    &\quad -\sum_{kl}w_k(x)v_l(x)\partial_k\partial_l(f\circ\varphi)(s).
+                \end{aligned}
+            \end{equation}
+            By virtue of theorem \ref{Schwarz}, the two terms with second derivatives cancel out because the maps are of class \( C^k\) with \( k\geq 2\). Only two terms remain :
+            \begin{equation}
+                [X,Y]_xf=\sum_l\big[ \sum_kv_k(x)\partial_k(w_l\circ\varphi)(s)-w_k(x)\partial_k(v_l\circ\varphi)(s) \big].
+            \end{equation}
+            We pose
+            \begin{equation}
+                \begin{aligned}
+                    u_l\colon M&\to \eR \\
+                    x&\mapsto  \sum_k\big[ v_k(x)\partial_k(w_l\circ\varphi)\big( \varphi^{-1}(x) \big)-w_k(x)\partial_k(v_l\circ\varphi)\big( \varphi^{-1}(x) \big) \big].
+                \end{aligned}
+            \end{equation}
+            For each \( x\) we have
+            \begin{equation}        \label{EQooVUOKooAyGoae}
+                [X,Y]_x(f)=\sum_lu_l(x)\partial_l(f\circ\varphi)(s).
+            \end{equation}
+            By lemma \ref{LEMooSCVHooYPiGse}, this means that \( [X,Y]_x\in T_xM\).
+
+        \item[\ref{ITEMooPGPLooQrKxWY}]
+
+            Now the functions \( u_l\) are of of class \( C^{k-1}\) (theorem \ref{THOooPZTAooTASBhZ}) which satisfies, so that the lemma \ref{LEMooPSWEooVKLWMQ} makes \( [X,Y] \) a vector field of class \( C^{k-1}\).
+    \end{subproof}
+\end{proof}
+
+\begin{lemma}       \label{LEMooPWMUooRalWxC}
+    Let \( M\) be a \( C^k\) manifold. Let \( \varphi\colon U\to M\) be a chart around \( a\in M\). Let \( \psi_a\colon \eR^n\to T_aM \) be the map defined in proposition \ref{PROPooMEPPooRonxuh}.
+
+    A map \( X\colon M\to TM\) is a \( C^k\) vector field on \( \varphi(U)\) if and only if there exist a \( C^k\) function \( v\colon M\to \eR^n\) such that 
+    \begin{equation}
+        X=\psi\circ v
+    \end{equation}
+    where it is understood that \( (\psi\circ v)(x)=\psi_x\big( v(x) \big)\).
+\end{lemma}
+
+
+\begin{lemma}
+    Let \( M\) be a smooth manifold\footnote{When one deal with commutators, the natural setting is (at least) \(  C^{\infty}\) manifolds since the bracket diminishes by \( 1\) the regularity of the vector fields.}. Let \( X,Y\) be smooth vector fields given by \( X=\psi\circ v\) and \( Y=\psi\circ w\). Then we have
+    \begin{equation}
+        [\psi\circ v,\psi\circ w]=\psi\circ u
+    \end{equation}
+    with
+    \begin{equation}
+        \begin{aligned}
+            u_l\colon \varphi(U)&\to \eR \\
+            x&\mapsto X_x(w_l)-Y_x(v_l). 
+        \end{aligned}
+    \end{equation}
+    This equation can be shorthanded into
+    \begin{equation}
+        u=X(w)-Y(v).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    We start from the expression \ref{EQooVUOKooAyGoae} in which we substitute the values of \eqref{LEMooZWFAooDlYaJm} :
+    \begin{equation}
+        u_l(x)=\sum_k\underbrace{v_k(x)\partial_k(w_l\circ\varphi)(s)}_{=X_x(w_l)}-w_k(x)\partial_k(v_l\circ\varphi)(s)=X_x(w_l)-Y_x(v_l).
+    \end{equation}
+\end{proof}
 
 \begin{proposition}[\cite{BIBooWSHFooKoDjAs}]       \label{PROPooSWQSooSEfTuX}
-    The set of all the smooth vector fields on a manifold is a Lie algebra.
+    The set of all the smooth\footnote{Smooth means \( C^{\infty}\).} vector fields on a manifold is a Lie algebra\footnote{Definition \ref{DEFooVBPKooGxlDBn}.}.
 \end{proposition}
+
+\begin{proof}
+    If \( X\) and \( Y\) are smooth vector fields, the commutator \( [X,Y]\) is still smooth by proposition \ref{DEFooHOTOooRaPwyo}. From the definition \eqref{EQooDSKWooXdjPPP}, it is apparent that \( [X,Y]=-[Y,X]\). The Jacobi identity remains to be proven.
+
+    Let \( X,Y,Z\) be smooth vector fields. If \( f\colon M\to \eR\) is a smooth function, we write \( XYf\) the function \( x\mapsto X_x(Yf)\) and similarly \( XYZf\) and other combinations. In particular we have
+    \begin{equation}
+        [X,Y]f=X(Yf)-Y(Xf)=XYf-YXf
+    \end{equation}
+    which is shorthanded into \( [X,Y]=XY-YX\). We also have
+    \begin{equation}
+        \big[ X, [Y,Z] \big]=[X,YZ-ZY]=XYZ-XZY-YZX+ZYX.
+    \end{equation}
+    Making the same with the two other terms we see that
+    \begin{equation}
+        \big[ X,[Y,Z] \big]+\big[ Y,[Z,X] \big]+\big[ Z,[X,Y] \big]=0.
+    \end{equation}
+\end{proof}
+
+\begin{normaltext}
+    When the manifold is a Lie group, the Lie algebra of the smooth vector fields on a smooth manifold is not \emph{the} Lie algebra of the Lie group. The latter is the subalgebra of left invariant vector fields \ldots well in fact it is not even that : the Lie algebra of a Lie group is the tangent space to the identity and the Lie algebra structure is build \emph{via} the left invariant vector fields.
+
+    We'll discuss that later.
+\end{normaltext}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Next stuff}
+%---------------------------------------------------------------------------------------------------------------------------
+
+    The manifold could, of course have some additional structure which allows to write the differential quotient \eqref{EQooVMGFooFUCNEY}. This is the case when \( M=\eR^n\) or when \( M\) is a matrix group. In these cases, the question of the link between \( \gamma'(0)\) and the ``true'' derivative of \( \gamma\) has to be studied.
+
+    In that case we have the same notational problem with ``$df$''. Let \( f\colon M\to \eR\) where \( M\) is a manifold like \( \eR^n\). The symbol \( df_a\) with \( a\in M\) can be the differential of \( f\) as function \( M\to \eR\), so that \( df_a\) is a linear map from \( \eR^n\) to \( \eR\). But \( df_a\) can also be the linear map \( df_a\colon T_aM\to T_{f(a)}\eR\) where the spaces \( T_aM\) and \( T_{f(a)}\eR\) are made of differential operators.
+
+    This is the point of the section \ref{SECooTSAJooNtjgMD}.
+
+Using the chain rule $d(g\circ f)(a)=dg(f(a))\circ df(a)$ for the differentiation in $\eR^n$, one sees that this equivalence notion doesn't depend on the choice of $\varphi$. In other words, if $\varphi$ and $\tilde{\varphi}$ are two charts for a neighbourhood of $x$, then $(\varphi^{-1} \circ\gamma)'(0)=(\varphi^{-1} \circ\sigma)'(0)$ if and only if $(\tilde{\varphi}^{-1} \circ\gamma)'(0)=(\tilde{\varphi}^{-1} \circ\sigma)'(0)$. The space of all tangent vectors at $x$ is denoted by $T_xM$. There exists a bijection $[\gamma]\leftrightarrow (\varphi^{-1}\circ\gamma)'(0)$ between $T_xM$ and $\eR^n$, so $T_xM$ is endowed with a vector space structure.
+
+If $(\mU,\varphi)$ is a chart around $X(0)$, we can express $Xf$ using only well know objects by defining the function $\tilde f =f\circ\varphi$ and $\tX=\varphi^{-1}\circ X$
+\[
+  Xf=\Dsdd{ (\tilde f \circ\tX)(t) }{t}{0}=\left.\dsd{\tilde f }{x^{\alpha}}\right|_{x=\tX(0)}\left.\frac{d\tX^{\alpha}}{dt}\right|_{t=0}.
+\]
+In this sense, we write
+\begin{equation}
+  X=\frac{d\tX^{\alpha}}{dt} \dsd{}{x^{\alpha}}
+\end{equation}
+and we say that $\{\partial_1,\ldots,\partial_n\}$ is a basis of $T_xM$. As far as notations are concerned, from now a tangent vector is written as $X=X^{\alpha}\partial_{\alpha}$ where $X^{\alpha}$ is related to the path $\dpt{X}{\eR}{M}$ by $X^{\alpha}=d\tX^{\alpha}/dt$. We will no more mention the chart $\varphi$ and write
+\[
+  Xf=\Dsdd{f(X(t))}{t}{0}.
+\]
+Correctness of this short notation is because the equivalence relation is independent of the choice of chart. When we speak about a tangent vector to a given path $X(t)$ without specification, we think about $X'(0)$.
+
+All this construction gives back the notion of tangent vector when $M\subset \eR^m$. In order to see it, think to a surface in $\eR^3$. A tangent vector is precisely given by a derivative of a path: if $\dpt{c}{\eR}{\eR^n}$ is a path in the surface, a tangent vector to this curve is given by
+\[
+   \lim_{t\to 0}\frac{c(t_0)-c(t_0+t)}{t}
+\]
+which is a well know limit of a difference in $\eR^n$.
+
+\label{pg:vecto_vecto}Let us precise how does a tangent vector acts on maps others than $\eR$-valued functions. If $V$ is a vector space and $\dpt{f}{M}{V}$, we define
+\[
+   Xf=(Xf^i)e_i
+\]
+where $\{e_i\}$ is a basis of $V$ and the functions $\dpt{f^i}{M}{\eR}$, the decomposition of $f$ with respect to this basis. If we consider a map $\dpt{\varphi}{M}{N}$ between two manifolds, the natural definition is $Xf:=dfX$. More precisely, if we consider local coordinates $x^{\alpha}$ and a function $\dpt{f}{M}{\eR}$,
+\begin{equation}\label{eq:dvp_phi}
+   (d\varphi X)f=\Dsdd{  (f\circ\varphi\circ X)(t) }{t}{0}=\dsd{f}{x^{\alpha}}\dsd{\varphi^{\alpha}}{x\hbeta}\frac{dX\hbeta}{dt}.
+\end{equation}
+Now we are in a notational trouble: when we write $X=X^{\alpha}\partial_{\alpha}$, the ``$X^{\alpha}$``{} is the derivative of the ``$X^{\alpha}$``{} which appears in the path $X(t)=(X^1(t),\ldots,X^n(t))$ which gives $X$ by $X=X'(0)$. So equation \eqref{eq:dvp_phi} gives
+\begin{equation}
+   X(\varphi):=d\varphi X=X\hbeta(\partial_{\beta}\varphi^{\alpha})\partial_{\alpha}.
+\end{equation}
+
+\subsection{Differential of a map}
+%------------------------------------------
+
+Let $\dpt{f}{M_1}{M_2}$ be a differentiable map, $x\in M_1$ and $X\in T_xM_1$, i.e. $\dpt{X}{\eR}{M_1}$ with $X(0)=x$ and $X'(0)=X$. We can consider the path $Y=f\circ X$ in $M_2$. The tangent vector to this path is written $df_x X$.
+
+\begin{proposition}
+If $\dpt{f}{M_1}{M_2}$ is a differentiable map between two differentiable manifolds, the map
+		\begin{equation}
+		\begin{aligned}
+			df_x \colon T_xM_1 &\to T_{f(x)}M_2\\
+			X'(0)&\mapsto (f\circ X)'(0)
+		\end{aligned}
+	\end{equation}
+is linear.
+\end{proposition}
+
+\begin{proof}
+We consider local coordinates $\dpt{x}{\eR^n}{M_1}$ and $\dpt{y}{\eR^m}{M_2}$. The maps $\dpt{f}{M_1}{M_2}$ and $\dpt{y^{-1}\circ f\circ x}{\eR^n}{\eR^m}$ will sometimes be denoted by the same symbol $f$. We have $(x^{-1}\circ X)(t)=(x_1(t),\ldots,x_n(t))$ and $(y^{-1}\circ Y)(t)=\big( y_1(x_1(t),\ldots,x_n(t),\ldots, y_m(x_1(t),\ldots,x_n(t)  \big)$, so that
+\[
+  Y'(0)=\left(   \sum_{i=1}^n \dsd{y_1}{x_i}x_i'(0),\ldots,\sum_{i=1}^n \dsd{y_m}{x_i}x_i'(0)   \right)\in\eR^m
+\]
+which can be written in a more matricial way under the form
+\[
+   Y'(0)=\left( \dsd{y_i}{x_j}x'_j(0) \right).
+\]
+So in the parametrisations $x$ and $y$, the map $df_x$ is given by the matrix $\partial y^i/\partial x_j$ which is well defined from the only given of $f$.
+\end{proof}
+
+
+Let $\dpt{x}{\mU}{M}$ and $\dpt{y}{\mV}{M}$ be two charts systems around $p\in M$. Consider the path $c(t)=x(0,\ldots,t,\ldots 0)$ where the $t$ is at the position $k$. Then, with respect to these coordinates,
+\[
+  c'(0)f=\Dsdd{ f(c(t))  }{t}{0}=\dsd{f}{x^i}\frac{dc^i}{dt}=\dsd{f}{x^k},
+\]
+so $c'(0)=\partial/\partial x^k$. Here, implicitly, we wrote $c^i=(x^i)^{-1}\circ c$ where $(x^i)^{-1}$ is the $i$th component of $x^{-1}$ seen as element of $\eR^n$. We can make the same computation with the system $y$. With these abuse of notation,
+\begin{equation}
+   \dsd{}{x^i}=\sum_j\dsd{y^j}{x^i}\dsd{}{y^j}
+\end{equation}
+as it can be seen by applying it on any function $\dpt{f}{M}{\eR}$. More precisely if $\dpt{x}{\mU}{M}$ and $\dpt{y}{\mU}{M}$ are two charts (let $\mU$ be the intersection of the domains of $x$ and $y$), let $\dpt{f}{M}{\eR}$ and $\ovf=f\circ x$, $\tilde f =f\circ y$. The action of the vector $\partial_{x^i}$ of the function $f$ is given by
+\[
+  \partial_{x^i}f=\dsd{\ovf}{x^i}
+\]
+where the right hand side is a real number that can be computed with usual analysis on $\eR^n$. This real \emph{defines} the left hand side. Now, $\ovf=\tilde f \circ y^{-1}\circ x$, so that
+\[
+   \dsd{\ovf}{x^i}=\dsd{ (\tilde f \circ y^{-1}\circ x) }{x^i}=\dsd{\tilde f }{y^j}\dsd{y^j}{x^i}
+\]
+where $\dsd{\tilde f }{y^j}$ is precisely what we write now by $\partial_{y^j}f$ and $\dsd{y^j}{x^i}$ must be understood as the derivative with respect to $x^i$ of the function $\dpt{(y^{-1}\circ x)}{\eR^n}{\eR^n}$.
+
+Let $\dpt{f}{M}{N}$ and $\dpt{g}{N}{\eR}$; the definitions gives
+\[
+  (df_xX)g=\Dsdd{(g\circ f)(X(t))}{t}{0}
+          =\dsd{g}{y^i}\dsd{f^i}{x^{\alpha}}\frac{dX^{\alpha}}{dt}.
+\]
+This shows that $\dsd{f^i}{x^{\alpha}}\frac{dX^{\alpha}}{dt}$ is $(df_xX)^i$.  But $dX^{\alpha}/dt$ is what we should call $X^{\alpha}$ in the decomposition $X=X^{\alpha}\partial_{\alpha}$ then the matrix of $df$ is given by $\dsd{f^i}{x^{\alpha}}$. So we find back the old notion of differential.
+
+\begin{definition}
+    A map $\dpt{f}{M_1}{M_2}$ is an \defe{immersion}{immersion} at $p\in M_1$ if $\dpt{df_p}{T_pM_1}{T_{f(p)}M_2}$ is injective. It is a \defe{submersion}{submersion} if $df_p$ is surjective.
+\end{definition}
+
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Examples}
+%---------------------------------------------------------------------------------------------------------------------------
+
+\subsubsection{Example: the sphere}\index{sphere}
+
+The sphere $S^n$ is the set
+\[
+  S^n=\{  (x_1,\ldots, x_{n+1})\in\eR^{n+1}\tq \|x\|=1  \}
+\]
+for which we consider the following open set in $\eR^n$:
+\[
+   \mU=\{  (u_1,\ldots,u_n)\in\eR^n\tq\|u\|<1  \}
+\]
+and the charts $\dpt{\varphi_i}{\mU}{S}$, and $\dpt{\tilde{\varphi}_i}{\mU}{S}$
+\begin{subequations}
+\begin{align}
+   \varphi_i(u_1,\ldots,u_n)&=(u_1,\ldots,u_{i-1}, \sqrt{  1-\|u\|^2  },u_i,\ldots,u_n )\\
+   \tilde{\varphi}_i(u_1,\ldots,u_n)&=(u_1,\ldots,u_{i-1}, -\sqrt{  1-\|u\|^2  },u_i,\ldots,u_n ).
+\end{align}
+\end{subequations}
+These map are clearly injective. To see that $\varphi(\mU)\cup\tilde{\varphi}(\mU)=S$, consider $(x_1,\ldots,x_{n+1})\in S$. Then at least one of the $x_i$ is non zero. Let us suppose $x_1\neq 0$, thus $x_1^2=1-(x_2^2+\cdots+x_{n+1}^2)$ and
+\begin{equation}\label{eq:xupm}
+   x_1=\pm\sqrt{1-(\ldots)}.
+\end{equation}
+If we put $u_i=x_{i+1}$, we have $x=\varphi(u)$ or $x=\tilde{\varphi}(u)$ following the sign in relation \eqref{eq:xupm}. The fact that $\varphi^{-1}\circ\tilde{\varphi}$ and $\tilde{\varphi}^{-1}\circ\varphi$ are differentiable is a ``first year in analysis exercise``.
+
+\subsubsection{Example: projective space}
+
+On $\eR^{n+1}\setminus\{o\}$, we consider the equivalence relation $v\sim\lambda w$ for all non zero $\lambda\in\eR$, and we put
+\[
+  \eR P^n=\left(\eR^{n+1}\setminus\{o\}\right)/\sim.
+\]
+This is the set of all the one dimensional subspaces of $\eR^{n+1}$. This is the real \defe{projective space}{projective!real space} of dimension $n$. We set $\mU=\eR^n$ and
+\[
+  \varphi_i(u_1,\ldots,u_n)=\Span\{ (u_1,\ldots,u_{i-1},1,u_i,\ldots,u_n) \}.
+\]
+One can see that this gives a manifold structure to $\eR P^n$. Moreover, the map
+		\begin{equation}
+		\begin{aligned}
+			A \colon S^n &\to \eR P^n\
+			v&\mapsto \Span v
+		\end{aligned}
+	\end{equation}
+is differentiable.
+
+Let us show how to identify $\eR\cup\{ \infty \}$ to $\eR P^1$, the set of directions in the plane $\eR^2$. Indeed consider any vertical line $l$ (which does contain the origin). A non vertical vector subspace of $\eR^2$ intersects $l$ in one and only one point, while the vertical vector subspace is associated with the infinite point.
 
 \subsection{Some Leibnitz formulas}
 
@@ -639,7 +1501,7 @@ We proof a generalization of the rank theorem \ref{ThoGkkffA}.
                             *    &   d\tilde f_x    
                         \end{pmatrix}
                     \end{equation}
-                    where \( d\tilde f_x\) is the matrix whose elements are \( \left( \frac{ \partial \tilde f_i }{ \partial x_s } \right)\) with \( i=k+1,\ldots, n\) and \( s=k+1,\ldots, m\). This is not a square matrix by the way. We have, by proposition \ref{PROPooBWZFooTxKavX},
+                    where \( d\tilde f_x\) is the matrix whose elements are \( \left( \frac{ \partial \tilde f_i }{ \partial x_s } \right)\) with \( i=k+1,\ldots, n\) and \( s=k+1,\ldots, m\). This is not a square matrix by the way. We have, by theorem \ref{THOooIHPIooIUyPaf},
                     \begin{equation}
                         d(f\circ\varphi^{-1})_x=df_{\varphi^{-1}(x)}\circ(d\varphi^{-1})_x
                     \end{equation}

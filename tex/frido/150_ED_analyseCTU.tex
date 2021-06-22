@@ -10,7 +10,7 @@
 \begin{definition}[Équation différentielle du premier ordre]
 Une  \defe{équation différentielle du premier ordre}{équation différentielle!premier ordre} est une équation qui, sur un intervalle donné, \(I\), décrit la relation entre une variable réelle, notée \(x\) ou \(t\) dans \(I\), une fonction \(y \,:\,I\to\eR \), et la dérivée première de \(y\) qui on note \(y'\).
 \end{definition}
-Souvent on écrit <<\(y'(x) = \text{une formule contenante }x \text{ et }y(x)\)>>, c'est \`a dire
+Souvent on écrit <<\(y'(x) = \text{une formule contenant }x \text{ et }y(x)\)>>, c'est \`a dire
 \begin{equation}\label{ed_generale}
   y'(x) = f(x,y(x)),\quad\text{pour }x\in I,
 \end{equation}
@@ -46,7 +46,7 @@ On peut presque toujours omettre d'écrire la dépendance de \(y\) en \(x\) et �
 \begin{remark}
   La solution générale d'une équation différentielle du premier ordre est une famille à un paramètre de fonctions.
 \end{remark}
-\begin{definition}[Équation differentielle du second ordre]
+\begin{definition}[Équation différentielle du second ordre]
 Une  \defe{équation différentielle du second ordre}{équation différentielle!second ordre} est une équation qui, sur un intervalle donne, \(I\), décrit la relation entre une variable réelle, notée \(x\) ou \(t\) dans \(I\), une fonction \(y \,:\,I\to\eR \), et les dérivées première et seconde de \(y\) qui on note \(y'\) et \(y''\) respectivement.
 
 On utilise la forme générale
@@ -61,7 +61,7 @@ On peut définir de manière analogue les équations différentielles d'ordre su
   La trajectoire tracée par une solution particulière $y$ de l'équation \eqref{ed_generale} est le graphe de $y$ en tant que fonction de $x$.
 \end{definition}
 \begin{example}
-  Nous allons regarder de plus près l'équation \eqref{equation_exponentielle}, $y'=y$, pour tout $x\in\eR$. Soient $y_1$ et $y_2$ deux solutions distinctes de cette équation. S'il existe un point $\bar x$ tel que $y_1(\bar x) = y_2 (\bar x)$ alors forcement $y_1(\bar x)/y_2 (\bar x)=1$. Or, la solution générale de l'équation est \(\mathcal{Y} = \{Ce^x\, : \, C\in\eR\}\), donc $y_i(x) = C_ie^x$, $i= 1,2$, o\`u les $C_i$ sont des constantes. Le rapport $y_1(\bar x)/y_2 (\bar x)$ vaut $C_1/C_2$ et par conséquent $C_1 = C_2$. Ce résultat contredit l'hypothèse que les deux solutions soient distinctes. On a donc montré que \emph{deux trajectoires distinctes de cette équations ne se croisent jamais}.
+  Nous allons regarder de plus près l'équation \eqref{equation_exponentielle}, $y'=y$, pour tout $x\in\eR$. Soient $y_1$ et $y_2$ deux solutions distinctes de cette équation. S'il existe un point $\bar x$ tel que $y_1(\bar x) = y_2 (\bar x)$ alors forcement $y_1(\bar x)/y_2 (\bar x)=1$. Or, la solution générale de l'équation est \(\mathcal{Y} = \{Ce^x\, : \, C\in\eR\}\), donc $y_i(x) = C_ie^x$, $i= 1,2$, o\`u les $C_i$ sont des constantes. Le rapport $y_1(\bar x)/y_2 (\bar x)$ vaut $C_1/C_2$ et par conséquent $C_1 = C_2$. Ce résultat contredit l'hypothèse que les deux solutions soient distinctes. On a donc montré que \emph{deux trajectoires distinctes de cette équation ne se croisent jamais}.
 
 \newcommand{\CaptionFigSBTooEasQsT}{Quelques trajectoires de l'équation \( y'=y\).}
 \input{auto/pictures_tex/Fig_SBTooEasQsT.pstricks}
@@ -131,7 +131,7 @@ Nous pouvons intégrer les deux côtés de l'égalité par rapport à \(x\) et o
 \[
   \int f(y(x))y'(x)\, dx = G(x)+C,
 \]
-o\`u $G$ est une primitive de $g$ et $C$ une constante réelle. Il est facile \`a ce point d'effectuer une changement de variable dans le membre de gauche de l'équation en posant (sans surprise) \(y= y(x)\) et donc \(y'(x)\,dx = dy\).
+o\`u $G$ est une primitive de $g$ et $C$ une constante réelle. Il est facile \`a ce point d'effectuer un changement de variable dans le membre de gauche de l'équation en posant (sans surprise) \(y= y(x)\) et donc \(y'(x)\,dx = dy\).
 \[
   \int f(y(x))y'(x)\, dx =  \int f(y)\, dy  = F(y(x)) + C ,
 \]
@@ -282,7 +282,7 @@ Toute équation linéaire du premier ordre homogène est une équation du premie
 \begin{proposition}
   \begin{enumerate}
   \item Soit $y_p$ une solution particulière de l'équation \eqref{eq_lin_ordre_un} et $y_h$ une solution particulière de l'équation homogène associé \eqref{eq_lin_ordre_un_hom}. Alors la fonction somme $z= y_p+y_h$ est encore une solution particulière de l'équation \eqref{eq_lin_ordre_un}.
-  \item Soient $y_1$ et $y_2$ deux solutions particulières de \eqref{eq_lin_ordre_un}. Alors la fonction différence $w = y_1-y_2$ est un solution particulière de \eqref{eq_lin_ordre_un_hom}.
+  \item Soient $y_1$ et $y_2$ deux solutions particulières de \eqref{eq_lin_ordre_un}. Alors la fonction différence $w = y_1-y_2$ est une solution particulière de \eqref{eq_lin_ordre_un_hom}.
   \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -438,7 +438,7 @@ alors la substitution nous donne
 \[
 e^{rx}\left(ar^2+br+c\right)=0.
 \]
-Il est connu que la fonction exponentielle ne prend pas la valeur $0$, par consequent ce qui s'annule est le polynôme de degré deux $ar^2+br+c$. Il est donc très facile de trouver les valeurs de $r$ qu'on pourra utiliser comme $r_1$ et $r_2$ dans la solution générale \textbf{complexe}.
+Il est connu que la fonction exponentielle ne prend pas la valeur $0$, par conséquent ce qui s'annule est le polynôme de degré deux $ar^2+br+c$. Il est donc très facile de trouver les valeurs de $r$ qu'on pourra utiliser comme $r_1$ et $r_2$ dans la solution générale \textbf{complexe}.
 \begin{description}
   \item[Si $b^2 - 4ac >0$ :] le polynôme admet deux solutions réelles et distinctes, $r_1$ et $r_2$ ;
   \item[Si $b^2 - 4ac <0$ :] le polynôme admet deux solutions complexes conjuguées, $r_1 = \alpha + i \beta$ et $r_2 = \alpha - i \beta$ ;
@@ -521,7 +521,7 @@ Nous pouvons essayer avec $f(x)= k_1\cos(x) + k_2\sin(x)$. Par substitution on t
   \end{aligned}
 \end{equation*}
 
-Cette équation doit \^etre satisfaite pour tout valeur de $x$, en particulier pour $x= 0$ et $x = \pi/2$. Cela revient à considère séparément les coefficients des fonctions sinus et cosinus. Il faut alors que $k_1$ et $k_2$ soient solutions du système
+Cette équation doit \^etre satisfaite pour toute valeur de $x$, en particulier pour $x= 0$ et $x = \pi/2$. Cela revient à considère séparément les coefficients des fonctions sinus et cosinus. Il faut alors que $k_1$ et $k_2$ soient solutions du système
 \begin{equation*}
   \begin{cases}
     -k_1 + 12 k_2 + 36 k_1& = 12, \\

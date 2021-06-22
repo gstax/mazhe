@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2018
+% Copyright (c) 2011-2018, 2020-2021
 %   Laurent Claessens, Carlotta Donadello
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -62,7 +62,7 @@ La propriété suivante donne des caractérisations importantes de la continuit�
     \end{enumerate}
 \end{proposition}
 \index{continue!fonction entre espaces métriques}
-La proposition~\ref{PropNGjQnqF} nous montrera que ces équivalences tiennent encore lorsque l'espace a une topologie de semi-normes.
+La proposition~\ref{PropNGjQnqF} nous montrera que ces équivalences tiennent encore lorsque l'espace a une topologie de seminormes.
 
 \begin{proof}
     L'équivalence~\ref{ItemCBUoRWJi} \( \Leftrightarrow\)~\ref{ItemCBUoRWJii} est la définition~\ref{DefOLNtrxB}. L'équivalence~\ref{ItemCBUoRWJiii} \( \Leftrightarrow\)~\ref{ItemCBUoRWJiv} est une simple paraphrase.
@@ -78,7 +78,7 @@ La proposition~\ref{PropNGjQnqF} nous montrera que ces équivalences tiennent en
     Enfin l'implication~\ref{ItemCBUoRWJii} \( \Rightarrow\)~\ref{ItemYNQpikrii} est une réécriture de la définition de la limite en un point.
 \end{proof}
 
-Voici un théorème qui parle de fermés emboîtés dans un espace métrique. Le corollaire \ref{CORooQABLooMPSUBf} parle du cas \( \cap_iA_i=\emptyset\) dans un compact.
+Voici un théorème qui parle de fermés emboîtés dans un espace métrique. Le corolaire \ref{CORooQABLooMPSUBf} parle du cas \( \cap_iA_i=\emptyset\) dans un compact.
 \begin{theorem}[Théorème \wikipedia{fr}{Théorème_des_fermés_emboités}{des fermés emboîtés}\cite{OIywOjl}]   \label{ThoCQAcZxX}
     Soit \( (E,d)\) un espace métrique. Il est complet si et seulement si toute suite décroissante de fermés non vides dont le diamètre tend vers zéro a une intersection qui se réduit à un seul point.
 \end{theorem}
@@ -154,7 +154,7 @@ Voici un théorème qui parle de fermés emboîtés dans un espace métrique. Le
 \end{lemma}
 
 \begin{proof}
-    Le fonction
+    La fonction
     \begin{equation}
         \begin{aligned}
              K&\to \eR \\
@@ -332,7 +332,6 @@ Encore une petite conséquence sans ambition du théorème de Bolzano-Weierstras
                 K\subset\bigcup_{n=0}^{\infty}\Int(K_n).
             \end{equation}
             Cela donne à \( K\) un recouvrement par des ouverts dont nous pouvons extraire un sous-recouvrement fini par compacité. Les \( K_n\) étant croissants, du recouvrement fini, il suffit de prendre le plus grand (disons \( K_m\)) et nous avons \( K\subset\Int(K_m)\).
-
     \end{enumerate}
 \end{proof}
 Notons qu'avec la suite de \( K_n\) telle que construite, le dernier point est réglé en prenant
@@ -341,36 +340,126 @@ Notons qu'avec la suite de \( K_n\) telle que construite, le dernier point est r
 \end{equation}
 
 
+\begin{lemma}[\cite{BIBooPITOooZANjFn}]     \label{LEMooWRIXooSBHavt}
+    Soient un compact \( K\subset \eR^d\) ainsi que des ouverts \( \{\Omega_i\}_{i=1,\ldots, n}\) tels que \( K\subset\bigcup_{i=1}^n\Omega_i\).
+
+    Il existe des compacts \( \{ K_i \}_{i=1,\ldots, n}\) tels que 
+    \begin{itemize}
+        \item 
+    \( K_i\subset \Omega_i\), 
+    \item
+    \( K\subset\bigcup_{i=1}^nK_i\).
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}
+    Soit \( x\in K\). Vu que les \( \Omega_i\) recouvrent \( K\), il existe un \( k(x)\in \{ 1,\ldots, n \}\) tel que \( x\in \Omega_{k(x)}\). De plus, vu que \( \Omega_{k(x)}\) est ouvert, il existe un voisinage de \( x\) contenu dans \( \Omega_{k(x)}\) (théorème \ref{ThoPartieOUvpartouv}). Autrement dit, il existe \( r(x)>0\) tel que
+    \begin{equation}        
+        \overline{ B\big( x,r(x) \big) }\subset  \Omega_{k(x)}.
+    \end{equation}
+    Vu que l'ensemble $\{   B\big( x,r(x) \big)    \}_{x\in k}$ est un recouvrement de \( K\) par des ouverts, nous pouvons en extraire un sous-recouvrent fini\footnote{C'est la définition \ref{DefJJVsEqs} d'un compact.}. Soient donc \( x_1,\ldots, x_m\in K\) tels que
+    \begin{equation}        \label{EQooETROooCMlJsx}
+        K\subset\bigcup_{i=1}^mB\big( x_i, r(x_i) \big).
+    \end{equation}
+    Pour chaque \( j=1,\ldots, n\), nous posons
+    \begin{equation}
+        A_j=\big\{ l\in \{ 1,\ldots, m \}\tq k(x_l)=j \big\}.
+    \end{equation}
+    Et enfin nous définisssons, pour \( j=1,\ldots, n\) les parties
+    \begin{equation}
+        K_j=\bigcup_{l\in A_j} \overline{ B\big(x_l, r(x_l)\big) }
+    \end{equation}
+    et il nous reste à prouver que ces ensembles répondent bien à la question.
+    \begin{subproof}
+    \item[$ \bigcup_{j=1}^n A_j=\{ 1,\ldots, m \}$ est une union disjointe]
+        Un élément \( l\) de \( A_i\cap A_j\) devrait vérifier \( i=k(x_l)=j\). Si \( s\in \{ 1,\ldots, m \}\), alors \( s\in A_{k(x_s)}\). Donc oui, l'union des \( A_j\) est tout \( \{ 1,\ldots, m \}\).
+    \item[$ K_{j}\subset \Omega_j$]
+        Nous avons
+        \begin{equation}
+            K_j=\bigcup_{l\in A_j}\overline{ B\big( x_l,r(x_l) \big) }\subset  \bigcup_{l\in A_j}\Omega_{k(x_l)}=\bigcup_{l\in A_l}\Omega_{j}=\Omega_j.
+        \end{equation}
+\item[$K\subset\bigcup_{i=1}^nK_i$.]
+    Par \eqref{EQooETROooCMlJsx}, et vu que \( \{ 1,\ldots, m \}=\bigcup_{j=1}^nA_j\),
+    \begin{subequations}
+        \begin{align}
+        K&\subset\bigcup_{i=1}^mB\big( x_i, r(x_i) \big)\\
+        &=\bigcup_{j=1}^n\bigcup_{l\in A_j}B\big( x_l,r(x_l) \big)\\
+        &=\bigcup_{j=1}^n\underbrace{\bigcup_{l\in A_j}\overline{  B\big( x_l,r(x_l) \big)}}_{K_j}\\
+        &=\bigcup_{j=1}^nK_j.
+        \end{align}
+    \end{subequations}
+    \end{subproof}
+\end{proof}
+
+
 \begin{theorem}[Tykhonov]\index{théorème!Tykhonov}\label{ThoFWXsQOZ}
     Un produit quelconque d'espaces métriques non vides est compact si et seulement si chacun de ses facteurs est compact.
 \end{theorem}
 Nous n'allons donner la preuve que dans le cas d'un produit fini dans le théorème~\ref{THOIYmxXuu}.
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Ensembles enchaînés}
+\subsection{Ensembles enchainés}
 %---------------------------------------------------------------------------------------------------------------------------
 
-Soit \( (x,d)\) un espace métrique.
+Soit \( (X,d)\) un espace métrique.
 \begin{definition}
-    Une \defe{\( \epsilon\)-chaîne}{chaîne} joignant les points \( a\) et \( b\) de \( X\) est une suite finie \( (u_0,\ldots, u_n)\) dans \( X\) telle que \( u_0=a\), \( u_n=b\) et pour tout \( 0\leq i\leq n-1\) nous avons \( d(u_n,u_{n+1})\leq \epsilon\).
+    Une \defe{\( \epsilon\)-chaine}{chaine} joignant les points \( a\) et \( b\) de \( X\) est une suite finie \( (u_0,\ldots, u_n)\) dans \( X\) telle que \( u_0=a\), \( u_n=b\) et pour tout \( 0\leq i\leq n-1\) nous avons \( d(u_n,u_{n+1})\leq \epsilon\).
 
-    Une partie \( A\) de \( X\) est \defe{bien enchaînée}{bien!enchaîné} si pour tout \( \epsilon>0\) et pour tout \( a,b\in A\), il existe une \( \epsilon\)-chaîne joignant \( a\) et \( b\) dans $A$.
+    Une partie \( A\) de \( X\) est \defe{bien enchainée}{bien!enchainé} si pour tout \( \epsilon>0\) et pour tout \( a,b\in A\), il existe une \( \epsilon\)-chaine joignant \( a\) et \( b\) dans $A$.
 \end{definition}
-Les rationnels dans \( \eR\) sont bien enchaînés.
 
-\begin{proposition}
-    Un espace connexe est bien enchaîné.
+
+\begin{lemma}
+    Les rationnels dans \( \eR\) sont bien enchainés.
+\end{lemma}
+
+\begin{proof}
+    Soient \( p\) et \( q\) des rationnels avec \( p<q\), ainsi que \( \epsilon>0\). Le lemme \ref{LemooHLHTooTyCZYL} nous permet de considérer un rationnel \( \delta\) vérifiant \( 0<\delta<\epsilon\). Et nous définissons les rationnels
+    \begin{equation}
+        r_k=p+k\delta.
+    \end{equation}
+
+    Vu que \( \eQ\) est archimédien\footnote{Proposition \ref{PROPooMXGPooDUkOuv}.}, il existe \( K\) tel que \( r_{K}>q\). D'autre part, \( r_0=p<q\). Donc il existe \( N=\max\{ k\in \eN\tq r_k<q \}\).
+
+    Nous considérons la chaine \( (r_0,\ldots, r_N, q)\). Elle débute à \( r_0=p\) et termine à \( q\); pas de problèmes avec ça. À part pour le dernier pas, nous avons
+    \begin{equation}
+        | r_n-r_{n-1} |=\delta<\epsilon,
+    \end{equation}
+    donc c'est bien une \( \epsilon\)-chaine. Il reste à voir \( | q-r_N |\). Nous avons \( r_N\leq q\leq r_{N+1}\), et donc
+    \begin{equation}
+        0\leq q-r_N\leq r_{N+1}-r_N=\delta\leq \epsilon.
+    \end{equation}
+    Donc ok aussi pour ce dernier pas.
+\end{proof}
+
+\begin{proposition}[\cite{BIBooKBZDooIBOnLN, MonCerveau}]       \label{PROPooBUNOooIvfugn}
+    Un espace métrique connexe\footnote{Définition \ref{DefIRKNooJJlmiD}.} est bien enchainé.
 \end{proposition}
-%TODO: une preuve.
 
-\begin{proposition}
-    La fermeture d'un ensemble bien enchaîné dans un espace métrique compact \( (X,d)\) est connexe.
+\begin{proof}
+    Soit un espace métrique \( X\) et \( \epsilon>0\). La relation \( x\sim y\) si et seulement si \( x\) et \( y\) peuvent être reliés par une \( \epsilon\)-chaine est une relation d'équivalence.
+
+    Soit \( x\in X\). Nous prouvons que la classe \( [x]\) est ouverte. En effet soit \( y\in [x]\), si \( z\in B(y,\epsilon)\) nous avons \( z\in [y]\), et donc \( z\in [x]\). Nous en déduisons que \( B(y,\epsilon)\subset [x]\), et donc que \( [x]\) est ouvert par le théorème \ref{ThoPartieOUvpartouv}.
+
+    Donc les classes sont des ouverts.
+
+    Supposons que \( X\) n'est pas bien enchainé. Alors il existe \( \epsilon\) pour lequel \( X\) possède plus qu'une classe d'équivalence. Soit \( \{ [x_k] \}_{k\in I}\) l'ensemble des classes d'équivalences.
+
+    Nous considérons un \( i_0\in I\) quelconque, et nous définissons les ouverts \( A=[x_{i_0}]\) et
+    \begin{equation}
+        B=\bigcup_{k\in I\setminus\{ i_0 \}}[x_k].
+    \end{equation}
+    Ce sont deux ouverts disjoints qui recouvrent \( X\) qui n'est donc pas connexe.
+\end{proof}
+
+\begin{proposition}     \label{PROPooXHTWooZibddZ}
+    La fermeture d'un ensemble bien enchainé dans un espace métrique compact \( (X,d)\) est connexe.
 \end{proposition}
 \index{connexité}
 \index{compacité}
 
 \begin{proof}
-    Soit \( A\subset X\) un ensemble bien enchaîné, et soient \( a,b\in \bar A\). Nous construisons une suite \( (u_k)\) dans \( A\) de la façon suivante. Pour chaque \( n>0\) nous prenons \( a'\in B(a,\frac{1}{ n })\cap A\) et \( b'\in B(b,\frac{1}{ n })\cap A\). Ensuite nous considérons une \( \frac{1}{ n }\)-chaîne \( \{ v_i^{(n)} \}_{i\in I_n}\) dans \( A\) entre \( a'\) et \( b'\). Ici l'ensemble \( I_n\) est fini. La suite \( (u_k)\) est simplement construite en mettant bout à bout les éléments \( v_i^{(n)}\).
+    Soit \( A\subset X\) un ensemble bien enchainé, et soient \( a,b\in \bar A\). Nous construisons une suite \( (u_k)\) dans \( A\) de la façon suivante. Pour chaque \( n>0\) nous prenons \( a'\in B(a,\frac{1}{ n })\cap A\) et \( b'\in B(b,\frac{1}{ n })\cap A\). Ensuite nous considérons une \( \frac{1}{ n }\)-chaine \( \{ v_i^{(n)} \}_{i\in I_n}\) dans \( A\) entre \( a'\) et \( b'\). Ici l'ensemble \( I_n\) est fini. La suite \( (u_k)\) est simplement construite en mettant bout à bout les éléments \( v_i^{(n)}\).
 
     La suite ainsi construite est une suite dans \( A\) admettant \( a\) et \( b\) comme points d'accumulation (les autres points d'accumulation sont également dans \( \bar A\)) et telle que \( \lim_{k\to \infty} d(u_k,u_{k+1})=0\). Par conséquent la proposition~\ref{PropLHWACDU} nous dit que l'ensemble des points d'accumulation de \( (u_k)\) est connexe dans \( X\). Nous le notons \( C_{a,b}\).
 
@@ -382,20 +471,18 @@ Les rationnels dans \( \eR\) sont bien enchaînés.
 \end{proof}
 
 \begin{corollary}       \label{CORooSIKCooTncoQm}
-    Un espace métrique compact est connexe si et seulement s'il est bien enchaîné.
+    Un espace métrique compact est connexe si et seulement s'il est bien enchainé.
 \end{corollary}
+
+\begin{proof}
+    Dans le sens direct, c'est la proposition \ref{PROPooBUNOooIvfugn}. Dans l'autre sens, si \( X\) est compact, alors \( X\) est fermé par la proposition \ref{PropUCUknHx}. Et vu qu'il est fermé et bien enchainé, la proposition \ref{PROPooXHTWooZibddZ} implique qu'il est connexe.
+\end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Produit fini d'espaces métriques}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{definition}\label{DefZTHxrHA}
-    Si \( (E_1,d_1)\),\ldots, \( (E_n,d_n)\) sont des espaces métriques nous mettons la distance suivante sur le produit cartésien \( E=E_1\times\ldots\times E_n\) :
-    \begin{equation}
-        d(x,y)=\max_{i=1,\ldots, n}d_i(x_i,y_i).
-    \end{equation}
-\end{definition}
-
+Pour rappel, la distance sur un espace produit est donnée par la définition \ref{DefZTHxrHA}.
 \begin{theorem}[\cite{MonCerveau}]\label{THOIYmxXuu}
     Un produit fini d'espaces métriques non vides est compact si et seulement si chacun de ses facteurs est compact.
 \end{theorem}
@@ -453,12 +540,39 @@ Note : ce résultat est encore valable pour un produit quelconque, c'est le thé
         \| f_i(x)-f_i(y) \|<\epsilon
     \end{equation}
     pour tout \( i\) dès que \( x,y\in V\).
+
+    Nous disons qu'une famille est équicontinue sans préciser en quel point si elle est équicontinue en tout pout.
 \end{definition}
 
 La proposition suivante permet de montrer que certaines fonctions définies par une limite sont continues. Ce sera par exemple le cas de la fonction puissance, proposition \ref{PROPooUQNZooSSHLqr}.
-\begin{proposition}[\cite{ooYDVWooPWLUGW}]     \label{PROPooICNNooAMjcut}
-    Si \( \{ f_i \}\) est une suite équicontinue de fonctions, et si il y a convergence simple \( f_i\to f\), alors \( f\) est continue.
+\begin{proposition}[\cite{MonCerveau,ooYDVWooPWLUGW}]     \label{PROPooICNNooAMjcut}
+    Soit une suite équicontinue \( (f_i)\) de fonctions qui converge simplement vers \( f\), alors \( f\) est continue.
 \end{proposition}
+
+\begin{proof}
+    Soit une suite équicontinue \( f_i\colon X\to E\) convergeant simplement vers \( f\). Soit \( a\in X\). Nous prouvons que \( f\) est continue en \( a.\). Pour cela nous considérons \( \epsilon>0\) et, conformément à l'hypothèse équicontinuité un voisinage \( V\) de \( a\) tel que \( | f_i(a)-f_i(x) |<\epsilon\) pour tout \( x\in V\).
+
+    Nous avons la majoration
+    \begin{subequations}
+        \begin{align}
+            | f(x)-f(a) |\leq | f(x)-f_i(x) |+| f_i(x)-f_i(a) |+| f_i(a)-f(a) |.
+        \end{align}
+    \end{subequations}
+    Plusieurs majorations.
+    \begin{itemize}
+        \item 
+            Vu que \( f_i\to f\), il existe \( N_1\) tel que \( | f(x)-f_i(x) |<\epsilon\) pour tout \( i>N_1\).
+        \item
+            De plus, par définition de \( V\), nous avons aussi \( | f_i(x)-f_i(a) |\leq \epsilon\).
+        \item
+            Vu que \( f_i\to f\), il existe \( N_2\) tel que \( | f_i(a)-f(a) |<\epsilon\) pour tout \( i>N_2\).
+    \end{itemize}
+    Donc en prenant \( x\in V\) et \( i>\max\{ N_1,N_2 \}\) nous avons
+    \begin{equation}
+        | f(x)-f(a) |\leq 3\epsilon.
+    \end{equation}
+\end{proof}
+
 
 %--------------------------------------------------------------------------------------------------------------------------- 
 \subsection{Continuité uniforme}
@@ -505,13 +619,13 @@ Nous allons nous limiter au cas de \( \eR\), mais je crois que ça se générali
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Topologie des semi-normes}
+\section{Topologie des seminormes}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Les principaux espaces topologiques construit avec des semi-normes seront les espaces de fonctions de la définition~\ref{DefFGGCooTYgmYf}. Nous verrons également la topologie \( *\)-faible sur \( \swD'(\Omega)\) en la définition~\ref{DefASmjVaT}.
+Les principaux espaces topologiques construit avec des seminormes seront les espaces de fonctions de la définition~\ref{DefFGGCooTYgmYf}. Nous verrons également la topologie \( *\)-faible sur \( \swD'(\Omega)\) en la définition~\ref{DefASmjVaT}.
 
 \begin{definition}  \label{DefPNXlwmi}
-    Si \( E\) est un espace vectoriel, une \defe{semi-norme}{semi-norme} sur \( E\) est une application \( p\colon E\to \eR\) telle que
+    Si \( E\) est un espace vectoriel, une \defe{seminorme}{seminorme} sur \( E\) est une application \( p\colon E\to \eR\) telle que
     \begin{enumerate}
         \item
             \( p(x)\geq 0\),
@@ -522,10 +636,10 @@ Les principaux espaces topologiques construit avec des semi-normes seront les es
     \end{enumerate}
 \end{definition}
 
-La seule différence avec une norme est simplement qu'une semi-norme peut s'annuler en des éléments non-nuls de l'espace.
+La seule différence avec une norme est simplement qu'une seminorme peut s'annuler en des éléments non-nuls de l'espace.
 
 \begin{lemma}[\cite{DRcmzcB}]
-    Si \( p\) est une semi-norme nous avons
+    Si \( p\) est une seminorme\footnote{Définition \ref{DefPNXlwmi}.} nous avons
     \begin{equation}
         | p(x)-p(y) |\leq p(x-y).
     \end{equation}
@@ -543,18 +657,18 @@ La seule différence avec une norme est simplement qu'une semi-norme peut s'annu
     qui donne le résultat demandé en posant \( h=y-x\).
 \end{proof}
 
-Soit \( (p_i)_{i\in I}\) une famille de semi-normes sur \( E\). Nous construisons alors une topologie sur \( E\) de la façon suivante.
+Soit \( (p_i)_{i\in I}\) une famille de seminormes sur \( E\). Nous construisons alors une topologie sur \( E\) de la façon suivante.
 
-\begin{definition}[Topologie et semi-normes\cite{SOdaAdx,MUbDonp}]
-    Pour tout \( J\) fini dans \( I\) nous définissons les \defe{boules ouvertes}{boule!avec semi-normes}
+\begin{definition}[Topologie et seminormes\cite{SOdaAdx,MUbDonp}]      \label{DEFooZTKAooWYUyDa}
+    Soient des seminormes \( \{ p_i \}_{i\in I}\). Pour tout \( J\) fini dans \( I\) nous définissons les \defe{boules ouvertes}{boule!avec seminormes}
     \begin{equation}
         B_J(x,r)=\{ y\in E\tq p_j(y-x)<r\,\forall j\in J \}.
     \end{equation}
-    La \defe{topologie}{topologie!et semi-normes} sur \( E\) donnée par la famille de semi-norme est définie en disant que \( \mO\subset E\) est ouvert si et seulement si chaque point de \( \mO\) est dans une boule contenue dans \( \mO\).
+    La \defe{topologie}{topologie!et seminormes} sur \( E\) donnée par la famille de seminorme est définie en disant que \( \mO\subset E\) est ouvert si et seulement si chaque point de \( \mO\) est dans une boule contenue dans \( \mO\).
 \end{definition}
 
 \begin{proposition} \label{PropQPzGKVk}
-    Une suite \( (x_n)\) dans \( E\) converge vers \( x\) au sens de la topologie des semi-normes si et seulement si pour tout \( i\in I\),
+    Soit un ensemble \( E\) muni de la topologie des seminormes \( \{ p_i \}_{i\in I}\). Une suite \( (x_n)\) dans \( E\) converge vers \( x\) si et seulement si pour tout \( i\in I\),
     \begin{equation}
         p_i(x-x_n)\to 0.
     \end{equation}
@@ -598,18 +712,18 @@ La proposition suivante est un vulgaire plagiat de la proposition~\ref{PropQZRNp
     \end{equation}
 \end{proof}
 
-Lorsqu'on a un espace \( E\) muni d'une quantité dénombrable de semi-normes \( \{ p_k \}_{k\in I}\) nous définissons l'écart\footnote{Dans le cas de \( E=\swD(K)\), la première semi-norme est numérotée à zéro, donc il faudra poser \( d(\varphi_1,\varphi_2)\) avec \( p_{k-1}\) au lieu de \( p_k\).}
+Lorsqu'on a un espace \( E\) muni d'une quantité dénombrable de seminormes \( \{ p_k \}_{k\in I}\) nous définissons l'écart\footnote{Dans le cas de \( E=\swD(K)\), la première seminorme est numérotée à zéro, donc il faudra poser \( d(\varphi_1,\varphi_2)\) avec \( p_{k-1}\) au lieu de \( p_k\).}
 \begin{equation}        \label{EqAAghiUR}
     d(x,y)=\sup_{k\geq 1}\min\big\{  \frac{1}{ k },p_k(x-y) \big\}.
 \end{equation}
-Notons que cette écart est invariant par translation au sens où pour tout \( x,y,h\) dans \( E\) nous avons
+Notons que cet écart est invariant par translation au sens où pour tout \( x,y,h\) dans \( E\) nous avons
 \begin{equation}
     d(x+h,y+h)=\sup_{k\geq 1}\min\big\{ \frac{1}{ k },p_k(x-y) \big\}=d(x,y).
 \end{equation}
 
 
 \begin{proposition}     \label{PROPooMJEQooHtIyeX}
-    Si \( X\) est un espace topologique dont la topologie est donnée par une famille dénombrable de semi-normes, alors il est métrisable.
+    Si \( X\) est un espace topologique dont la topologie est donnée par une famille dénombrable de seminormes, alors il est métrisable.
 \end{proposition}
 %TODO : une preuve
 
@@ -618,11 +732,11 @@ Notons que cette écart est invariant par translation au sens où pour tout \( x
     \begin{equation}    \label{EqGHfYIlQ}
         B_k(a,r)=\{ x\in E\tq \forall\,k\leq \frac{1}{ r },p_k(x-a)<r\}
     \end{equation}
-    est la même que celle «usuelle» donnée par les semi-normes. En disant «la même» nous entendons le fait que les ouverts sont les mêmes : \( A\) est ouvert pour une des deux topologies si et seulement s'il est ouvert pour l'autre.
+    est la même que celle «usuelle» donnée par les seminormes. En disant «la même» nous entendons le fait que les ouverts sont les mêmes : \( A\) est ouvert pour une des deux topologies si et seulement s'il est ouvert pour l'autre.
 \end{proposition}
 
 \begin{proof}
-    Pour cette démonstration nous allons préfixer par \( d\) les notions topologiques issues des boules \eqref{EqGHfYIlQ} et par \( P\) celle des semi-normes : \( P\)-continue, \( d\)-ouvert, etc.
+    Pour cette démonstration nous allons préfixer par \( d\) les notions topologiques issues des boules \eqref{EqGHfYIlQ} et par \( P\) celle des seminormes : \( P\)-continue, \( d\)-ouvert, etc.
 
     D'abord nous avons
     \begin{equation}    \label{EqRIURpQo}
@@ -630,7 +744,7 @@ Notons que cette écart est invariant par translation au sens où pour tout \( x
     \end{equation}
     Si \( \mO\) est un \( d\)-ouvert, il contient une \( d\)-boule autour de chacun de ses points. Or d'après la formule \eqref{EqRIURpQo}, une \( d\)-boule est une intersection \emph{finie} de \( P\)-ouverts et donc est un \( P\)-ouvert par définition. Donc \( \mO\) contient un \( P\)-ouvert autour de tous ses points et est donc \( P\)-ouvert.
 
-    Inversement nous supposons que \( \mO\) est un \( P\)-ouvert. Commençons par prouver que les semi-normes \( p_k\) sont \( d\)-continues. En effet soient \( k\in \eN\), \( \epsilon\leq \frac{1}{ k }\) et \( x,y\in E\) tels que \( d(x,y)\leq \epsilon\); nous avons
+    Inversement nous supposons que \( \mO\) est un \( P\)-ouvert. Commençons par prouver que les seminormes \( p_k\) sont \( d\)-continues. En effet soient \( k\in \eN\), \( \epsilon\leq \frac{1}{ k }\) et \( x,y\in E\) tels que \( d(x,y)\leq \epsilon\); nous avons
     \begin{subequations}
         \begin{align}
             | p_k(y)-p_k(x) |&\leq p_k(x-y)\\
@@ -657,16 +771,16 @@ Notons que cette écart est invariant par translation au sens où pour tout \( x
 Nous parlerons plus en détail d'espace dual d'un espace normé en la section~\ref{SECooKOJNooQVawFY}.
 
 \begin{definition}  \label{DefHUelCDD}
-    Soient \( F\) un espace métrique et \( E\) un espace topologique vectoriel. Une topologie possible\footnote{C'est, dans l'idée, celle qui sera choisie pour les espaces de distributions, voir la définition~\ref{DefASmjVaT}.} sur l'espace des applications linéaires \( \aL(E,F)\) est la \defe{topologie \( *\)-faible}{topologie!$*$-faible} qui est la topologie des semi-normes
+    Soient \( F\) un espace métrique et \( E\) un espace topologique vectoriel. Une topologie possible\footnote{C'est, dans l'idée, celle qui sera choisie pour les espaces de distributions, voir la définition~\ref{DefASmjVaT}.} sur l'espace des applications linéaires \( \aL(E,F)\) est la \defe{topologie \( *\)-faible}{topologie!$*$-faible} qui est la topologie des seminormes
     \begin{equation}
         p_v(T)=\| T(v) \|_F.
     \end{equation}
 \end{definition}
-C'est une famille de semi-normes indicées par les éléments de \( E\). Si \( E\) est un espace métrique, c'est cette topologie qui sera considérée sur son dual topologique\index{topologie!sur dual topologique} \( E'\) des applications continues \( E\to \eR\).
+C'est une famille de seminormes indicées par les éléments de \( E\). Si \( E\) est un espace métrique, c'est cette topologie qui sera considérée sur son dual topologique\index{topologie!sur dual topologique} \( E'\) des applications continues \( E\to \eR\).
 
 La proposition suivante indique qu'elle est un peu la topologie de la convergence ponctuelle.
 \begin{proposition}
-    Soient \( E\) un espace muni de la topologie des semi-normes \( \{ p_i \}_{i\in I}\) et \( F\) un espace métrique. Soient une suite \( (T_n)\) dans \( \aL(E,F)\) et \( T\in \aL(E,F)\). Nous avons \( T_n\stackrel{*}{\longrightarrow}T\) si et seulement si \( T_n(v)\stackrel{F}{\longrightarrow}T(v)\) pour tout \( v\in E\).
+    Soient \( E\) un espace muni de la topologie des seminormes \( \{ p_i \}_{i\in I}\) et \( F\) un espace métrique. Soient une suite \( (T_n)\) dans \( \aL(E,F)\) et \( T\in \aL(E,F)\). Nous avons \( T_n\stackrel{*}{\longrightarrow}T\) si et seulement si \( T_n(v)\stackrel{F}{\longrightarrow}T(v)\) pour tout \( v\in E\).
 \end{proposition}
 
 \begin{proof}

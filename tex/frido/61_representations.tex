@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2013,2016-2019
+% Copyright (c) 2011-2013,2016-2020
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -37,8 +37,8 @@ Sources : \cite{MneimneLie} et \wikipedia{fr}{Matrice_normale}{wikipédia}.
     Étant donné que \( G/H\) est également connexe, la fonction \( \tilde f\) doit être constante. Si \( g_1\) et \( g_2\) sont deux éléments du groupe, nous avons \( f(g_1)=\tilde f([g_1])=\tilde f([g_2])=f(g_2)\). Nous en déduisons que \( f\) est constante et que \( G\) est connexe.
 \end{proof}
 
-\begin{theorem}
-    Le groupe \( \SO(n)\) est connexe, le groupe \( \gO(n)\) a deux composantes connexes.
+\begin{theorem}     \label{THOooYQFNooPaYmaP}
+    Pour tout \( n\geq 2\), le groupe \( \SO(n)\) est connexe, le groupe \( \gO(n)\) a deux composantes connexes.
 \end{theorem}
 
 \begin{proof}
@@ -128,7 +128,7 @@ Sources : \cite{MneimneLie} et \wikipedia{fr}{Matrice_normale}{wikipédia}.
 \end{proof}
 
 \begin{lemma}[\cite{PAXrsMn}]
-    Si \( G\) est un sous-groupe connexe de \( \GL(n,\eC)\) alors son groupe dérivé\footnote{Définition~\ref{DefVUFBooNQjEdn}.} l'est également.
+    Si \( G\) est un sous-groupe connexe de \( \GL(n,\eC)\) alors son groupe dérivé\footnote{Définition~\ref{DEFooBNLPooShKYXa}.} l'est également.
 \end{lemma}
 \index{groupe dérivé!de \( \GL(n,\eC)\)}
 
@@ -561,9 +561,6 @@ La preuve utilise le fait que les transvections engendrent \( \SL(n,\eK)\) et qu
     Le chemin \( U(t)\) obtenu en remplaçant \( \theta_i\) par \( t\theta_i\) avec \( t\in\mathopen[ 0 , 1 \mathclose]\) joint \( QAQ^{-1}\) à l'identité. Par conséquent \( Q^{-1}U(t)Q\) joint \( A\) à l'unité.
 \end{proof}
 
-\begin{proposition}     \label{PROPooYKMAooCuLtyh}
-    Le groupe \( \SO(n)\) est connexe.
-\end{proposition}
 
 \begin{theorem}
     Les matrices \wikipedia{fr}{Endomorphisme_normal}{normales}\footnote{Définition~\ref{DefWQNooKEeJzv}.} forment un espace connexe par arc.
@@ -607,7 +604,7 @@ La preuve utilise le fait que les transvections engendrent \( \SL(n,\eK)\) et qu
 \begin{proof}
     Soient \( A\in\GL(n,\eC)\) et sa décomposition \eqref{EQooKSQVooIpkdIE}. Comme fait précédemment, chacune des transvections peut être reliée à \( \mtu\) par un chemin continu dans \( \SL(n,\eC)\). En ce qui concerne le facteur de translation,  nous ne pouvons pas simplement prendre le chemin donné par \( t\mapsto D_n\big( t\det(A) \big)\) parce que le résultat n'est pas inversible en \( t=0\).
 
-    Vu que \( C^*\) il existe une application continue \( \alpha\colon \mathopen[ 0 , 1 \mathclose]\to \eC^*\) telle que \( \alpha(0)=\det(A)\in \eC^*\) et \( \alpha(1)=1\). Il suffit alors de prendre \( D_n\big( \alpha(t) \big)\) et nous avons un chemin continu de \( A\) vers \( \mtu\) restant dans \( \GL(n,\eC)\).
+    Vu que \( \eC^*\) est connexe par arcs il existe une application continue \( \alpha\colon \mathopen[ 0 , 1 \mathclose]\to \eC^*\) telle que \( \alpha(0)=\det(A)\in \eC^*\) et \( \alpha(1)=1\). Il suffit alors de prendre \( D_n\big( \alpha(t) \big)\) et nous avons un chemin continu de \( A\) vers \( \mtu\) restant dans \( \GL(n,\eC)\).
 \end{proof}
 
 \begin{proposition} \label{PROPooBIYQooWLndSW}
@@ -836,7 +833,7 @@ Une autre démonstration est donnée en le théorème~\ref{ThoCalYWLbJQ}.
         \begin{equation}
             SA=S^3=S^2S=AS.
         \end{equation}
-        Donc \( S\) commute aussi avec \( Q(A)=R\). Étant donné que \( S\) et \( R\) commutent et sont diagonalisables, ils sont simultanément diagonalisables par le corollaire~\ref{CorQeVqsS}. Soient \( D_R=PRP^*\) et \( D_S=PSP^*\) les formes diagonales de \( R\) et \( S\) dans une base de simultanée diagonalisation. Les carrés des valeurs propres de \( R\) et \( S\) étant identiques (ce sont les valeurs propres de \( A\)) et les valeurs propres de \( R\) et \( S\) étant positives, nous déduisons que \( D_R=D_S\) et donc que \( R=P^*D_RP=P^*D_SP=S\).
+        Donc \( S\) commute aussi avec \( Q(A)=R\). Étant donné que \( S\) et \( R\) commutent et sont diagonalisables, ils sont simultanément diagonalisables par le corolaire~\ref{CorQeVqsS}. Soient \( D_R=PRP^*\) et \( D_S=PSP^*\) les formes diagonales de \( R\) et \( S\) dans une base de simultanée diagonalisation. Les carrés des valeurs propres de \( R\) et \( S\) étant identiques (ce sont les valeurs propres de \( A\)) et les valeurs propres de \( R\) et \( S\) étant positives, nous déduisons que \( D_R=D_S\) et donc que \( R=P^*D_RP=P^*D_SP=S\).
     \end{subproof}
 \end{proof}
 
@@ -1097,7 +1094,7 @@ Nous rappelons que \( S^{++}(n,\eR)\) est l'ensemble des matrices symétriques s
 
     Maintenant nous devons prouver l'inclusion inverse. Pour ce faire nous supposons avoir un élément \( A\in \mB\setminus\Conv\big( O(n) \big)\) et nous allons dériver une contradiction.
 
-    Remarquons que \( O(n)\) est compact par le lemme~\ref{LemTLlTAAf} et que par conséquent \( \Conv(O(n))\) est compacte par le corollaire~\ref{CorOFrXzIf} et donc fermée. Nous considérons un produit scalaire \( (X,Y)\mapsto X\cdot Y\) sur \( \eM\). Vu que \( \Conv\big( O(n) \big)\) est un fermé convexe nous pouvons considérer la projection\footnote{Le théorème de projection : théorème~\ref{ThoWKwosrH}.} sur \( \Conv(A)\) relativement au produit scalaire choisi.
+    Remarquons que \( O(n)\) est compact par le lemme~\ref{LemTLlTAAf} et que par conséquent \( \Conv(O(n))\) est compacte par le corolaire~\ref{CorOFrXzIf} et donc fermée. Nous considérons un produit scalaire \( (X,Y)\mapsto X\cdot Y\) sur \( \eM\). Vu que \( \Conv\big( O(n) \big)\) est un fermé convexe nous pouvons considérer la projection\footnote{Le théorème de projection : théorème~\ref{ThoWKwosrH}.} sur \( \Conv(A)\) relativement au produit scalaire choisi.
 
     Nous notons \( P=\pr_{\Conv\big( O(n) \big)}(A)\). En vertu du théorème de projection, nous avons
     \begin{equation}    \label{EqYSisLTL}
@@ -1150,7 +1147,7 @@ Nous rappelons que \( S^{++}(n,\eR)\) est l'ensemble des matrices symétriques s
     \begin{equation}
         M=T_1P_{\sigma}T_2
     \end{equation}
-    où \( T_1\) et \( T_2\) sont des matrices triangulaires supérieures inversibles et où \( P_{\sigma}\) est une matrice de permutation \( \sigma\in S_n\). De plus il y a unicité de \( \sigma\).
+    où \( T_1\) et \( T_2\) sont des matrices triangulaires supérieures inversibles et où \( P_{\sigma}\) est une matrice de permutations \( \sigma\in S_n\). De plus il y a unicité de \( \sigma\).
 \end{theorem}
 \index{groupe!permutation}
 \index{groupe!linéaire}
@@ -1250,7 +1247,7 @@ Nous rappelons que \( S^{++}(n,\eR)\) est l'ensemble des matrices symétriques s
 
     Encore une fois tout cela se fait à l'aide de matrice supérieures parce qu'à chaque étape, les colonnes précédent le pivot sont déjà nulles (saut un \( 1\)) et ne doivent donc pas être touchées.
 
-    À la fin de ce processus, ce qui reste est une matrice \( TMT'\) qui ne contient plus que un seul \( 1\) sur chaque ligne et chaque colonne, c'est-à-dire une matrice de permutation : \( P_{\sigma}=TMT'\) et donc
+    À la fin de ce processus, ce qui reste est une matrice \( TMT'\) qui ne contient plus que un seul \( 1\) sur chaque ligne et chaque colonne, c'est-à-dire une matrice de permutations : \( P_{\sigma}=TMT'\) et donc
     \begin{equation}
         M=T^{-1}_{\sigma}(T')^{-1}.
     \end{equation}

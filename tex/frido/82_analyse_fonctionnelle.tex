@@ -1,22 +1,12 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2016,2019
+% Copyright (c) 2011-2016,2019-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
-
-\begin{proposition} \label{PropAAjSURG}
-    Soit une fonction intégrable \( f\) telle que
-    \begin{equation}
-        \int_{\eR}f(t)\varphi(t)dt=0
-    \end{equation}
-    pour toute fonction \( \varphi\in\swD(\eR)\). Alors \( f=0\) presque partout.
-\end{proposition}
-% TODO : un énoncé plus précis et une preuve. Notons que c'est utilisé à la marque 13107277
 
 \begin{theorem}[Théorème d'isomorphisme de Banach]  \label{ThofQShsw}
     Une application linéaire continue et bijective entre deux espaces de Banach est un homéomorphisme.
 \end{theorem}
 \index{théorème!isomorphisme de Banach}
-% TODO : une preuve.
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \section{Théorème d'Ascoli}
@@ -57,7 +47,7 @@
 
 
 \begin{corollary}   \label{CorPGwLluz}
-    Soient \( \big( E,(p_l) \big)\) et \( \big( F,(q_k) \big)\) deux espaces localement compacts munis de semi-normes. Nous supposons que \( E\) est métrisable et complet. Soit \( (T_j)_{j\in \eN}\) une suite d'application linéaires \( E\to F\) telles que pour tout \( x\in E\) il existe \( \alpha_x\in F\) tel que
+    Soient \( \big( E,(p_l) \big)\) et \( \big( F,(q_k) \big)\) deux espaces localement compacts munis de seminormes. Nous supposons que \( E\) est métrisable et complet. Soit \( (T_j)_{j\in \eN}\) une suite d'application linéaires \( E\to F\) telles que pour tout \( x\in E\) il existe \( \alpha_x\in F\) tel que
     \begin{equation}
         T_jx\stackrel{F}{\longrightarrow}\alpha_x.
     \end{equation}
@@ -78,11 +68,11 @@
             dans \( F\).
     \end{enumerate}
 \end{corollary}
-%TODO : voir en quoi c'est un corollaire de Banach-Steinhaus.
+%TODO : voir en quoi c'est un corolaire de Banach-Steinhaus.
 
 La version suivante du théorème de Banach-Steinhaus est énoncée de façon \emph{ad hoc} pour fonctionner avec l'espace \( \swD(K)\) des fonctions de classe \(  C^{\infty}\) à support dans le compact \( K\). Un énoncé un peu plus fort est donné dans le cadre des espaces de Fréchet dans \cite{TQSWRiz}.
-\begin{theorem}[Banach-Steinhaus avec des semi-normes]  \label{ThoNBrmGIg}
-    Soit \( (E,d)\) un espace vectoriel métrique complet dont la topologie est également\footnote{Au sens où les ouverts sont les mêmes.} donnée par une famille \( \mP\) de semi-normes. Soit \( \{ T_{\alpha} \}_{\alpha\in A}\) une famille d'applications linéaires continues \( T_{\alpha}\colon E\to \eR\) telles que pour tout \( x\in E\) nous ayons
+\begin{theorem}[Banach-Steinhaus avec des seminormes]  \label{ThoNBrmGIg}
+    Soit \( (E,d)\) un espace vectoriel métrique complet dont la topologie est également\footnote{Au sens où les ouverts sont les mêmes.} donnée par une famille \( \mP\) de seminormes. Soit \( \{ T_{\alpha} \}_{\alpha\in A}\) une famille d'applications linéaires continues \( T_{\alpha}\colon E\to \eR\) telles que pour tout \( x\in E\) nous ayons
     \begin{equation}
         \sup_{\alpha\in A}\big| T_{\alpha}(x) \big|<\infty.
     \end{equation}
@@ -91,7 +81,7 @@ La version suivante du théorème de Banach-Steinhaus est énoncée de façon \e
         \big| T_{\alpha} (x)\big|\leq C\max_{j\in J}p_j(x).
     \end{equation}
 \end{theorem}
-\index{théorème!Banach-Steinhaus!avec semi-normes}
+\index{théorème!Banach-Steinhaus!avec seminormes}
 
 \begin{proof}
     Pour chaque \( k\in \eN^*\) nous posons
@@ -199,7 +189,7 @@ Nous allons souvent noter \( f\) indifféremment pour la fonction \( f\) et un d
     \begin{equation}    \label{EqZFSduFa}
         (|a|+|b|)^p\leq 2^{p-1}(|a|^p+|b|^p)
     \end{equation}
-    Et d'autre part, nous savons que pour \( z_1,z_2\in \eC\), \( | z_1+z_2 |\leq | z_1 |+| z_2 |\) (proposition \ref{PROPooUMVGooIrhZZg}\ref{ITEMooDVMDooFDmOur}). Donc
+    Et d'autre part, nous savons que pour \( z_1,z_2\in \eC\), \( | z_1+z_2 |\leq | z_1 |+| z_2 |\) (lemme \ref{LEMooRJICooYrcAFv}\ref{ITEMooCTHXooHqzuvb}). Donc
     \begin{subequations}        \label{EQooKRMEooSLHUUc}
         \begin{align}
             \int_{\Omega}| f+g |^pd\mu&=\int_{\Omega}| f(\omega)+g(\omega) |^pd\mu(\omega)\\
@@ -324,6 +314,10 @@ formule qui ne dépend pas du représentant par le lemme~\ref{LemKZVHVAR}.
     De même nous notons \( L^p(\Omega)\) ou \( L^p(\Omega,\mu)\) ou \( L^p(\Omega,\tribA,\mu)\) d'après ce sur quoi nous voulons insister. Mais seule la dernière notation est parfaitement correcte.
 \end{normaltext}
 
+%--------------------------------------------------------------------------------------------------------------------------- 
+\subsection{Un peu de convergence de suites}
+%---------------------------------------------------------------------------------------------------------------------------
+
 \begin{proposition}[\cite{bJOSNQ}]  \label{PropWoywYG}
     Soit \( 1\leq p\leq \infty\) et supposons que la suite \( [f_n]\) dans \( L^p(\Omega,\tribF,\mu)\) converge vers \( [f]\) au sens \( L^p\). Alors il existe une sous-suite \( (h_n)\) qui converge ponctuellement \( \mu\)-presque partout vers \( f\).
 \end{proposition}
@@ -356,10 +350,8 @@ formule qui ne dépend pas du représentant par le lemme~\ref{LemKZVHVAR}.
 
 Est-ce qu'on peut faire mieux que la convergence ponctuelle presque partout d'une sous-suite ? En tout cas on ne peut pas espérer grand chose comme convergence pour la suite elle-même, comme le montre l'exemple suivant.
 
-\begin{example} \label{ExPOmxICc}
-    Nous allons montrer une suite de fonctions qui converge vers zéro dans \( L^p[0,1]\) (avec \( p<\infty\)) mais qui ne converge ponctuellement pour \emph{aucun} point. Cet exemple provient de \href{http://www.bibmath.net/dico/index.php?action=affiche&quoi=./b/bosseglissante.html}{bibmath.net}.
-
-%TODO : revoir tous les \href et mettre ceux qui doivent être en bibliographie. Par exemple celui ci-dessus.
+\begin{example}[\cite{BIBooABVJooKBRJG}]<++> \label{ExPOmxICc}
+    Nous allons montrer une suite de fonctions qui converge vers zéro dans \( L^p[0,1]\) (avec \( p<\infty\)) mais qui ne converge ponctuellement pour \emph{aucun} point.
 
     Nous construisons la suite de fonctions par paquets. Le premier paquet est formé de la fonction constante \( 1\).
 
@@ -393,7 +385,7 @@ La proposition suivante est une espèce de convergence dominée de Lebesgue pour
     \begin{equation}
         \int_{\Omega}f\mtu_Ad\mu=0
     \end{equation}
-    pour toute partie mesurable \( A\) de mesure finie. Alors \( [f]=0\), c'est à dire que \( f\) est non nulle uniquement sur une partie de mesure nulle.
+    pour toute partie mesurable \( A\) de mesure finie. Alors \( [f]=0\), c'est-à-dire que \( f\) est non nulle uniquement sur une partie de mesure nulle.
 \end{proposition}
 
 \begin{proof}
@@ -578,8 +570,20 @@ Il est intuitivement clair que ce qui peut arriver à une fonction en un seul po
 \end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Inégalité de Jensen, Hölder et de Minkowski}
+\subsection{Inégalité de Young, Jensen, Hölder et de Minkowski}
 %---------------------------------------------------------------------------------------------------------------------------
+
+\begin{proposition}[Inégalité de Young\cite{BIBooBDWZooTNOtoB}]     \label{PROPooCQUBooCvtMSi}
+    Soient \( a,b\geq 0\) ainsi que \( p,q>0\) tels que
+    \begin{equation}
+        \frac{1}{ p }+\frac{1}{ q }=1.
+    \end{equation}
+    Alors
+    \begin{equation}
+        ab\leq \frac{ a^p }{ p }+\frac{ b^q }{ q }.
+    \end{equation}
+    Il y a égalité si et seulement si \( a^p=b^q\).
+\end{proposition}
 
 \begin{proposition}[Inégalité de Jensen\cite{MesIntProbb}] \label{PropXISooBxdaLk}
     Soit un espace mesuré de probabilité\footnote{C'est-à-dire que \( \int_{\Omega}d\mu=1\).} \( (\Omega,\tribA,\mu)\) ainsi qu'une fonction convexe \( f\colon \eR\to \eR\) et une application \( \alpha\colon \Omega\to \eR\) tels que \( \alpha\) et \( f\circ \alpha\) soient intégrables sur \( \Omega\). Alors
@@ -624,21 +628,39 @@ Il est intuitivement clair que ce qui peut arriver à une fonction en un seul po
     où ma norme \( \| . \|_p\) est prise au sens de la mesure \( \mu\).
 \end{proof}
 
-\begin{proposition}[Inégalité de Hölder]       \label{ProptYqspT}
-    Soit \(  (\Omega,\tribA,\mu) \) un espace mesuré et \( 1\leq p\), \( q\leq\infty\) satisfaisant \( \frac{1}{ p }+\frac{1}{ q }=1\). Si \( f\in L^p(\Omega)\), \( g\in L^q(\Omega)\), alors le produit \( fg\) est dans \( L^1(\Omega)\) et nous avons
+\begin{proposition}[Inégalité de Hölder\cite{BIBooAUHHooGDOxIA}]       \label{ProptYqspT}
+    Soit \(  (\Omega,\tribA,\mu) \) un espace mesuré et \( 1\leq p\), \( q\leq\infty\) satisfaisant \( \frac{1}{ p }+\frac{1}{ q }=1\). Si \( f\in L^p(\Omega)\), \( g\in L^q(\Omega)\), alors nous avons le choses suivantes :
+
+    \begin{enumerate}
+        \item       \label{ITEMooNDKPooRKdmgS}
+    Le produit \( fg\) est dans \( L^1(\Omega)\) et nous avons
     \begin{equation}    \label{EqLPKooPBCQYN}
         \| fg \|_1\leq \| f \|_p\| g \|_q.
     \end{equation}
-    Plus généralement si \( \frac{1}{ p }+\frac{1}{ q }=\frac{1}{ r }\) alors
+\item           \label{ITEMooQHLPooRWWMOP}
+    Si \( \frac{1}{ p }+\frac{1}{ q }=\frac{1}{ r }\) alors
     \begin{equation}    \label{EqAVZooFNyzmT}
         \| fg \|_r\leq \| f \|_p\| g \|_q
     \end{equation}
+\item       \label{ITEMooBOYJooRkiAqJ}
+    Nous avons \( \| fg \|_1=\| f \|_p\| g \|_q\) si et seulement si nous sommes dans un des trois cas suivants :
+    \begin{itemize}
+        \item \( f=0\) presque partout,
+        \item \( g=0\) presque partout,
+        \item Il existe \( \lambda> 0\) tel que \( | f |^p=\lambda| g |^q\) presque partout.
+    \end{itemize}
+    \end{enumerate}
 \end{proposition}
 \index{inégalité!Hölder}
 Ce qui est appelé « inégalité de Hölder » est généralement l'inéquation \eqref{EqLPKooPBCQYN}.
 
 \begin{proof}
-    Nous allons prouver l'inégalité \eqref{EqAVZooFNyzmT}. D'abord nous supposons \( \| g \|_q=1\) et nous posons
+    En plusieurs points.
+    \begin{subproof}
+    \item[Pour \ref{ITEMooNDKPooRKdmgS}]
+        Nous allons le voir comme cas particulier de \ref{ITEMooQHLPooRWWMOP}.
+    \item[Pour \ref{ITEMooQHLPooRWWMOP}]
+        D'abord nous supposons \( \| g \|_q=1\) et nous posons
     \begin{equation}
         A=\{ x\in\Omega\tq | g(x) |>0 \}.
     \end{equation}
@@ -664,6 +686,67 @@ Ce qui est appelé « inégalité de Hölder » est généralement l'inéquation
         \| fg \|_r=\| g \|_q\| f\frac{ g }{ \| g \|_q } \|_r\leq \| g \|_q\| f \|_p
     \end{equation}
     en appliquant la première partie à la fonction \( \frac{ g }{ \| g \|_q }\) qui est de norme \( 1\).
+
+\item[Pour \ref{ITEMooBOYJooRkiAqJ}]
+    Si \( f\) ou \( g\) est nulle presque partout, il y a immédiatement égalité. Nous supposons donc que \( f\) et \( g\) ne sont pas nulles presque partout et donc que \( \| f \|_p\) et \( \| g \|_q\) sont non nuls.
+    \begin{subproof}
+    \item[Deux fonctions intermédiaires]
+    Nous posons
+        \begin{equation}
+            \begin{aligned}[]
+                \hat f=\frac{ | f | }{ \| f \|_p },&&\hat g=\frac{ | g | }{ \| g \|_q }.
+            \end{aligned}
+        \end{equation}
+    \item[Égalité préliminaire]
+        Nous avons
+        \begin{equation}
+            \frac{1}{ p }\int\hat f^p=\frac{1}{ p }\int\frac{ | f |^p }{ \| f \|_p^p }=\frac{1}{ p\| f \|_p^p }\int| f |^p=\frac{1}{ p },
+        \end{equation}
+        et de même avec \( g\) et \( q\) au lieu de \( f\) et \( p\). Nous avons donc
+        \begin{equation}
+            \frac{1}{ p }\int\hat f^p+\frac{1}{ q }\int\hat g^q=1.
+        \end{equation}
+    \item[Les équivalences]
+        Les choses suivantes sont équivalentes.
+        \begin{enumerate}
+            \item
+                \( \int | fg |=\| f \|_p\| g \|_q\)
+            \item
+                $\int\hat f\hat g=1$
+            \item
+                \begin{equation}
+                    \int\hat f\hat g=\frac{1}{ p }\int \hat f^p+\frac{1}{ q }\int\hat g^q
+                \end{equation}
+            \item
+                \begin{equation}
+                    \int\left( \hat g\hat f-\frac{1}{ p }\hat f^p-\frac{1}{ q }\hat g^q \right)=0.
+                \end{equation}
+            \item
+                \begin{equation}
+                     \hat g\hat f-\frac{1}{ p }\hat f^p-\frac{1}{ q }\hat g^q=0
+                \end{equation}
+                presque partout.
+
+                En effet l'inégalité de Young\footnote{Proposition \ref{PROPooCQUBooCvtMSi}.} dit que l'intégrante est positive partout. Pour que l'intégrale soit nulle, il faut que l'intégrante soit nulle; c'est le lemme \ref{Lemfobnwt}.
+            \item \( \hat f(x)^p=\hat g(x)^q\) pour presque tout \( x\). C'est le cas d'égalité dans l'inégalité de Young.
+            \item
+                \begin{equation}
+                    \frac{ | f |^p }{ \| f \|_p^p }=\frac{ | g |^q }{ \| g \|_q^q }.
+                \end{equation}
+            \item
+                \begin{equation}
+                    | f |^p=\lambda | q |^q
+                \end{equation}
+                avec \( \lambda=\| f \|_p^p/\| g \|_q^q\).
+        \end{enumerate}
+    \item[Conclusion]
+        En lisant les implications de haut en bas, nous avons la condition nécessaire au cas d'égalité. Pour traiter la condition suffisante, nous supposons qu'il existe \( \lambda>0\) tel que \( | f |^p=\lambda| q |^q\). Alors nous avons
+        \begin{equation}
+            \| f \|_p^p=\int| f |^p=\lambda\int| g |^q=\lambda\| g \|_q^q,
+        \end{equation}
+        ce qui donne immédiatement \( \lambda=\| f \|_p^p/\| g \|_q^q\). Nous pouvons donc remonter les équivalences.
+    \end{subproof}
+    \end{subproof}
 \end{proof}
 
 
@@ -704,27 +787,213 @@ Ce qui est appelé « inégalité de Hölder » est généralement l'inéquation
         T(u)\leq \int_I| u |\leq \| u \|_1\leq\| u \|_2
     \end{equation}
     où la dernière inégalité est celle de Hölder~\ref{ProptYqspT}. Bref, \( T\) est continue. Cela signifie que si \( u_n\stackrel{L^2(I)}{\longrightarrow}u\) alors \( T(u_n)=T(u)\). Cela est l'égalité demandée.
-\end{proof}
+\end{proof} 
 
-\begin{proposition}[Inégalité de Minkowski\cite{TUEWwUN,ooKFDRooNYNKqI}]     \label{PropInegMinkKUpRHg}
+\begin{probleme}
+    Dans la proposition suivante, la partie «égalité» est très personnelle. Je n'en n'ai pas trouvé de preuve complète. Donc soyez doublement \randomGender{vigilant}{vigilante} et écrivez moi si vous avez quelque chose à dire.
+\end{probleme}
+
+\begin{proposition}[Inégalité de Minkowski\cite{TUEWwUN,ooKFDRooNYNKqI,BIBooQYCIooITcxkY,BIBooTMMQooTqQouA,MonCerveau}]     \label{PropInegMinkKUpRHg}
     Si \( 1\leq p<\infty\) et si \( f,g\in L^p(\Omega,\tribA,\mu)\) alors
     \begin{enumerate}
         \item   \label{ItemDHukLJi}
             \( \| f+g \|_p\leq \| f \|_p+\| g \|_p\)
-        \item
-            Il y a égalité si et seulement si les vecteurs \( f(x)\) et \( g(x)\) sont presque partout colinéaires : il existe \( \alpha,\beta\) tels que \( \alpha f+\beta g=0\) presque partout.
-
+        \item       \label{ITEMooGRXBooMLRMww}
+            Si \( p=1\), il y a égalité si et seulement si \( f(x)\overline{ g(x) }\geq 0\) pour presque tout \( x\).
+        \item       \label{ITEMooQCSHooNUDwtM}
+            Si \( p>1\), il y a égalité si et seulement si nous sommes dans un deux deux cas suivants :
+            \begin{itemize}
+                \item
+                    \( f+g=0\) presque partout.
+                \item 
+            Il existe des réels positifs \( \alpha,\beta\) pas tous deux nuls tels que
+            \begin{equation}
+                \alpha f(x)=\beta g(x)
+            \end{equation}
+            pour presque tout \( x\).
+            \end{itemize}
         \item   \label{ItemDHukLJiii}
-
             Si \( f(x,y)\) est mesurable sur l'espace produit \( \big( X\times Y,\mu\otimes\nu \big)\) et si \( p\geq 1\), alors
             \begin{equation}
                 \left\|   x\mapsto\int_Y f(x,y)d\nu(y)   \right\|_p\leq \int_Y  \| f_y \|_pd\nu(y)
             \end{equation}
             où \( f_y(x)=f(x,y)\).
-
     \end{enumerate}
 \end{proposition}
 \index{inégalité!Minkowski}
+
+\begin{proof}
+    En plusieurs points.
+    \begin{subproof}
+        \item[Pour \ref{ItemDHukLJi}]
+            En utilisant l'inégalité \( | z_1+z_2 |\leq | z_1 |+| z_2 |\) (lemme \ref{LEMooRJICooYrcAFv}\ref{ITEMooCTHXooHqzuvb}) pour chaque \( x\) dans l'intégrale, de façon à pouvoir majorer
+            \begin{equation}
+                | f(x)+g(x) |^p=| f(x)+g(x) | |f(x)+g(x) |^{p-1}\leq\big( | f(x) |+| g(x) | \big)| f(x)+g(x) |^{p-1}.
+            \end{equation}
+            Nous mettons ça dans une intégrale et nous calculons un peu :
+            \begin{subequations}        \label{SUBEQSooGWMTooDBXSgL}
+                \begin{align}
+                    \| f+g \|^p_p&=\int| f+g |^pd\mu\\
+                    &\leq \int\big( | f |+| g | \big)| f+g |^{p-1}d\mu\\
+                    &=\int| f | |f+g |^{p-1}+\int| g | |f+g |^{p-1} \label{SUBEQooNQKBooQFtTIJ}
+                \end{align}
+            \end{subequations}
+
+            Lorsque \( p=1\), nous nous arrêtons ici parce que \eqref{SUBEQooNQKBooQFtTIJ} s'écrit
+            \begin{equation}
+                \| f+g \|_1\leq\int| f |+\int| g |=\| f \|_1+\| g \|_1.
+            \end{equation}
+
+            Lorsque \( p>1\), nous devons continuer et utiliser Hölder. Attardons nous sur le premier terme. Nous posons \( q=p/(p-1)\), \( a=f\) et \( b=| f+g |^{p-1}\), et nous utilisons l'inégalité de Hölder\footnote{Proposition \ref{ProptYqspT}.} :
+            \begin{subequations}        \label{SUBEQSooFINUooQfIdMS}
+                \begin{align}
+                    \int| f | |f+g |^{p-1}&=\| ab \|_1\\
+                    &\leq \| a \|_p\| b \|_q\\
+                    &=\| f \|_p \left[ \int \big( | f+g |^{p-1} \big)^q \right]^{1/q}\\
+                    &=\| f \|_p\left( \int| f+g |^p \right)^{1-\frac{1}{ p }}\\
+                    &=\| f \|_p\frac{ \| f+g \|_p^p }{ \| f+g \|_p }.
+                \end{align}
+            \end{subequations}
+            Nous avons utilisé la règle de produit d'exposants et de somme d'exposants\footnote{Propositions \ref{PROPooDWZKooNwXsdV} et \ref{PROPooVADRooLCLOzP}\ref{ITEMooSCJBooNVJZah}.}
+
+            Nous pouvons rentrer ça dans \eqref{SUBEQSooGWMTooDBXSgL} en l'utilisant pour chacun des deux termes. Nous avons alors
+            \begin{equation}
+                \| f+g \|_p^p\leq \big( \| f \|_p+\| g \|_p \big)\frac{ \| f+g \|_p^p }{ \| f+g \|_p }.
+            \end{equation}
+            Nous obtenons le résultat attendu en multipliant les deux membres par \( \frac{ \| f+g \|_p }{ \| f+g \|_p^p }\).
+        \item[Pour \ref{ITEMooGRXBooMLRMww}]
+            Toutes les inégalités de \eqref{SUBEQSooGWMTooDBXSgL} sont des égalités. En particulier nous avons celle-ci :
+            \begin{equation}
+                \int | f+g |d\mu=\int(| f |+| g |)d\mu
+            \end{equation}
+            Cela donne
+            \begin{equation}
+                \int\big( | f+g |-| f |-|g| \big)d\mu=0.
+            \end{equation}
+            Vue l'inégalité du lemme \ref{LEMooRJICooYrcAFv}, la fonction intégrée est toujours positive. Pour que l'intégrale soit nulle, il faut que la fonction intégrée soit presque partout nulle : 
+            \begin{equation}
+                | f(x)+g(x) |=| f(x) |+| g(x) |
+            \end{equation}
+            pour presque tout \( x\). La partie «égalité» du lemme \ref{LEMooRJICooYrcAFv} donne alors le résultat.
+        \item[Pour \ref{ITEMooQCSHooNUDwtM}]
+            Il y a deux sens.
+            \begin{subproof}
+            \item[$ \Rightarrow$]
+                Toutes les inégalités dans \eqref{SUBEQSooGWMTooDBXSgL} et \eqref{SUBEQSooFINUooQfIdMS} doivent être des égalités. Nous avons déjà vu que les égalités dans \eqref{SUBEQSooGWMTooDBXSgL} impliquaient
+                \begin{equation}
+                    f(x)\overline{ g(x) }\geq 0
+                \end{equation}
+                pour presque tout \( x\).
+
+                Nous devons y ajouter les contraintes dûes aux deux applications de l'inégalité de Hölder. Le cas d'égalité dans Hölder est traité dans la proposition \ref{ProptYqspT}\ref{ITEMooBOYJooRkiAqJ}.
+
+                La première application de Hölder est avec \( a=f\) et \( b=| f+g |^{p-1}\). Nous sommes dans un cas d'égalité si nous sommes dans un des trois cas suivants :
+                \begin{itemize}
+                    \item \( f=0\)
+                    \item \( f+g=0\)
+                    \item il existe \( \lambda>0\) tel que \( | a |^p=\lambda | b |^q\).
+                \end{itemize}
+                Dans le premier cas, nous avons \( \alpha f=\beta g\) avec \( \alpha=1\) et \( \beta=0\). Le second cas est un des cas annoncés. Nous supposons donc être dans le troisième cas.
+
+                La seconde application de Hölder est avec \( a=g\) et \( b=| f+g |^{p-1}\). Nous sommes dans un cas d'égalité si nous sommes dans un des trois cas suivants :
+                \begin{itemize}
+                    \item \( g=0\)
+                    \item \( f+g=0\)
+                    \item il existe \( \sigma>0\) tel que \( | a |^p=\sigma | b |^q\).
+                \end{itemize}
+                Encore une fois nous supposons être dans le troisième cas.
+
+                Vu que \( q=p/(p-1)\), dans les deux application de Hölder, nous avons 
+                \begin{equation}
+                    | b |^q=\big( | f+g |^{p-1} \big)^q=| f+g |^p.
+                \end{equation}
+                
+                Au final, nous avons les trois contraintes suivantes :
+                \begin{subequations}
+                    \begin{numcases}{}
+                        f(x)\overline{ g(x) }\geq 0 \quad\text{pour presque tout } x\\
+                        | f |^p=\lambda| f+g |^p\\
+                        | g |^p=\sigma| f+g |^p
+                    \end{numcases}
+                \end{subequations}
+                En passant à la racine \( p\)\ieme :
+                \begin{subequations}
+                    \begin{numcases}{}
+                        f(x)\overline{ g(x) }\geq 0 \quad\text{pour presque tout } x\\
+                        | f |=s| f+g |\\
+                        | g |=t| f+g |.
+                    \end{numcases}
+                \end{subequations}
+                Les deux dernières égalités du système permettent d'écrire
+                \begin{equation}
+                    t| f |=st| f+g |=s| g |.
+                \end{equation}
+                Nous considérons donc le système, valide pour presque tout \( x\) :
+                \begin{subequations}        \label{SUBEQSooLKGDooQouvhW}
+                    \begin{numcases}{}
+                        f(x)\overline{ g(x) }\geq 0\\
+                        t| f(x) |=s| g(x) |
+                    \end{numcases}
+                \end{subequations}
+                Avec la contrainte \( (s,t)\neq (0,0)\).
+                
+                Le lemme \ref{LEMooXJBJooFDmhnV} appliqué à chaque couple \( f(x)\), \( g(x)\) donne l'existence d'une fonction réelle \( a\) telle que pour chaque \( x\) nous ayons un des deux cas suivants :
+                \begin{itemize}
+                    \item \( g(x)=0\)
+                    \item \( f(x)=a(x)g(x)\).
+                \end{itemize}
+                De plus \( a(x)\in \eR^+\) parce que \( f(x)\overline{ g(x) }\) est non seulement réel, mais également positif.
+
+                \begin{subproof}
+                \item[$ s=0 $ ]
+                    Alors nous avons \( t| f(x) |=0\) et donc \( f(x)=0\) pour presque tout \( x\) parce que \( t\neq 0\). Nous avons alors \( \alpha f(x)+\beta g(x)=0\) avec \( \alpha=1\) et \( \beta=0\).
+                \item[$ s\neq 0 $ ]
+                    Les points de \( \Omega\) se séparent en deux parties : \( g(x)=0\) et les autres.
+                    \begin{subproof}
+                    \item[$ g(x)\neq0 $ ]
+                        Dans ce cas nous avons le système
+                        \begin{subequations}
+                            \begin{numcases}{}
+                                f(x)=a(x)g(x)\\
+                                t| f(x) |=s| g(x) |.
+                            \end{numcases}
+                        \end{subequations}
+                        Vu que \( s\neq 0\) et \( g(x)\neq 0\), la dernière équation donne \( t| f(x) |\neq 0\) et donc \( t\neq 0\) et \( f(x)\neq 0\).
+
+                        La première équation donne \( a(x)=f(x)/g(x)\) que nous pouvons mette dans la secondes pour obternir :
+                        \begin{equation}
+                            | a(x) |=\frac{ s }{ t }.
+                        \end{equation}
+                        Vu que \( a\) est à valeurs dans \( \eR^+\), cela donne
+                        \begin{equation}
+                            a(x)=\frac{ s }{ t }
+                        \end{equation}
+                        pour tout \( x\) tel que \( g(x)\neq 0\).
+                    \item[$ g(x)=0 $ ]
+                        Dans ce cas, le système \eqref{SUBEQSooLKGDooQouvhW} devient
+                        \begin{equation}
+                            t| f(x) |=0.
+                        \end{equation}
+                        Vu que \( s\neq 0\), nous avons \( f(x)=0\). Donc n'importe quel choix de \( \alpha\) et \( \beta\) fait l'affaire pour ces points. Il n'y a pas de contraintes.
+                    \end{subproof}
+                
+            \item[$\Leftarrow$]
+                Si \( f+g=0\) presque partout, \( \| f+g \|_p=0\) et c'est inférieur ou égal à \( \| f \|_p+\| g \|_p\) qui est forcément positif ou nul.
+
+                Nous supposons \( \alpha f(x)=\beta g(x)\) pour presque tout \( x\). Pour fixer les idées, nous supposons que \( \beta\neq 0\) (sinon, refaire le raisonnement en inversant les rôles de \( f\) et \( g\)). En posant \( \lambda=\alpha/\beta\) nous avons
+                \begin{equation}
+                    g(x)=\lambda f(x)
+                \end{equation}
+                pour presque tout \( x\). En passant par l'intégrale,
+                \begin{equation}
+                    \| f+g \|_p=\| (1+\lambda)f \|_p=(1+\lambda)\| f \|_p=\| f \|_p+\lambda\| f \|_p=\| f \|_p+\| \lambda f \|_p=\| f \|_p+\| g \|_p.
+                \end{equation}
+                Le \( \lambda\) et \( (1+\lambda)\) rentrent et sortent des normes parce qu'ils sont positifs.
+            \end{subproof}
+                \end{subproof}
+        \item[Pour \ref{ItemDHukLJiii}] 
+    \end{subproof}
+\end{proof}
 
 La partie~\ref{ItemDHukLJiii} est une généralisation de l'inégalité triangulaire (c'est-à-dire du point~\ref{ItemDHukLJi}) dans le cas où nous n'avons pas une somme de deux fonctions mais d'une infinité paramétrée par \( y\in Y\). Elle sera le plus souvent utilisée sous la forme déballée :
 \begin{equation}    \label{EqZSiTZrH}
@@ -920,7 +1189,7 @@ Ces exemples donnent un exemple de fonction \( f\) telle que \( \| f \|_p<\| f \
     \begin{equation}
         \sum_{j=1}^{\infty}| g_i-g_{i-1} |
     \end{equation}
-    converge ponctuellement. En vertu du corollaire~\ref{CorCvAbsNormwEZdRc}, la série de terme général \( g_i-g_{i-1}\) converge ponctuellement. La suite \( g_i\) converge donc vers une fonction que nous notons \( g\). Par ailleurs la suite \( g_i\) est dominée par \( h\in L^p\), le théorème de la convergence dominée (théorème~\ref{ThoConvDomLebVdhsTf}) implique que
+    converge ponctuellement. En vertu du corolaire~\ref{CorCvAbsNormwEZdRc}, la série de terme général \( g_i-g_{i-1}\) converge ponctuellement. La suite \( g_i\) converge donc vers une fonction que nous notons \( g\). Par ailleurs la suite \( g_i\) est dominée par \( h\in L^p\), le théorème de la convergence dominée (théorème~\ref{ThoConvDomLebVdhsTf}) implique que
     \begin{equation}
         \lim_{j\to \infty} \|g_j-g\|_p=0.
     \end{equation}
@@ -935,7 +1204,7 @@ Ces exemples donnent un exemple de fonction \( f\) telle que \( \| f \|_p<\| f \
     Nous avons donc montré que la suite de Cauchy \( (f_n)\) converge vers une fonction de \( L^p\), ce qui signifie que \( L^p\) est complet.
 \end{proof}
 
-\begin{theorem}[Fischer-Riesz\cite{KXjFWKA}] \label{ThoGVmqOro}
+\begin{theorem}[Riesz-Fischer\cite{KXjFWKA,BIBooOKEOooYLVCHb}] \label{ThoGVmqOro}
     Soit un ouvert \( \Omega\) de \( \eR^n\) et \( p\in\mathopen[ 1 , \infty \mathclose]\). Alors
     \begin{enumerate}
         \item\label{ItemPDnjOJzi}
@@ -1054,6 +1323,99 @@ Ces exemples donnent un exemple de fonction \( f\) telle que \( \| f \|_p<\| f \
         Nous en déduisons que la suite \( n\mapsto f_{\varphi(n)}\) est convergente vers \( f\) au sens de la norme \( L^p(\Omega)\). Or la suite de départ \( (f_n)\) était de Cauchy (pour la norme \( L^p\)); donc l'existence d'une sous-suite convergente implique la convergence de la suite entière vers \( f\), ce qu'il fallait démontrer.
     \end{subproof}
 \end{proof}
+
+Le théorème suivant est souvent cité en disant que \( L^p\) est un espace de Hilbert si et seulement si \( p=2\). Comme vous le voyez, il faut un peu plus d'hypothèses.
+
+Je précise que je suis le seul à nommer ce théorème par le nom de Weinersmith. Je ne sais pas si il a déjà un nom; alors pourquoi pas celui-là plutôt qu'un autre ? La raison de ce choix est dans la constante de Weiner, définition \ref{DEFooXVXSooVJDTPy}.
+\begin{theorem}[Théorème de Weinersmith\cite{BIBooVBCVooWNVKZA,BIBooPRUMooMKIALQ}]      \label{THOooCCMBooGulxkQ}
+    Nous considérons un espace mesuré \( (\Omega,\tribA, \mu)\) ainsi qu'un nombre \( p\in \mathopen[ 1 , \infty \mathclose]\). Nous supposons
+    \begin{enumerate}
+        \item
+            \( L^p(\Omega,\tribA,\mu)\) est un espace de Hilbert,
+        \item
+            Il existe des parties \( A,B\subset L^p(\Omega,\tribA,\mu)\) telles que \( A\cap B=\emptyset\) et \( 0<\mu(A)<\infty\) et \( 0<\mu(B)<\infty\).
+    \end{enumerate}
+    Alors \( p=2\).
+\end{theorem}
+
+\begin{proof}
+    Vu que \( L^p\) est un espace de Hilbert (hypothèse), il vérifie l'identité du parallélogramme de la proposition \ref{PROPooSSYJooHAXAnC}, c'est-à-dire
+    \begin{equation}        \label{EQooAKKYooURIbvi}
+        \| f+g \|^2_p+\| f-g \|^2_p=2\| f \|_p^2+2\| g \|^2_p.
+    \end{equation}
+
+    \begin{subproof}
+    \item[Pour \( 1\leq p<\infty\)]
+        
+
+    Soient donc \( A,B\) comme dans l'hypothèse. Nous considérons les fonctions
+    \begin{subequations}
+        \begin{align}
+            f&=\frac{1}{ \mu(A)^{1/p} }\mtu_A\\
+            g&=\frac{1}{ \mu(B)^{1/p} }\mtu_B.
+        \end{align}
+    \end{subequations}
+    En ce qui concerne les normes \( L^p\) de \( f\) et \( g\), c'est un calcul simple :
+    \begin{equation}
+        \| f \|_p^2=\left( \int_{\Omega}| f(\omega) |^pd\mu \right)^{2/p}=\left( \int_A\frac{1}{ \mu(A) }d\mu \right)^{2/p}=1.
+    \end{equation}
+    De même pour \( g\) : \( \| f \|_p^2=\| g \|_p^2=1\). Donc
+    \begin{equation}
+        2\| f \|_p^2+2\| g \|_p^2=4
+    \end{equation}
+
+    En ce qui concerne la somme,
+    \begin{equation}
+        \| f+g \|_p^2=\left( \int_A\frac{ d\mu }{ \mu(A) }+\int_B\frac{1}{ \mu(B) } \right)^{2/p}=2^{2/p}.
+    \end{equation}
+    Pour la différence, la seule subtilité à voir est que
+    \begin{equation}
+        \int_{\Omega}| \mtu_A-\mtu_B |^p=\int_A| \mtu_A-\mtu_B |^p+\int_B| \mtu_A-\mtu_B |=\int_A| \mtu_A |+\int_B| -\mtu_B |=\int_A\mtu_A+\int_B\mtu_B.
+    \end{equation}
+    Ce n'est pas de la magie que le moins se change en plus. Bref, pour la différence nous avons
+    \begin{subequations}
+        \begin{align}
+            \| f-g \|^2&=\left( \int_{\Omega}| f(\omega)-g(\omega) |^pd\mu \right)^{2/p}\\
+            &=\left( \int_{\Omega}| \frac{1}{ \mu(A)^{1/p} }\mtu_A(\omega)-\frac{1}{ \mu(B)^{1/p} }\mtu_B(\omega) |^pd\mu \right)^{2/p}\\
+            &=\left( \int_A| \frac{ \mtu_A(\omega) }{ \mu(A)^{1/p} } |^p   +\int_B| -\frac{ \mtu_B(\omega) }{ \mu(B)^{1/p} } |^p    \right)^{2/p}\\
+            &=2^{2/p}.
+        \end{align}
+    \end{subequations}
+    Donc \( \| f+g \|^{2}_p+\| f-g \|_p^2=2\times 2^{2/p}\).
+
+    Vu que \( L^p\) est un espace de Hilbert, nous avons finalement 
+    \begin{equation}
+        4=2\times 2^{2/p}.
+    \end{equation}
+    Cela est uniquement valable pour \( p=2\).
+\item[Pour \( p=\infty\)]
+    Il suffit de prendre \( f=\mtu_A\) et \( g=\mtu_B\). Nous avons alors \(  \| f \|_{L^{\infty}}^2= \| g \|_{L^{\infty}}^2  =  \| f+g \|_{L^{\infty}}^2=\| f-g \|_{L^{\infty}}^2=1\).
+
+    L'égalité \eqref{EQooAKKYooURIbvi} devient \( 2=4\), ce qui est faux.
+    \end{subproof}
+\end{proof}
+
+Si \( (\Omega,\tribA,\mu)\) est un espace mesuré, est-ce que \( L^p(\Omega,\tribA,\mu)\) est assuré de n'être pas de Hilbert ? Non.
+
+\begin{example}[\cite{BIBooPRUMooMKIALQ}]
+    Soit la mesure de Dirac sur \( \eR\), c'est-à-dire
+    \begin{equation}
+        \delta(A)=\begin{cases}
+            1    &   \text{si } 0\in A\\
+            0    &    \text{sinon. }
+        \end{cases}
+    \end{equation}
+    Nous allons prouver que pour tout \( p\in \mathopen[ 0 , \infty \mathclose]\), l'espace \( L^p(\eR,\Borelien(\eR),\delta)\) est un espace de Hilbert. Pour cela nous introduisons le produit hermitien
+    \begin{equation}
+        \langle f, g\rangle =f(0)\overline{ g(0) }.
+    \end{equation}
+    
+    Nous avons par ailleurs la norme
+    \begin{equation}
+        \| f \|^p=\int_{\eR}| f(x) |^pd\delta=f(0)^p.
+    \end{equation}
+    Donc oui, \( \| f \|_p=\sqrt{ \langle f, f\rangle  }\).
+\end{example}
 
 %--------------------------------------------------------------------------------------------------------------------------- 
 \subsection{Théorèmes d'approximation}

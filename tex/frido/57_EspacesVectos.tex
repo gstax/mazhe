@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2008-2019
+% Copyright (c) 2008-2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -97,19 +97,36 @@ Nous savons qu'une telle équation ne peut avoir de solutions que si $\det(A-\la
 \end{remark}
 
 \begin{lemma}       \label{LemjcztYH}
-    Soit \( u\) un endomorphisme et \( E_{\lambda}(u)\)\nomenclature[A]{\( E_{\lambda}(u)\)}{Espace propre de \( u\)} ses espaces propres. La somme des \( V_{\lambda}\) est directe.
+    Soient un espace vectoriel \( E\), un endomorphisme \( u\in \End(E)\), ainsi que ses sous-espaces propres \( \{ E_{\lambda} \}_{\lambda\in \Spec(u)}  \)\nomenclature[A]{\( E_{\lambda}(u)\)}{Espace propre de \( u\)}. Toute somme finie de la forme
+    \begin{equation}
+        E_{\lambda_1}+\ldots+E_{\lambda_p}
+    \end{equation}
+    est directe\footnote{Définition \ref{DEFooIJDNooRUDUYF}.}
 \end{lemma}
 
 \begin{proof}
-    Soit \( v_i\in V_{\lambda_i}\) un choix de vecteurs propres de \( u\). Si la somme n'est pas directe, nous pouvons considérer une combinaison linéaire des \( v_i\) qui soit nulle :
-    \begin{equation}
-        v_1+\cdots+v_p=0.
+    Nous utilisons le lemme \ref{LEMooDQMQooInVVDY}. Soient \( v_i\in V_{\lambda_i}\) un choix de vecteurs tels que 
+    \begin{equation}        \label{EQooROAXooFpgxxF}
+        \sum_{i=1}^pv_i=0. 
     \end{equation}
-    Appliquons \( (A-\lambda_1\mtu)\) à cette égalité :
-    \begin{equation}
-        (\lambda_2-\lambda_1)v_1+\cdots+(\lambda_p-\lambda_1)v_p=0.
+    Soit un entier \( j\) entre \( 1\) et \( p\). Nous allons montrer que \( v_j=0\). Pour cela nous remarquons d'abord que
+    \begin{equation}        \label{EQooGVPYooXRPEVU}
+        \prod_{k\neq j}(\lambda_i-\lambda_k)=0
     \end{equation}
-    En appliquant encore successivement les opérateurs \( (A-\lambda_i\mtu)\) nous réduisons le nombre de termes jusqu'à obtenir \( v_p=0\).
+    dès que \( i\neq j\). Nous appliquons l'opérateur \( \prod_{k\neq j}(A-\lambda_k\mtu)\) à l'égalité \eqref{EQooROAXooFpgxxF} :
+    \begin{subequations}
+        \begin{align}
+            0&=\sum_{i=1}^p\prod_{k\neq j}(A-\lambda_k)v_i\\
+            &=\sum_{i=1}^p\prod_{k\neq j}(\lambda_i-\lambda_k)v_i       \label{SUBEQooHHGJooTvCcDb}\\
+            &=\prod_{k\neq j}(\lambda_j-\lambda_k)v_j.  \label{SUBEQooSHQYooNLVoVZ}
+        \end{align}
+    \end{subequations}
+    Justifications.
+    \begin{itemize}
+        \item Pour \eqref{SUBEQooHHGJooTvCcDb}. Pour chaque \( k\) et \( i\) nous avons \( (A-\lambda_k)v_i=Av_i-\lambda_kv_i=\lambda_iv_i-\lambda_kv_i\) parce que \( v_i\) est un vecteur propre de \( A\) pour la valeur propre \( \lambda_i\).
+        \item Pour \eqref{SUBEQooSHQYooNLVoVZ}. Dans la somme, seul le terme \( i=j\) est non nul, à cause de \eqref{EQooGVPYooXRPEVU}.
+    \end{itemize}
+    Donc \( v_j=0\) parce que le produit \( \prod_{k\neq j}(\lambda_j-\lambda_k)\), lui, est non nul.
 \end{proof}
 
 \begin{proposition}[\cite{RombaldiO}]   \label{PropTVKbxU}
@@ -163,19 +180,18 @@ Soit \( u\) un endomorphisme d'un \( \eK\)-espace vectoriel \( E\) et \( P\), un
 \end{proof}
 
 \begin{theorem}[Décomposition des noyaux ou lemme des noyaux]       \label{ThoDecompNoyayzzMWod}
-    Soit \( u\) un endomorphisme du \( \eK\)-espace vectoriel \( E\). Soit \( P\in\eK[X]\) un polynôme tel que \( P(u)=0\). Nous supposons que \( P\) s'écrive comme le produit \( P=P_1\ldots P_n\) de polynômes deux à deux étrangers\footnote{Définition~\ref{DefDSFooZVbNAX}.}. Alors
+    Soit \( u\) un endomorphisme du \( \eK\)-espace\footnote{Le corps \( \eK\) est commutatif comme tous les corps dans le Frido.} vectoriel \( E\). Soit \( P\in\eK[X]\) un polynôme tel que \( P(u)=0\). Nous supposons que \( P\) s'écrive comme le produit \( P=P_1\ldots P_n\) de polynômes deux à deux étrangers\footnote{Définition~\ref{DefDSFooZVbNAX}.}. Alors
     \begin{equation}
         E=\ker P_1(u)\oplus\ldots\oplus\ker P_n(u).
     \end{equation}
     De plus les projecteurs associés à cette décomposition sont des polynômes en \( u\).
 \end{theorem}
 \index{lemme!des noyaux}
-Ce résultat est utilisé pour prouver que toute représentation est décomposable en représentations irréductibles, proposition~\ref{PropHeyoAN} ainsi que pour le théorème~\ref{ThoDigLEQEXR} qui dit que si le polynôme minimal d'un endomorphisme est scindé à racine simple alors il est diagonalisable.
 
 \begin{proof}
-    Nous posons
+    Dans ce qui suit, nous allons beaucoup utiliser le fait que \( \eK[X]\) soit commutatif (lemme \ref{LEMooWVUXooQlaepO}). Nous posons
     \begin{equation}
-        Q_i=\prod_{j\neq i}P_i.
+        Q_i=\prod_{j\neq i}P_j.
     \end{equation}
     Par le lemme~\ref{LemuALZHn} ces polynômes sont étrangers entre eux et le théorème de Bézout (théorème~\ref{ThoBezoutOuGmLB}) donne l'existence de polynômes \( R_i\) tels que
     \begin{equation}
@@ -189,12 +205,14 @@ Ce résultat est utilisé pour prouver que toute représentation est décomposab
     \begin{equation}
         E=\sum_{i=1}^nE_i.
     \end{equation}
-    Cette dernière somme n'est éventuellement pas une somme directe. Si \( i\neq j\), alors \( Q_iQ_j\) est multiple de \( P\) et nous avons, en utilisant le lemme~\ref{LemQWvhYb},
+    Cette dernière somme n'est éventuellement pas une somme directe. Si \( i\neq j\), alors \( Q_iQ_j\) est multiple de \( P\); plus précisément, en utilisant la commutativité de \( \eK[X]\),
     \begin{equation}
-        (R_iQ_i)(u)\circ (R_jQ_j)(u)=\big( R_iQ_iR_jQ_j \big)(u)=S_{ij}(u)\circ P(u)=0
+        Q_iP_j=\prod_{k\neq i}P_k\prod_{l\neq j}P_l=\prod_{\substack{k\neq i\\k\neq j}}P_k\prod_kP_l=S_{ij}P
     \end{equation}
-    où \( S_{ij}\) est un polynôme.
-
+    où \( S_{ij}\) est un polynôme. Toujours avec \( i\neq j\), en utilisant le lemme \ref{LemQWvhYb} ainsi que la commutativité de \( \eK[X]\)\footnote{Lemme \ref{LEMooWVUXooQlaepO}.},
+    \begin{equation}
+        (R_iQ_i)(u)\circ (R_jQ_j)(u)=\big( R_iQ_iR_jQ_j \big)(u)=\big( R_iR_j\underbrace{Q_iQ_j}_{=S_{ij}P} \big)(u)=(R_iR_jS_{ij})(u)\circ P(u)=0
+    \end{equation}
     Nous pouvons voir \( E\) comme un \( \eK\)-module et appliquer le théorème~\ref{ThoProjModpAlsUR}. Les opérateurs \( R_iQ_i(u)\) ont l'identité comme somme et sont orthogonaux, et nous avons donc la décomposition en somme directe :
     \begin{equation}
         E=\bigoplus_{i=1}^nR_iQ_i(u)E.
@@ -210,6 +228,10 @@ Ce résultat est utilisé pour prouver que toute représentation est décomposab
     \end{equation}
     Par conséquent \( x\in\Image\big( R_iQ_i(u) \big)\).
 \end{proof}
+
+\begin{normaltext}
+    Ce résultat est utilisé pour prouver que toute représentation est décomposable en représentations irréductibles, proposition~\ref{PropHeyoAN} ainsi que pour le théorème~\ref{ThoDigLEQEXR} qui dit que si le polynôme minimal d'un endomorphisme est scindé à racine simple alors il est diagonalisable.
+\end{normaltext}
 
 \begin{corollary}   \label{CorKiSCkC}
     Soit \( E\), un \( \eK\)-espace vectoriel de dimension finie et \( f\), un endomorphisme semi-simple dont la décomposition du polynôme minimal \( \mu_f\) en facteurs irréductibles sur \( \eK[X]\) est \( \mu_f=M_1^{\alpha_1}\cdots M_r^{\alpha_r}\). Si \( F\) est un sous-espace stable par \( f\), alors
@@ -249,11 +271,11 @@ Ce résultat est utilisé pour prouver que toute représentation est décomposab
 \subsection{Polynôme minimal et minimal ponctuel}
 %---------------------------------------------------------------------------------------------------------------------------
 
-\begin{lemmaDef}        \label{DefooOHUXooNkPWaB}
+\begin{lemma}        \label{LEMooQJQGooRcAxmJ}
     Soit un endomorphisme \( f\colon E\to E\) d'un \( \eK\)-espace vectoriel de dimension finie. Il existe un unique polynôme annulateur normalisé de degré minimum.
 
-    Il est nommé le \defe{polynôme minimal}{polynôme!minimal} de \( f\) et il est noté \( \mu_f\) ou simplement \( \mu\) lorsque la dépendance en \( f\) est claire.
-\end{lemmaDef}
+    Tout endomorphisme de \( \eK\)-espace vectoriel de dimension finie possède un polynôme minimal\footnote{Définition \ref{DefCVMooFGSAgL}.}.
+\end{lemma}
 
 \begin{proof}
     Pour l'unicité, soient \( P\) et \( Q\) deux polynômes annulateur de \( f\) de même degré \( N\) et ayant tous deux \( 1\) comme coefficient de \( x^N\). Alors \( P-Q\) est de degré \( N-1\) tout en étant encore annulateur.
@@ -261,6 +283,8 @@ Ce résultat est utilisé pour prouver que toute représentation est décomposab
     Pour l'existence, les endomorphismes \( \id\), \( f\), \( f^2\), \ldots ne peuvent pas être tous linéairement indépendants parce que la dimension de \( \End(E)\) est finie. Il existe donc un nombre \( N\) et des coefficients \( a_k\) tels que \( \sum_{k=0}^Na_kf^k=0\). Le polynôme \( P(X)=\sum_{k=0}^Na_kX^k\) est donc annulateur de \( f\).
 
     Une autre façon de le dire est que l'application linéaire \( \varphi\colon \eK[X]\to \End(E)\) donnée par \( \varphi(P)=P(f)\) est un endomorphisme d'un espace vectoriel de dimension infinie vers un espace vectoriel de dimension finie. Il ne peut donc pas être injectif et possède donc un noyau non réduit à zéro.
+
+    L'existence d'un polynôme minimal est maintenant seulement le fait que, avec les notations de la définition \ref{DefCVMooFGSAgL}, l'idéal \( I_f\) n'est pas réduit à \( \{ 0 \}\).
 \end{proof}
 
 \begin{remark}
@@ -562,7 +586,7 @@ La proposition suivante permet de caractériser le polynôme minimal.
         \item[Surjectif]
             Soit \( P\in \eK[X]\). L'élément \( P(f) \) de \( \eK[f]\) est dans l'image de \( \psi\) parce que c'est \( \psi(\bar P)\).
     \end{subproof}
-    En ce qui concerne la dimension, le corollaire~\ref{CorsLGiEN} en parle déjà : une base est donné par les projections de \( 1,X,\ldots, X^{\deg(\mu_a)-1}\).
+    En ce qui concerne la dimension, le corolaire~\ref{CorsLGiEN} en parle déjà : une base est donné par les projections de \( 1,X,\ldots, X^{\deg(\mu_a)-1}\).
 \end{proof}
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -798,7 +822,7 @@ Une démonstration plus simple via la densité des diagonalisables est donnée e
                 &       &       &   *
          \end{pmatrix}
     \end{equation}
-    où les étoiles représentent des blocs a priori non nuls. En tout cas il est vu sous cette forme que \( (X-z\mtu)^k\) divise \( \chi_u\).
+    où les étoiles représentent des blocs à priori non nuls. En tout cas il est vu sous cette forme que \( (X-z\mtu)^k\) divise \( \chi_u\).
 \end{proof}
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -848,10 +872,15 @@ La \defe{trace}{trace!matrice} d'une matrice \( A\in \eM(n,\eK)\) est la somme d
     \tr(A)=\sum_{i=1}^nA_{ii}.
 \end{equation}
 Une propriété importante est son invariance cyclique.
-\begin{lemma}   \label{LemhbZTay}
-    Si \( A\) et \( B\) sont des matrices carrées, alors \( \tr(AB)=\tr(BA)\).
 
+\begin{lemma}   \label{LemhbZTay}
+    Quelques propriétés de la trace.
+    \begin{enumerate}
+        \item
+    Si \( A\) et \( B\) sont des matrices carrées, alors \( \tr(AB)=\tr(BA)\).
+\item
     La trace est un invariant de similitude.
+    \end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -865,7 +894,7 @@ Une propriété importante est son invariance cyclique.
     \end{equation}
     où nous avons simplement renommé les indices \( i\leftrightarrow k\).
 
-    En particulier, la trace est un invariant de similitude parce que \( \tr(ABA^{-1})=\tr(A^{-1} AB)=\tr(B)\).
+    En particulier, la trace est un invariant de similitude parce que \( \tr(ABA^{-1})=\tr(A^{-1} AB)=\tr(B)\) par l'invariance cyclique démontrée en \ref{LEMooUXDRooWZbMVN}\ref{ITEMooXDYQooAlnArd}.
 \end{proof}
 La trace étant un invariant de similitude, nous pouvons donc définir la \defe{trace}{trace!endomorphisme} comme étant la trace de sa matrice dans une base quelconque. Si la matrice est diagonalisable, alors la trace est la somme des valeurs propres.
 
@@ -1302,7 +1331,7 @@ Ce qui est vrai, c'est que le polynôme caractéristique a des racines, et que c
 \begin{remark}
     La méthode des pivots de Gauss\footnote{Le lemme~\ref{LemZMxxnfM}.} certes permet de trigonaliser n'importe quoi, mais elle ne correspond pas à un changement de base. Autrement dit, les pivots de Gauss ne sont pas de similitudes.
 
-    C'est là qu'il faut bien avoir en tête la différence entre \emph{équivalence} et \emph{similarité} (définition~\ref{DefBLELooTvlHoB}). Lorsqu'on parle de changement de base, de matrice trigonalisable ou diagonalisable, nous parlons de similarité et non d'équivalence.
+    C'est là qu'il faut bien avoir en tête la différence entre \emph{équivalence} et \emph{similarité}\footnote{Définition \ref{DefBLELooTvlHoB}.}. Lorsqu'on parle de changement de base, de matrice trigonalisable ou diagonalisable, nous parlons de similarité et non d'équivalence.
 \end{remark}
 
 %---------------------------------------------------------------------------------------------------------------------------
@@ -1316,7 +1345,7 @@ Une démonstration alternative passant par le polynôme caractéristique sera pr
     Si \( A\in\eM(n,\eC)\), il existe une matrice unitaire \( U\) telle que \( UAU^{-1}\) soit triangulaire supérieure\footnote{«triangulaire supérieure» ne signifie pas «strictement triangulaire supérieure». Ici, il est possible que la diagonale soit non nulle; non seulement possible, mais même très probable en pratique.}.
 \end{lemma}
 \index{lemme!Schur complexe}
-%TODO : Le lemme de Schur est souvent énoncé en disant que si p est une représentation irréductible, alors les seuls endomorphismes de V commutant avec tous les p(g) sont les multiples de l'idendité. Quel est le lien avec ceci ?
+%TODO : Le lemme de Schur est souvent énoncé en disant que si p est une représentation irréductible, alors les seuls endomorphismes de V commutant avec tous les p(g) sont les multiples de l'identité. Quel est le lien avec ceci ?
 
 \begin{proof}
     Étant donné que \( \eC\) est algébriquement clos, nous pouvons toujours considérer un vecteur propre \( v_1\) de \( A\), de valeur propre \( \lambda_1\). Nous pouvons utiliser un procédé de Gram-Schmidt pour construire une base orthonormée \( \{ v,u_2,\ldots, u_n \}\) de \( \eR^n\), et la matrice (unitaire)
@@ -1451,119 +1480,7 @@ i
     \end{equation}
     Donc le spectre de \( A^k\) est celui de \( T^k\) (lemme~\ref{LEMooRCFGooPPXiKi} et le fait qu'une puissance d'une matrice triangulaire est encore triangulaire). Or les éléments diagonaux de \( T^k\) sont les puissances \( k\)\ieme des éléments diagonaux de \( T\), qui sont les valeurs propres de \( A\).
 \end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Diagonalisation : cas complexe, ce qu'on a}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{lemma}[Théorème spectral hermitien]      \label{LEMooVCEOooIXnTpp}
-    Pour un opérateur hermitien\footnote{Définition~\ref{DEFooKEBHooWwCKRK}.},
-    \begin{enumerate}
-        \item
-            le spectre est réel,
-        \item
-            deux vecteurs propres pour des valeurs propres distinctes sont orthogonales\footnote{Pour la forme \eqref{EqFormSesqQrjyPH}.}.
-    \end{enumerate}
-\end{lemma}
-\index{spectre!matrice hermitienne}
-
-\begin{proof}
-    Soit \( v\) un vecteur de valeur propre \( \lambda\). Nous avons d'une part
-    \begin{equation}
-        \langle Av, v\rangle =\lambda\langle v, v\rangle =\lambda\| v \|^2,
-    \end{equation}
-    et d'autre part, en utilisant le fait que \( A\) est hermitien,
-    \begin{equation}
-        \langle Av, v\rangle =\langle v, A^*v\rangle =\langle v, Av\rangle =\bar\lambda\| v \|^2,
-    \end{equation}
-    par conséquent \( \lambda=\bar\lambda\) parce que \( v\neq 0\).
-
-    Soient \( \lambda_i\) et \( v_i\) (\( i=1,2\)) deux valeurs propres de \( A\) avec leurs vecteurs propres correspondants. Alors d'une part
-    \begin{equation}
-        \langle Av_1, v_2\rangle =\lambda_1\langle v_1, v_2\rangle ,
-    \end{equation}
-    et d'autre part
-    \begin{equation}
-        \langle Av_1, v_2\rangle =\langle v_1, Av_2\rangle =\lambda_2\langle v_1, v_2\rangle .
-    \end{equation}
-    Nous avons utilisé le fait que \( \lambda_2\) était réel. Par conséquent, soit \( \lambda_1=\lambda_2\), soit \( \langle v_1, v_2\rangle =0\).
-\end{proof}
-
-\begin{remark}      \label{REMooMLBCooTuKFmz}
-    Un opérateur de la forme \( A^*A\) est évidemment hermitien. De plus ses valeurs propres sont toutes positives parce que si \( A^*Ax=\lambda v\) alors
-    \begin{equation}
-        0\leq \langle Av, Av\rangle =\langle A^*Av, v\rangle =\lambda\langle v, v\rangle .
-    \end{equation}
-    Donc \( \lambda\geq 0\).
-\end{remark}
-
-\begin{definition}  \label{DefWQNooKEeJzv}
-    Un endomorphisme est \defe{normal}{normal!endomorphisme}\index{matrice!normale} s'il commute avec son adjoint.
-\end{definition}
-
-\begin{theorem}[Théorème spectral pour les matrices normales\footnote{Définition~\ref{DefWQNooKEeJzv}}\cite{LecLinAlgAllen,OMzxpxE,HOQzXCw}]\index{théorème!spectral!matrices normales}  \index{diagonalisation!cas complexe}  \label{ThogammwA}
-    Soit \( A\in\eM(n,\eC)\) une matrice de valeurs propres \( \lambda_1,\ldots, \lambda_n\) (non spécialement distinctes). Alors les conditions suivantes sont équivalentes :
-    \begin{enumerate}
-        \item   \label{ItemJZhFPSi}
-            \( A\) est normale,
-        \item   \label{ItemJZhFPSii}
-            \( A\) se diagonalise par une matrice unitaire,
-        \item
-            \( \sum_{i,j=1}^n| A_{ij} |^2=\sum_{j=1}^n| \lambda_j |^2\),
-        \item
-            il existe une base orthonormale de vecteurs propres de \( A\).
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    Nous allons nous contenter de prouver~\ref{ItemJZhFPSi}\( \Leftrightarrow\)\ref{ItemJZhFPSii}.
-    %TODO : le reste.
-
-    Soit \( Q\) la matrice unitaire donnée par la décomposition de Schur (lemme~\ref{LemSchurComplHAftTq}) : \( A=QTQ^{-1}\). Étant donné que \( A\) est normale nous avons
-    \begin{equation}
-        QTT^*Q^{-1}=QT^*TQ^{-1},
-    \end{equation}
-    ce qui montre que \( T\) est également normale. Or une matrice triangulaire supérieure normale est diagonale. En effet nous avons \( T_{ij}=0\) lorsque \( i>j\) et
-    \begin{equation}
-        (TT^*)_{ii}=(T^*T)_{ii}=\sum_{k=1}^n| T_{ki} |^2=\sum_{k=1}^n| T_{ik} |^2.
-    \end{equation}
-    Écrivons cela pour \( i=1\) en tenant compte de \( | T_{k1} |^2=0\) pour \( k=2,\ldots, n\),
-    \begin{equation}
-        | T_{11} |^2=| T_{11} |^2+| T_{12} |^2+\cdots+| T_{1n} |^2,
-    \end{equation}
-    ce qui implique que \( T_{11}\) est le seul non nul parmi les \( T_{1k}\). En continuant de la sorte avec \( i=2,\ldots, n\) nous trouvons que \( T\) est diagonale.
-
-    Dans l'autre sens, si \( A\) se diagonalise par une matrice unitaire, \( UAU^*=D\), nous avons
-    \begin{equation}
-        DD^*=UAA^*U^*
-    \end{equation}
-    et
-    \begin{equation}
-        D^*D=UA^*AU^*,
-    \end{equation}
-    qui ce prouve que \( A\) est normale.
-\end{proof}
-
-Tant que nous en sommes à parler de spectre de matrices hermitiennes\ldots Soit une matrice inversible \( A\in \GL(n,\eC)\). La matrice \( A^*A\) est hermitienne\footnote{Définition~\ref{DEFooKEBHooWwCKRK}.} et le théorème~\ref{LEMooVCEOooIXnTpp} nous assure que ses valeurs propres sont réelles. Par la remarque~\ref{REMooMLBCooTuKFmz}, ses valeurs propres sont même positives.
-
-\begin{lemma}[\cite{ooLMMRooUXhOdx}]   \label{LEMooHUGEooVYhZdZ}
-    Si \( A\) est une matrice carrée et inversible,
-    \begin{equation}
-        \Spec(A^*A)=\Spec(AA^*)
-    \end{equation}
-\end{lemma}
-
-\begin{proof}
-    Nous allons montrer l'égalité des polynômes caractéristiques. D'abord une simple multiplication montre que
-    \begin{equation}
-        (A^*A-\lambda\mtu)A^{-1}=A^{-1}(AA^*-\lambda\mtu).
-    \end{equation}
-    Nous prenons le déterminant de cette égalité en utilisant les propriétés~\ref{PropYQNMooZjlYlA}\ref{ItemUPLNooYZMRJy} et~\ref{ITEMooZMVXooLGjvCy} :
-    \begin{equation}
-        \det(A^*A-\lambda\mtu)\det(A^{-1})=\det(A^{-1})\det(AA^*-\lambda\mtu).
-    \end{equation}
-    En simplifiant par \( \det(A^{-1})\) (qui est non nul parce que \( A\) est inversible) nous obtenons l'égalité des polynômes caractéristiques et donc l'égalité des spectres.
-\end{proof}
+Pour le cas complexe, c'est le lemme \ref{LEMooVCEOooIXnTpp} et le théorème \ref{ThogammwA}.
 
 %---------------------------------------------------------------------------------------------------------------------------
 \subsection{Diagonalisation : cas réel}
@@ -1658,7 +1575,7 @@ Tant que nous en sommes à parler de spectre de matrices hermitiennes\ldots Soit
     \end{equation}
 \end{proof}
 Le théorème spectral pour les opérateurs autoadjoints sera traité plus bas parce qu'il a besoin de choses sur les formes bilinéaires, théorème~\ref{ThoRSBahHH}.
-% et les choses sur la dégénérescences utilisent le théorème spectral, cas réel. Donc l'enchaînement est très loumapotiste.
+% et les choses sur la dégénérescences utilisent le théorème spectral, cas réel. Donc l'enchainement est très loumapotiste.
 
 \begin{remark}  \label{RemGKDZfxu}
     Une matrice symétrique est diagonalisable par une matrice orthogonale. Nous pouvons en réalité nous arranger pour diagonaliser par une matrice de \( \SO(n)\). Plus généralement si \( A\) est une matrice diagonalisable par une matrice \( P\in\GL^+(n,\eR)\) alors elle est diagonalisable par une matrice de \( \GL^-(n,\eR)\) en changeant le signe de la première ligne de \( P\). Et inversement.
@@ -1703,6 +1620,8 @@ Le théorème spectral pour les opérateurs autoadjoints sera traité plus bas p
 
 \begin{definition}[Matrice définie positive, opérateur définit positif]    \label{DefAWAooCMPuVM}
     Un opérateur sur un espace vectoriel sur \( \eC\) ou \( \eR\) est \defe{définit positif}{opérateur!définit positif} si toutes ses valeurs propres sont réelles et strictement positives.  Il est \defe{semi-définie positive}{semi-définie positive} si ses valeurs propres sont réelles positives ou nulles.
+
+    Même définitions pour une matrice.
 \end{definition}
 Afin d'éviter l'une ou l'autre confusion, nous disons souvent \emph{strictement} définie positive pour positive.
 
@@ -1720,18 +1639,14 @@ Afin d'éviter l'une ou l'autre confusion, nous disons souvent \emph{strictement
     Soit $M$, une matrice symétrique. Nous avons
     \begin{enumerate}
         \item       \label{ITEMooTJVQooYmRkas}
-            $\det M>0$ et $\tr(M)>0$ implique $M$ définie positive\footnote{Défintion~\ref{DefAWAooCMPuVM}.},
+            $\det(M)>0$ et $\tr(M)>0$ implique $M$ définie positive\footnote{Défintion~\ref{DefAWAooCMPuVM}.},
         \item
-        $\det M>0$ et $\tr(M)<0$ implique $M$ définie négative,
+        $\det(M)>0$ et $\tr(M)<0$ implique $M$ définie négative,
     \item   \label{ItemluuFPN}
-        $\det M<0$ implique ni semi-définie positive, ni définie négative
+        $\det(M)<0$ implique ni semi-définie positive, ni définie négative
         \item
-        $\det M=0$ implique $M$ semi-définie positive ou semi-définie négative.
+        $\det(M)=0$ implique $M$ semi-définie positive ou semi-définie négative.
     \end{enumerate}
-\end{proposition}
-
-\begin{proposition}     \label{PROPooUAAFooEGVDRC}
-    Une application linéaire est définie positive\footnote{Définition~\ref{DefAWAooCMPuVM}.} si et seulement si sa matrice associée l'est.
 \end{proposition}
 
 Lorsqu'un énoncé parle d'une matrice symétrique, le premier réflexe est de la diagonaliser : considérer une matrice orthogonale \( T\) telle que \( T^tMT=D\) avec \( D\) diagonale. Et les valeurs propres sur la diagonale : \( D_{kl}=\delta_{kl}\lambda_k\). Les matrices symétriques définies positives ont cependant des propriétés même en dehors de leur base de diagonalisation.
@@ -1797,7 +1712,7 @@ Tout à l'autre bout du spectre des personnes névrosées des notations, on trou
 \end{equation}
 Le penchant personnel de l'auteur de ces lignes est la notation avec le produit tensoriel. Si vous aimez ça, vous pouvez lire la section \ref{SECooUKRYooZjagcX} et en particulier ce qui suit \eqref{EQooUNRYooKBrXyK}.
 
-La notation adoptée ici avec le produit scalaire \( \langle x, Mx\rangle \) est entre les deux. Elle a l'avantage de n'être pas technologique comme le produit tensoriel (si vous y mettez les pieds, vous devez savoir ce que vous faites), tout en évitant de se casser la tête à savoir qui est un vecteur ligne ou un vecteur colonne.
+La notation adoptée ici avec le produit scalaire \( \langle x, Mx\rangle \), qui peut aussi être écrite \( x\cdot Mx\) est entre les deux. Elle a l'avantage de n'être pas technologique comme le produit tensoriel (si vous y mettez les pieds, vous devez savoir ce que vous faites), tout en évitant de se casser la tête à savoir qui est un vecteur ligne ou un vecteur colonne.
 
 \begin{corollary}
     Une matrice symétrique strictement définie positive est inversible.
@@ -1818,310 +1733,3 @@ La notation adoptée ici avec le produit scalaire \( \langle x, Mx\rangle \) est
     \end{equation}
     Si \( A\) est strictement définie positive, alors \( \lambda\) peut être choisi strictement positif.
 \end{proof}
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Formes bilinéaires et quadratiques}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Plus à propos de formes bilinéaires dans le thème \ref{THEMEooOAJKooEvcCVn}.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Généralités}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{definition}[\cite{RUAoonJAym}]   \label{DefBSIoouvuKR}
-    Soit un espace vectoriel \( E\) et \( \eF\) un corps de caractéristique différente de \( 2\). Une \defe{forme quadratique}{forme!quadratique} sur \( E\) est une application \( q\colon E\to \eF\) pour laquelle il existe une forme bilinéaire symétrique \( b\colon E\times E\to \eF\) satisfaisant \( q(x)=b(x,x)\) pour tout \( x\in E\).
-
-    L'ensemble des formes quadratiques réelles sur \( E\) est noté \( Q(E)\)\nomenclature[B]{\( Q(E)\)}{formes quadratiques réelles sur \( E\)}.
-\end{definition}
-
-\begin{lemma}       \label{LEMooLKNTooSfLSHt}
-    Si \( q\) est une forme quadratique, il existe une unique forme bilinéaire \( b\) telle que \( q(x)=b(x,x)\).
-\end{lemma}
-
-\begin{proof}
-    L'existence n'est pas en cause : c'est la définition d'une forme quadratique. Pour l'unicité, étant donné une forme quadratique, la forme bilinéaire \( b\) doit forcément vérifier l'\defe{identité de polarisation}{identité de polarisation} :
-\begin{equation}    \label{EqMrbsop}
-    b(x,y)=\frac{ 1 }{2}\big( q(x)+q(y)-q(x-y) \big).
-\end{equation}
-Elle est donc déterminée par \( q\).
-\end{proof}
-Notons la division par \( 2\) qui est le pourquoi de la demande de la caractéristique différente de \( 2\) pour \( \eF\) dans la définition de forme quadratique.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Matrice associée à une forme bilinéaire}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Soit une forme bilinéaire \( b\colon E\times E\to \eK\) et une base \( \{ f_{\alpha} \}\) de \( E\), pas spécialement orthonormée. Nous définissons les nombres
-\begin{equation}    \label{EQooCUGFooRlKUtu}
-    B_{\alpha\beta}=b(f_{\alpha},f_{\beta}),
-\end{equation}
-qui forment une matrice symétrique dans \( \eM(n,\eK)\). Alors nous avons aussi, si \( y=\sum_{\alpha}y_{\alpha}f_{\alpha}\) et \( y'=\sum_{\beta}y'_{\beta}f_{\beta}\) :
-\begin{equation}        \label{EQooQFMWooVKVLMx}
-    b(y,y')=\sum_{\alpha\beta}q(f_{\alpha},f_{\beta})=\sum_{\alpha\beta}B_{\alpha\beta}y_{\alpha}y'_{\beta}.
-\end{equation}
-La matrice \( B\) est la matrice de \( b\) dans la base \( \{ f_{\alpha} \}\) de \( V\).
-
-Notons que la matrice associée à une forme bilinéaire (ou quadratique associée) est uniquement valable pour une base donnée. Si nous changeons de base, la matrice change. Cependant lorsque nous travaillons sur \( \eR^n\), la base canonique est tellement canonique que nous allons nous permettre de parler de «la» matrice associée à une forme bilinéaire.
-
-%--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Diagonalisation}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{proposition}
-    Soit une forme bilinéaire symétrique \( b\) sur un espace vectoriel \( E\) de dimension finie. Il existe une matrice orthogonale \( Q\) telle que 
-    \begin{enumerate}
-        \item
-            \( D=Q^tbQ\) est diagonale
-        \item
-            \( D(x,y)=b(Qx,Qy)\) pour tout \( x,y\in E\).
-    \end{enumerate}
-    Dans cet énoncé, nous mélangeons sans vergogne les formes et les matrices, en supposant qu'une base soit fixée\footnote{Autrement dit, si vous avez en tête d'utiliser cette proposition pour \( \eR^n\) c'est bon; mais sinon vous devez choisir une base et considérer toutes les matrices dans cette base.}. Par exemple
-    \begin{equation}
-        D(x,y)=\sum_{ij}D_{ij}x_iy_j.
-    \end{equation}
-\end{proposition}
-
-\begin{proof}
-    Pour la matrice diagonale, c'est le théorème spectral \ref{ThoeTMXla}\ref{ITEMooMWWRooXxGONW} qui joue parce que la matrice d'une forme bilinéaire symétrique est symétrique (c'est vu de la définition \eqref{EQooCUGFooRlKUtu}).
-
-    Pour le reste c'est un calcul :
-    \begin{subequations}
-        \begin{align}
-            D(x,y)&=\sum_{ijkl}Q^t_{ik}b_{kl}Q_{lj}x_iy_j\\
-            &=\sum_{ijkl}b_{kl}(Q_{ki}x_i)(Q_{lj}y_j)\\
-            &=\sum_{kl}b_{kl}(Qx)_k(Qy)_l\\
-            &=b(Qx,Qy).
-        \end{align}
-    \end{subequations}
-    Nous avons utilisé le produit matrice fois vecteur donné par \eqref{EQooQFVTooMFfzol}.
-\end{proof}
-
-%--------------------------------------------------------------------------------------------------------------------------- 
-\subsection{Isométrie, forme quadratique et bilinéaire}
-%---------------------------------------------------------------------------------------------------------------------------
-
-\begin{example}
-    La forme quadratique \( q(x)=x_1^2+x_2^2\) donne la norme euclidienne. La forme bilinéaire associée est \( b(x,y)=x_1y_1+x_2y_2\), qui est le produit scalaire usuel.
-\end{example}
-
-Il ne faudrait pas déduire trop vite que la formule \( \| x \|^2=q(x)\) donne une norme dès que \( q\) est non dégénérée. En effet \( q\) peut ne pas être définie positive. La forme \( q(x)=x_1^2-x_2^2\) prend des valeurs positives et négatives. A fortiori \( d(x,y)=q(x-y)\) ne donne pas toujours une distance.
-
-\begin{definition}      \label{DEFooECTUooRxBhHf}
-    Une \defe{isométrie}{isométrie!de forme quadratique} pour la forme quadratique \( q\) est une application bijective \( f\colon V\to V\) telle que 
-    \begin{equation}
-     q(x-y)=q\big( f(x)-f(y) \big).
-    \end{equation}
-     Dans les cas où \( q\) donne une distance, alors c'est une isométrie au sens usuel.
-\end{definition}
-
-\begin{definition}[Thème \ref{THMooVUCLooCrdbxm}]      \label{DEFooIQURooMeQuqX}
-    Soit un espace vectoriel \( E\) muni d'une forme bilinéaire \( b\). Une \defe{isométrie}{isométrie (forme bilinéaire)} pour \( b\) est une bijection \( f\colon E\to E\) telle que
-    \begin{equation}
-        b\big( f(x),f(y) \big)=b(x,y)
-    \end{equation}
-    pour tout \( x,y\in E\).
-\end{definition}
-
-\begin{lemma}   \label{LemewGJmM}
-    Soient \( q\) une forme quadratique et \( b\) la forme bilinéaire associée par le lemme~\ref{LEMooLKNTooSfLSHt}. Une application \( f\colon E\to E\) telle que \( f(0)=0\) est une isométrie pour \( b\) si et seulement si elle est une isométrie pour \( q\).
-\end{lemma}
-
-\begin{proof}
-    Pour une application bijective \( f\colon E\to E\) telle que \( f(0)=0\), nous devons prouver l'équivalence des propriétés suivantes :
-    \begin{enumerate}
-        \item
-            \( b\big( f(x),f(y) \big)=b(x,y)\) pour tout \( x,y\in E\);
-        \item
-            \( q\big( f(x)-f(y) \big)=q(x-y)\) pour tout \( x,y\in E\).
-    \end{enumerate}
-
-    Dans le sens direct, en posant \( x=y\) nous trouvons tout de suite \( q(f(x))=q(x)\); ensuite en utilisant la distributivité de \( b\),
-    \begin{subequations}
-        \begin{align}
-            q\big( f(x)-f(y) \big)&=b\big( f(x)-f(y),f(x)-f(y) \big)\\
-            &=q\big( f(x) \big)-2b\big( f(x),f(y) \big)+q\big( f(y) \big)\\
-            &=q(x)+q(y)-2b(x,y)\\
-            &=q(x-y).
-        \end{align}
-    \end{subequations}
-
-    Dans l'autre sens, nous commençons par remarquer que l'hypothèse \( f(0)=0\) donne \( q(x)=q\big( f(x) \big)\). Ensuite nous utilisons l'identité de polarisation \eqref{EqMrbsop} :
-    \begin{subequations}
-        \begin{align}
-            b\big( f(x),f(y) \big)&=\frac{ 1 }{2}\big[ q\big( f(x) \big)+q\big( f(y) \big)-q\big( f(x-y) \big) \big]\\
-            &=\frac{ 1 }{2}\big[ q(x)+q(y)-q(x-y) \big]\\
-            &=b(x,y).
-        \end{align}
-    \end{subequations}
-\end{proof}
-
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\section{Conventions et notations sur les matrices et changement de bases}
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\label{SECooBTTTooZZABWA}
-
-Nous nous proposons à présent de fixer toutes les notations concernant le calcul matriciel et les changements de bases\footnote{Concernant la matrice d'une différentielle, c'est la proposition \ref{PROPooBMROooThgLuU}. Nous n'en parlerons pas ici parce que c'est pour plus tard.}. Nous considérons un espace vectoriel \( V\) sur le corps commutatif\footnote{Comme toujours.} \( \eK\). Si \( t\colon V\to V \) est une application linéaire de matrice \( A\) dans la base \( \{ e_i \}_{i=1,\ldots, n}\) alors nous avons :
-\begin{equation}        \label{EQooOMSCooGsSBIA}
-    A_{ij}=t(e_j)_i.
-\end{equation}
-Donc \( t(e_j)=\sum_i A_{ij}e_i\).
-
-En ce qui concerne l'application d'une matrice à un vecteur, c'est définit en \eqref{EQooQFVTooMFfzol}; nous avons alors, pour \( x=\sum_ix_ie_i\) :
-\begin{equation}
-    t(x)=\sum_ix_it(e_i)=\sum_{ij}A_{ji}x_ie_j,
-\end{equation}
-ou encore, en changeant le nom des indices pour être plus joli :
-\begin{equation}        \label{EQooUELWooErOncF}
-    t(x)_i=\sum_jA_{ij}x_j.
-\end{equation}
-
-Lorsque nous avons une base orthonormée nous avons aussi
-\begin{equation}        \label{EQooDSKBooQkgtWv}
-    A_{ij}=\langle Ae_j, e_i\rangle .
-\end{equation}
-
-Ici \( t\) est une application \( V\to V\) et \( A\in \eM(n,\eK)\) est simplement un tableau de nombres sans prétentions d'être une application linéaire. Cependant, \( A\) peut être vu comme application linéaire \( \eK\to \eK\), et l'ensemble de nombres \( \{ x_i \}_{i=1,\ldots, n}\) peut être vu comme vecteur de \( \eK^n\). Dans ce contexte nous pouvons écrire
-\begin{equation}
-    t(x)_i=(Ax)_i.
-\end{equation}
-Cela signifie que si on identifie un vecteur au vecteur de ses composantes, l'application linéaire se réduit au produit «matrice fois vecteur» sur le corps de base.
-
-Tant que nous y sommes, nous avons aussi la formule suivante dans \( \eR^n\) muni du produit scalaire usuel :
-\begin{equation}        \label{EQooFYNYooFQhVyE}
-    x\cdot Ay=\sum_kx_k(Ay)_k=\sum_{kl}x_kA_{kl}y_l=\sum_{kl}A_{kl}x_ky_l.
-\end{equation}
-En voila au moins une pour laquelle les indices tombent au bons endroits.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Le changement de base}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Soit un espace vectoriel \( V\) muni de deux bases \( \{ e_i\}_{i=1,\ldots, n}\) et \( \{ f_{\alpha}\}_{\alpha=1,\ldots, n}\). Les deux bases sont liées entre elles par
-\begin{equation}        \label{EQooFRQRooSMsQQB}
-    f_{\alpha}=\sum_iQ_{i\alpha}e_i.
-\end{equation}
-Ici \( Q\) n'est pas une application linéaire \( V\to V\) : \( Q\) est seulement un tableau de nombres, donnant les coordonnées des vecteurs \( f_{\alpha}\) dans la base de \( e_i\). Éventuellement \( Q\) peut être vu comme une application linéaire \( \eK^n\to \eK^n\).
-
-Dans la suite nous nommerons \( Q^{-1}\) la matrice inverse de \( Q\). Inverse au sens des bêtes tableaux de nombres, sans interprétations en tant qu'application linéaire. De même pour \( Q^t\) qui est la transposée de \( Q\).
-
-\begin{lemma}       \label{LEMooLXAHooPRyHaF}
-    Soient des matrices \( A,B\in \eM(n,\eK)\). Si pour tout \( x,y\in \eK^n\) nous avons
-    \begin{equation}
-        \sum_{ij}A_{ij}x_iy_j=\sum_{ij}B_{ij}x_iy_j
-    \end{equation}
-    alors \( A=B\).
-\end{lemma}
-
-\begin{proof}
-    Il suffit de choisir \( x_i=\delta_{ik}\) et \( y_j=\delta_{jl}\), et d'effectuer les sommes; par exemple
-    \begin{equation}
-        \sum_{ij}A_{ij}\delta_{ik}y_j=\sum_jA_{kj}y_j.
-    \end{equation}
-    Après avoir effectué toutes les sommes nous nous retrouvons avec \( A_{kl}=B_{kl}\), ce qui signifie \( A=B\).
-\end{proof}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Changement de base : vecteurs de base}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Nous multiplions l'égalité \eqref{EQooFRQRooSMsQQB} par \( Q^{-1}_{\alpha j}\) \footnote{Attention à la bonne interprétation de ce nombre : on fait bien référence à l'élément situé en \( (\alpha, j) \) de la matrice \( Q^{-1} \), et pas autre chose.} et nous sommons sur \( \alpha\) :
-\begin{equation}
-    \sum_{\alpha}Q^{-1}_{\alpha j}f_{\alpha}=\sum_{i\alpha}(A_{i\alpha}Q^{-1}_{\alpha j})e_i=e_j.
-\end{equation}
-Donc :
-\begin{equation}    \label{EQooZQPAooAbKAdg}
-    e_i=\sum_{\alpha}Q^{-1}_{\alpha i}f_{\alpha}.
-\end{equation}
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Changement de base : coordonnées}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Soit un vecteur \( x\in V\). Il peut être écrit dans les deux bases :
-\begin{equation}
-    x=\sum_ix_ie_i=\sum_{\alpha}y_{\alpha}f_{\alpha}.
-\end{equation}
-En remplaçant \( e_i\) par sa valeur \eqref{EQooZQPAooAbKAdg} nous avons l'égalité
-\begin{equation}
-    \sum_{i\alpha}x_iQ^{-1}_{\alpha i}f_{\alpha}=\sum_{\alpha}y_{\alpha}f_{\alpha}.
-\end{equation}
-Vu que les \( f_{\alpha}\) sont linéairement indépendants, l'égalité des sommes donne l'égalité de chacun de termes :
-\begin{equation}        \label{EQooFXYLooCRmRdA}
-    y_{\alpha}=\sum_ix_iQ^{-1}_{\alpha i}.
-\end{equation}
-En identifiant \( x\in V\) au vecteur dans \( \eK^n\) de ses coordonnées dans la base \( \{ e_i \}\) nous pouvons écrire
-\begin{equation}
-    y_{\alpha}=(Q^{-1}x)_{\alpha},
-\end{equation}
-ou pire :
-\begin{equation}
-    y=Q^{-1}x.
-\end{equation}
-Cette dernière égalité repose sur un petit paquet d'abus de notations qu'il convient de bien comprendre. Ici, \( x\) et \( y\) sont les éléments de \( \eK^n\) donnés par les composantes de \( x\) dans les bases \( \{ e_i \}\) et \( \{ f_{\alpha} \}\), et \( Q\) est vu comme une matrice, un opérateur linéaire sur \( \eK^n\).
-
-Une chose agréable avec cette façon d'écrire est que nous trouvons tout de suite la transformation inverse \( x=Qy\) qui peut être écrire de différentes manières :
-\begin{subequations}
-    \begin{align}
-        x&=Qy\\
-        x_i&=(Qy)_i   \label{SUBEQooPVGBooDafCcBk}  \\
-        x_i&=\sum_{\alpha}Q_{i\alpha}y_{\alpha}
-    \end{align}
-\end{subequations}
-Attention à l'ordre des indices dans la dernière égalité : la matrice \( Q\) vient avec les indices dans l'ordre \( i\alpha\), tandis que la matrice \( Q^{-1}\) vient avec les indices dans l'ordre opposé : \( \alpha i\). C'est pour cela qu'il est intéressant de noter avec des lettres latines les indices se rapportant à la première base et avec des lettres grecques ceux se rapportant à la seconde base.
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Changement de base : matrice d'une application linéaire}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Soit une application linéaire \( t\colon V\to V\) de matrices \( A\) et \( B\) dans les bases \( \{ e_i \}\) et \( \{ f_{\alpha} \}\) :
-\begin{equation}
-    t(x)=\sum_{ij}A_{ji}x_ie_j=\sum_{\alpha\beta}B_{\alpha\beta}y_{\beta}f_{\alpha}.
-\end{equation}
-En remplaçant \( e_j\) par son expression \eqref{EQooZQPAooAbKAdg} en termes des \( f_{\alpha}\) et \( x_i\) par son expression \eqref{SUBEQooPVGBooDafCcBk}, nous avons
-\begin{subequations}
-    \begin{align}
-        (By)_{\alpha}&=\sum_{ij\alpha}A_{ji}(Qy)_iQ^{-1}_{\alpha j}f_{\alpha}\\
-        &=\sum_{i \alpha}(Q^{-1}A)_{\alpha i}(Qy)_if_{\alpha}\\
-        &=\sum_{\alpha}(Q^{-1} AQy)_{\alpha}f_{\alpha}.
-    \end{align}
-\end{subequations}
-Vu que les \( f_{\alpha}\) forment une base nous en déduisons \( Q^{-1}AQy=By\). Et vu que \( y\) est un élément quelconque de \( \eK^n\), nous en déduisons l'égalité de matrices
-\begin{equation}        \label{ooWKTYooOJfclT}
-    B=Q^{-1}AQ.
-\end{equation}
-Il s'agit bien d'une égalité de matrices, ou à la limite d'applications linéaires sur \( \eK^n\), et non d'une égalité d'application linéaire sur \( V\).
-
-%---------------------------------------------------------------------------------------------------------------------------
-\subsection{Changement de base : matrice d'une forme bilinéaire}
-%---------------------------------------------------------------------------------------------------------------------------
-
-Soit une forme bilinéaire\footnote{Définition~\ref{DEFooEEQGooNiPjHz}} \( q\colon V\times V\to \eK\) dont la matrice\footnote{Définition~\ref{EQooCUGFooRlKUtu}.} dans la base \( \{ e_i \}\) est \( A\) et celle dans la base \( \{ f_{\alpha} \}\) est \( B\).
-
-Rien n'indique pour l'instant que \( A\) et \( B\) sont les mêmes qu'avant. Au contraire, nous allons voir qu'elles ne sont en général pas les mêmes.
-
-Soit \( x,x'\in V\) de coordonnées \( (x_i)\) et \( (x'_i)\) dans la base \( \{ e_i \}\) et \( (y_{\alpha})\), \( (y'_{\alpha})\) dans la base \( \{ f_{\alpha} \}\). Par définition de la matrice associée à une forme bilinéaire,
-\begin{equation}
-    q(x,x')=\sum_{ij}A_{ij}x_ix'_j=\sum_{\alpha\beta}B_{\alpha\beta}y_{\alpha}y'_{\beta}.
-\end{equation}
-En remplaçant les \( x_i\) et \( x'_i\) par leurs valeurs en fonction de \( y_{\alpha}\) et \( y'_{\beta}\),
-\begin{subequations}
-    \begin{align}
-        q(x,x')&=\sum_{ij\alpha\beta}A_{ij}Q_{i\alpha}y_{\alpha}Q_{j\beta}y'_{\beta}\\
-        &=\sum_{\alpha\beta}(Q^tAQ)_{\alpha\beta}y_{\alpha}y'_{\beta}
-    \end{align}
-\end{subequations}
-où \( Q^t\) désigne la transposée de la matrice \( Q\) :  \( Q^t_{ij}=Q_{ji}\). Vu que les nombres \( y_{\alpha}\) et \( y'_{\beta}\) sont arbitraires nous déduisons\footnote{Lemme~\ref{LEMooLXAHooPRyHaF}.}
-\begin{equation}        \label{EQooZUVTooKjqnJj}
-    B=Q^tAQ.
-\end{equation}
-
-\begin{remark}
-    Notons que cette «loi de transformation» n'est pas la même que celle pour une application linéaire. Ici nous avons \( Q^t\) alors que pour les applications linéaires nous avions \( Q^{-1}\).
-
-    Pour cette raison, tant que nous travaillons avec des bases orthonormées, c'est-à-dire tant que \( Q\) est orthogonale\footnote{Définition~\ref{DefMatriceOrthogonale}.}, nous pouvons confondre une application linéaire avec une application bilinéaire en passant par la matrice. Mais cette identification n'est pas du tout canonique : elle repose sur le fait que les bases soient orthonormées.
-
-    Il en découle que la réduction des endomorphismes et la réduction des formes bilinéaires ne sont pas tout à fait les mêmes théories. Par exemple la pseudo-diagonalisation simultanée (corollaire~\ref{CorNHKnLVA}) est un résultat de réduction de forme bilinéaire et non d'endomorphismes.
-    % TODO : lorsque ce sera fait, il faudra approfondir cette remarque.
-\end{remark}

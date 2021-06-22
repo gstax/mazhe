@@ -1,5 +1,5 @@
 % This is part of Mes notes de mathématique
-% Copyright (c) 2011-2013,2015,2017-2019
+% Copyright (c) 2011-2013,2015,2017-2019, 2021
 %   Laurent Claessens
 % See the file fdl-1.3.txt for copying conditions.
 
@@ -466,7 +466,6 @@ Cette section prend des éléments des articles \wikipedia{fr}{Lemme_de_Schur}{l
     \end{equation}
     Nous disons alors que \( f\) \defe{entrelace}{entrelacement} \( \rho\) et \( \rho'\).
 \end{definition}
-<++>
 
 \begin{theorem}[Théorème de Schur]\index{théorème!Schur}\index{Schur (théorème)}    \label{ThoyftobH}
     Si \( (V,\rho)\) et \( (V',\rho')\) sont des représentations irréductibles non équivalentes alors la seule application linéaire \( f\colon V\to V'\) entrelaçant \( \rho\) et \( \rho'\) est la fonction nulle.
@@ -513,7 +512,7 @@ Cette section prend des éléments des articles \wikipedia{fr}{Lemme_de_Schur}{l
 \end{lemma}
 
 \begin{proof}
-    Par le corollaire~\ref{CorpZItFX} au théorème de Lagrange, nous avons \( g^{| G |}=e\) et donc en tant qu'opérateur, \( \rho(g)^{| G |}=\mtu\). Les valeurs propres de \( \rho(g)\) sont donc des racines de l'unité. Si nous notons \( \lambda_i\) ces valeurs propres, alors \( \chi(g)=\sum_i\lambda_i\), et en considérant la matrice dans sa base de diagonalisation (lemme de Schur complexe,~\ref{LemSchurComplHAftTq}), nous voyons que
+    Par le corolaire~\ref{CorpZItFX} au théorème de Lagrange, nous avons \( g^{| G |}=e\) et donc en tant qu'opérateur, \( \rho(g)^{| G |}=\mtu\). Les valeurs propres de \( \rho(g)\) sont donc des racines de l'unité. Si nous notons \( \lambda_i\) ces valeurs propres, alors \( \chi(g)=\sum_i\lambda_i\), et en considérant la matrice dans sa base de diagonalisation (lemme de Schur complexe,~\ref{LemSchurComplHAftTq}), nous voyons que
     \begin{equation}
         \chi(g^{-1})=\tr\big( \rho(g)^{-1} \big)=\sum_i\frac{1}{ \lambda_i }.
     \end{equation}
@@ -800,7 +799,7 @@ Le théorème suivant est valable pour les groupes finis (comme toute cette sect
 \end{corollary}
 
 \begin{proof}
-    Le corollaire~\ref{CorbdcVNC} nous dit qu'il y a autant de représentations unitaires qu'il n'y a de représentations irréductibles (non équivalentes). Mais les classes de conjugaisons sont des singletons (lemme~\ref{LEMooQYBJooYwMwGM}). Nous avons donc exactement \( | G |\) représentations irréductibles lorsque \( G\) est abélien.
+    Le corolaire~\ref{CorbdcVNC} nous dit qu'il y a autant de représentations unitaires qu'il n'y a de représentations irréductibles (non équivalentes). Mais les classes de conjugaisons sont des singletons (lemme~\ref{LEMooQYBJooYwMwGM}). Nous avons donc exactement \( | G |\) représentations irréductibles lorsque \( G\) est abélien.
 
     Mais d'autre part la proposition~\ref{PropYLnxIjk}\ref{ITEMooLXIJooDxkGJh} donne \( \sum_i(\dim W_i)^2=| G |\) lorsque la somme parcours les représentations irréductibles. Il y a \( | G |\) termes à la somme, donc tous les termes doivent être \( 1\).
 \end{proof}
@@ -809,14 +808,16 @@ Le théorème suivant est valable pour les groupes finis (comme toute cette sect
 \section{Représentation produit tensoriel}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-% position ooFRVPooSIWOod
-Soient \( \rho\) et \( \phi\), deux représentations d'un groupe \( G\) sur des espaces vectoriels \( V\) et \( W\). La représentation \defe{produit tensoriel}{produit!tensoriel!de représentations}\index{représentation!produit tensoriel} est la représentation
-\begin{equation}
-    \begin{aligned}
-        \rho\otimes\phi\colon G&\to \GL(V\otimes W) \\
-        (\rho\otimes\phi)(g)(v\otimes w)&=\rho(g)v\otimes \phi(g)w.
-    \end{aligned}
-\end{equation}
+\begin{definition}
+    Soient \( \rho\) et \( \phi\), deux représentations d'un groupe \( G\) sur des espaces vectoriels \( V\) et \( W\). La représentation \defe{produit tensoriel}{produit!tensoriel!de représentations}\index{représentation!produit tensoriel} est la représentation
+    \begin{equation}
+        \begin{aligned}
+            \rho\otimes\phi\colon G&\to \GL(V\otimes W) \\
+            (\rho\otimes\phi)(g)(v\otimes w)&=\rho(g)v\otimes \phi(g)w.
+        \end{aligned}
+    \end{equation}
+    L'espace \( V\otimes W\) est le produit tensoriel de \( V\) et \( W\), défini en \ref{DEFooKTVDooSPzAhH}.
+\end{definition}
 Pour trouver son caractère, nous considérons une base \( \{ e_i \}\) de \( V\) et une base \( \{ e_{\alpha} \}\) de \( W\), et la base \( \{ e_i\otimes e_{\alpha} \}\) de \( V\otimes W\). Donc
 \begin{equation}
     (\rho\otimes \phi)(g)(e_i\otimes e_{\alpha})=\rho(g)e_i\otimes \phi(g)e_{\alpha}.
@@ -847,7 +848,7 @@ Nous y avons aussi la représentation de signature donnée par
         \sigma&\mapsto \epsilon(\sigma)\id.
     \end{aligned}
 \end{equation}
-Et enfin il y a la représentation triviale. Ce sont les trois représentations irréductibles; pour rappel il y a autant de représentations irréductibles que de classes de conjugaison (corollaire~\ref{CorbdcVNC}).
+Et enfin il y a la représentation triviale. Ce sont les trois représentations irréductibles; pour rappel il y a autant de représentations irréductibles que de classes de conjugaison (corolaire~\ref{CorbdcVNC}).
 
 \begin{center}
     \begin{tabular}[]{ccccc}
@@ -874,7 +875,7 @@ D'autre part nous avons aussi
 \section{Table des caractères du groupe symétrique \texorpdfstring{$ S_4$}{S4}}
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 \label{SecUMIgTmO}
-\index{groupe!de permutation!caractères de \( S_4\)}
+\index{groupe!de permutations!caractères de \( S_4\)}
 \index{caractère!de \( S_4\)}
 \index{représentation!de groupe fini!caractères de \( S_4\)}
 
@@ -886,7 +887,7 @@ Pour la table des caractères de \( S_4\), voir \cite{KXjFWKA}. Et si vous voule
 
 Nous savons que les classes de conjugaison dans \( S_4\) sont caractérisées par la structure des décompositions en cycles (proposition~\ref{PropEAHWXwe}). Elles sont données dans l'exemple~\ref{ExVYZPzub}.
 
-Nous avons donc \( 5\) classes de conjugaison, et il nous faut donc \( 5\) représentations irréductibles non équivalentes (corollaire~\ref{CorbdcVNC}) dont nous allons chercher les caractères.
+Nous avons donc \( 5\) classes de conjugaison, et il nous faut donc \( 5\) représentations irréductibles non équivalentes (corolaire~\ref{CorbdcVNC}) dont nous allons chercher les caractères.
 
 La première est la représentation triviale de dimension \( 1\); nous notons \( \chi_1\) son caractère et nous avons la ligne
 \begin{equation}
@@ -926,7 +927,7 @@ Nous avons la décomposition \( \rho_p=\rho_1\oplus \rho_s\) et donc
 \begin{equation}
     \chi_p=\chi_1+\chi_s.
 \end{equation}
-Nous savons déjà \( \chi_1\). Le caractère \( \chi_p\) n'est pas très compliqué parce que \( \chi_p(\sigma)\) est une matrice de permutation des vecteurs de base. Donc la matrice \( \rho_p(\sigma)\) a un \( 1 \) sur la diagonale pour les \( i\) tels que \( \sigma(i)=i\). Nous avons donc
+Nous savons déjà \( \chi_1\). Le caractère \( \chi_p\) n'est pas très compliqué parce que \( \chi_p(\sigma)\) est une matrice de permutations des vecteurs de base. Donc la matrice \( \rho_p(\sigma)\) a un \( 1 \) sur la diagonale pour les \( i\) tels que \( \sigma(i)=i\). Nous avons donc
 \begin{subequations}
     \begin{align}
     \chi_p(\id)&=4&\chi_p(12)&=2\\
@@ -1013,11 +1014,10 @@ Notons que nous sommes parvenus à remplir la dernière ligne sans rien savoir d
 %TODO : il est dit que le caractère d'une représentation la caractérise. Il faudrait voir ça et faire ici.
 
 %---------------------------------------------------------------------------------------------------------------------------
-\subsection{Représentation de \( S_4\) via les isométries du tétraèdre}
+\subsection{À propos de la représentation \( \rho_s\)}
 %---------------------------------------------------------------------------------------------------------------------------
-\label{SUBSECooLEUAooGGjGIZ}
 
-Une des représentations trouvées (la représentation \( \rho_s\)) peut être vue comme le groupe \( \Iso(T)\) des isométries affine du tétraèdre grâce à la proposition \ref{PROPooVNLKooOjQzCj} qui donne un isomorphisme de groupe \( S_4\simeq \Iso(T)\) lorsque \( T\) est un tétraèdre régulier de \( \eR^3\).
+Une des représentations trouvées (la représentation \( \rho_s\)) peut être vue comme le groupe \( \Iso(T)\) des isométries affine du tétraèdre\footnote{Définition \ref{DEFooMUUMooFVxKyb}.} grâce à la proposition \ref{PROPooVNLKooOjQzCj} qui donne un isomorphisme de groupe \( S_4\simeq \Iso(T)\) lorsque \( T\) est un tétraèdre régulier de \( \eR^3\).
 
 Nous verrons donc ça plus en détail dans la section \ref{SUBSECooVEASooDUbsBh}.
 
@@ -1082,7 +1082,7 @@ Le groupe \( V_4\) définit en~\ref{NORMooQAZTooBQLqDn} est normal dans \( S_4\)
 \end{lemma}
 
 \begin{proof}
-    Le groupe \( S_4/V_4\) a une représentation irréductible de dimension \( 2\), et n'est donc pas abélien par le corollaire~\ref{CORooWAGXooByrelO}.
+    Le groupe \( S_4/V_4\) a une représentation irréductible de dimension \( 2\), et n'est donc pas abélien par le corolaire~\ref{CORooWAGXooByrelO}.
 
     Il contient \( | S_4 |/| V_4 |=24/4=6\) éléments (théorème de Lagrange~\ref{ThoLagrange}). Or \( 6=3\times 2\), donc le groupe \( S_4/V_4\) est dans le cas non-abélien du théorème~\ref{ThoLnTMBy}\ref{ITEMooFQXIooFLAiUD}. Cette partie parle d'unicité du groupe non-abélien d'ordre \( 6\). Or \( S_3\) est un groupe non-abélien d'ordre \( 6\), donc \( S_4/V_4\) est isomorphe à \( S_3\).
 \end{proof}
